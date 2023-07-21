@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48154a22cc714c448fa22d51c8ef6027, type: 3}
+  m_Name: InteractiveCursorStrategy_HoverOnly
+  m_EditorClassIdentifier: 
+  _cases:
+  - cursorIcon: {fileID: 11400000, guid: a3116495fe10a084db1793e13755f30a, type: 2}
+    constraint:
+      rid: 6196716169574481923
+  references:
+    version: 2
+    RefIds:
+    - rid: 4788946424385503236
+      type: {class: InteractionConditionIsAllowedInteraction, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      data:
+        shouldBeReadyToStartInteract:
+          _hasValue: 1
+          _value: 1
+        shouldBeAllowedToStartInteract:
+          _hasValue: 0
+          _value: 0
+        shouldBeAllowedToContinueInteract:
+          _hasValue: 0
+          _value: 0
+    - rid: 4788946424385503237
+      type: {class: InteractionConditionIsInteracting, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      data:
+        shouldBeInInteraction: 0
+    - rid: 4788946424385503238
+      type: {class: InteractionConditionIsDetected, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      data:
+        shouldBeDetected: 1
+    - rid: 6196716169574481923
+      type: {class: ConditionGroupAll, ns: MisterGames.Common.Conditions, asm: MisterGames.Common}
+      data:
+        conditions:
+        - rid: 4788946424385503238
+        - rid: 4788946424385503237
+        - rid: 4788946424385503236

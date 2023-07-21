@@ -1,0 +1,1905 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95aa8f7d5aa490e9877070cd957eaff, type: 3}
+  m_Name: Blueprint_InteractiveDoor
+  m_EditorClassIdentifier: 
+  _blueprintMeta:
+    _nodesMap:
+      _entries:
+      - key: 4
+        value:
+          _nodeId: 4
+          _node:
+            rid: 8965086244798988288
+          _position: {x: 261.39877, y: -215.1609}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Images
+            _mode: 11
+            _options: 0
+            _dataType:
+              _type: UnityEngine.UI.Image, UnityEngine.UI
+          - _name: Material
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 5
+        value:
+          _nodeId: 5
+          _node:
+            rid: 8965086244798988289
+          _position: {x: -129.00122, y: -227.16093}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.UI.Image, UnityEngine.UI
+      - key: 7
+        value:
+          _nodeId: 7
+          _node:
+            rid: 8965086244798988291
+          _position: {x: -487.9384, y: -86.1626}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+      - key: 8
+        value:
+          _nodeId: 8
+          _node:
+            rid: 8965086244798988292
+          _position: {x: -115.40126, y: -88.76095}
+          _ports:
+          - _name: Condition
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: On True
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+          - _name: On False
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+      - key: 9
+        value:
+          _nodeId: 9
+          _node:
+            rid: 8965086244798988293
+          _position: {x: -464.20123, y: -12.760948}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+      - key: 63
+        value:
+          _nodeId: 63
+          _node:
+            rid: 3199185295503523842
+          _position: {x: 981.4796, y: -366.48138}
+          _ports:
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: SetBlocked
+            _mode: 1
+            _options: 3
+            _dataType:
+              _type: 
+      - key: 11
+        value:
+          _nodeId: 11
+          _node:
+            rid: 8965086244798988298
+          _position: {x: 1665.9429, y: 487.56046}
+          _ports:
+          - _name: Init
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Play
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Pause
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Wind
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Rewind
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Invert
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Tweens
+            _mode: 43
+            _options: 0
+            _dataType:
+              _type: MisterGames.BlueprintLib.IBlueprintNodeTween, MisterGames.BlueprintsLib
+          - _name: On Start
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Cancelled
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Finished
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Progress
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Single, mscorlib
+      - key: 12
+        value:
+          _nodeId: 12
+          _node:
+            rid: 8965086244798988299
+          _position: {x: 2057.2761, y: 380.22714}
+          _ports:
+          - _name: Self
+            _mode: 22
+            _options: 0
+            _dataType:
+              _type: MisterGames.BlueprintLib.IBlueprintNodeTween, MisterGames.BlueprintsLib
+          - _name: Next Tweens
+            _mode: 43
+            _options: 0
+            _dataType:
+              _type: MisterGames.BlueprintLib.IBlueprintNodeTween, MisterGames.BlueprintsLib
+          - _name: 
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: MisterGames.Tweens.Core.ITween, MisterGames.Tweens
+          - _name: On Start
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Cancelled
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Finished
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Progress
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Single, mscorlib
+      - key: 13
+        value:
+          _nodeId: 13
+          _node:
+            rid: 8965086244798988300
+          _position: {x: 1713.2761, y: 404.89377}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: MisterGames.Tweens.Core.ITween, MisterGames.Tweens
+      - key: 14
+        value:
+          _nodeId: 14
+          _node:
+            rid: 8965086267122909184
+          _position: {x: -127.40123, y: -162.36092}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.UI.Image, UnityEngine.UI
+      - key: 15
+        value:
+          _nodeId: 15
+          _node:
+            rid: 8965086267122909185
+          _position: {x: 1127.9429, y: 219.5605}
+          _ports:
+          - _name: Set Interactive
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Interactive
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+          - _name: On Start Interact
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Stop Interact
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Is Interacting
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: Last User
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: MisterGames.Interact.Interactives.IInteractiveUser, MisterGames.Interact
+      - key: 16
+        value:
+          _nodeId: 16
+          _node:
+            rid: 8965086267122909186
+          _position: {x: 752.5614, y: 272.62558}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+      - key: 17
+        value:
+          _nodeId: 17
+          _node:
+            rid: 8965086267122909187
+          _position: {x: -44.84999, y: 480.85}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Condition
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: On True
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On False
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 18
+        value:
+          _nodeId: 18
+          _node:
+            rid: 8965086267122909188
+          _position: {x: -401.65, y: 521.65}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+      - key: 19
+        value:
+          _nodeId: 19
+          _node:
+            rid: 8965086267122909189
+          _position: {x: -142, y: 464.59998}
+          _ports:
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Start
+            _mode: 1
+            _options: 3
+            _dataType:
+              _type: 
+      - key: 20
+        value:
+          _nodeId: 20
+          _node:
+            rid: 8965086267122909190
+          _position: {x: 1125.9429, y: 355.5605}
+          _ports:
+          - _name: Set Interactive
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Interactive
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+          - _name: On Start Interact
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Stop Interact
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Is Interacting
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: Last User
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: MisterGames.Interact.Interactives.IInteractiveUser, MisterGames.Interact
+      - key: 21
+        value:
+          _nodeId: 21
+          _node:
+            rid: 8965086267122909191
+          _position: {x: 748.56134, y: 408.6256}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+      - key: 23
+        value:
+          _nodeId: 23
+          _node:
+            rid: 8965086267122909193
+          _position: {x: 1286.6666, y: 631.6667}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Condition
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: On True
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On False
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 24
+        value:
+          _nodeId: 24
+          _node:
+            rid: 8965086267122909194
+          _position: {x: 940, y: 668.3333}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+      - key: 25
+        value:
+          _nodeId: 25
+          _node:
+            rid: 8965086267122909195
+          _position: {x: 937.27625, y: 585.5604}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 29
+        value:
+          _nodeId: 29
+          _node:
+            rid: 3199185288725266434
+          _position: {x: 336.8501, y: 440.9709}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 30
+        value:
+          _nodeId: 30
+          _node:
+            rid: 3199185288725266436
+          _position: {x: -542.6662, y: 345.31787}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: IsBlocked
+            _mode: 3
+            _options: 3
+            _dataType:
+              _type: System.Boolean, mscorlib
+      - key: 31
+        value:
+          _nodeId: 31
+          _node:
+            rid: 3199185288725266437
+          _position: {x: -91.78015, y: 257.09073}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Condition
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: On True
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On False
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 34
+        value:
+          _nodeId: 34
+          _node:
+            rid: 3199185288725266440
+          _position: {x: -536.18445, y: 269.36264}
+          _ports:
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: SetBlocked
+            _mode: 1
+            _options: 3
+            _dataType:
+              _type: 
+      - key: 35
+        value:
+          _nodeId: 35
+          _node:
+            rid: 3199185294528348217
+          _position: {x: 254.50212, y: -613.00024}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Images
+            _mode: 11
+            _options: 0
+            _dataType:
+              _type: UnityEngine.UI.Image, UnityEngine.UI
+          - _name: Material
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 36
+        value:
+          _nodeId: 36
+          _node:
+            rid: 3199185294528348218
+          _position: {x: -135.89789, y: -625.00024}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.UI.Image, UnityEngine.UI
+      - key: 37
+        value:
+          _nodeId: 37
+          _node:
+            rid: 3199185294528348219
+          _position: {x: -467.89792, y: -521.8002}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+      - key: 38
+        value:
+          _nodeId: 38
+          _node:
+            rid: 3199185294528348220
+          _position: {x: -467.09787, y: -462.60022}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+      - key: 39
+        value:
+          _nodeId: 39
+          _node:
+            rid: 3199185294528348221
+          _position: {x: -122.29782, y: -486.60022}
+          _ports:
+          - _name: Condition
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: On True
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+          - _name: On False
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+      - key: 40
+        value:
+          _nodeId: 40
+          _node:
+            rid: 3199185294528348222
+          _position: {x: -466.29788, y: -394.08014}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Material, UnityEngine.CoreModule
+      - key: 41
+        value:
+          _nodeId: 41
+          _node:
+            rid: 3199185294528348223
+          _position: {x: 93.70209, y: -688.2002}
+          _ports:
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Start
+            _mode: 1
+            _options: 3
+            _dataType:
+              _type: 
+      - key: 42
+        value:
+          _nodeId: 42
+          _node:
+            rid: 3199185294528348224
+          _position: {x: -134.29788, y: -560.2002}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.UI.Image, UnityEngine.UI
+      - key: 62
+        value:
+          _nodeId: 62
+          _node:
+            rid: 3199185295503523841
+          _position: {x: 563.07965, y: -266.48135}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: IsBlocked
+            _mode: 3
+            _options: 3
+            _dataType:
+              _type: System.Boolean, mscorlib
+      - key: 44
+        value:
+          _nodeId: 44
+          _node:
+            rid: 3199185294528348226
+          _position: {x: 933.08, y: -619.8213}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+      - key: 46
+        value:
+          _nodeId: 46
+          _node:
+            rid: 3199185294528348228
+          _position: {x: 569.87994, y: -600.62134}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+      - key: 47
+        value:
+          _nodeId: 47
+          _node:
+            rid: 3199185294528348229
+          _position: {x: 586.67993, y: -527.0213}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+      - key: 49
+        value:
+          _nodeId: 49
+          _node:
+            rid: 3199185294528348231
+          _position: {x: 946.67993, y: -547.8213}
+          _ports:
+          - _name: Condition
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: On True
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+          - _name: On False
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+      - key: 50
+        value:
+          _nodeId: 50
+          _node:
+            rid: 3199185294528348232
+          _position: {x: 585.88, y: -463.0213}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+      - key: 51
+        value:
+          _nodeId: 51
+          _node:
+            rid: 3199185294528348234
+          _position: {x: 1189.0798, y: -700.6213}
+          _ports:
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Start
+            _mode: 1
+            _options: 3
+            _dataType:
+              _type: 
+      - key: 64
+        value:
+          _nodeId: 64
+          _node:
+            rid: 3199185295503523843
+          _position: {x: -460.501, y: -161.35388}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: IsBlocked
+            _mode: 3
+            _options: 3
+            _dataType:
+              _type: System.Boolean, mscorlib
+      - key: 68
+        value:
+          _nodeId: 68
+          _node:
+            rid: 3199185295766978582
+          _position: {x: 1329.3914, y: -627.54785}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Game object
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          - _name: Color
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+          - _name: Intensity
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Single, mscorlib
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+      - key: 55
+        value:
+          _nodeId: 55
+          _node:
+            rid: 3199185294528348238
+          _position: {x: 897.47974, y: -284.88135}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+      - key: 57
+        value:
+          _nodeId: 57
+          _node:
+            rid: 3199185294528348240
+          _position: {x: 551.07965, y: -192.88132}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+      - key: 58
+        value:
+          _nodeId: 58
+          _node:
+            rid: 3199185294528348241
+          _position: {x: 911.87964, y: -212.8814}
+          _ports:
+          - _name: Condition
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Boolean, mscorlib
+          - _name: On True
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+          - _name: On False
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+      - key: 59
+        value:
+          _nodeId: 59
+          _node:
+            rid: 3199185294528348242
+          _position: {x: 550.2796, y: -114.48135}
+          _ports:
+          - _name: 
+            _mode: 2
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+      - key: 65
+        value:
+          _nodeId: 65
+          _node:
+            rid: 3199185295503523844
+          _position: {x: -97.37138, y: -295.11212}
+          _ports:
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: SetBlocked
+            _mode: 1
+            _options: 3
+            _dataType:
+              _type: 
+      - key: 67
+        value:
+          _nodeId: 67
+          _node:
+            rid: 3199185295766978581
+          _position: {x: 1330.9999, y: -308.90244}
+          _ports:
+          - _name: 
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Game object
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          - _name: Color
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: UnityEngine.Color, UnityEngine.CoreModule
+          - _name: Intensity
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: System.Single, mscorlib
+          - _name: 
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+    _fromNodePortLinksMap:
+      _entries:
+      - key: 4
+        value:
+          _entries:
+          - key: 2
+            value:
+            - nodeId: 8
+              portIndex: 3
+          - key: 1
+            value:
+            - nodeId: 5
+              portIndex: 0
+            - nodeId: 14
+              portIndex: 0
+      - key: 8
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 64
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 9
+              portIndex: 0
+          - key: 1
+            value:
+            - nodeId: 7
+              portIndex: 0
+      - key: 11
+        value:
+          _entries:
+          - key: 6
+            value:
+            - nodeId: 12
+              portIndex: 0
+      - key: 15
+        value:
+          _entries:
+          - key: 2
+            value:
+            - nodeId: 11
+              portIndex: 1
+          - key: 1
+            value:
+            - nodeId: 16
+              portIndex: 0
+      - key: 17
+        value:
+          _entries:
+          - key: 3
+            value:
+            - nodeId: 29
+              portIndex: 0
+          - key: 1
+            value:
+            - nodeId: 18
+              portIndex: 0
+      - key: 19
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 17
+              portIndex: 0
+      - key: 20
+        value:
+          _entries:
+          - key: 2
+            value:
+            - nodeId: 11
+              portIndex: 1
+          - key: 1
+            value:
+            - nodeId: 21
+              portIndex: 0
+      - key: 12
+        value:
+          _entries:
+          - key: 2
+            value:
+            - nodeId: 13
+              portIndex: 0
+      - key: 23
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 24
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 11
+              portIndex: 3
+            - nodeId: 11
+              portIndex: 5
+          - key: 3
+            value:
+            - nodeId: 11
+              portIndex: 4
+      - key: 25
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 11
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 23
+              portIndex: 0
+      - key: 29
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 15
+              portIndex: 0
+            - nodeId: 20
+              portIndex: 0
+            - nodeId: 25
+              portIndex: 0
+      - key: 31
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 30
+              portIndex: 0
+          - key: 3
+            value:
+            - nodeId: 29
+              portIndex: 0
+      - key: 34
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 31
+              portIndex: 0
+      - key: 41
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 35
+              portIndex: 0
+      - key: 35
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 36
+              portIndex: 0
+            - nodeId: 42
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 39
+              portIndex: 3
+      - key: 68
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 44
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 49
+              portIndex: 3
+      - key: 49
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 47
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 50
+              portIndex: 0
+          - key: 0
+            value:
+            - nodeId: 46
+              portIndex: 0
+      - key: 65
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 4
+              portIndex: 0
+      - key: 39
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 37
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 40
+              portIndex: 0
+          - key: 1
+            value:
+            - nodeId: 38
+              portIndex: 0
+      - key: 63
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 67
+              portIndex: 0
+      - key: 51
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 68
+              portIndex: 0
+      - key: 58
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 57
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 59
+              portIndex: 0
+          - key: 0
+            value:
+            - nodeId: 62
+              portIndex: 0
+      - key: 67
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 55
+              portIndex: 0
+          - key: 2
+            value:
+            - nodeId: 58
+              portIndex: 3
+    _addedNodesTotalCount: 69
+    _toNodePortLinksMap:
+      _entries:
+      - key: 8
+        value:
+          _entries:
+          - key: 3
+            value:
+            - nodeId: 4
+              portIndex: 2
+      - key: 9
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 8
+              portIndex: 2
+      - key: 7
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 8
+              portIndex: 1
+      - key: 4
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 65
+              portIndex: 0
+      - key: 12
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 11
+              portIndex: 6
+      - key: 5
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 4
+              portIndex: 1
+      - key: 14
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 4
+              portIndex: 1
+      - key: 15
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 29
+              portIndex: 1
+      - key: 18
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 17
+              portIndex: 1
+      - key: 17
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 19
+              portIndex: 0
+      - key: 20
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 29
+              portIndex: 1
+      - key: 11
+        value:
+          _entries:
+          - key: 1
+            value:
+            - nodeId: 15
+              portIndex: 2
+            - nodeId: 20
+              portIndex: 2
+          - key: 0
+            value:
+            - nodeId: 25
+              portIndex: 1
+          - key: 3
+            value:
+            - nodeId: 23
+              portIndex: 2
+          - key: 5
+            value:
+            - nodeId: 23
+              portIndex: 2
+          - key: 4
+            value:
+            - nodeId: 23
+              portIndex: 3
+      - key: 13
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 12
+              portIndex: 2
+      - key: 25
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 29
+              portIndex: 1
+      - key: 24
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 23
+              portIndex: 1
+      - key: 23
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 25
+              portIndex: 2
+      - key: 16
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 15
+              portIndex: 1
+      - key: 21
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 20
+              portIndex: 1
+      - key: 29
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 17
+              portIndex: 3
+            - nodeId: 31
+              portIndex: 3
+      - key: 30
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 31
+              portIndex: 1
+      - key: 31
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 34
+              portIndex: 0
+      - key: 35
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 41
+              portIndex: 0
+      - key: 36
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 35
+              portIndex: 1
+      - key: 42
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 35
+              portIndex: 1
+      - key: 39
+        value:
+          _entries:
+          - key: 3
+            value:
+            - nodeId: 35
+              portIndex: 2
+      - key: 64
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 8
+              portIndex: 0
+      - key: 47
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 49
+              portIndex: 1
+      - key: 50
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 49
+              portIndex: 2
+      - key: 62
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 58
+              portIndex: 0
+      - key: 46
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 49
+              portIndex: 0
+      - key: 67
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 63
+              portIndex: 0
+      - key: 37
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 39
+              portIndex: 0
+      - key: 38
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 39
+              portIndex: 1
+      - key: 40
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 39
+              portIndex: 2
+      - key: 44
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 68
+              portIndex: 1
+      - key: 49
+        value:
+          _entries:
+          - key: 3
+            value:
+            - nodeId: 68
+              portIndex: 2
+      - key: 68
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 51
+              portIndex: 0
+      - key: 57
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 58
+              portIndex: 1
+      - key: 59
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 58
+              portIndex: 2
+      - key: 58
+        value:
+          _entries:
+          - key: 3
+            value:
+            - nodeId: 67
+              portIndex: 2
+      - key: 55
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 67
+              portIndex: 1
+    _subgraphReferencesMap:
+      _entries: []
+  _blackboard:
+    _properties: 8dfec9a243414177ae0d52f6aaaf443fb37cfda1f9af6211f8af6211f6789dbaf5789dbae08c83edf8300ab15111e024
+    _propertiesMap:
+      _entries:
+      - key: -1577222989
+        value:
+          name: Is Opened
+          type:
+            _type: System.Boolean, mscorlib
+          mapIndex: 0
+      - key: 1061466026
+        value:
+          name: Is Blocked
+          type:
+            _type: System.Boolean, mscorlib
+          mapIndex: 0
+      - key: -162394706
+        value:
+          name: Material Enabled
+          type:
+            _type: UnityEngine.Material, UnityEngine.CoreModule
+          mapIndex: 16
+      - key: 2000765251
+        value:
+          name: Material Blocked
+          type:
+            _type: UnityEngine.Material, UnityEngine.CoreModule
+          mapIndex: 16
+      - key: -1563820403
+        value:
+          name: Tween
+          type:
+            _type: MisterGames.Tweens.Core.ITween, MisterGames.Tweens
+          mapIndex: 17
+      - key: 291680249
+        value:
+          name: Indicator 0
+          type:
+            _type: UnityEngine.UI.Image, UnityEngine.UI
+          mapIndex: 16
+      - key: -1164085002
+        value:
+          name: Interactive 0
+          type:
+            _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+          mapIndex: 16
+      - key: 291680248
+        value:
+          name: Indicator 1
+          type:
+            _type: UnityEngine.UI.Image, UnityEngine.UI
+          mapIndex: 16
+      - key: -1164085003
+        value:
+          name: Interactive 1
+          type:
+            _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+          mapIndex: 16
+      - key: -310145824
+        value:
+          name: EmissiveGameObject
+          type:
+            _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          mapIndex: 16
+      - key: -1324732168
+        value:
+          name: EmissionColorBlocked
+          type:
+            _type: UnityEngine.Color, UnityEngine.CoreModule
+          mapIndex: 13
+      - key: 618664273
+        value:
+          name: EmissionColorEnabled
+          type:
+            _type: UnityEngine.Color, UnityEngine.CoreModule
+          mapIndex: 13
+    _bools:
+      _entries:
+      - key: -1577222989
+        value: 0
+      - key: 1061466026
+        value: 0
+    _ints:
+      _entries: []
+    _longs:
+      _entries: []
+    _floats:
+      _entries: []
+    _doubles:
+      _entries: []
+    _strings:
+      _entries: []
+    _vectors2Int:
+      _entries: []
+    _vectors3Int:
+      _entries: []
+    _vectors2:
+      _entries: []
+    _vectors3:
+      _entries: []
+    _vectors4:
+      _entries: []
+    _quaternions:
+      _entries: []
+    _colors:
+      _entries:
+      - key: -1324732168
+        value: {r: 0, g: 0, b: 0, a: 0}
+      - key: 618664273
+        value: {r: 0, g: 0, b: 0, a: 0}
+    _layerMasks:
+      _entries: []
+    _curves:
+      _entries: []
+    _objects:
+      _entries:
+      - key: -162394706
+        value:
+          value: {fileID: 2100000, guid: 41d77e9f51a84af4d8033b259ce43acf, type: 2}
+      - key: 2000765251
+        value:
+          value: {fileID: 2100000, guid: 58e95ee5214d260419ee04e5685a303e, type: 2}
+      - key: 291680249
+        value:
+          value: {fileID: 0}
+      - key: 291680248
+        value:
+          value: {fileID: 0}
+      - key: -1164085002
+        value:
+          value: {fileID: 0}
+      - key: -1164085003
+        value:
+          value: {fileID: 0}
+      - key: -310145824
+        value:
+          value: {fileID: 0}
+    _enums:
+      _entries: []
+    _references:
+      _entries:
+      - key: -1563820403
+        value:
+          value:
+            rid: 8965086222731444228
+    _boolArrays:
+      _entries: []
+    _intArrays:
+      _entries: []
+    _longArrays:
+      _entries: []
+    _floatArrays:
+      _entries: []
+    _doubleArrays:
+      _entries: []
+    _stringArrays:
+      _entries: []
+    _vectors2IntArrays:
+      _entries: []
+    _vectors3IntArrays:
+      _entries: []
+    _vectors2Arrays:
+      _entries: []
+    _vectors3Arrays:
+      _entries: []
+    _vectors4Arrays:
+      _entries: []
+    _quaternionArrays:
+      _entries: []
+    _colorArrays:
+      _entries: []
+    _layerMaskArrays:
+      _entries: []
+    _curveArrays:
+      _entries: []
+    _objectArrays:
+      _entries: []
+    _enumArrays:
+      _entries: []
+    _referenceArrays:
+      _entries: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3199185288725266434
+      type: {class: BlueprintNodePipe, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _exits: 1
+    - rid: 3199185288725266436
+      type: {class: BlueprintNodeInput, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _port: IsBlocked
+    - rid: 3199185288725266437
+      type: {class: BlueprintNodeIf, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _condition: 0
+    - rid: 3199185288725266440
+      type: {class: BlueprintNodeEnter, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _port: SetBlocked
+    - rid: 3199185294528348217
+      type: {class: BlueprintNodeImageSetMaterial, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+    - rid: 3199185294528348218
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 291680249
+    - rid: 3199185294528348219
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 1061466026
+    - rid: 3199185294528348220
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 2000765251
+    - rid: 3199185294528348221
+      type: {class: BlueprintNodeIfData, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _condition: 0
+    - rid: 3199185294528348222
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -162394706
+    - rid: 3199185294528348223
+      type: {class: BlueprintNodeStart, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+    - rid: 3199185294528348224
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 291680248
+    - rid: 3199185294528348226
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -310145824
+    - rid: 3199185294528348228
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 1061466026
+    - rid: 3199185294528348229
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -1324732168
+    - rid: 3199185294528348231
+      type: {class: BlueprintNodeIfData, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _condition: 0
+    - rid: 3199185294528348232
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 618664273
+    - rid: 3199185294528348234
+      type: {class: BlueprintNodeStart, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+    - rid: 3199185294528348238
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -310145824
+    - rid: 3199185294528348240
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -1324732168
+    - rid: 3199185294528348241
+      type: {class: BlueprintNodeIfData, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _condition: 0
+    - rid: 3199185294528348242
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 618664273
+    - rid: 3199185295503523841
+      type: {class: BlueprintNodeInput, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _port: IsBlocked
+    - rid: 3199185295503523842
+      type: {class: BlueprintNodeEnter, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _port: SetBlocked
+    - rid: 3199185295503523843
+      type: {class: BlueprintNodeInput, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _port: IsBlocked
+    - rid: 3199185295503523844
+      type: {class: BlueprintNodeEnter, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _port: SetBlocked
+    - rid: 3199185295766978581
+      type: {class: BlueprintNodeSetMaterialEmission, ns: MisterGames.BlueprintLib, asm: Assembly-CSharp}
+    - rid: 3199185295766978582
+      type: {class: BlueprintNodeSetMaterialEmission, ns: MisterGames.BlueprintLib, asm: Assembly-CSharp}
+    - rid: 8965086222731444228
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 2
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: -2
+    - rid: 8965086244798988288
+      type: {class: BlueprintNodeImageSetMaterial, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+    - rid: 8965086244798988289
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 291680249
+    - rid: 8965086244798988291
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 2000765251
+    - rid: 8965086244798988292
+      type: {class: BlueprintNodeIfData, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _condition: 0
+    - rid: 8965086244798988293
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -162394706
+    - rid: 8965086244798988298
+      type: {class: BlueprintNodeRunTween, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _autoInitOnStart: 0
+        _autoInvertNextPlay: 1
+    - rid: 8965086244798988299
+      type: {class: BlueprintNodeCustomTween, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+    - rid: 8965086244798988300
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -1563820403
+    - rid: 8965086267122909184
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 291680248
+    - rid: 8965086267122909185
+      type: {class: BlueprintNodeInteractiveEvents, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _autoSetInteractiveOnStart: 0
+    - rid: 8965086267122909186
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -1164085002
+    - rid: 8965086267122909187
+      type: {class: BlueprintNodeIf, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _condition: 0
+    - rid: 8965086267122909188
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: 1061466026
+    - rid: 8965086267122909189
+      type: {class: BlueprintNodeStart, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+    - rid: 8965086267122909190
+      type: {class: BlueprintNodeInteractiveEvents, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _autoSetInteractiveOnStart: 0
+    - rid: 8965086267122909191
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -1164085003
+    - rid: 8965086267122909193
+      type: {class: BlueprintNodeIf, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _condition: 0
+    - rid: 8965086267122909194
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _property: -1577222989
+    - rid: 8965086267122909195
+      type: {class: BlueprintNodePipe, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _exits: 2
