@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138398795ba542ecac40d9e1640d5e67, type: 3}
+  m_Name: InteractionStrategy_InstantClick
+  m_EditorClassIdentifier: 
+  _allowStopImmediatelyAfterStart: 1
+  _readyConstraint:
+    rid: 6196716169574481931
+  _startConstraint:
+    rid: 6196716169574481930
+  _continueConstraint:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6196716169574481930
+      type: {class: InteractionConditionInputKey, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      data:
+        keyEvent:
+          _mode: 0
+          _key: {fileID: 11400000, guid: 1c4e0374c3d852d4fb472c61d8b3bf12, type: 2}
+        shouldBeFired:
+          _hasValue: 1
+          _value: 1
+        shouldBePressed:
+          _hasValue: 0
+          _value: 0
+    - rid: 6196716169574481931
+      type: {class: InteractionConditionIsDetected, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      data:
+        shouldBeDetected: 1
