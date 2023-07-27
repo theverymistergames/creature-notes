@@ -25,6 +25,8 @@ public class BedMonster : AbstractMonster {
 
         if (progress >= _harbingerThreshold) {
             monster.transform.localPosition = Vector3.Lerp(_startMonsterPosition, finalMonsterPosition, (progress - _harbingerThreshold) / (1 - _harbingerThreshold));
+        } else {
+            monster.transform.localPosition = _startMonsterPosition;
         }
     }
 }

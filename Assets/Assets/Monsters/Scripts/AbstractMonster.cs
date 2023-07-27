@@ -2,6 +2,11 @@
 using DigitalRuby.Tween;
 using UnityEngine;
 
+public enum MonsterType {
+    Window,
+    Bed,
+}
+
 public abstract class AbstractMonster : MonoBehaviour {
 
     [SerializeField]
@@ -11,12 +16,14 @@ public abstract class AbstractMonster : MonoBehaviour {
     [SerializeField]
     protected float _damage = 0.4f;
 
+    [SerializeField]
+    public MonsterType type;
+
     [NonSerialized]
     private bool _spawned = false;
     private ITween _damageTween;
     private float _progress;
     private bool _active = false;
-    private bool _finished = false;
     
     public delegate void MonsterKilled();
     public MonsterKilled monsterKilled;
@@ -29,7 +36,6 @@ public abstract class AbstractMonster : MonoBehaviour {
     }
 
     public void Spawn() {
-        _finished = false;
         _spawned = true;
         _active = true;
     }
@@ -58,6 +64,15 @@ public abstract class AbstractMonster : MonoBehaviour {
             });
     }
 
+    private void Finish() {
+        _spawned = false;
+        _active = false;
+        monsterFinished.Invoke();
+        _progress = 0;
+
+        ProceedUpdate(_progress);
+    }
+
     private void Update() {
         // if (Input.GetKeyDown(KeyCode.M)) {
         //     Spawn();
@@ -69,8 +84,7 @@ public abstract class AbstractMonster : MonoBehaviour {
 
         if (_progress >= 1) {
             _progress = 1;
-            if (!_finished) monsterFinished.Invoke();
-            _finished = true;
+            Finish();
             return;
         }
 

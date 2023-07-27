@@ -14,6 +14,8 @@ public class MonsterSpawner : MonoBehaviour {
     private List<AbstractMonster> monsters;
     private bool _inProgress;
     private Random _random;
+
+    private DebuffsController _debuffsController;
     
     private void Start() {
         _random = new Random();
@@ -22,10 +24,13 @@ public class MonsterSpawner : MonoBehaviour {
             monster.monsterKilled = () => OnMonsterKilled(monster);
             monster.monsterFinished = () => OnMonsterFinished(monster);
         }
+
+        _debuffsController = FindObjectOfType<DebuffsController>();
     }
 
     void OnMonsterFinished(AbstractMonster monster) {
-        
+        _debuffsController.StartDebuff(monster.type);
+        StartCoroutine(SpawnWithDelay(monster));
     }
 
     private void OnMonsterKilled(AbstractMonster monster) {

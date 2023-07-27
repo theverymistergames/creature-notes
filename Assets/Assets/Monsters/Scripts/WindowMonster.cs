@@ -25,6 +25,8 @@ public class WindowMonster : AbstractMonster {
 
         if (progress >= _harbingerThreshold) {
             monster.transform.localPosition = new Vector3(monster.transform.localPosition.x, _startMonsterY + ((progress - _harbingerThreshold) / (1 - _harbingerThreshold)) * 1.4f, 0);
+        } else {
+            monster.transform.localPosition = new Vector3(monster.transform.localPosition.x, _startMonsterY, 0);
         }
     }
 }
