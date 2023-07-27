@@ -479,8 +479,11 @@ MonoBehaviour:
     - name: CharacterActionSetViewSmoothing
       offset: 1
       count: 1
-    - name: CharacterActionSetMassSettings
+    - name: CharacterActionSetViewClamp
       offset: 2
+      count: 1
+    - name: CharacterActionSetMassSettings
+      offset: 3
       count: 1
     _dependencyPointers:
     - list: 0
@@ -489,7 +492,11 @@ MonoBehaviour:
       index: 1
     - list: 0
       index: 2
+    - list: 0
+      index: 3
     _dependencyMetas:
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     - type:
         _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     - type:
@@ -498,6 +505,7 @@ MonoBehaviour:
         _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     _objects: []
     _unityObjects:
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -1512,7 +1520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7205586868813128935}
-  - component: {fileID: 9028569536951359156}
+  - component: {fileID: 5787026696674559360}
   m_Layer: 2
   m_Name: View
   m_TagString: Untagged
@@ -1535,7 +1543,7 @@ Transform:
   m_Father: {fileID: 7205586870401899320}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9028569536951359156
+--- !u!114 &5787026696674559360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1551,28 +1559,33 @@ MonoBehaviour:
   _camera: {fileID: 7205586869398250334}
   _playerLoopStage: 1
   _inputProcessors:
-  - rid: 6196715897464291334
+  - rid: 8690781321960882184
   _inputToViewProcessor:
-    rid: 6196715897464291335
+    rid: 8690781321960882185
   _viewProcessors:
-  - rid: 6196715897464291336
+  - rid: 8690781321960882186
   references:
     version: 2
     RefIds:
-    - rid: 6196715897464291334
+    - rid: 8690781321960882184
       type: {class: CharacterProcessorVector2Sensitivity, ns: MisterGames.Character.Processors,
         asm: MisterGames.Character}
       data:
         sensitivity: {x: 0.15, y: 0.15}
-    - rid: 6196715897464291335
-      type: {class: CharacterProcessorVector2Clamp, ns: MisterGames.Character.Processors,
-        asm: MisterGames.Character}
+    - rid: 8690781321960882185
+      type: {class: CharacterProcessorViewClamp, ns: MisterGames.Character.View, asm: MisterGames.Character}
       data:
-        xMode: 3
-        yMode: 0
-        lowerBounds: {x: -90, y: 0}
-        upperBounds: {x: 90, y: 0}
-    - rid: 6196715897464291336
+        horizontal:
+          mode: 0
+          bounds: {x: 0, y: 0}
+          springs: {x: 0, y: 0}
+          springFactors: {x: 0, y: 0}
+        vertical:
+          mode: 3
+          bounds: {x: -90, y: 90}
+          springs: {x: 0, y: 0}
+          springFactors: {x: 0, y: 0}
+    - rid: 8690781321960882186
       type: {class: CharacterProcessorQuaternionSmoothing, ns: MisterGames.Character.Processors,
         asm: MisterGames.Character}
       data:
@@ -1999,7 +2012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e9768dc7574a6a9ad559369bbd161f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraController: {fileID: 4741229143266635619}
+  _cameraContainer: {fileID: 4741229143266635619}
 --- !u!1 &7205586870386989442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,7 +2058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAccess: {fileID: 354778581290818253}
-  _cameraController: {fileID: 4741229143266635619}
+  cameraContainer: {fileID: 4741229143266635619}
   _characterController: {fileID: 7205586870401899302}
   _playerLoopStage: 1
 --- !u!1 &7205586870401899322
@@ -2118,7 +2131,7 @@ MonoBehaviour:
   - {fileID: 7953495498895512114}
   - {fileID: 137295681341058935}
   - {fileID: 169266017175554870}
-  - {fileID: 9028569536951359156}
+  - {fileID: 5787026696674559360}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
