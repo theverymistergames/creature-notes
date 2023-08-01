@@ -298,6 +298,35 @@ MonoBehaviour:
   _characterAccess: {fileID: 354778581290818253}
   _direction: {x: 0, y: 1, z: 0}
   _force: 1
+  _jumpReaction: {fileID: 11400000, guid: ae9169f4f02d9f5479a59f018cf887e7, type: 2}
+  _landReaction: {fileID: 0}
+  _dependencies:
+    _mode: 0
+    _sharedDependencies: {fileID: 0}
+    _buckets:
+    - name: CharacterActionJumpReaction
+      offset: 0
+      count: 1
+    - name: CharacterActionCameraRotation
+      offset: 1
+      count: 1
+    _dependencyPointers:
+    - list: 0
+      index: 0
+    - list: 0
+      index: 1
+    _dependencyMetas:
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    _objects: []
+    _unityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &4422048062012394561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAccess: {fileID: 354778581290818253}
   _camera: {fileID: 7205586869398250334}
+  _cameraContainer: {fileID: 4741229143266635619}
   _playerLoopStage: 1
   _inputProcessors:
   - rid: 8690781321960882184
@@ -2127,6 +2157,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8965563844700577084}
+  - {fileID: 5647373703605891108}
   - {fileID: 2236722660689622430}
   - {fileID: 7205586868961636114}
   - {fileID: 6006351456734287650}
@@ -2218,6 +2249,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugDrawHitPoint: 0
+--- !u!1 &7688891855935546526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5647373703605891108}
+  m_Layer: 2
+  m_Name: Debug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5647373703605891108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688891855935546526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205586870401899320}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &914670650207916062
 PrefabInstance:
   m_ObjectHideFlags: 0
