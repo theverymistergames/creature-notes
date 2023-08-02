@@ -299,7 +299,7 @@ MonoBehaviour:
   _direction: {x: 0, y: 1, z: 0}
   _force: 1
   _jumpReaction: {fileID: 11400000, guid: ae9169f4f02d9f5479a59f018cf887e7, type: 2}
-  _landReaction: {fileID: 0}
+  _landReaction: {fileID: 11400000, guid: f6d7295bb073b3745898df9abe34b6fb, type: 2}
   _dependencies:
     _mode: 0
     _sharedDependencies: {fileID: 0}
@@ -307,21 +307,69 @@ MonoBehaviour:
     - name: CharacterActionJumpReaction
       offset: 0
       count: 1
-    - name: CharacterActionCameraRotation
+    - name: CharacterActionCameraPosition
       offset: 1
+      count: 1
+    - name: CharacterActionCameraRotation
+      offset: 2
+      count: 1
+    - name: CharacterActionVelocityReaction
+      offset: 3
+      count: 1
+    - name: CharacterActionCameraPosition
+      offset: 4
+      count: 1
+    - name: CharacterActionCameraRotation
+      offset: 5
+      count: 1
+    - name: CharacterActionCameraPosition
+      offset: 6
+      count: 1
+    - name: CharacterActionCameraRotation
+      offset: 7
       count: 1
     _dependencyPointers:
     - list: 0
       index: 0
     - list: 0
       index: 1
+    - list: 0
+      index: 2
+    - list: 0
+      index: 3
+    - list: 0
+      index: 4
+    - list: 0
+      index: 5
+    - list: 0
+      index: 6
+    - list: 0
+      index: 7
     _dependencyMetas:
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     - type:
         _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     - type:
         _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     _objects: []
     _unityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
   references:
