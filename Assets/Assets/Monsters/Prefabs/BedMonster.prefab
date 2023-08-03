@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 4403440802403949651}
   - component: {fileID: 8213644748893968962}
   - component: {fileID: 5248616816676760614}
+  - component: {fileID: 5667351819205909910}
   m_Layer: 0
   m_Name: BedMonster
   m_TagString: Enemy
@@ -223,7 +224,7 @@ Transform:
   - {fileID: 1440033145257991284}
   - {fileID: 8411834767633813139}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7564203288596138464
 MeshFilter:
@@ -308,12 +309,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 944a3dce486946bcb0326cbca4292ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnTime: 20
-  _harbingerThreshold: 0.33
-  _damage: 0.4
   bed: {fileID: 5414121427178880246}
   monster: {fileID: 8411834767634142857}
+  _harbingerThreshold: 0.33
   finalMonsterPosition: {x: 0.158, y: -0.441383, z: -0.348}
+--- !u!114 &5667351819205909910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817122523803468337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1806c43a280f4760a1d3a3d65e56cf17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnTime: 20
+  _damage: 0.4
+  _enabled: 1
+  type: 1
 --- !u!1 &2485234879910249661
 GameObject:
   m_ObjectHideFlags: 0
