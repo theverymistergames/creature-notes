@@ -13,6 +13,8 @@ public class RunesStrikeContainer : MonoBehaviour {
 
     private Dictionary<MonsterType, int> dict = new Dictionary<MonsterType, int>();
 
+    private List<int> _runesTypes;
+
     private void Start() {
         _collider = GetComponent<Collider>();
         
@@ -22,14 +24,12 @@ public class RunesStrikeContainer : MonoBehaviour {
         dict.Add(MonsterType.Light, 0b00000100);
     }
 
-    public void Strike() {
+    public void Strike(List<int> types) {
+        _runesTypes = types;
+        
         foreach (Transform child in transform) {
             runes.Add(child.gameObject);
         }
-    }
-
-    private static void Test() {
-        
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -56,10 +56,9 @@ public class RunesStrikeContainer : MonoBehaviour {
         
             int result = 0;
         
-            for (var i = 0; i < runes.Count; i++) {
-                var rune = runes[i];
-                var a = int.Parse((rune.name[4]).ToString());
-                result |= (1 << a);
+            for (var i = 0; i < _runesTypes.Count; i++) {
+                var type = _runesTypes[i];
+                result |= (1 << type);
             }
             
             if (monster.IsSpawned() && dict[monster.type] == result) {
