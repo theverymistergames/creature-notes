@@ -2204,6 +2204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5447884512302634268}
   - {fileID: 8965563844700577084}
   - {fileID: 5647373703605891108}
   - {fileID: 2236722660689622430}
@@ -2244,6 +2245,8 @@ MonoBehaviour:
   - {fileID: 137295681341058935}
   - {fileID: 169266017175554870}
   - {fileID: 5787026696674559360}
+  - {fileID: 8266916168477958313}
+  - {fileID: 1361433330712634023}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2328,6 +2331,76 @@ Transform:
   m_Father: {fileID: 7205586870401899320}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7935967427331685446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5447884512302634268}
+  - component: {fileID: 8266916168477958313}
+  - component: {fileID: 1361433330712634023}
+  m_Layer: 2
+  m_Name: Breath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5447884512302634268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935967427331685446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205586870401899320}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8266916168477958313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935967427331685446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f496f0eeb9c54e2d8cfbb5c8f4f0dae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerLoopStage: 1
+  _period: 5
+  _periodRandom: 1
+  _amplitude: 1
+  _amplitudeRandom: 0.1
+--- !u!114 &1361433330712634023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935967427331685446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463a5aaf29e441cc94d26d99fbe4269a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAccess: {fileID: 354778581290818253}
+  _cameraMotionWeight: 1
+  _smoothFactor: 1
+  _positionAmplitude: 0.01
+  _positionAmplitudeRandom: 0.005
+  _rotationXYRatio: 0.2
+  _rotationAmplitude: 1
+  _rotationAmplitudeRandom: 0.3
 --- !u!1001 &914670650207916062
 PrefabInstance:
   m_ObjectHideFlags: 0
