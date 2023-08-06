@@ -1736,6 +1736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8612e19eec4c0bae65b9b1f6a59432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerLoopStage: 1
   _characterAccess: {fileID: 354778581290818253}
   _cameraMotionWeight: 1
   _smoothFactor: 1
@@ -2263,6 +2264,7 @@ Transform:
   - {fileID: 7205586869188020230}
   - {fileID: 4693590438674305861}
   - {fileID: 1668132340117076409}
+  - {fileID: 2944110433625575914}
   - {fileID: 7205586868813128935}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2294,6 +2296,7 @@ MonoBehaviour:
   - {fileID: 5812217121935433494}
   - {fileID: 8266916168477958313}
   - {fileID: 1361433330712634023}
+  - {fileID: 1280214957785522907}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2347,6 +2350,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugDrawHitPoint: 0
+--- !u!1 &7284966764588239170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2944110433625575914}
+  - component: {fileID: 1280214957785522907}
+  m_Layer: 2
+  m_Name: Steps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2944110433625575914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284966764588239170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205586870401899320}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1280214957785522907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284966764588239170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7c1ce4f00644d38bed2cb8aa4a1040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerLoopStage: 1
+  _characterAccess: {fileID: 354778581290818253}
+  _feetDistance: 0.3
+  _speedMax: 10
+  _stepLengthMin: 0.4
+  _stepLengthMultiplier: 3
+  _stepLengthBySpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 6.8154325
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.155667
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.031243537
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.636963
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _debugDrawStep: 1
 --- !u!1 &7688891855935546526
 GameObject:
   m_ObjectHideFlags: 0
