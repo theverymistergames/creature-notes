@@ -1653,6 +1653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7205586868813128935}
   - component: {fileID: 5787026696674559360}
+  - component: {fileID: 5812217121935433494}
   m_Layer: 2
   m_Name: View
   m_TagString: Untagged
@@ -1723,6 +1724,27 @@ MonoBehaviour:
         asm: MisterGames.Character}
       data:
         smoothFactor: 20
+--- !u!114 &5812217121935433494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586868813128952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe8612e19eec4c0bae65b9b1f6a59432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAccess: {fileID: 354778581290818253}
+  _cameraMotionWeight: 1
+  _smoothFactor: 1
+  _baseAmplitude: 0.02
+  _forwardAmplitude: 1
+  _backwardAmplitude: 1
+  _sideAmplitude: 2
+  _rotationLever: 0.3
+  _rotationAmplitude: 0.5
 --- !u!1 &7205586868961636117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,6 +2291,7 @@ MonoBehaviour:
   - {fileID: 137295681341058935}
   - {fileID: 169266017175554870}
   - {fileID: 5787026696674559360}
+  - {fileID: 5812217121935433494}
   - {fileID: 8266916168477958313}
   - {fileID: 1361433330712634023}
 --- !u!143 &7205586870401899302
