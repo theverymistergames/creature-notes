@@ -11,11 +11,22 @@ public class RunesStrikeContainer : MonoBehaviour {
     private Collider _collider;
     private List<GameObject> runes = new List<GameObject>();
 
+    private Dictionary<MonsterType, int> dict = new Dictionary<MonsterType, int>();
+
+    private List<int> _runesTypes;
+
     private void Start() {
         _collider = GetComponent<Collider>();
+        
+        dict.Add(MonsterType.Window, 0b00000001);
+        dict.Add(MonsterType.Bed, 0b00000110);
+        dict.Add(MonsterType.Closet, 0b00001001);
+        dict.Add(MonsterType.Light, 0b00000100);
     }
 
-    public void Strike() {
+    public void Strike(List<int> types) {
+        _runesTypes = types;
+        
         foreach (Transform child in transform) {
             runes.Add(child.gameObject);
         }
@@ -39,12 +50,19 @@ public class RunesStrikeContainer : MonoBehaviour {
                     rune.GetComponent<Renderer>().material.SetFloat("_Alpha", 1 - t.CurrentProgress);
                 });
         }
-        
+
         if (other.transform.CompareTag("Enemy")) {
-            var monster = other.transform.GetComponent<AbstractMonster>();
+            var monster = other.transform.GetComponent<Monster>();
+        
+            int result = 0;
+        
+            for (var i = 0; i < _runesTypes.Count; i++) {
+                var type = _runesTypes[i];
+                result |= (1 << type);
+            }
             
-            if (monster.IsSpawned()) {
-                monster.Damage();
+            if (monster.IsSpawned() && dict[monster.type] == result) {
+                monster.GetDamage();
         
                 foreach (var rune in runes) {
                     rune.GetComponentInChildren<ParticleSystem>().Play();

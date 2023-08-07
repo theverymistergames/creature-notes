@@ -5,16 +5,18 @@ using UnityEngine;
 public enum MonsterType {
     Window,
     Bed,
+    Closet,
+    Light,
 }
 
-public abstract class AbstractMonster : MonoBehaviour {
+public class Monster : MonoBehaviour {
 
     [SerializeField]
     protected float _spawnTime = 20;
     [SerializeField]
-    protected float _harbingerThreshold = 0.33f;
-    [SerializeField]
     protected float _damage = 0.4f;
+    [SerializeField]
+    protected bool _enabled = true;
 
     [SerializeField]
     public MonsterType type;
@@ -31,16 +33,21 @@ public abstract class AbstractMonster : MonoBehaviour {
     public delegate void MonsterFinished();
     public MonsterFinished monsterFinished;
     
+    public delegate void ProgressUpdate(float progress);
+    public ProgressUpdate progressUpdate;
+
     public bool IsSpawned() {
         return _spawned;
     }
 
     public void Spawn() {
+        if (!_enabled) return;
+        
         _spawned = true;
         _active = true;
     }
 
-    public void Damage() {
+    public void GetDamage() {
         if (_damageTween is { State: TweenState.Running }) _damageTween.Stop(TweenStopBehavior.Complete);
         
         _active = false;
@@ -74,10 +81,6 @@ public abstract class AbstractMonster : MonoBehaviour {
     }
 
     private void Update() {
-        // if (Input.GetKeyDown(KeyCode.M)) {
-        //     Spawn();
-        // }
-
         if (!_spawned) return;
         
         if (_active) _progress += Time.deltaTime / _spawnTime;
@@ -91,5 +94,7 @@ public abstract class AbstractMonster : MonoBehaviour {
         ProceedUpdate(_progress);
     }
 
-    protected abstract void ProceedUpdate(float progress);
+    private void ProceedUpdate(float progress) {
+        progressUpdate.Invoke(progress);
+    }
 }
