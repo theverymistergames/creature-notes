@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68baa534c5ef4b91a72f95cd498557b0, type: 3}
-  m_Name: CharacterCameraJumpReaction
+  m_Name: Action_CharacterJumpReaction
   m_EditorClassIdentifier: 
   _action:
     rid: 8690781386124820494
@@ -40,11 +40,10 @@ MonoBehaviour:
         duration: 0.3
         durationRandom: 0.1
         weight: 1
-        x:
-          _hasValue: 0
-          _value:
-            multiplier: 1
-            multiplierRandom: 0
+        offset:
+          x:
+            multiplier: 0
+            addRandom: 0
             curve:
               serializedVersion: 2
               m_Curve:
@@ -69,27 +68,25 @@ MonoBehaviour:
               m_PreInfinity: 2
               m_PostInfinity: 2
               m_RotationOrder: 4
-        y:
-          _hasValue: 1
-          _value:
+          y:
             multiplier: 0.2
-            multiplierRandom: 0.1
+            addRandom: 0.1
             curve:
               serializedVersion: 2
               m_Curve:
               - serializedVersion: 3
                 time: 0
                 value: 0
-                inSlope: -5.9915557
-                outSlope: -5.9915557
+                inSlope: 0
+                outSlope: 1
                 tangentMode: 0
                 weightedMode: 0
                 inWeight: 0
-                outWeight: 0.042541213
+                outWeight: 0
               - serializedVersion: 3
                 time: 1
-                value: 0
-                inSlope: 0
+                value: 1
+                inSlope: 1
                 outSlope: 0
                 tangentMode: 0
                 weightedMode: 0
@@ -98,11 +95,9 @@ MonoBehaviour:
               m_PreInfinity: 2
               m_PostInfinity: 2
               m_RotationOrder: 4
-        z:
-          _hasValue: 0
-          _value:
-            multiplier: 1
-            multiplierRandom: 0
+          z:
+            multiplier: 0
+            addRandom: 0
             curve:
               serializedVersion: 2
               m_Curve:
@@ -136,40 +131,10 @@ MonoBehaviour:
         duration: 0.3
         durationRandom: 0.1
         weight: 1
-        x:
-          _hasValue: 1
-          _value:
+        eulers:
+          x:
             multiplier: 1
-            multiplierRandom: 0.3
-            curve:
-              serializedVersion: 2
-              m_Curve:
-              - serializedVersion: 3
-                time: 0
-                value: 0
-                inSlope: 6.3581142
-                outSlope: 6.3581142
-                tangentMode: 0
-                weightedMode: 0
-                inWeight: 0
-                outWeight: 0.03227194
-              - serializedVersion: 3
-                time: 1
-                value: 0
-                inSlope: 0
-                outSlope: 0
-                tangentMode: 0
-                weightedMode: 0
-                inWeight: 0
-                outWeight: 0
-              m_PreInfinity: 2
-              m_PostInfinity: 2
-              m_RotationOrder: 4
-        y:
-          _hasValue: 0
-          _value:
-            multiplier: 1
-            multiplierRandom: 0
+            addRandom: 0.3
             curve:
               serializedVersion: 2
               m_Curve:
@@ -194,31 +159,56 @@ MonoBehaviour:
               m_PreInfinity: 2
               m_PostInfinity: 2
               m_RotationOrder: 4
-        z:
-          _hasValue: 1
-          _value:
-            multiplier: 0.3
-            multiplierRandom: 0.1
+          y:
+            multiplier: 0
+            addRandom: 0
             curve:
               serializedVersion: 2
               m_Curve:
               - serializedVersion: 3
                 time: 0
                 value: 0
-                inSlope: 5.954811
-                outSlope: 5.954811
+                inSlope: 0
+                outSlope: 1
                 tangentMode: 0
                 weightedMode: 0
                 inWeight: 0
-                outWeight: 0.034853697
+                outWeight: 0
               - serializedVersion: 3
                 time: 1
-                value: 0
-                inSlope: 5.66816
-                outSlope: 5.66816
+                value: 1
+                inSlope: 1
+                outSlope: 0
                 tangentMode: 0
                 weightedMode: 0
-                inWeight: 0.05973941
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 0.3
+            addRandom: 0.1
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
                 outWeight: 0
               m_PreInfinity: 2
               m_PostInfinity: 2

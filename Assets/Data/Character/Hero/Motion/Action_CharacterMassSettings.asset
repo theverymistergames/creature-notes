@@ -10,24 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68baa534c5ef4b91a72f95cd498557b0, type: 3}
-  m_Name: CharacterPoseTransition_to_Crouch_InAir
+  m_Name: Action_CharacterMassSettings
   m_EditorClassIdentifier: 
   _action:
-    rid: 6196716168534294546
+    rid: 6196716168534294528
   references:
     version: 2
     RefIds:
-    - rid: 6196716168534294546
-      type: {class: CharacterActionChangeColliderHeight, ns: MisterGames.Character.Height,
+    - rid: 6196716168534294528
+      type: {class: CharacterActionSetMassSettings, ns: MisterGames.Character.Motion,
         asm: MisterGames.Character}
       data:
-        sourceHeight:
-          _hasValue: 0
-          _value: 0
-        targetHeight:
-          _hasValue: 1
-          _value: 0.6
-        targetRadius:
-          _hasValue: 1
-          _value: 0.25
-        metersPerSecond: 4.5
+        gravityForce: 15
+        airInertialFactor: 10
+        groundInertialFactor: 20
+        inputInfluenceFactor: 1
