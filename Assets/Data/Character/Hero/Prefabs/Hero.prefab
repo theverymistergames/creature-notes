@@ -313,7 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAccess: {fileID: 354778581290818253}
   _jumpReaction: {fileID: 11400000, guid: ae9169f4f02d9f5479a59f018cf887e7, type: 2}
-  _landReaction: {fileID: 0}
+  _landReaction: {fileID: 11400000, guid: f6d7295bb073b3745898df9abe34b6fb, type: 2}
   _dependencies:
     _mode: 0
     _sharedDependencies: {fileID: 0}
@@ -327,6 +327,21 @@ MonoBehaviour:
     - name: CharacterActionCameraRotation
       offset: 2
       count: 1
+    - name: CharacterActionVelocityReaction
+      offset: 3
+      count: 1
+    - name: CharacterActionCameraPosition
+      offset: 4
+      count: 1
+    - name: CharacterActionCameraRotation
+      offset: 5
+      count: 1
+    - name: CharacterActionCameraPosition
+      offset: 6
+      count: 1
+    - name: CharacterActionCameraRotation
+      offset: 7
+      count: 1
     _dependencyPointers:
     - list: 0
       index: 0
@@ -334,7 +349,27 @@ MonoBehaviour:
       index: 1
     - list: 0
       index: 2
+    - list: 0
+      index: 3
+    - list: 0
+      index: 4
+    - list: 0
+      index: 5
+    - list: 0
+      index: 6
+    - list: 0
+      index: 7
     _dependencyMetas:
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+    - type:
+        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     - type:
         _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     - type:
@@ -343,6 +378,11 @@ MonoBehaviour:
         _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     _objects: []
     _unityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -2174,10 +2214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555e45ebfbda41c7b2e2b5831831a364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerLoopStage: 1
   _characterAccess: {fileID: 354778581290818253}
   _headRoot: {fileID: 6006351456734287650}
   _characterController: {fileID: 7205586870401899302}
-  _playerLoopStage: 1
 --- !u!1 &7205586870401899322
 GameObject:
   m_ObjectHideFlags: 0
