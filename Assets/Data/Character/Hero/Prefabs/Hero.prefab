@@ -1739,7 +1739,7 @@ MonoBehaviour:
   _playerLoopStage: 1
   _characterAccess: {fileID: 354778581290818253}
   _cameraMotionWeight: 1
-  _smoothFactor: 1
+  _smoothFactor: 2
   _baseAmplitude: 0.02
   _forwardAmplitude: 1
   _backwardAmplitude: 1
@@ -2298,7 +2298,6 @@ MonoBehaviour:
   - {fileID: 1361433330712634023}
   - {fileID: 1280214957785522907}
   - {fileID: 7391322638178157487}
-  - {fileID: 2353902986047957142}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2363,7 +2362,6 @@ GameObject:
   - component: {fileID: 2944110433625575914}
   - component: {fileID: 1280214957785522907}
   - component: {fileID: 7391322638178157487}
-  - component: {fileID: 2353902986047957142}
   m_Layer: 2
   m_Name: Steps
   m_TagString: Untagged
@@ -2393,7 +2391,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7284966764588239170}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b7c1ce4f00644d38bed2cb8aa4a1040, type: 3}
   m_Name: 
@@ -2402,29 +2400,39 @@ MonoBehaviour:
   _characterAccess: {fileID: 354778581290818253}
   _feetDistance: 0.3
   _feetForwardOffset: 0.3
+  _speedMin: 0.1
   _speedMax: 10
   _stepLengthMin: 0.4
-  _stepLengthMultiplier: 3
+  _stepLengthMultiplier: 2
   _stepLengthBySpeed:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 6.8154325
+      inSlope: 73.081764
+      outSlope: 73.081764
       tangentMode: 0
       weightedMode: 3
       inWeight: 0
-      outWeight: 0.155667
+      outWeight: 0.01670174
+    - serializedVersion: 3
+      time: 0.12505002
+      value: 0.71020615
+      inSlope: 2.4076385
+      outSlope: 2.4076385
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.89315414
+      outWeight: 0.12021536
     - serializedVersion: 3
       time: 1
       value: 1
       inSlope: 0.031243537
-      outSlope: 0
+      outSlope: 0.031243537
       tangentMode: 0
       weightedMode: 3
-      inWeight: 0.636963
+      inWeight: 0.519718
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -2437,7 +2445,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7284966764588239170}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec8e706a33fa4bacb4c72131204e438d, type: 3}
   m_Name: 
@@ -2445,11 +2453,37 @@ MonoBehaviour:
   _playerLoopStage: 1
   _characterAccess: {fileID: 354778581290818253}
   _cameraWeight: 1
-  _smooth: 1
+  _smooth: 3
+  _returnSmooth: 5
   _minSpeed: 0.2
+  _maxSpeed: 6
   _baseAmplitude: 1
   _baseAmplitudeRandom: 0.2
-  _positionOffsetLeft:
+  _baseAmplitudeBySpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 1.3702832
+      outSlope: 1.3702832
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.05679862
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _positionOffset:
     x:
       multiplier: 0
       addRandom: 0
@@ -2460,15 +2494,15 @@ MonoBehaviour:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
+          value: 0
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -2478,24 +2512,24 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     y:
-      multiplier: 1
-      addRandom: 0
+      multiplier: 0.3
+      addRandom: 0.04
       curve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 1
+          inSlope: -4.321558
+          outSlope: -4.321558
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.047682997
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
+          value: 0
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -2514,15 +2548,15 @@ MonoBehaviour:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
+          value: 0
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -2531,26 +2565,26 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  _rotationOffsetLeft:
+  _rotationOffset:
     x:
-      multiplier: 0
-      addRandom: 0
+      multiplier: 5
+      addRandom: 2
       curve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 1
+          inSlope: 1.5753825
+          outSlope: 1.5753825
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.1724124
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
+          value: 0
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -2560,24 +2594,24 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     y:
-      multiplier: 0
-      addRandom: 0
+      multiplier: 5
+      addRandom: 2
       curve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 1
+          inSlope: 1.7380974
+          outSlope: 1.7380974
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.08577175
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
+          value: 0
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -2587,24 +2621,24 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     z:
-      multiplier: 0
-      addRandom: 0
+      multiplier: 2
+      addRandom: 0.5
       curve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 1
+          inSlope: 2.7482414
+          outSlope: 2.7482414
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.10357347
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
+          value: 0
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -2613,195 +2647,6 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  _positionOffsetRight:
-    x:
-      multiplier: 0
-      addRandom: 0
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-    y:
-      multiplier: -1
-      addRandom: 0
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-    z:
-      multiplier: 0
-      addRandom: 0
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-  _rotationOffsetRight:
-    x:
-      multiplier: 0
-      addRandom: 0
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-    y:
-      multiplier: 0
-      addRandom: 0
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-    z:
-      multiplier: 0
-      addRandom: 0
-      curve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
---- !u!114 &2353902986047957142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7284966764588239170}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8645bb76514844308c204acd2c488cec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
-  _stepReaction: {fileID: 0}
-  _dependencies:
-    _mode: 0
-    _sharedDependencies: {fileID: 0}
-    _buckets: []
-    _dependencyPointers: []
-    _dependencyMetas: []
-    _objects: []
-    _unityObjects: []
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &7688891855935546526
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,7 +2718,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7935967427331685446}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f496f0eeb9c54e2d8cfbb5c8f4f0dae8, type: 3}
   m_Name: 
