@@ -199,7 +199,7 @@ MonoBehaviour:
           _nodeId: 24
           _node:
             rid: 6196715892176322599
-          _position: {x: 504.6866, y: 1344.7863}
+          _position: {x: 484.34778, y: 1538.7623}
           _ports:
           - _name: Self
             _mode: 22
@@ -231,7 +231,7 @@ MonoBehaviour:
           _nodeId: 25
           _node:
             rid: 6196715892176322601
-          _position: {x: 1471.2914, y: 1349.506}
+          _position: {x: 1450.3479, y: 1543.4291}
           _ports:
           - _name: 
             _mode: 1
@@ -265,7 +265,7 @@ MonoBehaviour:
           _nodeId: 30
           _node:
             rid: 6196715892176322613
-          _position: {x: 1468.7529, y: 1414.8473}
+          _position: {x: 1448.3477, y: 1608.7623}
           _ports:
           - _name: Apply
             _mode: 1
@@ -422,6 +422,43 @@ MonoBehaviour:
             _options: 3
             _dataType:
               _type: 
+      - key: 47
+        value:
+          _nodeId: 47
+          _node:
+            rid: 2522601955125362705
+          _position: {x: 1471.0934, y: 469.90884}
+          _ports:
+          - _name: Apply
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: Release
+            _mode: 1
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Applied
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: On Released
+            _mode: 0
+            _options: 0
+            _dataType:
+              _type: 
+          - _name: 
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+          - _name: 
+            _mode: 3
+            _options: 0
+            _dataType:
+              _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
     _fromNodePortLinksMap:
       _entries:
       - key: 17
@@ -510,6 +547,8 @@ MonoBehaviour:
               portIndex: 0
             - nodeId: 31
               portIndex: 0
+            - nodeId: 47
+              portIndex: 0
           - key: 2
             value:
             - nodeId: 3
@@ -569,7 +608,18 @@ MonoBehaviour:
             value:
             - nodeId: 1
               portIndex: 1
-    _addedNodesTotalCount: 47
+      - key: 47
+        value:
+          _entries:
+          - key: 4
+            value:
+            - nodeId: 3
+              portIndex: 0
+          - key: 5
+            value:
+            - nodeId: 3
+              portIndex: 0
+    _addedNodesTotalCount: 50
     _toNodePortLinksMap:
       _entries:
       - key: 1
@@ -622,6 +672,10 @@ MonoBehaviour:
               portIndex: 5
             - nodeId: 6
               portIndex: 6
+            - nodeId: 47
+              portIndex: 4
+            - nodeId: 47
+              portIndex: 5
       - key: 6
         value:
           _entries:
@@ -706,6 +760,13 @@ MonoBehaviour:
             value:
             - nodeId: 1
               portIndex: 4
+      - key: 47
+        value:
+          _entries:
+          - key: 0
+            value:
+            - nodeId: 20
+              portIndex: 1
     _subgraphReferencesMap:
       _entries: []
   _blackboard:
@@ -742,19 +803,19 @@ MonoBehaviour:
       _entries: []
     _quaternions:
       _entries: []
-    _colors:
-      _entries: []
     _layerMasks:
       _entries: []
+    _colors:
+      _entries: []
     _curves:
+      _entries: []
+    _enums:
       _entries: []
     _objects:
       _entries:
       - key: 24753629
         value:
           value: {fileID: 0}
-    _enums:
-      _entries: []
     _references:
       _entries: []
     _boolArrays:
@@ -787,23 +848,32 @@ MonoBehaviour:
       _entries: []
     _curveArrays:
       _entries: []
-    _objectArrays:
-      _entries: []
     _enumArrays:
+      _entries: []
+    _objectArrays:
       _entries: []
     _referenceArrays:
       _entries: []
   references:
     version: 2
     RefIds:
+    - rid: 2522601955125362705
+      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
+      data:
+        _applyActions:
+        - {fileID: 11400000, guid: 328ee66708550cd428740cbb912a34a5, type: 2}
+        _releaseActions: []
     - rid: 6196715892176322561
       type: {class: BlueprintNodeFsmState, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
     - rid: 6196715892176322564
-      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      type: {class: BlueprintNodeGetBlackboardProperty, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
       data:
         _property: 24753629
     - rid: 6196715892176322567
-      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
       data:
         _applyActions:
         - {fileID: 11400000, guid: 40d788688278e4147964b8acfc5754f6, type: 2}
@@ -843,13 +913,15 @@ MonoBehaviour:
       data:
         _port: Crouch
     - rid: 6196715892176322613
-      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
       data:
         _applyActions:
         - {fileID: 11400000, guid: 8400d14b486655a4d8e8b1e00b9f4040, type: 2}
         _releaseActions: []
     - rid: 6196715892176322614
-      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
       data:
         _applyActions:
         - {fileID: 11400000, guid: 40223cf656be2a7418b53fc283ffc8e2, type: 2}
@@ -868,7 +940,8 @@ MonoBehaviour:
         - rid: 6196715892176322618
         - rid: 6196715892176322619
     - rid: 6196715892176322618
-      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input, asm: MisterGames.Character}
+      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input,
+        asm: MisterGames.Character}
       data:
         isCrouchInputActive:
           _hasValue: 1
@@ -905,7 +978,8 @@ MonoBehaviour:
         - rid: 6196715892176322628
         - rid: 6196715892176322629
     - rid: 6196715892176322628
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions, asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions,
+        asm: MisterGames.Character}
       data:
         isGrounded: 1
     - rid: 6196715892176322629
@@ -915,7 +989,8 @@ MonoBehaviour:
         - rid: 6196715892176322630
         - rid: 6196715892176322631
     - rid: 6196715892176322630
-      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input, asm: MisterGames.Character}
+      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input,
+        asm: MisterGames.Character}
       data:
         isCrouchInputActive:
           _hasValue: 1
@@ -930,7 +1005,8 @@ MonoBehaviour:
           _hasValue: 0
           _value: 0
     - rid: 6196715892176322631
-      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input, asm: MisterGames.Character}
+      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input,
+        asm: MisterGames.Character}
       data:
         isCrouchInputActive:
           _hasValue: 0
@@ -945,7 +1021,8 @@ MonoBehaviour:
           _hasValue: 1
           _value: 1
     - rid: 6196715892176322632
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions, asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions,
+        asm: MisterGames.Character}
       data:
         isGrounded: 1
     - rid: 6196715892176322633
@@ -955,11 +1032,13 @@ MonoBehaviour:
         - rid: 6196715892176322634
         - rid: 6196715892176322635
     - rid: 6196715892176322634
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions, asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions,
+        asm: MisterGames.Character}
       data:
         isGrounded: 0
     - rid: 6196715892176322635
-      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input, asm: MisterGames.Character}
+      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input,
+        asm: MisterGames.Character}
       data:
         isCrouchInputActive:
           _hasValue: 1
@@ -980,7 +1059,8 @@ MonoBehaviour:
         - rid: 6196715892176322637
         - rid: 6196715892176322638
     - rid: 6196715892176322637
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions, asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Collisions,
+        asm: MisterGames.Character}
       data:
         isGrounded: 0
     - rid: 6196715892176322638
@@ -990,7 +1070,8 @@ MonoBehaviour:
         - rid: 6196715892176322639
         - rid: 6196715892176322640
     - rid: 6196715892176322639
-      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input, asm: MisterGames.Character}
+      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input,
+        asm: MisterGames.Character}
       data:
         isCrouchInputActive:
           _hasValue: 0
@@ -1005,7 +1086,8 @@ MonoBehaviour:
           _hasValue: 1
           _value: 1
     - rid: 6196715892176322640
-      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input, asm: MisterGames.Character}
+      type: {class: CharacterConditionCrouchInput, ns: MisterGames.Character.Input,
+        asm: MisterGames.Character}
       data:
         isCrouchInputActive:
           _hasValue: 1
@@ -1020,7 +1102,8 @@ MonoBehaviour:
           _hasValue: 0
           _value: 0
     - rid: 6196715892176322715
-      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      type: {class: BlueprintNodeApplyAsyncActions, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
       data:
         _applyActions:
         - {fileID: 11400000, guid: c3dd919a540e8c44685d9aaf19cd047c, type: 2}

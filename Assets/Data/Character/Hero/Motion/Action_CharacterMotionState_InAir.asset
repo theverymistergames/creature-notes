@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68baa534c5ef4b91a72f95cd498557b0, type: 3}
-  m_Name: CharacterMotionState_InAir
-  m_EditorClassIdentifier:
+  m_Name: Action_CharacterMotionState_InAir
+  m_EditorClassIdentifier: 
   _action:
     rid: 6196716168534294533
   references:
@@ -25,15 +25,18 @@ MonoBehaviour:
         - rid: 6196716168534294535
         - rid: 6196716168534294536
     - rid: 6196716168534294534
-      type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.Character.Motion, asm: MisterGames.Character}
+      type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.Character.Motion,
+        asm: MisterGames.Character}
       data:
         speed: 1
     - rid: 6196716168534294535
-      type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.Character.Motion, asm: MisterGames.Character}
+      type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.Character.Motion,
+        asm: MisterGames.Character}
       data:
         sideCorrection: 1
         backCorrection: 1
     - rid: 6196716168534294536
-      type: {class: CharacterActionSetJumpForceMultiplier, ns: MisterGames.Character.Jump, asm: MisterGames.Character}
+      type: {class: CharacterActionSetJumpForceMultiplier, ns: MisterGames.Character.Jump,
+        asm: MisterGames.Character}
       data:
         jumpForceMultiplier: 0
