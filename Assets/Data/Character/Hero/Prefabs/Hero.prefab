@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069889852213027257}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -108,6 +108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2236722660689622430}
   - component: {fileID: 6169025681448676973}
+  - component: {fileID: 6105622827973123828}
+  - component: {fileID: 1115517514154010951}
   m_Layer: 2
   m_Name: Collisions
   m_TagString: Untagged
@@ -144,8 +146,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 7205586870401899302}
   _hitDetector: {fileID: 2001994226625679391}
-  _ceilingDetector: {fileID: 7205586868961636116}
-  _groundDetector: {fileID: 7205586868961636115}
+  _ceilingDetector: {fileID: 1115517514154010951}
+  _groundDetector: {fileID: 6105622827973123828}
+--- !u!114 &6105622827973123828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662950266165396430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cf7e2d03e54500b87c531c700b36fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeSourceStage: 1
+  _maxHits: 6
+  _distance: 0.55
+  _distanceAddition: 0.15
+  _radius: 0.3
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _triggerInteraction: 1
+  _hitPointElevation: 0.2
+  _normalSphereCastRadius: 0.05
+  _debugDrawNormal: 0
+  _debugDrawCast: 0
+  _debugDrawHitPoint: 0
+  _debugDrawIsGroundedText: 0
+  _debugDrawIsGroundedTextOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &1115517514154010951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662950266165396430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec30cf9dd57d465fbd72cdcfb4f70b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeSourceStage: 1
+  _maxHits: 2
+  _distance: 0.6
+  _distanceAddition: 0.15
+  _radius: 0.3
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _triggerInteraction: 1
+  _debugDrawHitPoint: 0
+  _debugDrawCast: 0
+  _debugDrawHasCeilingText: 0
+  _debugDrawHasCeilingTextOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1727031898436235196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,46 +1101,46 @@ MonoBehaviour:
       next: -1
       prev: -1
     _rootIndexMap:
-      _buckets: 040000000600000003000000ffffffffffffffff05000000ffffffff
+      _buckets: ffffffffffffffff04000000010000000500000006000000ffffffff
       _entries:
-      - hashCode: 734766152
+      - hashCode: 529322021
         next: -1
         key:
           source: 2
           node: 1
         value: 0
-      - hashCode: 3975543
+      - hashCode: 698420180
         next: -1
         key:
           source: 2
           node: 2
         value: 1
-      - hashCode: 981369751
-        next: 1
+      - hashCode: 1481619129
+        next: 0
         key:
           source: 2
           node: 3
         value: 2
-      - hashCode: 119426064
+      - hashCode: 586989601
         next: -1
         key:
           source: 2
           node: 4
         value: 3
-      - hashCode: 960608152
-        next: -1
+      - hashCode: 1529246847
+        next: 3
         key:
           source: 2
           node: 5
         value: 4
-      - hashCode: 1361623653
+      - hashCode: 278412173
         next: 2
         key:
           source: 2
           node: 6
         value: 5
-      - hashCode: 1565827159
-        next: 0
+      - hashCode: 1864604068
+        next: -1
         key:
           source: 2
           node: 7
@@ -1499,6 +1554,7 @@ MonoBehaviour:
   _characterAccess: {fileID: 354778581290818253}
   _camera: {fileID: 7205586869398250334}
   _cameraContainer: {fileID: 4741229143266635619}
+  _viewDetector: {fileID: 0}
   _playerLoopStage: 1
   _inputProcessors:
   - rid: 8690781321960882184
@@ -1554,92 +1610,6 @@ MonoBehaviour:
   _sideAmplitude: 2
   _rotationLever: 0.3
   _rotationAmplitude: 0.5
---- !u!1 &7205586868961636117
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7205586868961636114}
-  - component: {fileID: 7205586868961636115}
-  - component: {fileID: 7205586868961636116}
-  m_Layer: 2
-  m_Name: Detectors
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7205586868961636114
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205586868961636117}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7205586870401899320}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7205586868961636115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205586868961636117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cf7e2d03e54500b87c531c700b36fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeSourceStage: 1
-  _maxHits: 6
-  _distance: 0.55
-  _distanceAddition: 0.15
-  _radius: 0.3
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _triggerInteraction: 1
-  _hitPointElevation: 0.2
-  _normalSphereCastRadius: 0.05
-  _debugDrawNormal: 0
-  _debugDrawCast: 0
-  _debugDrawHitPoint: 0
-  _debugDrawIsGroundedText: 0
-  _debugDrawIsGroundedTextOffset: {x: 0, y: 0, z: 0}
---- !u!114 &7205586868961636116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205586868961636117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec30cf9dd57d465fbd72cdcfb4f70b00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeSourceStage: 1
-  _maxHits: 2
-  _distance: 0.6
-  _distanceAddition: 0.15
-  _radius: 0.3
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _triggerInteraction: 1
-  _debugDrawHitPoint: 0
-  _debugDrawCast: 0
-  _debugDrawHasCeilingText: 0
-  _debugDrawHasCeilingTextOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7205586869188020231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2032,6 @@ Transform:
   - {fileID: 8965563844700577084}
   - {fileID: 5647373703605891108}
   - {fileID: 2236722660689622430}
-  - {fileID: 7205586868961636114}
   - {fileID: 6006351456734287650}
   - {fileID: 7205586870386989441}
   - {fileID: 6242859819234470736}
@@ -2127,8 +2096,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.3
-  m_Radius: 0.25
+  m_Height: 0.9
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2630,6 +2599,11 @@ PrefabInstance:
       propertyPath: _cursorImage
       value: 
       objectReference: {fileID: 8818717125505618302}
+    - target: {fileID: 3248882044609864277, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
+        type: 3}
+      propertyPath: _root
+      value: 
+      objectReference: {fileID: 7205586870401899322}
     - target: {fileID: 3248882044609864277, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
       propertyPath: m_Enabled
