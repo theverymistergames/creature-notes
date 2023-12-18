@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DigitalRuby.Tween;
+using Kino.PostProcessing;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
@@ -13,6 +14,7 @@ public class RoomIntroController : MonoBehaviour {
     public Volume v;
     private GrayScale _grayScale;
     private ColorAdjustments _adjustments;
+    private Glitch _glitch;
     
     void Start() {
         if (!instance) {
@@ -22,9 +24,11 @@ public class RoomIntroController : MonoBehaviour {
         v = GetComponent<Volume>();
         v.profile.TryGet(out _grayScale);
         v.profile.TryGet(out _adjustments);
+        v.profile.TryGet(out _glitch);
         
         _grayScale.intensity.value = 1f;
         _adjustments.postExposure.value = -2f;
+        _glitch.block.value = 0.15f;
     }
 
     public void ItemWasSet() {
@@ -34,7 +38,8 @@ public class RoomIntroController : MonoBehaviour {
             TweenFactory.Tween(null, 0, 1, 2f, TweenScaleFunctions.Linear,
                 (t) => {
                     _grayScale.intensity.value = 1 - t.CurrentProgress;
-                    _adjustments.postExposure.value = -2 + t.CurrentProgress * 2;
+                    _adjustments.postExposure.value = -2 + t.CurrentProgress * 1;
+                    _glitch.block.value = 0.15f - 0.15f * t.CurrentProgress;
                 });
         }
     }

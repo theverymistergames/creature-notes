@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using DigitalRuby.Tween;
 using UnityEngine;
 
-public class RunesCaster : MonoBehaviour {
+public class MagicCaster : MonoBehaviour {
     
     [SerializeField] private float _strikeSpeed = 0.1f;
     
     [SerializeField] private GameObject StrikeContainerPrefab;
+    
+    [SerializeField] private GameObject FireballPrefab;
     
     [SerializeField] private GameObject[] RunesPrefabs;
 
@@ -19,17 +21,14 @@ public class RunesCaster : MonoBehaviour {
     }
 
     void StrikeRunes() {
-        var runesTypes = _inputsManager.activeRunesTypes;
-        if (runesTypes.Count == 0) return;
-
         var container = Instantiate(StrikeContainerPrefab, gameObject.transform);
         container.transform.localPosition = new Vector3(0, 0, 0.1f);
         container.transform.SetParent(null);
 
-        runesTypes.ForEach(type =>  Instantiate(RunesPrefabs[type], container.transform));
+        // var fireball = Instantiate(FireballPrefab, container.transform);
+        // fireball.transform.position = new Vector3(0, -0.5f, 0);
 
-        var strikeContainer = container.GetComponent<RunesStrikeContainer>();
-        strikeContainer.Strike(runesTypes);
+        var strikeContainer = container.GetComponent<ProjectileContainer>();
         
         var currentDirection = (container.transform.position - gameObject.transform.position).normalized;
         
