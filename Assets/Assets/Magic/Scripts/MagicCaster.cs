@@ -1,26 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using DigitalRuby.Tween;
+using MisterGames.Character.Core;
+using MisterGames.Common.Actions;
+using MisterGames.Common.Dependencies;
 using UnityEngine;
 
 public class MagicCaster : MonoBehaviour {
     
     [SerializeField] private float _strikeSpeed = 0.1f;
-    
     [SerializeField] private GameObject StrikeContainerPrefab;
-    
     [SerializeField] private GameObject FireballPrefab;
-    
     [SerializeField] private GameObject[] RunesPrefabs;
-
     [SerializeField] private RuneInputsManager _inputsManager;
 
-    void Start() {
+    [SerializeField] private CharacterAccess _characterAccess;
+    [SerializeField] private AsyncActionAsset _onFireAction;
+
+    [RuntimeDependency(typeof(ICharacterAccess))]
+    [FetchDependencies(nameof(_onFireAction))]
+    [SerializeField] private DependencyResolver _dependencies;
+
+    private CancellationTokenSource _enableCts;
+
+    private void Awake() {
+        _dependencies.SetValue<ICharacterAccess>(_characterAccess);
+        _dependencies.Resolve(_onFireAction);
+    }
+
+    private void OnEnable() {
+        _enableCts = new CancellationTokenSource();
+    }
+
+    private void OnDisable() {
+        _enableCts?.Cancel();
+        _enableCts?.Dispose();
+        _enableCts = null;
+    }
+
+    private void Start() {
         TweenFactory.ClearTweensOnLevelLoad = true;
         TweenFactory.Clear();
     }
 
-    void StrikeRunes() {
+    private void StrikeRunes() {
+        _onFireAction.Apply(this, _enableCts.Token).Forget();
+
         var container = Instantiate(StrikeContainerPrefab, gameObject.transform);
         container.transform.localPosition = new Vector3(0, 0, 0.1f);
         container.transform.SetParent(null);
