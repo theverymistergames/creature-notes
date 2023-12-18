@@ -1046,46 +1046,46 @@ MonoBehaviour:
       next: -1
       prev: -1
     _rootIndexMap:
-      _buckets: ffffffff030000000100000004000000060000000500000002000000
+      _buckets: 040000000600000003000000ffffffffffffffff05000000ffffffff
       _entries:
-      - hashCode: 266994666
+      - hashCode: 734766152
         next: -1
         key:
           source: 2
           node: 1
         value: 0
-      - hashCode: 1249137031
+      - hashCode: 3975543
         next: -1
         key:
           source: 2
           node: 2
         value: 1
-      - hashCode: 479680277
-        next: -1
+      - hashCode: 981369751
+        next: 1
         key:
           source: 2
           node: 3
         value: 2
-      - hashCode: 92643657
-        next: 0
+      - hashCode: 119426064
+        next: -1
         key:
           source: 2
           node: 4
         value: 3
-      - hashCode: 627692229
+      - hashCode: 960608152
         next: -1
         key:
           source: 2
           node: 5
         value: 4
-      - hashCode: 1077561315
-        next: -1
+      - hashCode: 1361623653
+        next: 2
         key:
           source: 2
           node: 6
         value: 5
-      - hashCode: 1492301444
-        next: -1
+      - hashCode: 1565827159
+        next: 0
         key:
           source: 2
           node: 7
@@ -2068,6 +2068,7 @@ Transform:
   - {fileID: 6242859819234470736}
   - {fileID: 1653988782909861753}
   - {fileID: 2515480883230301455}
+  - {fileID: 4677405739288166351}
   - {fileID: 6504140747344493820}
   - {fileID: 7205586869188020230}
   - {fileID: 4693590438674305861}
@@ -2106,6 +2107,7 @@ MonoBehaviour:
   - {fileID: 1361433330712634023}
   - {fileID: 1280214957785522907}
   - {fileID: 7391322638178157487}
+  - {fileID: 812060535516466001}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2556,6 +2558,60 @@ MonoBehaviour:
   _rotationXYRatio: 0.2
   _rotationAmplitude: 1
   _rotationAmplitudeRandom: 0.3
+--- !u!1 &8007844882863317265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4677405739288166351}
+  - component: {fileID: 812060535516466001}
+  m_Layer: 2
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4677405739288166351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007844882863317265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205586870401899320}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812060535516466001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007844882863317265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5e5a67253741a2a02bf3434efa923a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAccess: {fileID: 354778581290818253}
+  _addItems: []
+  _storage:
+    _items:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
 --- !u!1001 &914670650207916062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2584,6 +2640,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractiveUser
       objectReference: {fileID: 0}
+    - target: {fileID: 7201652344378548620, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
+        type: 3}
+      propertyPath: _root
+      value: 
+      objectReference: {fileID: 7205586870401899322}
     - target: {fileID: 7201652344378548620, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
       propertyPath: m_Enabled
