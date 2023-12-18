@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069889852213027257}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -108,6 +108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2236722660689622430}
   - component: {fileID: 6169025681448676973}
+  - component: {fileID: 6105622827973123828}
+  - component: {fileID: 1115517514154010951}
   m_Layer: 2
   m_Name: Collisions
   m_TagString: Untagged
@@ -144,8 +146,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 7205586870401899302}
   _hitDetector: {fileID: 2001994226625679391}
-  _ceilingDetector: {fileID: 7205586868961636116}
-  _groundDetector: {fileID: 7205586868961636115}
+  _ceilingDetector: {fileID: 1115517514154010951}
+  _groundDetector: {fileID: 6105622827973123828}
+--- !u!114 &6105622827973123828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662950266165396430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cf7e2d03e54500b87c531c700b36fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeSourceStage: 1
+  _maxHits: 6
+  _distance: 0.55
+  _distanceAddition: 0.15
+  _radius: 0.3
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _triggerInteraction: 1
+  _hitPointElevation: 0.2
+  _normalSphereCastRadius: 0.05
+  _debugDrawNormal: 0
+  _debugDrawCast: 0
+  _debugDrawHitPoint: 0
+  _debugDrawIsGroundedText: 0
+  _debugDrawIsGroundedTextOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &1115517514154010951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662950266165396430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec30cf9dd57d465fbd72cdcfb4f70b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeSourceStage: 1
+  _maxHits: 2
+  _distance: 0.6
+  _distanceAddition: 0.15
+  _radius: 0.3
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _triggerInteraction: 1
+  _debugDrawHitPoint: 0
+  _debugDrawCast: 0
+  _debugDrawHasCeilingText: 0
+  _debugDrawHasCeilingTextOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1727031898436235196
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4693590438674305861}
   - component: {fileID: 169266017175554870}
-  - component: {fileID: 7809884102165839556}
+  - component: {fileID: 7120035251719150399}
   m_Layer: 2
   m_Name: MotionFsm
   m_TagString: Untagged
@@ -735,8 +790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39db840a6b9a49c187725e53b907b113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _motionFsm: {fileID: 7809884102165839556}
---- !u!114 &7809884102165839556
+  _motionFsm: {fileID: 7120035251719150399}
+--- !u!114 &7120035251719150399
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -745,694 +800,502 @@ MonoBehaviour:
   m_GameObject: {fileID: 6131280029188146141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e6e69af36349bf9f40d0c82e5f80d9, type: 3}
+  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blueprintAsset: {fileID: 11400000, guid: e0fe7d5640ea9c944a213fe914375ed1, type: 2}
-  _blackboardOverridesMap:
-    _entries:
-    - key: {fileID: 11400000, guid: e0fe7d5640ea9c944a213fe914375ed1, type: 2}
+  _blueprintAsset: {fileID: 11400000, guid: 5a4eff54daf76d74d948d1ad0d276a72, type: 2}
+  _subgraphTree:
+    _nodes:
+    - key:
+        source: 2
+        node: 1
       value:
-        _properties: 
-        _propertiesMap:
-          _entries: []
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries: []
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
-    - key: {fileID: 11400000, guid: fe506e587f8ace14aad92455bbcdcd71, type: 2}
+        asset: {fileID: 11400000, guid: b75449b466ccce9439be6db705c43e9b, type: 2}
+        blackboard:
+          _propertyList: ddb57901
+          _propertyMap:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 24753629
+              next: -1
+              key: 24753629
+              value:
+                name: CharacterAccess
+                type:
+                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+                table: 0
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tables:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 0
+              next: -1
+              key: 0
+              value:
+                rid: 1135008362380656649
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tablesHead: 0
+        isFactoryOverrideEnabled: 0
+        factoryOverride:
+          rid: -2
+      parent: -1
+      child: -1
+      next: -1
+      prev: -1
+    - key:
+        source: 2
+        node: 2
       value:
-        _properties: ddb57901
-        _propertiesMap:
-          _entries:
-          - key: 24753629
-            value:
-              name: CharacterAccess
-              type:
-                _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-              mapIndex: 16
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries:
-          - key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
-    - key: {fileID: 11400000, guid: dec3019ebe9493a4a89d668b8f6d527d, type: 2}
+        asset: {fileID: 11400000, guid: d5c87383209c2134a96de01beb364b86, type: 2}
+        blackboard:
+          _propertyList: ddb57901
+          _propertyMap:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 24753629
+              next: -1
+              key: 24753629
+              value:
+                name: CharacterAccess
+                type:
+                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+                table: 0
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tables:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 0
+              next: -1
+              key: 0
+              value:
+                rid: 1135008362380656650
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tablesHead: 0
+        isFactoryOverrideEnabled: 0
+        factoryOverride:
+          rid: -2
+      parent: -1
+      child: -1
+      next: -1
+      prev: -1
+    - key:
+        source: 2
+        node: 3
       value:
-        _properties: ddb57901
-        _propertiesMap:
-          _entries:
-          - key: 24753629
-            value:
-              name: CharacterAccess
-              type:
-                _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-              mapIndex: 16
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries:
-          - key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
-    - key: {fileID: 11400000, guid: 348cfedaf3449e34cb3ff08293a1d2fa, type: 2}
+        asset: {fileID: 11400000, guid: 305c145d6ab722f4b838dbfb22fbcb8e, type: 2}
+        blackboard:
+          _propertyList: ddb57901
+          _propertyMap:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 24753629
+              next: -1
+              key: 24753629
+              value:
+                name: CharacterAccess
+                type:
+                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+                table: 0
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tables:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 0
+              next: -1
+              key: 0
+              value:
+                rid: 1135008362380656651
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tablesHead: 0
+        isFactoryOverrideEnabled: 0
+        factoryOverride:
+          rid: -2
+      parent: -1
+      child: -1
+      next: -1
+      prev: -1
+    - key:
+        source: 2
+        node: 4
       value:
-        _properties: ddb57901
-        _propertiesMap:
-          _entries:
-          - key: 24753629
-            value:
-              name: CharacterAccess
-              type:
-                _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-              mapIndex: 16
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries:
-          - key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
-    - key: {fileID: 11400000, guid: 6f3cf282843e02d4fae6eaa3cff5f040, type: 2}
+        asset: {fileID: 11400000, guid: c6a06f319ee6b94448d6e1cadf7284e7, type: 2}
+        blackboard:
+          _propertyList: ddb57901
+          _propertyMap:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 24753629
+              next: -1
+              key: 24753629
+              value:
+                name: CharacterAccess
+                type:
+                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+                table: 0
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tables:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 0
+              next: -1
+              key: 0
+              value:
+                rid: 1135008362380656652
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tablesHead: 0
+        isFactoryOverrideEnabled: 0
+        factoryOverride:
+          rid: -2
+      parent: -1
+      child: -1
+      next: -1
+      prev: -1
+    - key:
+        source: 2
+        node: 5
       value:
-        _properties: ddb57901
-        _propertiesMap:
-          _entries:
-          - key: 24753629
-            value:
-              name: CharacterAccess
-              type:
-                _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-              mapIndex: 16
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries:
-          - key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
-    - key: {fileID: 11400000, guid: c4f7b2a5275d7534785ebdd1067323f4, type: 2}
+        asset: {fileID: 11400000, guid: 79272be2911e1dc409a3f5e0999f4945, type: 2}
+        blackboard:
+          _propertyList: ddb57901
+          _propertyMap:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 24753629
+              next: -1
+              key: 24753629
+              value:
+                name: CharacterAccess
+                type:
+                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+                table: 0
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tables:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 0
+              next: -1
+              key: 0
+              value:
+                rid: 1135008362380656653
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tablesHead: 0
+        isFactoryOverrideEnabled: 0
+        factoryOverride:
+          rid: -2
+      parent: -1
+      child: -1
+      next: -1
+      prev: -1
+    - key:
+        source: 2
+        node: 6
       value:
-        _properties: ddb57901
-        _propertiesMap:
-          _entries:
-          - key: 24753629
-            value:
-              name: CharacterAccess
-              type:
-                _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-              mapIndex: 16
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries:
-          - key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
-    - key: {fileID: 11400000, guid: 22ce124a33d1a81449ea07e01d842389, type: 2}
+        asset: {fileID: 11400000, guid: 9a0c5d2febbc68c4fa5d1cf88b233cef, type: 2}
+        blackboard:
+          _propertyList: ddb57901
+          _propertyMap:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 24753629
+              next: -1
+              key: 24753629
+              value:
+                name: CharacterAccess
+                type:
+                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+                table: 0
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tables:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 0
+              next: -1
+              key: 0
+              value:
+                rid: 1135008362380656654
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tablesHead: 0
+        isFactoryOverrideEnabled: 0
+        factoryOverride:
+          rid: -2
+      parent: -1
+      child: -1
+      next: -1
+      prev: -1
+    - key:
+        source: 2
+        node: 7
       value:
-        _properties: ddb57901
-        _propertiesMap:
-          _entries:
-          - key: 24753629
-            value:
-              name: CharacterAccess
-              type:
-                _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-              mapIndex: 16
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries:
-          - key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
-    - key: {fileID: 11400000, guid: 8d0e0a75bf3dbe543aac8eff769417c6, type: 2}
-      value:
-        _properties: ddb57901
-        _propertiesMap:
-          _entries:
-          - key: 24753629
-            value:
-              name: CharacterAccess
-              type:
-                _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-              mapIndex: 16
-        _bools:
-          _entries: []
-        _ints:
-          _entries: []
-        _longs:
-          _entries: []
-        _floats:
-          _entries: []
-        _doubles:
-          _entries: []
-        _strings:
-          _entries: []
-        _vectors2Int:
-          _entries: []
-        _vectors3Int:
-          _entries: []
-        _vectors2:
-          _entries: []
-        _vectors3:
-          _entries: []
-        _vectors4:
-          _entries: []
-        _quaternions:
-          _entries: []
-        _layerMasks:
-          _entries: []
-        _colors:
-          _entries: []
-        _curves:
-          _entries: []
-        _enums:
-          _entries: []
-        _objects:
-          _entries:
-          - key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-        _references:
-          _entries: []
-        _boolArrays:
-          _entries: []
-        _intArrays:
-          _entries: []
-        _longArrays:
-          _entries: []
-        _floatArrays:
-          _entries: []
-        _doubleArrays:
-          _entries: []
-        _stringArrays:
-          _entries: []
-        _vectors2IntArrays:
-          _entries: []
-        _vectors3IntArrays:
-          _entries: []
-        _vectors2Arrays:
-          _entries: []
-        _vectors3Arrays:
-          _entries: []
-        _vectors4Arrays:
-          _entries: []
-        _quaternionArrays:
-          _entries: []
-        _colorArrays:
-          _entries: []
-        _layerMaskArrays:
-          _entries: []
-        _curveArrays:
-          _entries: []
-        _enumArrays:
-          _entries: []
-        _objectArrays:
-          _entries: []
-        _referenceArrays:
-          _entries: []
+        asset: {fileID: 11400000, guid: 5e6cf4e034029ee4aa6f35e3c38a8564, type: 2}
+        blackboard:
+          _propertyList: ddb57901
+          _propertyMap:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 24753629
+              next: -1
+              key: 24753629
+              value:
+                name: CharacterAccess
+                type:
+                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
+                table: 0
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tables:
+            _buckets: 00000000
+            _entries:
+            - hashCode: 0
+              next: -1
+              key: 0
+              value:
+                rid: 1135008362380656655
+            _count: 1
+            _version: 0
+            _freeList: -1
+            _freeCount: 0
+          _tablesHead: 0
+        isFactoryOverrideEnabled: 0
+        factoryOverride:
+          rid: -2
+      parent: -1
+      child: -1
+      next: -1
+      prev: -1
+    _rootIndexMap:
+      _buckets: ffffffffffffffff04000000010000000500000006000000ffffffff
+      _entries:
+      - hashCode: 529322021
+        next: -1
+        key:
+          source: 2
+          node: 1
+        value: 0
+      - hashCode: 698420180
+        next: -1
+        key:
+          source: 2
+          node: 2
+        value: 1
+      - hashCode: 1481619129
+        next: 0
+        key:
+          source: 2
+          node: 3
+        value: 2
+      - hashCode: 586989601
+        next: -1
+        key:
+          source: 2
+          node: 4
+        value: 3
+      - hashCode: 1529246847
+        next: 3
+        key:
+          source: 2
+          node: 5
+        value: 4
+      - hashCode: 278412173
+        next: 2
+        key:
+          source: 2
+          node: 6
+        value: 5
+      - hashCode: 1864604068
+        next: -1
+        key:
+          source: 2
+          node: 7
+        value: 6
+      _count: 7
+      _version: 7
+      _freeList: -1
+      _freeCount: 0
+    _nodeIndexMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _count: 7
+    _head: 7
+    _version: 3018
+  _blackboard:
+    _propertyList: 
+    _propertyMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _tables:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _tablesHead: 0
+  _rootMetaOverride:
+    rid: -2
+  _isRootOverrideEnabled: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1135008362380656649
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 24753629
+            next: -1
+            key: 24753629
+            value:
+              value: {fileID: 354778581290818253}
+          _count: 1
+          _version: 3
+          _freeList: -1
+          _freeCount: 0
+    - rid: 1135008362380656650
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 24753629
+            next: -1
+            key: 24753629
+            value:
+              value: {fileID: 354778581290818253}
+          _count: 1
+          _version: 3
+          _freeList: -1
+          _freeCount: 0
+    - rid: 1135008362380656651
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 24753629
+            next: -1
+            key: 24753629
+            value:
+              value: {fileID: 354778581290818253}
+          _count: 1
+          _version: 3
+          _freeList: -1
+          _freeCount: 0
+    - rid: 1135008362380656652
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 24753629
+            next: -1
+            key: 24753629
+            value:
+              value: {fileID: 354778581290818253}
+          _count: 1
+          _version: 3
+          _freeList: -1
+          _freeCount: 0
+    - rid: 1135008362380656653
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 24753629
+            next: -1
+            key: 24753629
+            value:
+              value: {fileID: 354778581290818253}
+          _count: 1
+          _version: 3
+          _freeList: -1
+          _freeCount: 0
+    - rid: 1135008362380656654
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 24753629
+            next: -1
+            key: 24753629
+            value:
+              value: {fileID: 354778581290818253}
+          _count: 1
+          _version: 3
+          _freeList: -1
+          _freeCount: 0
+    - rid: 1135008362380656655
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 24753629
+            next: -1
+            key: 24753629
+            value:
+              value: {fileID: 354778581290818253}
+          _count: 1
+          _version: 3
+          _freeList: -1
+          _freeCount: 0
 --- !u!1 &6164463367444352710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1554,7 @@ MonoBehaviour:
   _characterAccess: {fileID: 354778581290818253}
   _camera: {fileID: 7205586869398250334}
   _cameraContainer: {fileID: 4741229143266635619}
+  _viewDetector: {fileID: 0}
   _playerLoopStage: 1
   _inputProcessors:
   - rid: 8690781321960882184
@@ -1746,92 +1610,6 @@ MonoBehaviour:
   _sideAmplitude: 2
   _rotationLever: 0.3
   _rotationAmplitude: 0.5
---- !u!1 &7205586868961636117
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7205586868961636114}
-  - component: {fileID: 7205586868961636115}
-  - component: {fileID: 7205586868961636116}
-  m_Layer: 2
-  m_Name: Detectors
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7205586868961636114
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205586868961636117}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7205586870401899320}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7205586868961636115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205586868961636117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cf7e2d03e54500b87c531c700b36fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeSourceStage: 1
-  _maxHits: 6
-  _distance: 0.55
-  _distanceAddition: 0.15
-  _radius: 0.3
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _triggerInteraction: 1
-  _hitPointElevation: 0.2
-  _normalSphereCastRadius: 0.05
-  _debugDrawNormal: 0
-  _debugDrawCast: 0
-  _debugDrawHitPoint: 0
-  _debugDrawIsGroundedText: 0
-  _debugDrawIsGroundedTextOffset: {x: 0, y: 0, z: 0}
---- !u!114 &7205586868961636116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205586868961636117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec30cf9dd57d465fbd72cdcfb4f70b00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeSourceStage: 1
-  _maxHits: 2
-  _distance: 0.6
-  _distanceAddition: 0.15
-  _radius: 0.3
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _triggerInteraction: 1
-  _debugDrawHitPoint: 0
-  _debugDrawCast: 0
-  _debugDrawHasCeilingText: 0
-  _debugDrawHasCeilingTextOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7205586869188020231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,12 +2032,12 @@ Transform:
   - {fileID: 8965563844700577084}
   - {fileID: 5647373703605891108}
   - {fileID: 2236722660689622430}
-  - {fileID: 7205586868961636114}
   - {fileID: 6006351456734287650}
   - {fileID: 7205586870386989441}
   - {fileID: 6242859819234470736}
   - {fileID: 1653988782909861753}
   - {fileID: 2515480883230301455}
+  - {fileID: 4677405739288166351}
   - {fileID: 6504140747344493820}
   - {fileID: 7205586869188020230}
   - {fileID: 4693590438674305861}
@@ -2298,6 +2076,7 @@ MonoBehaviour:
   - {fileID: 1361433330712634023}
   - {fileID: 1280214957785522907}
   - {fileID: 7391322638178157487}
+  - {fileID: 812060535516466001}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2317,8 +2096,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.3
-  m_Radius: 0.25
+  m_Height: 0.9
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2748,6 +2527,60 @@ MonoBehaviour:
   _rotationXYRatio: 0.2
   _rotationAmplitude: 1
   _rotationAmplitudeRandom: 0.3
+--- !u!1 &8007844882863317265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4677405739288166351}
+  - component: {fileID: 812060535516466001}
+  m_Layer: 2
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4677405739288166351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007844882863317265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205586870401899320}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812060535516466001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007844882863317265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5e5a67253741a2a02bf3434efa923a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAccess: {fileID: 354778581290818253}
+  _addItems: []
+  _storage:
+    _items:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
 --- !u!1001 &914670650207916062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2768,6 +2601,11 @@ PrefabInstance:
       objectReference: {fileID: 8818717125505618302}
     - target: {fileID: 3248882044609864277, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
+      propertyPath: _root
+      value: 
+      objectReference: {fileID: 7205586870401899322}
+    - target: {fileID: 3248882044609864277, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -2776,6 +2614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractiveUser
       objectReference: {fileID: 0}
+    - target: {fileID: 7201652344378548620, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
+        type: 3}
+      propertyPath: _root
+      value: 
+      objectReference: {fileID: 7205586870401899322}
     - target: {fileID: 7201652344378548620, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
       propertyPath: m_Enabled
