@@ -1,9 +1,8 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DigitalRuby.Tween;
+using MisterGames.Character.Actions;
 using MisterGames.Character.Core;
-using MisterGames.Common.Actions;
-using MisterGames.Common.Dependencies;
 using UnityEngine;
 
 public class MagicCaster : MonoBehaviour {
@@ -15,18 +14,9 @@ public class MagicCaster : MonoBehaviour {
     [SerializeField] private RuneInputsManager _inputsManager;
 
     [SerializeField] private CharacterAccess _characterAccess;
-    [SerializeField] private AsyncActionAsset _onFireAction;
-
-    [RuntimeDependency(typeof(ICharacterAccess))]
-    [FetchDependencies(nameof(_onFireAction))]
-    [SerializeField] private DependencyResolver _dependencies;
+    [SerializeField] private CharacterActionAsset _onFireAction;
 
     private CancellationTokenSource _enableCts;
-
-    private void Awake() {
-        _dependencies.SetValue<ICharacterAccess>(_characterAccess);
-        _dependencies.Resolve(_onFireAction);
-    }
 
     private void OnEnable() {
         _enableCts = new CancellationTokenSource();
@@ -44,7 +34,7 @@ public class MagicCaster : MonoBehaviour {
     }
 
     private void StrikeRunes() {
-        _onFireAction.Apply(this, _enableCts.Token).Forget();
+        _onFireAction.Apply(_characterAccess, this, _enableCts.Token).Forget();
 
         var container = Instantiate(StrikeContainerPrefab, gameObject.transform);
         container.transform.localPosition = new Vector3(0, 0, 0.1f);
