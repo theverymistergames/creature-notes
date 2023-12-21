@@ -34,7 +34,7 @@ public class MagicCaster : MonoBehaviour {
     }
 
     private void StrikeRunes() {
-        _onFireAction.Apply(_characterAccess, this, _enableCts.Token).Forget();
+        _onFireAction.Apply(_characterAccess, _enableCts.Token).Forget();
 
         var container = Instantiate(StrikeContainerPrefab, gameObject.transform);
         container.transform.localPosition = new Vector3(0, 0, 0.1f);
