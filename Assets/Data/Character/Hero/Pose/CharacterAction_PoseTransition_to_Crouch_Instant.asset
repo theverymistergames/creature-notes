@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68baa534c5ef4b91a72f95cd498557b0, type: 3}
-  m_Name: Action_CharacterBreathSettings
+  m_Name: CharacterAction_PoseTransition_to_Crouch_Instant
   m_EditorClassIdentifier: 
   _action:
-    rid: 2522601955125362688
+    rid: 6196716168534294550
   references:
     version: 2
     RefIds:
-    - rid: 2522601955125362688
-      type: {class: CharacterActionSetBreathSettings, ns: MisterGames.Character.Actions,
+    - rid: 6196716168534294550
+      type: {class: CharacterActionChangeColliderHeight, ns: MisterGames.Character.Actions,
         asm: MisterGames.Character}
       data:
-        period:
+        sourceHeight:
+          _hasValue: 0
+          _value: 0
+        targetHeight:
           _hasValue: 1
-          _value: 5
-        amplitude:
+          _value: 0.5
+        targetRadius:
           _hasValue: 1
-          _value: 1
+          _value: 0.2
+        metersPerSecond: 0

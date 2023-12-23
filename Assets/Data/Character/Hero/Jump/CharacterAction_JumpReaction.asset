@@ -10,27 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68baa534c5ef4b91a72f95cd498557b0, type: 3}
-  m_Name: Action_CharacterPoseTransition_to_Crouch_Grounded_CameraMotion
+  m_Name: CharacterAction_JumpReaction
   m_EditorClassIdentifier: 
   _action:
-    rid: 2522601955125362691
+    rid: 8690781386124820494
   references:
     version: 2
     RefIds:
-    - rid: 2522601955125362691
+    - rid: 8690781386124820494
+      type: {class: CharacterActionJumpReaction, ns: MisterGames.Character.Actions,
+        asm: MisterGames.Character}
+      data:
+        cases:
+        - minMagnitude: 0
+          maxMagnitude: 10
+          action:
+            rid: 8690781386124820499
+    - rid: 8690781386124820499
       type: {class: CharacterActionGroup, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
       data:
         mode: 1
         actions:
-        - rid: 2522601955125362692
-        - rid: 2522601955125362693
-    - rid: 2522601955125362692
+        - rid: 8690781386124820500
+        - rid: 8690781386124820501
+    - rid: 8690781386124820500
       type: {class: CharacterActionCameraPosition, ns: MisterGames.Character.Actions,
         asm: MisterGames.Character}
       data:
         playerLoopStage: 1
         keepChanges: 0
-        duration: 0.5
+        duration: 0.3
         durationRandom: 0.1
         weight: 1
         baseMultiplier: 1
@@ -64,37 +73,28 @@ MonoBehaviour:
               m_PostInfinity: 2
               m_RotationOrder: 4
           y:
-            multiplier: 0.6
-            addRandom: 0.2
+            multiplier: 0.2
+            addRandom: 0.05
             curve:
               serializedVersion: 2
               m_Curve:
               - serializedVersion: 3
                 time: 0
                 value: 0
-                inSlope: 0.10711111
-                outSlope: 0.10711111
+                inSlope: -2.773695
+                outSlope: -2.773695
                 tangentMode: 0
                 weightedMode: 0
                 inWeight: 0
-                outWeight: 0.12716378
-              - serializedVersion: 3
-                time: 0.5278676
-                value: -0.003685657
-                inSlope: -0.12760799
-                outSlope: -0.12760799
-                tangentMode: 0
-                weightedMode: 0
-                inWeight: 0.33333334
-                outWeight: 0.33333334
+                outWeight: 0.041800827
               - serializedVersion: 3
                 time: 1
                 value: 0
-                inSlope: -0.08837744
-                outSlope: -0.08837744
+                inSlope: -0.7562536
+                outSlope: -0.7562536
                 tangentMode: 0
                 weightedMode: 0
-                inWeight: 0.14946674
+                inWeight: 0.086233854
                 outWeight: 0
               m_PreInfinity: 2
               m_PostInfinity: 2
@@ -126,7 +126,7 @@ MonoBehaviour:
               m_PreInfinity: 2
               m_PostInfinity: 2
               m_RotationOrder: 4
-    - rid: 2522601955125362693
+    - rid: 8690781386124820501
       type: {class: CharacterActionCameraRotation, ns: MisterGames.Character.Actions,
         asm: MisterGames.Character}
       data:
@@ -139,28 +139,28 @@ MonoBehaviour:
         baseMultiplierRandom: 0.1
         eulers:
           x:
-            multiplier: -2
-            addRandom: 0.2
+            multiplier: -10
+            addRandom: 3
             curve:
               serializedVersion: 2
               m_Curve:
               - serializedVersion: 3
                 time: 0
                 value: 0
-                inSlope: 2.0078874
-                outSlope: 2.0078874
+                inSlope: -0.17091705
+                outSlope: -0.17091705
                 tangentMode: 0
                 weightedMode: 0
                 inWeight: 0
-                outWeight: 0.08785124
+                outWeight: 0.040017206
               - serializedVersion: 3
                 time: 1
                 value: 0
-                inSlope: 0
-                outSlope: 0
+                inSlope: -0.3878293
+                outSlope: -0.3878293
                 tangentMode: 0
                 weightedMode: 0
-                inWeight: 0
+                inWeight: 0.16480213
                 outWeight: 0
               m_PreInfinity: 2
               m_PostInfinity: 2
@@ -193,28 +193,28 @@ MonoBehaviour:
               m_PostInfinity: 2
               m_RotationOrder: 4
           z:
-            multiplier: 0
-            addRandom: 1
+            multiplier: 1
+            addRandom: 0.4
             curve:
               serializedVersion: 2
               m_Curve:
               - serializedVersion: 3
                 time: 0
                 value: 0
-                inSlope: 2.2357664
-                outSlope: 2.2357664
+                inSlope: -2.028388
+                outSlope: -2.028388
                 tangentMode: 0
                 weightedMode: 0
                 inWeight: 0
-                outWeight: 0.08264593
+                outWeight: 0.062637836
               - serializedVersion: 3
                 time: 1
                 value: 0
-                inSlope: 2.5249991
-                outSlope: 2.5249991
+                inSlope: -1.8826783
+                outSlope: -1.8826783
                 tangentMode: 0
                 weightedMode: 0
-                inWeight: 0.07922888
+                inWeight: 0.11437243
                 outWeight: 0
               m_PreInfinity: 2
               m_PostInfinity: 2

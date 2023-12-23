@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68baa534c5ef4b91a72f95cd498557b0, type: 3}
-  m_Name: Action_CharacterMotionState_Run
+  m_Name: CharacterAction_MotionState_Walk
   m_EditorClassIdentifier: 
   _action:
-    rid: 6196716168534294537
+    rid: 6196716168534294541
   references:
     version: 2
     RefIds:
-    - rid: 6196716168534294537
+    - rid: 6196716168534294541
       type: {class: CharacterActionGroup, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
       data:
         mode: 0
         actions:
-        - rid: 6196716168534294538
-        - rid: 6196716168534294539
-        - rid: 6196716168534294540
-    - rid: 6196716168534294538
+        - rid: 6196716168534294542
+        - rid: 6196716168534294543
+        - rid: 6196716168534294544
+    - rid: 6196716168534294542
       type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.Character.Actions,
         asm: MisterGames.Character}
       data:
-        speed: 2.4
-    - rid: 6196716168534294539
+        speed: 1.3
+    - rid: 6196716168534294543
       type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.Character.Actions,
         asm: MisterGames.Character}
       data:
         sideCorrection: 0.8
         backCorrection: 0.6
-    - rid: 6196716168534294540
-      type: {class: CharacterActionSetJumpForceMultiplier, ns: MisterGames.Character.Actions,
+    - rid: 6196716168534294544
+      type: {class: CharacterActionSetJumpForce, ns: MisterGames.Character.Actions,
         asm: MisterGames.Character}
       data:
-        jumpForceMultiplier: 5
+        jumpForce: 4
