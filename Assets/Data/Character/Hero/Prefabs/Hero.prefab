@@ -353,7 +353,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAccess: {fileID: 354778581290818253}
   _direction: {x: 0, y: 1, z: 0}
-  _force: 1
+  _force: 5
+  _jumpConditions: {fileID: 11400000, guid: 01fcaf96b4135e04e976fb78eddbe945, type: 2}
 --- !u!114 &3711417330593867449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,81 +370,6 @@ MonoBehaviour:
   _characterAccess: {fileID: 354778581290818253}
   _jumpReaction: {fileID: 11400000, guid: ae9169f4f02d9f5479a59f018cf887e7, type: 2}
   _landReaction: {fileID: 11400000, guid: f6d7295bb073b3745898df9abe34b6fb, type: 2}
-  _dependencies:
-    _mode: 0
-    _sharedDependencies: {fileID: 0}
-    _buckets:
-    - name: CharacterActionJumpReaction
-      offset: 0
-      count: 1
-    - name: CharacterActionCameraPosition
-      offset: 1
-      count: 1
-    - name: CharacterActionCameraRotation
-      offset: 2
-      count: 1
-    - name: CharacterActionVelocityReaction
-      offset: 3
-      count: 1
-    - name: CharacterActionCameraPosition
-      offset: 4
-      count: 1
-    - name: CharacterActionCameraRotation
-      offset: 5
-      count: 1
-    - name: CharacterActionCameraPosition
-      offset: 6
-      count: 1
-    - name: CharacterActionCameraRotation
-      offset: 7
-      count: 1
-    _dependencyPointers:
-    - list: 0
-      index: 0
-    - list: 0
-      index: 1
-    - list: 0
-      index: 2
-    - list: 0
-      index: 3
-    - list: 0
-      index: 4
-    - list: 0
-      index: 5
-    - list: 0
-      index: 6
-    - list: 0
-      index: 7
-    _dependencyMetas:
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    _objects: []
-    _unityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &4422048062012394561
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,57 +574,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
   - {fileID: 11400000, guid: d352a7826776e8b40a4237fc707e6412, type: 2}
   - {fileID: 11400000, guid: 0467988be1dee9a40a2a3ee6b87ae297, type: 2}
-  _dependencies:
-    _mode: 0
-    _sharedDependencies: {fileID: 0}
-    _buckets:
-    - name: CharacterActionSetViewSensitivity
-      offset: 0
-      count: 1
-    - name: CharacterActionSetViewSmoothing
-      offset: 1
-      count: 1
-    - name: CharacterActionSetViewClamp
-      offset: 2
-      count: 1
-    - name: CharacterActionSetMassSettings
-      offset: 3
-      count: 1
-    - name: CharacterActionSetBreathSettings
-      offset: 4
-      count: 1
-    _dependencyPointers:
-    - list: 0
-      index: 0
-    - list: 0
-      index: 1
-    - list: 0
-      index: 2
-    - list: 0
-      index: 3
-    - list: 0
-      index: 4
-    _dependencyMetas:
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    _objects: []
-    _unityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &5404321588362709764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,46 +976,46 @@ MonoBehaviour:
       next: -1
       prev: -1
     _rootIndexMap:
-      _buckets: ffffffffffffffff04000000010000000500000006000000ffffffff
+      _buckets: 01000000ffffffffffffffff04000000030000000500000006000000
       _entries:
-      - hashCode: 529322021
+      - hashCode: 778511366
         next: -1
         key:
           source: 2
           node: 1
         value: 0
-      - hashCode: 698420180
+      - hashCode: 1835641059
         next: -1
         key:
           source: 2
           node: 2
         value: 1
-      - hashCode: 1481619129
-        next: 0
+      - hashCode: 1619740492
+        next: -1
         key:
           source: 2
           node: 3
         value: 2
-      - hashCode: 586989601
+      - hashCode: 1994254357
         next: -1
         key:
           source: 2
           node: 4
         value: 3
-      - hashCode: 1529246847
-        next: 3
+      - hashCode: 854361714
+        next: 0
         key:
           source: 2
           node: 5
         value: 4
-      - hashCode: 278412173
-        next: 2
+      - hashCode: 310849236
+        next: -1
         key:
           source: 2
           node: 6
         value: 5
-      - hashCode: 1864604068
-        next: -1
+      - hashCode: 833585514
+        next: 2
         key:
           source: 2
           node: 7
