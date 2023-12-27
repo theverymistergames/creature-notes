@@ -306,6 +306,69 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2896990999052018342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3737484179122843177}
+  - component: {fileID: 1950245598912483612}
+  - component: {fileID: 7185304629291760698}
+  m_Layer: 2
+  m_Name: Pose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3737484179122843177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896990999052018342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205586870401899320}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1950245598912483612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896990999052018342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a627be042364291a656248f14a927b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAccess: {fileID: 354778581290818253}
+  _playerLoopStage: 1
+--- !u!114 &7185304629291760698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896990999052018342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f4857fbcb1446b0b1224b8cd410ffe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAccess: {fileID: 354778581290818253}
+  _poseGraph: {fileID: 11400000, guid: 7d0b2b75b90c4144a876703fcf4d211e, type: 2}
+  _crouchPose: {fileID: 11400000, guid: 489e37c86dc59704db1b0fc24e390992, type: 2}
+  _standPose: {fileID: 11400000, guid: 59332e086fc346e479cedaf76a34d32d, type: 2}
 --- !u!1 &3291540060036740798
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAccess: {fileID: 354778581290818253}
   _direction: {x: 0, y: 1, z: 0}
-  _force: 1
+  _force: 5
+  _jumpCondition: {fileID: 11400000, guid: 01fcaf96b4135e04e976fb78eddbe945, type: 2}
 --- !u!114 &3711417330593867449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,81 +433,6 @@ MonoBehaviour:
   _characterAccess: {fileID: 354778581290818253}
   _jumpReaction: {fileID: 11400000, guid: ae9169f4f02d9f5479a59f018cf887e7, type: 2}
   _landReaction: {fileID: 11400000, guid: f6d7295bb073b3745898df9abe34b6fb, type: 2}
-  _dependencies:
-    _mode: 0
-    _sharedDependencies: {fileID: 0}
-    _buckets:
-    - name: CharacterActionJumpReaction
-      offset: 0
-      count: 1
-    - name: CharacterActionCameraPosition
-      offset: 1
-      count: 1
-    - name: CharacterActionCameraRotation
-      offset: 2
-      count: 1
-    - name: CharacterActionVelocityReaction
-      offset: 3
-      count: 1
-    - name: CharacterActionCameraPosition
-      offset: 4
-      count: 1
-    - name: CharacterActionCameraRotation
-      offset: 5
-      count: 1
-    - name: CharacterActionCameraPosition
-      offset: 6
-      count: 1
-    - name: CharacterActionCameraRotation
-      offset: 7
-      count: 1
-    _dependencyPointers:
-    - list: 0
-      index: 0
-    - list: 0
-      index: 1
-    - list: 0
-      index: 2
-    - list: 0
-      index: 3
-    - list: 0
-      index: 4
-    - list: 0
-      index: 5
-    - list: 0
-      index: 6
-    - list: 0
-      index: 7
-    _dependencyMetas:
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    _objects: []
-    _unityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &4422048062012394561
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,57 +637,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
   - {fileID: 11400000, guid: d352a7826776e8b40a4237fc707e6412, type: 2}
   - {fileID: 11400000, guid: 0467988be1dee9a40a2a3ee6b87ae297, type: 2}
-  _dependencies:
-    _mode: 0
-    _sharedDependencies: {fileID: 0}
-    _buckets:
-    - name: CharacterActionSetViewSensitivity
-      offset: 0
-      count: 1
-    - name: CharacterActionSetViewSmoothing
-      offset: 1
-      count: 1
-    - name: CharacterActionSetViewClamp
-      offset: 2
-      count: 1
-    - name: CharacterActionSetMassSettings
-      offset: 3
-      count: 1
-    - name: CharacterActionSetBreathSettings
-      offset: 4
-      count: 1
-    _dependencyPointers:
-    - list: 0
-      index: 0
-    - list: 0
-      index: 1
-    - list: 0
-      index: 2
-    - list: 0
-      index: 3
-    - list: 0
-      index: 4
-    _dependencyMetas:
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    - type:
-        _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-    _objects: []
-    _unityObjects:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &5404321588362709764
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,557 +683,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detector: {fileID: 2425128053471703627}
   _interactiveUser: {fileID: 8016680816859197842}
---- !u!1 &6131280029188146141
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4693590438674305861}
-  - component: {fileID: 169266017175554870}
-  - component: {fileID: 7120035251719150399}
-  m_Layer: 2
-  m_Name: MotionFsm
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4693590438674305861
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6131280029188146141}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7205586870401899320}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &169266017175554870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6131280029188146141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39db840a6b9a49c187725e53b907b113, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _motionFsm: {fileID: 7120035251719150399}
---- !u!114 &7120035251719150399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6131280029188146141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _blueprintAsset: {fileID: 11400000, guid: 5a4eff54daf76d74d948d1ad0d276a72, type: 2}
-  _subgraphTree:
-    _nodes:
-    - key:
-        source: 2
-        node: 1
-      value:
-        asset: {fileID: 11400000, guid: b75449b466ccce9439be6db705c43e9b, type: 2}
-        blackboard:
-          _propertyList: ddb57901
-          _propertyMap:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 24753629
-              next: -1
-              key: 24753629
-              value:
-                name: CharacterAccess
-                type:
-                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-                table: 0
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tables:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 0
-              next: -1
-              key: 0
-              value:
-                rid: 1135008362380656649
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tablesHead: 0
-        isFactoryOverrideEnabled: 0
-        factoryOverride:
-          rid: -2
-      parent: -1
-      child: -1
-      next: -1
-      prev: -1
-    - key:
-        source: 2
-        node: 2
-      value:
-        asset: {fileID: 11400000, guid: d5c87383209c2134a96de01beb364b86, type: 2}
-        blackboard:
-          _propertyList: ddb57901
-          _propertyMap:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 24753629
-              next: -1
-              key: 24753629
-              value:
-                name: CharacterAccess
-                type:
-                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-                table: 0
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tables:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 0
-              next: -1
-              key: 0
-              value:
-                rid: 1135008362380656650
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tablesHead: 0
-        isFactoryOverrideEnabled: 0
-        factoryOverride:
-          rid: -2
-      parent: -1
-      child: -1
-      next: -1
-      prev: -1
-    - key:
-        source: 2
-        node: 3
-      value:
-        asset: {fileID: 11400000, guid: 305c145d6ab722f4b838dbfb22fbcb8e, type: 2}
-        blackboard:
-          _propertyList: ddb57901
-          _propertyMap:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 24753629
-              next: -1
-              key: 24753629
-              value:
-                name: CharacterAccess
-                type:
-                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-                table: 0
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tables:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 0
-              next: -1
-              key: 0
-              value:
-                rid: 1135008362380656651
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tablesHead: 0
-        isFactoryOverrideEnabled: 0
-        factoryOverride:
-          rid: -2
-      parent: -1
-      child: -1
-      next: -1
-      prev: -1
-    - key:
-        source: 2
-        node: 4
-      value:
-        asset: {fileID: 11400000, guid: c6a06f319ee6b94448d6e1cadf7284e7, type: 2}
-        blackboard:
-          _propertyList: ddb57901
-          _propertyMap:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 24753629
-              next: -1
-              key: 24753629
-              value:
-                name: CharacterAccess
-                type:
-                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-                table: 0
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tables:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 0
-              next: -1
-              key: 0
-              value:
-                rid: 1135008362380656652
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tablesHead: 0
-        isFactoryOverrideEnabled: 0
-        factoryOverride:
-          rid: -2
-      parent: -1
-      child: -1
-      next: -1
-      prev: -1
-    - key:
-        source: 2
-        node: 5
-      value:
-        asset: {fileID: 11400000, guid: 79272be2911e1dc409a3f5e0999f4945, type: 2}
-        blackboard:
-          _propertyList: ddb57901
-          _propertyMap:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 24753629
-              next: -1
-              key: 24753629
-              value:
-                name: CharacterAccess
-                type:
-                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-                table: 0
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tables:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 0
-              next: -1
-              key: 0
-              value:
-                rid: 1135008362380656653
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tablesHead: 0
-        isFactoryOverrideEnabled: 0
-        factoryOverride:
-          rid: -2
-      parent: -1
-      child: -1
-      next: -1
-      prev: -1
-    - key:
-        source: 2
-        node: 6
-      value:
-        asset: {fileID: 11400000, guid: 9a0c5d2febbc68c4fa5d1cf88b233cef, type: 2}
-        blackboard:
-          _propertyList: ddb57901
-          _propertyMap:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 24753629
-              next: -1
-              key: 24753629
-              value:
-                name: CharacterAccess
-                type:
-                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-                table: 0
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tables:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 0
-              next: -1
-              key: 0
-              value:
-                rid: 1135008362380656654
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tablesHead: 0
-        isFactoryOverrideEnabled: 0
-        factoryOverride:
-          rid: -2
-      parent: -1
-      child: -1
-      next: -1
-      prev: -1
-    - key:
-        source: 2
-        node: 7
-      value:
-        asset: {fileID: 11400000, guid: 5e6cf4e034029ee4aa6f35e3c38a8564, type: 2}
-        blackboard:
-          _propertyList: ddb57901
-          _propertyMap:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 24753629
-              next: -1
-              key: 24753629
-              value:
-                name: CharacterAccess
-                type:
-                  _type: MisterGames.Character.Core.CharacterAccess, MisterGames.Character
-                table: 0
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tables:
-            _buckets: 00000000
-            _entries:
-            - hashCode: 0
-              next: -1
-              key: 0
-              value:
-                rid: 1135008362380656655
-            _count: 1
-            _version: 0
-            _freeList: -1
-            _freeCount: 0
-          _tablesHead: 0
-        isFactoryOverrideEnabled: 0
-        factoryOverride:
-          rid: -2
-      parent: -1
-      child: -1
-      next: -1
-      prev: -1
-    _rootIndexMap:
-      _buckets: ffffffffffffffff04000000010000000500000006000000ffffffff
-      _entries:
-      - hashCode: 529322021
-        next: -1
-        key:
-          source: 2
-          node: 1
-        value: 0
-      - hashCode: 698420180
-        next: -1
-        key:
-          source: 2
-          node: 2
-        value: 1
-      - hashCode: 1481619129
-        next: 0
-        key:
-          source: 2
-          node: 3
-        value: 2
-      - hashCode: 586989601
-        next: -1
-        key:
-          source: 2
-          node: 4
-        value: 3
-      - hashCode: 1529246847
-        next: 3
-        key:
-          source: 2
-          node: 5
-        value: 4
-      - hashCode: 278412173
-        next: 2
-        key:
-          source: 2
-          node: 6
-        value: 5
-      - hashCode: 1864604068
-        next: -1
-        key:
-          source: 2
-          node: 7
-        value: 6
-      _count: 7
-      _version: 7
-      _freeList: -1
-      _freeCount: 0
-    _nodeIndexMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _count: 7
-    _head: 7
-    _version: 3018
-  _blackboard:
-    _propertyList: 
-    _propertyMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _tables:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _tablesHead: 0
-  _rootMetaOverride:
-    rid: -2
-  _isRootOverrideEnabled: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 1135008362380656649
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 24753629
-            next: -1
-            key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-          _count: 1
-          _version: 3
-          _freeList: -1
-          _freeCount: 0
-    - rid: 1135008362380656650
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 24753629
-            next: -1
-            key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-          _count: 1
-          _version: 3
-          _freeList: -1
-          _freeCount: 0
-    - rid: 1135008362380656651
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 24753629
-            next: -1
-            key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-          _count: 1
-          _version: 3
-          _freeList: -1
-          _freeCount: 0
-    - rid: 1135008362380656652
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 24753629
-            next: -1
-            key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-          _count: 1
-          _version: 3
-          _freeList: -1
-          _freeCount: 0
-    - rid: 1135008362380656653
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 24753629
-            next: -1
-            key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-          _count: 1
-          _version: 3
-          _freeList: -1
-          _freeCount: 0
-    - rid: 1135008362380656654
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 24753629
-            next: -1
-            key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-          _count: 1
-          _version: 3
-          _freeList: -1
-          _freeCount: 0
-    - rid: 1135008362380656655
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 24753629
-            next: -1
-            key: 24753629
-            value:
-              value: {fileID: 354778581290818253}
-          _count: 1
-          _version: 3
-          _freeList: -1
-          _freeCount: 0
 --- !u!1 &6164463367444352710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +941,6 @@ MonoBehaviour:
   _characterAccess: {fileID: 354778581290818253}
   _camera: {fileID: 7205586869398250334}
   _cameraContainer: {fileID: 4741229143266635619}
-  _viewDetector: {fileID: 0}
   _playerLoopStage: 1
   _inputProcessors:
   - rid: 8690781321960882184
@@ -1607,7 +993,7 @@ MonoBehaviour:
   _baseAmplitude: 0.02
   _forwardAmplitude: 1
   _backwardAmplitude: 1
-  _sideAmplitude: 2
+  _sideAmplitude: 1
   _rotationLever: 0.3
   _rotationAmplitude: 0.5
 --- !u!1 &7205586869188020231
@@ -1620,6 +1006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7205586869188020230}
   - component: {fileID: 137295681341058935}
+  - component: {fileID: 4269949916693310703}
   m_Layer: 2
   m_Name: Motion
   m_TagString: Untagged
@@ -1677,7 +1064,7 @@ MonoBehaviour:
       type: {class: CharacterProcessorVector2Multiplier, ns: MisterGames.Character.Processors,
         asm: MisterGames.Character}
       data:
-        multiplier: 5
+        multiplier: 1
     - rid: 6196715897464291344
       type: {class: CharacterProcessorVector2Smoothing, ns: MisterGames.Character.Processors,
         asm: MisterGames.Character}
@@ -1694,6 +1081,20 @@ MonoBehaviour:
         inputInfluenceFactor: 1
         gravityForce: 15
         isGravityEnabled: 1
+--- !u!114 &4269949916693310703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586869188020231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372b1f84eebb4c168b74c4d7006ffebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAccess: {fileID: 354778581290818253}
+  _action: {fileID: 11400000, guid: edbc880937d298b498552fed2c27edf2, type: 2}
 --- !u!1 &7205586869398250321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,9 +1358,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7205586870386989441}
-  - component: {fileID: 4560268376781457666}
+  - component: {fileID: 5199446035465094154}
   m_Layer: 2
-  m_Name: Height
+  m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1980,7 +1381,7 @@ Transform:
   m_Father: {fileID: 7205586870401899320}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4560268376781457666
+--- !u!114 &5199446035465094154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1989,10 +1390,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7205586870386989442}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555e45ebfbda41c7b2e2b5831831a364, type: 3}
+  m_Script: {fileID: 11500000, guid: 793ba0d08e6c460fb6e7fdb1998b7583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerLoopStage: 1
   _characterAccess: {fileID: 354778581290818253}
   _headRoot: {fileID: 6006351456734287650}
   _characterController: {fileID: 7205586870401899302}
@@ -2040,7 +1440,7 @@ Transform:
   - {fileID: 4677405739288166351}
   - {fileID: 6504140747344493820}
   - {fileID: 7205586869188020230}
-  - {fileID: 4693590438674305861}
+  - {fileID: 3737484179122843177}
   - {fileID: 1668132340117076409}
   - {fileID: 2944110433625575914}
   - {fileID: 7205586868813128935}
@@ -2062,21 +1462,23 @@ MonoBehaviour:
   headAdapter: {fileID: 4283694202728951010}
   _bodyAdapter: {fileID: 150641572023669722}
   _pipelines:
+  - {fileID: 8266916168477958313}
+  - {fileID: 1361433330712634023}
   - {fileID: 6169025681448676973}
-  - {fileID: 4560268376781457666}
+  - {fileID: 5199446035465094154}
   - {fileID: 2252703057486833798}
   - {fileID: 2243419931141208573}
+  - {fileID: 812060535516466001}
   - {fileID: 7953495498895512114}
   - {fileID: 3711417330593867449}
   - {fileID: 137295681341058935}
-  - {fileID: 169266017175554870}
-  - {fileID: 5787026696674559360}
-  - {fileID: 5812217121935433494}
-  - {fileID: 8266916168477958313}
-  - {fileID: 1361433330712634023}
+  - {fileID: 4269949916693310703}
+  - {fileID: 1950245598912483612}
+  - {fileID: 7185304629291760698}
   - {fileID: 1280214957785522907}
   - {fileID: 7391322638178157487}
-  - {fileID: 812060535516466001}
+  - {fileID: 5787026696674559360}
+  - {fileID: 5812217121935433494}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
