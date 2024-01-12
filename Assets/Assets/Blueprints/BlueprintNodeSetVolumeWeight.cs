@@ -19,20 +19,19 @@ namespace MisterGames.BlueprintLib {
         [SerializeField] private Volume _volume;
 
         public void CreatePorts(IBlueprintMeta meta, NodeId id) {
+            meta.AddPort(id, Port.Enter("Set"));
             meta.AddPort(id, Port.Input<float>());
             meta.AddPort(id, Port.Input<Volume>());
         }
 
         public void OnEnterPort(IBlueprint blueprint, NodeToken token, int port) {
-            if (port == 0) {
-                _volume.weight = _value;
+            if (port != 0) {
                 return;
             }
 
-            if (port == 1) {
-                _value = blueprint.Read(token, 1, _value);
-                return;
-            }
+            _value = blueprint.Read(token, 1, _value);
+            _volume = blueprint.Read(token, 2, _volume);
+            _volume.weight = _value;
         }
     }
 
