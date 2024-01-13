@@ -56,7 +56,7 @@ public class SisterReaction : MonoBehaviour {
 
     void PlayBubbleTween() {
         if (exerciseStarted) {
-            _reactionImage.sprite = _reactions[Ra]    
+            _reactionImage.sprite = _reactions[1];
         }
         
         _runner.Rewind();
