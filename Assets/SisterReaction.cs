@@ -22,6 +22,8 @@ public class SisterReaction : MonoBehaviour {
 
     private FloatTween _tweenTest;
     private TweenRunner _runner;
+
+    private bool exerciseStarted = false;
     
     void Start()
     {
@@ -31,6 +33,7 @@ public class SisterReaction : MonoBehaviour {
         _reactionContainer.transform.localScale = Vector3.zero;
         
         _exerciseBook.done.AddListener(OnExerciseDone);
+        _exerciseBook.started.AddListener(OnExerciseStarted);
         _interactive = GetComponent<Interactive>();
         
         _interactive.OnStartInteract += OnStartInteract;
@@ -39,34 +42,25 @@ public class SisterReaction : MonoBehaviour {
         _runner = GetComponent<TweenRunner>();
     }
 
+    void OnExerciseStarted() {
+        exerciseStarted = true;
+    }
+
     private void OnDestroy() {
         _interactive.OnStartInteract -= OnStartInteract;
     }
 
     private void OnStartInteract(IInteractiveUser obj) {
-        if (_tweenTest is { State: TweenState.Running }) _tweenTest.Stop(TweenStopBehavior.DoNotModify);
+        PlayBubbleTween();
+    }
+
+    void PlayBubbleTween() {
+        if (exerciseStarted) {
+            _reactionImage.sprite = _reactions[Ra]    
+        }
         
-        _reactionContainer.transform.localScale = Vector3.zero;
-
-        var pt = new ProgressTween();
-        pt.Initialize(this);
-        pt.Play(CancellationToken.None);
-
-        var runner = new BlueprintRunner();
-
-        _tweenTest = TweenFactory.Tween(RandomNumberGenerator.Create(), 0, 1, 0.2f, TweenScaleFunctions.CubicEaseOut,
-            (t) => {
-                Debug.Log(t.CurrentValue);
-                _reactionContainer.transform.localScale = new Vector3(t.CurrentValue, t.CurrentValue, t.CurrentValue);
-            }, tween => {
-                _tweenTest = TweenFactory.Tween(null, 0, 1, 1.5f, TweenScaleFunctions.CubicEaseOut,
-                    (t) => {}, ttt => {
-                        _tweenTest = TweenFactory.Tween(null, 1, 0, 0.2f, TweenScaleFunctions.CubicEaseOut,
-                            (t) => {
-                                _reactionContainer.transform.localScale = new Vector3(t.CurrentValue, t.CurrentValue, t.CurrentValue);
-                            });
-                    });
-            });
+        _runner.Rewind();
+        _runner.Play();
     }
 
     void OnExerciseDone() {

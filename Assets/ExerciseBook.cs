@@ -9,12 +9,22 @@ public class ExerciseBook : MonoBehaviour {
     private int answersCounter = 0;
     
     public UnityEvent done;
+    public UnityEvent started;
     
     // Start is called before the first frame update
     void Start() {
         foreach (var answerGroup in _answerGroups) {
             answerGroup.answered.AddListener(OnAnswered);
+            answerGroup.numberSelected.AddListener(OnNumberSelected);
         }
+    }
+
+    void OnNumberSelected() {
+        foreach (var answerGroup in _answerGroups) {
+            answerGroup.numberSelected.RemoveListener(OnNumberSelected);
+        }
+        
+        started.Invoke();
     }
 
     void OnAnswered() {

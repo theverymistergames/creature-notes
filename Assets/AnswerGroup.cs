@@ -16,6 +16,7 @@ public class AnswerGroup : MonoBehaviour {
     private int totalValue = 0;
 
     public UnityEvent answered;
+    public UnityEvent numberSelected;
     [SerializeField] private int answer = 0;
     
     // Start is called before the first frame update
@@ -36,6 +37,7 @@ public class AnswerGroup : MonoBehaviour {
     }
     
     void UpdateValue() {
+        numberSelected.Invoke();
         totalValue = 10 * firstValue + secondValue;
 
         if (totalValue == answer) {
