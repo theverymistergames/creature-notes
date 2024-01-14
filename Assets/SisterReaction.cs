@@ -9,7 +9,7 @@ using MisterGames.Interact.Interactives;
 using MisterGames.Tweens;
 using MisterGames.Tweens.Core;
 using UnityEngine;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class SisterReaction : MonoBehaviour {
     [SerializeField] private ExerciseBook _exerciseBook;
@@ -56,7 +56,7 @@ public class SisterReaction : MonoBehaviour {
 
     void PlayBubbleTween() {
         if (exerciseStarted) {
-            _reactionImage.sprite = _reactions[1];
+            _reactionImage.sprite = _reactions[Random.Range(1, 3)];
         }
         
         _runner.Rewind();

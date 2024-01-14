@@ -14,7 +14,9 @@ Material:
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
   - _ENABLE_FOG_ON_TRANSPARENT
+  - _NORMALMAP
   - _NORMALMAP_TANGENT_SPACE
+  - _REFRACTION_THIN
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 1
@@ -106,7 +108,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 84cd5ef0583ef6449bfe7ad09c001723, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapOS:
@@ -224,7 +226,7 @@ Material:
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 0
     - _MaterialID: 1
-    - _Metallic: 0.054
+    - _Metallic: 0.031
     - _MetallicRemapMax: 0
     - _MetallicRemapMin: 0
     - _Mode: 3
@@ -243,8 +245,8 @@ Material:
     - _RayTracing: 0
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
-    - _RefractionModel: 0
-    - _Smoothness: 0.895
+    - _RefractionModel: 3
+    - _Smoothness: 0.908
     - _SmoothnessRemapMax: 0.94
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 1

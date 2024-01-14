@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DigitalRuby.Tween;
 using MisterGames.Interact.Detectables;
 using MisterGames.Interact.Interactives;
+using MisterGames.Tweens.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,15 +17,19 @@ public class AnswerGroup : MonoBehaviour {
     private int secondValue = 0;
     private int totalValue = 0;
 
-    public UnityEvent answered;
-    public UnityEvent numberSelected;
+    [NonSerialized] public UnityEvent answered = new UnityEvent();
+    [NonSerialized] public UnityEvent numberSelected = new UnityEvent();
     [SerializeField] private int answer = 0;
+
+    private TweenRunner _checkTweenRunner;
     
     // Start is called before the first frame update
     void Start()
     {
         firstNumber.numberSet.AddListener(OnFirstNumberSet);
         secondNumber.numberSet.AddListener(OnSecondNumberSet);
+
+        _checkTweenRunner = GetComponent<TweenRunner>();
     }
 
     void OnFirstNumberSet(int num) {
@@ -47,13 +53,7 @@ public class AnswerGroup : MonoBehaviour {
             check.SetActive(true);
             answered.Invoke();
 
-            var scale = check.transform.localScale.x;
-            
-            TweenFactory.Tween(null, 0, 1, 1f, TweenScaleFunctions.CubicEaseOut,
-                (t) => {
-                    check.transform.localScale = new Vector3(scale * t.CurrentValue, scale * t.CurrentValue,
-                        scale * t.CurrentValue);
-                });
+            _checkTweenRunner.Play();
         }
     }
     
