@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Threading;
+using Cysharp.Threading.Tasks;
 using DigitalRuby.Tween;
-using MisterGames.Blueprints;
 using MisterGames.Interact.Interactives;
 using MisterGames.Tweens;
-using MisterGames.Tweens.Core;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -58,9 +53,10 @@ public class SisterReaction : MonoBehaviour {
         if (exerciseStarted) {
             _reactionImage.sprite = _reactions[Random.Range(1, 3)];
         }
-        
-        _runner.Rewind();
-        _runner.Play();
+
+        _runner.TweenPlayer.Progress = 0f;
+        _runner.TweenPlayer.Speed = 1f;
+        _runner.TweenPlayer.Play().Forget();
     }
 
     void OnExerciseDone() {

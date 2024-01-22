@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using DigitalRuby.Tween;
-using MisterGames.Interact.Detectables;
-using MisterGames.Interact.Interactives;
-using MisterGames.Tweens.Core;
+using Cysharp.Threading.Tasks;
+using MisterGames.Tweens;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -53,7 +49,7 @@ public class AnswerGroup : MonoBehaviour {
             check.SetActive(true);
             answered.Invoke();
 
-            _checkTweenRunner.Play();
+            _checkTweenRunner.TweenPlayer.Play().Forget();
         }
     }
     
