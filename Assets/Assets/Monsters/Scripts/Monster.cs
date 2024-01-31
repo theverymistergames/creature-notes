@@ -5,7 +5,6 @@ using UnityEngine;
 public enum MonsterType {
     Window,
     Bed,
-    Closet,
     Light,
 }
 

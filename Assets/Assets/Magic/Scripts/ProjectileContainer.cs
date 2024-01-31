@@ -28,7 +28,6 @@ public class ProjectileContainer : MonoBehaviour {
         
         dict.Add(MonsterType.Window, 0b00000001);
         dict.Add(MonsterType.Bed, 0b00000110);
-        dict.Add(MonsterType.Closet, 0b00001001);
         dict.Add(MonsterType.Light, 0b00000100);
     }
 
@@ -38,37 +37,15 @@ public class ProjectileContainer : MonoBehaviour {
         
         collided = true;
         GetComponent<Collider>().enabled = false;
-        
-        // foreach (var rune in runes) {
-        //     var tween = TweenFactory.Tween(
-        //         null,
-        //         0,
-        //         1,
-        //         0.5f,
-        //         TweenScaleFunctions.Linear,
-        //         (t) => {
-        //             rune.GetComponent<Renderer>().material.SetFloat("_Alpha", 1 - t.CurrentProgress);
-        //         });
-        // }
 
         if (other.transform.CompareTag("Enemy")) {
             var monster = other.transform.GetComponent<Monster>();
+
+            Debug.Log("POSHEL");
         
-            // int result = 0;
-            //
-            // for (var i = 0; i < _runesTypes.Count; i++) {
-            //     var type = _runesTypes[i];
-            //     result |= (1 << type);
-            // }
-            
-            // if (monster.IsSpawned() && dict[monster.type] == result) {
             
             if (monster.IsSpawned()) {
                 monster.GetDamage();
-        
-                // foreach (var rune in runes) {
-                //     rune.GetComponentInChildren<ParticleSystem>().Play();
-                // }
             }
         }
         
