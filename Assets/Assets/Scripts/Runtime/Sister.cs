@@ -1,17 +1,22 @@
+using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DigitalRuby.Tween;
+using MisterGames.Blueprints;
 using MisterGames.Interact.Interactives;
+using MisterGames.Scenario.Events;
 using MisterGames.Tweens;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SisterReaction : MonoBehaviour {
+public class Sister : MonoBehaviour {
     [SerializeField] private ExerciseBook _exerciseBook;
     [SerializeField] private GameObject _reactionContainer;
     [SerializeField] private SpriteRenderer _reactionImage;
 
     [SerializeField] private List<Sprite> _reactions = new List<Sprite>();
+    [SerializeField] private TweenRunner _bookTween;
 
     private Interactive _interactive;
 
@@ -19,6 +24,8 @@ public class SisterReaction : MonoBehaviour {
     private TweenRunner _runner;
 
     private bool exerciseStarted = false;
+
+    [SerializeField] private EventReference evt;
     
     void Start()
     {
@@ -59,7 +66,22 @@ public class SisterReaction : MonoBehaviour {
         _runner.TweenPlayer.Play().Forget();
     }
 
-    void OnExerciseDone() {
-               
+    void OnExerciseDone()
+    {
+        StartCoroutine(GiveBook());
+    }
+
+    IEnumerator GiveBook()
+    {
+        PlayBubbleTween();
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        //todo pages count
+        _bookTween.TweenPlayer.Play().Forget();
+        
+        yield return new WaitForSeconds(5f);
+        
+        evt.Raise();
     }
 }

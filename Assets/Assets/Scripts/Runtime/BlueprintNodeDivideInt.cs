@@ -31,8 +31,10 @@ namespace MisterGames.BlueprintLib {
                     Debug.LogWarning("Divide by 0");
                     return default;
                 }
+
+                var a = blueprint.Read(token, 0, _a);
                 
-                return blueprint.Read(token, 0, _a) / div;
+                return a / (float)div;
             }
             
             return default;

@@ -2,81 +2,121 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MisterGames.Interact.Detectables;
 using MisterGames.Interact.Interactives;
+using MisterGames.Scenario.Events;
 using UnityEngine;
+
+
+enum State
+{
+    None,
+    Normal,
+    Reversed,
+}
 
 public class Book : MonoBehaviour
 {
+    public float pageSwitchTreshold = 0.02f;
+    public float totalAnimTime = 2.042f;
+    public float animSpeed = 2;
     public Interactive colliderLeft;
     public Interactive colliderRight;
-    [NonSerialized] private List<Animator> pages = new List<Animator>();
-    [NonSerialized] private List<Interactive> interactives = new List<Interactive>();
+    public EventReference pageFlipEvent;
+    [NonSerialized] private List<Animator> _pages = new List<Animator>();
 
-    private int step = 0;
+    private int _step = 0;
+    private State _state = State.None;
     
-    void Start()
-    {
-        pages = GetComponentsInChildren<Animator>().ToList();
-        StartCoroutine(stopAnim(pages[0]));
+    void Start() {
+        _pages = GetComponentsInChildren<Animator>().ToList();
+        StartCoroutine(StopAnimAtEnd(_pages[0]));
 
-        for (int i = 1; i < pages.Count; i++)
-        {
-            pages[i].speed = 0;
+        for (var i = 1; i < _pages.Count; i++) {
+            _pages[i].speed = 0;
+            
+            if (i > 1) {
+                _pages[i].gameObject.SetActive(false);
+            }
         }
-
-        var counter = 0;
-
-        colliderRight.OnStartInteract += _ => MoveRight();
         
-
-        // foreach (var animator in pages)
-        // {
-        //     counter++;
-        //     
-        //     var inter = animator.GetComponentInChildren<Interactive>();
-        //     interactives.Add(inter);
-        //     inter.OnStartInteract += _ => onPagePressed(counter);
-        // }
-        // StartCoroutine(Init());
+        colliderLeft.OnStartInteract += _ => StartCoroutine(MoveLeft());
+        colliderRight.OnStartInteract += _ => StartCoroutine(MoveRight());
     }
 
-    void MoveRight()
+    public void SetInteractive(bool interactive)
     {
-        var id = step + 1;
+        colliderLeft.GetComponent<Detectable>().enabled = interactive;
+        colliderRight.GetComponent<Detectable>().enabled = interactive;
+    }
+
+    IEnumerator MoveLeft()
+    {
+        if (_state == State.Normal || _step == 0) yield break;
+        _state = State.Reversed;
         
-        var animator = pages[id];
-        animator.speed = 1;
-        StartCoroutine(startAnim(pages[id], "PageAnim"));
-    }
-
-    void onPagePressed(int id)
-    {
-        if (id > step)
+        _step--;
+        
+        var step = _step;
+        
+        yield return StartCoroutine(StartAnim(_pages[step + 1], true, () =>
         {
-            step++;
-            var animator = pages[id];
-            animator.speed = 1;
-            StartCoroutine(startAnim(pages[id], "PageAnim"));
-        }
-    }
-
-    IEnumerator Init()
-    {
-        foreach (var animator in pages)
+            _pages[step]?.gameObject.SetActive(true);
+            StartCoroutine(StopAnimAtEnd(_pages[step]));
+        },
+        () =>
         {
-            yield return new WaitForSeconds(0);
-            animator.enabled = false;
-        }
+            _pages[step + 2]?.gameObject.SetActive(false);
+            pageFlipEvent.Raise();
+        }));
     }
 
-    IEnumerator startAnim(Animator animator, string stateName) {
+    IEnumerator MoveRight() {
+        if (_state == State.Reversed || _step == _pages.Count - 2) yield break;
+        _state = State.Normal;
+        
+        _step++;
+        var step = _step;
+
+        yield return StartCoroutine(StartAnim(_pages[step], false, 
+            () =>
+            {
+                _pages[step + 1]?.gameObject.SetActive(true);
+            },
+            () =>
+            {
+                _pages[step - 1]?.gameObject.SetActive(false);
+                pageFlipEvent.Raise();
+            }));
+    }
+
+    private IEnumerator StartAnim(Animator animator, bool reversed, Action startCallback, Action finishCallback) {
+        if (animator.speed != 0) yield break;
+        
+        var stateName = reversed ? "PageAnim_Reversed" : "PageAnim";
+        
+        animator.speed = animSpeed;
         animator.PlayInFixedTime(stateName, 0, 0);
-        yield return new WaitForSeconds(2);
+
+        yield return new WaitForSeconds((pageSwitchTreshold) * totalAnimTime / animSpeed);
+        
+        startCallback();
+        
+        yield return new WaitForSeconds((1 - pageSwitchTreshold * 2) * totalAnimTime / animSpeed);
+
+        finishCallback();
+        
+        yield return new WaitForSeconds((pageSwitchTreshold) * totalAnimTime / animSpeed);
+
         animator.speed = 0;
+        
+        if (!_pages.Find(p => p.speed != 0)) {
+            _state = State.None;
+        }
     }
 
-    IEnumerator stopAnim(Animator animator) {
-        animator.PlayInFixedTime("PageAnim", 0, 2.042f);
+    IEnumerator StopAnimAtEnd(Animator animator) {
+        animator.PlayInFixedTime("PageAnim", 0, totalAnimTime);
         yield return new WaitForSeconds(0);
         animator.speed = 0;
     }
