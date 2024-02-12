@@ -70,6 +70,14 @@ public class Monster : MonoBehaviour {
             });
     }
 
+    public void Stop()
+    {
+        _spawned = false;
+        _active = false;
+        _progress = 0;
+        ProceedUpdate(_progress);
+    }
+
     private void Finish() {
         _spawned = false;
         _active = false;
@@ -95,5 +103,10 @@ public class Monster : MonoBehaviour {
 
     private void ProceedUpdate(float progress) {
         progressUpdate.Invoke(progress);
+    }
+
+    public bool isEnabled()
+    {
+        return _enabled;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using MisterGames.Scenario.Events;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
@@ -20,6 +21,8 @@ public class MonsterSpawner : MonoBehaviour {
 
     private DebuffsController _debuffsController;
 
+    [SerializeField] private EventReference monsterKilledEvent;
+
     private void Start() {
         _random = new Random();
         
@@ -31,16 +34,27 @@ public class MonsterSpawner : MonoBehaviour {
         _debuffsController = FindObjectOfType<DebuffsController>();
     }
 
+    public void Stop()
+    {
+        _inProgress = false;
+        
+        foreach (var monster in monsters)
+        {
+            monster.Stop();
+        }
+    }
+
     void OnMonsterFinished(Monster monster) {
         _debuffsController.StartDebuff(monster.type);
         StartCoroutine(SpawnWithDelay(monster));
     }
 
     private void OnMonsterKilled(Monster monster) {
+        monsterKilledEvent.Raise();
         StartCoroutine(SpawnWithDelay(monster));
     }
 
-    private void StartSpawn() {
+    public void StartSpawn() {
         if (_inProgress) return;
         _inProgress = true;
         
@@ -53,7 +67,11 @@ public class MonsterSpawner : MonoBehaviour {
     }
 
     private IEnumerator SpawnWithDelay(Monster monster) {
+        if (!_inProgress) yield break;
+        
         yield return new WaitForSeconds(minDelay + (maxDelay - minDelay) * (float)_random.NextDouble());
+        
+        if (!_inProgress) yield break;
 
         if (monsters.Count(m => m.IsSpawned()) >= maxMonsters) {
             StartCoroutine(SpawnWithDelay(monster));

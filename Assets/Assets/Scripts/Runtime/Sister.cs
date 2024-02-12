@@ -27,11 +27,7 @@ public class Sister : MonoBehaviour {
 
     [SerializeField] private EventReference evt;
     
-    void Start()
-    {
-        TweenFactory.ClearTweensOnLevelLoad = true;
-        TweenFactory.Clear();
-        
+    void Start() {
         _reactionContainer.transform.localScale = Vector3.zero;
         
         _exerciseBook.done.AddListener(OnExerciseDone);
@@ -77,7 +73,6 @@ public class Sister : MonoBehaviour {
         
         yield return new WaitForSeconds(0.5f);
         
-        //todo pages count
         _bookTween.TweenPlayer.Play().Forget();
         
         yield return new WaitForSeconds(5f);
