@@ -44,10 +44,6 @@ public class Sister : MonoBehaviour {
         exerciseStarted = true;
     }
 
-    private void OnDestroy() {
-        _interactive.OnStartInteract -= OnStartInteract;
-    }
-
     private void OnStartInteract(IInteractiveUser obj) {
         PlayBubbleTween();
     }

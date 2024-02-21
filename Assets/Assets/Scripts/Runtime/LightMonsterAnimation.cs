@@ -3,29 +3,22 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class LightMonsterAnimation : MonoBehaviour
-{
+public class LightMonsterAnimation : MonsterAnimation {
     [SerializeField]
     private GameObject lightSource;
-    
-    [SerializeField]
-    private GameObject monster;
 
-    [SerializeField]
-    protected float _harbingerThreshold = 0.33f;
-
+    private AudioSource _audio;
     
     private float _targetTime;
 
     private void Start() {
-        _targetTime = Random.Range(1, 1.5f);
-        monster.SetActive(false);
+        SubscribeUpdate();
 
-        var monsterComponent = GetComponent<Monster>();
-        monsterComponent.progressUpdate += ProceedUpdate;
+        _audio = GetComponent<AudioSource>();
+        monster.SetActive(false);
     }
 
-    void ProceedUpdate(float progress) {
+    protected override void ProceedUpdate(float progress) {
         if (progress == 0) {
             lightSource.SetActive(true);
             monster.SetActive(false);
@@ -33,20 +26,23 @@ public class LightMonsterAnimation : MonoBehaviour
         
         _targetTime -= Time.deltaTime;
 
-        if (_targetTime <= 0) {
-            lightSource.SetActive(true);
-            if (progress >= _harbingerThreshold) monster.SetActive(true);
+        if (_targetTime > 0) return;
+        
+        if (progress >= harbingerThreshold) monster.SetActive(true);
             
-            _targetTime = Random.Range(0.5f - 0.4f * progress, 1.5f - 1.2f * progress);
+        _targetTime = Random.Range(.2f, .5f) * (1 - progress / 2) + 5 * (1 - progress);
 
-            StartCoroutine(BlinkRoutine(progress));
-        }
+        StartCoroutine(BlinkRoutine(progress));
     }
 
     private IEnumerator BlinkRoutine(float progress) {
+        lightSource.SetActive(false);
+        
         yield return new WaitForSeconds(0.2f - 0.1f * progress);
         
-        lightSource.SetActive(false);
+        _audio.Play();
+        
+        lightSource.SetActive(true);
         monster.SetActive(false);
     }
 }

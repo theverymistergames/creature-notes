@@ -9,6 +9,8 @@ using Random = System.Random;
 
 public class MonsterSpawner : MonoBehaviour {
 
+    [SerializeField] private float spawnTime = 40;
+    [SerializeField] private float harbringerThreshold = 0.8f;
     [SerializeField] private float minDelay;
     [SerializeField] private float maxDelay;
     
@@ -34,12 +36,10 @@ public class MonsterSpawner : MonoBehaviour {
         _debuffsController = FindObjectOfType<DebuffsController>();
     }
 
-    public void Stop()
-    {
+    public void Stop() {
         _inProgress = false;
         
-        foreach (var monster in monsters)
-        {
+        foreach (var monster in monsters) {
             monster.Stop();
         }
     }
@@ -54,12 +54,16 @@ public class MonsterSpawner : MonoBehaviour {
         StartCoroutine(SpawnWithDelay(monster));
     }
 
+    private void SpawnMonster(Monster monster) {
+        monster.Spawn(spawnTime, harbringerThreshold);
+    }
+
     public void StartSpawn() {
         if (_inProgress) return;
         _inProgress = true;
         
         var index = _random.Next(monsters.Count);
-        monsters[index].Spawn();
+        SpawnMonster(monsters[index]);
 
         for (var i = 0; i < monsters.Count; i++) {
             if (i != index) StartCoroutine(SpawnWithDelay(monsters[i]));
@@ -76,7 +80,7 @@ public class MonsterSpawner : MonoBehaviour {
         if (monsters.Count(m => m.IsSpawned()) >= maxMonsters) {
             StartCoroutine(SpawnWithDelay(monster));
         } else {
-            monster.Spawn();    
+            SpawnMonster(monster);  
         }
     }
 

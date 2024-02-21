@@ -54,10 +54,6 @@ public class SisterLevel1 : MonoBehaviour {
         }
     }
 
-    private void OnDestroy() {
-        _interactive.OnStartInteract -= OnStartInteract;
-    }
-
     private void OnStartInteract(IInteractiveUser obj) {
         PlayBubbleTween();
     }

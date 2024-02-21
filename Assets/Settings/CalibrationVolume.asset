@@ -464,10 +464,10 @@ MonoBehaviour:
     m_Value: 0.29
   drift:
     m_OverrideState: 0
-    m_Value: 0.142
+    m_Value: 0.018
   jitter:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 0.253
   jump:
     m_OverrideState: 0
     m_Value: 0
@@ -815,9 +815,64 @@ MonoBehaviour:
   - {fileID: -3668639968631070174}
   - {fileID: -2608576489521199774}
   - {fileID: -7523154314727227160}
-  - {fileID: -6132288021521058987}
   - {fileID: -2732984866629540714}
   - {fileID: 6228009678342387506}
+  - {fileID: 944449802249081625}
+  - {fileID: 8690038426384972274}
+--- !u!114 &944449802249081625
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fe164a39e559444abedb0f54828dac, type: 3}
+  m_Name: GrayScale
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.73
+--- !u!114 &1075330676152200686
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyGlitch
+  m_EditorClassIdentifier: Assembly-CSharp:Kino.PostProcessing:MyGlitch
+  active: 1
+  <displayName>k__BackingField: 
+  m_IsInitialized: 0
+  typeName: 
+  block:
+    m_OverrideState: 1
+    m_Value: 0.172
+  drift:
+    m_OverrideState: 0
+    m_Value: 0
+  jitter:
+    m_OverrideState: 0
+    m_Value: 0
+  jump:
+    m_OverrideState: 0
+    m_Value: 0
+  shake:
+    m_OverrideState: 1
+    m_Value: 0.13
+  _material: {fileID: 0}
+  _prevTime: 0
+  _jumpTime: 0
+  _blockTime: 0
+  _blockSeed1: 71
+  _blockSeed2: 113
+  _blockStride: 1
 --- !u!114 &1142777632297148762
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1016,3 +1071,31 @@ MonoBehaviour:
   proceduralSoftness:
     m_OverrideState: 0
     m_Value: 0.5
+--- !u!114 &8690038426384972274
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8bcdf71d7fafa419fca1ed162f5fc9, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 0
+  postExposure:
+    m_OverrideState: 0
+    m_Value: 0.87
+  contrast:
+    m_OverrideState: 0
+    m_Value: -36.2
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 0.57069314, g: 0.7096815, b: 1.2050495, a: 1}
+  hueShift:
+    m_OverrideState: 1
+    m_Value: 12
+  saturation:
+    m_OverrideState: 0
+    m_Value: 100

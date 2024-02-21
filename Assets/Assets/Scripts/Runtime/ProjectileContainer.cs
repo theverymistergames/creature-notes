@@ -4,12 +4,12 @@ using DigitalRuby.Tween;
 using UnityEngine;
 
 public class ProjectileContainer : MonoBehaviour {
+
+    public float speedMultiplier = 0.05f;
     
     [NonSerialized]
     public bool collided = false;
 
-    private Collider _collider;
-    private List<GameObject> runes = new List<GameObject>();
 
     [SerializeField]
     private ParticleSystem explosion;
@@ -17,18 +17,27 @@ public class ProjectileContainer : MonoBehaviour {
     [SerializeField]
     private GameObject fireball;
 
-    private Dictionary<MonsterType, int> dict = new Dictionary<MonsterType, int>();
-
     private List<int> _runesTypes;
     private Light _light;
 
+    private bool _striked;
+    private Vector3 _direction;
+    private AudioSource explosionSound;
+
     private void Start() {
-        _collider = GetComponent<Collider>();
+        explosionSound = GetComponent<AudioSource>();
         _light = GetComponent<Light>();
-        
-        dict.Add(MonsterType.Window, 0b00000001);
-        dict.Add(MonsterType.Bed, 0b00000110);
-        dict.Add(MonsterType.Light, 0b00000100);
+    }
+
+    public void Strike(Vector3 dir) {
+        _direction = dir;
+        _striked = true;
+    }
+
+    private void Update() {
+        if (_striked && !collided) {
+            transform.position += _direction * speedMultiplier;
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -40,14 +49,13 @@ public class ProjectileContainer : MonoBehaviour {
 
         if (other.transform.CompareTag("Enemy")) {
             var monster = other.transform.GetComponent<Monster>();
-
-            //Debug.Log("POSHEL");
-        
             
             if (monster.IsSpawned()) {
                 monster.GetDamage();
             }
         }
+        
+        explosionSound.Play();
         
         fireball.SetActive(false);
         explosion.Play();
@@ -58,7 +66,7 @@ public class ProjectileContainer : MonoBehaviour {
             null,
             0,
             1,
-                .7f,
+                2,
             TweenScaleFunctions.Linear,
             (t) => {
                 _light.intensity = intensity * 2f - (t.CurrentProgress * intensity * 2f);

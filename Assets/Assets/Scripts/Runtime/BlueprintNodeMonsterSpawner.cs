@@ -16,7 +16,7 @@ namespace MisterGames.BlueprintLib {
     [BlueprintNode(Name = "Monster Spawner", Category = "Gameplay", Color = BlueprintColors.Node.Actions)]
     public struct BlueprintNodeMonsterSpawner : IBlueprintNode, IBlueprintEnter {
 
-        [SerializeField] private MonsterSpawner spawner;
+        private MonsterSpawner spawner;
 
         public void CreatePorts(IBlueprintMeta meta, NodeId id) {
             meta.AddPort(id, Port.Enter("Start"));
