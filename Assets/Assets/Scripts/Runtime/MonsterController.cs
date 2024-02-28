@@ -5,9 +5,9 @@ using System.Linq;
 using MisterGames.Scenario.Events;
 using Unity.VisualScripting;
 using UnityEngine;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
-public class MonsterSpawner : MonoBehaviour {
+public class MonsterController : MonoBehaviour {
 
     [SerializeField] private float spawnTime = 40;
     [SerializeField] private float harbringerThreshold = 0.8f;
@@ -16,17 +16,24 @@ public class MonsterSpawner : MonoBehaviour {
     
     [SerializeField] private int maxMonsters = 4;
     
+    [SerializeField] private Flesh[] terrains;
+    
+    [SerializeField] private AudioClip spawnSound;
+    
     [SerializeField]
     private List<Monster> monsters;
     private bool _inProgress;
-    private Random _random;
 
     private DebuffsController _debuffsController;
+
+    private int _spawnedMonsters;
+
+    private AudioSource _source;
 
     [SerializeField] private EventReference monsterKilledEvent;
 
     private void Start() {
-        _random = new Random();
+        _source = GetComponent<AudioSource>();
         
         foreach (var monster in monsters) {
             monster.monsterKilled = () => OnMonsterKilled(monster);
@@ -45,43 +52,49 @@ public class MonsterSpawner : MonoBehaviour {
     }
 
     void OnMonsterFinished(Monster monster) {
+        _source.PlayOneShot(spawnSound);
+        
+        _spawnedMonsters++;
+        UpdateFlesh();
         _debuffsController.StartDebuff(monster.type);
-        StartCoroutine(SpawnWithDelay(monster));
     }
 
     private void OnMonsterKilled(Monster monster) {
+        if (monster.IsFinished()) {
+            _spawnedMonsters--;
+            UpdateFlesh();
+        }
+        
         monsterKilledEvent.Raise();
-        StartCoroutine(SpawnWithDelay(monster));
+    }
+
+    void UpdateFlesh() {
+        foreach (var terrain in terrains) terrain.SetPosition(_spawnedMonsters);
     }
 
     private void SpawnMonster(Monster monster) {
         monster.Spawn(spawnTime, harbringerThreshold);
     }
 
+    private IEnumerator SpawnRoutine() {
+        if (!_inProgress) yield break;
+        
+        yield return new WaitForSeconds(minDelay + (maxDelay - minDelay) * Random.Range(0, 1f));
+
+        if (monsters.Find(m => !m.IsSpawned() && m.IsEnabled()) && monsters.FindAll(m => m.IsSpawned()).Count < maxMonsters) {
+            var index = Random.Range(0, monsters.Count);
+            while (monsters[index].IsSpawned() || !monsters[index].IsEnabled()) index = Random.Range(0, monsters.Count);
+            SpawnMonster(monsters[index]);
+        }
+
+        StartCoroutine(SpawnRoutine());
+    }
+
     public void StartSpawn() {
         if (_inProgress) return;
         _inProgress = true;
-        
-        var index = _random.Next(monsters.Count);
-        SpawnMonster(monsters[index]);
 
-        for (var i = 0; i < monsters.Count; i++) {
-            if (i != index) StartCoroutine(SpawnWithDelay(monsters[i]));
-        }
-    }
-
-    private IEnumerator SpawnWithDelay(Monster monster) {
-        if (!_inProgress) yield break;
-        
-        yield return new WaitForSeconds(minDelay + (maxDelay - minDelay) * (float)_random.NextDouble());
-        
-        if (!_inProgress) yield break;
-
-        if (monsters.Count(m => m.IsSpawned()) >= maxMonsters) {
-            StartCoroutine(SpawnWithDelay(monster));
-        } else {
-            SpawnMonster(monster);  
-        }
+        StartCoroutine(SpawnRoutine());
     }
 
     private void Update() {

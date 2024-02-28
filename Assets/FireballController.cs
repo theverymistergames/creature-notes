@@ -14,6 +14,7 @@ using UnityEngine.UI;
 public class FireballController : MonoBehaviour {
     public float chargeTime = 4;
     public float burnTime = 10;
+    public float burnedTime = 10;
     public GameObject scale;
     public GameObject scaleBurning;
     public GameObject scaleContainer;
@@ -80,20 +81,20 @@ public class FireballController : MonoBehaviour {
         
         for (int i = 0; i < 5; i++) {
             scaleContainer.SetActive(false);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(burnedTime / (5 * 2));
             
             scaleContainer.SetActive(true);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(burnedTime / (5 * 2));
         }
 
         Clear();
+        _charging = false;
     }
 
     void Clear() {
         _chargeProgressTime = 0;
         _burnProgressTime = 0;
         _burned = false;
-        // _charging = false;
         _burning = false;
     }
 

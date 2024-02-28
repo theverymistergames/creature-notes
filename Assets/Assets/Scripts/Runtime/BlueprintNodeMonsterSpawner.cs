@@ -16,23 +16,23 @@ namespace MisterGames.BlueprintLib {
     [BlueprintNode(Name = "Monster Spawner", Category = "Gameplay", Color = BlueprintColors.Node.Actions)]
     public struct BlueprintNodeMonsterSpawner : IBlueprintNode, IBlueprintEnter {
 
-        private MonsterSpawner spawner;
+        private MonsterController _controller;
 
         public void CreatePorts(IBlueprintMeta meta, NodeId id) {
             meta.AddPort(id, Port.Enter("Start"));
             meta.AddPort(id, Port.Enter("Stop"));
-            meta.AddPort(id, Port.Input<MonsterSpawner>());
+            meta.AddPort(id, Port.Input<MonsterController>());
         }
 
         public void OnEnterPort(IBlueprint blueprint, NodeToken token, int port) {
             if (port == 0)
             {
-                spawner = blueprint.Read(token, 2, spawner);
-                spawner.StartSpawn();
+                _controller = blueprint.Read(token, 2, _controller);
+                _controller.StartSpawn();
             } else if (port == 1)
             {
-                spawner = blueprint.Read(token, 2, spawner);
-                spawner.Stop();
+                _controller = blueprint.Read(token, 2, _controller);
+                _controller.Stop();
             }
             else
             {

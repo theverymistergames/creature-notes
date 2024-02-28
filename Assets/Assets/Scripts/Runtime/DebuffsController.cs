@@ -20,22 +20,31 @@ public class DebuffsController : MonoBehaviour {
     }
 
     public void StartDebuff(MonsterType type) {
-        monsterImage.sprite = monstersImages[(int)type];
-        //
-        // if (_currentImageTween is { State: TweenState.Running }) {
-        //     _currentImageTween.Stop(TweenStopBehavior.Complete);
-        // }
-        
-        _currentImageTween = TweenFactory.Tween(null, 0, 1, 0.1f, TweenScaleFunctions.Linear,
-            (t) => {
-                monsterImage.color = new Color(1, 1, 1, t.CurrentProgress);
-            }, t => {
-                debuffs[(int)type].StartEffect();
+        // monsterImage.sprite = monstersImages[(int)type];
 
-                _currentImageTween = TweenFactory.Tween(null, 0, 1, 1, TweenScaleFunctions.Linear,
-                    (tween) => {
-                        monsterImage.color = new Color(1, 1, 1, 1 - tween.CurrentProgress);
-                    });
+        var image = Instantiate(monsterImage, monsterImage.transform.parent);
+        image.sprite = monstersImages[(int)type];
+        image.color = new Color(1, 1, 1, 1);
+        
+        debuffs[(int)type].StartEffect();
+        
+        TweenFactory.Tween(null, 0, 1, 0.5f, TweenScaleFunctions.Linear,
+            (tween) => {
+                image.color = new Color(1, 1, 1, 1 - tween.CurrentProgress);
+            }, tween => {
+                Destroy(image);
             });
+        
+        // _currentImageTween = TweenFactory.Tween(null, 0, 1, 0.1f, TweenScaleFunctions.Linear,
+        //     (t) => {
+        //         monsterImage.color = new Color(1, 1, 1, t.CurrentProgress);
+        //     }, t => {
+        //         debuffs[(int)type].StartEffect();
+        //
+        //         _currentImageTween = TweenFactory.Tween(null, 0, 1, 1, TweenScaleFunctions.Linear,
+        //             (tween) => {
+        //                 monsterImage.color = new Color(1, 1, 1, 1 - tween.CurrentProgress);
+        //             });
+        //     });
     }
 }

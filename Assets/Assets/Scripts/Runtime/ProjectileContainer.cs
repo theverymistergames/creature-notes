@@ -27,6 +27,9 @@ public class ProjectileContainer : MonoBehaviour {
     private void Start() {
         explosionSound = GetComponent<AudioSource>();
         _light = GetComponent<Light>();
+
+        var main = explosion.main;
+        main.startSize = new ParticleSystem.MinMaxCurve(0, 0);
     }
 
     public void Strike(Vector3 dir) {
@@ -51,6 +54,9 @@ public class ProjectileContainer : MonoBehaviour {
             var monster = other.transform.GetComponent<Monster>();
             
             if (monster.IsSpawned()) {
+                var main = explosion.main;
+                main.startSize = new ParticleSystem.MinMaxCurve(.5f, .5f);
+                
                 monster.GetDamage();
             }
         }

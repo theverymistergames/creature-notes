@@ -283,9 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1806c43a280f4760a1d3a3d65e56cf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0.4
-  _enabled: 1
-  type: 1
+  _damage: 1
+  _enabled: 0
+  type: 0
 --- !u!82 &5276103408916981674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -966,6 +966,10 @@ PrefabInstance:
     - target: {fileID: 138012, guid: 8f7fd41fdcbaf674e9647012abf48bd5, type: 3}
       propertyPath: m_Name
       value: Monster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 138012, guid: 8f7fd41fdcbaf674e9647012abf48bd5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418368, guid: 8f7fd41fdcbaf674e9647012abf48bd5, type: 3}
       propertyPath: m_LocalScale.x

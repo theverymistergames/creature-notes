@@ -13,7 +13,7 @@ public abstract class MonsterAnimation : MonoBehaviour
 
     protected void SubscribeUpdate() {
         var monsterComponent = GetComponent<Monster>();
-        monsterComponent.progressUpdate += ProceedUpdate;
+        monsterComponent.progressUpdated += ProceedUpdate;
     }
 
     protected abstract void ProceedUpdate(float progress);

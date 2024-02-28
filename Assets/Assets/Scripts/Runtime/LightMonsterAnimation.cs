@@ -22,6 +22,11 @@ public class LightMonsterAnimation : MonsterAnimation {
         if (progress == 0) {
             lightSource.SetActive(true);
             monster.SetActive(false);
+        } else if (progress == 1) {
+            StopCoroutine(BlinkRoutine(progress));
+            lightSource.SetActive(false);
+            monster.SetActive(true);
+            return;
         }
         
         _targetTime -= Time.deltaTime;
