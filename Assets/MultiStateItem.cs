@@ -1,16 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using DigitalRuby.Tween;
 using LitMotion;
 using LitMotion.Extensions;
 using MisterGames.Interact.Interactives;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class MultiStateItem : MonoBehaviour {
-
     [SerializeField] private int startStateId = 0;
     [SerializeField] private int rightStateId = 1;
     [SerializeField] private Vector3 moveOutVector = new Vector3();
@@ -22,13 +17,13 @@ public class MultiStateItem : MonoBehaviour {
     private int _currentStateId;
     private MotionHandle _currentTween;
 
-    [NonSerialized] public UnityEvent placed = new UnityEvent();
+    [NonSerialized] public readonly UnityEvent Placed = new();
 
     public bool IsPlacedRight() {
         return _currentStateId == rightStateId;
     }
-    
-    void Start() {
+
+    private void Start() {
         _interactive = GetComponent<Interactive>();
         _interactive.OnStartInteract += InteractiveOnOnStartInteract;
 
@@ -37,17 +32,17 @@ public class MultiStateItem : MonoBehaviour {
         }
 
         if (rotations.Length > 0) {
-            transform.eulerAngles = rotations[startStateId];   
+            transform.localEulerAngles = rotations[startStateId];   
         }
         
         _currentStateId = startStateId;
     }
 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
-        var nextId = (_currentStateId + 1) % positions.Length;
+        var nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
 
         if (_currentTween.IsActive()) {
-            _currentTween.Complete();
+            return;
         }
         
         if (positions.Length > 0) {
@@ -56,20 +51,19 @@ public class MultiStateItem : MonoBehaviour {
             var finalPosition = positions[nextId];
 
             _currentTween = LMotion.Create(startPosition, midPosition, animationTime / 2).WithEase(Ease.InSine).WithOnComplete(() => {
-                _currentTween = LMotion.Create(midPosition, finalPosition, animationTime / 2).WithEase(Ease.OutSine).BindToPosition(transform);
-            }).BindToPosition(transform);
+                _currentTween = LMotion.Create(midPosition, finalPosition, animationTime / 2).WithEase(Ease.OutSine).BindToLocalPosition(transform);
+            }).BindToLocalPosition(transform);
         }
 
         if (rotations.Length > 0) {
             var startRotation = rotations[_currentStateId];
             var finalRotation = rotations[nextId];
             
-            _currentTween = LMotion.Create(startRotation, finalRotation, animationTime).WithEase(Ease.InOutSine)
-                .BindToEulerAngles(transform);
+            _currentTween = LMotion.Create(startRotation, finalRotation, animationTime).WithEase(Ease.InOutSine).BindToLocalEulerAngles(transform);
         }
 
         _currentStateId = nextId;
         
-        placed.Invoke();
+        Placed.Invoke();
     }
 }
