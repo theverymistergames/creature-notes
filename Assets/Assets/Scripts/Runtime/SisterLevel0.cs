@@ -74,7 +74,7 @@ public class SisterLevel0 : MonoBehaviour, IEventListener {
         PlayBubbleTween();
         
         yield return new WaitForSeconds(1f);
-        
+
         bookTween.TweenPlayer.Play().Forget();
     }
 
