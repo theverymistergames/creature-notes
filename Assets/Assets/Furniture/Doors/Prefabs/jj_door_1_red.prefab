@@ -14,9 +14,7 @@ GameObject:
   - component: {fileID: 759653947956051633}
   - component: {fileID: 9029884857170845908}
   - component: {fileID: 3902355469510578908}
-  - component: {fileID: 4796745080065126650}
   - component: {fileID: 3191250845341090422}
-  - component: {fileID: 591603564452009331}
   m_Layer: 0
   m_Name: doorWing
   m_TagString: Untagged
@@ -124,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
 --- !u!114 &3902355469510578908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,20 +137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
   _debugDrawDetectable: 0
---- !u!114 &4796745080065126650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163890191618404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffecc3551aab4ea48912b4e53b1e15ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactive: {fileID: 9029884857170845908}
-  _strategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
 --- !u!114 &3191250845341090422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,18 +201,6 @@ MonoBehaviour:
         endEulerAngles: {x: 0, y: 120, z: 0}
         useLocal: 1
         useEulerInterpolation: 0
---- !u!114 &591603564452009331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163890191618404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2794acaec7813dc4e99e47cadd9302ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1633922129596556
 GameObject:
   m_ObjectHideFlags: 0
