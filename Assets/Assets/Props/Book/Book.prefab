@@ -900,7 +900,6 @@ GameObject:
   - component: {fileID: 552564012085419164}
   - component: {fileID: 5749361030352129465}
   - component: {fileID: 1493213252428032893}
-  - component: {fileID: 3279572125989437557}
   - component: {fileID: 5987589861845537628}
   m_Layer: 0
   m_Name: LeftPageCollider
@@ -958,20 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
---- !u!114 &3279572125989437557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106487176890312805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffecc3551aab4ea48912b4e53b1e15ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactive: {fileID: 1493213252428032893}
-  _strategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
 --- !u!114 &5987589861845537628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6349,7 +6335,6 @@ GameObject:
   - component: {fileID: 2348342621614118929}
   - component: {fileID: 7465020736224063179}
   - component: {fileID: 8099601384414115334}
-  - component: {fileID: 275766469637601187}
   - component: {fileID: 5987904137090130101}
   m_Layer: 0
   m_Name: RightPageCollider
@@ -6407,20 +6392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
---- !u!114 &275766469637601187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5635900397829115926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffecc3551aab4ea48912b4e53b1e15ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactive: {fileID: 8099601384414115334}
-  _strategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
 --- !u!114 &5987904137090130101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9433,10 +9405,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29cbe9928034f78b6994d72bef750c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pageSwitchTreshold: 0.02
   totalAnimTime: 2.042
   animSpeed: 2
   colliderLeft: {fileID: 1493213252428032893}
   colliderRight: {fileID: 8099601384414115334}
+  pageFlipEvent:
+    _eventDomain: {fileID: 0}
+    _eventId: 0
 --- !u!1 &8470277531235697185
 GameObject:
   m_ObjectHideFlags: 0
