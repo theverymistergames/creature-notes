@@ -72,6 +72,14 @@ public class MonsterController : MonoBehaviour {
         foreach (var terrain in terrains) terrain.SetPosition(_spawnedMonsters);
     }
 
+    public void SpawnSingle(MonsterType type) {
+        var m = monsters.Find(m => m.type == type);
+        
+        if (m) {
+            SpawnMonster(m);
+        }
+    }
+
     private void SpawnMonster(Monster monster) {
         monster.Spawn(spawnTime, harbringerThreshold);
     }
