@@ -1,0 +1,45 @@
+﻿using System;
+using MisterGames.Blueprints;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
+
+namespace MisterGames.BlueprintLib {
+
+    [Serializable]
+    public class BlueprintSourceSetCanvasGroupOpacity :
+        BlueprintSource<BlueprintNodeSetCanvasGroupOpacity>,
+        BlueprintSources.IEnter<BlueprintNodeSetCanvasGroupOpacity>,
+        BlueprintSources.ICloneable {}
+
+    [Serializable]
+    [BlueprintNode(Name = "Set Canvas Group opacity", Category = "UI", Color = BlueprintColors.Node.Actions)]
+    public struct BlueprintNodeSetCanvasGroupOpacity : IBlueprintNode, IBlueprintEnter {
+        [SerializeField] private float value;
+        [SerializeField] private CanvasGroup canvasGroup;
+
+        private Color _color;
+
+        public void OnStart(IBlueprint blueprint, NodeToken token) {
+            canvasGroup = blueprint.Read(token, 2, canvasGroup);
+        }
+        
+        public void CreatePorts(IBlueprintMeta meta, NodeId id) {
+            meta.AddPort(id, Port.Enter("Set"));
+            meta.AddPort(id, Port.Input<float>());
+            meta.AddPort(id, Port.Input<CanvasGroup>());
+        }
+
+        public void OnEnterPort(IBlueprint blueprint, NodeToken token, int port) {
+            if (port != 0) {
+                return;
+            }
+
+            value = blueprint.Read(token, 1, value);
+            canvasGroup = blueprint.Read(token, 2, canvasGroup);
+            canvasGroup.alpha = value;
+        }
+    }
+
+}

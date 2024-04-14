@@ -2,16 +2,19 @@ using System;
 using LitMotion;
 using LitMotion.Extensions;
 using MisterGames.Interact.Interactives;
+using MisterGames.Scenario.Events;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MultiStateItem : MonoBehaviour {
+public class MultiStateItem : MonoBehaviour, IEventListener {
     [SerializeField] private int startStateId = 0;
     [SerializeField] private int rightStateId = 1;
     [SerializeField] private Vector3 moveOutVector = new Vector3();
     [SerializeField] private Vector3[] positions;
     [SerializeField] private Vector3[] rotations;
     [SerializeField] private float animationTime = 1f;
+
+    [SerializeField] private EventReference levelLoadedEvent;
     
     private Interactive _interactive;
     private int _currentStateId;
@@ -23,17 +26,29 @@ public class MultiStateItem : MonoBehaviour {
         return _currentStateId == rightStateId;
     }
 
-    private void Start() {
-        _interactive = GetComponent<Interactive>();
-        _interactive.OnStartInteract += InteractiveOnOnStartInteract;
-
+    private void Reset() {
         if (positions.Length > 0) {
-            transform.position = positions[startStateId];   
+            transform.localPosition = positions[startStateId];   
         }
 
         if (rotations.Length > 0) {
             transform.localEulerAngles = rotations[startStateId];   
         }
+    }
+
+    public void OnEventRaised(EventReference e) {
+        if (e.EventId == levelLoadedEvent.EventId) {
+            Reset();
+        }
+    }
+
+    private void Start() {
+        _interactive = GetComponent<Interactive>();
+        _interactive.OnStartInteract += InteractiveOnOnStartInteract;
+
+        Reset();
+        
+        levelLoadedEvent.Subscribe(this);
         
         _currentStateId = startStateId;
     }
