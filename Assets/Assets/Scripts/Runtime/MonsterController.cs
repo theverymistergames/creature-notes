@@ -49,6 +49,8 @@ public class MonsterController : MonoBehaviour {
         foreach (var monster in monsters) {
             monster.Stop();
         }
+        
+        StopCoroutine(SpawnRoutine());
     }
 
     void OnMonsterFinished(Monster monster) {
@@ -81,6 +83,7 @@ public class MonsterController : MonoBehaviour {
     }
 
     private void SpawnMonster(Monster monster) {
+        Debug.Log(monster.type);
         monster.Spawn(spawnTime, harbringerThreshold);
     }
 
@@ -88,6 +91,8 @@ public class MonsterController : MonoBehaviour {
         if (!_inProgress) yield break;
         
         yield return new WaitForSeconds(minDelay + (maxDelay - minDelay) * Random.Range(0, 1f));
+        
+        if (!_inProgress) yield break;
 
         if (monsters.Find(m => !m.IsSpawned() && m.IsEnabled()) && monsters.FindAll(m => m.IsSpawned()).Count < maxMonsters) {
             var index = Random.Range(0, monsters.Count);

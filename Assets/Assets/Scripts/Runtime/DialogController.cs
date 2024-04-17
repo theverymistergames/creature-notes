@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using MisterGames.Scenario.Events;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -30,6 +31,8 @@ public class DialogController : MonoBehaviour {
     public Text skipButton;
     public Text choiseText;
 
+    [SerializeField] private EventReference dialogFinishedEvent;
+
     private int _currentReplicID;
     private int _currentLineID;
 
@@ -39,6 +42,8 @@ public class DialogController : MonoBehaviour {
     private bool _waitInProgress;
     private bool _skipped;
     private int _chosenQuestionID = -1;
+
+    private bool _finished;
 
     private void Start() {
         yourText.text = "";
@@ -63,13 +68,25 @@ public class DialogController : MonoBehaviour {
     }
 
     private IEnumerator NextReplic() {
+        if (_finished) yield break;
+        
         skipButton.text = "SKIP";
         skipButton.color = new Color(1, 1, 1, 0.15f);
         _replicInProgress = true;
 
+        Debug.Log(_dialog.replics.Length);
+        Debug.Log(_currentReplicID);
+        
+        if (_currentReplicID >= _dialog.replics.Length) {
+            _finished = true;
+            dialogFinishedEvent.Raise();
+            yield break;
+        }
+        
         var replic = _dialog.replics[_currentReplicID];
         var isSelfReplic = replic.self;
-        
+
+        // Debug.Log(replic.answers?.Length);
         if (replic.answers?.Length > 0) replic = replic.answers[_chosenQuestionID];
         _chosenQuestionID = -1;
         
@@ -126,9 +143,7 @@ public class DialogController : MonoBehaviour {
         skipButton.text = "CONTINUE";
         skipButton.color = new Color(1, 1, 1, 0.5f);
 
-        if (_dialog.replics.Length > _currentReplicID &&
-            _dialog.replics[_currentReplicID].questions?.Length > 0)
-        {
+        if (_dialog.replics.Length > _currentReplicID && _dialog.replics[_currentReplicID].questions?.Length > 0) {
             Next();
         }
     }
@@ -148,11 +163,12 @@ public class DialogController : MonoBehaviour {
 
     public void Next() {
         if (_waitInProgress) return;
-        
-        if (_replicInProgress)
+
+        if (_replicInProgress) {
             _skipped = true;
-        else
+        } else {
             StartCoroutine(NextReplic());
+        }
     }
 
     private void Update() {

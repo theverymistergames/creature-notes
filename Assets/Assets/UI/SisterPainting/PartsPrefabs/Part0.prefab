@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4236850134372413}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.0564, y: -0.1938, z: 0}
+  m_LocalPosition: {x: -0.0564, y: -0.19596188, z: 0}
   m_LocalScale: {x: -0.03929, y: 0.05931001, z: -0.05931002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -168,7 +168,7 @@ MonoBehaviour:
         transform: {fileID: 6421990216855194992}
         useLocal: 1
         startPosition: {x: -0.0564, y: -0.1938, z: 0}
-        endPosition: {x: -0.0564, y: -0.2138, z: 0}
+        endPosition: {x: -0.0564, y: -0.2, z: 0}
 --- !u!1 &3992775755523556678
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +179,9 @@ GameObject:
   m_Component:
   - component: {fileID: 167677279050707112}
   - component: {fileID: 3471249479627150452}
+  - component: {fileID: 8692343557482478267}
+  - component: {fileID: 3239075634257991884}
+  - component: {fileID: 4000254299170231934}
   m_Layer: 0
   m_Name: Part0
   m_TagString: Untagged
@@ -196,7 +199,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.651, y: 4.666, z: 20.674}
-  m_LocalScale: {x: 0.011262375, y: 0.0073932023, z: 0.018059239}
+  m_LocalScale: {x: 0.011262374, y: 0.007393203, z: 0.018059237}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6421990216855194992}
@@ -223,3 +226,184 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.29695702, y: 0.22370291, z: 0.01948842}
   m_Center: {x: 0.0011205673, y: -0.0004298687, z: 0}
+--- !u!114 &8692343557482478267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992775755523556678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
+  _debugDrawDetectable: 0
+--- !u!114 &3239075634257991884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992775755523556678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+--- !u!114 &4000254299170231934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992775755523556678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blueprintAsset: {fileID: 11400000, guid: 33114bece1ce2524da124e56dba09c7c, type: 2}
+  _subgraphTree:
+    _nodes: []
+    _rootIndexMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _nodeIndexMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _count: 0
+    _head: 0
+    _version: 1555
+  _blackboard:
+    _propertyList: e1b57c88829597439fa34d13c59efe10
+    _propertyMap:
+      _buckets: ffffffff030000000100000002000000
+      _entries:
+      - hashCode: 142390753
+        next: -1
+        key: -2005092895
+        value:
+          name: Item Asset
+          type:
+            _type: MisterGames.Character.Inventory.InventoryItemAsset, MisterGames.Character
+          table: 0
+      - hashCode: 1134007682
+        next: -1
+        key: 1134007682
+        value:
+          name: Add Count
+          type:
+            _type: System.Int32, mscorlib
+          table: 1
+      - hashCode: 323855263
+        next: -1
+        key: 323855263
+        value:
+          name: Particles
+          type:
+            _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          table: 0
+      - hashCode: 285122245
+        next: 0
+        key: 285122245
+        value:
+          name: ShowParticlesOnAdded
+          type:
+            _type: System.Boolean, mscorlib
+          table: 2
+      _count: 4
+      _version: 4
+      _freeList: -1
+      _freeCount: 0
+    _tables:
+      _buckets: 000000000100000002000000
+      _entries:
+      - hashCode: 0
+        next: -1
+        key: 0
+        value:
+          rid: 354342207039209473
+      - hashCode: 1
+        next: -1
+        key: 1
+        value:
+          rid: 354342207039209474
+      - hashCode: 2
+        next: -1
+        key: 2
+        value:
+          rid: 354342207039209600
+      _count: 3
+      _version: 3
+      _freeList: -1
+      _freeCount: 0
+    _tablesHead: 3
+  _rootMetaOverride:
+    rid: -2
+  _isRootOverrideEnabled: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 354342207039209473
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: ffffffff01000000
+          _entries:
+          - hashCode: 142390753
+            next: -1
+            key: -2005092895
+            value:
+              value: {fileID: 11400000, guid: affe10cda5f202545bb28bb2c8d14018, type: 2}
+          - hashCode: 323855263
+            next: 0
+            key: 323855263
+            value:
+              value: {fileID: 0}
+          _count: 2
+          _version: 2
+          _freeList: -1
+          _freeCount: 0
+    - rid: 354342207039209474
+      type: {class: BlackboardTableInt, ns: MisterGames.Blackboards.Tables, asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 1134007682
+            next: -1
+            key: 1134007682
+            value: 1
+          _count: 1
+          _version: 1
+          _freeList: -1
+          _freeCount: 0
+    - rid: 354342207039209600
+      type: {class: BlackboardTableBool, ns: MisterGames.Blackboards.Tables, asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 285122245
+            next: -1
+            key: 285122245
+            value: 1
+          _count: 1
+          _version: 1
+          _freeList: -1
+          _freeCount: 0
