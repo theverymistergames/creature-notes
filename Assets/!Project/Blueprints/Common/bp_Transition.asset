@@ -1,0 +1,2584 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da0840ef4f7469db41bd308dfec4931, type: 3}
+  m_Name: bp_Transition
+  m_EditorClassIdentifier: 
+  _blueprintMeta:
+    _nodeMap:
+      _buckets: 0400000005000000ffffffff09000000ffffffffffffffff00000000ffffffff0600000002000000
+      _entries:
+      - hashCode: 395384386
+        next: -1
+        key:
+          source: 2
+          node: 1
+        value: {x: 1736, y: 2783.2, z: 1}
+      - hashCode: 481224193
+        next: -1
+        key:
+          source: 3
+          node: 1
+        value: {x: 2274.4, y: 2843.2, z: 0}
+      - hashCode: 34676929
+        next: -1
+        key:
+          source: 4
+          node: 1
+        value: {x: 2026.3999, y: 2932.8, z: 0}
+      - hashCode: 625308103
+        next: 1
+        key:
+          source: 2
+          node: 2
+        value: {x: 3028, y: 2763.2, z: 0}
+      - hashCode: 1229414050
+        next: -1
+        key:
+          source: 4
+          node: 4
+        value: {x: 3036.8, y: 2908.8, z: 0}
+      - hashCode: 1641371751
+        next: -1
+        key:
+          source: 3
+          node: 2
+        value: {x: 3293.5999, y: 2819.2, z: 0}
+      - hashCode: 1336010618
+        next: -1
+        key:
+          source: 9
+          node: 1
+        value: {x: 1372.7999, y: 2772.8, z: 1}
+      - hashCode: 104177683
+        next: 3
+        key:
+          source: 10
+          node: 1
+        value: {x: 2362.4, y: 2580, z: 1}
+      - hashCode: 721668113
+        next: 7
+        key:
+          source: 11
+          node: 1
+        value: {x: 1346.3999, y: 2879.2, z: 1}
+      - hashCode: 255696173
+        next: 8
+        key:
+          source: 11
+          node: 2
+        value: {x: 2636.8, y: 2860.8, z: 1}
+      _count: 10
+      _version: 154
+      _freeList: -1
+      _freeCount: 0
+    _subgraphMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _factory:
+      _sources:
+        _buckets: ffffffffffffffff00000000040000000300000005000000
+        _entries:
+        - hashCode: 2
+          next: -1
+          key: 2
+          value:
+            rid: 4692614877003120772
+        - hashCode: 3
+          next: -1
+          key: 3
+          value:
+            rid: 4692614877003120774
+        - hashCode: 4
+          next: -1
+          key: 4
+          value:
+            rid: 4692614877003120775
+        - hashCode: 10
+          next: 2
+          key: 10
+          value:
+            rid: 354342218297769988
+        - hashCode: 9
+          next: 1
+          key: 9
+          value:
+            rid: 354342218297769987
+        - hashCode: 11
+          next: -1
+          key: 11
+          value:
+            rid: 354342218297769989
+        _count: 6
+        _version: 16
+        _freeList: -1
+        _freeCount: 0
+      _lastId: 11
+    _linkStorage:
+      _linkTree:
+        _nodes:
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 6
+          parent: 22
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 11
+              node: 1
+            port: 0
+          parent: 19
+          child: 27
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 0
+          parent: 17
+          child: 9
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 1
+          parent: 24
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 9
+              node: 1
+            port: 0
+          parent: 45
+          child: 25
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 0
+          parent: 16
+          child: 44
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 4
+              node: 1
+            port: 1
+          parent: 20
+          child: 14
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 0
+          parent: 35
+          child: 21
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 2
+          parent: 27
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 4
+              node: 1
+            port: 0
+          parent: 2
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 2
+          parent: 40
+          child: 23
+          next: 12
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 0
+          parent: -1
+          child: 17
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 0
+          parent: 40
+          child: 15
+          next: 33
+          prev: 10
+        - key:
+            id:
+              source: 9
+              node: 1
+            port: 0
+          parent: 15
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 2
+          parent: 6
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 1
+          parent: 12
+          child: 13
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 4
+          parent: 40
+          child: 5
+          next: -1
+          prev: 35
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 2
+          parent: 11
+          child: 2
+          next: 26
+          prev: -1
+        - key:
+            id:
+              source: 4
+              node: 1
+            port: 0
+          parent: -1
+          child: 20
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 11
+              node: 1
+            port: 0
+          parent: -1
+          child: 1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 4
+              node: 1
+            port: 0
+          parent: 18
+          child: 6
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 0
+          parent: 7
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 0
+          parent: 26
+          child: 0
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 0
+          parent: 10
+          child: 30
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 1
+          parent: 33
+          child: 3
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 0
+          parent: 4
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 1
+          parent: 11
+          child: 22
+          next: 29
+          prev: 17
+        - key:
+            id:
+              source: 11
+              node: 1
+            port: 1
+          parent: 1
+          child: 8
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 4
+          parent: 53
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 0
+          parent: 11
+          child: 34
+          next: -1
+          prev: 26
+        - key:
+            id:
+              source: 11
+              node: 1
+            port: 0
+          parent: 23
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 5
+          parent: 34
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 4
+          parent: 49
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 6
+          parent: 40
+          child: 24
+          next: 35
+          prev: 12
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 1
+          parent: 29
+          child: 31
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 5
+          parent: 40
+          child: 7
+          next: 16
+          prev: 33
+        - key:
+            id:
+              source: 4
+              node: 4
+            port: 0
+          parent: -1
+          child: 37
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 4
+              node: 4
+            port: 0
+          parent: 36
+          child: 38
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 4
+              node: 4
+            port: 1
+          parent: 37
+          child: 39
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 2
+          parent: 38
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 0
+          parent: -1
+          child: 10
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 4
+              node: 4
+            port: 0
+          parent: 42
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 0
+          parent: 43
+          child: 41
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 2
+          parent: 57
+          child: 42
+          next: 61
+          prev: -1
+        - key:
+            id:
+              source: 10
+              node: 1
+            port: 0
+          parent: 5
+          child: -1
+          next: 50
+          prev: -1
+        - key:
+            id:
+              source: 9
+              node: 1
+            port: 0
+          parent: 46
+          child: 4
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 9
+              node: 1
+            port: 0
+          parent: -1
+          child: 45
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 10
+              node: 1
+            port: 0
+          parent: -1
+          child: 48
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 10
+              node: 1
+            port: 0
+          parent: 47
+          child: 49
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 10
+              node: 1
+            port: 1
+          parent: 48
+          child: 32
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 0
+          parent: 5
+          child: -1
+          next: -1
+          prev: 44
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 0
+          parent: -1
+          child: 67
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 0
+          parent: 51
+          child: 53
+          next: -1
+          prev: 54
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 1
+          parent: 52
+          child: 28
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 5
+          parent: 51
+          child: 55
+          next: 52
+          prev: 64
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 0
+          parent: 54
+          child: 56
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 0
+          parent: 55
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 0
+          parent: -1
+          child: 43
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 0
+          parent: 57
+          child: 59
+          next: -1
+          prev: 61
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 1
+          parent: 58
+          child: 60
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 5
+          parent: 59
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 1
+          parent: 57
+          child: 62
+          next: 58
+          prev: 43
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 0
+          parent: 61
+          child: 63
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 6
+          parent: 62
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 6
+          parent: 51
+          child: 65
+          next: 54
+          prev: 67
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 1
+          parent: 64
+          child: 66
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 3
+              node: 2
+            port: 1
+          parent: 65
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 2
+          parent: 51
+          child: 68
+          next: 64
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 0
+          parent: 67
+          child: 69
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 11
+              node: 2
+            port: 0
+          parent: 68
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 11
+              node: 2
+            port: 0
+          parent: -1
+          child: 71
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 11
+              node: 2
+            port: 0
+          parent: 70
+          child: 72
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 11
+              node: 2
+            port: 1
+          parent: 71
+          child: 73
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 2
+            port: 2
+          parent: 72
+          child: -1
+          next: -1
+          prev: -1
+        _rootIndexMap:
+          _buckets: 0500000009000000ffffffff07000000ffffffff01000000ffffffff080000000600000002000000
+          _entries:
+          - hashCode: 1506418778
+            next: -1
+            key:
+              id:
+                source: 2
+                node: 1
+              port: 0
+            value: 40
+          - hashCode: 1391841305
+            next: -1
+            key:
+              id:
+                source: 3
+                node: 1
+              port: 0
+            value: 11
+          - hashCode: 1279923929
+            next: -1
+            key:
+              id:
+                source: 4
+                node: 1
+              port: 0
+            value: 18
+          - hashCode: 1797146591
+            next: -1
+            key:
+              id:
+                source: 2
+                node: 2
+              port: 0
+            value: 51
+          - hashCode: 797863551
+            next: 3
+            key:
+              id:
+                source: 3
+                node: 2
+              port: 0
+            value: 57
+          - hashCode: 119302330
+            next: -1
+            key:
+              id:
+                source: 4
+                node: 4
+              port: 0
+            value: 36
+          - hashCode: 33214818
+            next: 0
+            key:
+              id:
+                source: 9
+                node: 1
+              port: 0
+            value: 46
+          - hashCode: 1215206923
+            next: -1
+            key:
+              id:
+                source: 10
+                node: 1
+              port: 0
+            value: 47
+          - hashCode: 1700331017
+            next: -1
+            key:
+              id:
+                source: 11
+                node: 1
+              port: 0
+            value: 19
+          - hashCode: 1097247541
+            next: 4
+            key:
+              id:
+                source: 11
+                node: 2
+              port: 0
+            value: 70
+          _count: 10
+          _version: 886
+          _freeList: -1
+          _freeCount: 0
+        _nodeIndexMap:
+          _buckets: 3a000000290000001900000017000000300000002d000000ffffffff18000000ffffffffffffffff390000003f000000160000003d000000ffffffffffffffff0c0000000f0000002400000036000000370000002b0000001c000000080000003b0000003e0000002e000000260000001b00000020000000ffffffffffffffffffffffff1e00000025000000ffffffffffffffff2c000000ffffffffffffffff32000000ffffffffffffffffffffffff21000000ffffffffffffffffffffffffffffffff0300000028000000ffffffffffffffff330000001f00000015000000ffffffffffffffff2a000000ffffffff00000000ffffffff3800000010000000
+          _entries:
+          - hashCode: 2105590268
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 4
+              index: 40
+            value: 16
+          - hashCode: 1827927578
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 5
+              index: 40
+            value: 35
+          - hashCode: 2034205146
+            next: 1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 6
+              index: 40
+            value: 33
+          - hashCode: 1394141553
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 2
+              index: 6
+            value: 14
+          - hashCode: 1619212697
+            next: -1
+            key:
+              key:
+                id:
+                  source: 4
+                  node: 1
+                port: 1
+              index: 20
+            value: 6
+          - hashCode: 437423105
+            next: -1
+            key:
+              key:
+                id:
+                  source: 4
+                  node: 1
+                port: 0
+              index: 18
+            value: 20
+          - hashCode: 279806565
+            next: -1
+            key:
+              key:
+                id:
+                  source: 4
+                  node: 1
+                port: 0
+              index: 2
+            value: 9
+          - hashCode: 1033199324
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 0
+              index: 17
+            value: 2
+          - hashCode: 2026740567
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 1
+              index: 24
+            value: 3
+          - hashCode: 948561368
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 1
+              index: 33
+            value: 24
+          - hashCode: 2002419271
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 6
+              index: 22
+            value: 0
+          - hashCode: 1137479514
+            next: 2
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 0
+              index: 26
+            value: 22
+          - hashCode: 896255120
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 5
+              index: 34
+            value: 31
+          - hashCode: 1491650277
+            next: 6
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 1
+              index: 29
+            value: 34
+          - hashCode: 2006333596
+            next: 7
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 2
+              index: 11
+            value: 17
+          - hashCode: 1795773009
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 1
+              index: 11
+            value: 26
+          - hashCode: 1898107455
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 0
+              index: 11
+            value: 29
+          - hashCode: 470018482
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 0
+              index: 7
+            value: 21
+          - hashCode: 634823043
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 0
+              index: 35
+            value: 7
+          - hashCode: 597747029
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 0
+              index: 16
+            value: 5
+          - hashCode: 1378096020
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 0
+              index: 5
+            value: 50
+          - hashCode: 1230830839
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 0
+              index: 51
+            value: 52
+          - hashCode: 861679308
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 1
+              index: 52
+            value: 53
+          - hashCode: 502367427
+            next: 18
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 4
+              index: 53
+            value: 28
+          - hashCode: 1365812423
+            next: 10
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 5
+              index: 51
+            value: 54
+          - hashCode: 1979560770
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 0
+              index: 54
+            value: 55
+          - hashCode: 1084213973
+            next: 19
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 0
+              index: 55
+            value: 56
+          - hashCode: 343892252
+            next: 14
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 0
+              index: 57
+            value: 58
+          - hashCode: 1295797718
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 1
+              index: 58
+            value: 59
+          - hashCode: 592056193
+            next: 5
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 5
+              index: 59
+            value: 60
+          - hashCode: 1754406625
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 1
+              index: 57
+            value: 61
+          - hashCode: 466340278
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 0
+              index: 61
+            value: 62
+          - hashCode: 677985373
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 6
+              index: 62
+            value: 63
+          - hashCode: 673286188
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 6
+              index: 51
+            value: 64
+          - hashCode: 580726405
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 1
+              index: 64
+            value: 65
+          - hashCode: 2061839449
+            next: 4
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 1
+              index: 65
+            value: 66
+          - hashCode: 579271634
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 2
+              index: 57
+            value: 43
+          - hashCode: 269865378
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 2
+              index: 38
+            value: 39
+          - hashCode: 1968349147
+            next: -1
+            key:
+              key:
+                id:
+                  source: 4
+                  node: 4
+                port: 1
+              index: 37
+            value: 38
+          - hashCode: 227097406
+            next: -1
+            key:
+              key:
+                id:
+                  source: 4
+                  node: 4
+                port: 0
+              index: 36
+            value: 37
+          - hashCode: 788098162
+            next: 17
+            key:
+              key:
+                id:
+                  source: 4
+                  node: 4
+                port: 0
+              index: 42
+            value: 41
+          - hashCode: 1817088065
+            next: 29
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 2
+                port: 0
+              index: 43
+            value: 42
+          - hashCode: 1573422330
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 0
+              index: 40
+            value: 12
+          - hashCode: 69088469
+            next: 26
+            key:
+              key:
+                id:
+                  source: 9
+                  node: 1
+                port: 0
+              index: 15
+            value: 13
+          - hashCode: 2044305509
+            next: 13
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 1
+              index: 12
+            value: 15
+          - hashCode: 1670638981
+            next: 34
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 0
+              index: 4
+            value: 25
+          - hashCode: 1456277210
+            next: 11
+            key:
+              key:
+                id:
+                  source: 10
+                  node: 1
+                port: 0
+              index: 5
+            value: 44
+          - hashCode: 2038807812
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 4
+              index: 49
+            value: 32
+          - hashCode: 321510084
+            next: 47
+            key:
+              key:
+                id:
+                  source: 10
+                  node: 1
+                port: 1
+              index: 48
+            value: 49
+          - hashCode: 839284618
+            next: -1
+            key:
+              key:
+                id:
+                  source: 10
+                  node: 1
+                port: 0
+              index: 47
+            value: 48
+          - hashCode: 1277508520
+            next: -1
+            key:
+              key:
+                id:
+                  source: 9
+                  node: 1
+                port: 0
+              index: 45
+            value: 4
+          - hashCode: 697685557
+            next: -1
+            key:
+              key:
+                id:
+                  source: 9
+                  node: 1
+                port: 0
+              index: 46
+            value: 45
+          - hashCode: 176743187
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 2
+              index: 40
+            value: 10
+          - hashCode: 1705866452
+            next: 20
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 2
+              index: 27
+            value: 8
+          - hashCode: 1383397907
+            next: 52
+            key:
+              key:
+                id:
+                  source: 11
+                  node: 1
+                port: 1
+              index: 1
+            value: 27
+          - hashCode: 2066965204
+            next: 53
+            key:
+              key:
+                id:
+                  source: 11
+                  node: 1
+                port: 0
+              index: 19
+            value: 1
+          - hashCode: 1710885502
+            next: 39
+            key:
+              key:
+                id:
+                  source: 11
+                  node: 1
+                port: 0
+              index: 23
+            value: 30
+          - hashCode: 1741466698
+            next: 49
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 0
+              index: 10
+            value: 23
+          - hashCode: 970901376
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 2
+              index: 51
+            value: 67
+          - hashCode: 1870408344
+            next: 9
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 0
+              index: 67
+            value: 68
+          - hashCode: 654742605
+            next: -1
+            key:
+              key:
+                id:
+                  source: 11
+                  node: 2
+                port: 0
+              index: 68
+            value: 69
+          - hashCode: 651413005
+            next: 60
+            key:
+              key:
+                id:
+                  source: 11
+                  node: 2
+                port: 0
+              index: 70
+            value: 71
+          - hashCode: 1733515673
+            next: 35
+            key:
+              key:
+                id:
+                  source: 11
+                  node: 2
+                port: 1
+              index: 71
+            value: 72
+          - hashCode: 175887051
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 2
+                port: 2
+              index: 72
+            value: 73
+          _count: 64
+          _version: 9888
+          _freeList: -1
+          _freeCount: 0
+        _count: 74
+        _head: 74
+        _version: 2531
+      _linkCount: 11
+      _linkedPortCount: 10
+    _portStorage:
+      _portTree:
+        _nodes:
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: -1
+          next: -1
+          prev: -1
+        - key: 4
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 17
+          child: 23
+          next: 3
+          prev: -1
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 42
+          child: 35
+          next: -1
+          prev: -1
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 17
+          child: 37
+          next: -1
+          prev: 1
+        - key: 0
+          value:
+            name: 
+            mode: 2
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 41
+          child: -1
+          next: -1
+          prev: 26
+        - key: 2
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: 43
+          next: -1
+          prev: -1
+        - key: 4
+          value:
+            name: On Finish
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 43
+          child: -1
+          next: 32
+          prev: 31
+        - key: 2
+          value:
+            name: 
+            mode: 3
+            options: 0
+            dataType:
+              _type: UnityEngine.UI.Graphic, UnityEngine.UI
+          parent: 24
+          child: -1
+          next: 9
+          prev: -1
+        - key: 6
+          value:
+            name: Progress
+            mode: 2
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 34
+          child: -1
+          next: 21
+          prev: -1
+        - key: 1
+          value:
+            name: 
+            mode: 3
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 24
+          child: -1
+          next: 25
+          prev: 7
+        - key: 9
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: 29
+          next: -1
+          prev: -1
+        - key: 4
+          value:
+            name: On Finish
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 34
+          child: -1
+          next: 14
+          prev: 21
+        - key: 3
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: 47
+          next: -1
+          prev: -1
+        - key: 1
+          value:
+            name: Start
+            mode: 1
+            options: 3
+            dataType:
+              _type: 
+          parent: 29
+          child: -1
+          next: 28
+          prev: -1
+        - key: 3
+          value:
+            name: On Start
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 34
+          child: -1
+          next: 36
+          prev: 11
+        - key: 11
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: 48
+          next: -1
+          prev: -1
+        - key: 1
+          value:
+            name: 
+            mode: 3
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 47
+          child: -1
+          next: 40
+          prev: 38
+        - key: 4
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: 1
+          next: -1
+          prev: -1
+        - key: 0
+          value:
+            name: 
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 2
+          child: -1
+          next: -1
+          prev: 35
+        - key: 8
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: -1
+          next: -1
+          prev: -1
+        - key: 5
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: -1
+          next: -1
+          prev: -1
+        - key: 5
+          value:
+            name: On Update
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 34
+          child: -1
+          next: 11
+          prev: 8
+        - key: 0
+          value:
+            name: Start
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 34
+          child: -1
+          next: -1
+          prev: 39
+        - key: 0
+          value:
+            name: 
+            mode: 2
+            options: 0
+            dataType:
+              _type: UnityEngine.UI.Graphic, UnityEngine.UI
+          parent: 1
+          child: -1
+          next: -1
+          prev: -1
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 12
+          child: 7
+          next: -1
+          prev: 47
+        - key: 0
+          value:
+            name: Set
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 24
+          child: -1
+          next: -1
+          prev: 9
+        - key: 1
+          value:
+            name: DurationIn
+            mode: 3
+            options: 3
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 41
+          child: -1
+          next: 4
+          prev: -1
+        - key: 7
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: -1
+          next: -1
+          prev: -1
+        - key: 0
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 29
+          child: -1
+          next: -1
+          prev: 13
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 10
+          child: 13
+          next: -1
+          prev: -1
+        - key: 6
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: -1
+          next: -1
+          prev: -1
+        - key: 5
+          value:
+            name: On Update
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 43
+          child: -1
+          next: 6
+          prev: 33
+        - key: 3
+          value:
+            name: On Start
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 43
+          child: -1
+          next: 46
+          prev: 6
+        - key: 6
+          value:
+            name: Progress
+            mode: 2
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 43
+          child: -1
+          next: 31
+          prev: -1
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 5
+          child: 8
+          next: -1
+          prev: 43
+        - key: 1
+          value:
+            name: End
+            mode: 0
+            options: 3
+            dataType:
+              _type: 
+          parent: 2
+          child: -1
+          next: 18
+          prev: -1
+        - key: 2
+          value:
+            name: Duration
+            mode: 3
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 34
+          child: -1
+          next: 39
+          prev: 14
+        - key: 0
+          value:
+            name: 
+            mode: 2
+            options: 0
+            dataType:
+              _type: UnityEngine.UI.Graphic, UnityEngine.UI
+          parent: 3
+          child: -1
+          next: -1
+          prev: -1
+        - key: 2
+          value:
+            name: 
+            mode: 3
+            options: 0
+            dataType:
+              _type: UnityEngine.UI.Graphic, UnityEngine.UI
+          parent: 47
+          child: -1
+          next: 16
+          prev: -1
+        - key: 1
+          value:
+            name: Stop
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 34
+          child: -1
+          next: 22
+          prev: 36
+        - key: 0
+          value:
+            name: Set
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 47
+          child: -1
+          next: -1
+          prev: 16
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 15
+          child: 26
+          next: -1
+          prev: 48
+        - key: 10
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: 2
+          next: -1
+          prev: -1
+        - key: 2
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 5
+          child: 33
+          next: 34
+          prev: -1
+        - key: 0
+          value:
+            name: Start
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 43
+          child: -1
+          next: -1
+          prev: 45
+        - key: 1
+          value:
+            name: Stop
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 43
+          child: -1
+          next: 44
+          prev: 46
+        - key: 2
+          value:
+            name: Duration
+            mode: 3
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 43
+          child: -1
+          next: 45
+          prev: 32
+        - key: 2
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 12
+          child: 38
+          next: 24
+          prev: -1
+        - key: 2
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 15
+          child: 50
+          next: 41
+          prev: -1
+        - key: 0
+          value:
+            name: 
+            mode: 2
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 48
+          child: -1
+          next: -1
+          prev: 50
+        - key: 1
+          value:
+            name: DurationOut
+            mode: 3
+            options: 3
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 48
+          child: -1
+          next: 49
+          prev: -1
+        _rootIndexMap:
+          _buckets: 0a00000000000000010000000200000003000000040000000500000006000000070000000800000009000000
+          _entries:
+          - hashCode: 1
+            next: -1
+            key: 1
+            value: 0
+          - hashCode: 2
+            next: -1
+            key: 2
+            value: 5
+          - hashCode: 3
+            next: -1
+            key: 3
+            value: 12
+          - hashCode: 4
+            next: -1
+            key: 4
+            value: 17
+          - hashCode: 5
+            next: -1
+            key: 5
+            value: 20
+          - hashCode: 6
+            next: -1
+            key: 6
+            value: 30
+          - hashCode: 7
+            next: -1
+            key: 7
+            value: 27
+          - hashCode: 8
+            next: -1
+            key: 8
+            value: 19
+          - hashCode: 9
+            next: -1
+            key: 9
+            value: 10
+          - hashCode: 10
+            next: -1
+            key: 10
+            value: 42
+          - hashCode: 11
+            next: -1
+            key: 11
+            value: 15
+          _count: 11
+          _version: 15
+          _freeList: -1
+          _freeCount: 0
+        _nodeIndexMap:
+          _buckets: 1e0000001b00000016000000ffffffff2000000026000000ffffffffffffffff1700000004000000ffffffffffffffff2700000021000000ffffffff15000000ffffffffffffffffffffffff070000000e000000ffffffff120000001c00000011000000ffffffffffffffff25000000ffffffff230000002200000024000000ffffffffffffffff0c0000001800000013000000060000001f000000ffffffff
+          _entries:
+          - hashCode: 1087844325
+            next: -1
+            key:
+              key: 1
+              index: 5
+            value: 34
+          - hashCode: 531201558
+            next: -1
+            key:
+              key: 1
+              index: 12
+            value: 24
+          - hashCode: 1612893813
+            next: -1
+            key:
+              key: 1
+              index: 17
+            value: 3
+          - hashCode: 27567522
+            next: -1
+            key:
+              key: 0
+              index: 3
+            value: 37
+          - hashCode: 1668230289
+            next: -1
+            key:
+              key: 2
+              index: 24
+            value: 7
+          - hashCode: 2036724201
+            next: -1
+            key:
+              key: 1
+              index: 24
+            value: 9
+          - hashCode: 2008238597
+            next: -1
+            key:
+              key: 0
+              index: 24
+            value: 25
+          - hashCode: 2055280539
+            next: -1
+            key:
+              key: 6
+              index: 34
+            value: 8
+          - hashCode: 702648789
+            next: -1
+            key:
+              key: 5
+              index: 34
+            value: 21
+          - hashCode: 1604376107
+            next: -1
+            key:
+              key: 4
+              index: 34
+            value: 11
+          - hashCode: 648044935
+            next: -1
+            key:
+              key: 3
+              index: 34
+            value: 14
+          - hashCode: 773087580
+            next: -1
+            key:
+              key: 2
+              index: 34
+            value: 36
+          - hashCode: 1506268034
+            next: -1
+            key:
+              key: 1
+              index: 34
+            value: 39
+          - hashCode: 1828447613
+            next: 2
+            key:
+              key: 0
+              index: 34
+            value: 22
+          - hashCode: 897780380
+            next: 11
+            key:
+              key: 2
+              index: 5
+            value: 43
+          - hashCode: 1760346635
+            next: -1
+            key:
+              key: 0
+              index: 43
+            value: 44
+          - hashCode: 867770438
+            next: 1
+            key:
+              key: 1
+              index: 43
+            value: 45
+          - hashCode: 1206184024
+            next: -1
+            key:
+              key: 2
+              index: 43
+            value: 46
+          - hashCode: 1882577382
+            next: -1
+            key:
+              key: 3
+              index: 43
+            value: 32
+          - hashCode: 881156836
+            next: -1
+            key:
+              key: 4
+              index: 43
+            value: 6
+          - hashCode: 1875535787
+            next: 9
+            key:
+              key: 5
+              index: 43
+            value: 31
+          - hashCode: 564239335
+            next: 10
+            key:
+              key: 6
+              index: 43
+            value: 33
+          - hashCode: 1242133922
+            next: 3
+            key:
+              key: 4
+              index: 17
+            value: 1
+          - hashCode: 1575090088
+            next: -1
+            key:
+              key: 0
+              index: 1
+            value: 23
+          - hashCode: 2126182475
+            next: 15
+            key:
+              key: 2
+              index: 12
+            value: 47
+          - hashCode: 2142377510
+            next: -1
+            key:
+              key: 0
+              index: 47
+            value: 40
+          - hashCode: 1891684613
+            next: 13
+            key:
+              key: 1
+              index: 47
+            value: 16
+          - hashCode: 1690203761
+            next: 5
+            key:
+              key: 2
+              index: 47
+            value: 38
+          - hashCode: 1283373823
+            next: -1
+            key:
+              key: 1
+              index: 10
+            value: 29
+          - hashCode: 485589880
+            next: -1
+            key:
+              key: 1
+              index: 29
+            value: 13
+          - hashCode: 909327440
+            next: 29
+            key:
+              key: 0
+              index: 29
+            value: 28
+          - hashCode: 1564941958
+            next: 16
+            key:
+              key: 1
+              index: 42
+            value: 2
+          - hashCode: 1006886204
+            next: -1
+            key:
+              key: 1
+              index: 2
+            value: 35
+          - hashCode: 1953643933
+            next: 26
+            key:
+              key: 0
+              index: 2
+            value: 18
+          - hashCode: 600874790
+            next: 25
+            key:
+              key: 1
+              index: 15
+            value: 41
+          - hashCode: 1275648509
+            next: 8
+            key:
+              key: 1
+              index: 41
+            value: 26
+          - hashCode: 1253305111
+            next: -1
+            key:
+              key: 0
+              index: 41
+            value: 4
+          - hashCode: 325708747
+            next: 20
+            key:
+              key: 2
+              index: 15
+            value: 48
+          - hashCode: 1579792205
+            next: 0
+            key:
+              key: 0
+              index: 48
+            value: 49
+          - hashCode: 480306572
+            next: -1
+            key:
+              key: 1
+              index: 48
+            value: 50
+          _count: 40
+          _version: 4151
+          _freeList: -1
+          _freeCount: 0
+        _count: 51
+        _head: 51
+        _version: 590
+    _groupStorage:
+      _groups: []
+      _lastId: 0
+    positionAndZoom: {x: -622.6667, y: -784.6667, z: 0.375937}
+  _blackboard:
+    _propertyList: 66ed2fd9
+    _propertyMap:
+      _buckets: 00000000
+      _entries:
+      - hashCode: 1496313190
+        next: -1
+        key: -651170458
+        value:
+          name: TransitionImage
+          type:
+            _type: UnityEngine.UI.Graphic, UnityEngine.UI
+          table: 0
+      _count: 1
+      _version: 19
+      _freeList: -1
+      _freeCount: 0
+    _tables:
+      _buckets: 00000000
+      _entries:
+      - hashCode: 0
+        next: -1
+        key: 0
+        value:
+          rid: 4692614877003120783
+      _count: 1
+      _version: 3
+      _freeList: -1
+      _freeCount: 0
+    _tablesHead: 2
+  references:
+    version: 2
+    RefIds:
+    - rid: 354342218297769987
+      type: {class: BlueprintSourceEnter, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _nodeMap:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 1
+            next: -1
+            key: 1
+            value:
+              _port: Start
+          _count: 1
+          _version: 1
+          _freeList: -1
+          _freeCount: 0
+        _lastId: 1
+    - rid: 354342218297769988
+      type: {class: BlueprintSourceExit, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _nodeMap:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 1
+            next: -1
+            key: 1
+            value:
+              _port: End
+          _count: 1
+          _version: 1
+          _freeList: -1
+          _freeCount: 0
+        _lastId: 1
+    - rid: 354342218297769989
+      type: {class: BlueprintSourceInput, ns: MisterGames.Blueprints.Nodes, asm: MisterGames.Blueprints}
+      data:
+        _nodeMap:
+          _buckets: 0100000000000000
+          _entries:
+          - hashCode: 1
+            next: -1
+            key: 1
+            value:
+              _port: DurationIn
+          - hashCode: 2
+            next: -1
+            key: 2
+            value:
+              _port: DurationOut
+          _count: 2
+          _version: 2
+          _freeList: -1
+          _freeCount: 0
+        _lastId: 2
+    - rid: 4692614877003120772
+      type: {class: BlueprintSourceRef, ns: MisterGames.Blueprints, asm: MisterGames.Blueprints}
+      data:
+        _nodeMap:
+          _buckets: 0100000000000000
+          _entries:
+          - hashCode: 1
+            next: -1
+            key: 1
+            value:
+              rid: 4692614877003120773
+          - hashCode: 2
+            next: -1
+            key: 2
+            value:
+              rid: 4692614877003120778
+          _count: 2
+          _version: 10
+          _freeList: -1
+          _freeCount: 0
+        _lastId: 6
+    - rid: 4692614877003120773
+      type: {class: BlueprintNodeProgress, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _duration: 5
+        _isInverted: 0
+    - rid: 4692614877003120774
+      type: {class: BlueprintSourceSetImageOpacity, ns: MisterGames.BlueprintLib,
+        asm: Assembly-CSharp}
+      data:
+        _nodeMap:
+          _buckets: 0100000000000000
+          _entries:
+          - hashCode: 1
+            next: -1
+            key: 1
+            value:
+              _value: 0
+              _graphic: {fileID: 0}
+          - hashCode: 2
+            next: -1
+            key: 2
+            value:
+              _value: 1
+              _graphic: {fileID: 0}
+          _count: 2
+          _version: 2
+          _freeList: -1
+          _freeCount: 0
+        _lastId: 2
+    - rid: 4692614877003120775
+      type: {class: BlueprintSourceGetBlackboardProperty, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
+      data:
+        _nodeMap:
+          _buckets: 0100000000000000
+          _entries:
+          - hashCode: 1
+            next: -1
+            key: 1
+            value:
+              _property: -651170458
+          - hashCode: 4
+            next: -1
+            key: 4
+            value:
+              _property: -651170458
+          _count: 2
+          _version: 12
+          _freeList: -1
+          _freeCount: 0
+        _lastId: 7
+    - rid: 4692614877003120778
+      type: {class: BlueprintNodeProgress, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
+      data:
+        _duration: 0
+        _isInverted: 1
+    - rid: 4692614877003120783
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 1496313190
+            next: -1
+            key: -651170458
+            value:
+              value: {fileID: 0}
+          _count: 1
+          _version: 11
+          _freeList: -1
+          _freeCount: 0
