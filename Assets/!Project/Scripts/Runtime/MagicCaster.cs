@@ -1,19 +1,22 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DigitalRuby.Tween;
-using MisterGames.Character.Actions;
-using MisterGames.Character.Core;
+using MisterGames.Actors;
+using MisterGames.Actors.Actions;
 using UnityEngine;
 
-public class MagicCaster : MonoBehaviour {
+public class MagicCaster : MonoBehaviour, IActorComponent {
     
     [SerializeField] private float _strikeSpeed = 0.1f;
     [SerializeField] private GameObject StrikeContainerPrefab;
+    [SerializeField] private ActorAction _onFireAction;
 
-    [SerializeField] private CharacterAccess _characterAccess;
-    [SerializeField] private CharacterActionAsset _onFireAction;
-
+    private IActor _actor;
     private CancellationTokenSource _enableCts;
+
+    void IActorComponent.OnAwakeActor(IActor actor) {
+        _actor = actor;
+    }
 
     private void OnEnable() {
         _enableCts?.Cancel();
@@ -33,7 +36,7 @@ public class MagicCaster : MonoBehaviour {
     }
 
     private void StrikeRunes() {
-        _onFireAction.Apply(_characterAccess, _enableCts.Token).Forget();
+        _onFireAction.Apply(_actor, _enableCts.Token).Forget();
 
         var container = Instantiate(StrikeContainerPrefab, gameObject.transform);
         container.transform.localPosition = new Vector3(0, 0, 0.1f);

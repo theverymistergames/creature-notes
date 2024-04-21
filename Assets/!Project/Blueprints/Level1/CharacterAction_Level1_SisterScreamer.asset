@@ -18,7 +18,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 2949883352419663899
-      type: {class: CharacterActionGroup, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
@@ -29,14 +29,14 @@ MonoBehaviour:
         - rid: 2949883352419664059
         - rid: 2949883352419664060
     - rid: 2949883352419663900
-      type: {class: CharacterActionEnableInput, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isEnabled: 0
         isViewEnabled: 1
     - rid: 2949883352419663901
-      type: {class: CharacterActionSetViewClamp, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         horizontal:
           _hasValue: 1
@@ -53,8 +53,8 @@ MonoBehaviour:
             springs: {x: 0, y: 0}
             springFactors: {x: 0, y: 0}
     - rid: 2949883352419663952
-      type: {class: CharacterActionPlayMocapClip, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionPlayMocapClip, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         motionCaptureClip: {fileID: 11400000, guid: e25c9f4b23183144fac52a5550bc37fc,
           type: 2}
@@ -62,14 +62,14 @@ MonoBehaviour:
         applyRotation: 1
         _crop: {x: 0, y: 1}
     - rid: 2949883352419664059
-      type: {class: CharacterActionEnableInput, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isEnabled: 1
         isViewEnabled: 1
     - rid: 2949883352419664060
-      type: {class: CharacterActionSetViewClamp, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         horizontal:
           _hasValue: 1
@@ -86,8 +86,8 @@ MonoBehaviour:
             springs: {x: 0, y: 0}
             springFactors: {x: 0, y: 0}
     - rid: 2949883352419664061
-      type: {class: CharacterActionSpawnPrefab, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSpawnPrefab, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         prefab: {fileID: 1052829174011782592, guid: afa0d0344fa9f48438dc38b0a4bd3136,
           type: 3}

@@ -1,17 +1,14 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MisterGames.Character.Actions;
+using MisterGames.Actors;
+using MisterGames.Actors.Actions;
 using MisterGames.Character.Core;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.ProBuilder;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class FireballController : MonoBehaviour {
+
+public class FireballController : MonoBehaviour, IActorComponent {
     public float chargeTime = 4;
     public float burnTime = 10;
     public float burnedTime = 10;
@@ -22,13 +19,13 @@ public class FireballController : MonoBehaviour {
     public Color chargedColor;
     public GameObject projectile;
 
-    [SerializeField] private CharacterAccess _characterAccess;
-    [SerializeField] private CharacterActionAsset _onFireAction;
+    [SerializeField] private ActorAction _onFireAction;
     
     [SerializeField] private AudioSource fireSound;
     [SerializeField] private AudioSource chargedSound;
     [SerializeField] private AudioSource throwSound;
 
+    private IActor _actor;
     private CancellationTokenSource _enableCts;
 
     private bool _charging, _burning, _burned;
@@ -41,6 +38,10 @@ public class FireballController : MonoBehaviour {
 
     private Light _light;
     private float lightIntensity;
+
+    void IActorComponent.OnAwakeActor(IActor actor) {
+        _actor = actor;
+    }
 
     private void Start() {
         _scaleImage = scale.GetComponent<Image>();
@@ -101,7 +102,7 @@ public class FireballController : MonoBehaviour {
     void Strike() {
         throwSound.Play();
         
-        _onFireAction.Apply(_characterAccess, _enableCts.Token).Forget();
+        _onFireAction.Apply(_actor, _enableCts.Token).Forget();
         
         Clear();
         

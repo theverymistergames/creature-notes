@@ -18,15 +18,14 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 1135008841941647423
-      type: {class: CharacterActionGroup, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 1
         actions:
         - rid: 1135008841941647424
         - rid: 1135008841941647425
     - rid: 1135008841941647424
-      type: {class: CharacterActionCameraPosition, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionCameraPosition, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         playerLoopStage: 1
         duration: 0.7
@@ -126,8 +125,7 @@ MonoBehaviour:
               m_PostInfinity: 2
               m_RotationOrder: 4
     - rid: 1135008841941647425
-      type: {class: CharacterActionCameraRotation, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionCameraRotation, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         playerLoopStage: 1
         duration: 0.7

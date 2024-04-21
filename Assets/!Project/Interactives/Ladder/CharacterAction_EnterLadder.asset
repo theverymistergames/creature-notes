@@ -18,7 +18,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 1135008907258232832
-      type: {class: CharacterActionGroup, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
@@ -29,32 +29,26 @@ MonoBehaviour:
         - rid: 1135008907258232837
         - rid: 1135008907258232841
     - rid: 1135008907258232834
-      type: {class: CharacterActionResetVelocity, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionResetVelocity, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
     - rid: 1135008907258232835
-      type: {class: CharacterActionEnableMotionGraph, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionEnableMotionGraph, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         isEnabled: 0
     - rid: 1135008907258232836
-      type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         speed: 3
     - rid: 1135008907258232837
-      type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         sideCorrection: 1
         backCorrection: 1
     - rid: 1135008907258232839
-      type: {class: CharacterActionEnableGravity, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionEnableGravity, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         isEnabled: 0
     - rid: 1135008907258232841
-      type: {class: CharacterActionSetMassSettings, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetMassSettings, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         gravityForce: 0
         airInertialFactor: 20

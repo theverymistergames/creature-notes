@@ -24,28 +24,26 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 1135008841941647367
-      type: {class: CharacterConditionGroup, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: ConditionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         conditions:
         - rid: 1135008841941647382
         - rid: 1135008841941647384
     - rid: 1135008841941647382
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isGrounded: 1
     - rid: 1135008841941647384
-      type: {class: CharacterConditionHasCeiling, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionHasCeiling, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         hasCeiling: 0
         minCeilingHeight:
           _hasValue: 1
           _value: 0.3
     - rid: 1135008841941647426
-      type: {class: CharacterActionAssetReference, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
-        asset: {fileID: 11400000, guid: 21ec4ba2dad167d4ea2d712b66ddca34, type: 2}
+        actorAction: {fileID: 11400000, guid: 21ec4ba2dad167d4ea2d712b66ddca34, type: 2}

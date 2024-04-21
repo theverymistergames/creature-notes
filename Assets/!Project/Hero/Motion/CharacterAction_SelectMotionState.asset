@@ -18,7 +18,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 1135008841941647412
-      type: {class: CharacterActionSwitch, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
+      type: {class: SwitchAction, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         cases:
         - condition:
@@ -38,36 +38,32 @@ MonoBehaviour:
           action:
             rid: 1135008891329839110
     - rid: 1135008841941647413
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isGrounded: 0
     - rid: 1135008841941647414
-      type: {class: CharacterActionAssetReference, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
-        asset: {fileID: 11400000, guid: 07bacbc9275bbee4c9d6d0f93b4f8f7f, type: 2}
+        actorAction: {fileID: 11400000, guid: 07bacbc9275bbee4c9d6d0f93b4f8f7f, type: 2}
     - rid: 1135008841941647415
-      type: {class: CharacterConditionGroup, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: ConditionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         conditions:
         - rid: 1135008841941647416
         - rid: 1135008841941647418
     - rid: 1135008841941647416
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isGrounded: 1
     - rid: 1135008841941647417
-      type: {class: CharacterActionAssetReference, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
-        asset: {fileID: 11400000, guid: ae8902d9bee2fe8418dc375b18257d05, type: 2}
+        actorAction: {fileID: 11400000, guid: ae8902d9bee2fe8418dc375b18257d05, type: 2}
     - rid: 1135008841941647418
-      type: {class: CharacterConditionPose, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionPose, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         equalsCurrentPose:
           _hasValue: 1
@@ -76,8 +72,7 @@ MonoBehaviour:
           _hasValue: 0
           _value: {fileID: 0}
     - rid: 1135008841941647419
-      type: {class: CharacterConditionGroup, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: ConditionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         conditions:
@@ -85,13 +80,12 @@ MonoBehaviour:
         - rid: 1135008841941647421
         - rid: 1135008891329839105
     - rid: 1135008841941647420
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isGrounded: 1
     - rid: 1135008841941647421
-      type: {class: CharacterConditionPose, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionPose, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         equalsCurrentPose:
           _hasValue: 1
@@ -100,33 +94,30 @@ MonoBehaviour:
           _hasValue: 0
           _value: {fileID: 0}
     - rid: 1135008841941647422
-      type: {class: CharacterActionAssetReference, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
-        asset: {fileID: 11400000, guid: f4aba77a42512a84482abe076c6932f6, type: 2}
+        actorAction: {fileID: 11400000, guid: f4aba77a42512a84482abe076c6932f6, type: 2}
     - rid: 1135008891329839105
-      type: {class: CharacterConditionRunInput, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionRunInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isRunInputPressed:
           _hasValue: 1
           _value: 1
     - rid: 1135008891329839106
-      type: {class: CharacterConditionGroup, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: ConditionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         conditions:
         - rid: 1135008891329839107
         - rid: 1135008891329839108
     - rid: 1135008891329839107
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
       data:
         isGrounded: 1
     - rid: 1135008891329839108
-      type: {class: CharacterConditionPose, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionPose, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         equalsCurrentPose:
           _hasValue: 1
@@ -135,7 +126,6 @@ MonoBehaviour:
           _hasValue: 0
           _value: {fileID: 0}
     - rid: 1135008891329839110
-      type: {class: CharacterActionAssetReference, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
-        asset: {fileID: 11400000, guid: 40d788688278e4147964b8acfc5754f6, type: 2}
+        actorAction: {fileID: 11400000, guid: 40d788688278e4147964b8acfc5754f6, type: 2}

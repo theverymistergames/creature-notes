@@ -365,7 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4857fbcb1446b0b1224b8cd410ffe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _poseGraph: {fileID: 11400000, guid: 7d0b2b75b90c4144a876703fcf4d211e, type: 2}
   _crouchPose: {fileID: 11400000, guid: 489e37c86dc59704db1b0fc24e390992, type: 2}
   _standPose: {fileID: 11400000, guid: 59332e086fc346e479cedaf76a34d32d, type: 2}
@@ -414,7 +413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85974a2c22744fcfa0b15d6de01f9d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _direction: {x: 0, y: 1, z: 0}
   _force: 5
   _jumpCondition: {fileID: 11400000, guid: 01fcaf96b4135e04e976fb78eddbe945, type: 2}
@@ -430,7 +428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e391c423f4fe4caba2477e94cb1a2c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _jumpReaction: {fileID: 11400000, guid: ae9169f4f02d9f5479a59f018cf887e7, type: 2}
   _landReaction: {fileID: 11400000, guid: f6d7295bb073b3745898df9abe34b6fb, type: 2}
 --- !u!1 &4422048062012394561
@@ -632,7 +629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff05028f9caa4c3ea535caaf27fb9a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _startupActions:
   - {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
   - {fileID: 11400000, guid: d352a7826776e8b40a4237fc707e6412, type: 2}
@@ -1094,7 +1090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372b1f84eebb4c168b74c4d7006ffebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _action: {fileID: 11400000, guid: edbc880937d298b498552fed2c27edf2, type: 2}
 --- !u!1 &7205586869398250321
 GameObject:
@@ -1395,7 +1390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterAccess: {fileID: 354778581290818253}
-  _headRoot: {fileID: 6006351456734287650}
+  _headRoot: {fileID: 7205586869398250320}
   _characterController: {fileID: 7205586870401899302}
 --- !u!1 &7205586870401899322
 GameObject:
@@ -1410,6 +1405,7 @@ GameObject:
   - component: {fileID: 7205586870401899302}
   - component: {fileID: 150641572023669722}
   - component: {fileID: 2001994226625679391}
+  - component: {fileID: 2775006979344399738}
   m_Layer: 2
   m_Name: Hero
   m_TagString: Untagged
@@ -1533,6 +1529,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugDrawHitPoint: 0
+--- !u!114 &2775006979344399738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586870401899322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66aaec23d4547148945b6c8f04eadc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 0}
 --- !u!1 &7284966764588239170
 GameObject:
   m_ObjectHideFlags: 0

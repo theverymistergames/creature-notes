@@ -18,21 +18,18 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 1135008769016594690
-      type: {class: CharacterConditionGroup, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: ConditionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         conditions:
         - rid: 1135008769016594691
         - rid: 1135008769016594692
     - rid: 1135008769016594691
-      type: {class: CharacterConditionIsGrounded, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         isGrounded: 1
     - rid: 1135008769016594692
-      type: {class: CharacterConditionHasCeiling, ns: MisterGames.Character.Conditions,
-        asm: MisterGames.Character}
+      type: {class: CharacterConditionHasCeiling, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         hasCeiling: 0
         minCeilingHeight:

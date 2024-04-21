@@ -18,7 +18,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6196715832316526595
-      type: {class: CharacterActionGroup, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
@@ -26,19 +26,16 @@ MonoBehaviour:
         - rid: 6196715832316526597
         - rid: 8690781321960882176
     - rid: 6196715832316526596
-      type: {class: CharacterActionSetViewSensitivity, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetViewSensitivity, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         sensitivityHorizontal: 0.15
         sensitivityVertical: 0.15
     - rid: 6196715832316526597
-      type: {class: CharacterActionSetViewSmoothing, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetViewSmoothing, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         viewSmoothFactor: 20
     - rid: 8690781321960882176
-      type: {class: CharacterActionSetViewClamp, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         horizontal:
           _hasValue: 0

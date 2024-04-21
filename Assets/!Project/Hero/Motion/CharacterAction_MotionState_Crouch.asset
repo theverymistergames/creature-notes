@@ -18,7 +18,7 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6196716168534294529
-      type: {class: CharacterActionGroup, ns: MisterGames.Character.Actions, asm: MisterGames.Character}
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
@@ -26,18 +26,15 @@ MonoBehaviour:
         - rid: 6196716168534294531
         - rid: 6196716168534294532
     - rid: 6196716168534294530
-      type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         speed: 1
     - rid: 6196716168534294531
-      type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         sideCorrection: 0.9
         backCorrection: 0.7
     - rid: 6196716168534294532
-      type: {class: CharacterActionSetJumpForce, ns: MisterGames.Character.Actions,
-        asm: MisterGames.Character}
+      type: {class: CharacterActionSetJumpForce, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         jumpForce: 3
