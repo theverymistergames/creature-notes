@@ -1,8 +1,8 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using DigitalRuby.Tween;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
+using MisterGames.Tick.Core;
 using UnityEngine;
 
 public class MagicCaster : MonoBehaviour, IActorComponent {
@@ -30,32 +30,33 @@ public class MagicCaster : MonoBehaviour, IActorComponent {
         _enableCts = null;
     }
 
-    private void Start() {
-        TweenFactory.ClearTweensOnLevelLoad = true;
-        TweenFactory.Clear();
-    }
-
-    private void StrikeRunes() {
-        _onFireAction.Apply(_actor, _enableCts.Token).Forget();
+    private async UniTask StrikeRunes(CancellationToken cancellationToken) {
+        _onFireAction.Apply(_actor, cancellationToken).Forget();
 
         var container = Instantiate(StrikeContainerPrefab, gameObject.transform);
         container.transform.localPosition = new Vector3(0, 0, 0.1f);
         container.transform.SetParent(null);
 
         var strikeContainer = container.GetComponent<ProjectileContainer>();
-        
+        var timeSource = TimeSources.Get(PlayerLoopStage.Update);
         var currentDirection = (container.transform.position - gameObject.transform.position).normalized;
+        float timer = 0f;
         
-        var tween = TweenFactory.Tween(null, 0, 1, 5, TweenScaleFunctions.QuadraticEaseIn,
-            (t) => {
-                container.transform.position += currentDirection * _strikeSpeed;
-                if (strikeContainer.collided) t.Stop(TweenStopBehavior.DoNotModify);
-            });
+        while (!cancellationToken.IsCancellationRequested && timer < 5f) {
+            float dt = timeSource.DeltaTime;
+            
+            timer += dt;
+            container.transform.position += currentDirection * _strikeSpeed * dt;
+            
+            if (strikeContainer.collided) break;
+            
+            await UniTask.Yield();
+        }
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) {
-            StrikeRunes();
+            StrikeRunes(_enableCts.Token).Forget();
         }
     }
 }

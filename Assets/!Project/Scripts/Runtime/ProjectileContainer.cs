@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DigitalRuby.Tween;
+using LitMotion;
 using UnityEngine;
 
 public class ProjectileContainer : MonoBehaviour {
@@ -66,20 +66,11 @@ public class ProjectileContainer : MonoBehaviour {
         fireball.SetActive(false);
         explosion.Play();
 
-        var intensity = _light.intensity;
+        float intensity = _light.intensity;
         
-        var tween = TweenFactory.Tween(
-            null,
-            0,
-            1,
-                2,
-            TweenScaleFunctions.Linear,
-            (t) => {
-                _light.intensity = intensity * 2f - (t.CurrentProgress * intensity * 2f);
-            },
-            (t) => {
-                Destroy(gameObject);
-            });
+        LMotion.Create(0f, 1f, 2f)
+            .WithOnComplete(() => Destroy(gameObject))
+            .Bind(t => _light.intensity = intensity * 2f - t * intensity * 2f);
         
     }
 }

@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DigitalRuby.Tween;
-using MisterGames.Character.Core;
-using MisterGames.Character.Motion;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class VisualDebuff : Debuff {

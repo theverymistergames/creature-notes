@@ -1,15 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using DigitalRuby.Tween;
-using MisterGames.Blueprints;
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using MisterGames.Tweens;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 public class SisterLevel1 : MonoBehaviour {
     [SerializeField] private GameObject _reactionContainer;

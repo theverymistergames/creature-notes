@@ -1,5 +1,5 @@
 ﻿using System;
-using DigitalRuby.Tween;
+using LitMotion;
 using UnityEngine;
 
 public enum MonsterType {
@@ -23,7 +23,7 @@ public class Monster : MonoBehaviour {
     [NonSerialized]
     private float _spawnTime = 40;
     private bool _spawned;
-    private ITween _damageTween;
+    private MotionHandle _damageTween;
     private float _progress;
     private bool _isNeedToUpdateProgress;
     private bool _finished;
@@ -63,27 +63,18 @@ public class Monster : MonoBehaviour {
     }
 
     public void GetDamage() {
-        if (_damageTween is { State: TweenState.Running }) _damageTween.Stop(TweenStopBehavior.Complete);
+
+        if (_damageTween.IsActive()) _damageTween.Cancel();
         
         _isNeedToUpdateProgress = false;
 
-        var startProgress = _progress;
-        
-        _damageTween = TweenFactory.Tween(null, 0, 1, 0.2f, TweenScaleFunctions.Linear,
-            (t) => {
-                if (_progress <= 0.02f) {
-                    t.Stop(TweenStopBehavior.DoNotModify);
-                    monsterKilled.Invoke();
-                    _spawned = false;
-                    ProceedUpdate(0);
-                    return;
-                }
-
-                _progress = startProgress - _damage * t.CurrentProgress;
-            },
-            tween => {
+        float startProgress = _progress;
+        _damageTween = LMotion.Create(0f, 1f, 0.2f)
+            .WithOnComplete(() => {
+                if (_progress < 0.02f) monsterKilled.Invoke();
                 Stop();
-            });
+            })
+            .Bind(t => _progress = startProgress - _damage * t);
     }
 
     public void Stop() {

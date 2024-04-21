@@ -1,6 +1,4 @@
-﻿using System;
-using DigitalRuby.Tween;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WindowMonsterAnimation : MonsterAnimation {
 
