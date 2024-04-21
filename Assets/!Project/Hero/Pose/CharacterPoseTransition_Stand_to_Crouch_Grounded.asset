@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750d28f1586a45a9bc01126ef6dd1d07, type: 3}
+  m_Name: CharacterPoseTransition_Stand_to_Crouch_Grounded
+  m_EditorClassIdentifier: 
+  _sourcePose: {fileID: 11400000, guid: 59332e086fc346e479cedaf76a34d32d, type: 2}
+  _targetPose: {fileID: 11400000, guid: 489e37c86dc59704db1b0fc24e390992, type: 2}
+  _duration: 0.3
+  _setPoseAt: 0.7
+  _condition:
+    rid: 1135008841941647409
+  _action:
+    rid: 1135008841941647430
+  references:
+    version: 2
+    RefIds:
+    - rid: 1135008841941647409
+      type: {class: CharacterConditionIsGrounded, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isGrounded: 1
+    - rid: 1135008841941647430
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        actorAction: {fileID: 11400000, guid: 0f3c8413edb60da4bb332fd33dec2a67, type: 2}

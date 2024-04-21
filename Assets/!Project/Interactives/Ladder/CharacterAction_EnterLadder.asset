@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68baa534c5ef4b91a72f95cd498557b0, type: 3}
+  m_Name: CharacterAction_EnterLadder
+  m_EditorClassIdentifier: 
+  _action:
+    rid: 1135008907258232832
+  references:
+    version: 2
+    RefIds:
+    - rid: 1135008907258232832
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1135008907258232835
+        - rid: 1135008907258232839
+        - rid: 1135008907258232834
+        - rid: 1135008907258232836
+        - rid: 1135008907258232837
+        - rid: 1135008907258232841
+    - rid: 1135008907258232834
+      type: {class: CharacterActionResetVelocity, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+    - rid: 1135008907258232835
+      type: {class: CharacterActionEnableMotionGraph, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 0
+    - rid: 1135008907258232836
+      type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        speed: 3
+    - rid: 1135008907258232837
+      type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        sideCorrection: 1
+        backCorrection: 1
+    - rid: 1135008907258232839
+      type: {class: CharacterActionEnableGravity, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 0
+    - rid: 1135008907258232841
+      type: {class: CharacterActionSetMassSettings, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        gravityForce: 0
+        airInertialFactor: 20
+        groundInertialFactor: 20
+        inputInfluenceFactor: 20
