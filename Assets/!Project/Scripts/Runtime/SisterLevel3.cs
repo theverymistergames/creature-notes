@@ -35,6 +35,9 @@ public class SisterLevel3 : MonoBehaviour {
         noInteractive.OnStartInteract += _ => OnAnswerChosen(false);
         yesInteractive.OnStartInteract += _ => OnAnswerChosen(true);
         
+        bubble0.SetActive(true);
+        bubble1.SetActive(false);
+        
         level3Checkmark.Flew.AddListener(OnCheckmarkFlew);
     }
 
@@ -46,19 +49,18 @@ public class SisterLevel3 : MonoBehaviour {
         if (isYes) {
             _sisterInteractive.OnStartInteract -= OnSisterStartInteract;
             
-            noInteractive.enabled = false;
             yesInteractive.gameObject.SetActive(false);
             
             level3Checkmark.StartSequence();
         } else {
             await PlayTweenRunner(bubbleHide);
             
-            _sisterInteractive.enabled = true;
+            _sisterInteractive.OnStartInteract += OnSisterStartInteract;
         }
     }
 
     private async void OnSisterStartInteract(IInteractiveUser obj) {
-        _sisterInteractive.enabled = false;
+        _sisterInteractive.OnStartInteract -= OnSisterStartInteract;
         
         if (_tryNumber >= 2) {
             bubble0.SetActive(false);
@@ -68,7 +70,7 @@ public class SisterLevel3 : MonoBehaviour {
         } else {
             await PlayTweenRunner(bubbleStart);
         
-            _sisterInteractive.enabled = true;
+            _sisterInteractive.OnStartInteract += OnSisterStartInteract;
         
             _tryNumber++;
         }
