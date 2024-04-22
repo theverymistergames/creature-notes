@@ -27,9 +27,8 @@ public class Level3Checkmark : MonoBehaviour {
         startBattleTrigger.OnTriggered += StartBattleTriggerOnOnTriggered;
     }
 
-    private void StartBattleTriggerOnOnTriggered(GameObject obj) {
-        Debug.Log("POSHEL");
-        startBattleTrigger.gameObject.SetActive(false);
+    private void StartBattleTriggerOnOnTriggered(Collider obj) {
+        
     }
 
     public void StartSequence() {
