@@ -49,7 +49,7 @@ public class DialogController : MonoBehaviour {
         yourText.text = "";
         hisText.text = "";
 
-        _dialog = Deserialize<Dialog>("Assets/Chapter1Dialog.xml");
+        _dialog = Deserialize<Dialog>("Assets/!Project/Levels/Chapter1/Chapter1Dialog.xml");
         
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

@@ -20,8 +20,6 @@ public class SisterLevel3 : MonoBehaviour {
     [SerializeField] private Interactive yesInteractive;
     [SerializeField] private Interactive noInteractive;
 
-    // [SerializeField] private EventReference startBattle;
-
     [SerializeField] private Level3Checkmark level3Checkmark;
 
     private int _tryNumber;
@@ -77,9 +75,6 @@ public class SisterLevel3 : MonoBehaviour {
     }
 
     private UniTask PlayTweenRunner(TweenRunner runner) {
-        runner.TweenPlayer.Speed = 1f;
-        runner.TweenPlayer.Progress = 0f;
-            
-        return runner.TweenPlayer.Play();
+        return runner.TweenPlayer.Play(progress: 0f);
     }
 }

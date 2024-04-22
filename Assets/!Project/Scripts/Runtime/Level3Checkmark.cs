@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks.Triggers;
+using Cysharp.Threading.Tasks;
 using MisterGames.Collisions.Triggers;
 using MisterGames.Interact.Detectables;
+using MisterGames.Scenario.Events;
 using MisterGames.Tweens;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +11,10 @@ public class Level3Checkmark : MonoBehaviour {
     [SerializeField] private TweenRunner[] tweens;
     [SerializeField] private GameObject checkMark;
     [SerializeField] private Trigger startBattleTrigger;
+
+    [SerializeField] private GameObject sister, sisterScreamer;
+
+    [SerializeField] private EventReference startBattleEvent;
     
     private int _step;
     private Detectable _detectable;
@@ -27,8 +30,15 @@ public class Level3Checkmark : MonoBehaviour {
         startBattleTrigger.OnTriggered += StartBattleTriggerOnOnTriggered;
     }
 
-    private void StartBattleTriggerOnOnTriggered(Collider obj) {
+    private async void StartBattleTriggerOnOnTriggered(Collider obj) {
+        sister.SetActive(false);
+        sisterScreamer.SetActive(true);
+
+        await UniTask.Delay(2000);
         
+        sisterScreamer.SetActive(false);
+        
+        startBattleEvent.Raise();
     }
 
     public void StartSequence() {
@@ -43,16 +53,16 @@ public class Level3Checkmark : MonoBehaviour {
     private async void MoveToNextPosition() {
         _detectable.enabled = false;
 
-        if (_step == 2) {
-            Flew.Invoke();
+        switch (_step) {
+            case 2:
+                Flew.Invoke();
+                break;
+            case 6:
+                startBattleTrigger.gameObject.SetActive(true);
+                break;
         }
-
-        var tweenRunner = tweens[_step];
         
-        tweenRunner.TweenPlayer.Speed = 1;
-        tweenRunner.TweenPlayer.Progress = 0;
-        
-        await tweens[_step].TweenPlayer.Play();
+        await tweens[_step].TweenPlayer.Play(progress: 0);
         
         _detectable.enabled = true;
 
