@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class MultiStateItem : MonoBehaviour, IEventListener {
+    
     [SerializeField] private int startStateId = 0;
     [SerializeField] private int rightStateId = 1;
     [SerializeField] private Vector3 moveOutVector = new Vector3();
@@ -16,14 +17,33 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
 
     [SerializeField] private EventReference levelLoadedEvent;
     
+    public event Action Placed = delegate { };
+    
     private Interactive _interactive;
     private int _currentStateId;
     private MotionHandle _currentTween;
 
-    [NonSerialized] public readonly UnityEvent Placed = new();
-
     public bool IsPlacedRight() {
         return _currentStateId == rightStateId;
+    }
+
+    private void Awake() {
+        _interactive = GetComponent<Interactive>();
+    }
+
+    private void OnEnable() {
+        _interactive.OnStartInteract += InteractiveOnOnStartInteract;
+        levelLoadedEvent.Subscribe(this);
+    }
+
+    private void OnDisable() {
+        _interactive.OnStartInteract -= InteractiveOnOnStartInteract;
+        levelLoadedEvent.Unsubscribe(this);
+    }
+
+    private void Start() {
+        Reset();
+        _currentStateId = startStateId;
     }
 
     private void Reset() {
@@ -36,45 +56,40 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
         }
     }
 
-    public void OnEventRaised(EventReference e) {
-        if (e.EventId == levelLoadedEvent.EventId) {
-            Reset();
-        }
-    }
-
-    private void Start() {
-        _interactive = GetComponent<Interactive>();
-        _interactive.OnStartInteract += InteractiveOnOnStartInteract;
-
-        Reset();
-        
-        levelLoadedEvent.Subscribe(this);
-        
-        _currentStateId = startStateId;
+    void IEventListener.OnEventRaised(EventReference e) {
+        if (e.EventId == levelLoadedEvent.EventId) Reset();
     }
 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
-        var nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
-
-        if (_currentTween.IsActive()) {
-            return;
-        }
+        if (_currentTween.IsActive()) return;
+        
+        int nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
         
         if (positions.Length > 0) {
             var startPosition = positions[_currentStateId];
             var midPosition = positions[_currentStateId] + (positions[nextId] - positions[_currentStateId]) / 2 + moveOutVector;
             var finalPosition = positions[nextId];
 
-            _currentTween = LMotion.Create(startPosition, midPosition, animationTime / 2).WithEase(Ease.InSine).WithOnComplete(() => {
-                _currentTween = LMotion.Create(midPosition, finalPosition, animationTime / 2).WithEase(Ease.OutSine).BindToLocalPosition(transform);
-            }).BindToLocalPosition(transform);
+            _currentTween = LMotion
+                .Create(startPosition, midPosition, animationTime / 2)
+                .WithEase(Ease.InSine)
+                .WithOnComplete(() => { 
+                    _currentTween = LMotion
+                        .Create(midPosition, finalPosition, animationTime / 2)
+                        .WithEase(Ease.OutSine)
+                        .BindToLocalPosition(transform); 
+                })
+                .BindToLocalPosition(transform);
         }
 
         if (rotations.Length > 0) {
             var startRotation = rotations[_currentStateId];
             var finalRotation = rotations[nextId];
             
-            _currentTween = LMotion.Create(startRotation, finalRotation, animationTime).WithEase(Ease.InOutSine).BindToLocalEulerAngles(transform);
+            _currentTween = LMotion
+                .Create(startRotation, finalRotation, animationTime)
+                .WithEase(Ease.InOutSine)
+                .BindToLocalEulerAngles(transform);
         }
 
         _currentStateId = nextId;
