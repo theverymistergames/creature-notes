@@ -61,25 +61,24 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
     }
 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
-        _interactive.enabled = false;
+        if (_currentTween.IsActive()) return;
         
-        var nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
-
-        if (_currentTween.IsActive()) {
-            return;
-        }
+        int nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
         
         if (positions.Length > 0) {
             var startPosition = positions[_currentStateId];
             var midPosition = positions[_currentStateId] + (positions[nextId] - positions[_currentStateId]) / 2 + moveOutVector;
             var finalPosition = positions[nextId];
 
-            _currentTween = LMotion.Create(startPosition, midPosition, animationTime / 2).WithEase(Ease.InSine).WithOnComplete(() => {
-                _currentTween = LMotion.Create(midPosition, finalPosition, animationTime / 2).WithEase(Ease.OutSine).BindToLocalPosition(transform);
-            })
-            .WithOnComplete(() => {
-                _interactive.enabled = true;
-            })
+            _currentTween = LMotion
+                .Create(startPosition, midPosition, animationTime / 2)
+                .WithEase(Ease.InSine)
+                .WithOnComplete(() => { 
+                    _currentTween = LMotion
+                        .Create(midPosition, finalPosition, animationTime / 2)
+                        .WithEase(Ease.OutSine)
+                        .BindToLocalPosition(transform); 
+                })
                 .BindToLocalPosition(transform);
         }
 
@@ -87,10 +86,10 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
             var startRotation = rotations[_currentStateId];
             var finalRotation = rotations[nextId];
             
-            _currentTween = LMotion.Create(startRotation, finalRotation, animationTime).WithEase(Ease.InOutSine)
-                .WithOnComplete(() => {
-                    _interactive.enabled = true;
-                }).BindToLocalEulerAngles(transform);
+            _currentTween = LMotion
+                .Create(startRotation, finalRotation, animationTime)
+                .WithEase(Ease.InOutSine)
+                .BindToLocalEulerAngles(transform);
         }
 
         _currentStateId = nextId;
