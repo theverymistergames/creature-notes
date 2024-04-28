@@ -14,40 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _blueprintMeta:
     _nodeMap:
-      _buckets: 010000000300000004000000ffffffffffffffff
+      _buckets: ffffffff03000000020000000400000001000000
       _entries:
-      - hashCode: 63767061
+      - hashCode: 419154559
         next: -1
         key:
           source: 1
           node: 1
         value: {x: 346.40002, y: 579.2, z: 0}
-      - hashCode: 1529885050
-        next: -1
+      - hashCode: 911087604
+        next: 0
         key:
           source: 2
           node: 1
-        value: {x: 908.8, y: 471.2, z: 0}
-      - hashCode: 1646448236
-        next: 0
+        value: {x: 633.3334, y: 509.3333, z: 0}
+      - hashCode: 2003658697
+        next: -1
         key:
           source: 1
           node: 2
         value: {x: 352.80002, y: 713.6, z: 0}
-      - hashCode: 540864866
-        next: 2
+      - hashCode: 1911337821
+        next: -1
         key:
           source: 3
           node: 1
-        value: {x: 140, y: 645.6, z: 0}
-      - hashCode: 1118378152
+        value: {x: 68, y: 659.3333, z: 0}
+      - hashCode: 373041958
         next: -1
         key:
           source: 2
-          node: 3
-        value: {x: 1568.7999, y: 716.8, z: 0}
+          node: 4
+        value: {x: 983.94, y: 691.2267, z: 0}
       _count: 5
-      _version: 32
+      _version: 40
       _freeList: -1
       _freeCount: 0
     _subgraphMap:
@@ -86,11 +86,29 @@ MonoBehaviour:
         _nodes:
         - key:
             id:
-              source: 1
-              node: 2
+              source: 3
+              node: 1
             port: 0
-          parent: 18
-          child: 4
+          parent: -1
+          child: 7
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 0
+          parent: 13
+          child: 14
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 1
+              node: 1
+            port: 0
+          parent: 12
+          child: 5
           next: -1
           prev: -1
         - key:
@@ -98,26 +116,35 @@ MonoBehaviour:
               source: 1
               node: 1
             port: 1
-          parent: 10
+          parent: 6
+          child: 19
+          next: -1
+          prev: 12
+        - key:
+            id:
+              source: 1
+              node: 1
+            port: 0
+          parent: 8
+          child: -1
+          next: -1
+          prev: 18
+        - key:
+            id:
+              source: 3
+              node: 1
+            port: 0
+          parent: 2
           child: -1
           next: -1
           prev: -1
         - key:
             id:
-              source: 3
-              node: 1
-            port: 0
-          parent: 3
-          child: 19
-          next: -1
-          prev: -1
-        - key:
-            id:
-              source: 3
+              source: 1
               node: 1
             port: 0
           parent: -1
-          child: 2
+          child: 12
           next: -1
           prev: -1
         - key:
@@ -126,34 +153,25 @@ MonoBehaviour:
               node: 1
             port: 0
           parent: 0
-          child: -1
+          child: 8
           next: -1
           prev: -1
         - key:
             id:
-              source: 2
+              source: 3
               node: 1
             port: 1
           parent: 7
-          child: -1
+          child: 18
           next: -1
           prev: -1
         - key:
             id:
               source: 1
-              node: 1
-            port: 1
-          parent: 14
-          child: 7
-          next: -1
-          prev: 9
-        - key:
-            id:
-              source: 1
-              node: 1
-            port: 1
-          parent: 6
-          child: 5
+              node: 2
+            port: 0
+          parent: -1
+          child: 30
           next: -1
           prev: -1
         - key:
@@ -162,25 +180,7 @@ MonoBehaviour:
               node: 1
             port: 0
           parent: -1
-          child: 15
-          next: -1
-          prev: -1
-        - key:
-            id:
-              source: 1
-              node: 1
-            port: 0
-          parent: 14
-          child: 16
-          next: 6
-          prev: -1
-        - key:
-            id:
-              source: 2
-              node: 1
-            port: 0
-          parent: 15
-          child: 1
+          child: 20
           next: -1
           prev: -1
         - key:
@@ -188,9 +188,54 @@ MonoBehaviour:
               source: 1
               node: 2
             port: 0
+          parent: 9
+          child: 16
+          next: -1
+          prev: 30
+        - key:
+            id:
+              source: 1
+              node: 1
+            port: 0
+          parent: 6
+          child: 2
+          next: 3
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 1
+          parent: 10
+          child: 1
+          next: -1
+          prev: 20
+        - key:
+            id:
+              source: 1
+              node: 1
+            port: 1
+          parent: 1
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 1
           parent: 19
           child: -1
-          next: 13
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 1
+              node: 2
+            port: 0
+          parent: 11
+          child: 17
+          next: -1
           prev: -1
         - key:
             id:
@@ -204,129 +249,189 @@ MonoBehaviour:
         - key:
             id:
               source: 1
-              node: 1
+              node: 2
             port: 0
-          parent: 19
+          parent: 8
           child: -1
-          next: -1
-          prev: 11
+          next: 4
+          prev: -1
         - key:
             id:
               source: 1
               node: 1
-            port: 0
-          parent: -1
-          child: 9
+            port: 1
+          parent: 3
+          child: 15
           next: -1
           prev: -1
         - key:
             id:
               source: 2
               node: 1
-            port: 1
-          parent: 8
-          child: 10
-          next: -1
+            port: 2
+          parent: 10
+          child: 21
+          next: 13
           prev: -1
         - key:
             id:
-              source: 1
+              source: 2
               node: 1
             port: 0
-          parent: 9
-          child: 12
+          parent: 20
+          child: 22
           next: -1
           prev: -1
         - key:
             id:
-              source: 1
-              node: 2
+              source: 2
+              node: 4
+            port: 1
+          parent: 21
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 4
             port: 0
           parent: -1
-          child: 18
+          child: 27
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 4
+            port: 1
+          parent: 23
+          child: 25
+          next: -1
+          prev: 27
+        - key:
+            id:
+              source: 2
+              node: 4
+            port: 1
+          parent: 24
+          child: 26
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 1
+            port: 2
+          parent: 25
+          child: -1
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 4
+            port: 3
+          parent: 23
+          child: 28
+          next: 24
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 4
+            port: 0
+          parent: 27
+          child: 29
           next: -1
           prev: -1
         - key:
             id:
               source: 1
               node: 2
-            port: 0
-          parent: 17
-          child: 0
+            port: 1
+          parent: 28
+          child: -1
           next: -1
           prev: -1
         - key:
             id:
-              source: 3
-              node: 1
+              source: 1
+              node: 2
             port: 1
-          parent: 2
-          child: 11
+          parent: 9
+          child: 31
+          next: 11
+          prev: -1
+        - key:
+            id:
+              source: 1
+              node: 2
+            port: 1
+          parent: 30
+          child: 32
+          next: -1
+          prev: -1
+        - key:
+            id:
+              source: 2
+              node: 4
+            port: 3
+          parent: 31
+          child: -1
           next: -1
           prev: -1
         _rootIndexMap:
-          _buckets: 020000000000000003000000ffffffff
+          _buckets: 0100000002000000ffffffff04000000ffffffff
           _entries:
-          - hashCode: 1566458909
+          - hashCode: 729002695
             next: -1
             key:
               id:
                 source: 1
                 node: 1
               port: 0
-            value: 14
-          - hashCode: 94599026
-            next: -1
+            value: 6
+          - hashCode: 96890700
+            next: 0
             key:
               id:
                 source: 2
                 node: 1
               port: 0
-            value: 8
-          - hashCode: 1018267748
+            value: 10
+          - hashCode: 1155866481
             next: -1
             key:
               id:
                 source: 1
                 node: 2
               port: 0
-            value: 17
-          - hashCode: 2125444970
-            next: 1
+            value: 9
+          - hashCode: 1113902053
+            next: -1
             key:
               id:
                 source: 3
                 node: 1
               port: 0
-            value: 3
-          _count: 4
-          _version: 140
+            value: 0
+          - hashCode: 632574878
+            next: 3
+            key:
+              id:
+                source: 2
+                node: 4
+              port: 0
+            value: 23
+          _count: 5
+          _version: 203
           _freeList: -1
           _freeCount: 0
         _nodeIndexMap:
-          _buckets: 07000000080000000f0000000e000000ffffffff0b000000ffffffff0c00000004000000050000000a000000ffffffffffffffff06000000ffffffff0d000000
+          _buckets: ffffffffffffffff00000000ffffffffffffffffffffffffffffffff18000000070000000e0000000900000006000000ffffffffffffffffffffffff120000001500000011000000ffffffff17000000140000000c0000000f0000001b000000190000001a0000001300000003000000
           _entries:
-          - hashCode: 214905007
-            next: -1
-            key:
-              key:
-                id:
-                  source: 1
-                  node: 1
-                port: 1
-              index: 14
-            value: 6
-          - hashCode: 373423858
-            next: -1
-            key:
-              key:
-                id:
-                  source: 2
-                  node: 1
-                port: 1
-              index: 7
-            value: 5
-          - hashCode: 1396698309
+          - hashCode: 293461086
             next: -1
             key:
               key:
@@ -335,8 +440,18 @@ MonoBehaviour:
                   node: 1
                 port: 1
               index: 6
-            value: 7
-          - hashCode: 1208761
+            value: 3
+          - hashCode: 744730343
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 1
+              index: 19
+            value: 15
+          - hashCode: 527115000
             next: -1
             key:
               key:
@@ -344,89 +459,39 @@ MonoBehaviour:
                   source: 1
                   node: 1
                 port: 1
-              index: 10
-            value: 1
-          - hashCode: 1709678024
-            next: -1
-            key:
-              key:
-                id:
-                  source: 1
-                  node: 1
-                port: 0
-              index: 14
-            value: 9
-          - hashCode: 1451947273
-            next: 3
-            key:
-              key:
-                id:
-                  source: 1
-                  node: 2
-                port: 0
-              index: 17
-            value: 18
-          - hashCode: 1616249981
-            next: -1
-            key:
-              key:
-                id:
-                  source: 3
-                  node: 1
-                port: 0
-              index: 0
-            value: 4
-          - hashCode: 1987958368
-            next: -1
-            key:
-              key:
-                id:
-                  source: 1
-                  node: 2
-                port: 0
-              index: 18
-            value: 0
-          - hashCode: 1471490689
-            next: -1
-            key:
-              key:
-                id:
-                  source: 1
-                  node: 2
-                port: 0
-              index: 19
-            value: 11
-          - hashCode: 998807683
-            next: -1
-            key:
-              key:
-                id:
-                  source: 1
-                  node: 1
-                port: 0
-              index: 19
-            value: 13
-          - hashCode: 1817248314
-            next: -1
-            key:
-              key:
-                id:
-                  source: 3
-                  node: 1
-                port: 1
-              index: 2
-            value: 19
-          - hashCode: 799674325
-            next: 2
-            key:
-              key:
-                id:
-                  source: 3
-                  node: 1
-                port: 0
               index: 3
-            value: 2
-          - hashCode: 1688249943
+            value: 19
+          - hashCode: 2121239119
+            next: -1
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 1
+                port: 1
+              index: 1
+            value: 14
+          - hashCode: 796938642
+            next: -1
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 1
+                port: 0
+              index: 6
+            value: 12
+          - hashCode: 1307186998
+            next: -1
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 2
+                port: 0
+              index: 9
+            value: 11
+          - hashCode: 1987717211
             next: -1
             key:
               key:
@@ -435,46 +500,226 @@ MonoBehaviour:
                   node: 1
                 port: 0
               index: 16
-            value: 12
-          - hashCode: 935507375
-            next: 0
+            value: 17
+          - hashCode: 1915449404
+            next: -1
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 2
+                port: 0
+              index: 11
+            value: 16
+          - hashCode: 948817305
+            next: -1
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 2
+                port: 0
+              index: 8
+            value: 18
+          - hashCode: 335029866
+            next: 4
             key:
               key:
                 id:
                   source: 1
                   node: 1
                 port: 0
-              index: 9
-            value: 16
-          - hashCode: 532196387
-            next: 9
+              index: 8
+            value: 4
+          - hashCode: 438437293
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 1
+              index: 7
+            value: 8
+          - hashCode: 1694636485
+            next: -1
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 0
+              index: 0
+            value: 7
+          - hashCode: 1240409989
+            next: 10
+            key:
+              key:
+                id:
+                  source: 3
+                  node: 1
+                port: 0
+              index: 2
+            value: 5
+          - hashCode: 1304401436
+            next: -1
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 1
+                port: 0
+              index: 12
+            value: 2
+          - hashCode: 458806665
+            next: 8
             key:
               key:
                 id:
                   source: 2
                   node: 1
                 port: 0
-              index: 15
-            value: 10
-          - hashCode: 11620418
-            next: 1
+              index: 13
+            value: 1
+          - hashCode: 405396986
+            next: -1
             key:
               key:
                 id:
                   source: 2
                   node: 1
                 port: 1
-              index: 8
-            value: 15
-          _count: 16
-          _version: 1343
+              index: 10
+            value: 13
+          - hashCode: 1223257501
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 2
+              index: 10
+            value: 20
+          - hashCode: 1475084845
+            next: 11
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 0
+              index: 20
+            value: 21
+          - hashCode: 810925095
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 4
+                port: 1
+              index: 21
+            value: 22
+          - hashCode: 861138654
+            next: 5
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 4
+                port: 1
+              index: 23
+            value: 24
+          - hashCode: 1360225712
+            next: 2
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 4
+                port: 1
+              index: 24
+            value: 25
+          - hashCode: 660726040
+            next: 13
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 1
+                port: 2
+              index: 25
+            value: 26
+          - hashCode: 1713081755
+            next: 1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 4
+                port: 3
+              index: 23
+            value: 27
+          - hashCode: 2081742675
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 4
+                port: 0
+              index: 27
+            value: 28
+          - hashCode: 1555255359
+            next: 22
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 2
+                port: 1
+              index: 28
+            value: 29
+          - hashCode: 1270090664
+            next: -1
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 2
+                port: 1
+              index: 9
+            value: 30
+          - hashCode: 775955793
+            next: 16
+            key:
+              key:
+                id:
+                  source: 1
+                  node: 2
+                port: 1
+              index: 30
+            value: 31
+          - hashCode: 93996611
+            next: -1
+            key:
+              key:
+                id:
+                  source: 2
+                  node: 4
+                port: 3
+              index: 31
+            value: 32
+          _count: 28
+          _version: 1854
           _freeList: -1
           _freeCount: 0
-        _count: 20
-        _head: 20
-        _version: 1875
-      _linkCount: 3
-      _linkedPortCount: 3
+        _count: 33
+        _head: 33
+        _version: 2821
+      _linkCount: 5
+      _linkedPortCount: 5
     _portStorage:
       _portTree:
         _nodes:
@@ -486,7 +731,7 @@ MonoBehaviour:
             dataType:
               _type: 
           parent: -1
-          child: 3
+          child: 5
           next: -1
           prev: -1
         - key: 4
@@ -500,6 +745,17 @@ MonoBehaviour:
           child: -1
           next: -1
           prev: -1
+        - key: 5
+          value:
+            name: Last User
+            mode: 2
+            options: 0
+            dataType:
+              _type: MisterGames.Interact.Interactives.IInteractiveUser, MisterGames.Interact
+          parent: 3
+          child: -1
+          next: 9
+          prev: 10
         - key: 1
           value:
             name: 
@@ -507,8 +763,19 @@ MonoBehaviour:
             options: 0
             dataType:
               _type: 
-          parent: 11
-          child: 14
+          parent: 4
+          child: 8
+          next: -1
+          prev: 21
+        - key: 2
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: -1
+          child: 21
           next: -1
           prev: -1
         - key: 2
@@ -519,10 +786,65 @@ MonoBehaviour:
             dataType:
               _type: 
           parent: 0
-          child: 6
-          next: 7
+          child: 20
+          next: 15
           prev: -1
-        - key: 2
+        - key: 0
+          value:
+            name: Set Interactive
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 3
+          child: -1
+          next: -1
+          prev: 18
+        - key: 1
+          value:
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 11
+          child: 12
+          next: -1
+          prev: -1
+        - key: 7
+          value:
+            name: Last User Root
+            mode: 2
+            options: 0
+            dataType:
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          parent: 3
+          child: -1
+          next: 10
+          prev: -1
+        - key: 4
+          value:
+            name: Is Interacting
+            mode: 2
+            options: 0
+            dataType:
+              _type: System.Boolean, mscorlib
+          parent: 3
+          child: -1
+          next: 17
+          prev: 2
+        - key: 6
+          value:
+            name: Last User Transform
+            mode: 2
+            options: 0
+            dataType:
+              _type: UnityEngine.Transform, UnityEngine.CoreModule
+          parent: 3
+          child: -1
+          next: 2
+          prev: 8
+        - key: 3
           value:
             name: 
             mode: 0
@@ -530,31 +852,42 @@ MonoBehaviour:
             dataType:
               _type: 
           parent: -1
-          child: 15
+          child: 7
           next: -1
           prev: -1
-        - key: 5
+        - key: 0
           value:
-            name: Last User
+            name: 
             mode: 2
             options: 0
             dataType:
-              _type: MisterGames.Interact.Interactives.IInteractiveUser, MisterGames.Interact
-          parent: 15
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          parent: 7
           child: -1
-          next: 20
-          prev: 8
+          next: -1
+          prev: -1
         - key: 1
           value:
             name: 
             mode: 2
             options: 4
             dataType:
-              _type: MisterGames.Tweens.TweenRunner, MisterGames.Tweens
-          parent: 3
+              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+          parent: 15
           child: -1
-          next: 9
+          next: 14
           prev: -1
+        - key: 0
+          value:
+            name: 
+            mode: 3
+            options: 0
+            dataType:
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          parent: 15
+          child: -1
+          next: -1
+          prev: 13
         - key: 1
           value:
             name: 
@@ -565,117 +898,7 @@ MonoBehaviour:
           parent: 0
           child: 13
           next: -1
-          prev: 3
-        - key: 6
-          value:
-            name: Last User Transform
-            mode: 2
-            options: 0
-            dataType:
-              _type: UnityEngine.Transform, UnityEngine.CoreModule
-          parent: 15
-          child: -1
-          next: 5
-          prev: 10
-        - key: 0
-          value:
-            name: 
-            mode: 3
-            options: 0
-            dataType:
-              _type: UnityEngine.GameObject, UnityEngine.CoreModule
-          parent: 3
-          child: -1
-          next: -1
-          prev: 6
-        - key: 7
-          value:
-            name: Last User Root
-            mode: 2
-            options: 0
-            dataType:
-              _type: UnityEngine.GameObject, UnityEngine.CoreModule
-          parent: 15
-          child: -1
-          next: 8
-          prev: -1
-        - key: 3
-          value:
-            name: 
-            mode: 0
-            options: 0
-            dataType:
-              _type: 
-          parent: -1
-          child: 2
-          next: -1
-          prev: -1
-        - key: 0
-          value:
-            name: 
-            mode: 3
-            options: 0
-            dataType:
-              _type: UnityEngine.GameObject, UnityEngine.CoreModule
-          parent: 7
-          child: -1
-          next: -1
-          prev: 13
-        - key: 1
-          value:
-            name: 
-            mode: 2
-            options: 4
-            dataType:
-              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
-          parent: 7
-          child: -1
-          next: 12
-          prev: -1
-        - key: 0
-          value:
-            name: 
-            mode: 2
-            options: 0
-            dataType:
-              _type: UnityEngine.GameObject, UnityEngine.CoreModule
-          parent: 2
-          child: -1
-          next: -1
-          prev: -1
-        - key: 1
-          value:
-            name: 
-            mode: 0
-            options: 0
-            dataType:
-              _type: 
-          parent: 4
-          child: 10
-          next: -1
-          prev: -1
-        - key: 0
-          value:
-            name: Set Interactive
-            mode: 1
-            options: 0
-            dataType:
-              _type: 
-          parent: 15
-          child: -1
-          next: -1
-          prev: 17
-        - key: 1
-          value:
-            name: Interactive
-            mode: 3
-            options: 0
-            dataType:
-              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
-          parent: 15
-          child: -1
-          next: 16
-          prev: 18
+          prev: 5
         - key: 2
           value:
             name: On Start Interact
@@ -683,10 +906,10 @@ MonoBehaviour:
             options: 0
             dataType:
               _type: 
-          parent: 15
+          parent: 3
           child: -1
-          next: 17
-          prev: 19
+          next: 18
+          prev: 17
         - key: 3
           value:
             name: On Stop Interact
@@ -694,21 +917,186 @@ MonoBehaviour:
             options: 0
             dataType:
               _type: 
-          parent: 15
+          parent: 3
           child: -1
-          next: 18
+          next: 16
+          prev: 9
+        - key: 1
+          value:
+            name: Interactive
+            mode: 3
+            options: 0
+            dataType:
+              _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+          parent: 3
+          child: -1
+          next: 6
+          prev: 16
+        - key: 0
+          value:
+            name: 
+            mode: 3
+            options: 0
+            dataType:
+              _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          parent: 5
+          child: -1
+          next: -1
           prev: 20
+        - key: 1
+          value:
+            name: 
+            mode: 2
+            options: 4
+            dataType:
+              _type: MisterGames.Tweens.TweenRunner, MisterGames.Tweens
+          parent: 5
+          child: -1
+          next: 19
+          prev: -1
         - key: 4
           value:
-            name: Is Interacting
+            name: 
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 4
+          child: 33
+          next: 3
+          prev: -1
+        - key: 0
+          value:
+            name: Set TweenRunner
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 21
+          child: -1
+          next: -1
+          prev: 23
+        - key: 1
+          value:
+            name: Play
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 21
+          child: -1
+          next: 22
+          prev: 24
+        - key: 2
+          value:
+            name: Stop
+            mode: 1
+            options: 0
+            dataType:
+              _type: 
+          parent: 21
+          child: -1
+          next: 23
+          prev: 25
+        - key: 3
+          value:
+            name: 
+            mode: 3
+            options: 0
+            dataType:
+              _type: MisterGames.Tweens.TweenRunner, MisterGames.Tweens
+          parent: 21
+          child: -1
+          next: 24
+          prev: 26
+        - key: 4
+          value:
+            name: Progress
+            mode: 3
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 21
+          child: -1
+          next: 25
+          prev: 27
+        - key: 5
+          value:
+            name: Speed
+            mode: 3
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 21
+          child: -1
+          next: 26
+          prev: 28
+        - key: 6
+          value:
+            name: On Start
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 21
+          child: -1
+          next: 27
+          prev: 29
+        - key: 7
+          value:
+            name: On Finished
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 21
+          child: -1
+          next: 28
+          prev: 30
+        - key: 8
+          value:
+            name: On Cancelled
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 21
+          child: -1
+          next: 29
+          prev: 31
+        - key: 9
+          value:
+            name: On Update
+            mode: 0
+            options: 0
+            dataType:
+              _type: 
+          parent: 21
+          child: -1
+          next: 30
+          prev: 32
+        - key: 10
+          value:
+            name: Progress
             mode: 2
             options: 0
             dataType:
-              _type: System.Boolean, mscorlib
-          parent: 15
+              _type: System.Single, mscorlib
+          parent: 21
           child: -1
-          next: 19
-          prev: 5
+          next: 31
+          prev: 33
+        - key: 11
+          value:
+            name: Speed
+            mode: 2
+            options: 0
+            dataType:
+              _type: System.Single, mscorlib
+          parent: 21
+          child: -1
+          next: 32
+          prev: -1
         _rootIndexMap:
           _buckets: 03000000000000000100000002000000
           _entries:
@@ -733,117 +1121,195 @@ MonoBehaviour:
           _freeList: -1
           _freeCount: 0
         _nodeIndexMap:
-          _buckets: 0a0000000100000010000000ffffffffffffffff08000000ffffffff0d00000003000000ffffffffffffffff0c00000009000000ffffffffffffffff0f00000006000000
+          _buckets: 180000000a00000012000000160000001b0000000c00000007000000ffffffffffffffffffffffff050000000b000000170000000d000000ffffffff030000001c000000ffffffff140000001a000000ffffffff04000000ffffffff0f0000001900000001000000110000001d0000001500000013000000
           _entries:
-          - hashCode: 1712555073
+          - hashCode: 1663737340
             next: -1
             key:
               key: 1
               index: 0
-            value: 7
-          - hashCode: 112487250
+            value: 15
+          - hashCode: 860119135
             next: -1
             key:
               key: 1
-              index: 7
+              index: 15
             value: 13
-          - hashCode: 1975579503
+          - hashCode: 980120506
+            next: -1
+            key:
+              key: 0
+              index: 15
+            value: 14
+          - hashCode: 1700187435
+            next: -1
+            key:
+              key: 1
+              index: 4
+            value: 3
+          - hashCode: 913240101
+            next: -1
+            key:
+              key: 2
+              index: 0
+            value: 5
+          - hashCode: 1901841910
+            next: 0
+            key:
+              key: 1
+              index: 11
+            value: 7
+          - hashCode: 525528722
             next: -1
             key:
               key: 0
               index: 7
             value: 12
-          - hashCode: 1794785344
+          - hashCode: 1465770786
             next: -1
             key:
               key: 1
-              index: 4
-            value: 15
-          - hashCode: 1895912352
-            next: 2
+              index: 5
+            value: 20
+          - hashCode: 1987164326
+            next: -1
             key:
               key: 0
-              index: 15
-            value: 16
-          - hashCode: 1957754005
-            next: -1
-            key:
-              key: 1
-              index: 15
-            value: 17
-          - hashCode: 717420348
-            next: -1
-            key:
-              key: 2
-              index: 15
-            value: 18
-          - hashCode: 795166341
-            next: -1
-            key:
-              key: 3
-              index: 15
+              index: 5
             value: 19
-          - hashCode: 1643095973
-            next: 5
-            key:
-              key: 4
-              index: 15
-            value: 20
-          - hashCode: 973956090
-            next: 0
-            key:
-              key: 5
-              index: 15
-            value: 5
-          - hashCode: 912009710
-            next: 4
-            key:
-              key: 6
-              index: 15
-            value: 8
-          - hashCode: 1870196467
+          - hashCode: 239969728
             next: -1
             key:
               key: 7
-              index: 15
-            value: 10
-          - hashCode: 359131148
-            next: 7
-            key:
-              key: 2
-              index: 0
-            value: 3
-          - hashCode: 304261587
-            next: -1
-            key:
-              key: 1
-              index: 11
-            value: 2
-          - hashCode: 941758331
-            next: 11
-            key:
-              key: 0
-              index: 2
-            value: 14
-          - hashCode: 329796037
-            next: 14
-            key:
-              key: 1
               index: 3
-            value: 6
-          - hashCode: 300024570
+            value: 8
+          - hashCode: 1307173141
             next: -1
             key:
-              key: 0
+              key: 6
+              index: 3
+            value: 10
+          - hashCode: 34590041
+            next: -1
+            key:
+              key: 5
+              index: 3
+            value: 2
+          - hashCode: 522973055
+            next: -1
+            key:
+              key: 4
               index: 3
             value: 9
-          _count: 17
-          _version: 1185
+          - hashCode: 1320964003
+            next: -1
+            key:
+              key: 3
+              index: 3
+            value: 17
+          - hashCode: 1847393672
+            next: 6
+            key:
+              key: 2
+              index: 3
+            value: 16
+          - hashCode: 158696093
+            next: -1
+            key:
+              key: 1
+              index: 3
+            value: 18
+          - hashCode: 1796102222
+            next: 14
+            key:
+              key: 0
+              index: 3
+            value: 6
+          - hashCode: 949810046
+            next: 8
+            key:
+              key: 4
+              index: 4
+            value: 21
+          - hashCode: 324840422
+            next: 16
+            key:
+              key: 0
+              index: 21
+            value: 22
+          - hashCode: 1678908539
+            next: -1
+            key:
+              key: 1
+              index: 21
+            value: 23
+          - hashCode: 886859988
+            next: -1
+            key:
+              key: 2
+              index: 21
+            value: 24
+          - hashCode: 1773234988
+            next: 9
+            key:
+              key: 3
+              index: 21
+            value: 25
+          - hashCode: 1429267413
+            next: -1
+            key:
+              key: 4
+              index: 21
+            value: 26
+          - hashCode: 936835632
+            next: -1
+            key:
+              key: 5
+              index: 21
+            value: 27
+          - hashCode: 646394760
+            next: -1
+            key:
+              key: 6
+              index: 21
+            value: 28
+          - hashCode: 53423544
+            next: -1
+            key:
+              key: 7
+              index: 21
+            value: 29
+          - hashCode: 394710469
+            next: -1
+            key:
+              key: 8
+              index: 21
+            value: 30
+          - hashCode: 221846134
+            next: -1
+            key:
+              key: 9
+              index: 21
+            value: 31
+          - hashCode: 1491192376
+            next: 2
+            key:
+              key: 10
+              index: 21
+            value: 32
+          - hashCode: 2094671307
+            next: -1
+            key:
+              key: 11
+              index: 21
+            value: 33
+          _count: 30
+          _version: 1483
           _freeList: -1
           _freeCount: 0
-        _count: 21
-        _head: 21
-        _version: 128
+        _count: 34
+        _head: 34
+        _version: 164
     _groupStorage:
       _groups: []
       _lastId: 0
@@ -867,8 +1333,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 2949883688483291293
+      type: {class: BlueprintNodeTweenPlayerExternal, ns: MisterGames.BlueprintLib,
+        asm: MisterGames.BlueprintsLib}
+      data:
+        _autoSetTweenRunnerOnStart: 1
+        _routeOnCancelledIntoOnFinished: 1
     - rid: 4692615005340958721
       type: {class: BlueprintSourceGetComponent, ns: MisterGames.BlueprintLib, asm: MisterGames.BlueprintsLib}
       data:
@@ -894,23 +1364,23 @@ MonoBehaviour:
       type: {class: BlueprintSourceRef, ns: MisterGames.Blueprints, asm: MisterGames.Blueprints}
       data:
         _nodeMap:
-          _buckets: ffffffff01000000
+          _buckets: 0100000000000000
           _entries:
           - hashCode: 1
             next: -1
             key: 1
             value:
               rid: 4692615005340958723
-          - hashCode: 3
-            next: 0
-            key: 3
+          - hashCode: 4
+            next: -1
+            key: 4
             value:
-              rid: -2
+              rid: 2949883688483291293
           _count: 2
-          _version: 4
+          _version: 6
           _freeList: -1
           _freeCount: 0
-        _lastId: 3
+        _lastId: 4
     - rid: 4692615005340958723
       type: {class: BlueprintNodeInteractiveEvents, ns: MisterGames.BlueprintLib,
         asm: MisterGames.BlueprintsLib}
