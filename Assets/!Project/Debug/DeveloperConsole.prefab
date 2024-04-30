@@ -30,7 +30,6 @@ RectTransform:
   m_Children:
   - {fileID: 8546323579614634932}
   m_Father: {fileID: 1046180677547840123}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -63,6 +62,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3231216613973138705}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -70,7 +70,6 @@ Transform:
   m_Children:
   - {fileID: 3231216614183432095}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9010413082463697148
 MonoBehaviour:
@@ -87,29 +86,21 @@ MonoBehaviour:
   _canvas: {fileID: 3231216614183432096}
   _textField: {fileID: 2451438027745568181}
   _textFieldMaxCharacters: 10000
-  _textFieldFontSize: 20
+  _textFieldFontSize: 32
   _textInputField: {fileID: 3231216615584580145}
-  _textInputFieldFontSize: 18
+  _textInputFieldFontSize: 32
   _greeting: MisterGames Debug Console
   _activationInput: {fileID: 11400000, guid: cc25600298f40554a9241809af3f877c, type: 2}
   _consoleModules:
-  - rid: 6196715897464291347
-  - rid: 6196715897464291348
-  - rid: 6196715897464291349
-  - rid: 6196715897464291350
+  - rid: -2
+  - rid: -2
+  - rid: -2
+  - rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 6196715897464291347
-      type: {class: HeroConsoleModule, ns: MisterGames.ConsoleCommandsLib.Modules, asm: MisterGames.ConsoleCommandsLib}
-      data:
-        _heroPrefab: {fileID: 7205586870401899322, guid: 8eb4ea36122b5da4da483a1b605c6cda, type: 3}
-    - rid: 6196715897464291348
-      type: {class: SceneConsoleModule, ns: MisterGames.ConsoleCommandsLib.Modules, asm: MisterGames.ConsoleCommandsLib}
-    - rid: 6196715897464291349
-      type: {class: HelpConsoleModule, ns: MisterGames.Dbg.Console.Modules, asm: MisterGames.Dbg}
-    - rid: 6196715897464291350
-      type: {class: TextConsoleModule, ns: MisterGames.Dbg.Console.Modules, asm: MisterGames.Dbg}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &-8721823811315351641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,28 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e37b5c702e471ab7bc7e31455e2ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _consoleRunner: {fileID: 9010413082463697148}
-  _hotkeys:
-  - input: {fileID: 11400000, guid: c7ec11a85d71d4744be5f8506431c504, type: 2}
-    command: hero/spawni 0
-  - input: {fileID: 11400000, guid: 7ce86563b7c93654d9ee6cbe910d32b5, type: 2}
-    command: hero/spawni 1
-  - input: {fileID: 11400000, guid: 547f61d1f989717458a4e774ab6002d3, type: 2}
-    command: hero/spawni 2
-  - input: {fileID: 11400000, guid: 495923a7f60519c4482a51d9e1942de0, type: 2}
-    command: hero/spawni 3
-  - input: {fileID: 11400000, guid: 0c48ed10971b1d6498cc650a85bf3221, type: 2}
-    command: hero/spawni 4
-  - input: {fileID: 11400000, guid: 9f594ae566310744fa2274dd85090885, type: 2}
-    command: hero/spawni 5
-  - input: {fileID: 11400000, guid: 4e9451fed9fa07e46a8567b4f8bcd68d, type: 2}
-    command: hero/spawni 6
-  - input: {fileID: 11400000, guid: 6082d711cdeb08d41954ba7db9a910a8, type: 2}
-    command: hero/spawni 7
-  - input: {fileID: 11400000, guid: 05026b98ad79650429242ef69903a78e, type: 2}
-    command: hero/spawni 8
-  - input: {fileID: 11400000, guid: d9ea6009387a32343af6cfd6cf9ea719, type: 2}
-    command: hero/spawni 9
+  _hotkeys: []
 --- !u!1 &3231216614183432096
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +163,6 @@ RectTransform:
   m_Children:
   - {fileID: 3231216615417145564}
   m_Father: {fileID: 3231216613973138704}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -217,6 +186,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -296,7 +266,6 @@ RectTransform:
   - {fileID: 7211626637657601848}
   - {fileID: 3231216615584580146}
   m_Father: {fileID: 3231216614183432095}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -386,7 +355,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3231216616019215223}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -448,8 +416,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -523,12 +491,11 @@ RectTransform:
   m_Children:
   - {fileID: 3231216616019215223}
   m_Father: {fileID: 3231216615417145564}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 16}
-  m_SizeDelta: {x: 0, y: 32}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3231216615584580143
 CanvasRenderer:
@@ -697,7 +664,6 @@ RectTransform:
   m_Children:
   - {fileID: 3231216615450416669}
   m_Father: {fileID: 3231216615584580146}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -750,7 +716,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2444506320223083858}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -936,8 +901,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1024,7 +989,6 @@ RectTransform:
   - {fileID: 1046180677547840123}
   - {fileID: 457537589035104159}
   m_Father: {fileID: 7211626637657601848}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1093,7 +1057,6 @@ RectTransform:
   m_Children:
   - {fileID: 6621836924330702466}
   m_Father: {fileID: 2444506320223083858}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1152,7 +1115,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8546323579614634932}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.37511724
+  m_Size: 0.41403076
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1189,12 +1152,11 @@ RectTransform:
   m_Children:
   - {fileID: 2444506320223083858}
   m_Father: {fileID: 3231216615417145564}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 16}
-  m_SizeDelta: {x: 0, y: -32}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 0, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3119027347713429194
 CanvasRenderer:
@@ -1248,7 +1210,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6621836924330702466}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
