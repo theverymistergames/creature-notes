@@ -63,7 +63,7 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
         if (_currentTween.IsActive()) return;
         
-        int nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
+        var nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
         
         if (positions.Length > 0) {
             var startPosition = positions[_currentStateId];
