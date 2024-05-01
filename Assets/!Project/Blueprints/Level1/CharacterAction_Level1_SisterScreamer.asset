@@ -27,8 +27,7 @@ MonoBehaviour:
         - rid: 2949883352419663900
         - rid: 2949883352419663901
         - rid: 2949883352419663952
-        - rid: 2949883352419664059
-        - rid: 2949883352419664060
+        - rid: 4105390637477527592
     - rid: 2949883352419663900
       type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -62,13 +61,43 @@ MonoBehaviour:
         applyPosition: 0
         applyRotation: 1
         _crop: {x: 0, y: 1}
-    - rid: 2949883352419664059
+    - rid: 2949883352419664061
+      type: {class: CharacterActionSpawnPrefab, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 1052829174011782592, guid: afa0d0344fa9f48438dc38b0a4bd3136,
+          type: 3}
+        positionOffset: {x: 0, y: -1, z: -0.5}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        useLocal: 1
+        lifeTime:
+          _hasValue: 1
+          _value: 15
+    - rid: 2949883688483291204
+      type: {class: CharacterActionResetVelocity, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data: 
+    - rid: 4105390637477527592
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 3
+        mode: 0
+        action:
+          rid: 4105390637477527593
+    - rid: 4105390637477527593
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 4105390637477527594
+        - rid: 4105390637477527595
+    - rid: 4105390637477527594
       type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
         isEnabled: 1
         isViewEnabled: 1
-    - rid: 2949883352419664060
+    - rid: 4105390637477527595
       type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
@@ -86,19 +115,3 @@ MonoBehaviour:
             bounds: {x: -90, y: 90}
             springs: {x: 0, y: 0}
             springFactors: {x: 0, y: 0}
-    - rid: 2949883352419664061
-      type: {class: CharacterActionSpawnPrefab, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        prefab: {fileID: 1052829174011782592, guid: afa0d0344fa9f48438dc38b0a4bd3136,
-          type: 3}
-        positionOffset: {x: 0, y: -1, z: -0.5}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        useLocal: 1
-        lifeTime:
-          _hasValue: 1
-          _value: 15
-    - rid: 2949883688483291204
-      type: {class: CharacterActionResetVelocity, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data: 
