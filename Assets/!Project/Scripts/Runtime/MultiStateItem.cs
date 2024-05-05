@@ -4,7 +4,6 @@ using LitMotion.Extensions;
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class MultiStateItem : MonoBehaviour, IEventListener {
     
