@@ -14,7 +14,7 @@ public class MagicCaster : MonoBehaviour, IActorComponent {
     private IActor _actor;
     private CancellationTokenSource _enableCts;
 
-    void IActorComponent.OnAwakeActor(IActor actor) {
+    void IActorComponent.OnAwake(IActor actor) {
         _actor = actor;
     }
 

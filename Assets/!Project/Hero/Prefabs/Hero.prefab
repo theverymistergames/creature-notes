@@ -62,7 +62,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7205586869398250320}
+  - {fileID: 3510025717400960321}
   m_Father: {fileID: 7205586870401899320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1652185412553511986
@@ -144,7 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3313713ebe6e4514976c90fc0d80ae74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterController: {fileID: 7205586870401899302}
   _hitDetector: {fileID: 2001994226625679391}
   _ceilingDetector: {fileID: 1115517514154010951}
   _groundDetector: {fileID: 6105622827973123828}
@@ -351,7 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a627be042364291a656248f14a927b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _playerLoopStage: 1
 --- !u!114 &7185304629291760698
 MonoBehaviour:
@@ -679,6 +677,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _detector: {fileID: 2425128053471703627}
   _interactiveUser: {fileID: 8016680816859197842}
+--- !u!1 &5681373778964590004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3510025717400960321}
+  - component: {fileID: 5893413610384384231}
+  m_Layer: 2
+  m_Name: HeadBone_Animations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3510025717400960321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5681373778964590004}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7205586869398250320}
+  m_Father: {fileID: 6006351456734287650}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5893413610384384231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5681373778964590004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ff768b8d624673b023cbf1c4e8958d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 7205586869398250334}
+  _transform: {fileID: 3510025717400960321}
 --- !u!1 &5905521766081480065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,42 +1075,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd1ed7d2de4378b18d4342fe5197e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _camera: {fileID: 7205586869398250334}
-  _cameraContainer: {fileID: 4741229143266635619}
+  _cameraContainer: {fileID: 5893413610384384231}
   _playerLoopStage: 1
-  _inputProcessors:
-  - rid: 8690781321960882184
-  _inputToViewProcessor:
-    rid: 8690781321960882185
-  _viewProcessors:
-  - rid: 8690781321960882186
-  references:
-    version: 2
-    RefIds:
-    - rid: 8690781321960882184
-      type: {class: CharacterProcessorVector2Sensitivity, ns: MisterGames.Character.Processors,
-        asm: MisterGames.Character}
-      data:
-        sensitivity: {x: 0.15, y: 0.15}
-    - rid: 8690781321960882185
-      type: {class: CharacterProcessorViewClamp, ns: MisterGames.Character.View, asm: MisterGames.Character}
-      data:
-        horizontal:
-          mode: 0
-          bounds: {x: 0, y: 0}
-          springs: {x: 0, y: 0}
-          springFactors: {x: 0, y: 0}
-        vertical:
-          mode: 3
-          bounds: {x: -89, y: 89}
-          springs: {x: 0, y: 0}
-          springFactors: {x: 0, y: 0}
-    - rid: 8690781321960882186
-      type: {class: CharacterProcessorQuaternionSmoothing, ns: MisterGames.Character.Processors,
-        asm: MisterGames.Character}
-      data:
-        smoothFactor: 20
+  _sensitivity: {x: 0.15, y: 0.15}
+  _smoothing: 20
+  _freeHeadRotationDistance: 0.1
+  _returnFreeHeadRotationSmoothing: 5
+  _viewClamp:
+    _horizontal:
+      mode: 0
+      absolute: 0
+      bounds: {x: 0, y: 0}
+      springs: {x: 0, y: 0}
+      springFactors: {x: 0, y: 0}
+    _vertical:
+      mode: 3
+      absolute: 1
+      bounds: {x: -90, y: 90}
+      springs: {x: 0, y: 0}
+      springFactors: {x: 0, y: 0}
 --- !u!114 &5812217121935433494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,7 +1108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerLoopStage: 1
-  _characterAccess: {fileID: 354778581290818253}
   _cameraMotionWeight: 1
   _smoothFactor: 2
   _baseAmplitude: 0.02
@@ -1133,16 +1161,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e88c82a898a48d3a3b3dbaf7c69208c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _playerLoopStage: 1
   _inputProcessors:
   - rid: 6196715897464291342
   - rid: 6196715897464291343
   - rid: 6196715897464291344
-  _inputToMotionProcessor:
-    rid: 6196715897464291345
-  _motionProcessors:
-  - rid: 6196715897464291346
+  _massProcessor:
+    airInertialFactor: 10
+    groundInertialFactor: 20
+    inputInfluenceFactor: 0.5
+    gravityForce: 15
+    isGravityEnabled: 1
   references:
     version: 2
     RefIds:
@@ -1162,18 +1191,6 @@ MonoBehaviour:
         asm: MisterGames.Character}
       data:
         smoothFactor: 20
-    - rid: 6196715897464291345
-      type: {class: CharacterProcessorVector2ToCharacterForward, ns: MisterGames.Character.Motion,
-        asm: MisterGames.Character}
-      data: 
-    - rid: 6196715897464291346
-      type: {class: CharacterProcessorMass, ns: MisterGames.Character.Motion, asm: MisterGames.Character}
-      data:
-        airInertialFactor: 10
-        groundInertialFactor: 20
-        inputInfluenceFactor: 1
-        gravityForce: 15
-        isGravityEnabled: 1
 --- !u!114 &4269949916693310703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1199,7 +1216,6 @@ GameObject:
   - component: {fileID: 7205586869398250334}
   - component: {fileID: 7205586869398250335}
   - component: {fileID: 2585190320631944689}
-  - component: {fileID: 4741229143266635619}
   - component: {fileID: 4283694202728951010}
   m_Layer: 2
   m_Name: Head
@@ -1223,7 +1239,7 @@ Transform:
   m_Children:
   - {fileID: 8993632890533737768}
   - {fileID: 6911922390057263876}
-  m_Father: {fileID: 6006351456734287650}
+  m_Father: {fileID: 3510025717400960321}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7205586869398250334
 Camera:
@@ -1413,20 +1429,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &4741229143266635619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205586869398250321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ff768b8d624673b023cbf1c4e8958d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 7205586869398250334}
-  _transform: {fileID: 6006351456734287650}
 --- !u!114 &4283694202728951010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,9 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793ba0d08e6c460fb6e7fdb1998b7583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
-  _headRoot: {fileID: 7205586869398250320}
-  _characterController: {fileID: 7205586870401899302}
+  _headRoot: {fileID: 6006351456734287650}
 --- !u!1 &7205586870401899322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,26 +1551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3ec7d6a46444f7b150311ae08bf98e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headAdapter: {fileID: 4283694202728951010}
-  _bodyAdapter: {fileID: 150641572023669722}
-  _pipelines:
-  - {fileID: 8266916168477958313}
-  - {fileID: 1361433330712634023}
-  - {fileID: 6169025681448676973}
-  - {fileID: 5199446035465094154}
-  - {fileID: 2252703057486833798}
-  - {fileID: 2243419931141208573}
-  - {fileID: 812060535516466001}
-  - {fileID: 7953495498895512114}
-  - {fileID: 3711417330593867449}
-  - {fileID: 137295681341058935}
-  - {fileID: 4269949916693310703}
-  - {fileID: 1950245598912483612}
-  - {fileID: 7185304629291760698}
-  - {fileID: 1280214957785522907}
-  - {fileID: 7391322638178157487}
-  - {fileID: 5787026696674559360}
-  - {fileID: 5812217121935433494}
 --- !u!143 &7205586870401899302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1609,8 +1589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f86ecef4a642388cf62c0ad6a22b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
-  _characterController: {fileID: 7205586870401899302}
 --- !u!114 &2001994226625679391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1685,7 +1663,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerLoopStage: 1
-  _characterAccess: {fileID: 354778581290818253}
   _feetDistance: 0.3
   _feetForwardOffset: 0.3
   _speedMin: 0.1
@@ -1739,7 +1716,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerLoopStage: 1
-  _characterAccess: {fileID: 354778581290818253}
   _cameraWeight: 1
   _smooth: 3
   _returnSmooth: 5
@@ -2135,7 +2111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463a5aaf29e441cc94d26d99fbe4269a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _cameraMotionWeight: 1
   _smoothFactor: 1
   _positionAmplitude: 0.01
@@ -2187,7 +2162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5e5a67253741a2a02bf3434efa923a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAccess: {fileID: 354778581290818253}
   _addItems: []
   _storage:
     _items:
