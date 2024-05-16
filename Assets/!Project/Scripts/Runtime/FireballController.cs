@@ -39,7 +39,7 @@ public class FireballController : MonoBehaviour, IActorComponent {
     private Light _light;
     private float lightIntensity;
 
-    void IActorComponent.OnAwakeActor(IActor actor) {
+    void IActorComponent.OnAwake(IActor actor) {
         _actor = actor;
     }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using MisterGames.Character.Core;
 using MisterGames.Character.Inventory;
@@ -20,7 +19,7 @@ public class Level2Painting : MonoBehaviour {
         _interactive = GetComponent<Interactive>();
         _interactive.OnStartInteract += InteractiveOnOnStartInteract;
 
-        _inventory = CharacterAccessRegistry.Instance.GetCharacterAccess().GetComponent<ICharacterInventoryPipeline>().Inventory;
+        _inventory = CharacterAccessRegistry.Instance.GetCharacterAccess().GetComponent<CharacterInventoryPipeline>().Inventory;
     }
 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
