@@ -23,7 +23,8 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 6196716078114537496
-      type: {class: InteractConditionInputKey, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      type: {class: InteractConditionInputKey, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
       data:
         keyEvent:
           _mode: 0
@@ -35,22 +36,14 @@ MonoBehaviour:
           _hasValue: 0
           _value: 0
     - rid: 6196716169574481926
-      type: {class: InteractConditionGroup, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      type: {class: InteractConditionGroup, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
       data:
         mode: 0
-        constraints:
-        - rid: 6196716169574481927
-        - rid: 6196716169574481928
-    - rid: 6196716169574481927
-      type: {class: InteractConditionIsDetected, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
-      data:
-        shouldBeDetected: 1
-    - rid: 6196716169574481928
-      type: {class: InteractConditionMaxUsers, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
-      data:
-        maxUsers: 0
+        conditions: []
     - rid: 6196716169574481929
-      type: {class: InteractConditionInputKey, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      type: {class: InteractConditionInputKey, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
       data:
         keyEvent:
           _mode: 0
