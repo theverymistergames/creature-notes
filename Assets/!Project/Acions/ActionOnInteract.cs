@@ -1,40 +1,49 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
-using MisterGames.Character.Core;
-using MisterGames.Collisions.Triggers;
 using MisterGames.Common.Attributes;
 using MisterGames.Interact.Interactives;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace MisterGames.Character.Motion {
 
     public sealed class ActionOnInteract : MonoBehaviour {
-        [SerializeReference] [SubclassSelector] private IActorAction _action;
+        
+        [SerializeReference] [SubclassSelector] private IActorAction _startAction;
+        [SerializeReference] [SubclassSelector] private IActorAction _stopAction;
 
         private Interactive _interactive;
         private CancellationTokenSource _enableCts;
-        private IActor _context;
-
-        private void OnEnable() {
+        
+        private void Awake() {
             _interactive = GetComponent<Interactive>();
-            _interactive.OnStartInteract += InteractiveOnOnStartInteract;
         }
 
-        private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
+        private void OnEnable() {
             _enableCts?.Cancel();
             _enableCts?.Dispose();
             _enableCts = new CancellationTokenSource();
-            _context = CharacterAccessRegistry.Instance.GetCharacterAccess();
             
-            _action?.Apply(_context, _enableCts.Token).Forget();
+            _interactive.OnStartInteract += OnStartInteract;
+            _interactive.OnStopInteract += OnStopInteract;
         }
 
         private void OnDisable() {
-            _interactive.OnStartInteract -= InteractiveOnOnStartInteract;
+            _enableCts?.Cancel();
+            _enableCts?.Dispose();
+            _enableCts = null;
+            
+            _interactive.OnStartInteract -= OnStartInteract;
+            _interactive.OnStopInteract -= OnStopInteract;
+        }
+
+        private void OnStartInteract(IInteractiveUser user) {
+            if (user.Root.GetComponent<IActor>() is {} actor) _startAction?.Apply(actor, _enableCts.Token).Forget();
+        }
+
+        private void OnStopInteract(IInteractiveUser user) {
+            if (user.Root.GetComponent<IActor>() is {} actor) _stopAction?.Apply(actor, _enableCts.Token).Forget();
         }
     }
 
