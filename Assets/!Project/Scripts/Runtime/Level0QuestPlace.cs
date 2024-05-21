@@ -1,11 +1,12 @@
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Level0QuestPlace : MonoBehaviour {
     
     [SerializeField] private MultiStateItem[] items;
-    [SerializeField] private GameObject easel;
+    [SerializeField] private GameObject dissolveTrigger;
 
     public EventReference evt;
 
@@ -30,7 +31,7 @@ public class Level0QuestPlace : MonoBehaviour {
             items[i].GetComponent<Interactive>().enabled = false;
         }
 
-        easel.GetComponent<Dissolve>().StartDissolve();
+        dissolveTrigger.SetActive(true);
         evt.Raise();
     }
 }

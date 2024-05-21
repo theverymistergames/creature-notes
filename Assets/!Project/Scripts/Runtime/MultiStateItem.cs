@@ -4,6 +4,7 @@ using LitMotion.Extensions;
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MultiStateItem : MonoBehaviour, IEventListener {
     
@@ -14,7 +15,7 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
     [SerializeField] private Vector3[] rotations;
     [SerializeField] private float animationTime = 1f;
 
-    [SerializeField] private EventReference levelLoadedEvent;
+    [FormerlySerializedAs("levelLoadedEvent")] [SerializeField] private EventReference resetEvent;
     
     public event Action Placed = delegate { };
     
@@ -32,12 +33,12 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
 
     private void OnEnable() {
         _interactive.OnStartInteract += InteractiveOnOnStartInteract;
-        levelLoadedEvent.Subscribe(this);
+        resetEvent.Subscribe(this);
     }
 
     private void OnDisable() {
         _interactive.OnStartInteract -= InteractiveOnOnStartInteract;
-        levelLoadedEvent.Unsubscribe(this);
+        resetEvent.Unsubscribe(this);
     }
 
     private void Start() {
@@ -56,7 +57,7 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
     }
 
     void IEventListener.OnEventRaised(EventReference e) {
-        if (e.EventId == levelLoadedEvent.EventId) Reset();
+        if (e.EventId == resetEvent.EventId) Reset();
     }
 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
