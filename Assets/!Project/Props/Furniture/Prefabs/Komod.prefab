@@ -291,7 +291,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3366
+  m_VersionIndex: 3369
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -453,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
   _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
 --- !u!114 &1145468980050248288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +509,7 @@ MonoBehaviour:
   - {x: -0.57, y: -0.357, z: 0}
   rotations: []
   animationTime: 0.2
-  levelLoadedEvent:
+  resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: 0
 --- !u!1 &946407134479950128
@@ -842,7 +843,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2786
+  m_VersionIndex: 2789
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1195,7 +1196,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2786
+  m_VersionIndex: 2789
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1548,7 +1549,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2780
+  m_VersionIndex: 2783
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1984,7 +1985,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2786
+  m_VersionIndex: 2789
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2337,7 +2338,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2786
+  m_VersionIndex: 2789
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2690,7 +2691,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2777
+  m_VersionIndex: 2780
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3043,7 +3044,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2777
+  m_VersionIndex: 2780
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3396,7 +3397,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2780
+  m_VersionIndex: 2783
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3749,7 +3750,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2786
+  m_VersionIndex: 2789
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4185,7 +4186,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2093
+  m_VersionIndex: 2096
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4538,7 +4539,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2492
+  m_VersionIndex: 2495
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4891,7 +4892,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2780
+  m_VersionIndex: 2783
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5244,7 +5245,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2777
+  m_VersionIndex: 2780
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5406,6 +5407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
   _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
 --- !u!114 &7128877671452625706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5461,9 +5463,9 @@ MonoBehaviour:
   - {x: -0.57, y: -0.12931, z: 0}
   rotations: []
   animationTime: 0.2
-  levelLoadedEvent:
-    _eventDomain: {fileID: 0}
-    _eventId: 0
+  resetEvent:
+    _eventDomain: {fileID: 11400000, guid: 136a0348e456edf4484f4f29aac99e4e, type: 2}
+    _eventId: 9
 --- !u!1 &7964749152496024103
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,7 +5714,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2099
+  m_VersionIndex: 2102
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6040,6 +6042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
   _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
 --- !u!114 &9089845018710078450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6095,9 +6098,9 @@ MonoBehaviour:
   - {x: -0.57, y: -0.586, z: 0}
   rotations: []
   animationTime: 0.2
-  levelLoadedEvent:
-    _eventDomain: {fileID: 0}
-    _eventId: 0
+  resetEvent:
+    _eventDomain: {fileID: 11400000, guid: 136a0348e456edf4484f4f29aac99e4e, type: 2}
+    _eventId: 9
 --- !u!1 &8794907405606033490
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,7 +6349,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2786
+  m_VersionIndex: 2789
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -7816,9 +7819,9 @@ MonoBehaviour:
   - {x: -0.00034876022, y: -0.00236, z: -0.0023851753}
   rotations: []
   animationTime: 0.2
-  levelLoadedEvent:
-    _eventDomain: {fileID: 0}
-    _eventId: 0
+  resetEvent:
+    _eventDomain: {fileID: 11400000, guid: 136a0348e456edf4484f4f29aac99e4e, type: 2}
+    _eventId: 9
 --- !u!65 &2266122122494776272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7868,6 +7871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
   _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
 --- !u!4 &7871816359491191316 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1565057199332104163, guid: cbb9971cef4d7f64e9f069eeceb8fade,
