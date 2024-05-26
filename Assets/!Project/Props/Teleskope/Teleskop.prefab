@@ -645,6 +645,7 @@ GameObject:
   - component: {fileID: 5800332148341774374}
   - component: {fileID: 1328278417108297359}
   - component: {fileID: 5173720579174946430}
+  - component: {fileID: 8591546782952774112}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -745,6 +746,7 @@ MonoBehaviour:
         - rid: 4105391196587950086
         - rid: 4105391196587950098
         - rid: 4105391196587950099
+        - rid: 4105391196587950110
     - rid: 4105391196587950086
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -754,13 +756,14 @@ MonoBehaviour:
         useTargetAsCurvePointOrigin: 0
         target: {fileID: 3029080117750411629}
         offsetMode: 0
-        offset: {x: 0, y: 0, z: 0.2}
+        offset: {x: 0, y: 0, z: 0.17}
         rotationOffset: {x: 0, y: 0, z: 0}
         attach: 1
-        attachSmoothing: 0
+        attachSmoothing: 30
         rotateWithAttachedTarget: 1
         speed: 1
         reduceSpeedBelowDistance: 0.2
+        speedMin: 0.01
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -787,7 +790,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         pointRadius: 0.05
-        smoothing: 10
+        smoothing: 15
     - rid: 4105391196587950087
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -797,6 +800,7 @@ MonoBehaviour:
         - rid: 4105391196587950097
         - rid: 4105391196587950088
         - rid: 4105391196587950100
+        - rid: 4105391196587950111
     - rid: 4105391196587950088
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -813,6 +817,7 @@ MonoBehaviour:
         rotateWithAttachedTarget: 0
         speed: 1
         reduceSpeedBelowDistance: 0.2
+        speedMin: 0.01
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -868,6 +873,7 @@ MonoBehaviour:
             bounds: {x: 0, y: 0}
             springs: {x: 0, y: 0}
             springFactors: {x: 0, y: 0}
+            springSmoothing: {x: 0, y: 0}
         vertical:
           _hasValue: 1
           _value:
@@ -876,10 +882,92 @@ MonoBehaviour:
             bounds: {x: 0, y: 0}
             springs: {x: 0, y: 0}
             springFactors: {x: 0, y: 0}
+            springSmoothing: {x: 0, y: 0}
     - rid: 4105391196587950100
       type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         actorAction: {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
+    - rid: 4105391196587950110
+      type: {class: CharacterActionCameraFov, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        playerLoopStage: 1
+        keepChanges: 1
+        weight: 1
+        duration: 0.5
+        durationRandom: 0
+        fovOffset:
+          multiplier: -40
+          addRandom: 0
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: -0.0012029491
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0
+              outWeight: 0.36078
+            - serializedVersion: 3
+              time: 0.5
+              value: 0.5
+              inSlope: 1.5725082
+              outSlope: 1.5733721
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.326514
+              outWeight: 0.33093
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: -0.0009312395
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.358688
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+    - rid: 4105391196587950111
+      type: {class: CharacterActionCameraClearPersistentStates, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        duration: 0.5
+--- !u!114 &8591546782952774112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709480750141699983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1bc1543ac345a3894edecb388a5195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 1795499199808511590}
+  _rotationInput: {fileID: 11400000, guid: adb9a20403e1e3847babd989f1412023, type: 2}
+  _sensitivity: {x: 0.1, y: 0.1}
+  _smoothing: 10
+  _viewClamp:
+    _horizontal:
+      mode: 3
+      absolute: 0
+      bounds: {x: -90, y: 100}
+      springs: {x: -80, y: 90}
+      springFactors: {x: 0.5, y: 0.5}
+      springSmoothing: {x: 2, y: 2}
+    _vertical:
+      mode: 3
+      absolute: 1
+      bounds: {x: -20, y: 40}
+      springs: {x: -17, y: 37}
+      springFactors: {x: 0.5, y: 0.5}
+      springSmoothing: {x: 2, y: 2}
 --- !u!1 &3301784058741267782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,12 +1833,12 @@ Transform:
   m_GameObject: {fileID: 5403613123389838698}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00064086914}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.064086914, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2755585597314363356}
-  m_Father: {fileID: 4275866747026045217}
+  m_Father: {fileID: 8112731213020411922}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7011367379053321588
 GameObject:
@@ -1866,7 +1954,6 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1795499199808511590}
   - {fileID: 3307452630865917673}
   - {fileID: 4470581708400138575}
   - {fileID: 8045190894177598462}
@@ -2033,8 +2120,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8032534349470283424}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.000161, y: 0.000777, z: 0.001335}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.7071079}
+  m_LocalPosition: {x: 0.000161, y: 0.001297, z: -0.00077}
   m_LocalScale: {x: 0.5597037, y: 0.55970365, z: 0.5597036}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2042,7 +2129,7 @@ Transform:
   - {fileID: 1680551589211322249}
   - {fileID: 7336646706992143858}
   m_Father: {fileID: 1795499199808511590}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &6407703913626110213
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2207,5 +2294,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4275866747026045217}
+  - {fileID: 1795499199808511590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

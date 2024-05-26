@@ -12,19 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74eefbea81344b0980cc13894e58e3e7, type: 3}
   m_Name: Input_CharacterView
   m_EditorClassIdentifier: 
-  _strategy:
-    rid: -2
+  _normalize: 0
+  _sensitivity: 1
+  _ignoreNewValueIfNotChanged: 0
+  _ignoreZero: 1
   _bindings:
   - rid: 5452144531743965213
   - rid: 5452144531743965214
-  _normalize: 0
-  _ignoreNewValueIfNotChanged: 0
-  _ignoreZero: 1
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 5452144531743965213
       type: {class: AxisVector2, ns: MisterGames.Input.Bindings, asm: MisterGames.Input}
       data:
@@ -36,6 +33,6 @@ MonoBehaviour:
       type: {class: AxisVector2, ns: MisterGames.Input.Bindings, asm: MisterGames.Input}
       data:
         _axis: 3
-        _sensitivityX: 5
-        _sensitivityY: 5
+        _sensitivityX: 15
+        _sensitivityY: 15
         _normalize: 0
