@@ -632,6 +632,254 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!1 &2709480750141699983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3029080117750411629}
+  - component: {fileID: 813653734342322987}
+  - component: {fileID: 5800332148341774374}
+  - component: {fileID: 1328278417108297359}
+  - component: {fileID: 5173720579174946430}
+  m_Layer: 0
+  m_Name: Sphere (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3029080117750411629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709480750141699983}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: 0.000305}
+  m_LocalScale: {x: 0.0020690896, y: 0.0020690896, z: 0.0020690896}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1680551589211322249}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &813653734342322987
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709480750141699983}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5800332148341774374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709480750141699983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
+  _debugDrawDetectable: 0
+--- !u!114 &1328278417108297359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709480750141699983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 2f455542cffb7924c9ea82a9c841a494, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
+--- !u!114 &5173720579174946430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709480750141699983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cancelOnNextAction: 1
+  _startAction:
+    rid: 4105391196587950080
+  _stopAction:
+    rid: 4105391196587950087
+  references:
+    version: 2
+    RefIds:
+    - rid: 4105391196587950080
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 1
+        actions:
+        - rid: 4105391196587950086
+        - rid: 4105391196587950098
+        - rid: 4105391196587950099
+    - rid: 4105391196587950086
+      type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        targetType: 1
+        localPosition: {x: 0, y: 0, z: 0}
+        useTargetAsCurvePointOrigin: 0
+        target: {fileID: 3029080117750411629}
+        offsetMode: 0
+        offset: {x: 0, y: 0, z: 0.2}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        attach: 1
+        attachSmoothing: 0
+        rotateWithAttachedTarget: 1
+        speed: 1
+        reduceSpeedBelowDistance: 0.2
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        pointRadius: 0.05
+        smoothing: 10
+    - rid: 4105391196587950087
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 1
+        actions:
+        - rid: 4105391196587950089
+        - rid: 4105391196587950097
+        - rid: 4105391196587950088
+        - rid: 4105391196587950100
+    - rid: 4105391196587950088
+      type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        targetType: 0
+        localPosition: {x: 0, y: 0, z: 0}
+        useTargetAsCurvePointOrigin: 1
+        target: {fileID: 3029080117750411629}
+        offsetMode: 0
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        attach: 0
+        attachSmoothing: 0
+        rotateWithAttachedTarget: 0
+        speed: 1
+        reduceSpeedBelowDistance: 0.2
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        pointRadius: 0.05
+        smoothing: 10
+    - rid: 4105391196587950089
+      type: {class: CharacterDetachHeadAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data: 
+    - rid: 4105391196587950097
+      type: {class: CharacterStopLookingAtTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data: 
+    - rid: 4105391196587950098
+      type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 3029080117750411629}
+        angularSpeed: 30
+        maxAngle: 5
+        keepLookingAtAfterFinish: 1
+    - rid: 4105391196587950099
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        horizontal:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: 0, y: 0}
+            springs: {x: 0, y: 0}
+            springFactors: {x: 0, y: 0}
+        vertical:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: 0, y: 0}
+            springs: {x: 0, y: 0}
+            springFactors: {x: 0, y: 0}
+    - rid: 4105391196587950100
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        actorAction: {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
 --- !u!1 &3301784058741267782
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1246,7 @@ Transform:
   m_Children:
   - {fileID: 4274623277733483350}
   - {fileID: 5549084859733023796}
+  - {fileID: 3029080117750411629}
   m_Father: {fileID: 2755585597314363356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1592758403647793890
@@ -1495,14 +1744,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5403613123389838698}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.1808625, w: 0.9835084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.00064086914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2755585597314363356}
   m_Father: {fileID: 4275866747026045217}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20.84}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7011367379053321588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,11 +2201,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8349424673933579167}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 36.565845, y: 2.07444, z: 17.755384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4275866747026045217}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
