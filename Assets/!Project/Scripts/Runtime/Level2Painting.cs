@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MisterGames.Actors.Actions;
 using MisterGames.Character.Core;
 using MisterGames.Character.Inventory;
 using MisterGames.Interact.Interactives;
@@ -10,6 +11,7 @@ public class Level2Painting : MonoBehaviour {
     [SerializeField] private List<GameObject> parts = new();
     [SerializeField] private EventReference partsCollectedEvent;
     [SerializeField] private int maxParts = 5;
+    [SerializeField] private ActionReference _action;
     
     private Interactive _interactive;
     private IInventory _inventory;
