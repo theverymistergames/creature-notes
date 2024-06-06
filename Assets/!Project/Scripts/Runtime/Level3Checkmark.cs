@@ -10,7 +10,7 @@ using UnityEngine.Events;
 public class Level3Checkmark : MonoBehaviour {
     [SerializeField] private TweenRunner[] tweens;
     [SerializeField] private GameObject checkMark;
-    [SerializeField] private Trigger startBattleTrigger;
+    [SerializeField] private DirectionalTrigger startBattleTrigger;
 
     [SerializeField] private GameObject sister, sisterScreamer;
 
@@ -27,14 +27,14 @@ public class Level3Checkmark : MonoBehaviour {
         
         checkMark.SetActive(false);
 
-        startBattleTrigger.OnTriggered += StartBattleTriggerOnOnTriggered;
+        startBattleTrigger.OnTriggeredForward += StartBattleTriggerOnOnTriggeredForward;
     }
 
-    private async void StartBattleTriggerOnOnTriggered(Collider obj) {
+    private async void StartBattleTriggerOnOnTriggeredForward(GameObject obj) {
         sister.SetActive(false);
         sisterScreamer.SetActive(true);
 
-        await UniTask.Delay(2000);
+        await UniTask.Delay(1000);
         
         sisterScreamer.SetActive(false);
         
