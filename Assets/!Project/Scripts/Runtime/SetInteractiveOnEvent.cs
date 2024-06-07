@@ -15,24 +15,22 @@ public class SetInteractiveOnEvent : MonoBehaviour, IEventListener {
     [SerializeField] private EventReference disableEvent;
     [SerializeField] private bool disableOnStart;
 
-    private Detectable _detectable;
+    private Collider _collider;
 
     private void Awake() {
-        _detectable = GetComponent<Detectable>();
+        _collider = GetComponent<BoxCollider>();
         
         enableEvent.Subscribe(this);
         disableEvent.Subscribe(this);
 
-        if (disableOnStart) {
-            _detectable.enabled = false;
-        }
+        if (disableOnStart) _collider.enabled = false;
     }
 
     public void OnEventRaised(EventReference e) {
         if (e.EventId == enableEvent.EventId) {
-            _detectable.enabled = true;
+            _collider.enabled = true;
         } else if (e.EventId == disableEvent.EventId) {
-            _detectable.enabled = false;
+            _collider.enabled = false;
         }
     }
 }

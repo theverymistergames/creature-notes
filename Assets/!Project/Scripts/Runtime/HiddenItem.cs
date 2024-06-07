@@ -14,22 +14,40 @@ using UnityEngine.Serialization;
 public class HiddenItem : MonoBehaviour, IEventListener {
     [SerializeField] private EventReference @event;
     [SerializeField] private GameObject hiddenItem;
+    [SerializeField] private GameObject contour;
+    [SerializeField] private bool activateGameObjectOnPlaced = false;
+    [SerializeField] private GameObject goOnPlaced;
     
+    private Detectable _detectable;
     private Interactive _interactive;
+    private Collider _collider;
 
     private void Start() {
+        if (activateGameObjectOnPlaced) goOnPlaced.SetActive(false);
+        
         hiddenItem.SetActive(false);
-        _interactive = GetComponent<Interactive>();
+        contour.SetActive(false);
+
+        _collider = GetComponent<BoxCollider>();
+        _collider.enabled = false;
+
+        GetComponent<Interactive>().OnStartInteract += InteractiveOnOnStartInteract;
         
         @event.Subscribe(this);
     }
 
     public void OnEventRaised(EventReference e) {
-        _interactive.OnStartInteract += InteractiveOnOnStartInteract;
+        if (e.EventId != @event.EventId) return;
+        
+        contour.SetActive(true);
+        _collider.enabled = true;
     }
 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
-        GetComponent<BoxCollider>().enabled = false;
+        contour.SetActive(false);
+        _collider.enabled = false;
         hiddenItem.SetActive(true);
+        
+        if (activateGameObjectOnPlaced) goOnPlaced.SetActive(true);
     }
 }

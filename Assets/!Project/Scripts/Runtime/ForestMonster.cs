@@ -64,8 +64,8 @@ public class ForestMonster : MonoBehaviour {
         // if (_agent.velocity != Vector3.zero) {
         //     _agent.transform.eulerAngles = new Vector3(0, Quaternion.LookRotation(_agent.velocity).eulerAngles.y, 0);            
         // }
-
-        if (distance > stopDistance && distance < 10000f) {
+        
+        if (distance > stopDistance && distance < 10000f || distance == -1f && _agent.pathStatus != NavMeshPathStatus.PathComplete) {
             Stop();
         }
     }

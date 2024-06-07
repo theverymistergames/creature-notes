@@ -6,7 +6,7 @@ using MisterGames.Scenario.Events;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class MultiStateItem : MonoBehaviour, IEventListener {
+public class MultiStateItem : Placeable, IEventListener {
     
     [SerializeField] private int startStateId = 0;
     [SerializeField] private int rightStateId = 1;
@@ -17,13 +17,13 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
 
     [FormerlySerializedAs("levelLoadedEvent")] [SerializeField] private EventReference resetEvent;
     
-    public event Action Placed = delegate { };
+    // public event Action Placed = delegate { };
     
     private Interactive _interactive;
     private int _currentStateId;
     private MotionHandle _currentTween;
 
-    public bool IsPlacedRight() {
+    public override bool IsPlacedRight() {
         return _currentStateId == rightStateId;
     }
 
@@ -93,7 +93,7 @@ public class MultiStateItem : MonoBehaviour, IEventListener {
         }
 
         _currentStateId = nextId;
-        
-        Placed.Invoke();
+
+        OnPlaced();
     }
 }
