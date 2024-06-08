@@ -23,7 +23,6 @@ public class Level0QuestPlace : MonoBehaviour {
     }
 
     private void OnItemPlaced() {
-        Debug.Log(placeables.Count(p => p.IsPlacedRight()));
         for (int i = 0; i < placeables.Length; i++) {
             if (!placeables[i].IsPlacedRight()) return;
         }
