@@ -147,6 +147,7 @@ MonoBehaviour:
   _hitDetector: {fileID: 2001994226625679391}
   _ceilingDetector: {fileID: 1115517514154010951}
   _groundDetector: {fileID: 6105622827973123828}
+  _extraCollider: {fileID: 206733769496938446}
 --- !u!114 &6105622827973123828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,7 +1078,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 7205586869398250334}
   _cameraContainer: {fileID: 5893413610384384231}
-  _playerLoopStage: 1
   _sensitivity: {x: 0.15, y: 0.15}
   _smoothing: 20
   _freeHeadRotationDistance: 0.1
@@ -1089,12 +1089,14 @@ MonoBehaviour:
       bounds: {x: 0, y: 0}
       springs: {x: 0, y: 0}
       springFactors: {x: 0, y: 0}
+      springSmoothing: {x: 0, y: 0}
     _vertical:
       mode: 3
       absolute: 1
       bounds: {x: -90, y: 90}
       springs: {x: 0, y: 0}
       springFactors: {x: 0, y: 0}
+      springSmoothing: {x: 0, y: 0}
 --- !u!114 &5812217121935433494
 MonoBehaviour:
   m_ObjectHideFlags: 0
