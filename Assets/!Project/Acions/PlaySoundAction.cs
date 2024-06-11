@@ -11,6 +11,7 @@ namespace MisterGames.ActionLib.GameObjects {
 
     [Serializable]
     public sealed class PlaySoundAction : IActorAction {
+        
         public AudioSource source;
         
         public UniTask Apply(IActor context, CancellationToken cancellationToken = default) {
