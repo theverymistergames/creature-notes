@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using MisterGames.Character.Core;
 using MisterGames.Character.Inventory;
@@ -14,6 +15,7 @@ using UnityEngine.Serialization;
 public class HiddenItem : MonoBehaviour, IEventListener {
     [SerializeField] private EventReference @event;
     [SerializeField] private GameObject hiddenItem;
+    [SerializeField] private int activateHiddenItemDelay = 50;
     [SerializeField] private GameObject contour;
     [SerializeField] private bool activateGameObjectOnPlaced = false;
     [SerializeField] private GameObject goOnPlaced;
@@ -31,7 +33,7 @@ public class HiddenItem : MonoBehaviour, IEventListener {
         _collider = GetComponent<BoxCollider>();
         _collider.enabled = false;
 
-        GetComponent<Interactive>().OnStartInteract += InteractiveOnOnStartInteract;
+        GetComponent<Interactive>().OnStartInteract += OnStartInteract;
         
         @event.Subscribe(this);
     }
@@ -43,11 +45,13 @@ public class HiddenItem : MonoBehaviour, IEventListener {
         _collider.enabled = true;
     }
 
-    private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
+    private async void OnStartInteract(IInteractiveUser obj) {
         contour.SetActive(false);
         _collider.enabled = false;
-        hiddenItem.SetActive(true);
         
         if (activateGameObjectOnPlaced) goOnPlaced.SetActive(true);
+
+        await UniTask.Delay(activateHiddenItemDelay);
+        hiddenItem.SetActive(true);
     }
 }

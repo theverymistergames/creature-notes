@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using LitMotion;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Layers;
@@ -8,7 +9,6 @@ using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Dissolve : MonoBehaviour {
-    [SerializeField] private GameObject[] gameObjects;
     [SerializeField] private Vector2 cutoffHeightFromTo = new(1, -1);
     [SerializeField] private float duration = 2f;
     [SerializeField] private bool dissolveOnDetected;
@@ -19,13 +19,14 @@ public class Dissolve : MonoBehaviour {
     
 
     private void DetectableOnOnDetectedBy(IDetector obj) {
-        Debug.Log(obj.Root.name);
         StartDissolve();
     }
 
-    private void Start() {
-        foreach (var go in gameObjects) {
-            _materials.AddRange(go.GetComponent<MeshRenderer>().materials);
+    private void Awake() {
+        var renderers = gameObject.GetComponentsInChildren<MeshRenderer>().ToList();
+        
+        foreach (var meshRenderer in renderers) {
+            _materials.AddRange(meshRenderer.materials);
         }
     }
 

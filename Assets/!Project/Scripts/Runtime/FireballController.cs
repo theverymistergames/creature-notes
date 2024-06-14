@@ -103,7 +103,7 @@ public class FireballController : MonoBehaviour, IActorComponent {
         throwSound.Play();
         
         _onFireAction.Apply(_actor, _enableCts.Token).Forget();
-        
+        var power = _burnProgressTime / burnTime;
         Clear();
         
         var container = Instantiate(projectile, gameObject.transform);
@@ -112,9 +112,9 @@ public class FireballController : MonoBehaviour, IActorComponent {
 
         var strikeContainer = container.GetComponent<ProjectileContainer>();
         
-        var direction = (container.transform.position - gameObject.transform.position).normalized;
+        var direction = (container.transform.position - gameObject.transform.position + Vector3.up * (0.02f + 0.03f * power)).normalized;
         
-        strikeContainer.Strike(direction);
+        strikeContainer.Strike(direction, power);
     }
 
     private void Update() {

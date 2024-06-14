@@ -16,6 +16,11 @@ public class ProjectileContainer : MonoBehaviour {
     
     [SerializeField]
     private GameObject fireball;
+    
+    [SerializeField]
+    private float forceMultiplier = 0.005f;
+
+    [SerializeField] private ForceMode forceMode;
 
     private List<int> _runesTypes;
     private Light _light;
@@ -23,24 +28,21 @@ public class ProjectileContainer : MonoBehaviour {
     private bool _striked;
     private Vector3 _direction;
     private AudioSource explosionSound;
+    private Rigidbody _rb;
 
-    private void Start() {
+    private void Awake() {
         explosionSound = GetComponent<AudioSource>();
         _light = GetComponent<Light>();
+        _rb = GetComponent<Rigidbody>();
 
         var main = explosion.main;
         main.startSize = new ParticleSystem.MinMaxCurve(0, 0);
     }
 
-    public void Strike(Vector3 dir) {
+    public void Strike(Vector3 dir, float power) {
         _direction = dir;
         _striked = true;
-    }
-
-    private void Update() {
-        if (_striked && !collided) {
-            transform.position += _direction * speedMultiplier;
-        }
+        _rb.AddForce(_direction * (forceMultiplier * (1 + 4 * power)), forceMode);
     }
 
     private void OnTriggerEnter(Collider other) {

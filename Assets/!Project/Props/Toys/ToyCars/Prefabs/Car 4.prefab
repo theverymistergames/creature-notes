@@ -43,7 +43,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094669231475410271}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
   m_Name: 
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094669231475410271}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
   m_Name: 
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094669231475410271}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
   m_Name: 
@@ -188,7 +188,12 @@ MonoBehaviour:
         offsetMode: 2
         offset: {x: 0, y: 0, z: -0.3}
         rotationOffset: {x: 0, y: 0, z: 0}
+        attach: 0
+        attachSmoothing: 0
+        attachMode: 0
         speed: 1
+        reduceSpeedBelowDistance: 0.5
+        speedMin: 0.01
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -223,6 +228,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        pointRadius: 0.05
+        smoothing: 10
     - rid: 4105390949934825507
       type: {class: CharacterActionEnablePoseGraph, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -248,6 +255,7 @@ MonoBehaviour:
             bounds: {x: -15, y: 15}
             springs: {x: 0, y: 0}
             springFactors: {x: 5, y: 5}
+            springSmoothing: {x: 0, y: 0}
         vertical:
           _hasValue: 1
           _value:
@@ -256,6 +264,7 @@ MonoBehaviour:
             bounds: {x: -15, y: 15}
             springs: {x: 0, y: 0}
             springFactors: {x: 5, y: 5}
+            springSmoothing: {x: 0, y: 0}
     - rid: 4105390949934825510
       type: {class: CharacterActionCameraFov, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -341,7 +350,12 @@ MonoBehaviour:
         offsetMode: 0
         offset: {x: 0, y: 0, z: 0}
         rotationOffset: {x: 0, y: 0, z: 0}
+        attach: 0
+        attachSmoothing: 0
+        attachMode: 0
         speed: 1
+        reduceSpeedBelowDistance: 0.5
+        speedMin: 0.01
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -376,6 +390,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        pointRadius: 0.05
+        smoothing: 10
     - rid: 4105391043941236738
       type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
