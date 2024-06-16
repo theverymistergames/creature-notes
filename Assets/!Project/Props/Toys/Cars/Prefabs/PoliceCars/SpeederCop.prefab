@@ -134,7 +134,7 @@ Rigidbody:
   m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0.4, z: 0}
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -169,11 +169,14 @@ MonoBehaviour:
   _ignitionMode: 0
   _ignitionDelayAfterEnter: 0.15
   _ignitionDuration: 0.6
+  _mass: 100
+  _wheelMass: 10
   _centerOfMass: {x: 0, y: 0.395, z: 0}
+  _forcesScale: 0.8
   _driveMode: 2
   _acceleration: 2000
   _nitroAcceleration: 3000
-  _speedToRpm: 0.1
+  _speedToRpm: 0.5
   _rpmMin: 0.6
   _rpmMax: 6
   _rpmUpSmoothing: 8
@@ -219,8 +222,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lightInput: {fileID: 11400000, guid: c624ce347a93be946b8836b5a04dd992, type: 2}
   _enableLightsOnEnter: 1
+  _intensityMultiplier: 3000
   _lights:
   - intensity: 16.4
+    emissionIntensity: 6360
     isBrake: 0
     colorOff: {r: 0, g: 0, b: 0, a: 0}
     colorOn: {r: 2.297397, g: 1.7809168, b: 0.77302337, a: 0}
@@ -230,11 +235,12 @@ MonoBehaviour:
     - {fileID: 639317981196215411}
     renderers:
     - {fileID: 2370128}
-  - intensity: 0.5
+  - intensity: 2
+    emissionIntensity: 6360
     isBrake: 1
     colorOff: {r: 0, g: 0, b: 0, a: 0}
     colorOn: {r: 0.41509432, g: 0, b: 0, a: 0}
-    colorOnBrake: {r: 0.6520595, g: 0.0266564, b: 0.0266564, a: 0}
+    colorOnBrake: {r: 0.49416873, g: 0.020201774, b: 0.020201774, a: 0}
     lights:
     - {fileID: 1851919695527410641}
     - {fileID: 6718578475632538785}
@@ -256,8 +262,8 @@ MonoBehaviour:
   _engineAudioSource: {fileID: 965313676332961913}
   _engineSound: {fileID: 8300000, guid: 2b9dc697ce0c02445aecab24a828b76e, type: 3}
   _minPitchEngine: 0.9
-  _maxPitchEngine: 2
-  _rpmToPitch: 0.2857143
+  _maxPitchEngine: 3
+  _rpmToPitch: 0.7
   _minVolumeEngine: 0.3
   _maxVolumeEngine: 1
   _rpmToVolume: 1
@@ -424,7 +430,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 23009
+    _version: 28619
   _blackboard:
     _propertyList: a43ce5533c9171fa
     _propertyMap:
@@ -523,7 +529,7 @@ MonoBehaviour:
         useTargetAsCurvePointOrigin: 0
         target: {fileID: 6194823519715223858}
         offsetMode: 0
-        offset: {x: 0, y: 0.05, z: -0.3}
+        offset: {x: 0, y: 0.1, z: -0.6}
         rotationOffset: {x: 0, y: 0, z: 0}
         attach: 1
         attachSmoothing: 25
@@ -1888,7 +1894,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_Intensity: 16.4
+  m_Intensity: 49200
   m_Range: 10
   m_SpotAngle: 56.5
   m_InnerSpotAngle: 21.80208
@@ -2158,7 +2164,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.99956846
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -2286,7 +2292,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_Intensity: 0.5
+  m_Intensity: 6000
   m_Range: 10
   m_SpotAngle: 57.1
   m_InnerSpotAngle: 21.80208
@@ -2834,7 +2840,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_Intensity: 16.4
+  m_Intensity: 49200
   m_Range: 10
   m_SpotAngle: 56.5
   m_InnerSpotAngle: 21.80208
@@ -3444,7 +3450,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_Intensity: 0.5
+  m_Intensity: 6000
   m_Range: 10
   m_SpotAngle: 57.1
   m_InnerSpotAngle: 21.80208
