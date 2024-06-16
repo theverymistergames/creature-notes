@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 namespace _Project.Scripts.Runtime.Telescope {
     
-    [ExecuteInEditMode]
     public sealed class StarGroupsCanvas : MonoBehaviour {
 
         [SerializeField] private StarGroupsData _starGroupsData;
@@ -31,28 +30,27 @@ namespace _Project.Scripts.Runtime.Telescope {
 
         public int StarGroupCount => _starGroups.Length;
 
-        [Button]
         public void EnableAllStarGroups() {
+            _selectedIndex = -1;
+            
             for (int i = 0; i < _starGroups.Length; i++) {
                 PlaceStarGroup(i, inCenter: false);
                 SetStarGroupEnabled(i, isEnabled: true);
             }
         }
         
-        [Button]
         public void DisableAllStarGroups() {
             for (int i = 0; i < _starGroups.Length; i++) {
                 SetStarGroupEnabled(i, isEnabled: false);
             }
         }
         
-        [Button]
         public void SelectDefaultStarGroup() {
             SelectStarGroup(_selectedIndex);
         }
         
         public void SelectStarGroup(int index) {
-            if (index < 0) index = _selectedIndex;
+            _selectedIndex = index;
             
             for (int i = 0; i < _starGroups.Length; i++) {
                 PlaceStarGroup(i, inCenter: i == index);
@@ -77,12 +75,15 @@ namespace _Project.Scripts.Runtime.Telescope {
             var center = StarGroupUtils.GetStarGroupCenter(starGroup.initialStarsData);
             
             for (int j = 0; j < starGroup.stars.Length; j++) {
+                if (j >= (starGroup.initialStarsData?.Length ?? 0)) break;
+                
                 var t = starGroup.stars[j];
 
                 if (!inCenter) {
                     t.position = starGroup.initialStarsData[j].position;
                     t.rotation = starGroup.initialStarsData[j].rotation;
                     t.localScale = starGroup.initialStarsData[j].scale;
+                    
                     continue;
                 }
 
@@ -93,13 +94,15 @@ namespace _Project.Scripts.Runtime.Telescope {
                     starGroup.scaleWhenCentered,
                     center
                 );
-
+                
                 t.position = d.position + GetCanvasCenter();
                 t.rotation = d.rotation;
                 t.localScale = d.scale;
             }
             
             for (int j = 0; j < starGroup.links.Length; j++) {
+                if (j >= (starGroup.initialLinksData?.Length ?? 0)) break;
+                
                 var t = starGroup.links[j];
 
                 if (!inCenter) {
@@ -129,7 +132,14 @@ namespace _Project.Scripts.Runtime.Telescope {
      
 #if UNITY_EDITOR
         [Button]
-        private void SaveAsInitialLayout() {
+        private void ApplyInitialLayout() {
+            EnableAllStarGroups();
+        }
+
+        [Button]
+        private void SaveInitialLayout() {
+            if (_selectedIndex >= 0) return;
+            
             UnityEditor.Undo.RecordObject(gameObject, "SaveAsInitialLayout");
             
             for (int i = 0; i < _starGroups.Length; i++) {
@@ -170,11 +180,11 @@ namespace _Project.Scripts.Runtime.Telescope {
                 dest.stars = new TransformData[source.initialStarsData.Length];
                 dest.links = new TransformData[source.initialLinksData.Length];
                 
-                for (int j = 0; j < source.stars.Length; j++) {
+                for (int j = 0; j < source.initialStarsData.Length; j++) {
                     dest.stars[j] = source.initialStarsData[j];
                 }
                 
-                for (int j = 0; j < source.links.Length; j++) {
+                for (int j = 0; j < source.initialLinksData.Length; j++) {
                     dest.links[j] = source.initialLinksData[j];
                 }
             }
@@ -202,29 +212,18 @@ namespace _Project.Scripts.Runtime.Telescope {
 
                 dest.rotationWhenCentered = source.canvasRotation;
                 dest.scaleWhenCentered = source.canvasScale;
-                
-                for (int j = 0; j < dest.stars.Length; j++) {
-                    if (j >= (source.stars?.Length ?? 0)) break;
 
-                    dest.stars[j].position = source.stars[j].position;
-                    dest.stars[j].rotation = source.stars[j].rotation;
-                    dest.stars[j].localScale = source.stars[j].scale;
-                }
-                
-                for (int j = 0; j < dest.links.Length; j++) {
-                    if (j >= (source.links?.Length ?? 0)) break; 
-                    
-                    dest.links[j].position = source.links[j].position;
-                    dest.links[j].rotation = source.links[j].rotation;
-                    dest.links[j].localScale = source.links[j].scale;
-                }
+                dest.initialStarsData = source.stars;
+                dest.initialLinksData = source.links;
             }
+            
+            EnableAllStarGroups();
             
             UnityEditor.EditorUtility.SetDirty(gameObject);
         }
 
         private void OnValidate() {
-            SelectDefaultStarGroup();
+            if (_selectedIndex >= 0) SelectDefaultStarGroup();
         }
 #endif
     }

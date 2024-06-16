@@ -663,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 2709480750141699983}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 0, y: 0.008951397, z: 0.0013891207}
+  m_LocalPosition: {x: 0, y: 0.009, z: 0.0013891207}
   m_LocalScale: {x: 0.0036967602, y: 0.0036967606, z: 0.0036967604}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -985,12 +985,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 6146235486278242704}
   _zoomInput: {fileID: 11400000, guid: d6f253c87f6a51844be5f3aa31d97aea, type: 2}
-  _sensitivity: 0.01
+  _sensitivity: -0.01
   _fovSmoothing: 3
-  _fovRange: {x: 3, y: 10}
-  _rotationTarget: {fileID: 1680551589211322249}
-  _angleRange: {x: 0, y: 120}
-  _axis: {x: 0, y: 0, z: 1}
+  _fovRange: {x: 3, y: 8}
+  _visualRotation: {fileID: 1680551589211322249}
+  _visualTranslation: {fileID: 3029080117750411629}
+  _angleRange: {x: 0, y: -30}
+  _angleAxis: {x: 0, y: 0, z: 1}
+  _positionRange: {x: -0.0005, y: 0}
+  _positionAxis: {x: 0, y: 1, z: 0}
 --- !u!1 &3301784058741267782
 GameObject:
   m_ObjectHideFlags: 0
