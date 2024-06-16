@@ -10,7 +10,22 @@ namespace _Project.Scripts.Runtime.Telescope {
         [Header("Detection Settings")]
         [Min(0f)] public float hoverAngle;
         [Min(0f)] public float detectionAngle;
+        [Min(0f)] public Vector2 detectionFovRange;
         [Min(0f)] public float detectionTime;
+        [Min(0f)] public float takeLensOffDelayAfterDetection = 1f;
+
+        [Header("Emission Settings")]
+        [ColorUsage(true, true)]
+        public Color emissionNormal;
+        [ColorUsage(true, true)]
+        public Color emissionHover;
+        [ColorUsage(true, true)]
+        public Color emissionDetected;
+        public float emissionFrequencyHover;
+        public float emissionFrequencyDetected;
+        public float emissionRangeHover;
+        public float emissionRangeDetected;
+        [Min(0f)] public float emissionSmoothing = 10f;
         
         [Header("Visual Settings")]
         public Transform starPrefab;

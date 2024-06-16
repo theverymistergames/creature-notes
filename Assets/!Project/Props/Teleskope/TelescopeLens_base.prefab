@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8882624378483569733}
   - component: {fileID: 7878770202183603383}
   - component: {fileID: 3848951879923233711}
+  - component: {fileID: 8941514927778448066}
   m_Layer: 0
   m_Name: TelescopeLens_base
   m_TagString: Untagged
@@ -102,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cancelOnNextAction: 0
   _startAction:
-    rid: 1899963062963142693
+    rid: 1899963062963142711
   _stopAction:
     rid: -2
   references:
@@ -110,7 +111,22 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 1899963062963142693
+    - rid: 1899963062963142711
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1899963062963142713
+        - rid: 1899963062963142712
+    - rid: 1899963062963142712
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        gameObjects:
+        - {fileID: 7222237880214784952}
+    - rid: 1899963062963142713
       type: {class: RaiseEventAction, ns: MisterGames.ActionLib.Events, asm: MisterGames.ActionLib}
       data:
         eventReference:
@@ -120,6 +136,143 @@ MonoBehaviour:
           _subId: 0
         mode: 1
         count: 1
+--- !u!114 &8941514927778448066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222237880214784952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _playAtStart: 0
+  _tweenPlayer:
+    _progress: 0
+    _speed: 1
+    _yoyo: 0
+    _loop: 0
+    _invertNextPlay: 0
+    _tween:
+      rid: 1899963062963142699
+  references:
+    version: 2
+    RefIds:
+    - rid: 1899963062963142699
+      type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        mode: 1
+        tweens:
+        - rid: 1899963062963142700
+        - rid: 1899963062963142702
+    - rid: 1899963062963142700
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 1
+        durationRandomAdd: 0.2
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0.15456834
+            outSlope: 0.15456834
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.43232715
+          - serializedVersion: 3
+            time: 0.42707092
+            value: 0.9870105
+            inSlope: -0.0053433487
+            outSlope: -0.0053433487
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.04327141
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.021951858
+            outSlope: -0.021951858
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.07822269
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 1899963062963142701
+    - rid: 1899963062963142701
+      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 5944437784170263656}
+        startEulerAngles: {x: 90, y: 89.999825, z: 0}
+        endEulerAngles: {x: 27.55271, y: 269.99982, z: 180}
+        useLocal: 1
+        useEulerInterpolation: 1
+    - rid: 1899963062963142702
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 1
+        durationRandomAdd: 0.2
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0.05020396
+            outSlope: 0.05020396
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.12564778
+          - serializedVersion: 3
+            time: 0.005656639
+            value: 0.012457811
+            inSlope: 0.10789585
+            outSlope: 0.10789585
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.35551167
+            value: 0.018485058
+            inSlope: 0.17675287
+            outSlope: 0.17675287
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.021951858
+            outSlope: -0.021951858
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.07822269
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 1899963062963142704
+    - rid: 1899963062963142704
+      type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 5944437784170263656}
+        useLocal: 1
+        startPosition: {x: 0.00082910655, y: -0.001207588, z: 0.035598624}
+        endPosition: {x: -0.9, y: -0.001, z: 0.682}
 --- !u!1001 &3917740735505394349
 PrefabInstance:
   m_ObjectHideFlags: 0

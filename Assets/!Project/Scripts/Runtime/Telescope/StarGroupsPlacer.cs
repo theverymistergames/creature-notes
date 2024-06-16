@@ -17,18 +17,13 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeField] private StarGroup[] _starGroups;
         
         [Serializable]
-        private struct StarGroup {
+        public struct StarGroup {
             public Vector3 orientation;
             public List<Transform> stars;
         }
 
-        public int StarGroupCount => _starGroups.Length;
-        
-        public IReadOnlyList<Transform> GetStars(int groupIndex) {
-            return groupIndex >= 0 && groupIndex < _starGroups.Length
-                ? _starGroups[groupIndex].stars
-                : Array.Empty<Transform>();
-        }
+        public Transform Center => _center;
+        public IReadOnlyList<StarGroup> StarGroups => _starGroups;
 
         private void PlaceStarGroups() {
             if (_center == null || _starGroupsData == null) return;
@@ -59,7 +54,11 @@ namespace _Project.Scripts.Runtime.Telescope {
                     if (!Application.isPlaying) Undo.RecordObject(s, $"{nameof(StarGroupsPlacer)}.PlaceStarGroups");
 #endif
                     
-                    s.SetPositionAndRotation(worldGroupCenter + centeredData.position, centeredData.rotation);
+                    s.SetPositionAndRotation(
+                        worldGroupCenter + rotationOffset * Quaternion.Inverse(Quaternion.Euler(_rotationOffset)) * centeredData.position,
+                        centeredData.rotation
+                    );
+                    
                     s.localScale = centeredData.scale;
                 }
             }

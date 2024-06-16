@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0826faaf9f48b9b5b2d858eea9530a, type: 3}
   m_Name: StarGroupsData
   m_EditorClassIdentifier: 
-  hoverAngle: 0
-  detectionAngle: 0
-  detectionTime: 0
+  hoverAngle: 5
+  detectionAngle: 0.5
+  detectionFovRange: {x: 3, y: 5}
+  detectionTime: 2
+  takeLensOffDelayAfterDetection: 1
+  emissionNormal: {r: 206.50023, g: 206.50023, b: 206.50023, a: 206.50023}
+  emissionHover: {r: 236.07079, g: 236.07079, b: 236.07079, a: 206.50023}
+  emissionDetected: {r: 12271.934, g: 6167.4976, b: 3820.5066, a: 206.50023}
+  emissionFrequencyHover: 3
+  emissionFrequencyDetected: 1
+  emissionRangeHover: 0.8
+  emissionRangeDetected: 0.3
+  emissionSmoothing: 10
   starPrefab: {fileID: 5239246273435599333, guid: f6fe8cd693ccea245ac9e36735d828f4,
     type: 3}
-  starScale: 0.002
+  starScale: 0.005
   groupScale: 5
   telescopeDistance: 50
   starGroups:
