@@ -29,6 +29,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         public int StarGroupCount => _starGroups.Length;
+        public int SelectedStarGroupIndex => _selectedIndex;
 
         public void EnableAllStarGroups() {
             _selectedIndex = -1;
@@ -187,14 +188,6 @@ namespace _Project.Scripts.Runtime.Telescope {
                 for (int j = 0; j < source.initialLinksData.Length; j++) {
                     dest.links[j] = source.initialLinksData[j];
                 }
-            }
-
-            for (int i = oldCount; i < _starGroupsData.starGroups.Length; i++) {
-                ref var dest = ref _starGroupsData.starGroups[i];
-
-                dest.groupScale = 1f;
-                dest.starScale = 1f;
-                dest.telescopeDistance = 10f;
             }
 
             UnityEditor.EditorUtility.SetDirty(_starGroupsData);

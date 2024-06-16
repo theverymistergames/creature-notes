@@ -7,9 +7,16 @@ namespace _Project.Scripts.Runtime.Telescope {
     [CreateAssetMenu(fileName = nameof(StarGroupsData), menuName = "MisterGames/Telescope" + nameof(StarGroupsData))]
     public sealed class StarGroupsData : ScriptableObject {
         
-        public Transform starPrefab;
+        [Header("Detection Settings")]
+        [Min(0f)] public float hoverAngle;
         [Min(0f)] public float detectionAngle;
         [Min(0f)] public float detectionTime;
+        
+        [Header("Visual Settings")]
+        public Transform starPrefab;
+        public float starScale;
+        public float groupScale;
+        public float telescopeDistance;
         public StarGroup[] starGroups;
 
         [Serializable]
@@ -21,9 +28,7 @@ namespace _Project.Scripts.Runtime.Telescope {
             public TransformData[] links;
 
             [Header("Placement Settings")]
-            public float starScale;
-            public float groupScale;
-            public float telescopeDistance;
+            public Transform lensPrefab;
             public Vector3 telescopeOrientation;
         }
     }

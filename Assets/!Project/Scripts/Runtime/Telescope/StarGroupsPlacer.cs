@@ -11,15 +11,23 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeField] private StarGroupsData _starGroupsData;
         [SerializeField] private Transform _center;
         [SerializeField] private Vector3 _rotationOffset;
+        [SerializeField] private float _distance;
+        [SerializeField] private float _starScale;
+        [SerializeField] private float _groupScale;
         [SerializeField] private StarGroup[] _starGroups;
-
+        
         [Serializable]
         private struct StarGroup {
             public Vector3 orientation;
-            public float distance;
-            public float starScale;
-            public float groupScale;
             public List<Transform> stars;
+        }
+
+        public int StarGroupCount => _starGroups.Length;
+        
+        public IReadOnlyList<Transform> GetStars(int groupIndex) {
+            return groupIndex >= 0 && groupIndex < _starGroups.Length
+                ? _starGroups[groupIndex].stars
+                : Array.Empty<Transform>();
         }
 
         private void PlaceStarGroups() {
@@ -34,7 +42,7 @@ namespace _Project.Scripts.Runtime.Telescope {
 
                 var rotationOffset = Quaternion.Euler(_rotationOffset) * Quaternion.Euler(starGroup.orientation);
                 var canvasGroupCenter = StarGroupUtils.GetStarGroupCenter(source.stars);
-                var worldGroupCenter = centerPos + rotationOffset * Vector3.forward * starGroup.distance;
+                var worldGroupCenter = centerPos + rotationOffset * Vector3.forward * _distance;
 
                 for (int j = 0; j < starGroup.stars.Count; j++) {
                     var s = starGroup.stars[j];
@@ -42,8 +50,8 @@ namespace _Project.Scripts.Runtime.Telescope {
                     var centeredData = StarGroupUtils.GetTransformDataPlacedInCenter(
                         source.stars[j].WithScale(Vector3.one),
                         Quaternion.Euler(source.canvasRotation),
-                        starGroup.starScale * starGroup.distance,
-                        starGroup.groupScale * starGroup.distance,
+                        _starScale * _distance,
+                        _groupScale * _distance,
                         canvasGroupCenter
                     );
                     
@@ -60,6 +68,10 @@ namespace _Project.Scripts.Runtime.Telescope {
 #if UNITY_EDITOR
         [Button]
         private void SaveLayoutIntoSourceData() {
+            _starGroupsData.telescopeDistance = _distance;
+            _starGroupsData.starScale = _starScale;
+            _starGroupsData.groupScale = _groupScale;
+            
             for (int i = 0; i < _starGroupsData.starGroups.Length; i++) {
                 if (i >= (_starGroups?.Length ?? 0)) break;
                 
@@ -67,9 +79,6 @@ namespace _Project.Scripts.Runtime.Telescope {
                 ref var source = ref _starGroups[i];
 
                 dest.telescopeOrientation = source.orientation;
-                dest.telescopeDistance = source.distance;
-                dest.starScale = source.starScale;
-                dest.groupScale = source.groupScale;
             }
             
             EditorUtility.SetDirty(_starGroupsData);
@@ -79,6 +88,10 @@ namespace _Project.Scripts.Runtime.Telescope {
         private void LoadLayoutFromSourceData() {
             if (Application.isPlaying) return;
             
+            _distance = _starGroupsData.telescopeDistance;
+            _starScale = _starGroupsData.starScale;
+            _groupScale = _starGroupsData.groupScale;
+            
             Array.Resize(ref _starGroups, _starGroupsData.starGroups.Length);
             
             for (int i = 0; i < _starGroupsData.starGroups.Length; i++) {
@@ -86,9 +99,6 @@ namespace _Project.Scripts.Runtime.Telescope {
                 ref var dest = ref _starGroups[i];
 
                 dest.orientation = source.telescopeOrientation;
-                dest.distance = source.telescopeDistance;
-                dest.starScale = source.starScale;
-                dest.groupScale = source.groupScale;
                 dest.stars ??= new List<Transform>();
                 
                 for (int j = dest.stars.Count - 1; j >= 0; j--) {
