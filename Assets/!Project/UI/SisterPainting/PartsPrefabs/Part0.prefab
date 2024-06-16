@@ -102,7 +102,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 3239075634257991884}
   - component: {fileID: 4000254299170231934}
   - component: {fileID: 8005373938492604325}
+  - component: {fileID: 2231836267817425364}
   m_Layer: 0
   m_Name: Part0
   m_TagString: Untagged
@@ -288,11 +289,11 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 1565
+    _version: 2426
   _blackboard:
-    _propertyList: e1b57c88829597439fa34d13c59efe10
+    _propertyList: e1b57c88829597439fa34d13c59efe1076d38faa
     _propertyMap:
-      _buckets: ffffffff030000000100000002000000
+      _buckets: 03000000ffffffff010000000200000004000000
       _entries:
       - hashCode: 142390753
         next: -1
@@ -311,7 +312,7 @@ MonoBehaviour:
             _type: System.Int32, mscorlib
           table: 1
       - hashCode: 323855263
-        next: -1
+        next: 0
         key: 323855263
         value:
           name: Particles
@@ -319,15 +320,23 @@ MonoBehaviour:
             _type: UnityEngine.GameObject, UnityEngine.CoreModule
           table: 0
       - hashCode: 285122245
-        next: 0
+        next: -1
         key: 285122245
         value:
           name: ShowParticlesOnAdded
           type:
             _type: System.Boolean, mscorlib
           table: 2
-      _count: 4
-      _version: 4
+      - hashCode: 714068854
+        next: -1
+        key: -1433414794
+        value:
+          name: NotHideGameobject
+          type:
+            _type: System.Boolean, mscorlib
+          table: 2
+      _count: 5
+      _version: 7
       _freeList: -1
       _freeCount: 0
     _tables:
@@ -400,14 +409,18 @@ MonoBehaviour:
       type: {class: BlackboardTableBool, ns: MisterGames.Blackboards.Tables, asm: MisterGames.Blackboards}
       data:
         _map:
-          _buckets: 00000000
+          _buckets: 0100000000000000
           _entries:
           - hashCode: 285122245
             next: -1
             key: 285122245
             value: 1
-          _count: 1
-          _version: 1
+          - hashCode: 714068854
+            next: -1
+            key: -1433414794
+            value: 1
+          _count: 2
+          _version: 4
           _freeList: -1
           _freeCount: 0
 --- !u!82 &8005373938492604325
@@ -506,3 +519,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2231836267817425364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992775755523556678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cancelOnNextAction: 0
+  _startAction:
+    rid: 335627397140054017
+  _stopAction:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 335627397140054017
+      type: {class: CharacterTakePutItemAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: Assembly-CSharp}
+      data:
+        method: 0
+        duration: 0.3
+        ease: 7
+        disableCollider: 1
+        item: {fileID: 167677279050707112}
