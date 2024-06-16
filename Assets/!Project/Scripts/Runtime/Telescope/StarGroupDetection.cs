@@ -84,18 +84,12 @@ namespace _Project.Scripts.Runtime.Telescope {
         private void OnStartInteract(IInteractiveUser user) {
             _head = user.Root.GetComponent<IActor>().GetComponent<CharacterHeadAdapter>();
             PlayerLoopStage.Update.Subscribe(this);
+            
             SetupLens(_enableCts.Token).Forget();
         }
 
         private void OnStopInteract(IInteractiveUser user) {
             PlayerLoopStage.Update.Unsubscribe(this);
-            
-            if (_currentLens != null) {
-                var canvas = _currentLens.GetComponentInChildren<StarGroupsCanvas>(includeInactive: true);
-                if (_detectStarGroupEvent.WithSubId(canvas.SelectedStarGroupIndex).GetRaiseCount() <= 0) return;
-
-                TakeLensOff(_enableCts.Token).Forget();
-            }
 
             for (int i = 0; i < _detectionTimers.Length; i++) {
                 ref float t = ref _detectionTimers[i];

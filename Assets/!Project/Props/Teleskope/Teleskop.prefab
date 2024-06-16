@@ -802,6 +802,7 @@ GameObject:
   - component: {fileID: 5173720579174946430}
   - component: {fileID: 8591546782952774112}
   - component: {fileID: 5836159600247102695}
+  - component: {fileID: 4394612460720751521}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -1149,6 +1150,33 @@ MonoBehaviour:
   _angleAxis: {x: 0, y: 0, z: 1}
   _positionRange: {x: -0.0005, y: 0}
   _positionAxis: {x: 0, y: 1, z: 0}
+--- !u!114 &4394612460720751521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709480750141699983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78ea30e435249e29607ab497de5897b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _starGroupsData: {fileID: 11400000, guid: 4978b35f6966edb42977df26adae0747, type: 2}
+  _interactive: {fileID: 1328278417108297359}
+  _starGroupsPlacer: {fileID: 8335621882423425592}
+  _camera: {fileID: 6146235486278242704}
+  _lensPlace: {fileID: 3029080117750411629}
+  _lensOffset: {x: 0.032, y: 0, z: 0}
+  _lensRotationOffset: {x: 90, y: 90, z: 0}
+  _pickLensEvent:
+    _eventDomain: {fileID: 11400000, guid: 65bb0a4df5003f84ba3804919b9c39ad, type: 2}
+    _eventId: 1
+    _subId: 0
+  _detectStarGroupEvent:
+    _eventDomain: {fileID: 11400000, guid: 65bb0a4df5003f84ba3804919b9c39ad, type: 2}
+    _eventId: 2
+    _subId: 0
 --- !u!1 &3301784058741267782
 GameObject:
   m_ObjectHideFlags: 0
