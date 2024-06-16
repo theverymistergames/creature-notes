@@ -37,6 +37,8 @@ public class SisterLevel0 : MonoBehaviour, IEventListener {
         
         reactionContainer.transform.localScale = Vector3.zero;
         reactionImage.sprite = reactions[0];
+
+        if (placesCountTarget == 0) _questFinished = true;
     }
 
     private void OnStartInteract(IInteractiveUser obj) {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using MisterGames.Actors.Actions;
 using MisterGames.Character.Core;
 using MisterGames.Character.Inventory;
@@ -22,6 +23,12 @@ public class Level2Painting : MonoBehaviour {
         _interactive.OnStartInteract += InteractiveOnOnStartInteract;
 
         _inventory = CharacterAccessRegistry.Instance.GetCharacterAccess().GetComponent<CharacterInventoryPipeline>().Inventory;
+        
+        foreach (var part in parts) {
+            if (!part.activeSelf) {
+                part.GetComponent<MeshRenderer>().enabled = false;   
+            }
+        }
     }
 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
@@ -32,7 +39,7 @@ public class Level2Painting : MonoBehaviour {
             if (_inventory.ContainsItems(asset)) {
                 _inventory.RemoveItems(asset, 1);
                 
-                parts[counter].SetActive(true);
+                EnablePart(parts[counter]);
 
                 partsCounter++;
             }
@@ -43,5 +50,13 @@ public class Level2Painting : MonoBehaviour {
         if (partsCounter == maxParts) {
             partsCollectedEvent.Raise();
         }
+    }
+
+    private async void EnablePart(GameObject part) {
+        part.SetActive(true);
+
+        await UniTask.Delay(50);
+        
+        part.GetComponent<MeshRenderer>().enabled = true;
     }
 }
