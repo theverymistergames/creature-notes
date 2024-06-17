@@ -34,8 +34,7 @@ namespace MisterGames.ActionLib.GameObjects {
 
             var start = method == TakePut.Take ? item.position : transform.position;
             var end = method == TakePut.Put ? item.position : transform.position;
-            var completed = false;
-                
+            
             await LMotion.Create(start, end, duration).WithEase(ease).WithOnComplete(() => {
                 switch (method) {
                     case TakePut.Take:
@@ -46,11 +45,7 @@ namespace MisterGames.ActionLib.GameObjects {
                         break;
                     }
                 }
-
-                completed = true;
             }).BindToPosition(item);
-
-            // await UniTask.WaitUntil(() => completed, cancellationToken: cancellationToken);
         }
     }
     
