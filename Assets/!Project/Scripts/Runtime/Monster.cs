@@ -63,12 +63,12 @@ public class Monster : MonoBehaviour {
     }
 
     public void GetDamage() {
-
         if (_damageTween.IsActive()) _damageTween.Cancel();
         
         _isNeedToUpdateProgress = false;
 
         float startProgress = _progress;
+        
         _damageTween = LMotion.Create(0f, 1f, 0.2f)
             .WithOnComplete(() => {
                 if (_progress < 0.02f) monsterKilled.Invoke();

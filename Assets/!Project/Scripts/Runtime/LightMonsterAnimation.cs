@@ -34,10 +34,10 @@ public class LightMonsterAnimation : MonsterAnimation {
         _progress = progress;
         
         if (progress == 0) {
-            SetMonsterVisible(false);
+            SetVisible(false);
         } else if (progress > .99f) {
             StopCoroutine(BlinkRoutine(progress));
-            SetMonsterVisible(true);
+            SetVisible(true);
             return;
         }
         
@@ -46,23 +46,24 @@ public class LightMonsterAnimation : MonsterAnimation {
         if (_targetTime > 0) return;
         
         _targetTime = Random.Range(.2f, .5f) * (1 - progress / 2) + 5 * (1 - progress);
+        Debug.Log(_targetTime);
 
         StartCoroutine(BlinkRoutine(progress));
     }
 
-    private void SetMonsterVisible(bool visible) {
+    private void SetVisible(bool visible) {
         lightSource.SetActive(!visible);
         monster.SetActive(visible && _progress >= harbingerThreshold);
         _material.SetColor(EmissionColor, (visible ? Color.black : _color) * _startEmissionIntensity);
     }
 
     private IEnumerator BlinkRoutine(float progress) {
-        SetMonsterVisible(true);
+        SetVisible(true);
         
         yield return new WaitForSeconds(0.2f - 0.1f * progress);
         
         _audio.Play();
 
-        SetMonsterVisible(false);
+        SetVisible(false);
     }
 }

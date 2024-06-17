@@ -17,4 +17,8 @@ public abstract class MonsterAnimation : MonoBehaviour
     }
 
     protected abstract void ProceedUpdate(float progress);
+
+    public void ForceProceedUpdate(float progress) {
+        ProceedUpdate(progress);
+    }
 }

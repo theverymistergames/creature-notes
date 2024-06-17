@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 5248616816676760614}
   - component: {fileID: 5667351819205909910}
   - component: {fileID: 5276103408916981674}
+  - component: {fileID: 1202151778172869157}
   m_Layer: 0
   m_Name: BedMonster
   m_TagString: Enemy
@@ -284,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _enabled: 0
+  _enabled: 1
   type: 0
 --- !u!82 &5276103408916981674
 AudioSource:
@@ -382,6 +383,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1202151778172869157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817122523803468337}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35329a769faed6647bd99c639d775734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 30
 --- !u!1 &2485234879910249661
 GameObject:
   m_ObjectHideFlags: 0

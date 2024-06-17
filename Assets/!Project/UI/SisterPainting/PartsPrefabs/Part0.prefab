@@ -289,7 +289,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 2426
+    _version: 6072
   _blackboard:
     _propertyList: e1b57c88829597439fa34d13c59efe1076d38faa
     _propertyMap:
@@ -443,10 +443,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0
-  MaxDistance: 3
+  MinDistance: 0.5
+  MaxDistance: 2
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -454,23 +454,32 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.25
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -4.0016
+      outSlope: -4.0016
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.48295593
+      value: 0.3691101
+      inSlope: -1.0004
+      outSlope: -1.0004
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.2501
+      outSlope: -0.2501
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -535,12 +544,10 @@ MonoBehaviour:
   _startAction:
     rid: 335627397140054017
   _stopAction:
-    rid: -2
+    rid: 335627406780137511
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 335627397140054017
       type: {class: CharacterTakePutItemAction, ns: MisterGames.ActionLib.GameObjects,
         asm: Assembly-CSharp}
@@ -550,3 +557,13 @@ MonoBehaviour:
         ease: 7
         disableCollider: 1
         item: {fileID: 167677279050707112}
+    - rid: 335627406780137511
+      type: {class: RaiseEventAction, ns: MisterGames.ActionLib.Events, asm: MisterGames.ActionLib}
+      data:
+        eventReference:
+          _eventDomain: {fileID: 11400000, guid: b54f60408af256a48becf2b314163fac,
+            type: 2}
+          _eventId: 2
+          _subId: 0
+        mode: 0
+        count: 1
