@@ -46,7 +46,6 @@ public class LightMonsterAnimation : MonsterAnimation {
         if (_targetTime > 0) return;
         
         _targetTime = Random.Range(.2f, .5f) * (1 - progress / 2) + 5 * (1 - progress);
-        Debug.Log(_targetTime);
 
         StartCoroutine(BlinkRoutine(progress));
     }

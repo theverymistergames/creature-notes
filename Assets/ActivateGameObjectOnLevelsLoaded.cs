@@ -10,6 +10,21 @@ public class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
     [SerializeField] private EventReference levelLoadedEvent;
     [SerializeField] private List<int> levels;
     [SerializeField] private GameObject go;
+    [SerializeField] private bool _emissive;
+    
+    private float _startIntensity;
+    private Color _startColor;
+    private Material _material;
+    private static readonly int EmissiveColor = Shader.PropertyToID("_EmissiveColor");
+    private static readonly int EmissiveIntensity = Shader.PropertyToID("_EmissiveIntensity");
+
+    private void Awake() {
+        if (_emissive) {
+            _material = go.GetComponent<MeshRenderer>().materials[0];
+            _startIntensity = _material.GetFloat(EmissiveIntensity);
+            _startColor = _material.GetColor(EmissiveColor);
+        }
+    }
 
     public void OnEventRaised(EventReference e) {
         if (e.EventId == levelLoadedEvent.EventId) {
@@ -21,9 +36,17 @@ public class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
         var count = levelLoadedEvent.GetRaiseCount();
         
         if (levels.Contains(count)) {
-            go.SetActive(true);
+            if (_emissive) {
+                _material.SetColor(EmissiveColor, _startColor * _startIntensity);
+            } else {
+                go.SetActive(true);
+            }
         } else {
-            go.SetActive(false);
+            if (_emissive) { 
+                _material.SetColor(EmissiveColor, Color.black);
+            } else {
+                go.SetActive(false); 
+            }
         }
     }
 
