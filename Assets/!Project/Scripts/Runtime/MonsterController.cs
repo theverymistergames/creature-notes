@@ -31,6 +31,7 @@ public class MonsterController : MonoBehaviour {
     private AudioSource _source;
 
     [SerializeField] private EventReference monsterKilledEvent;
+    [SerializeField] private EventReference charDeathEvent;
 
     private void Start() {
         _source = GetComponent<AudioSource>();
@@ -45,6 +46,9 @@ public class MonsterController : MonoBehaviour {
 
     public void Stop() {
         _inProgress = false;
+        _spawnedMonsters = 0;
+        
+        foreach (var terrain in terrains) terrain.SetPosition(0);
         
         foreach (var monster in monsters) {
             monster.Stop();
@@ -59,6 +63,10 @@ public class MonsterController : MonoBehaviour {
         _spawnedMonsters++;
         UpdateFlesh();
         _debuffsController.StartDebuff(monster.type);
+
+        if (_spawnedMonsters == maxMonsters) {
+            charDeathEvent.Raise();
+        }
     }
 
     private void OnMonsterKilled(Monster monster) {
