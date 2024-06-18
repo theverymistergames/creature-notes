@@ -587,7 +587,8 @@ MonoBehaviour:
       type: {class: CharacterActionEnableGravity, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
-        isEnabled: 0
+        useGravity: 0
+        isKinematic: 1
     - rid: 1899962890230431760
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -683,7 +684,8 @@ MonoBehaviour:
       type: {class: CharacterActionEnableGravity, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
-        isEnabled: 1
+        useGravity: 1
+        isKinematic: 0
     - rid: 1899962890230431770
       type: {class: CharacterMoveToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}

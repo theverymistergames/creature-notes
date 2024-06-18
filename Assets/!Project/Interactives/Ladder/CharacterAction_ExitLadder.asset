@@ -26,11 +26,13 @@ MonoBehaviour:
         - rid: 1135008907258232835
         - rid: 1135008907258232840
         - rid: 2949883572740685856
+        - rid: 1899963104063389720
     - rid: 1135008907258232833
       type: {class: CharacterActionEnableGravity, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
-        isEnabled: 1
+        useGravity: 1
+        isKinematic: 0
     - rid: 1135008907258232835
       type: {class: CharacterActionEnableMotionGraph, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -40,6 +42,11 @@ MonoBehaviour:
       type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         actorAction: {fileID: 11400000, guid: edbc880937d298b498552fed2c27edf2, type: 2}
+    - rid: 1899963104063389720
+      type: {class: CharacterActionEnablePoseGraph, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 1
     - rid: 2949883572740685856
       type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
