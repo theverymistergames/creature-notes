@@ -160,12 +160,12 @@ MonoBehaviour:
   _maxHits: 6
   _distance: 0.55
   _distanceAddition: 0.15
-  _radius: 0.3
+  _radius: 0.2
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
   _triggerInteraction: 1
-  _hitPointElevation: 0.2
+  _hitPointElevation: 0.19
   _normalSphereCastRadius: 0.05
   _debugDrawNormal: 0
   _debugDrawCast: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   _maxHits: 2
   _distance: 0.6
   _distanceAddition: 0.15
-  _radius: 0.3
+  _radius: 0.19
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -982,6 +982,7 @@ MonoBehaviour:
   _smoothing: 20
   _freeHeadRotationDistance: 0.1
   _returnFreeHeadRotationSmoothing: 5
+  _returnFreeHeadRotationSmoothingMax: 25
   _viewClamp:
     _horizontal:
       mode: 0
@@ -1030,6 +1031,7 @@ GameObject:
   - component: {fileID: 7205586869188020230}
   - component: {fileID: 137295681341058935}
   - component: {fileID: 4269949916693310703}
+  - component: {fileID: 7841572554198953117}
   m_Layer: 2
   m_Name: Motion
   m_TagString: Untagged
@@ -1065,9 +1067,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveForce: 0
+  _noGravityVelocityDamping: 10
   _speedCorrectionSide: 0.8
   _speedCorrectionBack: 0.6
-  _inputSmoothing: 20
+  _inputSmoothing: 25
+  _frictionGrounded: 0.6
+  _frictionAir: 0
+  _frictionCombineGrounded: 0
+  _frictionCombineAir: 1
+  _capsuleCastDistance: 0.2
+  _capsuleCastRadiusOffset: -0.02
+  _lowerPointOffset: -0.1
+  _maxHits: 12
+  _layer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!114 &4269949916693310703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1095,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _action: {fileID: 11400000, guid: edbc880937d298b498552fed2c27edf2, type: 2}
+--- !u!114 &7841572554198953117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586869188020231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67dada703a447a9b403990e24602993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lowerRayOffset: -0.44
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _distance: 0.3
+  _minInclineAngle: 45
+  _maxStepDepth: 0.1
+  _maxHits: 6
+  _maxStepHeight: 0.3
+  _maxStepHeightAir: 0
+  _climbSpeed: {x: 1, y: 2}
+  _airSpeedMultiplier: 1
+  _showDebugInfo: 1
 --- !u!1 &7205586869398250321
 GameObject:
   m_ObjectHideFlags: 0
