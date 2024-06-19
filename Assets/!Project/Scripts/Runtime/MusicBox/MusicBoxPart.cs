@@ -22,7 +22,7 @@ public class MusicBoxPart : MonoBehaviour {
         _totalDuration = _source.clip.length;
         _timeStep = _totalDuration / steps;
 
-        SetStep(startStep);
+        SetStep(startStep, true);
     }
 
     public void Increase() {
@@ -33,33 +33,34 @@ public class MusicBoxPart : MonoBehaviour {
         SetStep(_currentStep - 1);
     }
 
-    public void SetStep(int step) {
-        if (step < 0) step = steps - 1;
-        step %= steps;
-        
-        _currentStep = step % steps;
-        _source.time = _timeStep * _currentStep;
+    public void SetStep(int step, bool instant = false) {
+        _currentStep = step;
+        _source.time = _timeStep * GetRealStep();
 
-        var angles = transform.localEulerAngles;
+        var rot = transform.localRotation;
         
         if (_currentTween.IsActive()) _currentTween.Cancel();
 
-        if (gameObject.activeSelf) {
-            _currentTween = LMotion.Create(0f, 1f, 0.2f).Bind(value => {
-                transform.localEulerAngles = Vector3.Lerp(angles, new Vector3(0, 360, 0) * _currentStep / steps, value);
+        if (gameObject.activeInHierarchy) {
+            _currentTween = LMotion.Create(0f, 1f, instant ? 0f : 0.2f).Bind(value => {
+                transform.localRotation = Quaternion.Lerp(rot, Quaternion.Euler(new Vector3(0, 360, 0) * _currentStep / steps), value);
             });   
         }
     }
 
+    int GetRealStep() {
+        return (_currentStep % steps + steps) % steps;
+    }
+
     public void Play() {
-        if (!gameObject.activeSelf) return;
+        if (!gameObject.activeInHierarchy) return;
         
-        _source.time = _timeStep * _currentStep;
+        _source.time = _timeStep * GetRealStep();
         _source.Play();
     }
 
     public void Stop() {
-        if (!gameObject.activeSelf) return;
+        if (!gameObject.activeInHierarchy) return;
         
         _source.Stop();
     }

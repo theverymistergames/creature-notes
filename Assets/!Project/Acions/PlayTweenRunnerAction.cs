@@ -15,6 +15,7 @@ namespace MisterGames.ActionLib.GameObjects {
         public TweenRunner runner;
         
         public UniTask Apply(IActor context, CancellationToken cancellationToken = default) {
+            runner.TweenPlayer.Speed = 1f;
             runner.TweenPlayer.Play(cancellationToken: cancellationToken, progress: 0);
             return default;
         }

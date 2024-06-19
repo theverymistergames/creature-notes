@@ -6,6 +6,7 @@ using MisterGames.Character.Core;
 using MisterGames.Common.Attributes;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class ForestMonster : MonoBehaviour {
     [SerializeField] private GameObject head;
@@ -13,16 +14,20 @@ public class ForestMonster : MonoBehaviour {
     [SerializeField] private ParticleSystem death;
     [SerializeField] private Light light;
     [SerializeField] private float stopDistance = 20f;
+    [SerializeField] private AudioSource monsterAudioSource;
+    [SerializeField] private AudioClip deathAudio;
     
     public event Action Stopped = delegate {};
     
     private Transform _transform;
     private NavMeshAgent _agent;
+    private AudioSource _source;
 
     private bool _stopped;
     
     void Start() {
         _agent = GetComponent<NavMeshAgent>();
+        _source = GetComponent<AudioSource>();
     }
 
     private void OnEnable() {
@@ -42,9 +47,12 @@ public class ForestMonster : MonoBehaviour {
         var startScale = head.transform.localScale;
         var startRange = light.range;
         
+        monsterAudioSource.PlayOneShot(deathAudio);
+        
         LMotion.Create(1f, 0f, 3f).Bind(value => {
             head.transform.localScale = startScale * value;
             light.range = startRange * value;
+            _source.volume = value;
         });
     }
 
