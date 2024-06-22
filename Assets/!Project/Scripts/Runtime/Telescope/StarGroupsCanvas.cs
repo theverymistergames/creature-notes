@@ -1,6 +1,7 @@
 ﻿using System;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.GameObjects;
+using MisterGames.Common.Maths;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +12,15 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeField] private StarGroupsData _starGroupsData;
         [SerializeField] private Image _referenceImage;
         [SerializeField] private RectTransform _canvas;
+        [SerializeField] private RectTransform _starPrefab;
+        [SerializeField] private Vector3 _starScale = Vector3.one;
         [SerializeField] [Min(-1)] private int _selectedIndex = -1; 
+        [SerializeField] private bool _placeSelectedGroupInCenter = true; 
         [SerializeField] private StarGroup[] _starGroups = Array.Empty<StarGroup>();
         
         [Serializable]
         private struct StarGroup {
+            public bool enabled;
             
             public Vector3 rotationWhenCentered;
             public float scaleWhenCentered;
@@ -35,10 +40,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         public void EnableAllStarGroups() {
-            _selectedIndex = -1;
-            
             for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
-                PlaceStarGroup(i, inCenter: false);
                 SetStarGroupEnabled(i, isEnabled: true);
             }
         }
@@ -48,21 +50,8 @@ namespace _Project.Scripts.Runtime.Telescope {
                 SetStarGroupEnabled(i, isEnabled: false);
             }
         }
-        
-        public void SelectDefaultStarGroup() {
-            SelectStarGroup(_selectedIndex);
-        }
-        
-        public void SelectStarGroup(int index) {
-            _selectedIndex = index;
-            
-            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
-                PlaceStarGroup(i, inCenter: i == index);
-                SetStarGroupEnabled(i, isEnabled: i == index || index < 0);
-            }
-        }
 
-        private void SetStarGroupEnabled(int index, bool isEnabled) {
+        public void SetStarGroupEnabled(int index, bool isEnabled) {
             if (index < 0 || _starGroups == null || index >= _starGroups.Length) return;
             
             var starGroup = _starGroups[index];
@@ -82,6 +71,19 @@ namespace _Project.Scripts.Runtime.Telescope {
             }
         }
 
+        public void SelectDefaultStarGroup() {
+            SelectStarGroup(_selectedIndex);
+        }
+
+        public void SelectStarGroup(int index) {
+            _selectedIndex = index;
+            
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
+                PlaceStarGroup(i, inCenter: i == index);
+                SetStarGroupEnabled(i, isEnabled: i == index || index < 0);
+            }
+        }
+
         private void PlaceStarGroup(int index, bool inCenter) {
             if (index < 0 || _starGroups == null || index >= _starGroups.Length || _canvas == null || _referenceImage == null) return;
             
@@ -93,9 +95,10 @@ namespace _Project.Scripts.Runtime.Telescope {
                 if (j >= (starGroup.initialStarsData?.Length ?? 0)) break;
                 
                 var t = starGroup.stars[j];
-                var initialStarData = starGroup.initialStarsData[j];
-                
                 if (t == null) continue;
+                
+                var initialStarData = starGroup.initialStarsData[j];
+                initialStarData = initialStarData.WithScale(initialStarData.scale.Multiply(_starScale));
                 
                 if (!inCenter) {
                     t.localPosition = initialStarData.position;
@@ -122,7 +125,10 @@ namespace _Project.Scripts.Runtime.Telescope {
                 if (j >= (starGroup.initialLinksData?.Length ?? 0)) break;
                 
                 var t = starGroup.links[j];
+                if (t == null) continue;
+                
                 var initialLinkData = starGroup.initialLinksData[j];
+                initialLinkData = initialLinkData.WithScale(initialLinkData.scale.Multiply(_starScale));
                 
                 if (!inCenter) {
                     t.localPosition = initialLinkData.position;
@@ -150,9 +156,43 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
      
 #if UNITY_EDITOR
+        private void SetupStarPrefabs() {
+            if (_starPrefab == null || _canvas == null) return;
+            
+            UnityEditor.Undo.RecordObject(gameObject, "SetupStarPrefabs");
+            
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
+                ref var starGroup = ref _starGroups[i];
+
+                for (int j = starGroup.initialStarsData?.Length ?? 0; j < (starGroup.stars?.Length ?? 0); j++) {
+                    var s = starGroup.stars[j];
+                    if (s != null) UnityEditor.Undo.DestroyObjectImmediate(s.gameObject);
+                }
+                
+                if (starGroup.stars == null) starGroup.stars = new RectTransform[starGroup.initialStarsData?.Length ?? 0];
+                else Array.Resize(ref starGroup.stars, starGroup.initialStarsData?.Length ?? 0);
+                
+                for (int j = 0; j < (starGroup.stars?.Length ?? 0); j++) {
+                    ref var s = ref starGroup.stars[j];
+                    if (s != null) continue;
+
+                    s = (RectTransform) UnityEditor.PrefabUtility.InstantiatePrefab(_starPrefab, _canvas);
+                    UnityEditor.Undo.RegisterCreatedObjectUndo(s, "SetupStarPrefabs");
+                }
+            }
+            
+            UnityEditor.EditorUtility.SetDirty(gameObject);
+        }
+        
         [Button]
         private void ApplyInitialLayout() {
+            UnityEditor.Undo.RecordObject(gameObject, "ApplyInitialLayout");
+            
+            SetupStarPrefabs();
             EnableAllStarGroups();
+            SelectStarGroup(-1);
+            
+            UnityEditor.EditorUtility.SetDirty(gameObject);
         }
 
         [Button]
@@ -172,12 +212,12 @@ namespace _Project.Scripts.Runtime.Telescope {
                 
                 for (int j = 0; j < (starGroup.stars?.Length ?? 0); j++) {
                     var s = starGroup.stars[j];
-                    starGroup.initialStarsData[j] = new TransformData(s.localPosition, s.localRotation, s.localScale);
+                    starGroup.initialStarsData[j] = new TransformData(s.localPosition, s.localRotation, s.localScale.Divide(_starScale));
                 }
                 
                 for (int j = 0; j < (starGroup.links?.Length ?? 0); j++) {
                     var element = starGroup.links[j];
-                    starGroup.initialLinksData[j] = new TransformData(element.localPosition, element.localRotation, element.localScale);
+                    starGroup.initialLinksData[j] = new TransformData(element.localPosition, element.localRotation, element.localScale.Divide(_starScale));
                 }
             }
             
@@ -256,12 +296,17 @@ namespace _Project.Scripts.Runtime.Telescope {
             }
             
             UnityEditor.EditorUtility.SetDirty(gameObject);
-
+            
+            SetupStarPrefabs();
             EnableAllStarGroups();
+            SelectDefaultStarGroup();
+            
+            UnityEditor.EditorUtility.SetDirty(gameObject);
         }
 
         private void OnValidate() {
-            if (_selectedIndex >= 0) SelectDefaultStarGroup();
+            SetupStarPrefabs();
+            SelectDefaultStarGroup();
         }
 #endif
     }

@@ -242,7 +242,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         private Color ApplyModulation(Color inputColor, float frequency, float range, float offset) {
-            return inputColor * (1f + Mathf.Sin(frequency * Time.time + offset) * range);
+            return inputColor * (1f + Mathf.Sin(frequency * Time.time + Random.Range(-offset, offset)) * range);
         }
 
         private float GetAngleToPoint(Vector3 point) {
