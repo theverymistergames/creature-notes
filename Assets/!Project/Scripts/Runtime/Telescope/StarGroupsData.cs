@@ -22,8 +22,10 @@ namespace _Project.Scripts.Runtime.Telescope {
         [ColorUsage(true, true)]
         public Color emissionDetected;
         public float emissionFrequencyHover;
-        public float emissionFrequencyDetected;
+        public float emissionFrequencyHoverMax;
         public float emissionRangeHover;
+        public float emissionRangeHoverMax;
+        public float emissionFrequencyDetected;
         public float emissionRangeDetected;
         [Min(0f)] public float emissionSmoothing = 10f;
         

@@ -10,8 +10,9 @@ namespace _Project.Scripts.Runtime.Telescope {
 
         [SerializeField] private StarGroupsData _starGroupsData;
         [SerializeField] private Image _referenceImage;
+        [SerializeField] private RectTransform _canvas;
         [SerializeField] [Min(-1)] private int _selectedIndex = -1; 
-        [SerializeField] private StarGroup[] _starGroups;
+        [SerializeField] private StarGroup[] _starGroups = Array.Empty<StarGroup>();
         
         [Serializable]
         private struct StarGroup {
@@ -22,26 +23,28 @@ namespace _Project.Scripts.Runtime.Telescope {
             public RectTransform[] stars;
             public RectTransform[] links;
             
-            [HideInInspector] 
             public TransformData[] initialStarsData;
-            [HideInInspector] 
             public TransformData[] initialLinksData;
         }
 
-        public int StarGroupCount => _starGroups.Length;
+        public int StarGroupCount => (_starGroups?.Length ?? 0);
         public int SelectedStarGroupIndex => _selectedIndex;
+
+        private void Awake() {
+            SelectDefaultStarGroup();
+        }
 
         public void EnableAllStarGroups() {
             _selectedIndex = -1;
             
-            for (int i = 0; i < _starGroups.Length; i++) {
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
                 PlaceStarGroup(i, inCenter: false);
                 SetStarGroupEnabled(i, isEnabled: true);
             }
         }
         
         public void DisableAllStarGroups() {
-            for (int i = 0; i < _starGroups.Length; i++) {
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
                 SetStarGroupEnabled(i, isEnabled: false);
             }
         }
@@ -53,51 +56,65 @@ namespace _Project.Scripts.Runtime.Telescope {
         public void SelectStarGroup(int index) {
             _selectedIndex = index;
             
-            for (int i = 0; i < _starGroups.Length; i++) {
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
                 PlaceStarGroup(i, inCenter: i == index);
                 SetStarGroupEnabled(i, isEnabled: i == index || index < 0);
             }
         }
 
         private void SetStarGroupEnabled(int index, bool isEnabled) {
+            if (index < 0 || _starGroups == null || index >= _starGroups.Length) return;
+            
             var starGroup = _starGroups[index];
             
             for (int j = 0; j < starGroup.stars.Length; j++) {
-                starGroup.stars[j].gameObject.SetActive(isEnabled);
+                var s = starGroup.stars[j];
+                if (s == null) continue;
+                
+                s.gameObject.SetActive(isEnabled);
             }
             
             for (int j = 0; j < starGroup.links.Length; j++) {
-                starGroup.links[j].gameObject.SetActive(isEnabled);
+                var s = starGroup.links[j];
+                if (s == null) continue;
+                
+                s.gameObject.SetActive(isEnabled);
             }
         }
 
         private void PlaceStarGroup(int index, bool inCenter) {
+            if (index < 0 || _starGroups == null || index >= _starGroups.Length || _canvas == null || _referenceImage == null) return;
+            
             var starGroup = _starGroups[index];
             var center = StarGroupUtils.GetStarGroupCenter(starGroup.initialStarsData);
+            var canvasCenter = GetCanvasCenter();
             
             for (int j = 0; j < starGroup.stars.Length; j++) {
                 if (j >= (starGroup.initialStarsData?.Length ?? 0)) break;
                 
                 var t = starGroup.stars[j];
-
+                var initialStarData = starGroup.initialStarsData[j];
+                
+                if (t == null) continue;
+                
                 if (!inCenter) {
-                    t.position = starGroup.initialStarsData[j].position;
-                    t.rotation = starGroup.initialStarsData[j].rotation;
-                    t.localScale = starGroup.initialStarsData[j].scale;
+                    t.localPosition = initialStarData.position;
+                    t.localRotation = initialStarData.rotation;
+                    t.localScale = initialStarData.scale;
                     
                     continue;
                 }
 
                 var d = StarGroupUtils.GetTransformDataPlacedInCenter(
-                    starGroup.initialStarsData[j],
+                    initialStarData,
                     rotationOffset: Quaternion.Euler(starGroup.rotationWhenCentered),
                     starGroup.scaleWhenCentered,
                     starGroup.scaleWhenCentered,
                     center
                 );
-                
-                t.position = d.position + GetCanvasCenter();
-                t.rotation = d.rotation;
+
+                t.localPosition = d.position + canvasCenter;
+                t.localRotation = d.rotation;
                 t.localScale = d.scale;
             }
             
@@ -105,30 +122,31 @@ namespace _Project.Scripts.Runtime.Telescope {
                 if (j >= (starGroup.initialLinksData?.Length ?? 0)) break;
                 
                 var t = starGroup.links[j];
-
+                var initialLinkData = starGroup.initialLinksData[j];
+                
                 if (!inCenter) {
-                    t.position = starGroup.initialLinksData[j].position;
-                    t.rotation = starGroup.initialLinksData[j].rotation;
-                    t.localScale = starGroup.initialLinksData[j].scale;
+                    t.localPosition = initialLinkData.position;
+                    t.localRotation = initialLinkData.rotation;
+                    t.localScale = initialLinkData.scale;
                     continue;
                 }
                 
                 var d = StarGroupUtils.GetTransformDataPlacedInCenter(
-                    starGroup.initialLinksData[j],
+                    initialLinkData,
                     rotationOffset: Quaternion.Euler(starGroup.rotationWhenCentered),
                     starGroup.scaleWhenCentered,
                     starGroup.scaleWhenCentered,
                     center
                 );
 
-                t.position = d.position + GetCanvasCenter();
-                t.rotation = d.rotation;
+                t.localPosition = d.position + canvasCenter;
+                t.localRotation = d.rotation;
                 t.localScale = d.scale;
             }
         }
 
         private Vector3 GetCanvasCenter() {
-            return _referenceImage.rectTransform.position;
+            return _referenceImage.rectTransform.localPosition;
         }
      
 #if UNITY_EDITOR
@@ -139,24 +157,27 @@ namespace _Project.Scripts.Runtime.Telescope {
 
         [Button]
         private void SaveInitialLayout() {
-            if (_selectedIndex >= 0) return;
+            if (_selectedIndex >= 0) {
+                Debug.LogWarning($"{nameof(StarGroupsCanvas)}: cannot save initial layout when selected index is non negative");
+                return;
+            }
             
             UnityEditor.Undo.RecordObject(gameObject, "SaveAsInitialLayout");
-            
-            for (int i = 0; i < _starGroups.Length; i++) {
+
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
                 ref var starGroup = ref _starGroups[i];
                 
-                starGroup.initialStarsData = new TransformData[starGroup.stars.Length];
-                starGroup.initialLinksData = new TransformData[starGroup.links.Length];
+                starGroup.initialStarsData = new TransformData[starGroup.stars?.Length ?? 0];
+                starGroup.initialLinksData = new TransformData[starGroup.links?.Length ?? 0];
                 
-                for (int j = 0; j < starGroup.stars.Length; j++) {
-                    var element = starGroup.stars[j];
-                    starGroup.initialStarsData[j] = new TransformData(element.position, element.rotation, element.localScale);
+                for (int j = 0; j < (starGroup.stars?.Length ?? 0); j++) {
+                    var s = starGroup.stars[j];
+                    starGroup.initialStarsData[j] = new TransformData(s.localPosition, s.localRotation, s.localScale);
                 }
                 
-                for (int j = 0; j < starGroup.links.Length; j++) {
+                for (int j = 0; j < (starGroup.links?.Length ?? 0); j++) {
                     var element = starGroup.links[j];
-                    starGroup.initialLinksData[j] = new TransformData(element.position, element.rotation, element.localScale);
+                    starGroup.initialLinksData[j] = new TransformData(element.localPosition, element.localRotation, element.localScale);
                 }
             }
             
@@ -165,28 +186,35 @@ namespace _Project.Scripts.Runtime.Telescope {
         
         [Button]
         private void SaveLayoutIntoSourceData() {
+            if (_starGroupsData == null) return;
+            
             UnityEditor.Undo.RecordObject(_starGroupsData, "WriteLayoutIntoSourceData");
 
-            int oldCount = _starGroupsData.starGroups.Length;
+            if (_starGroupsData.starGroups == null) {
+                _starGroupsData.starGroups = new StarGroupsData.StarGroup[_starGroups?.Length ?? 0];
+            }
+            else {
+                Array.Resize(ref _starGroupsData.starGroups, _starGroups?.Length ?? 0);   
+            }
             
-            Array.Resize(ref _starGroupsData.starGroups, _starGroups.Length);
-            
-            for (int i = 0; i < _starGroupsData.starGroups.Length; i++) {
-                ref var dest = ref _starGroupsData.starGroups[i];
-                ref var source = ref _starGroups[i];
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
+                if (i >= (_starGroupsData.starGroups?.Length ?? 0)) break;
+                
+                ref var localGroup = ref _starGroups[i];
+                ref var sourceGroup = ref _starGroupsData.starGroups[i];
 
-                dest.canvasRotation = source.rotationWhenCentered;
-                dest.canvasScale = source.scaleWhenCentered;
+                sourceGroup.canvasRotation = localGroup.rotationWhenCentered;
+                sourceGroup.canvasScale = localGroup.scaleWhenCentered;
                 
-                dest.stars = new TransformData[source.initialStarsData.Length];
-                dest.links = new TransformData[source.initialLinksData.Length];
-                
-                for (int j = 0; j < source.initialStarsData.Length; j++) {
-                    dest.stars[j] = source.initialStarsData[j];
+                sourceGroup.stars = new TransformData[localGroup.initialStarsData?.Length ?? 0];
+                sourceGroup.links = new TransformData[localGroup.initialLinksData?.Length ?? 0];
+
+                if (localGroup.initialStarsData != null) {
+                    Array.Copy(localGroup.initialStarsData, sourceGroup.stars, localGroup.initialStarsData.Length);    
                 }
                 
-                for (int j = 0; j < source.initialLinksData.Length; j++) {
-                    dest.links[j] = source.initialLinksData[j];
+                if (localGroup.initialLinksData != null) {
+                    Array.Copy(localGroup.initialLinksData, sourceGroup.links, localGroup.initialLinksData.Length);    
                 }
             }
 
@@ -195,24 +223,41 @@ namespace _Project.Scripts.Runtime.Telescope {
         
         [Button]
         private void ReadLayoutFromSourceData() {
+            if (_starGroupsData == null) return;
+            
             UnityEditor.Undo.RecordObject(gameObject, "ReadLayoutFromSourceData");
             
-            for (int i = 0; i < _starGroups.Length; i++) {
-                if (i >= (_starGroupsData.starGroups?.Length ?? 0)) break;
-                
-                ref var dest = ref _starGroups[i];
-                ref var source = ref _starGroupsData.starGroups[i];
+            if (_starGroups == null) {
+                _starGroups = new StarGroup[_starGroupsData.starGroups?.Length ?? 0];
+            }
+            else {
+                Array.Resize(ref _starGroups, _starGroupsData.starGroups?.Length ?? 0);   
+            }
 
-                dest.rotationWhenCentered = source.canvasRotation;
-                dest.scaleWhenCentered = source.canvasScale;
+            for (int i = 0; i < (_starGroupsData.starGroups?.Length ?? 0); i++) {
+                if (i >= (_starGroups?.Length ?? 0)) break;
 
-                dest.initialStarsData = source.stars;
-                dest.initialLinksData = source.links;
+                ref var sourceGroup = ref _starGroupsData.starGroups[i];
+                ref var localGroup = ref _starGroups[i];
+
+                localGroup.rotationWhenCentered = sourceGroup.canvasRotation;
+                localGroup.scaleWhenCentered = sourceGroup.canvasScale;
+
+                localGroup.initialStarsData = new TransformData[sourceGroup.stars?.Length ?? 0];
+                localGroup.initialLinksData = new TransformData[sourceGroup.links?.Length ?? 0];
+
+                if (sourceGroup.stars != null) {
+                    Array.Copy(sourceGroup.stars, localGroup.initialStarsData, sourceGroup.stars.Length);
+                }
+
+                if (sourceGroup.links != null) {
+                    Array.Copy(sourceGroup.links, localGroup.initialLinksData, sourceGroup.links.Length);
+                }
             }
             
-            EnableAllStarGroups();
-            
             UnityEditor.EditorUtility.SetDirty(gameObject);
+
+            EnableAllStarGroups();
         }
 
         private void OnValidate() {
