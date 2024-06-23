@@ -20,17 +20,15 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         public static Vector3 GetStarGroupCenter(TransformData[] objects) {
+            if (objects is not { Length: > 0 }) return Vector3.zero;
+            
             var center = Vector3.zero;
                 
             for (int j = 0; j < objects.Length; j++) {
                 center += objects[j].position;
             }
 
-            if (objects.Length > 0) {
-                center /= objects.Length;
-            }
-
-            return center;
+            return center / objects.Length;
         }
     }
     

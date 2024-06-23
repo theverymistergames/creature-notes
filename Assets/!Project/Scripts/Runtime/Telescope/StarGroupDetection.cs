@@ -184,9 +184,14 @@ namespace _Project.Scripts.Runtime.Telescope {
                 }
 
                 center /= starGroup.stars.Count > 0 ? starGroup.stars.Count : 1;
-                bool inHoverAngle = IsPointInAngle(center, _starGroupsData.hoverAngle);
-                bool inDetectionAngle = IsPointInAngle(center, _starGroupsData.detectionAngle);
+
+                float angle = GetAngleToPoint(center);
+                
+                bool inHoverAngle = angle <= _starGroupsData.hoverAngle;
+                bool inDetectionAngle = angle <= _starGroupsData.detectionAngle;
                 bool isFovInRange = IsFovInRange(_camera.fieldOfView, _starGroupsData.detectionFovRange);
+
+                float hoverCoeff = inHoverAngle ? angle / _starGroupsData.hoverAngle : 0f;
                 
                 if (detectionTimer < _starGroupsData.detectionTime) {
                     detectionTimer = inDetectionAngle && isFovInRange && i == _selectedStarGroupIndex 
@@ -224,8 +229,8 @@ namespace _Project.Scripts.Runtime.Telescope {
                         : inHoverAngle
                             ? ApplyModulation(
                                 _starGroupsData.emissionHover,
-                                _starGroupsData.emissionFrequencyHover,
-                                _starGroupsData.emissionRangeHover,
+                                Mathf.Lerp(_starGroupsData.emissionFrequencyHoverMax, _starGroupsData.emissionFrequencyHover, hoverCoeff),
+                                Mathf.Lerp(_starGroupsData.emissionRangeHoverMax, _starGroupsData.emissionRangeHover, hoverCoeff),
                                 star.position.sqrMagnitude
                             )
                             : _starGroupsData.emissionNormal;
@@ -237,13 +242,13 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         private Color ApplyModulation(Color inputColor, float frequency, float range, float offset) {
-            return inputColor * (1f + Mathf.Sin(frequency * Time.time + offset) * range);
+            return inputColor * (1f + Mathf.Sin(frequency * Time.time + Random.Range(-offset, offset)) * range);
         }
 
-        private bool IsPointInAngle(Vector3 point, float angle) {
-            return Vector3.Angle(point - _starGroupsPlacer.Center.position, _head.Rotation * Vector3.forward) <= angle;
+        private float GetAngleToPoint(Vector3 point) {
+            return Vector3.Angle(point - _starGroupsPlacer.Center.position, _head.Rotation * Vector3.forward);
         }
-        
+
         private bool IsFovInRange(float fov, Vector2 fovRange) {
             return fov >= fovRange.x && fov <= fovRange.y;
         }
