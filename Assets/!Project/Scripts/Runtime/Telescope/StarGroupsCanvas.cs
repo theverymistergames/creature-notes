@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.GameObjects;
 using MisterGames.Common.Maths;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Telescope {
     
@@ -12,31 +14,73 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeField] private StarGroupsData _starGroupsData;
         [SerializeField] private Image _referenceImage;
         [SerializeField] private RectTransform _canvas;
+        
+        [Header("Stars")]
+        [SerializeField] [Min(-1)] private int _selectedIndex = -1; 
         [SerializeField] private RectTransform _starPrefab;
         [SerializeField] private Vector3 _starScale = Vector3.one;
-        [SerializeField] [Min(-1)] private int _selectedIndex = -1; 
-        [SerializeField] private bool _placeSelectedGroupInCenter = true; 
+        [SerializeField] private float _randomizeScale;
+        [SerializeField] private Vector3 _randomizeRotation;
+        [SerializeField] [Range(0f, 1f)] private float _randomMultiplier;
+        
+        [Header("Lines")]
+        [SerializeField] private LineRenderer _linkPrefab;
+        [SerializeField] private float _linkOffset;
+        [SerializeField] private float _linkWidth;
+        [SerializeField] private CustomLink[] _customLinks = Array.Empty<CustomLink>();
+        
+        [ReadOnly]
+        [SerializeField] private LineRenderer[] _customLines;
+
+        [Header("Groups")]
         [SerializeField] private StarGroup[] _starGroups = Array.Empty<StarGroup>();
+
+        
+        [Serializable]
+        public struct CustomLink {
+            public Vector2Int a;
+            public Vector2Int b;
+        }
         
         [Serializable]
         private struct StarGroup {
-            public bool enabled;
-            
             public Vector3 rotationWhenCentered;
             public float scaleWhenCentered;
             
             public RectTransform[] stars;
-            public RectTransform[] links;
+            public LineRenderer[] links;
             
             public TransformData[] initialStarsData;
-            public TransformData[] initialLinksData;
+            public TransformData[] offsets;
+            
+            public int[] disableLinks;
         }
 
-        public int StarGroupCount => (_starGroups?.Length ?? 0);
+        public int StarGroupCount => _starGroups?.Length ?? 0;
         public int SelectedStarGroupIndex => _selectedIndex;
-
+        public IReadOnlyList<CustomLink> CustomLinks => _customLinks ?? Array.Empty<CustomLink>();
+        
         private void Awake() {
             SelectDefaultStarGroup();
+        }
+
+        public IReadOnlyList<RectTransform> GetGroupStars(int group) {
+            if (group < 0 || group >= (_starGroups?.Length ?? 0)) return Array.Empty<RectTransform>();
+            return _starGroups[group].stars;
+        }
+
+        public IReadOnlyList<LineRenderer> GetGroupLines(int group) {
+            if (group < 0 || group >= (_starGroups?.Length ?? 0)) return Array.Empty<LineRenderer>();
+            return _starGroups[group].links;
+        }
+        
+        public IReadOnlyList<LineRenderer> GetCustomLines() {
+            return _customLines;
+        }
+        
+        public LineRenderer GetCustomLine(int index) {
+            if (index < 0 || index >= (_customLines?.Length ?? 0)) return null;
+            return _customLines[index];
         }
 
         public void EnableAllStarGroups() {
@@ -58,13 +102,6 @@ namespace _Project.Scripts.Runtime.Telescope {
             
             for (int j = 0; j < starGroup.stars.Length; j++) {
                 var s = starGroup.stars[j];
-                if (s == null) continue;
-                
-                s.gameObject.SetActive(isEnabled);
-            }
-            
-            for (int j = 0; j < starGroup.links.Length; j++) {
-                var s = starGroup.links[j];
                 if (s == null) continue;
                 
                 s.gameObject.SetActive(isEnabled);
@@ -99,55 +136,56 @@ namespace _Project.Scripts.Runtime.Telescope {
                 
                 var initialStarData = starGroup.initialStarsData[j];
                 initialStarData = initialStarData.WithScale(initialStarData.scale.Multiply(_starScale));
-                
-                if (!inCenter) {
+
+                if (j < (starGroup.offsets?.Length ?? 0)) {
+                    var offset = starGroup.offsets[j];
+                    
+                    initialStarData = initialStarData
+                        .WithScale(initialStarData.scale + offset.scale * _randomMultiplier)
+                        .WithRotation(initialStarData.rotation * Quaternion.Slerp(Quaternion.identity, offset.rotation, _randomMultiplier));
+                }
+
+                if (inCenter) {
+                    var d = StarGroupUtils.GetTransformDataPlacedInCenter(
+                        initialStarData,
+                        rotationOffset: Quaternion.Euler(starGroup.rotationWhenCentered),
+                        starGroup.scaleWhenCentered,
+                        starGroup.scaleWhenCentered,
+                        center
+                    );
+
+                    t.localPosition = d.position + canvasCenter;
+                    t.localRotation = d.rotation;
+                    t.localScale = d.scale;
+                }
+                else {
                     t.localPosition = initialStarData.position;
                     t.localRotation = initialStarData.rotation;
                     t.localScale = initialStarData.scale;
-                    
-                    continue;
                 }
 
-                var d = StarGroupUtils.GetTransformDataPlacedInCenter(
-                    initialStarData,
-                    rotationOffset: Quaternion.Euler(starGroup.rotationWhenCentered),
-                    starGroup.scaleWhenCentered,
-                    starGroup.scaleWhenCentered,
-                    center
-                );
+                int l = j - 1;
+                if (l < 0 || l >= (starGroup.links?.Length ?? 0)) continue;
+                
+                var line = starGroup.links![l];
+                if (line == null) continue;
 
-                t.localPosition = d.position + canvasCenter;
-                t.localRotation = d.rotation;
-                t.localScale = d.scale;
+                line.enabled = true;
+                
+                var p0 = t.position;
+                var p1 = starGroup.stars[l].position;
+                
+                line.SetPosition(0, p0 + (p1 - p0).normalized * _linkOffset);
+                line.SetPosition(1, p1 + (p0 - p1).normalized * _linkOffset);
+
+                line.widthMultiplier = _linkWidth;
             }
             
-            for (int j = 0; j < starGroup.links.Length; j++) {
-                if (j >= (starGroup.initialLinksData?.Length ?? 0)) break;
+            for (int i = 0; i < (starGroup.disableLinks?.Length ?? 0); i++) {
+                int idx = starGroup.disableLinks![i];
+                if (idx < 0 || idx >= (starGroup.links?.Length ?? 0)) continue;
                 
-                var t = starGroup.links[j];
-                if (t == null) continue;
-                
-                var initialLinkData = starGroup.initialLinksData[j];
-                initialLinkData = initialLinkData.WithScale(initialLinkData.scale.Multiply(_starScale));
-                
-                if (!inCenter) {
-                    t.localPosition = initialLinkData.position;
-                    t.localRotation = initialLinkData.rotation;
-                    t.localScale = initialLinkData.scale;
-                    continue;
-                }
-                
-                var d = StarGroupUtils.GetTransformDataPlacedInCenter(
-                    initialLinkData,
-                    rotationOffset: Quaternion.Euler(starGroup.rotationWhenCentered),
-                    starGroup.scaleWhenCentered,
-                    starGroup.scaleWhenCentered,
-                    center
-                );
-
-                t.localPosition = d.position + canvasCenter;
-                t.localRotation = d.rotation;
-                t.localScale = d.scale;
+                starGroup.links![idx].enabled = false;
             }
         }
 
@@ -156,6 +194,35 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
      
 #if UNITY_EDITOR
+        [Button]
+        private void RandomizeStarTransforms() {
+            UnityEditor.Undo.RecordObject(gameObject, "RandomizeStarTransforms");
+            
+            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
+                ref var starGroup = ref _starGroups[i];
+
+                if (starGroup.offsets == null) starGroup.offsets = new TransformData[starGroup.initialStarsData?.Length ?? 0];
+                else Array.Resize(ref starGroup.offsets, starGroup.initialStarsData?.Length ?? 0);
+
+                for (int j = 0; j < (starGroup.offsets?.Length ?? 0); j++) {
+                    ref var d = ref starGroup.offsets[j];
+                    
+                    d.scale = Random.Range(-_randomizeScale, _randomizeScale) * Vector3.one;
+                    d.rotation = Quaternion.Euler(
+                        Random.Range(-_randomizeRotation.x, _randomizeRotation.x),
+                        Random.Range(-_randomizeRotation.y, _randomizeRotation.y),
+                        Random.Range(-_randomizeRotation.z, _randomizeRotation.y)
+                    );
+                }
+            }
+            
+            SetupStarPrefabs();
+            SelectDefaultStarGroup();
+            SetupCustomLinks();
+            
+            UnityEditor.EditorUtility.SetDirty(gameObject);
+        }
+        
         private void SetupStarPrefabs() {
             if (_starPrefab == null || _canvas == null) return;
             
@@ -177,7 +244,27 @@ namespace _Project.Scripts.Runtime.Telescope {
                     if (s != null) continue;
 
                     s = (RectTransform) UnityEditor.PrefabUtility.InstantiatePrefab(_starPrefab, _canvas);
-                    UnityEditor.Undo.RegisterCreatedObjectUndo(s, "SetupStarPrefabs");
+                    UnityEditor.Undo.RegisterCreatedObjectUndo(s.gameObject, "SetupStarPrefabs");
+                }
+
+                int targetLinksCount = (starGroup.stars?.Length ?? 0) - 1;
+                
+                for (int j = targetLinksCount; j >= 0 && j < (starGroup.links?.Length ?? 0); j++) {
+                    var s = starGroup.links[j];
+                    if (s != null) UnityEditor.Undo.DestroyObjectImmediate(s.gameObject);
+                }
+
+                if (targetLinksCount <= 0 || _linkPrefab == null) continue;
+                
+                if (starGroup.links == null) starGroup.links = new LineRenderer[targetLinksCount];
+                else Array.Resize(ref starGroup.links, targetLinksCount);
+                
+                for (int j = 0; j < targetLinksCount; j++) {
+                    ref var s = ref starGroup.links[j];
+                    if (s != null) continue;
+
+                    s = (LineRenderer) UnityEditor.PrefabUtility.InstantiatePrefab(_linkPrefab, _canvas);
+                    UnityEditor.Undo.RegisterCreatedObjectUndo(s.gameObject, "SetupStarPrefabs");
                 }
             }
             
@@ -191,6 +278,7 @@ namespace _Project.Scripts.Runtime.Telescope {
             SetupStarPrefabs();
             EnableAllStarGroups();
             SelectStarGroup(-1);
+            SetupCustomLinks();
             
             UnityEditor.EditorUtility.SetDirty(gameObject);
         }
@@ -208,16 +296,10 @@ namespace _Project.Scripts.Runtime.Telescope {
                 ref var starGroup = ref _starGroups[i];
                 
                 starGroup.initialStarsData = new TransformData[starGroup.stars?.Length ?? 0];
-                starGroup.initialLinksData = new TransformData[starGroup.links?.Length ?? 0];
                 
                 for (int j = 0; j < (starGroup.stars?.Length ?? 0); j++) {
                     var s = starGroup.stars[j];
                     starGroup.initialStarsData[j] = new TransformData(s.localPosition, s.localRotation, s.localScale.Divide(_starScale));
-                }
-                
-                for (int j = 0; j < (starGroup.links?.Length ?? 0); j++) {
-                    var element = starGroup.links[j];
-                    starGroup.initialLinksData[j] = new TransformData(element.localPosition, element.localRotation, element.localScale.Divide(_starScale));
                 }
             }
             
@@ -247,14 +329,9 @@ namespace _Project.Scripts.Runtime.Telescope {
                 sourceGroup.canvasScale = localGroup.scaleWhenCentered;
                 
                 sourceGroup.stars = new TransformData[localGroup.initialStarsData?.Length ?? 0];
-                sourceGroup.links = new TransformData[localGroup.initialLinksData?.Length ?? 0];
 
                 if (localGroup.initialStarsData != null) {
                     Array.Copy(localGroup.initialStarsData, sourceGroup.stars, localGroup.initialStarsData.Length);    
-                }
-                
-                if (localGroup.initialLinksData != null) {
-                    Array.Copy(localGroup.initialLinksData, sourceGroup.links, localGroup.initialLinksData.Length);    
                 }
             }
 
@@ -284,14 +361,9 @@ namespace _Project.Scripts.Runtime.Telescope {
                 localGroup.scaleWhenCentered = sourceGroup.canvasScale;
 
                 localGroup.initialStarsData = new TransformData[sourceGroup.stars?.Length ?? 0];
-                localGroup.initialLinksData = new TransformData[sourceGroup.links?.Length ?? 0];
 
                 if (sourceGroup.stars != null) {
                     Array.Copy(sourceGroup.stars, localGroup.initialStarsData, sourceGroup.stars.Length);
-                }
-
-                if (sourceGroup.links != null) {
-                    Array.Copy(sourceGroup.links, localGroup.initialLinksData, sourceGroup.links.Length);
                 }
             }
             
@@ -300,6 +372,56 @@ namespace _Project.Scripts.Runtime.Telescope {
             SetupStarPrefabs();
             EnableAllStarGroups();
             SelectDefaultStarGroup();
+            SetupCustomLinks();
+            
+            UnityEditor.EditorUtility.SetDirty(gameObject);
+        }
+
+        private void SetupCustomLinks() {
+            UnityEditor.Undo.RecordObject(gameObject, "SetupCustomLinks");
+
+            for (int i = _customLinks?.Length ?? 0; i < (_customLines?.Length ?? 0); i++) {
+                var l = _customLines[i];
+                if (l != null) UnityEditor.Undo.DestroyObjectImmediate(l.gameObject);
+            }
+
+            if (_customLines == null) _customLines = new LineRenderer[_customLinks?.Length ?? 0];
+            else Array.Resize(ref _customLines, _customLinks?.Length ?? 0);
+            
+            for (int i = 0; i < _customLinks.Length; i++) {
+                ref var customLink = ref _customLinks[i];
+                
+                if (customLink.a.x < 0 || customLink.a.x >= (_starGroups?.Length ?? 0) ||
+                    customLink.b.x < 0 || customLink.b.x >= (_starGroups?.Length ?? 0) || 
+                    _linkPrefab == null
+                ) {
+                    continue;
+                }
+
+                var groupA = _starGroups[customLink.a.x];
+                var groupB = _starGroups[customLink.b.x];
+                
+                if (customLink.a.y < 0 || customLink.a.y >= (groupA.stars?.Length ?? 0) ||
+                    customLink.b.y < 0 || customLink.b.y >= (groupB.stars?.Length ?? 0)
+                ) {
+                    continue;
+                }
+
+                ref var s = ref _customLines[i];
+
+                if (s == null) {
+                    s = (LineRenderer) UnityEditor.PrefabUtility.InstantiatePrefab(_linkPrefab, _canvas);
+                    UnityEditor.Undo.RegisterCreatedObjectUndo(s.gameObject, "SetupCustomLinks");
+                }
+                
+                var p0 = groupA.stars[customLink.a.y].position;
+                var p1 = groupB.stars[customLink.b.y].position;
+                
+                s.SetPosition(0, p0 + (p1 - p0).normalized * _linkOffset);
+                s.SetPosition(1, p1 + (p0 - p1).normalized * _linkOffset);
+
+                s.widthMultiplier = _linkWidth;
+            }
             
             UnityEditor.EditorUtility.SetDirty(gameObject);
         }
@@ -307,6 +429,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         private void OnValidate() {
             SetupStarPrefabs();
             SelectDefaultStarGroup();
+            SetupCustomLinks();
         }
 #endif
     }

@@ -35,14 +35,13 @@ namespace _Project.Scripts.Runtime.Telescope {
         public float groupScale;
         public float telescopeDistance;
         public StarGroup[] starGroups;
-
+        
         [Serializable]
         public struct StarGroup {
             [Header("Canvas Settings")]
             public Vector3 canvasRotation;
             public float canvasScale;
             public TransformData[] stars;
-            public TransformData[] links;
 
             [Header("Placement Settings")]
             public Transform lensPrefab;
