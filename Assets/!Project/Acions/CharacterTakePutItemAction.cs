@@ -35,17 +35,18 @@ namespace MisterGames.ActionLib.GameObjects {
             var start = method == TakePut.Take ? item.position : transform.position;
             var end = method == TakePut.Put ? item.position : transform.position;
             
-            await LMotion.Create(start, end, duration).WithEase(ease).WithOnComplete(() => {
-                switch (method) {
-                    case TakePut.Take:
-                        item.gameObject.SetActive(false);
-                        break;
-                    case TakePut.Put: {
-                        if (disableCollider) item.GetComponent<Collider>().enabled = true;
-                        break;
-                    }
+            await LMotion.Create(start, end, duration).WithEase(ease).BindToPosition(item);
+            
+            switch (method) {
+                case TakePut.Take:
+                    item.gameObject.SetActive(false);
+                    break;
+                
+                case TakePut.Put: {
+                    if (disableCollider) item.GetComponent<Collider>().enabled = true;
+                    break;
                 }
-            }).BindToPosition(item);
+            }
         }
     }
     
