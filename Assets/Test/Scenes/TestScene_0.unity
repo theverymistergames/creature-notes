@@ -7969,6 +7969,7 @@ GameObject:
   - component: {fileID: 1126905493}
   - component: {fileID: 1126905492}
   - component: {fileID: 1126905491}
+  - component: {fileID: 1126905498}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -7992,7 +7993,7 @@ MonoBehaviour:
   _startAction:
     rid: 1899963240737406976
   _stopAction:
-    rid: 1899963240737406978
+    rid: 1899963250882117633
   references:
     version: 2
     RefIds:
@@ -8002,6 +8003,8 @@ MonoBehaviour:
         mode: 0
         actions:
         - rid: 1899963240737406977
+        - rid: 1899963250882117632
+        - rid: 1899963250882117637
     - rid: 1899963240737406977
       type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -8018,8 +8021,10 @@ MonoBehaviour:
         enableColliderOnFinish: 0
         attachOnFinish: 1
         speed: 1
-        reduceSpeedBelowDistance: 0.5
-        speedMin: 0.3
+        reduceSpeedBelowDistance: 0.1
+        speedCoeffMin: 1
+        exitAt: 0.9
+        pullToPositionAfterExit: 1
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -8087,7 +8092,22 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    - rid: 1899963240737406978
+    - rid: 1899963250882117632
+      type: {class: CharacterStartRotateItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 1126905497}
+        sensitivity: {x: -0.7, y: -0.7}
+        smoothing: 5
+    - rid: 1899963250882117633
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1899963250882117638
+        - rid: 1899963250882117635
+        - rid: 1899963250882117634
+    - rid: 1899963250882117634
       type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
@@ -8103,8 +8123,10 @@ MonoBehaviour:
         enableColliderOnFinish: 1
         attachOnFinish: 0
         speed: 1
-        reduceSpeedBelowDistance: 0.5
-        speedMin: 0.5
+        reduceSpeedBelowDistance: 0.1
+        speedCoeffMin: 0.01
+        exitAt: 0.9
+        pullToPositionAfterExit: 1
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -8172,6 +8194,37 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+    - rid: 1899963250882117635
+      type: {class: CharacterStopRotateItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 1126905497}
+    - rid: 1899963250882117637
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        horizontal:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: -10, y: 10}
+            springs: {x: -5, y: 5}
+            springFactors: {x: 1, y: 1}
+            springSmoothing: {x: 1, y: 1}
+        vertical:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: -10, y: 10}
+            springs: {x: -5, y: 5}
+            springFactors: {x: 1, y: 1}
+            springSmoothing: {x: 1, y: 1}
+    - rid: 1899963250882117638
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        actorAction: {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
 --- !u!114 &1126905492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8280,13 +8333,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126905490}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.646, z: 2.984}
-  m_LocalScale: {x: 0.21636495, y: 0.21636495, z: 0.21636495}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.57200056, z: 2.2050018}
+  m_LocalScale: {x: 0.21636495, y: 0.21636494, z: 0.21636495}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1126905498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126905490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7543a782b1c14c559932c3c63b5bc113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 1126905497}
+  target: {fileID: 1792797314}
+  speed: 3
+  testDuration: 10
 --- !u!43 &1165206562
 Mesh:
   m_ObjectHideFlags: 0
@@ -10118,7 +10187,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 13d1d49a996bea243ba3fad403169bb1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10157,7 +10226,7 @@ Transform:
   m_GameObject: {fileID: 1792797310}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.014, z: 2.993}
+  m_LocalPosition: {x: 0, y: 0.572, z: 2.205}
   m_LocalScale: {x: 1, y: 0.14268, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

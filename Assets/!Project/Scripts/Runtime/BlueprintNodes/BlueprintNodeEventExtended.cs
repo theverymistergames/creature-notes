@@ -7,9 +7,15 @@ namespace MisterGames.BlueprintLib {
 
     [Serializable]
     [BlueprintNode(Name = "Event Extended", Category = "Scenario", Color = BlueprintColors.Node.Events)]
-    public sealed class BlueprintNodeEventExtended : IBlueprintNode, IBlueprintEnter, IBlueprintOutput<int>, IEventListener {
+    public sealed class BlueprintNodeEventExtended : 
+        IBlueprintNode, 
+        IBlueprintEnter, 
+        IEventListener, 
+        IBlueprintOutput<int>,
+        IBlueprintOutput<bool>
+    {
 
-        private EventReference _event;
+        [SerializeField] private EventReference _event;
 
         private IBlueprint _blueprint;
         private NodeToken _token;
@@ -20,6 +26,8 @@ namespace MisterGames.BlueprintLib {
             meta.AddPort(id, Port.Input<EventReference>("Event"));
             meta.AddPort(id, Port.Exit("On Raised"));
             meta.AddPort(id, Port.Output<int>("Raise Count"));
+            meta.AddPort(id, Port.Output<bool>("Raised Once"));
+            meta.AddPort(id, Port.Input<int>("SubId"));
         }
 
         public void OnInitialize(IBlueprint blueprint, NodeToken token, NodeId root) {
@@ -38,7 +46,10 @@ namespace MisterGames.BlueprintLib {
             
             switch (port) {
                 case 0:
-                    _event = blueprint.Read<EventReference>(token, 2);
+                    _event = blueprint
+                        .Read(token, 2, _event)
+                        .WithSubId(blueprint.Read(token, 6, _event.SubId));
+                    
                     _event.Subscribe(this);
                     break;
                 case 1:
@@ -47,8 +58,12 @@ namespace MisterGames.BlueprintLib {
             }
         }
 
-        public int GetPortValue(IBlueprint blueprint, NodeToken token, int port) {
+        int IBlueprintOutput<int>.GetPortValue(IBlueprint blueprint, NodeToken token, int port) {
             return port == 4 ? _event.GetRaiseCount() : default;
+        }
+
+        bool IBlueprintOutput<bool>.GetPortValue(IBlueprint blueprint, NodeToken token, int port) {
+            return port == 5 ? _event.GetRaiseCount() > 0 : default;
         }
 
         public void OnEventRaised(EventReference e) {

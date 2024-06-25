@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using MisterGames.Actors;
+using MisterGames.Actors.Actions;
 using MisterGames.Common.Async;
+using MisterGames.Common.Attributes;
 using MisterGames.Common.GameObjects;
 using MisterGames.Common.Maths;
 using MisterGames.Interact.Interactives;
@@ -12,11 +15,12 @@ using UnityEngine.UI;
 
 namespace _Project.Scripts.Runtime.Telescope {
     
-    public sealed class StarsMainPainting : MonoBehaviour, IEventListener {
+    public sealed class StarsMainPainting : MonoBehaviour {
         
         [SerializeField] private Interactive _interactive;
         [SerializeField] private StarGroupsCanvas _starGroupsCanvas;
         [SerializeField] private EventReference _starGroupDetectedEvent;
+        [SerializeField] private EventReference _lensFoundEvent;
 
         [Header("Fade")]
         [SerializeField] [Min(0f)] private float _fadeDuration = 3f;
@@ -36,12 +40,19 @@ namespace _Project.Scripts.Runtime.Telescope {
         [Header("Groups")]
         [SerializeField] private bool _allDetected;
         [SerializeField] private GroupData[] _groups;
-        
+
+        [Header("Actions")]
+        [SerializeReference] [SubclassSelector] private IActorAction _onInteractFirst;
+        [SerializeReference] [SubclassSelector] private IActorAction _onInteractDetectedLessThanFound;
+        [SerializeReference] [SubclassSelector] private IActorAction _onInteractDetectedEqualsFound;
+        [SerializeReference] [SubclassSelector] private IActorAction _onInteractDetectedAll;
+
         private static readonly int _EmissiveColor = Shader.PropertyToID("_EmissiveColor");
         private static readonly int _Color = Shader.PropertyToID("_UnlitColor");
         
         private CancellationTokenSource _enableCts;
         private byte _checkId;
+        private bool _hasFirstInteract;
         
         [Serializable]
         private struct GroupData {
@@ -54,15 +65,13 @@ namespace _Project.Scripts.Runtime.Telescope {
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
             _interactive.OnStartInteract += OnStartInteract;
-            //_starGroupDetectedEvent.Subscribe(this);
             
-            CheckStarGroups(force: true);
+            CheckStarGroups(_allDetected, force: true);
         }
 
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
             _interactive.OnStartInteract -= OnStartInteract;
-            //_starGroupDetectedEvent.Unsubscribe(this);
         }
 
         private void FetchGroupElements() {
@@ -113,27 +122,59 @@ namespace _Project.Scripts.Runtime.Telescope {
             }
         }
 
-        public void OnEventRaised(EventReference e) {
-            
-        }
-
         private void OnStartInteract(IInteractiveUser user) {
             if (_allDetected) return;
             
-            bool allDetected = true;
-            int totalGroupsCount = _groups?.Length ?? 0;
-            
-            for (int i = 0; i < totalGroupsCount; i++) {
-                allDetected &= _starGroupDetectedEvent.WithSubId(i).GetRaiseCount() > 0;
-            }
+            CheckEvents(out bool allDetected, out int partsRevealed, out int detectedCount, out int foundCount);
 
             _allDetected = allDetected;
             
-            CheckStarGroups();
+            CheckActions(user, allDetected, partsRevealed, detectedCount, foundCount);
+            CheckStarGroups(allDetected);
         }
 
-        private void CheckStarGroups(bool force = false) {
-            bool allDetected = _allDetected;
+        private void CheckActions(IInteractiveUser user, bool allDetected, int partsRevealed, int detectedCount, int foundCount) {
+            var actor = user.Root.GetComponent<IActor>();
+
+            if (!_hasFirstInteract) {
+                _hasFirstInteract = true;
+                _onInteractFirst?.Apply(actor, _enableCts.Token).Forget();
+                if (!allDetected) return;
+            }
+            
+            if (allDetected) {
+                _onInteractDetectedAll?.Apply(actor, _enableCts.Token).Forget();
+                return;
+            }
+            
+            // Skip actions to reveal star groups
+            if (partsRevealed < detectedCount) return;
+            
+            if (detectedCount < foundCount) {
+                _onInteractDetectedLessThanFound?.Apply(actor, _enableCts.Token).Forget();
+                return;
+            }
+            
+            _onInteractDetectedEqualsFound?.Apply(actor, _enableCts.Token).Forget();
+        }
+
+        private void CheckEvents(out bool allDetected, out int partsRevealed, out int detectedCount, out int foundCount) {
+            int groupCount = _starGroupsCanvas.StarGroupCount;
+
+            partsRevealed = 0;
+            foundCount = 0;
+            detectedCount = 0;
+
+            for (int i = 0; i < groupCount; i++) {
+                partsRevealed += _groups[i].detected.AsInt();
+                foundCount += _lensFoundEvent.WithSubId(i).IsRaised().AsInt();
+                detectedCount += _starGroupDetectedEvent.WithSubId(i).IsRaised().AsInt();
+            }
+
+            allDetected = detectedCount >= groupCount;
+        }
+
+        private void CheckStarGroups(bool allDetected, bool force = false) {
             byte id = ++_checkId;
             int totalGroupsCount = _groups?.Length ?? 0;
 
@@ -327,7 +368,7 @@ namespace _Project.Scripts.Runtime.Telescope {
             }
             
             FetchGroupElements();
-            CheckStarGroups(force: true);
+            CheckStarGroups(_allDetected, force: true);
             
             for (int i = 0; i < groups; i++) {
                 var stars = _starGroupsCanvas.GetGroupStars(i);
