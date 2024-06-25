@@ -127,8 +127,7 @@ namespace _Project.Scripts.Runtime.Telescope {
             var lens = CreateLens(selectedIndex);
             await TakeLensOn(lens, cancellationToken);
         }
-
-
+        
         private async UniTask TakeLensOn(GameObject lens, CancellationToken cancellationToken) {
             if (_currentLens != null) PrefabPool.Instance.Recycle(_currentLens);
             _currentLens = lens;

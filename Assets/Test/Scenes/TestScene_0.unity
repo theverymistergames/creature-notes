@@ -8011,6 +8011,7 @@ MonoBehaviour:
       data:
         item: {fileID: 1126905497}
         targetType: 0
+        useBodyRotation: 0
         target: {fileID: 0}
         offsetMode: 0
         offset: {x: 0, y: 0, z: 0.4}
@@ -8020,6 +8021,7 @@ MonoBehaviour:
         detachOnStart: 0
         enableColliderOnFinish: 0
         attachOnFinish: 1
+        attachSmoothing: 0
         speed: 1
         reduceSpeedBelowDistance: 0.1
         speedCoeffMin: 1
@@ -8113,6 +8115,7 @@ MonoBehaviour:
       data:
         item: {fileID: 1126905497}
         targetType: 1
+        useBodyRotation: 0
         target: {fileID: 1792797314}
         offsetMode: 0
         offset: {x: 0, y: 0.5, z: 0}
@@ -8122,6 +8125,7 @@ MonoBehaviour:
         detachOnStart: 1
         enableColliderOnFinish: 1
         attachOnFinish: 0
+        attachSmoothing: 0
         speed: 1
         reduceSpeedBelowDistance: 0.1
         speedCoeffMin: 0.01
@@ -8352,10 +8356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7543a782b1c14c559932c3c63b5bc113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 1126905497}
-  target: {fileID: 1792797314}
-  speed: 3
-  testDuration: 10
 --- !u!43 &1165206562
 Mesh:
   m_ObjectHideFlags: 0

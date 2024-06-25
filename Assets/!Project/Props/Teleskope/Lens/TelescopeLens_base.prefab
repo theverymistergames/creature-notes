@@ -9,10 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 502427888997913943}
-  - component: {fileID: 7794190138993833568}
-  - component: {fileID: 1401098085625040541}
-  - component: {fileID: 2418015790278689195}
-  - component: {fileID: 5669410715910371756}
   - component: {fileID: 5394806788092420441}
   m_Layer: 0
   m_Name: TelescopeLens_base
@@ -34,108 +30,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 606628462650661028}
-  - {fileID: 1646227490495600795}
-  - {fileID: 485216460878683643}
+  - {fileID: 4633759923379028717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &7794190138993833568
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346530258614304042}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.044
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1401098085625040541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346530258614304042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
-  _debugDrawDetectable: 0
---- !u!114 &2418015790278689195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346530258614304042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
-  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
-  _syncEnableStateWithDetectable: 1
---- !u!114 &5669410715910371756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346530258614304042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cancelOnNextAction: 0
-  _startAction:
-    rid: 1899963062963142711
-  _stopAction:
-    rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 1899963062963142711
-      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
-      data:
-        mode: 0
-        actions:
-        - rid: 1899963062963142713
-        - rid: 1899963062963142712
-    - rid: 1899963062963142712
-      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        enabled: 0
-        delay: 0
-        gameObjects:
-        - {fileID: 2346530258614304042}
-    - rid: 1899963062963142713
-      type: {class: RaiseEventAction, ns: MisterGames.ActionLib.Events, asm: MisterGames.ActionLib}
-      data:
-        eventReference:
-          _eventDomain: {fileID: 11400000, guid: 65bb0a4df5003f84ba3804919b9c39ad,
-            type: 2}
-          _eventId: 1
-          _subId: 0
-        mode: 1
-        count: 1
 --- !u!114 &5394806788092420441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  _name: For lens take on
   _playAtStart: 0
   _tweenPlayer:
     _progress: 0
@@ -264,6 +161,8 @@ MonoBehaviour:
         useLocal: 1
         startPosition: {x: 0.00082910655, y: -0.001207588, z: 0.035598624}
         endPosition: {x: 0.454, y: 0.02, z: 0.357}
+        curvature: 0
+        curvatureAxis: {x: 0, y: 1, z: 0}
 --- !u!1 &2611000971054145442
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,14 +189,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2611000971054145442}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 48.026672, y: 48.026672, z: 2.492559}
+  m_LocalScale: {x: 48.026676, y: 48.026672, z: 2.492559}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 488472355857395010}
   - {fileID: 2192125140503650677}
-  m_Father: {fileID: 502427888997913943}
+  m_Father: {fileID: 4633759923379028717}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &2323262088841278949
 MeshFilter:
@@ -349,6 +248,629 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3563578331376904576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4633759923379028717}
+  - component: {fileID: 4294495970941730634}
+  - component: {fileID: 266024808981861759}
+  - component: {fileID: 8344822141902773018}
+  - component: {fileID: 8229941445589677808}
+  - component: {fileID: 4802249304634999158}
+  m_Layer: 0
+  m_Name: Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4633759923379028717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563578331376904576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1.1991438e-15, y: 3.5974315e-15, z: 1.1991438e-15, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.7482352e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 606628462650661028}
+  - {fileID: 1646227490495600795}
+  - {fileID: 485216460878683643}
+  m_Father: {fileID: 502427888997913943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4294495970941730634
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563578331376904576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.044
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &266024808981861759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563578331376904576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
+  _debugDrawDetectable: 0
+--- !u!114 &8344822141902773018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563578331376904576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 2f455542cffb7924c9ea82a9c841a494, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
+--- !u!114 &8229941445589677808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563578331376904576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cancelOnNextAction: 1
+  _startAction:
+    rid: 1899963062963142711
+  _stopAction:
+    rid: 1899963271008747597
+  references:
+    version: 2
+    RefIds:
+    - rid: 1899963062963142711
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1899963271008747615
+        - rid: 1899963062963142713
+        - rid: 1899963271008747592
+        - rid: 1899963271008747595
+        - rid: 1899963271008747613
+        - rid: 1899963271008747599
+        - rid: 1899963271008747609
+        - rid: 1899963271008747600
+        - rid: 1899963271008747610
+    - rid: 1899963062963142713
+      type: {class: RaiseEventAction, ns: MisterGames.ActionLib.Events, asm: MisterGames.ActionLib}
+      data:
+        eventReference:
+          _eventDomain: {fileID: 11400000, guid: 65bb0a4df5003f84ba3804919b9c39ad,
+            type: 2}
+          _eventId: 1
+          _subId: 0
+        mode: 1
+        count: 1
+    - rid: 1899963271008747592
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0
+        mode: 2
+        action:
+          rid: 1899963271008747593
+    - rid: 1899963271008747593
+      type: {class: CharacterActionCameraFov, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        keepChanges: 1
+        weight: 1
+        duration: 1
+        durationRandom: 0
+        fovOffset:
+          multiplier: -30
+          addRandom: 0
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 1
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 1
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+    - rid: 1899963271008747595
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0
+        mode: 2
+        action:
+          rid: 1899963271008747596
+    - rid: 1899963271008747596
+      type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 4633759923379028717}
+        angularSpeed: 20
+        maxAngle: 5
+        keepLookingAtAfterFinish: 1
+    - rid: 1899963271008747597
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1899963271008747611
+        - rid: 1899963271008747604
+        - rid: 1899963271008747603
+        - rid: 1899963271008747606
+        - rid: 1899963271008747616
+        - rid: 1899963271008747598
+    - rid: 1899963271008747598
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        gameObjects:
+        - {fileID: 2346530258614304042}
+    - rid: 1899963271008747599
+      type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 4633759923379028717}
+        targetType: 0
+        useBodyRotation: 0
+        target: {fileID: 0}
+        offsetMode: 0
+        offset: {x: 0, y: 0, z: 0.2}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        itemRotation: {x: 0, y: 90, z: 0}
+        disableColliderOnStart: 0
+        detachOnStart: 0
+        enableColliderOnFinish: 0
+        attachOnFinish: 1
+        attachSmoothing: 15
+        speed: 1
+        reduceSpeedBelowDistance: 0.2
+        speedCoeffMin: 0.3
+        exitAt: 1
+        pullToPositionAfterExit: 0
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        rotationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 1899963271008747600
+      type: {class: CharacterStartRotateItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 4633759923379028717}
+        sensitivity: {x: -2, y: -2}
+        smoothing: 15
+    - rid: 1899963271008747603
+      type: {class: CharacterStopRotateItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 4633759923379028717}
+    - rid: 1899963271008747604
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        actorAction: {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
+    - rid: 1899963271008747606
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0
+        mode: 1
+        action:
+          rid: 1899963271008747607
+    - rid: 1899963271008747607
+      type: {class: CharacterActionCameraClearPersistentStates, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        duration: 1
+    - rid: 1899963271008747609
+      type: {class: CharacterStopLookingAtTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data: 
+    - rid: 1899963271008747610
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 0
+        isViewEnabled: 1
+    - rid: 1899963271008747611
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 1
+        isViewEnabled: 1
+    - rid: 1899963271008747613
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 1
+        mode: 2
+        action:
+          rid: 1899963271008747614
+    - rid: 1899963271008747614
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        horizontal:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: -3, y: 3}
+            springs: {x: 0, y: 0}
+            springFactors: {x: 1, y: 1}
+            springSmoothing: {x: 0.3, y: 0.3}
+        vertical:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: -3, y: 3}
+            springs: {x: 0, y: 0}
+            springFactors: {x: 1, y: 1}
+            springSmoothing: {x: 0.3, y: 0.3}
+    - rid: 1899963271008747615
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 4802249304634999158}
+        - {fileID: 4294495970941730634}
+    - rid: 1899963271008747616
+      type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 4633759923379028717}
+        targetType: 0
+        useBodyRotation: 0
+        target: {fileID: 0}
+        offsetMode: 0
+        offset: {x: 0, y: -0.3, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        itemRotation: {x: 180, y: 0, z: 0}
+        disableColliderOnStart: 1
+        detachOnStart: 1
+        enableColliderOnFinish: 0
+        attachOnFinish: 0
+        attachSmoothing: 0
+        speed: 1
+        reduceSpeedBelowDistance: 0.5
+        speedCoeffMin: 0.01
+        exitAt: 1
+        pullToPositionAfterExit: 0
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        rotationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+--- !u!114 &4802249304634999158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563578331376904576}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Lens loop
+  _playAtStart: 1
+  _tweenPlayer:
+    _progress: 0
+    _speed: 1
+    _yoyo: 2
+    _loop: 1
+    _invertNextPlay: 0
+    _tween:
+      rid: 1899963271008747585
+  references:
+    version: 2
+    RefIds:
+    - rid: 1899963271008747585
+      type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        mode: 0
+        tweens:
+        - rid: 1899963271008747588
+        - rid: 1899963271008747586
+    - rid: 1899963271008747586
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 1
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333011
+          - serializedVersion: 3
+            time: 0.0455
+            value: 0
+            inSlope: -0.68546426
+            outSlope: -0.68546426
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.334
+            outWeight: 0.33287132
+          - serializedVersion: 3
+            time: 0.1364
+            value: 0
+            inSlope: -1.3733807
+            outSlope: -1.3733807
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33376238
+            outWeight: 0.33316833
+          - serializedVersion: 3
+            time: 0.3182
+            value: 0
+            inSlope: -2.7491915
+            outSlope: -2.7491915
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33346537
+            outWeight: 0.33326733
+          - serializedVersion: 3
+            time: 0.5165405
+            value: 0.22704802
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33336633
+            outWeight: 0.33336633
+          - serializedVersion: 3
+            time: 0.6876594
+            value: -0.06756592
+            inSlope: 5.501634
+            outSlope: 5.501634
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33326733
+            outWeight: 0.33346534
+          - serializedVersion: 3
+            time: 0.82270646
+            value: 0.13934326
+            inSlope: 2.7516425
+            outSlope: 2.7516425
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.3331683
+            outWeight: 0.3319367
+          - serializedVersion: 3
+            time: 0.915083
+            value: -0.021347046
+            inSlope: 1.354673
+            outSlope: 1.354673
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33652052
+            outWeight: 0.32660022
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0.6875
+            outSlope: 0.6875
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33671048
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 1899963271008747589
+    - rid: 1899963271008747588
+      type: {class: DelayTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 4
+        durationRandomAdd: 2
+    - rid: 1899963271008747589
+      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        actions:
+        - rid: 1899963271008747590
+        - rid: 1899963271008747591
+    - rid: 1899963271008747590
+      type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 4633759923379028717}
+        useLocal: 1
+        startPosition: {x: 0, y: 0, z: 0}
+        endPosition: {x: 0, y: 0, z: 0.02}
+        curvature: 0
+        curvatureAxis: {x: 0, y: 1, z: 0}
+    - rid: 1899963271008747591
+      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 4633759923379028717}
+        startEulerAngles: {x: 0, y: 0, z: 0}
+        endEulerAngles: {x: 10, y: 30, z: 10}
+        useLocal: 1
+        useEulerInterpolation: 1
 --- !u!1 &3691052449565929530
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +1043,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 502427888997913943}
+    m_TransformParent: {fileID: 4633759923379028717}
     m_Modifications:
     - target: {fileID: 3654503833560211600, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -571,7 +1093,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.00005
+      value: 0.000050000002
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -581,7 +1103,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.00005
+      value: 0.000050000002
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -606,7 +1128,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -616,7 +1138,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -660,7 +1182,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 502427888997913943}
+    m_TransformParent: {fileID: 4633759923379028717}
     m_Modifications:
     - target: {fileID: 3654503833560211600, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -710,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.00005
+      value: 0.000050000002
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -720,7 +1242,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.00005
+      value: 0.000050000002
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -745,7 +1267,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
@@ -755,7 +1277,7 @@ PrefabInstance:
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3937374345809055314, guid: c9afb6ac666308445b1ece9852ee9e82,
         type: 3}
