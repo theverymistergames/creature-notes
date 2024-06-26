@@ -368,7 +368,6 @@ MonoBehaviour:
         - rid: 1899963271008747595
         - rid: 1899963271008747613
         - rid: 1899963271008747599
-        - rid: 1899963271008747609
         - rid: 1899963271008747600
         - rid: 1899963271008747610
     - rid: 1899963062963142713
@@ -435,9 +434,9 @@ MonoBehaviour:
         asm: MisterGames.ActionLib}
       data:
         target: {fileID: 4633759923379028717}
-        angularSpeed: 20
+        angularSpeed: 5
         maxAngle: 5
-        keepLookingAtAfterFinish: 1
+        keepLookingAtAfterFinish: 0
     - rid: 1899963271008747597
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -468,7 +467,7 @@ MonoBehaviour:
         offsetMode: 0
         offset: {x: 0, y: 0, z: 0.2}
         rotationOffset: {x: 0, y: 0, z: 0}
-        itemRotation: {x: 0, y: 90, z: 0}
+        itemRotation: {x: 0, y: -90, z: 0}
         disableColliderOnStart: 0
         detachOnStart: 0
         enableColliderOnFinish: 0
@@ -552,7 +551,8 @@ MonoBehaviour:
       data:
         item: {fileID: 4633759923379028717}
         sensitivity: {x: -2, y: -2}
-        smoothing: 15
+        plane: 5
+        smoothing: 0
     - rid: 1899963271008747603
       type: {class: CharacterStopRotateItemAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -574,10 +574,6 @@ MonoBehaviour:
         asm: MisterGames.ActionLib}
       data:
         duration: 1
-    - rid: 1899963271008747609
-      type: {class: CharacterStopLookingAtTargetAction, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data: 
     - rid: 1899963271008747610
       type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
