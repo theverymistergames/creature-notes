@@ -144,6 +144,9 @@ namespace _Project.Scripts.Runtime.Telescope {
             
             _currentLens.SetActive(true);
 
+            var collider = _currentLens.GetComponentInChildren<Collider>();
+            collider.enabled = false;
+            
             var tweenPlayer = _currentLens.GetComponent<TweenRunner>().TweenPlayer;
             tweenPlayer.Progress = 1f;
             tweenPlayer.Speed = -1f;

@@ -799,6 +799,7 @@ Transform:
   m_Children:
   - {fileID: 5549084859733023796}
   - {fileID: 1680551589211322249}
+  - {fileID: 1089152260358540507}
   m_Father: {fileID: 2755585597314363356}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &813653734342322987
@@ -896,7 +897,7 @@ MonoBehaviour:
         attachMode: 1
         speed: 1
         reduceSpeedBelowDistance: 0.2
-        speedMin: 0.01
+        speedMin: 0.3
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -905,19 +906,28 @@ MonoBehaviour:
             time: 0
             value: 0
             inSlope: 0
-            outSlope: 1
+            outSlope: -0.0012029491
             tangentMode: 0
-            weightedMode: 0
+            weightedMode: 3
             inWeight: 0
-            outWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
+            inSlope: -0.0009312395
             outSlope: 0
             tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
+            weightedMode: 3
+            inWeight: 0.358688
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
@@ -1117,11 +1127,16 @@ MonoBehaviour:
   _sensitivity: -0.01
   _fovSmoothing: 3
   _fovRange: {x: 3, y: 8}
+  _playerFovRange: {x: 0, y: 0}
+  _playerAttachDistanceRange: {x: 0.12, y: 0.17}
+  _playerAttachDistanceStart: 0.17
+  _playerFovSmoothing: 5
+  _playerAttachSmoothing: 5
   _visualRotation: {fileID: 1680551589211322249}
   _visualTranslation: {fileID: 3029080117750411629}
-  _angleRange: {x: 0, y: -30}
+  _angleRange: {x: 60, y: 0}
   _angleAxis: {x: 0, y: 0, z: 1}
-  _positionRange: {x: -0.0005, y: 0}
+  _positionRange: {x: 0, y: 0.0005}
   _positionAxis: {x: 0, y: 1, z: 0}
 --- !u!114 &4394612460720751521
 MonoBehaviour:
@@ -2476,7 +2491,6 @@ Transform:
   - {fileID: 4275866747026045217}
   - {fileID: 1795499199808511590}
   - {fileID: 1481025978219096390}
-  - {fileID: 1089152260358540507}
   - {fileID: 2050266765558940038}
   - {fileID: 1844807870538789387}
   - {fileID: 291907132705448199}
@@ -3618,6 +3632,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TelescopeLens_00
       objectReference: {fileID: 0}
+    - target: {fileID: 7434123317240473306, guid: 0e7522dd45848684ebdfaaf841c2a29a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3813,7 +3832,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8112731213020411922}
+    m_TransformParent: {fileID: 3029080117750411629}
     m_Modifications:
     - target: {fileID: 368951426406865542, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
@@ -3822,38 +3841,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.833041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.833041
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.833042
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.143
+      value: 0.00082910655
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.058000028
+      value: -0.001207588
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.63899994
+      value: 0.035598624
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4702664636879621799, guid: 893018f448ed65b42b8d1c74bcdb40dd,
         type: 3}
@@ -3874,6 +3908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TelescopeLens_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434123317240473306, guid: 893018f448ed65b42b8d1c74bcdb40dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4131,6 +4170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TelescopeLens_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434123317240473306, guid: caef27b34890dbb40a7c04603b22c23c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4477,6 +4521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TelescopeLens_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434123317240473306, guid: 1ca7c6d068d25e64fb940c5e3683bd8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
