@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
@@ -10,6 +11,7 @@ using MisterGames.Scenario.Events;
 using MisterGames.Tick.Core;
 using MisterGames.Tweens;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Telescope {
     
@@ -32,15 +34,34 @@ namespace _Project.Scripts.Runtime.Telescope {
         private static readonly int EmissiveColor = Shader.PropertyToID("_EmissiveColor");
         
         private readonly Dictionary<Transform, Renderer> _rendererMap = new();
+        private CancellationTokenSource _enableCts;
         private float[] _detectionTimers;
         
-        private CancellationTokenSource _enableCts;
         private GameObject _currentLens;
         private CharacterHeadAdapter _head;
         private int _selectedStarGroupIndex = -1;
+        private byte _setupLensId;
         
         private void Awake() {
             FetchInitialData();
+        }
+
+        private void OnEnable() {
+            AsyncExt.RecreateCts(ref _enableCts);
+            
+            _interactive.OnStartInteract += OnStartInteract;
+            _interactive.OnStopInteract += OnStopInteract;
+            
+            if (_interactive.IsInteracting) PlayerLoopStage.Update.Subscribe(this);
+        }
+
+        private void OnDisable() {
+            AsyncExt.DisposeCts(ref _enableCts);
+            
+            _interactive.OnStartInteract -= OnStartInteract;
+            _interactive.OnStopInteract -= OnStopInteract;
+            
+            PlayerLoopStage.Update.Unsubscribe(this);
         }
 
         private void FetchInitialData() {
@@ -63,29 +84,11 @@ namespace _Project.Scripts.Runtime.Telescope {
             }
         }
 
-        private void OnEnable() {
-            AsyncExt.RecreateCts(ref _enableCts);
-            
-            _interactive.OnStartInteract += OnStartInteract;
-            _interactive.OnStopInteract += OnStopInteract;
-            
-            if (_interactive.IsInteracting) PlayerLoopStage.Update.Subscribe(this);
-        }
-
-        private void OnDisable() {
-            AsyncExt.DisposeCts(ref _enableCts);
-            
-            _interactive.OnStartInteract -= OnStartInteract;
-            _interactive.OnStopInteract -= OnStopInteract;
-            
-            PlayerLoopStage.Update.Unsubscribe(this);
-        }
-
         private void OnStartInteract(IInteractiveUser user) {
             _head = user.Root.GetComponent<IActor>().GetComponent<CharacterHeadAdapter>();
             PlayerLoopStage.Update.Subscribe(this);
             
-            SetupLens(_enableCts.Token).Forget();
+            SetupLens(delay: 0f, _enableCts.Token).Forget();
         }
 
         private void OnStopInteract(IInteractiveUser user) {
@@ -97,7 +100,16 @@ namespace _Project.Scripts.Runtime.Telescope {
             }
         }
 
-        private async UniTask SetupLens(CancellationToken cancellationToken) {
+        private async UniTask SetupLens(float delay, CancellationToken cancellationToken) {
+            byte id = ++_setupLensId;
+            
+            if (delay > 0f) {
+                await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: cancellationToken)
+                    .SuppressCancellationThrow();   
+            }
+            
+            if (cancellationToken.IsCancellationRequested || id != _setupLensId) return;
+            
             if (_currentLens != null) {
                 var canvas = _currentLens.GetComponentInChildren<StarGroupsCanvas>(includeInactive: true);
                 if (_detectStarGroupEvent.WithSubId(canvas.SelectedStarGroupIndex).GetRaiseCount() <= 0) return;
@@ -105,6 +117,8 @@ namespace _Project.Scripts.Runtime.Telescope {
                 _selectedStarGroupIndex = -1;
                 await TakeLensOff(cancellationToken);
             }
+            
+            if (cancellationToken.IsCancellationRequested || id != _setupLensId) return;
             
             int count = _starGroupsPlacer.StarGroups.Count;
             int selectedIndex = -1;
@@ -194,27 +208,28 @@ namespace _Project.Scripts.Runtime.Telescope {
                 bool isFovInRange = IsFovInRange(_camera.fieldOfView, _starGroupsData.detectionFovRange);
 
                 float hoverCoeff = inHoverAngle ? angle / _starGroupsData.hoverAngle : 0f;
+                bool wasLessThanDetectionTime = false;
                 
                 if (detectionTimer < _starGroupsData.detectionTime) {
+                    wasLessThanDetectionTime = true;
                     detectionTimer = inDetectionAngle && isFovInRange && i == _selectedStarGroupIndex 
                         ? detectionTimer + dt 
                         : 0f;   
                 }
-                else {
-                    detectionTimer += dt;
-                }
                 
                 if (i == _selectedStarGroupIndex &&
                     inDetectionAngle && isFovInRange && 
+                    wasLessThanDetectionTime &&
                     detectionTimer >= _starGroupsData.detectionTime) 
                 {
                     _detectStarGroupEvent.WithSubId(i).SetCount(1);
                 }
                 
                 if (i == _selectedStarGroupIndex &&
-                    detectionTimer >= _starGroupsData.detectionTime + _starGroupsData.takeLensOffDelayAfterDetection) 
+                    wasLessThanDetectionTime &&
+                    detectionTimer >= _starGroupsData.detectionTime) 
                 {
-                    SetupLens(_enableCts.Token).Forget();
+                    SetupLens(_starGroupsData.takeLensOffDelayAfterDetection, _enableCts.Token).Forget();
                 }
                 
                 for (int j = 0; j < starGroup.stars.Count; j++) {
