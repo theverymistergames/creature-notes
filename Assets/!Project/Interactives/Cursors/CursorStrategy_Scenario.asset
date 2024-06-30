@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48154a22cc714c448fa22d51c8ef6027, type: 3}
-  m_Name: InteractiveCursorStrategy_HoverOnly
+  m_Name: CursorStrategy_Scenario
   m_EditorClassIdentifier: 
   _cases:
-  - cursorIcon: {fileID: 11400000, guid: a3116495fe10a084db1793e13755f30a, type: 2}
+  - cursorIcon: {fileID: 11400000, guid: 3fb71da33f7d8b7428e14b23fb499547, type: 2}
     constraint:
       rid: 6196716169574481923
   references:
     version: 2
     RefIds:
     - rid: 4788946424385503236
-      type: {class: InteractConditionIsAllowedInteract, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      type: {class: InteractConditionIsAllowedInteract, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
       data:
         shouldBeReadyToStartInteract:
           _hasValue: 1
@@ -32,15 +33,18 @@ MonoBehaviour:
           _hasValue: 0
           _value: 0
     - rid: 4788946424385503237
-      type: {class: InteractConditionIsInteracting, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      type: {class: InteractConditionIsInteracting, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
       data:
         shouldBeInInteraction: 0
     - rid: 4788946424385503238
-      type: {class: InteractConditionIsDetected, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      type: {class: InteractConditionIsDetected, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
       data:
         shouldBeDetected: 1
     - rid: 6196716169574481923
-      type: {class: InteractConditionGroup, ns: MisterGames.Interact.Interactives, asm: MisterGames.Interact}
+      type: {class: InteractConditionGroup, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
       data:
         mode: 0
         conditions:
