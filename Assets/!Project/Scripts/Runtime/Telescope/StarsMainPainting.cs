@@ -21,6 +21,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeField] private StarGroupsCanvas _starGroupsCanvas;
         [SerializeField] private EventReference _starGroupDetectedEvent;
         [SerializeField] private EventReference _lensFoundEvent;
+        [SerializeField] private EventReference _starGroupPaintedEvent;
 
         [Header("Fade")]
         [SerializeField] [Min(0f)] private float _fadeDuration = 3f;
@@ -187,10 +188,14 @@ namespace _Project.Scripts.Runtime.Telescope {
                 bool wasDetected = group.detected;
                 
 #if UNITY_EDITOR
-                if (Application.isPlaying)
+                if (!Application.isPlaying) {
+                    FadeGroup(id, i, force ? 0f : _fadeDuration, wasDetected, allDetected, _enableCts?.Token ?? default).Forget();    
+                    continue;
+                }
 #endif
 
                 group.detected = groupDetected;
+                _starGroupPaintedEvent.WithSubId(i).SetCount(groupDetected.AsInt());
 
                 FadeGroup(id, i, force ? 0f : _fadeDuration, wasDetected, allDetected, _enableCts?.Token ?? default).Forget();
             }
