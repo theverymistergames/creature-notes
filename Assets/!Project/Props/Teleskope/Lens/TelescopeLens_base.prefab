@@ -309,8 +309,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3563578331376904576}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000026787896, y: -0.00000022477711, z: 0.64278764, w: 0.7660445}
-  m_LocalPosition: {x: -0.04, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -338,7 +338,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.044
+  m_Radius: 0.07
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &266024808981861759
 MonoBehaviour:
@@ -826,13 +826,13 @@ MonoBehaviour:
         action:
           rid: 1899963383820320811
         events:
-        - progress: 0.3
+        - progress: 0
           action:
             rid: 1899963383820320822
     - rid: 1899963383820320810
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
-        duration: 2
+        duration: 2.4
         durationRandomAdd: 0.2
         curve:
           serializedVersion: 2
@@ -917,10 +917,10 @@ MonoBehaviour:
         loop: 0
         volume: 1
         pitch: 1
-        pitchRandomAdd: 0
+        pitchRandomAdd: 0.05
         audioClipVariants:
         - weight: 0
-          value: {fileID: 8300000, guid: 5a71d9dd442035d49abdb721cf0f91cb, type: 3}
+          value: {fileID: 8300000, guid: ee64cfa41b97f4d4da5f6b98a1261a59, type: 3}
 --- !u!82 &1554900055311517217
 AudioSource:
   m_ObjectHideFlags: 0
