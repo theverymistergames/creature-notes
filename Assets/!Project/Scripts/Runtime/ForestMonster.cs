@@ -31,7 +31,7 @@ public class ForestMonster : MonoBehaviour {
     }
 
     private void OnEnable() {
-        _transform = CharacterAccessRegistry.Instance.GetCharacterAccess().GetComponent<Transform>();
+        _transform = CharacterSystem.Instance.GetCharacter().GetComponent<Transform>();
     }
 
     [Button]

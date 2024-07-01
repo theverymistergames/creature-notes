@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allowStopImmediatelyAfterStart: 1
   _readyConstraint:
-    rid: 6196716169574481931
+    rid: 1899963383820320770
   _startConstraint:
     rid: 6196716169574481930
   _continueConstraint:
@@ -22,6 +22,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1899963383820320770
+      type: {class: InteractConditionIsInteractingWithAny, ns: MisterGames.Interact.Interactives,
+        asm: MisterGames.Interact}
+      data:
+        shouldBeInInteraction: 0
     - rid: 6196716169574481930
       type: {class: InteractConditionInputKey, ns: MisterGames.Interact.Interactives,
         asm: MisterGames.Interact}
@@ -35,11 +40,6 @@ MonoBehaviour:
         shouldBePressed:
           _hasValue: 0
           _value: 0
-    - rid: 6196716169574481931
-      type: {class: InteractConditionIsDetected, ns: MisterGames.Interact.Interactives,
-        asm: MisterGames.Interact}
-      data:
-        shouldBeDetected: 1
     - rid: 7110554076280520717
       type: {class: InteractConditionBool, ns: MisterGames.Interact.Interactives,
         asm: MisterGames.Interact}

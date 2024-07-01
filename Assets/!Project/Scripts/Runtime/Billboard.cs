@@ -13,7 +13,7 @@ public sealed class Billboard : MonoBehaviour, IUpdate
     }
 
     public void OnUpdate(float dt) {
-        if (CharacterAccessRegistry.Instance.GetCharacterAccess() is not {} actor) return;
+        if (CharacterSystem.Instance.GetCharacter() is not {} actor) return;
         
         transform.LookAt(actor.Transform.position, Vector3.up);
     }

@@ -22,7 +22,7 @@ public class Level2Painting : MonoBehaviour {
         _interactive = GetComponent<Interactive>();
         _interactive.OnStartInteract += InteractiveOnOnStartInteract;
 
-        _inventory = CharacterAccessRegistry.Instance.GetCharacterAccess().GetComponent<CharacterInventoryPipeline>().Inventory;
+        _inventory = CharacterSystem.Instance.GetCharacter().GetComponent<CharacterInventoryPipeline>().Inventory;
         
         foreach (var part in parts) {
             if (!part.activeSelf) {

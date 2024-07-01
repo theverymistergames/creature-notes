@@ -22,7 +22,7 @@ namespace MisterGames.Character.Motion {
             _enableCts?.Dispose();
             _enableCts = new CancellationTokenSource();
 
-            _context = CharacterAccessRegistry.Instance.GetCharacterAccess();
+            _context = CharacterSystem.Instance.GetCharacter();
             
             _enableAction?.Apply(_context, _enableCts.Token).Forget();
         }

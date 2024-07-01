@@ -55,6 +55,7 @@ MonoBehaviour:
     _invertNextPlay: 1
     _tween:
       rid: 1899963062963142699
+  _events: []
   references:
     version: 2
     RefIds:
@@ -65,6 +66,7 @@ MonoBehaviour:
         tweens:
         - rid: 1899963062963142700
         - rid: 1899963062963142702
+        events: []
     - rid: 1899963062963142700
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -132,6 +134,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         action:
           rid: 1899963062963142701
+        events: []
     - rid: 1899963062963142701
       type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
         asm: MisterGames.TweenLib}
@@ -181,6 +184,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         action:
           rid: 1899963062963142704
+        events: []
     - rid: 1899963062963142704
       type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -289,6 +293,7 @@ GameObject:
   - component: {fileID: 8344822141902773018}
   - component: {fileID: 8229941445589677808}
   - component: {fileID: 4802249304634999158}
+  - component: {fileID: 1554900055311517217}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -304,8 +309,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3563578331376904576}
   serializedVersion: 2
-  m_LocalRotation: {x: 1.1991438e-15, y: 3.5974315e-15, z: 1.1991438e-15, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.7482352e-16}
+  m_LocalRotation: {x: 0.00000026787896, y: -0.00000022477711, z: 0.64278764, w: 0.7660445}
+  m_LocalPosition: {x: -0.04, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -679,7 +684,7 @@ MonoBehaviour:
         speed: 1
         reduceSpeedBelowDistance: 0.5
         speedCoeffMin: 0.01
-        exitAt: 1
+        exitAt: 0.9
         pullToPositionAfterExit: 0
         curvature: 1
         progressCurve:
@@ -765,144 +770,253 @@ MonoBehaviour:
   _tweenPlayer:
     _progress: 0
     _speed: 1
-    _yoyo: 2
+    _yoyo: 0
     _loop: 1
     _invertNextPlay: 0
     _tween:
-      rid: 1899963271008747585
+      rid: 1899963383820320807
+  _events: []
   references:
     version: 2
     RefIds:
-    - rid: 1899963271008747585
+    - rid: 1899963383820320807
       type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
         mode: 0
         tweens:
-        - rid: 1899963271008747588
-        - rid: 1899963271008747586
-    - rid: 1899963271008747586
+        - rid: 1899963383820320808
+        - rid: 1899963383820320809
+        - rid: 1899963383820320810
+        events: []
+    - rid: 1899963383820320808
+      type: {class: DelayTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 4
+        durationRandomAdd: 2
+        events: []
+    - rid: 1899963383820320809
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
-        duration: 1
-        durationRandomAdd: 0
+        duration: 2
+        durationRandomAdd: 0.2
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: -0.000869751
+            value: 0
+            inSlope: 3.3720374
+            outSlope: 3.3720374
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.19432457
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.44012
+            outSlope: 0.44012
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.29133862
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 1899963383820320811
+        events:
+        - progress: 0.3
+          action:
+            rid: 1899963383820320822
+    - rid: 1899963383820320810
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 2
+        durationRandomAdd: 0.2
         curve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 0
-            outSlope: 0
+            inSlope: 0.326734
+            outSlope: 0.326734
             tangentMode: 0
             weightedMode: 3
             inWeight: 0
-            outWeight: 0.333011
-          - serializedVersion: 3
-            time: 0.0455
-            value: 0
-            inSlope: -0.68546426
-            outSlope: -0.68546426
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.334
-            outWeight: 0.33287132
-          - serializedVersion: 3
-            time: 0.1364
-            value: 0
-            inSlope: -1.3733807
-            outSlope: -1.3733807
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.33376238
-            outWeight: 0.33316833
-          - serializedVersion: 3
-            time: 0.3182
-            value: 0
-            inSlope: -2.7491915
-            outSlope: -2.7491915
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.33346537
-            outWeight: 0.33326733
-          - serializedVersion: 3
-            time: 0.5165405
-            value: 0.22704802
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.33336633
-            outWeight: 0.33336633
-          - serializedVersion: 3
-            time: 0.6876594
-            value: -0.06756592
-            inSlope: 5.501634
-            outSlope: 5.501634
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.33326733
-            outWeight: 0.33346534
-          - serializedVersion: 3
-            time: 0.82270646
-            value: 0.13934326
-            inSlope: 2.7516425
-            outSlope: 2.7516425
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.3331683
-            outWeight: 0.3319367
-          - serializedVersion: 3
-            time: 0.915083
-            value: -0.021347046
-            inSlope: 1.354673
-            outSlope: 1.354673
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.33652052
-            outWeight: 0.32660022
+            outWeight: 0.45500565
           - serializedVersion: 3
             time: 1
-            value: 0
-            inSlope: 0.6875
-            outSlope: 0.6875
+            value: 1
+            inSlope: 0.6661688
+            outSlope: 0.6661688
             tangentMode: 0
             weightedMode: 3
-            inWeight: 0.33671048
+            inWeight: 0.17547804
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
         action:
-          rid: 1899963271008747589
-    - rid: 1899963271008747588
-      type: {class: DelayTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
-      data:
-        duration: 4
-        durationRandomAdd: 2
-    - rid: 1899963271008747589
+          rid: 1899963383820320812
+        events: []
+    - rid: 1899963383820320811
       type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
         actions:
-        - rid: 1899963271008747590
-        - rid: 1899963271008747591
-    - rid: 1899963271008747590
+        - rid: 1899963383820320813
+        - rid: 1899963383820320814
+    - rid: 1899963383820320812
+      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        actions:
+        - rid: 1899963383820320815
+        - rid: 1899963383820320816
+    - rid: 1899963383820320813
       type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
         transform: {fileID: 4633759923379028717}
         useLocal: 1
         startPosition: {x: 0, y: 0, z: 0}
-        endPosition: {x: 0, y: 0, z: 0.02}
+        endPosition: {x: -0.04, y: -0, z: 0}
         curvature: 0
         curvatureAxis: {x: 0, y: 1, z: 0}
-    - rid: 1899963271008747591
+    - rid: 1899963383820320814
       type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
         asm: MisterGames.TweenLib}
       data:
         transform: {fileID: 4633759923379028717}
         startEulerAngles: {x: 0, y: 0, z: 0}
-        endEulerAngles: {x: 10, y: 30, z: 10}
+        endEulerAngles: {x: 1440, y: 0, z: 80}
         useLocal: 1
         useEulerInterpolation: 1
+    - rid: 1899963383820320815
+      type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 4633759923379028717}
+        useLocal: 1
+        startPosition: {x: -0.04, y: 0, z: 0}
+        endPosition: {x: 0, y: 0, z: 0}
+        curvature: 0
+        curvatureAxis: {x: 0, y: 1, z: 0}
+    - rid: 1899963383820320816
+      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 4633759923379028717}
+        startEulerAngles: {x: 1440, y: 0, z: 80}
+        endEulerAngles: {x: 2880, y: 0, z: 0}
+        useLocal: 1
+        useEulerInterpolation: 1
+    - rid: 1899963383820320822
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        source: {fileID: 1554900055311517217}
+        mode: 0
+        loop: 0
+        volume: 1
+        pitch: 1
+        pitchRandomAdd: 0
+        audioClipVariants:
+        - weight: 0
+          value: {fileID: 8300000, guid: 5a71d9dd442035d49abdb721cf0f91cb, type: 3}
+--- !u!82 &1554900055311517217
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563578331376904576}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3691052449565929530
 GameObject:
   m_ObjectHideFlags: 0
