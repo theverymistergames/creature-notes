@@ -4,19 +4,22 @@ using System.Collections.Generic;
 using MisterGames.BlueprintLib;
 using MisterGames.Interact.Interactives;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MusicBoxHandle : MonoBehaviour {
     [SerializeField] private float rotationSpeed = 1;
     [SerializeField] private MusicBoxRoll roll;
     [SerializeField] private MusicBoxPart[] parts;
+    [SerializeField] private bool playOnAwake;
     
     private Interactive _interactive;
     private bool _interacting;
     
     void Start() {
+        if (playOnAwake) Play();
     }
 
-    private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
+    private void Play() {
         _interacting = true;
         
         foreach (var musicBoxPart in parts) {
@@ -24,6 +27,10 @@ public class MusicBoxHandle : MonoBehaviour {
         }
         
         roll.Play();
+    }
+
+    private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
+        Play();
     }
 
     private void InteractiveOnOnStopInteract(IInteractiveUser obj) {

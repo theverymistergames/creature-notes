@@ -17,7 +17,7 @@ public class MusicBoxPart : MonoBehaviour {
 
     private MotionHandle _currentTween;
     
-    void Start() {
+    void Awake() {
         _source = GetComponent<AudioSource>();
         _totalDuration = _source.clip.length;
         _timeStep = _totalDuration / steps;
