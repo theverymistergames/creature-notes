@@ -63,9 +63,9 @@ public class ForestMonster : MonoBehaviour {
         
         _agent.destination = position;
         
-        var dir = position - transform.position + head.transform.position;
-        var rot = Quaternion.LookRotation(dir);
-        head.transform.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
+        // var dir = position - transform.position + head.transform.position;
+        // var rot = Quaternion.LookRotation(dir);
+        // head.transform.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
 
         var distance = GetPathRemainingDistance(_agent);
 
