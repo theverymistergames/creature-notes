@@ -1,0 +1,277 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1069848825237481683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068342846208931743}
+  - component: {fileID: 1056913776125794597}
+  - component: {fileID: 1049097677377140541}
+  - component: {fileID: 1023463804909705519}
+  - component: {fileID: 1905810195624447631}
+  m_Layer: 0
+  m_Name: box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1068342846208931743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069848825237481683}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.113511, y: 1.1135112, z: 1.113511}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4766926226865942368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1056913776125794597
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069848825237481683}
+  m_Mesh: {fileID: 4300000, guid: e8ffcb9c31ba4f04fa5e284aad39d64a, type: 3}
+--- !u!23 &1049097677377140541
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069848825237481683}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ccdf908219c056e47b7042e940f76eea, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1023463804909705519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069848825237481683}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.59999996, y: 0.60754, z: 0.59999996}
+  m_Center: {x: 0, y: 0.0037700385, z: 0}
+--- !u!114 &1905810195624447631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069848825237481683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _playAtStart: 1
+  _tweenPlayer:
+    _progress: 0
+    _speed: 1
+    _yoyo: 2
+    _loop: 1
+    _invertNextPlay: 1
+    _tween:
+      rid: 1048425330702811136
+  _events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1048425330702811136
+      type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        mode: 0
+        tweens:
+        - rid: 1048425330702811143
+        - rid: 1048425330702811137
+        - rid: 1048425330702811140
+        events: []
+    - rid: 1048425330702811137
+      type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        mode: 1
+        tweens:
+        - rid: 1048425330702811138
+        - rid: 1048425330702811139
+        events: []
+    - rid: 1048425330702811138
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 1
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 1048425330702811141
+        events: []
+    - rid: 1048425330702811139
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 1
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 1048425330702811142
+        events: []
+    - rid: 1048425330702811140
+      type: {class: DelayTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 2
+        durationRandomAdd: 0.7
+        events: []
+    - rid: 1048425330702811141
+      type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 1068342846208931743}
+        useLocal: 1
+        startPosition: {x: 0, y: 0, z: 0}
+        endPosition: {x: -0.8, y: 0, z: 0}
+        curvature: 0
+        curvatureAxis: {x: 0, y: 1, z: 0}
+    - rid: 1048425330702811142
+      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 1068342846208931743}
+        startEulerAngles: {x: 0, y: 0, z: 0}
+        endEulerAngles: {x: 0, y: 180, z: 0}
+        useLocal: 1
+        useEulerInterpolation: 0
+    - rid: 1048425330702811143
+      type: {class: DelayTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 2
+        durationRandomAdd: 0.7
+        events: []
+--- !u!1 &2888442462092732529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4766926226865942368}
+  m_Layer: 0
+  m_Name: BoxObstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4766926226865942368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888442462092732529}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.463, y: -0.785, z: -4.205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1068342846208931743}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
