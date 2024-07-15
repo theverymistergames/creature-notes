@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using LitMotion;
@@ -6,10 +7,23 @@ using UnityEngine;
 
 public class FireFliesParticlesController : MonoBehaviour {
     [SerializeField] private float duration = 3f;
+    
     private ParticleSystem _system;
+    private ParticleSystem.MinMaxCurve _startRate;
     
     void Awake() {
         _system = GetComponent<ParticleSystem>();
+        _startRate = _system.emission.rateOverTime;
+    }
+
+    public void Reset() {
+        var main = _system.main;
+        var emission = _system.emission;
+        
+        main.gravityModifier = 0;
+        emission.rateOverTime = _startRate;
+        
+        _system.Play();
     }
 
     public void Open() {
