@@ -166,6 +166,7 @@ MonoBehaviour:
   _brake: {fileID: 11400000, guid: cc8abdb99d24bd74d86c17d93b2ce814, type: 2}
   _nitro: {fileID: 11400000, guid: 21cba7bc0accd854d955cb98fd34731a, type: 2}
   _inputSmoothing: {x: 10, y: 10}
+  _inputSmoothingRelease: {x: 10, y: 10}
   _ignitionMode: 0
   _ignitionDelayAfterEnter: 0.15
   _ignitionDuration: 0.6
@@ -175,6 +176,7 @@ MonoBehaviour:
   _forcesScale: 0.8
   _driveMode: 2
   _acceleration: 2000
+  _inputThreshold: 0.1
   _nitroAcceleration: 3000
   _speedToRpm: 0.5
   _rpmMin: 0.6
@@ -194,6 +196,7 @@ MonoBehaviour:
   _overturnForce: 1
   _overturnAngleMin: 80
   _minTimeOverturnedToApplyForce: 0.5
+  _sideOffset: 0
   _wheels:
   - axel: 0
     geo: {fileID: 8142587244648256561}
