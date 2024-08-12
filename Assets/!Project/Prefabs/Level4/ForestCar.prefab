@@ -4253,7 +4253,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 31224
+    _version: 32871
   _blackboard:
     _propertyList: a43ce5533c9171fa
     _propertyMap:
@@ -4335,14 +4335,18 @@ MonoBehaviour:
         - rid: 1899962879316066318
         - rid: 1899962890230431744
         - rid: 1899962890230431779
+        - rid: 7865778905035571200
     - rid: 1899962879316066306
       type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
         target: {fileID: 6343331099434872525}
+        mode: 1
+        orientation: {x: 0, y: 0, z: 0}
         angularSpeed: 30
-        maxAngle: 10
+        maxAngle: 180
         keepLookingAtAfterFinish: 1
+        smoothing: 10
     - rid: 1899962879316066307
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -4355,7 +4359,7 @@ MonoBehaviour:
         offset: {x: 0, y: 0.15, z: -0.8}
         rotationOffset: {x: 0, y: 0, z: 0}
         attach: 1
-        attachSmoothing: 25
+        attachSmoothing: 15
         attachMode: 2
         speed: 1
         reduceSpeedBelowDistance: 0.5
@@ -4385,8 +4389,6 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        pointRadius: 0.1
-        smoothing: 10
     - rid: 1899962879316066309
       type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
       data:
@@ -4478,8 +4480,6 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        pointRadius: 0.05
-        smoothing: 10
     - rid: 1899962890230431765
       type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
       data:
@@ -4561,14 +4561,14 @@ MonoBehaviour:
         asm: MisterGames.ActionLib}
       data:
         horizontal:
-          _hasValue: 0
+          _hasValue: 1
           _value:
-            mode: 0
+            mode: 3
             absolute: 0
-            bounds: {x: 0, y: 0}
+            bounds: {x: -15, y: 15}
             springs: {x: 0, y: 0}
-            springFactors: {x: 0, y: 0}
-            springSmoothing: {x: 0, y: 0}
+            springFactors: {x: 10, y: 10}
+            springSmoothing: {x: 10, y: 10}
         vertical:
           _hasValue: 1
           _value:
@@ -4582,6 +4582,11 @@ MonoBehaviour:
       type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         actorAction: {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
+    - rid: 7865778905035571200
+      type: {class: CharacterActionSetViewSmoothing, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        viewSmoothFactor: 10
 --- !u!114 &7809765896818350808
 MonoBehaviour:
   m_ObjectHideFlags: 0
