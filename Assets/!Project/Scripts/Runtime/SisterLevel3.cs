@@ -21,6 +21,7 @@ public class SisterLevel3 : MonoBehaviour {
     [SerializeField] private Interactive noInteractive;
 
     [SerializeField] private Level3Checkmark level3Checkmark;
+    [SerializeField] private EventReference questStartedEvent;
 
     private int _tryNumber;
     
@@ -33,6 +34,9 @@ public class SisterLevel3 : MonoBehaviour {
         noInteractive.OnStartInteract += _ => OnAnswerChosen(false);
         yesInteractive.OnStartInteract += _ => OnAnswerChosen(true);
         
+        yesInteractive.enabled = false;
+        noInteractive.enabled = false;
+        
         bubble0.SetActive(true);
         bubble1.SetActive(false);
         
@@ -44,15 +48,16 @@ public class SisterLevel3 : MonoBehaviour {
     }
 
     private async void OnAnswerChosen(bool isYes) {
+        yesInteractive.enabled = false;
+        noInteractive.enabled = false;
+        
         if (isYes) {
             _sisterInteractive.OnStartInteract -= OnSisterStartInteract;
-            
             yesInteractive.gameObject.SetActive(false);
-            
             level3Checkmark.StartSequence();
+            questStartedEvent.Raise();
         } else {
             await PlayTweenRunner(bubbleHide);
-            
             _sisterInteractive.OnStartInteract += OnSisterStartInteract;
         }
     }
@@ -65,9 +70,12 @@ public class SisterLevel3 : MonoBehaviour {
             bubble1.SetActive(true);
 
             await PlayTweenRunner(bubbleFinal);
+            
+            yesInteractive.enabled = true;
+            noInteractive.enabled = true;
         } else {
             await PlayTweenRunner(bubbleStart);
-        
+            
             _sisterInteractive.OnStartInteract += OnSisterStartInteract;
         
             _tryNumber++;

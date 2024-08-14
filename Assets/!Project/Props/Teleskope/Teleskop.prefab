@@ -981,8 +981,6 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        pointRadius: 0.05
-        smoothing: 15
     - rid: 4105391196587950087
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -1035,8 +1033,6 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        pointRadius: 0.05
-        smoothing: 10
     - rid: 4105391196587950089
       type: {class: CharacterDetachHeadAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1050,9 +1046,12 @@ MonoBehaviour:
         asm: MisterGames.ActionLib}
       data:
         target: {fileID: 3029080117750411629}
+        mode: 0
+        orientation: {x: 0, y: 0, z: 0}
         angularSpeed: 30
         maxAngle: 5
         keepLookingAtAfterFinish: 1
+        smoothing: 0
     - rid: 4105391196587950099
       type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
