@@ -930,6 +930,7 @@ MonoBehaviour:
         - rid: 4105391196587950098
         - rid: 4105391196587950099
         - rid: 4105391196587950110
+        - rid: 7865778993126178820
     - rid: 4105391196587950086
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -942,7 +943,7 @@ MonoBehaviour:
         offset: {x: 0, y: 0, z: 0.17}
         rotationOffset: {x: 0, y: 0, z: 0}
         attach: 1
-        attachSmoothing: 20
+        attachSmoothing: 0
         attachMode: 1
         speed: 1
         reduceSpeedBelowDistance: 0.2
@@ -986,10 +987,10 @@ MonoBehaviour:
       data:
         mode: 1
         actions:
+        - rid: 4105391196587950100
         - rid: 4105391196587950089
         - rid: 4105391196587950097
         - rid: 4105391196587950088
-        - rid: 4105391196587950100
         - rid: 4105391196587950118
     - rid: 4105391196587950088
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
@@ -1006,8 +1007,8 @@ MonoBehaviour:
         attachSmoothing: 0
         attachMode: 0
         speed: 1
-        reduceSpeedBelowDistance: 0.2
-        speedMin: 0.01
+        reduceSpeedBelowDistance: 0.3
+        speedMin: 0.02
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -1016,19 +1017,28 @@ MonoBehaviour:
             time: 0
             value: 0
             inSlope: 0
-            outSlope: 1
+            outSlope: -0.0012029491
             tangentMode: 0
-            weightedMode: 0
+            weightedMode: 3
             inWeight: 0
-            outWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
+            inSlope: -0.0009312395
             outSlope: 0
             tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
+            weightedMode: 3
+            inWeight: 0.358688
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
@@ -1048,8 +1058,8 @@ MonoBehaviour:
         target: {fileID: 3029080117750411629}
         mode: 0
         orientation: {x: 0, y: 0, z: 0}
-        smoothing: 10
-        maxAngle: 10
+        smoothing: 0
+        maxAngle: 180
         keepLookingAtAfterFinish: 1
         attachSmoothing: 0
     - rid: 4105391196587950099
@@ -1127,6 +1137,11 @@ MonoBehaviour:
         asm: MisterGames.ActionLib}
       data:
         duration: 0.5
+    - rid: 7865778993126178820
+      type: {class: CharacterActionSetViewSmoothing, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        viewSmoothFactor: 0
 --- !u!114 &8591546782952774112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1149,14 +1164,14 @@ MonoBehaviour:
       absolute: 0
       bounds: {x: -90, y: 100}
       springs: {x: -80, y: 90}
-      springFactors: {x: 0.5, y: 0.5}
+      springFactors: {x: 2, y: 2}
       springSmoothing: {x: 2, y: 2}
     _vertical:
       mode: 3
       absolute: 1
       bounds: {x: -20, y: 50}
       springs: {x: -17, y: 47}
-      springFactors: {x: 0.5, y: 0.5}
+      springFactors: {x: 2, y: 2}
       springSmoothing: {x: 2, y: 2}
 --- !u!114 &5836159600247102695
 MonoBehaviour:
@@ -2490,6 +2505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8112731213020411922}
   - component: {fileID: 1149097703783997471}
+  - component: {fileID: 2136388145580485001}
   m_Layer: 0
   m_Name: Teleskop
   m_TagString: Untagged
@@ -2538,6 +2554,29 @@ MonoBehaviour:
   _checkPeriodInRange: 0.1
   _checkPeriodOutOfRange: 0.5
   _showDebugInfo: 0
+--- !u!136 &2136388145580485001
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8349424673933579167}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.28
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.44, z: 0}
 --- !u!1001 &230701468316272556
 PrefabInstance:
   m_ObjectHideFlags: 0
