@@ -720,9 +720,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
-  _triggerInteraction: 1
-  _hitPointElevation: 0.19
-  _normalSphereCastRadius: 0.05
+  _maxSlopeAngle: 60
   _debugDrawNormal: 0
   _debugDrawCast: 0
   _debugDrawHitPoint: 0
@@ -2906,6 +2904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd1ed7d2de4378b18d4342fe5197e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerLoopStage: 3
   _sensitivity: {x: 0.15, y: 0.15}
   _smoothing: 20
   _freeHeadRotationDistance: 0.1
@@ -3072,19 +3071,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c67dada703a447a9b403990e24602993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sideOffset: 0.15
   _lowerRayOffset: -0.44
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
-  _distance: 0.3
+  _distance: 0.35
   _minInclineAngle: 70
   _maxStepDepth: 0.1
   _maxHits: 6
   _maxStepHeight: 0.3
   _maxStepHeightAir: 0
-  _climbSpeed: {x: 1, y: 2}
-  _airSpeedMultiplier: 1
-  _showDebugInfo: 0
+  _climbSpeedMin: {x: 0.5, y: 1, z: 0.5}
+  _climbSpeedMax: {x: 1, y: 1.5, z: 2}
+  _speedMultiplierGround: 1
+  _speedMultiplierAir: 0
+  _speedSmoothing: 2
+  _showDebugInfo: 1
 --- !u!114 &6409746516802656098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3367,6 +3370,7 @@ GameObject:
   - component: {fileID: 6577845881223045625}
   - component: {fileID: 2775006979344399738}
   - component: {fileID: 354778581290818253}
+  - component: {fileID: 7287250178457162955}
   m_Layer: 2
   m_Name: Hero
   m_TagString: Player
@@ -3477,6 +3481,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d3ec7d6a46444f7b150311ae08bf98e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7287250178457162955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586870401899322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff619836299f4c5a929efa88540e1d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _collideWithTriggers: 0
 --- !u!1 &7284966764588239170
 GameObject:
   m_ObjectHideFlags: 0
