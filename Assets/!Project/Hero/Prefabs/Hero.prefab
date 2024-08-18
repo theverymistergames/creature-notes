@@ -721,11 +721,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _maxSlopeAngle: 60
-  _debugDrawNormal: 0
-  _debugDrawCast: 0
-  _debugDrawHitPoint: 0
-  _debugDrawIsGroundedText: 0
-  _debugDrawIsGroundedTextOffset: {x: 0, y: 0, z: 0}
+  _showDebugInfo: 0
+  _bottomPoint: -0.45
+  _traceDuration: 3
 --- !u!114 &1115517514154010951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2989,6 +2987,7 @@ GameObject:
   - component: {fileID: 6409746516802656098}
   - component: {fileID: 6001925815983117520}
   - component: {fileID: 5382468787250592907}
+  - component: {fileID: 5155746605723487674}
   m_Layer: 2
   m_Name: Motion
   m_TagString: Untagged
@@ -3113,8 +3112,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85974a2c22744fcfa0b15d6de01f9d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _direction: {x: 0, y: 1, z: 0}
   _force: 5
+  _infiniteJumps: 0
+  _jumpTakeoffDuration: 0.1
+  _minGroundedTimeToAllowJump: 0.2
+  _retryFailedJumpDuration: 0.1
+  _coyoteTime: 0
+  _jumpImpulseDelay: 0
   _jumpCondition: {fileID: 11400000, guid: 01fcaf96b4135e04e976fb78eddbe945, type: 2}
 --- !u!114 &5382468787250592907
 MonoBehaviour:
@@ -3130,6 +3134,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpReaction: {fileID: 11400000, guid: ae9169f4f02d9f5479a59f018cf887e7, type: 2}
   _landReaction: {fileID: 11400000, guid: f6d7295bb073b3745898df9abe34b6fb, type: 2}
+--- !u!114 &5155746605723487674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586869188020231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ff9313c2c744428b6fb8cd5551b89e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _applyFallForceBelowVerticalSpeed: 0
+  _fallForce: 10
 --- !u!1 &7205586869398250321
 GameObject:
   m_ObjectHideFlags: 0
