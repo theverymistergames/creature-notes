@@ -720,7 +720,6 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
-  _maxSlopeAngle: 60
   _showDebugInfo: 0
   _bottomPoint: -0.45
   _traceDuration: 3
@@ -3026,10 +3025,10 @@ MonoBehaviour:
   _noGravityVelocityDamping: 10
   _speedCorrectionSide: 0.8
   _speedCorrectionBack: 0.6
-  _forceCorrection: {x: 0, y: 0.10226166}
-  _forceCorrectionAngle: {x: 40.007797, y: 119.921036}
+  _forceCorrection: {x: 0, y: 0.2}
+  _forceCorrectionAngle: {x: 40, y: 120}
   _slopeAngle: {x: 25, y: 45}
-  _inputSmoothing: 25
+  _inputSmoothing: 15
   _frictionGrounded: 0.6
   _frictionAir: 0
   _frictionSlope: 1
@@ -3119,6 +3118,7 @@ MonoBehaviour:
   _retryFailedJumpDuration: 0.1
   _coyoteTime: 0
   _jumpImpulseDelay: 0
+  _maxSlopeAngle: 30
   _jumpCondition: {fileID: 11400000, guid: 01fcaf96b4135e04e976fb78eddbe945, type: 2}
 --- !u!114 &5382468787250592907
 MonoBehaviour:
@@ -3147,7 +3147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _applyFallForceBelowVerticalSpeed: 0
-  _fallForce: 10
+  _fallForce: 5
 --- !u!1 &7205586869398250321
 GameObject:
   m_ObjectHideFlags: 0
