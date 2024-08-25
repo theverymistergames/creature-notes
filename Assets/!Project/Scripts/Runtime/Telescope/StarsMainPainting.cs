@@ -48,6 +48,9 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeReference] [SubclassSelector] private IActorAction _onInteractDetectedEqualsFound;
         [SerializeReference] [SubclassSelector] private IActorAction _onInteractDetectedAll;
 
+        [Header("Debug")]
+        [SerializeField] private bool _applyChangesInEditMode;
+        
         private static readonly int _EmissiveColor = Shader.PropertyToID("_EmissiveColor");
         private static readonly int _Color = Shader.PropertyToID("_UnlitColor");
         
@@ -177,9 +180,8 @@ namespace _Project.Scripts.Runtime.Telescope {
 
         private void CheckStarGroups(bool allDetected, bool force = false) {
             byte id = ++_checkId;
-            int totalGroupsCount = _groups?.Length ?? 0;
 
-            for (int i = 0; i < totalGroupsCount; i++) {
+            for (int i = 0; i < _groups?.Length; i++) {
                 ref var group = ref _groups[i];
                 
                 bool groupDetected = _starGroupDetectedEvent.WithSubId(i).GetRaiseCount() > 0;
@@ -189,7 +191,7 @@ namespace _Project.Scripts.Runtime.Telescope {
                 
 #if UNITY_EDITOR
                 if (!Application.isPlaying) {
-                    FadeGroup(id, i, force ? 0f : _fadeDuration, wasDetected, allDetected, _enableCts?.Token ?? default).Forget();    
+                    FadeGroup(id, i, force ? 0f : _fadeDuration, wasDetected, allDetected, default).Forget();    
                     continue;
                 }
 #endif
@@ -332,7 +334,7 @@ namespace _Project.Scripts.Runtime.Telescope {
 
 #if UNITY_EDITOR
         private void OnValidate() {
-            if (_starGroupsCanvas == null) return;
+            if (!_applyChangesInEditMode || _starGroupsCanvas == null) return;
             
             int groups = _starGroupsCanvas.StarGroupCount;
             for (int i = 0; i < groups; i++) {
