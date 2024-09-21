@@ -143,7 +143,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
         
         private async UniTask TakeLensOn(GameObject lens, CancellationToken cancellationToken) {
-            if (_currentLens != null) PrefabPool.Instance.Recycle(_currentLens);
+            if (_currentLens != null) PrefabPool.Main.Release(_currentLens);
             _currentLens = lens;
 
             var t = _currentLens.transform;
@@ -180,12 +180,12 @@ namespace _Project.Scripts.Runtime.Telescope {
             
             await tweenPlayer.Play(cancellationToken: cancellationToken);
             
-            PrefabPool.Instance.Recycle(lens);
+            PrefabPool.Main.Release(lens);
         }
 
         private GameObject CreateLens(int groupIndex) {
             var prefab = _starGroupsData.starGroups[groupIndex].lensPrefab;
-            var instance = PrefabPool.Instance.TakeInactive(prefab.gameObject);
+            var instance = PrefabPool.Main.Get(prefab.gameObject, active: false);
             return instance;
         }
 
