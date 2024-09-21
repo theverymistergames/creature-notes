@@ -1,60 +1,61 @@
-﻿using System;
-using MisterGames.Actors;
+﻿using MisterGames.Actors;
 using MisterGames.Character.View;
 using MisterGames.Common.Lists;
 using MisterGames.Common.Maths;
 using MisterGames.Tick.Core;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 namespace _Project.Scripts.Runtime.Fireball {
     
-    
-    public class FireballShaderController : MonoBehaviour, IActorComponent, IUpdate {
+    public sealed class FireballShaderController : MonoBehaviour, IActorComponent, IUpdate {
 
-        [Header("Detection")]
-        [SerializeField] [Min(1)] private int _speedBufferSize = 5;
-        [SerializeField] [Min(1)] private int _angleBufferSize = 5;
-        [SerializeField] private float _speedMul = 1f;
+        [Header("Material")]
+        [SerializeField] private CustomPassVolume _customPassVolume;
+        [SerializeField] private Material _material;
+        [SerializeField] private string _centerOffsetProperty;
+        
+        [Header("Center Offset")]
+        [SerializeField] [Min(1)] private int _bufferSize = 5;
         [SerializeField] private float _minSpeed = 0.1f;
         [SerializeField] private float _maxSpeed = 1f;
+        [SerializeField] private float _speedMul = 1f;
         [SerializeField] private AnimationCurve _speedCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-        
-        [Header("Material Settings")]
-        [SerializeField] private Material _material;
-        [SerializeField] private string _rotationParameter;
-        [SerializeField] private string _blendParameter;
-        [SerializeField] private float _angleSmoothing = 10f;
-        [SerializeField] private float _blendSmoothing = 10f;
+        [SerializeField] [Min(0f)] private float _maxOffset;
+        [SerializeField] [Min(0f)] private float _offsetSmoothing = 5f;
+
+        private Material _runtimeMaterial;
         
         private CharacterViewPipeline _view;
-        private float _lastUpdateTime;
-
-        private Vector3[] _deltaBuffer;
+        private Vector2[] _deltaBuffer;
         private float[] _speedBuffer;
         private int _speedPointer;
-        private int _anglePointer;
+        private int _deltaPointer;
+        
         private Vector3 _lastPoint;
-        private float _lastAngle;
-
-        private Quaternion _rotSmoothed = Quaternion.identity;
-        private float _angleSmoothed;
-        private float _blendSmoothed;
-
-        private int _rotationParameterHash;
-        private int _blendParameterHash;
+        private Vector2 _centerOffsetSmoothed;
+        private int _centerOffsetHash;
         
         void IActorComponent.OnAwake(IActor actor) {
-            _speedBuffer = new float[_speedBufferSize];
-            _deltaBuffer = new Vector3[_angleBufferSize];
+            InstantiateRuntimeMaterial();
+            
+            _speedBuffer = new float[_bufferSize];
+            _deltaBuffer = new Vector2[_bufferSize];
             
             _view = actor.GetComponent<CharacterViewPipeline>();
-            _lastPoint = _view.Orientation * Vector3.forward;
+            _centerOffsetHash = Shader.PropertyToID(_centerOffsetProperty);
+        }
 
-            _rotationParameterHash = Shader.PropertyToID(_rotationParameter);
-            _blendParameterHash = Shader.PropertyToID(_blendParameter);
+        private void InstantiateRuntimeMaterial() {
+            _runtimeMaterial = new Material(_material);
+            
+            ((FullScreenCustomPass) _customPassVolume.customPasses[0]).fullscreenPassMaterial = _runtimeMaterial;
         }
 
         private void OnEnable() {
+            _lastPoint = _view.Orientation * Vector3.forward;
+            _centerOffsetSmoothed = Vector2.zero;
+            
             PlayerLoopStage.LateUpdate.Subscribe(this);
         }
 
@@ -63,52 +64,41 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         void IUpdate.OnUpdate(float dt) {
+            ProcessCenterOffset(dt);
+        }
+
+        private void ProcessCenterOffset(float dt) {
             var orient = _view.Orientation;
             var point = orient * Vector3.forward;
             var delta = Quaternion.Inverse(orient) * (point - _lastPoint);
             _lastPoint = point;
 
-            float speed = dt > 0f ? delta.magnitude * _speedMul / dt : 0f;
+            float speed = dt > 0f ? delta.magnitude / dt : 0f;
             float speedAvg = _speedBuffer.WriteToCircularBufferAndGetAverage(speed, ref _speedPointer);
+            float relativeSpeed = Mathf.Clamp01(Mathf.Max(speedAvg - _minSpeed, 0f) / (_maxSpeed - _minSpeed));
 
-            var writeDelta = speedAvg > _minSpeed ? delta : Vector3.zero;
-            var deltaAvg = _deltaBuffer.WriteToCircularBufferAndGetAverage(writeDelta, ref _anglePointer);
-            float angleAvg = Vector3.SignedAngle(Vector3.right, deltaAvg, Vector3.forward);
-            _lastAngle = speedAvg > _minSpeed ? angleAvg : _lastAngle;
+            var deltaAvg = _deltaBuffer.WriteToCircularBufferAndGetAverage(delta, ref _deltaPointer);
+            var centerOffset = deltaAvg.normalized * Mathf.Min(_speedCurve.Evaluate(relativeSpeed) * _speedMul, _maxOffset);
+            _centerOffsetSmoothed = _centerOffsetSmoothed.SmoothExp(centerOffset, dt * _offsetSmoothing);
             
-            _angleSmoothed = Mathf.Lerp(VectorUtils.GetNearestAngle(_angleSmoothed, _lastAngle), _lastAngle, dt * _angleSmoothing);
-            
-            //_rotSmoothed = Quaternion.Slerp(_rotSmoothed, Quaternion.Euler(angleAvg, 0f, 0f), dt * _angleSmoothing);
-            
-            float relativeSpeed = _speedCurve.Evaluate(Mathf.Clamp01(Mathf.Max(speedAvg - _minSpeed, 0f) / (_maxSpeed - _minSpeed)));
-
-            float blend = relativeSpeed;
-            _blendSmoothed = Mathf.Lerp(_blendSmoothed, blend, dt * _blendSmoothing);
-
-            float angle = _angleSmoothed - 180f;
-            ApplyParameters(_blendSmoothed, angle);
-            
-            Debug.Log($"FireballShaderController.OnUpdate: speed {speedAvg:0.000}, angle {angle:0.000}, blend {_blendSmoothed:0.000}");
+            _runtimeMaterial.SetVector(_centerOffsetHash, _centerOffsetSmoothed);
         }
 
-        private void ApplyParameters(float blend, float angle) {
-            //_material.SetFloat(_blendParameterHash, blend);
-            _material.SetFloat(_rotationParameterHash, angle);
-        }
-        
+#if UNITY_EDITOR
         private void OnValidate() {
             if (!Application.isPlaying) return;
 
-            if (_speedBuffer?.Length != _speedBufferSize) {
-                _speedBuffer = new float[_speedBufferSize];
+            if (_speedBuffer?.Length != _bufferSize) {
+                _speedBuffer = new float[_bufferSize];
                 _speedPointer = 0;
             }
 
-            if (_deltaBuffer?.Length != _angleBufferSize) {
-                _deltaBuffer = new Vector3[_angleBufferSize];
-                _anglePointer = 0;
+            if (_deltaBuffer?.Length != _bufferSize) {
+                _deltaBuffer = new Vector2[_bufferSize];
+                _deltaPointer = 0;
             }
         }
+#endif
     }
     
 }
