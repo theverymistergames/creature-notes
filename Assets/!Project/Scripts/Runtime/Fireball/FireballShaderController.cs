@@ -31,20 +31,29 @@ namespace _Project.Scripts.Runtime.Fireball {
         [SerializeField] [Min(0f)] private float _maxOffset;
         [SerializeField] [Min(0f)] private float _offsetSmoothing = 5f;
 
-        [Header("Stages")]
-        [SerializeField] [Min(0f)] private float _defaultSmoothing = 5f;
-        [SerializeField] private StageSetting[] _stages;
-
         [Header("Fire")]
         [SerializeField] [Min(0f)] private float _fireDurationMin;
         [SerializeField] [Min(0f)] private float _fireDurationMax;
         [SerializeField] [Range(0f, 1f)] private float _startFireProgressMax;
         [SerializeField] private MaterialSetting _fireMaterialSetting;
         
+        [Header("Stages")]
+        [SerializeField] [Min(0f)] private float _defaultSmoothing = 5f;
+        [SerializeField] private StageSetting[] _stages;
+        [SerializeField] private TransitionSetting[] _transitions;
+        
         [Serializable]
         private struct StageSetting {
             public Optional<FireballBehaviour.Stage> previousStage;
             public FireballBehaviour.Stage currentStage;
+            public MaterialSetting setting;
+        }
+        
+        [Serializable]
+        private struct TransitionSetting {
+            public Optional<FireballBehaviour.Stage> previousStage;
+            public FireballBehaviour.Stage currentStage;
+            [Min(0f)] public float duration;
             public MaterialSetting setting;
         }
 
@@ -84,15 +93,21 @@ namespace _Project.Scripts.Runtime.Fireball {
         private Vector2 _centerOffsetSmoothed;
 
         private MaterialSetting _defaultSetting;
-        private MaterialSetting _currentSetting;
+        private MaterialSetting _stageSetting;
+        private MaterialSetting _transitionSetting;
+        private MaterialSetting _overrideSetting;
+        
         private float _distortionBlend;
         private float _colorBlend;
         private float _colorDistortionBlend;
         private float _colorVignette;
         private float _colorBorder;
 
-        private float _fireProgress;
-        private float _fireSpeed;
+        private float _transitionProgress;
+        private float _transitionSpeed;
+        
+        private float _overrideProgress;
+        private float _overrideSpeed;
 
         void IActorComponent.OnAwake(IActor actor) {
             _view = actor.GetComponent<CharacterViewPipeline>();
@@ -145,27 +160,39 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void ResetBlends() {
-            _currentSetting = _defaultSetting;
+            _stageSetting = _defaultSetting;
+            _transitionSetting = _defaultSetting;
+            _overrideSetting = _defaultSetting;
             
             _distortionBlend = 0f;
             _colorBlend = 0f;
             _colorDistortionBlend = 0f;
             _colorVignette = 0f;
             _colorBorder = 0f;
+            
+            _transitionProgress = 1f;
+            _transitionSpeed = 0f;
 
-            _fireProgress = 1f;
-            _fireSpeed = 0f;
+            _overrideProgress = 1f;
+            _overrideSpeed = 0f;
             
             ApplyMaterialProperties();
         }
 
         private void OnFire(float progress) {
+            _overrideSetting = _fireMaterialSetting;
+            
             float duration = _fireDurationMin + progress * (_fireDurationMax - _fireDurationMin);
-            _fireProgress = Mathf.Min(_startFireProgressMax, 1f - progress);
-            _fireSpeed = duration > 0f ? 1f / duration : float.MaxValue;
+            _overrideProgress = Mathf.Min(_startFireProgressMax, 1f - progress);
+            _overrideSpeed = duration > 0f ? 1f / duration : float.MaxValue;
         }
 
         private void OnStageChanged(FireballBehaviour.Stage previous, FireballBehaviour.Stage current) {
+            UpdateStageSetting(previous, current);
+            UpdateTransitionSetting(previous, current);
+        }
+
+        private void UpdateStageSetting(FireballBehaviour.Stage previous, FireballBehaviour.Stage current) {
             for (int i = 0; i < _stages.Length; i++) {
                 ref var stage = ref _stages[i];
                 
@@ -175,16 +202,33 @@ namespace _Project.Scripts.Runtime.Fireball {
                     continue;
                 }
 
-                _currentSetting = stage.setting;
+                _stageSetting = stage.setting;
                 return;
             }
 
-            _currentSetting = _defaultSetting;
+            _stageSetting = _defaultSetting;
         }
 
+        private void UpdateTransitionSetting(FireballBehaviour.Stage previous, FireballBehaviour.Stage current) {
+            for (int i = 0; i < _transitions.Length; i++) {
+                ref var transition = ref _transitions[i];
+                
+                if (transition.currentStage != current ||
+                    transition.previousStage.HasValue && transition.previousStage.Value != previous
+                ) {
+                    continue;
+                }
+
+                _transitionSetting = transition.setting;
+                _transitionSpeed = transition.duration > 0f ? 1f / transition.duration : float.MaxValue;
+                _transitionProgress = 0f;
+                return;
+            }
+        }
+        
         void IUpdate.OnUpdate(float dt) {
             ProcessCenterOffset(dt);
-            ProcessCurrentStage(dt);
+            ProcessCurrentSetting(dt);
         }
 
         private void ProcessCenterOffset(float dt) {
@@ -204,18 +248,23 @@ namespace _Project.Scripts.Runtime.Fireball {
             _runtimeMaterial.SetVector(_centerOffsetId, _centerOffsetSmoothed);
         }
 
-        private void ProcessCurrentStage(float dt) {
-            _fireProgress = Mathf.Clamp01(_fireProgress + dt * _fireSpeed);
+        private void ProcessCurrentSetting(float dt) {
+            _transitionProgress = Mathf.Clamp01(_transitionProgress + dt * _transitionSpeed);
+            _overrideProgress = Mathf.Clamp01(_overrideProgress + dt * _overrideSpeed);
             
             MaterialSetting setting;
             float progress;
 
-            if (_fireProgress < 1f) {
-                setting = _fireMaterialSetting;
-                progress = _fireProgress;
+            if (_overrideProgress < 1f) {
+                setting = _overrideSetting;
+                progress = _overrideProgress;
+            }
+            else if (_transitionProgress < 1f) {
+                setting = _transitionSetting;
+                progress = _transitionProgress;
             }
             else {
-                setting = _currentSetting;
+                setting = _stageSetting;
                 progress = _fireballBehaviour.StageProgress;
             }
             
