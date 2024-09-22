@@ -49,7 +49,7 @@ MonoBehaviour:
   _fireInput: {fileID: 11400000, guid: bd6a83e1a6f2c1a49bf1b04857872c1e, type: 2}
   _enableGameObjects:
   - {fileID: 843930100840174705}
-  _disableDelay: 0
+  _disableDelay: 1
 --- !u!1001 &1637662375675244104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62,6 +62,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PostEffect_FireballCharge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2093075095037917753, guid: 315fe6a5fce0aa641ae51ee52623f723,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2667462028565397047, guid: 315fe6a5fce0aa641ae51ee52623f723,
         type: 3}
@@ -143,6 +148,11 @@ MonoBehaviour:
   _customPassVolume: {fileID: 7166884505821820551}
   _material: {fileID: 2100000, guid: 736e2d7a111192e42992b7e8042d7b99, type: 2}
   _centerOffsetProperty: _Center_Offset
+  _distortionBlendProperty: _Distortion_Blend
+  _colorBlendProperty: _Color_Blend
+  _colorDistortionBlendProperty: _Color_Distortion_Blend
+  _colorVignetteProperty: _Color_Vignette
+  _colorBorderProperty: _Color_Border
   _bufferSize: 5
   _minSpeed: 0.5
   _maxSpeed: 10
@@ -173,6 +183,208 @@ MonoBehaviour:
     m_RotationOrder: 4
   _maxOffset: 0.8
   _offsetSmoothing: 5
+  _defaultSmoothing: 1
+  _stageSettings:
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 1
+    smoothingStart: 3
+    smoothingEnd: 3
+    distortionBlendStart: 0
+    distortionBlendEnd: 0.3
+    colorBlendStart: 0
+    colorBlendEnd: 0
+    colorDistortionBlendStart: 0
+    colorDistortionBlendEnd: 0
+    colorVignetteStart: 0
+    colorVignetteEnd: 0
+    colorBorderStart: 0
+    colorBorderEnd: 0
+    blendCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: -0.0012084927
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.36078
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1.5725082
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.326514
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 2
+    smoothingStart: 8
+    smoothingEnd: 4
+    distortionBlendStart: 0.3
+    distortionBlendEnd: 0.5
+    colorBlendStart: 0.3
+    colorBlendEnd: 0.8
+    colorDistortionBlendStart: 0.3
+    colorDistortionBlendEnd: 0.5
+    colorVignetteStart: 0.2
+    colorVignetteEnd: 0.3
+    colorBorderStart: 0
+    colorBorderEnd: 1
+    blendCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 3
+    smoothingStart: 10
+    smoothingEnd: 3
+    distortionBlendStart: 1
+    distortionBlendEnd: 0.5
+    colorBlendStart: 0.9
+    colorBlendEnd: 0.5
+    colorDistortionBlendStart: 0.75
+    colorDistortionBlendEnd: 0.3
+    colorVignetteStart: 0.5
+    colorVignetteEnd: 0.3
+    colorBorderStart: 1
+    colorBorderEnd: 0.75
+    blendCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: -0.0012084927
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.36078
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1.5725082
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.326514
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - previousStage:
+      _hasValue: 1
+      _value: 3
+    currentStage: 4
+    smoothingStart: 3
+    smoothingEnd: 2
+    distortionBlendStart: 0.5
+    distortionBlendEnd: 0
+    colorBlendStart: 0.5
+    colorBlendEnd: 0
+    colorDistortionBlendStart: 0.3
+    colorDistortionBlendEnd: 0
+    colorVignetteStart: 0.3
+    colorVignetteEnd: 0
+    colorBorderStart: 0.5
+    colorBorderEnd: 0
+    blendCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1.5735515
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.330931
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: -0.0009282457
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.358689
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 4
+    smoothingStart: 3
+    smoothingEnd: 2
+    distortionBlendStart: 0.3
+    distortionBlendEnd: 0.2
+    colorBlendStart: 0.5
+    colorBlendEnd: 0
+    colorDistortionBlendStart: 0.3
+    colorDistortionBlendEnd: 0
+    colorVignetteStart: 0.3
+    colorVignetteEnd: 0
+    colorBorderStart: 0.5
+    colorBorderEnd: 0
+    blendCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1.5735515
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.330931
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: -0.0009282457
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.358689
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!4 &3728593274598756479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2667462028565397047, guid: 315fe6a5fce0aa641ae51ee52623f723,

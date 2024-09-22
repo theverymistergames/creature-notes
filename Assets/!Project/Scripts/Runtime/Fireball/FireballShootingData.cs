@@ -8,6 +8,7 @@ namespace _Project.Scripts.Runtime.Fireball {
     public sealed class FireballShootingData : IActorData {
         
         [Header("Stages")]
+        [Min(0f)] public float noneDuration;
         [Min(0f)] public float prepareDuration;
         [Min(0f)] public float chargeDuration;
         [Min(0f)] public float cooldownDuration;

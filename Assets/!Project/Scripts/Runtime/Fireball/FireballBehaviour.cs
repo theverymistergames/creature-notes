@@ -30,7 +30,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             Cooldown,
         }
 
-        public delegate void StageChange(Stage old, Stage current); 
+        public delegate void StageChange(Stage previous, Stage current); 
         
         public event StageChange OnStageChanged = delegate { };
         public event Action<Stage> OnCannotCharge = delegate { };
@@ -109,7 +109,7 @@ namespace _Project.Scripts.Runtime.Fireball {
 
         private Stage ProcessPrepareStage(float progress) {
             if (!_chargeInput.IsPressed) {
-                return StartNextStage(Stage.None);
+                return StartNextStage(Stage.None, _shootingData.noneDuration);
             }
             
             return progress < 1f 
@@ -141,16 +141,14 @@ namespace _Project.Scripts.Runtime.Fireball {
         private Stage ProcessCooldownStage(float progress) {
             return progress < 1f 
                 ? Stage.Cooldown 
-                : StartNextStage(Stage.None);
+                : StartNextStage(Stage.None, _shootingData.noneDuration);
         }
 
         private Stage StartNextStage(Stage stage, float duration = 0f) {
             StageProgress = 0f;
             StageDuration = duration;
             
-            _stageSpeed = stage != Stage.None 
-                ? duration > 0f ? 1f / duration : float.MaxValue 
-                : 0f;
+            _stageSpeed = duration > 0f ? 1f / duration : float.MaxValue;
             
             return stage;
         }
