@@ -7,7 +7,6 @@ using MisterGames.Common.Maths;
 using MisterGames.Tick.Core;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Serialization;
 
 namespace _Project.Scripts.Runtime.Fireball {
     
@@ -34,12 +33,24 @@ namespace _Project.Scripts.Runtime.Fireball {
 
         [Header("Stages")]
         [SerializeField] [Min(0f)] private float _defaultSmoothing = 5f;
-        [SerializeField] private StageSetting[] _stageSettings;
+        [SerializeField] private StageSetting[] _stages;
+
+        [Header("Fire")]
+        [SerializeField] [Min(0f)] private float _fireDurationMin;
+        [SerializeField] [Min(0f)] private float _fireDurationMax;
+        [SerializeField] [Range(0f, 1f)] private float _startFireProgressMax;
+        [SerializeField] private MaterialSetting _fireMaterialSetting;
         
         [Serializable]
         private struct StageSetting {
             public Optional<FireballBehaviour.Stage> previousStage;
             public FireballBehaviour.Stage currentStage;
+            public MaterialSetting setting;
+        }
+
+        [Serializable]
+        private sealed class MaterialSetting {
+            public AnimationCurve blendCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
             [Min(0f)] public float smoothingStart;
             [Min(0f)] public float smoothingEnd;
             [Range(0f, 1f)] public float distortionBlendStart;
@@ -52,11 +63,6 @@ namespace _Project.Scripts.Runtime.Fireball {
             [Range(0f, 1f)] public float colorVignetteEnd;
             [Range(0f, 1f)] public float colorBorderStart;
             [Range(0f, 1f)] public float colorBorderEnd;
-            [FormerlySerializedAs("distortionCurve")] public AnimationCurve blendCurve;
-
-            public static readonly StageSetting Default = new() {
-                blendCurve = AnimationCurve.Constant(0f, 1f, 0f),
-            };
         }
         
         private FireballBehaviour _fireballBehaviour;
@@ -77,12 +83,16 @@ namespace _Project.Scripts.Runtime.Fireball {
         private Vector3 _lastPoint;
         private Vector2 _centerOffsetSmoothed;
 
-        private StageSetting _currentStageSetting;
+        private MaterialSetting _defaultSetting;
+        private MaterialSetting _currentSetting;
         private float _distortionBlend;
         private float _colorBlend;
         private float _colorDistortionBlend;
         private float _colorVignette;
         private float _colorBorder;
+
+        private float _fireProgress;
+        private float _fireSpeed;
 
         void IActorComponent.OnAwake(IActor actor) {
             _view = actor.GetComponent<CharacterViewPipeline>();
@@ -98,14 +108,16 @@ namespace _Project.Scripts.Runtime.Fireball {
             ResetCenterOffset();
             ResetBlends();
             
-            OnStageChanged(_fireballBehaviour.CurrentStage, _fireballBehaviour.CurrentStage);
-            
             _fireballBehaviour.OnStageChanged += OnStageChanged;
+            _fireballBehaviour.OnFire += OnFire;
+            
             PlayerLoopStage.LateUpdate.Subscribe(this);
         }
 
         private void OnDisable() {
             _fireballBehaviour.OnStageChanged -= OnStageChanged;
+            _fireballBehaviour.OnFire -= OnFire;
+            
             PlayerLoopStage.LateUpdate.Unsubscribe(this);
         }
 
@@ -119,6 +131,12 @@ namespace _Project.Scripts.Runtime.Fireball {
             _colorDistortionBlendId = Shader.PropertyToID(_colorDistortionBlendProperty);
             _colorVignetteId = Shader.PropertyToID(_colorVignetteProperty);
             _colorBorderId = Shader.PropertyToID(_colorBorderProperty);
+            
+            _defaultSetting = new MaterialSetting {
+                blendCurve = AnimationCurve.Constant(0f, 0f, 0f),
+                smoothingStart = _defaultSmoothing,
+                smoothingEnd = _defaultSmoothing,
+            };
         }
 
         private void ResetCenterOffset() {
@@ -127,30 +145,41 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void ResetBlends() {
-            _currentStageSetting = GetDefaultStageSetting();
+            _currentSetting = _defaultSetting;
             
             _distortionBlend = 0f;
             _colorBlend = 0f;
             _colorDistortionBlend = 0f;
             _colorVignette = 0f;
             _colorBorder = 0f;
+
+            _fireProgress = 1f;
+            _fireSpeed = 0f;
+            
+            ApplyMaterialProperties();
+        }
+
+        private void OnFire(float progress) {
+            float duration = _fireDurationMin + progress * (_fireDurationMax - _fireDurationMin);
+            _fireProgress = Mathf.Min(_startFireProgressMax, 1f - progress);
+            _fireSpeed = duration > 0f ? 1f / duration : float.MaxValue;
         }
 
         private void OnStageChanged(FireballBehaviour.Stage previous, FireballBehaviour.Stage current) {
-            for (int i = 0; i < _stageSettings.Length; i++) {
-                ref var setting = ref _stageSettings[i];
+            for (int i = 0; i < _stages.Length; i++) {
+                ref var stage = ref _stages[i];
                 
-                if (setting.currentStage != current ||
-                    setting.previousStage.HasValue && setting.previousStage.Value != previous
+                if (stage.currentStage != current ||
+                    stage.previousStage.HasValue && stage.previousStage.Value != previous
                 ) {
                     continue;
                 }
 
-                _currentStageSetting = setting;
+                _currentSetting = stage.setting;
                 return;
             }
 
-            _currentStageSetting = GetDefaultStageSetting();
+            _currentSetting = _defaultSetting;
         }
 
         void IUpdate.OnUpdate(float dt) {
@@ -176,22 +205,31 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void ProcessCurrentStage(float dt) {
-            float p = _fireballBehaviour.StageProgress;
-            var curve = _currentStageSetting.blendCurve;
+            _fireProgress = Mathf.Clamp01(_fireProgress + dt * _fireSpeed);
             
-            float distortionBlend = _currentStageSetting.distortionBlendStart + 
-                                    curve.Evaluate(p) * (_currentStageSetting.distortionBlendEnd - _currentStageSetting.distortionBlendStart);
-            float colorBlend = _currentStageSetting.colorBlendStart + 
-                               curve.Evaluate(p) * (_currentStageSetting.colorBlendEnd - _currentStageSetting.colorBlendStart);
-            float colorDistortionBlend = _currentStageSetting.colorDistortionBlendStart + 
-                                         curve.Evaluate(p) * (_currentStageSetting.colorDistortionBlendEnd - _currentStageSetting.colorDistortionBlendStart);
-            float colorVignette = _currentStageSetting.colorVignetteStart + 
-                                  curve.Evaluate(p) * (_currentStageSetting.colorVignetteEnd - _currentStageSetting.colorVignetteStart);
-            float colorBorder = _currentStageSetting.colorBorderStart + 
-                                curve.Evaluate(p) * (_currentStageSetting.colorBorderEnd - _currentStageSetting.colorBorderStart);
+            MaterialSetting setting;
+            float progress;
+
+            if (_fireProgress < 1f) {
+                setting = _fireMaterialSetting;
+                progress = _fireProgress;
+            }
+            else {
+                setting = _currentSetting;
+                progress = _fireballBehaviour.StageProgress;
+            }
             
-            float smoothing = _currentStageSetting.smoothingStart + 
-                              curve.Evaluate(p) * (_currentStageSetting.smoothingEnd - _currentStageSetting.smoothingStart);
+            ProcessMaterialSetting(setting, progress, dt);
+        }
+
+        private void ProcessMaterialSetting(MaterialSetting setting, float progress, float dt) {
+            float distortionBlend = setting.distortionBlendStart + setting.blendCurve.Evaluate(progress) * (setting.distortionBlendEnd - setting.distortionBlendStart);
+            float colorBlend = setting.colorBlendStart + setting.blendCurve.Evaluate(progress) * (setting.colorBlendEnd - setting.colorBlendStart);
+            float colorDistortionBlend = setting.colorDistortionBlendStart + setting.blendCurve.Evaluate(progress) * (setting.colorDistortionBlendEnd - setting.colorDistortionBlendStart);
+            float colorVignette = setting.colorVignetteStart + setting.blendCurve.Evaluate(progress) * (setting.colorVignetteEnd - setting.colorVignetteStart);
+            float colorBorder = setting.colorBorderStart + setting.blendCurve.Evaluate(progress) * (setting.colorBorderEnd - setting.colorBorderStart);
+            
+            float smoothing = setting.smoothingStart + setting.blendCurve.Evaluate(progress) * (setting.smoothingEnd - setting.smoothingStart);
             
             _distortionBlend = _distortionBlend.SmoothExp(distortionBlend, dt * smoothing);
             _colorBlend = _colorBlend.SmoothExp(colorBlend, dt * smoothing);
@@ -199,18 +237,15 @@ namespace _Project.Scripts.Runtime.Fireball {
             _colorVignette = _colorVignette.SmoothExp(colorVignette, dt * smoothing);
             _colorBorder = _colorBorder.SmoothExp(colorBorder, dt * smoothing);
 
+            ApplyMaterialProperties();
+        }
+
+        private void ApplyMaterialProperties() {
             _runtimeMaterial.SetFloat(_distortionBlendId, _distortionBlend);
             _runtimeMaterial.SetFloat(_colorBlendId, _colorBlend);
             _runtimeMaterial.SetFloat(_colorDistortionBlendId, _colorDistortionBlend);
             _runtimeMaterial.SetFloat(_colorVignetteId, _colorVignette);
             _runtimeMaterial.SetFloat(_colorBorderId, _colorBorder);
-        }
-        
-        private StageSetting GetDefaultStageSetting() {
-            var setting = StageSetting.Default;
-            setting.smoothingStart = _defaultSmoothing;
-            setting.smoothingEnd = _defaultSmoothing;
-            return setting;
         }
 
 #if UNITY_EDITOR

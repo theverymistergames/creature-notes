@@ -49,7 +49,7 @@ MonoBehaviour:
   _fireInput: {fileID: 11400000, guid: bd6a83e1a6f2c1a49bf1b04857872c1e, type: 2}
   _enableGameObjects:
   - {fileID: 843930100840174705}
-  _disableDelay: 1
+  _disableDelay: 4
 --- !u!1001 &1637662375675244104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,183 +184,216 @@ MonoBehaviour:
   _maxOffset: 0.8
   _offsetSmoothing: 5
   _defaultSmoothing: 1
-  _stageSettings:
+  _stages:
   - previousStage:
       _hasValue: 0
       _value: 0
     currentStage: 1
-    smoothingStart: 3
-    smoothingEnd: 3
-    distortionBlendStart: 0
-    distortionBlendEnd: 0.3
-    colorBlendStart: 0
-    colorBlendEnd: 0
-    colorDistortionBlendStart: 0
-    colorDistortionBlendEnd: 0
-    colorVignetteStart: 0
-    colorVignetteEnd: 0
-    colorBorderStart: 0
-    colorBorderEnd: 0
-    blendCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: -0.0012084927
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0
-        outWeight: 0.36078
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1.5725082
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.326514
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    setting:
+      blendCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: -0.0012084927
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.36078
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1.5725082
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.326514
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      smoothingStart: 3
+      smoothingEnd: 3
+      distortionBlendStart: 0
+      distortionBlendEnd: 0.3
+      colorBlendStart: 0
+      colorBlendEnd: 0
+      colorDistortionBlendStart: 0
+      colorDistortionBlendEnd: 0
+      colorVignetteStart: 0
+      colorVignetteEnd: 0
+      colorBorderStart: 0
+      colorBorderEnd: 0
   - previousStage:
       _hasValue: 0
       _value: 0
     currentStage: 2
-    smoothingStart: 8
-    smoothingEnd: 4
-    distortionBlendStart: 0.3
-    distortionBlendEnd: 0.5
-    colorBlendStart: 0.3
-    colorBlendEnd: 0.8
-    colorDistortionBlendStart: 0.3
-    colorDistortionBlendEnd: 0.5
-    colorVignetteStart: 0.2
-    colorVignetteEnd: 0.3
-    colorBorderStart: 0
-    colorBorderEnd: 1
-    blendCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 1
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    setting:
+      blendCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1.5735515
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.330931
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: -0.0009282457
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.358689
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      smoothingStart: 8
+      smoothingEnd: 4
+      distortionBlendStart: 0.3
+      distortionBlendEnd: 0.5
+      colorBlendStart: 0.3
+      colorBlendEnd: 0.8
+      colorDistortionBlendStart: 0.3
+      colorDistortionBlendEnd: 0.5
+      colorVignetteStart: 0.2
+      colorVignetteEnd: 0.3
+      colorBorderStart: 0
+      colorBorderEnd: 1
   - previousStage:
       _hasValue: 0
       _value: 0
     currentStage: 3
-    smoothingStart: 10
-    smoothingEnd: 3
-    distortionBlendStart: 1
-    distortionBlendEnd: 0.5
-    colorBlendStart: 0.9
-    colorBlendEnd: 0.5
-    colorDistortionBlendStart: 0.75
-    colorDistortionBlendEnd: 0.3
-    colorVignetteStart: 0.5
-    colorVignetteEnd: 0.3
-    colorBorderStart: 1
-    colorBorderEnd: 0.75
-    blendCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: -0.0012084927
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0
-        outWeight: 0.36078
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1.5725082
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.326514
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    setting:
+      blendCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: -0.0012084927
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.36078
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1.5725082
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.326514
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      smoothingStart: 10
+      smoothingEnd: 3
+      distortionBlendStart: 1
+      distortionBlendEnd: 0.5
+      colorBlendStart: 0.9
+      colorBlendEnd: 0.5
+      colorDistortionBlendStart: 0.75
+      colorDistortionBlendEnd: 0.3
+      colorVignetteStart: 0.5
+      colorVignetteEnd: 0.3
+      colorBorderStart: 1
+      colorBorderEnd: 0.75
   - previousStage:
       _hasValue: 1
       _value: 3
     currentStage: 4
-    smoothingStart: 3
-    smoothingEnd: 2
-    distortionBlendStart: 0.5
-    distortionBlendEnd: 0
-    colorBlendStart: 0.5
-    colorBlendEnd: 0
-    colorDistortionBlendStart: 0.3
-    colorDistortionBlendEnd: 0
-    colorVignetteStart: 0.3
-    colorVignetteEnd: 0
-    colorBorderStart: 0.5
-    colorBorderEnd: 0
-    blendCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 1.5735515
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0
-        outWeight: 0.330931
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: -0.0009282457
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.358689
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+    setting:
+      blendCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1.5735515
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.330931
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: -0.0009282457
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.358689
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      smoothingStart: 3
+      smoothingEnd: 2
+      distortionBlendStart: 0.5
+      distortionBlendEnd: 0
+      colorBlendStart: 0.5
+      colorBlendEnd: 0
+      colorDistortionBlendStart: 0.3
+      colorDistortionBlendEnd: 0
+      colorVignetteStart: 0.3
+      colorVignetteEnd: 0
+      colorBorderStart: 0.5
+      colorBorderEnd: 0
   - previousStage:
       _hasValue: 0
       _value: 0
     currentStage: 4
-    smoothingStart: 3
-    smoothingEnd: 2
-    distortionBlendStart: 0.3
-    distortionBlendEnd: 0.2
-    colorBlendStart: 0.5
-    colorBlendEnd: 0
-    colorDistortionBlendStart: 0.3
-    colorDistortionBlendEnd: 0
-    colorVignetteStart: 0.3
-    colorVignetteEnd: 0
-    colorBorderStart: 0.5
-    colorBorderEnd: 0
+    setting:
+      blendCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1.5735515
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.330931
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: -0.0009282457
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.358689
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      smoothingStart: 3
+      smoothingEnd: 2
+      distortionBlendStart: 0.3
+      distortionBlendEnd: 0.2
+      colorBlendStart: 0.5
+      colorBlendEnd: 0
+      colorDistortionBlendStart: 0.3
+      colorDistortionBlendEnd: 0
+      colorVignetteStart: 0.3
+      colorVignetteEnd: 0
+      colorBorderStart: 0.5
+      colorBorderEnd: 0
+  _fireDurationMin: 0.3
+  _fireDurationMax: 1.5
+  _startFireProgressMax: 0.5
+  _fireMaterialSetting:
     blendCurve:
       serializedVersion: 2
       m_Curve:
@@ -368,23 +401,35 @@ MonoBehaviour:
         time: 0
         value: 0
         inSlope: 0
-        outSlope: 1.5735515
+        outSlope: 0.031243885
         tangentMode: 0
         weightedMode: 3
         inWeight: 0
-        outWeight: 0.330931
+        outWeight: 0.636963
       - serializedVersion: 3
         time: 1
         value: 1
-        inSlope: -0.0009282457
+        inSlope: 6.815432
         outSlope: 0
         tangentMode: 0
         weightedMode: 3
-        inWeight: 0.358689
+        inWeight: 0.155667
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    smoothingStart: 30
+    smoothingEnd: 10
+    distortionBlendStart: 1
+    distortionBlendEnd: 0.2
+    colorBlendStart: 1
+    colorBlendEnd: 0.2
+    colorDistortionBlendStart: 1
+    colorDistortionBlendEnd: 0.2
+    colorVignetteStart: 0.7
+    colorVignetteEnd: 0.3
+    colorBorderStart: 0.8
+    colorBorderEnd: 0
 --- !u!4 &3728593274598756479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2667462028565397047, guid: 315fe6a5fce0aa641ae51ee52623f723,

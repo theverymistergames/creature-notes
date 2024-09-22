@@ -5,6 +5,7 @@ using MisterGames.Actors;
 using MisterGames.Character.View;
 using MisterGames.Common.Async;
 using MisterGames.Common.GameObjects;
+using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
 using MisterGames.Input.Actions;
 using MisterGames.Tick.Core;
@@ -31,9 +32,11 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         public delegate void StageChange(Stage previous, Stage current); 
+        public delegate void FireCallback(float progress); 
         
         public event StageChange OnStageChanged = delegate { };
         public event Action<Stage> OnCannotCharge = delegate { };
+        public event FireCallback OnFire = delegate { };
         
         public Stage CurrentStage { get; private set; }
         public float StageProgress { get; private set; }
@@ -119,7 +122,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         
         private Stage ProcessChargeStage(float progress) {
             if (_fireInput.WasUsed) {
-                PerformShot(progress);
+                PerformShot(progress);    
                 return StartNextStage(Stage.Cooldown, _shootingData.cooldownDuration);
             }
             
@@ -154,19 +157,20 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void PerformShot(float progress) {
-            var pos = _view.HeadPosition;
             var orient = _view.Orientation;
-            
+            var pos = _view.HeadPosition;
+
             var shotRb = PrefabPool.Main.Get(_shootingData.shotPrefab, pos + orient * _shootingData.spawnOffset, orient);
-
-            float force = _shootingData.forceMin + 
-                          _shootingData.forceByChargeProgress.Evaluate(progress) * (_shootingData.forceMax - _shootingData.forceMax);
             
-            float angle = _shootingData.angleMin + 
-                          _shootingData.angleByChargeProgress.Evaluate(progress) * (_shootingData.angleMax - _shootingData.angleMin);
-
+            float force = _shootingData.forceStart + 
+                          _shootingData.forceByChargeProgress.Evaluate(progress) * (_shootingData.forceEnd - _shootingData.forceStart);
+            
+            float angle = _shootingData.angleStart + 
+                          _shootingData.angleByChargeProgress.Evaluate(progress) * (_shootingData.angleEnd - _shootingData.angleStart);
             
             shotRb.velocity = Quaternion.AngleAxis(angle, orient * Vector3.left) * orient * (Vector3.forward * force);
+            
+            OnFire.Invoke(progress);
         }
         
         private void OnChargeInputPressed() {
