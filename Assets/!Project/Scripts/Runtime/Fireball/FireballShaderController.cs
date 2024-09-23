@@ -75,7 +75,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
         
         private FireballBehaviour _fireballBehaviour;
-        private CharacterViewPipeline _view;
+        private CameraContainer _cameraContainer;
 
         private Material _runtimeMaterial;
         private int _centerOffsetId;
@@ -110,7 +110,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         private float _overrideSpeed;
 
         void IActorComponent.OnAwake(IActor actor) {
-            _view = actor.GetComponent<CharacterViewPipeline>();
+            _cameraContainer = actor.GetComponent<CameraContainer>();
             _fireballBehaviour = actor.GetComponent<FireballBehaviour>();
             
             _speedBuffer = new float[_bufferSize];
@@ -155,7 +155,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void ResetCenterOffset() {
-            _lastPoint = _view.Orientation * Vector3.forward;
+            _lastPoint = _cameraContainer.CameraTransform.rotation * Vector3.forward;
             _centerOffsetSmoothed = Vector2.zero;
         }
 
@@ -232,7 +232,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void ProcessCenterOffset(float dt) {
-            var orient = _view.Orientation;
+            var orient = _cameraContainer.CameraTransform.rotation;
             var point = orient * Vector3.forward;
             var delta = Quaternion.Inverse(orient) * (point - _lastPoint);
             _lastPoint = point;
