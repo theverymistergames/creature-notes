@@ -155,7 +155,7 @@ MonoBehaviour:
   _colorBorderProperty: _Color_Border
   _bufferSize: 5
   _minSpeed: 0.5
-  _maxSpeed: 10
+  _maxSpeed: 7
   _speedMul: 1
   _speedCurve:
     serializedVersion: 2
@@ -181,8 +181,48 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _maxOffset: 0.8
-  _offsetSmoothing: 5
+  _maxOffset: 1
+  _offsetSmoothing: 4
+  _fireDurationMin: 0.3
+  _fireDurationMax: 1.5
+  _startFireProgressMax: 0.5
+  _fireMaterialSetting:
+    blendCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0.031243885
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.636963
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 6.815432
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.155667
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    smoothingStart: 30
+    smoothingEnd: 10
+    distortionBlendStart: 1
+    distortionBlendEnd: 0.2
+    colorBlendStart: 1
+    colorBlendEnd: 0.2
+    colorDistortionBlendStart: 1
+    colorDistortionBlendEnd: 0.2
+    colorVignetteStart: 0.7
+    colorVignetteEnd: 0.3
+    colorBorderStart: 0.8
+    colorBorderEnd: 0
   _defaultSmoothing: 1
   _stages:
   - previousStage:
@@ -279,33 +319,33 @@ MonoBehaviour:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 2.000003
+          outSlope: -0.0012084927
           tangentMode: 0
           weightedMode: 3
           inWeight: 0
-          outWeight: 0.333333
+          outWeight: 0.36078
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 0
+          inSlope: 1.5725082
           outSlope: 0
           tangentMode: 0
           weightedMode: 3
-          inWeight: 0.33333302
+          inWeight: 0.326514
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
       smoothingStart: 8
-      smoothingEnd: 1
+      smoothingEnd: 4
       distortionBlendStart: 1
       distortionBlendEnd: 0.7
       colorBlendStart: 0.9
-      colorBlendEnd: 0.5
+      colorBlendEnd: 0.7
       colorDistortionBlendStart: 0.75
       colorDistortionBlendEnd: 0.3
-      colorVignetteStart: 0.9
-      colorVignetteEnd: 0.3
+      colorVignetteStart: 0.6
+      colorVignetteEnd: 0.5
       colorBorderStart: 1
       colorBorderEnd: 0.75
   - previousStage:
@@ -341,11 +381,11 @@ MonoBehaviour:
       smoothingEnd: 2
       distortionBlendStart: 0.5
       distortionBlendEnd: 0
-      colorBlendStart: 0.5
+      colorBlendStart: 0.7
       colorBlendEnd: 0
       colorDistortionBlendStart: 0.3
       colorDistortionBlendEnd: 0
-      colorVignetteStart: 0.3
+      colorVignetteStart: 0.5
       colorVignetteEnd: 0
       colorBorderStart: 0.5
       colorBorderEnd: 0
@@ -390,46 +430,91 @@ MonoBehaviour:
       colorVignetteEnd: 0
       colorBorderStart: 0.5
       colorBorderEnd: 0
-  _fireDurationMin: 0.3
-  _fireDurationMax: 1.5
-  _startFireProgressMax: 0.5
-  _fireMaterialSetting:
-    blendCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0.031243885
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0
-        outWeight: 0.636963
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 6.815432
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.155667
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    smoothingStart: 30
-    smoothingEnd: 10
-    distortionBlendStart: 1
-    distortionBlendEnd: 0.2
-    colorBlendStart: 1
-    colorBlendEnd: 0.2
-    colorDistortionBlendStart: 1
-    colorDistortionBlendEnd: 0.2
-    colorVignetteStart: 0.7
-    colorVignetteEnd: 0.3
-    colorBorderStart: 0.8
-    colorBorderEnd: 0
+  _transitions:
+  - previousStage:
+      _hasValue: 1
+      _value: 1
+    currentStage: 2
+    duration: 0.7
+    setting:
+      blendCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1.5735515
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.330931
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: -0.0009282457
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.358689
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      smoothingStart: 5
+      smoothingEnd: 4
+      distortionBlendStart: 0.5
+      distortionBlendEnd: 0.4
+      colorBlendStart: 1
+      colorBlendEnd: 0.4
+      colorDistortionBlendStart: 0.5
+      colorDistortionBlendEnd: 0.4
+      colorVignetteStart: 0.5
+      colorVignetteEnd: 0.3
+      colorBorderStart: 0.6
+      colorBorderEnd: 0.2
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 3
+    duration: 0.8
+    setting:
+      blendCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: -0.0012084927
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.36078
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1.5725082
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.326514
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      smoothingStart: 5
+      smoothingEnd: 3
+      distortionBlendStart: 1
+      distortionBlendEnd: 0.8
+      colorBlendStart: 1
+      colorBlendEnd: 0.7
+      colorDistortionBlendStart: 1
+      colorDistortionBlendEnd: 0.75
+      colorVignetteStart: 0.9
+      colorVignetteEnd: 0.7
+      colorBorderStart: 1
+      colorBorderEnd: 0.85
 --- !u!4 &3728593274598756479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2667462028565397047, guid: 315fe6a5fce0aa641ae51ee52623f723,
