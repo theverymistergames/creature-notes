@@ -169,6 +169,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                           _shootingData.angleByChargeProgress.Evaluate(progress) * (_shootingData.angleEnd - _shootingData.angleStart);
             
             shotRb.velocity = Quaternion.AngleAxis(angle, orient * Vector3.left) * orient * (Vector3.forward * force);
+            shotRb.rotation = Quaternion.LookRotation(shotRb.velocity);
             
             OnFire.Invoke(progress);
         }
