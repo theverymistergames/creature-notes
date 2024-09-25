@@ -1,6 +1,7 @@
 ﻿using System;
 using MisterGames.Actors;
 using MisterGames.Character.View;
+using MisterGames.Common.Attributes;
 using MisterGames.Common.Data;
 using MisterGames.Common.Maths;
 using MisterGames.Tick.Core;
@@ -256,6 +257,33 @@ namespace _Project.Scripts.Runtime.Fireball {
             _positionNoiseMul = setting.positionNoise.CreateMultiplier();
             _rotationNoiseMul = setting.rotationNoise.CreateMultiplier();
         }
+
+#if UNITY_EDITOR
+        [Button]
+        private void Fire0() {
+            OnFire(0f);
+        }
+        
+        [Button]
+        private void Fire25() {
+            OnFire(0.25f);
+        }
+        
+        [Button]
+        private void Fire50() {
+            OnFire(0.5f);
+        }
+        
+        [Button]
+        private void Fire75() {
+            OnFire(0.75f);
+        }
+        
+        [Button]
+        private void Fire100() {
+            OnFire(1f);
+        }
+#endif
     }
     
 }

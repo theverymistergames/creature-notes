@@ -311,6 +311,103 @@ namespace _Project.Scripts.Runtime.Fireball {
                 }
             }
         }
+        
+        [UnityEditor.InitializeOnLoad]
+        private static class ContextMenuHelper {
+        
+            static ContextMenuHelper() {
+                UnityEditor.EditorApplication.contextualPropertyMenu -= OnContextMenuOpening;
+                UnityEditor.EditorApplication.contextualPropertyMenu += OnContextMenuOpening;
+            }
+
+            private static void OnContextMenuOpening(UnityEditor.GenericMenu menu, UnityEditor.SerializedProperty property) {
+                if (property.propertyType != UnityEditor.SerializedPropertyType.Generic || 
+                    MisterGames.Common.Editor.SerializedProperties.SerializedPropertyExtensions.GetValue(property) is not MaterialSetting setting
+                ) {
+                    return;
+                }
+                
+                menu.AddItem(new GUIContent("Copy values"), false, () => {
+                    UnityEditor.EditorGUIUtility.systemCopyBuffer = JsonUtility.ToJson(setting);
+                });
+
+                MaterialSetting copy = null;
+                try {
+                    copy = JsonUtility.FromJson<MaterialSetting>(UnityEditor.EditorGUIUtility.systemCopyBuffer);    
+                }
+                catch (ArgumentException) { }
+
+                property = property.Copy();
+                
+                if (copy != null) {
+                    menu.AddItem(new GUIContent("Paste start values"), false, () => {
+                        UnityEditor.Undo.RecordObject(property.serializedObject.targetObject, "Paste start values");
+                        
+                        property.FindPropertyRelative(nameof(MaterialSetting.distortionBlendStart)).floatValue = copy.distortionBlendStart;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBlendStart)).floatValue = copy.colorBlendStart;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorDistortionBlendStart)).floatValue = copy.colorDistortionBlendStart;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorVignetteStart)).floatValue = copy.colorVignetteStart;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBorderStart)).floatValue = copy.colorBorderStart;
+
+                        property.serializedObject.ApplyModifiedProperties();
+                        property.serializedObject.Update();
+                        
+                        UnityEditor.EditorUtility.SetDirty(property.serializedObject.targetObject);
+                    });
+                    
+                    menu.AddItem(new GUIContent("Paste end values"), false, () => {
+                        UnityEditor.Undo.RecordObject(property.serializedObject.targetObject, "Paste end values");
+                        
+                        property.FindPropertyRelative(nameof(MaterialSetting.distortionBlendEnd)).floatValue = copy.distortionBlendEnd;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBlendEnd)).floatValue = copy.colorBlendEnd;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorDistortionBlendEnd)).floatValue = copy.colorDistortionBlendEnd;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorVignetteEnd)).floatValue = copy.colorVignetteEnd;
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBorderEnd)).floatValue = copy.colorBorderEnd;
+
+                        property.serializedObject.ApplyModifiedProperties();
+                        property.serializedObject.Update();
+                        
+                        UnityEditor.EditorUtility.SetDirty(property.serializedObject.targetObject);
+                    });
+                }
+                
+                if (MisterGames.Common.Editor.SerializedProperties.SerializedPropertyExtensions.GetValue(property.serializedObject.FindProperty("_material")) 
+                    is Material material
+                ) {
+                    menu.AddItem(new GUIContent("Apply start values"), false, () => {
+                        string distortionBlendProperty = property.serializedObject.FindProperty(nameof(_distortionBlendProperty)).stringValue;
+                        string colorBlendProperty = property.serializedObject.FindProperty(nameof(_colorBlendProperty)).stringValue;
+                        string colorDistortionBlendProperty = property.serializedObject.FindProperty(nameof(_colorDistortionBlendProperty)).stringValue;
+                        string colorVignetteProperty = property.serializedObject.FindProperty(nameof(_colorVignetteProperty)).stringValue;
+                        string colorBorderProperty = property.serializedObject.FindProperty(nameof(_colorBorderProperty)).stringValue;
+                        
+                        material.SetFloat(distortionBlendProperty, setting.distortionBlendStart);
+                        material.SetFloat(colorBlendProperty, setting.colorBlendStart);
+                        material.SetFloat(colorDistortionBlendProperty, setting.colorDistortionBlendStart);
+                        material.SetFloat(colorVignetteProperty, setting.colorVignetteStart);
+                        material.SetFloat(colorBorderProperty, setting.colorBlendStart);
+                        
+                        UnityEditor.EditorUtility.SetDirty(material);
+                    });
+                    
+                    menu.AddItem(new GUIContent("Apply end values"), false, () => {
+                        string distortionBlendProperty = property.serializedObject.FindProperty(nameof(_distortionBlendProperty)).stringValue;
+                        string colorBlendProperty = property.serializedObject.FindProperty(nameof(_colorBlendProperty)).stringValue;
+                        string colorDistortionBlendProperty = property.serializedObject.FindProperty(nameof(_colorDistortionBlendProperty)).stringValue;
+                        string colorVignetteProperty = property.serializedObject.FindProperty(nameof(_colorVignetteProperty)).stringValue;
+                        string colorBorderProperty = property.serializedObject.FindProperty(nameof(_colorBorderProperty)).stringValue;
+                        
+                        material.SetFloat(distortionBlendProperty, setting.distortionBlendEnd);
+                        material.SetFloat(colorBlendProperty, setting.colorBlendEnd);
+                        material.SetFloat(colorDistortionBlendProperty, setting.colorDistortionBlendEnd);
+                        material.SetFloat(colorVignetteProperty, setting.colorVignetteEnd);
+                        material.SetFloat(colorBorderProperty, setting.colorBlendEnd);
+                        
+                        UnityEditor.EditorUtility.SetDirty(material);
+                    });
+                }
+            }
+        }
 #endif
     }
     
