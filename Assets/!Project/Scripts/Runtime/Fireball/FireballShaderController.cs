@@ -374,7 +374,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                 if (MisterGames.Common.Editor.SerializedProperties.SerializedPropertyExtensions.GetValue(property.serializedObject.FindProperty("_material")) 
                     is Material material
                 ) {
-                    menu.AddItem(new GUIContent("Apply start values"), false, () => {
+                    menu.AddItem(new GUIContent("Apply start values into material"), false, () => {
                         string distortionBlendProperty = property.serializedObject.FindProperty(nameof(_distortionBlendProperty)).stringValue;
                         string colorBlendProperty = property.serializedObject.FindProperty(nameof(_colorBlendProperty)).stringValue;
                         string colorDistortionBlendProperty = property.serializedObject.FindProperty(nameof(_colorDistortionBlendProperty)).stringValue;
@@ -390,7 +390,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                         UnityEditor.EditorUtility.SetDirty(material);
                     });
                     
-                    menu.AddItem(new GUIContent("Apply end values"), false, () => {
+                    menu.AddItem(new GUIContent("Apply end values into material"), false, () => {
                         string distortionBlendProperty = property.serializedObject.FindProperty(nameof(_distortionBlendProperty)).stringValue;
                         string colorBlendProperty = property.serializedObject.FindProperty(nameof(_colorBlendProperty)).stringValue;
                         string colorDistortionBlendProperty = property.serializedObject.FindProperty(nameof(_colorDistortionBlendProperty)).stringValue;
@@ -404,6 +404,44 @@ namespace _Project.Scripts.Runtime.Fireball {
                         material.SetFloat(colorBorderProperty, setting.colorBlendEnd);
                         
                         UnityEditor.EditorUtility.SetDirty(material);
+                    });
+                    
+                    menu.AddItem(new GUIContent("Write material into start values"), false, () => {
+                        string distortionBlendProperty = property.serializedObject.FindProperty(nameof(_distortionBlendProperty)).stringValue;
+                        string colorBlendProperty = property.serializedObject.FindProperty(nameof(_colorBlendProperty)).stringValue;
+                        string colorDistortionBlendProperty = property.serializedObject.FindProperty(nameof(_colorDistortionBlendProperty)).stringValue;
+                        string colorVignetteProperty = property.serializedObject.FindProperty(nameof(_colorVignetteProperty)).stringValue;
+                        string colorBorderProperty = property.serializedObject.FindProperty(nameof(_colorBorderProperty)).stringValue;
+                        
+                        property.FindPropertyRelative(nameof(MaterialSetting.distortionBlendStart)).floatValue = material.GetFloat(distortionBlendProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBlendStart)).floatValue = material.GetFloat(colorBlendProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorDistortionBlendStart)).floatValue = material.GetFloat(colorDistortionBlendProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorVignetteStart)).floatValue = material.GetFloat(colorVignetteProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBorderStart)).floatValue = material.GetFloat(colorBorderProperty);
+
+                        property.serializedObject.ApplyModifiedProperties();
+                        property.serializedObject.Update();
+                        
+                        UnityEditor.EditorUtility.SetDirty(property.serializedObject.targetObject);
+                    });
+                    
+                    menu.AddItem(new GUIContent("Write material into end values"), false, () => {
+                        string distortionBlendProperty = property.serializedObject.FindProperty(nameof(_distortionBlendProperty)).stringValue;
+                        string colorBlendProperty = property.serializedObject.FindProperty(nameof(_colorBlendProperty)).stringValue;
+                        string colorDistortionBlendProperty = property.serializedObject.FindProperty(nameof(_colorDistortionBlendProperty)).stringValue;
+                        string colorVignetteProperty = property.serializedObject.FindProperty(nameof(_colorVignetteProperty)).stringValue;
+                        string colorBorderProperty = property.serializedObject.FindProperty(nameof(_colorBorderProperty)).stringValue;
+                        
+                        property.FindPropertyRelative(nameof(MaterialSetting.distortionBlendEnd)).floatValue = material.GetFloat(distortionBlendProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBlendEnd)).floatValue = material.GetFloat(colorBlendProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorDistortionBlendEnd)).floatValue = material.GetFloat(colorDistortionBlendProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorVignetteEnd)).floatValue = material.GetFloat(colorVignetteProperty);
+                        property.FindPropertyRelative(nameof(MaterialSetting.colorBorderEnd)).floatValue = material.GetFloat(colorBorderProperty);
+
+                        property.serializedObject.ApplyModifiedProperties();
+                        property.serializedObject.Update();
+                        
+                        UnityEditor.EditorUtility.SetDirty(property.serializedObject.targetObject);
                     });
                 }
             }
