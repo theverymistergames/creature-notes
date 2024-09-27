@@ -50,11 +50,11 @@ namespace _Project.Scripts.Runtime.Fireball {
             public Vector3Parameter rotation = Vector3Parameter.Default();
             
             [Header("Noise")]
-            public FloatParameter noiseScale = FloatParameter.Default();
-            public Vector3Parameter positionNoise = Vector3Parameter.Default();
-            public Vector3Parameter rotationNoise = Vector3Parameter.Default();
             public Vector3 positionNoiseOffset;
             public Vector3 rotationNoiseOffset;
+            public Vector3Parameter noiseSpeed = Vector3Parameter.Default();
+            public Vector3Parameter positionNoise = Vector3Parameter.Default();
+            public Vector3Parameter rotationNoise = Vector3Parameter.Default();
         }
         
         private FireballBehaviour _fireballBehaviour;
@@ -73,14 +73,14 @@ namespace _Project.Scripts.Runtime.Fireball {
         private float _fovMul;
         private Vector3 _positionMul;
         private Vector3 _rotationMul;
-        private float _noiseScaleMul;
+        private Vector3 _noiseSpeedMul;
         private Vector3 _positionNoiseMul;
         private Vector3 _rotationNoiseMul;
 
         private float _fov;
         private Vector3 _position;
         private Vector3 _rotation;
-        private float _noiseScale;
+        private Vector3 _noiseSpeed;
         private Vector3 _positionNoise;
         private Vector3 _rotationNoise;
         
@@ -132,19 +132,19 @@ namespace _Project.Scripts.Runtime.Fireball {
             _transitionSetting = _defaultSetting;
             _overrideSetting = _defaultSetting;
             
-            _fovMul = 0f;
-            _positionMul = Vector3.zero;
-            _rotationMul = Vector3.zero;
-            _noiseScaleMul = 0f;
-            _positionNoiseMul = Vector3.zero;
-            _rotationNoiseMul = Vector3.zero;
+            _fovMul = default;
+            _positionMul = default;
+            _rotationMul = default;
+            _noiseSpeedMul = default;
+            _positionNoiseMul = default;
+            _rotationNoiseMul = default;
 
-            _fov = 0f;
-            _position = Vector3.zero;
-            _rotation = Vector3.zero;
-            _noiseScale = 0f;
-            _positionNoise = Vector3.zero;
-            _rotationNoise = Vector3.zero;
+            _fov = default;
+            _position = default;
+            _rotation = default;
+            _noiseSpeed = default;
+            _positionNoise = default;
+            _rotationNoise = default;
         }
 
         private void OnFire(float progress) {
@@ -225,7 +225,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             var position = setting.position.Evaluate(progress).Multiply(_positionMul);
             var rotation = setting.rotation.Evaluate(progress).Multiply(_rotationMul);
             
-            float noiseScale = setting.noiseScale.Evaluate(progress) * _noiseScaleMul;
+            var noiseSpeed = setting.noiseSpeed.Evaluate(progress).Multiply(_noiseSpeedMul);
             var positionNoise = setting.positionNoise.Evaluate(progress).Multiply(_positionNoiseMul);
             var rotationNoise = setting.rotationNoise.Evaluate(progress).Multiply(_rotationNoiseMul);
 
@@ -235,7 +235,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             _position = _position.SmoothExp(position, dt * smoothing);
             _rotation = _rotation.SmoothExp(rotation, dt * smoothing);
             
-            _noiseScale = _noiseScale.SmoothExp(noiseScale, dt * smoothing);
+            _noiseSpeed = _noiseSpeed.SmoothExp(noiseSpeed, dt * smoothing);
             _positionNoise = _positionNoise.SmoothExp(positionNoise, dt * smoothing);
             _rotationNoise = _rotationNoise.SmoothExp(rotationNoise, dt * smoothing);
             
@@ -243,7 +243,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             _cameraContainer.SetPositionOffset(_stageMotionId, _weight, _position);
             _cameraContainer.SetRotationOffset(_stageMotionId, _weight, Quaternion.Euler(_rotation));
             
-            _cameraShaker.SetNoiseScale(_stageShakeId, _noiseScale);
+            _cameraShaker.SetSpeed(_stageShakeId, _noiseSpeed);
             _cameraShaker.SetPosition(_stageShakeId, setting.positionNoiseOffset, _positionNoise);
             _cameraShaker.SetRotation(_stageShakeId, setting.rotationNoiseOffset, _rotationNoise);
         }
@@ -253,36 +253,17 @@ namespace _Project.Scripts.Runtime.Fireball {
             _positionMul = setting.position.CreateMultiplier();
             _rotationMul = setting.rotation.CreateMultiplier();
             
-            _noiseScaleMul = setting.noiseScale.CreateMultiplier();
+            _noiseSpeedMul = setting.noiseSpeed.CreateMultiplier();
             _positionNoiseMul = setting.positionNoise.CreateMultiplier();
             _rotationNoiseMul = setting.rotationNoise.CreateMultiplier();
         }
 
 #if UNITY_EDITOR
-        [Button]
-        private void Fire0() {
-            OnFire(0f);
-        }
-        
-        [Button]
-        private void Fire25() {
-            OnFire(0.25f);
-        }
-        
-        [Button]
-        private void Fire50() {
-            OnFire(0.5f);
-        }
-        
-        [Button]
-        private void Fire75() {
-            OnFire(0.75f);
-        }
-        
-        [Button]
-        private void Fire100() {
-            OnFire(1f);
-        }
+        [Button] private void Fire0() => OnFire(0f);
+        [Button] private void Fire25() => OnFire(0.25f);
+        [Button] private void Fire50() => OnFire(0.5f);
+        [Button] private void Fire75() => OnFire(0.75f);
+        [Button] private void Fire100() => OnFire(1f);
 #endif
     }
     
