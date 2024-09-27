@@ -145,6 +145,12 @@ namespace _Project.Scripts.Runtime.Fireball {
             _noiseSpeed = default;
             _positionNoise = default;
             _rotationNoise = default;
+
+            _transitionProgress = 1f;
+            _transitionSpeed = 0f;
+
+            _overrideProgress = 1f;
+            _overrideSpeed = 0f;
         }
 
         private void OnFire(float progress) {
