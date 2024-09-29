@@ -240,7 +240,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             _fov = _fov.SmoothExp(fov, dt * smoothing);
             _position = _position.SmoothExp(position, dt * smoothing);
             _rotation = _rotation.SmoothExp(rotation, dt * smoothing);
-            
+
             _noiseSpeed = _noiseSpeed.SmoothExp(noiseSpeed, dt * smoothing);
             _positionNoise = _positionNoise.SmoothExp(positionNoise, dt * smoothing);
             _rotationNoise = _rotationNoise.SmoothExp(rotationNoise, dt * smoothing);
