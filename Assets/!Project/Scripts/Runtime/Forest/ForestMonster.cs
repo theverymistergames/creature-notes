@@ -67,24 +67,14 @@ public class ForestMonster : MonoBehaviour {
         });
     }
 
-    void Update() {
-        if (!_transform || _stopped) return;
-        
-        var position = _transform.position;
-        
-        _agent.destination = position;
-        
-        // var dir = position - transform.position + head.transform.position;
-        // var rot = Quaternion.LookRotation(dir);
-        // head.transform.rotation = Quaternion.Lerp(transform.rotation, rot, 5 * Time.deltaTime);
+    private void Update() {
+        if (_stopped) return;
 
-        var distance = GetPathRemainingDistance(_agent);
-
-        // if (_agent.velocity != Vector3.zero) {
-        //     _agent.transform.eulerAngles = new Vector3(0, Quaternion.LookRotation(_agent.velocity).eulerAngles.y, 0);            
-        // }
+        _agent.SetDestination(_transform.position);
         
-        if (distance > stopDistance && distance < 10000f || distance == -1f && _agent.pathStatus != NavMeshPathStatus.PathComplete) {
+        float distance = GetPathRemainingDistance(_agent);
+
+        if (distance > stopDistance && distance < 10000f || distance < 0f && _agent.pathStatus != NavMeshPathStatus.PathComplete) {
             Stop();
         } else if (distance < caughtDistance && distance > 0) {
             Stop(true);
@@ -96,11 +86,13 @@ public class ForestMonster : MonoBehaviour {
         if (navMeshAgent.pathPending ||
             navMeshAgent.pathStatus == NavMeshPathStatus.PathInvalid ||
             navMeshAgent.path.corners.Length == 0)
+        {
             return -1f;
+        }
 
-        var distance = 0.0f;
+        float distance = 0.0f;
         
-        for (var i = 0; i < navMeshAgent.path.corners.Length - 1; ++i) {
+        for (int i = 0; i < navMeshAgent.path.corners.Length - 1; i++) {
             var path = navMeshAgent.path;
             distance += Vector3.Distance(path.corners[i], path.corners[i + 1]);
         }
