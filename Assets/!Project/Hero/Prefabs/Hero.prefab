@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1400716653263586402
 Transform:
   m_ObjectHideFlags: 0
@@ -735,18 +735,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec30cf9dd57d465fbd72cdcfb4f70b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeSourceStage: 1
   _maxHits: 2
-  _distance: 0.6
+  _distance: 0.4
   _distanceAddition: 0.15
-  _radius: 0.19
+  _radius: 0.2
+  _originOffset: {x: 0, y: -0.2, z: 0}
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
   _triggerInteraction: 1
-  _debugDrawHitPoint: 0
-  _debugDrawCast: 0
-  _debugDrawHasCeilingText: 0
+  _debugDrawHitPoint: 1
+  _debugDrawCast: 1
+  _debugDrawHasCeilingText: 1
   _debugDrawHasCeilingTextOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1727031898436235196
 GameObject:
@@ -3492,7 +3492,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &2775006979344399738
@@ -4634,7 +4634,7 @@ PrefabInstance:
     - target: {fileID: 1892012199252629670, guid: f2e4c9cefa4446e499e55aa7f706c514,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6997253119769459857, guid: f2e4c9cefa4446e499e55aa7f706c514,
         type: 3}

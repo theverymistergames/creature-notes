@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caff1463811f43b3a9a511e0ad76a62c, type: 3}
   m_Name: CharacterPoseGraph
   m_EditorClassIdentifier: 
-  _initialPose: {fileID: 11400000, guid: 59332e086fc346e479cedaf76a34d32d, type: 2}
+  initialPose: {fileID: 11400000, guid: 59332e086fc346e479cedaf76a34d32d, type: 2}
+  crouchPose: {fileID: 11400000, guid: 489e37c86dc59704db1b0fc24e390992, type: 2}
+  standPose: {fileID: 11400000, guid: 59332e086fc346e479cedaf76a34d32d, type: 2}
+  retryDelay: 0.1
   _transitions:
+  - {fileID: 11400000, guid: e8e1c83230087114d810c7b49c67e5c2, type: 2}
+  - {fileID: 11400000, guid: cbbc1b418d70dec48ab53e2445ccdc15, type: 2}
+  - {fileID: 11400000, guid: db07a0e699700d94e9e6ed661ce81914, type: 2}
+  - {fileID: 11400000, guid: c86c953af9031464d929e6d2182de2e8, type: 2}
+  transitions:
   - {fileID: 11400000, guid: e8e1c83230087114d810c7b49c67e5c2, type: 2}
   - {fileID: 11400000, guid: cbbc1b418d70dec48ab53e2445ccdc15, type: 2}
   - {fileID: 11400000, guid: db07a0e699700d94e9e6ed661ce81914, type: 2}
