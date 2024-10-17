@@ -17,42 +17,25 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4426659484835512321
+      type: {class: CharacterActionResetViewSensitivity, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data: 
+    - rid: 4426659484835512322
+      type: {class: CharacterActionResetViewSmoothing, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data: 
+    - rid: 4426659484835512323
+      type: {class: CharacterActionResetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        horizontal: 1
+        vertical: 1
     - rid: 6196715832316526595
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
-        - rid: 6196715832316526596
-        - rid: 6196715832316526597
-        - rid: 8690781321960882176
-    - rid: 6196715832316526596
-      type: {class: CharacterActionSetViewSensitivity, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        sensitivityHorizontal: 0.4
-        sensitivityVertical: 0.4
-    - rid: 6196715832316526597
-      type: {class: CharacterActionSetViewSmoothing, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        viewSmoothFactor: 20
-    - rid: 8690781321960882176
-      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        horizontal:
-          _hasValue: 1
-          _value:
-            mode: 0
-            absolute: 0
-            bounds: {x: 0, y: 0}
-            springs: {x: 0, y: 0}
-            springFactors: {x: 0, y: 0}
-        vertical:
-          _hasValue: 1
-          _value:
-            mode: 3
-            absolute: 1
-            bounds: {x: -90, y: 90}
-            springs: {x: 0, y: 0}
-            springFactors: {x: 0, y: 0}
+        - rid: 4426659484835512321
+        - rid: 4426659484835512322
+        - rid: 4426659484835512323

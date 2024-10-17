@@ -38,7 +38,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         private float[] _detectionTimers;
         
         private GameObject _currentLens;
-        private CharacterHeadAdapter _head;
+        private CharacterViewPipeline _view;
         private int _selectedStarGroupIndex = -1;
         private byte _setupLensId;
         
@@ -85,7 +85,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         private void OnStartInteract(IInteractiveUser user) {
-            _head = user.Root.GetComponent<IActor>().GetComponent<CharacterHeadAdapter>();
+            _view = user.Root.GetComponent<IActor>().GetComponent<CharacterViewPipeline>();
             PlayerLoopStage.Update.Subscribe(this);
             
             SetupLens(delay: 0f, _enableCts.Token).Forget();
@@ -263,7 +263,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         private float GetAngleToPoint(Vector3 point) {
-            return Vector3.Angle(point - _starGroupsPlacer.Center.position, _head.Rotation * Vector3.forward);
+            return Vector3.Angle(point - _starGroupsPlacer.Center.position, _view.Rotation * Vector3.forward);
         }
 
         private bool IsFovInRange(float fov, Vector2 fovRange) {
