@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1400716653263586402
 Transform:
   m_ObjectHideFlags: 0
@@ -735,11 +735,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec30cf9dd57d465fbd72cdcfb4f70b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeSourceStage: 1
   _maxHits: 2
-  _distance: 0.6
+  _distance: 0.4
   _distanceAddition: 0.15
-  _radius: 0.19
+  _radius: 0.2
+  _originOffset: {x: 0, y: -0.2, z: 0}
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -1564,7 +1564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a627be042364291a656248f14a927b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerLoopStage: 1
 --- !u!114 &7185304629291760698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1578,8 +1577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poseGraph: {fileID: 11400000, guid: 7d0b2b75b90c4144a876703fcf4d211e, type: 2}
-  _crouchPose: {fileID: 11400000, guid: 489e37c86dc59704db1b0fc24e390992, type: 2}
-  _standPose: {fileID: 11400000, guid: 59332e086fc346e479cedaf76a34d32d, type: 2}
 --- !u!114 &195303189178981737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2915,11 +2912,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd1ed7d2de4378b18d4342fe5197e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _headAdapter: {fileID: 6003268340715468519}
-  _bodyAdapter: {fileID: 6409746516802656098}
-  _playerLoopStage: 3
+  _head: {fileID: 6003268340715468519}
+  _body: {fileID: 6409746516802656098}
   _sensitivity: {x: 0.15, y: 0.15}
   _smoothing: 20
+  _defaultFov: 70
   _freeHeadRotationDistance: 0.1
   _returnFreeHeadRotationSmoothing: 5
   _returnFreeHeadRotationSmoothingMax: 25
@@ -2985,7 +2982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weight: 0
-  _noiseScale: 0
+  _speed: {x: 0, y: 0, z: 0}
   _positionOffset: {x: 0, y: 0, z: 0}
   _positionMultiplier: {x: 0, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0}
@@ -4634,7 +4631,7 @@ PrefabInstance:
     - target: {fileID: 1892012199252629670, guid: f2e4c9cefa4446e499e55aa7f706c514,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6997253119769459857, guid: f2e4c9cefa4446e499e55aa7f706c514,
         type: 3}
