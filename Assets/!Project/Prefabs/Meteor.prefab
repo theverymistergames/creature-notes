@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e80970cf23d974abef841631218bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  system: {fileID: 0}
   projector: {fileID: 3671938025115847854}
+  _light: {fileID: 8646800929487473799}
 --- !u!199 &4410936748828833189
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -702,7 +702,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0.2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3945,7 +3945,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4964,6 +4964,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3692265467364667685, guid: 237ba2959c1c34e489e5807b04d3b40e,
+        type: 3}
+      propertyPath: m_FadeFactor
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8148971070242907821, guid: 237ba2959c1c34e489e5807b04d3b40e,
         type: 3}
       propertyPath: m_Name
@@ -4972,22 +4977,22 @@ PrefabInstance:
     - target: {fileID: 8518361252897992972, guid: 237ba2959c1c34e489e5807b04d3b40e,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 2.3681728e+21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518361252897992972, guid: 237ba2959c1c34e489e5807b04d3b40e,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 5.83e-43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518361252897992972, guid: 237ba2959c1c34e489e5807b04d3b40e,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -2.0251164e+30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8518361252897992972, guid: 237ba2959c1c34e489e5807b04d3b40e,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 5.83e-43
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

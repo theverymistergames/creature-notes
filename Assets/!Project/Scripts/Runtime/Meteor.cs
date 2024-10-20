@@ -12,18 +12,26 @@ public class Meteor : MonoBehaviour {
     
     private bool _collided;
     private bool _animInProgress;
+    private float _startDistance;
 
     private void Awake() {
         _system = GetComponent<ParticleSystem>();
-        projector.fadeFactor = 0;
+        projector.fadeFactor = 0.1f;
     }
 
     [Button]
     public void Animate() {
-        _animInProgress = true;
+        _collided = false;
         
-        // _system.Play();
-        Debug.Log("DLWKdwddwdddcvdzvwsdcccdwdwc ccccKDdwdw");
+        projector.fadeFactor = 0.1f;
+        
+        _system = GetComponent<ParticleSystem>();
+        _system.Play();
+        _system.GetParticles(_particles);
+        
+        _startDistance = Vector3.Distance(projector.transform.position, _system.transform.TransformPoint(_particles[0].position));
+
+        _animInProgress = true;
     }
 
     private void OnParticleCollision(GameObject other) {
@@ -39,8 +47,9 @@ public class Meteor : MonoBehaviour {
         _system.GetParticles(_particles);
         
         if (_animInProgress) {
-            // Debug.Log(Vector3.Distance(projector.transform.position, _particles[0].position + _system.transform.position));
-            projector.fadeFactor = Math.Max(1, Vector3.Distance(projector.transform.position, _particles[0].position));
+            var dist = Vector3.Distance(projector.transform.position, _system.transform.TransformPoint(_particles[0].position));
+            
+            projector.fadeFactor = Math.Min(1, Math.Max(0.1f, (3 - dist) / 3)) / 1;
         }
     }
 
