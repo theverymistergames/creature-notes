@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using LitMotion;
 using UnityEngine;
 
@@ -58,6 +55,8 @@ public class MusicBoxPart : MonoBehaviour {
         _source.time = _timeStep * GetRealStep();
         _source.Play();
     }
+
+    public bool IsRight() => _currentStep == 0;
 
     public void Stop() {
         if (!gameObject.activeInHierarchy) return;

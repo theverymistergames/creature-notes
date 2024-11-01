@@ -19,6 +19,8 @@ public class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
     private static readonly int EmissiveIntensity = Shader.PropertyToID("_EmissiveIntensity");
 
     private void Awake() {
+        if (!go) go = gameObject;
+        
         if (_emissive) {
             _material = go.GetComponent<MeshRenderer>().materials[0];
             _startIntensity = _material.GetFloat(EmissiveIntensity);
