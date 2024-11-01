@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using MisterGames.Actors.Actions;
 using MisterGames.Collisions.Triggers;
 using MisterGames.Interact.Detectables;
 using MisterGames.Scenario.Events;
@@ -11,10 +12,6 @@ public class Level3Checkmark : MonoBehaviour {
     [SerializeField] private TweenRunner[] tweens;
     [SerializeField] private GameObject checkMark;
     [SerializeField] private DirectionalTrigger startBattleTrigger;
-
-    [SerializeField] private GameObject sister, sisterScreamer;
-
-    [SerializeField] private EventReference startBattleEvent;
     
     private int _step;
     private Detectable _detectable;
@@ -26,19 +23,6 @@ public class Level3Checkmark : MonoBehaviour {
         _detectable.OnDetectedBy += DetectableOnOnDetectedBy;
         
         checkMark.SetActive(false);
-
-        startBattleTrigger.OnTriggeredForward += StartBattleTriggerOnOnTriggeredForward;
-    }
-
-    private async void StartBattleTriggerOnOnTriggeredForward(GameObject obj) {
-        sister.SetActive(false);
-        sisterScreamer.SetActive(true);
-
-        await UniTask.Delay(1000);
-        
-        sisterScreamer.SetActive(false);
-        
-        startBattleEvent.Raise();
     }
 
     public void StartSequence() {
