@@ -3,176 +3,178 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using Cysharp.Threading.Tasks;
 using MisterGames.Scenario.Events;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 using Random = UnityEngine.Random;
 
-public struct Replic {
-    [XmlElement("header")] public string header;
-    [XmlElement("line")] public string[] lines;
-    [XmlAttribute("self")] public bool self;
-    [XmlArray("questions")] [XmlArrayItem("replic")]
-    public Replic[] questions;
-    [XmlArray("answers")] [XmlArrayItem("replic")]
-    public Replic[] answers;
+public struct Step {
+    [XmlElement("replic")] public string[] Replics;
+    [XmlAttribute("role")] public int RoleId;
+    [XmlAttribute("page")] public bool IsPage;
 }
 
 [XmlRoot("dialog")]
 public struct Dialog {
-    [XmlArray("replics")] [XmlArrayItem("replic")]
-    public Replic[] replics;
+    [XmlArray("roles")] [XmlArrayItem("role")]
+    public string[] Roles;
+    [XmlArray("steps")] [XmlArrayItem("step")]
+    public Step[] Steps;
 }
 
 public class DialogController : MonoBehaviour {
-    public Text yourText;
-    public Text hisText;
-    public Text skipButton;
-    public Text choiseText;
+    [SerializeField] private Text textInstance;
+    [SerializeField] private Text skipButton;
 
     [SerializeField] private EventReference dialogFinishedEvent;
-
-    private int _currentReplicID;
-    private int _currentLineID;
-
+    
+    [SerializeField] private float replicOffset = 25f;
+    
     private Dialog _dialog;
 
     private bool _replicInProgress;
-    private bool _waitInProgress;
     private bool _skipped;
-    private int _chosenQuestionID = -1;
-
     private bool _finished;
+    
+    private float _totalHeight;
+    private int _currentStepID;
 
-    private void Start() {
-        yourText.text = "";
-        hisText.text = "";
+    private List<Text> _texts = new();
 
-        _dialog = Deserialize<Dialog>("Assets/!Project/Levels/Chapter1/Chapter1Dialog.xml");
-        
+    private void OnEnable() {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    public static T Deserialize<T>(string path) {
-        var serializer = new XmlSerializer(typeof(T));
-        var reader = new StreamReader(path);
-        var deserialized = (T)serializer.Deserialize(reader.BaseStream);
-        reader.Close();
-        return deserialized;
+    private void OnDisable() {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void Awake() {
+        textInstance.text = "";
+
+        _dialog = Deserialize<Dialog>("Assets/!Project/Levels/Chapter1/Chapter1Dialog.xml");
     }
 
     private void StartDialog() {
-        StartCoroutine(NextReplic());
+        NextReplic();
     }
 
-    private IEnumerator NextReplic() {
-        if (_finished) yield break;
+    async UniTask NextReplic() {
+        if (_finished) return;
         
+        //TODO: move skip logic
         skipButton.text = "SKIP";
         skipButton.color = new Color(1, 1, 1, 0.15f);
-        _replicInProgress = true;
-
-        Debug.Log(_dialog.replics.Length);
-        Debug.Log(_currentReplicID);
         
-        if (_currentReplicID >= _dialog.replics.Length) {
+        _replicInProgress = true;
+        
+        if (_currentStepID >= _dialog.Steps.Length) {
             _finished = true;
             dialogFinishedEvent.Raise();
-            yield break;
+            
+            return;
         }
         
-        var replic = _dialog.replics[_currentReplicID];
-        var isSelfReplic = replic.self;
+        var step = _dialog.Steps[_currentStepID];
 
-        // Debug.Log(replic.answers?.Length);
-        if (replic.answers?.Length > 0) replic = replic.answers[_chosenQuestionID];
-        _chosenQuestionID = -1;
-        
-        if (replic.questions?.Length > 0) {
-            _waitInProgress = true;
-            skipButton.gameObject.SetActive(false);
-            var chosen = -1;
-            var tmp = new List<Text>();
-            
-            for (var i = replic.questions.Length - 1; i >= 0; i--) {
-                var choiseTextObj = Instantiate(choiseText, gameObject.transform);
-                choiseTextObj.gameObject.SetActive(true);
-                choiseTextObj.text = replic.questions[i].header;
-                choiseTextObj.transform.position -= new Vector3(0, -80 + 105 * i, 0);
-                choiseTextObj.GetComponent<DialogVariant>().id = i;
-                choiseTextObj.GetComponent<DialogVariant>().pressed.AddListener((int id) => { chosen = id; });
-
-                tmp.Add(choiseTextObj);
-            }
-            
-            yield return new WaitUntil(() => chosen >= 0);
-
-            foreach (var text in tmp) Destroy(text);
-
-            replic = replic.questions[chosen];
-            skipButton.gameObject.SetActive(true);
-            _waitInProgress = false;
-
-            _chosenQuestionID = chosen;
+        if (step.IsPage) {
+            _currentStepID++;
+            await Clear();
+            NextReplic();
+            return;
         }
         
-        var lines = replic.lines;
+        var replics = step.Replics;
+        var role = _dialog.Roles[step.RoleId];
 
-        for (var i = 0; i < lines.Length; i++) {
-            var textObj = Instantiate(isSelfReplic ? yourText : hisText, gameObject.transform);
-            textObj.transform.position += new Vector3(0, -40 -65 * _currentLineID - _currentReplicID * 20, 0);
-            var line = lines[i];
-
-            if (!isSelfReplic) {
-                textObj.text = line;
-                textObj.rectTransform.sizeDelta = new Vector2(textObj.preferredWidth, 0);
-                textObj.text = "";
-            }
+        foreach (var replic in replics) {
+            var textObj = Instantiate(textInstance, gameObject.transform);
+            textObj.transform.position -= Vector3.up * _totalHeight;
+            _texts.Add(textObj);
             
-            yield return StartCoroutine(DrawLine(textObj, line));
+            await DrawReplic(textObj, replic, role);
             
-            _currentLineID++;
+            _skipped = false;
+            _totalHeight += textObj.preferredHeight;
         }
 
-        _currentReplicID++;
+        if (_currentStepID + 1 < _dialog.Steps.Length) {
+            var nextReplic = _dialog.Steps[_currentStepID + 1];
+            if (nextReplic.RoleId != step.RoleId) _totalHeight += replicOffset;  
+        } else {
+            _totalHeight += replicOffset;
+        }
 
-        _skipped = false;
+        _currentStepID++;
+
         _replicInProgress = false;
+        
+        //TODO: move skip logic
+
         skipButton.text = "CONTINUE";
         skipButton.color = new Color(1, 1, 1, 0.5f);
-
-        if (_dialog.replics.Length > _currentReplicID && _dialog.replics[_currentReplicID].questions?.Length > 0) {
-            Next();
-        }
     }
 
-    private IEnumerator DrawLine(Text textObj, string line) {
+    async UniTask Clear() {
+        _totalHeight = 0;
+
+        var tasks = new List<UniTask>();
+        _texts.ForEach(t => tasks.Add(EraseReplic(t)));
+
+        await UniTask.WhenAll(tasks);
+        
+        foreach (var text in _texts) Destroy(text);
+    }
+
+    async UniTask EraseReplic(Text text) {
+        var line = text.text;
+
+        for (var i = line.Length - 1; i >= 0; i -= 5) {
+            text.text = line[..i];
+            
+            await UniTask.Delay(5);
+        }
+
+        text.text = "";
+    }
+
+    async UniTask DrawReplic(Text text, string line, string role) {
         for (var i = 0; i < line.Length; i++) {
             if (_skipped) {
-                textObj.text = line;
-                yield break;
+                text.text = role + line;
+                return;
             }
             
-            textObj.text = line.Substring(0, i + 1);
+            text.text = role + line[..(i + 1)];
 
-            yield return new WaitForSeconds(0.02f + Random.Range(0, 0.02f));
+            await UniTask.Delay(20 + Random.Range(0, 20));
         }
     }
 
     public void Next() {
-        if (_waitInProgress) return;
-
         if (_replicInProgress) {
             _skipped = true;
         } else {
-            StartCoroutine(NextReplic());
+            NextReplic();
         }
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.S)) StartDialog();
         if (Input.GetKeyDown(KeyCode.Space)) Next();
+    }
+
+    private static T Deserialize<T>(string path) {
+        var serializer = new XmlSerializer(typeof(T));
+        var reader = new StreamReader(path);
+        var deserialized = (T)serializer.Deserialize(reader.BaseStream);
+        reader.Close();
+        return deserialized;
     }
 }
