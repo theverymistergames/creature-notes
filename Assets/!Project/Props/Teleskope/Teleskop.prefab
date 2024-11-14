@@ -946,6 +946,18 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 2282734907006386264
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 0
+        isViewEnabled: 1
+    - rid: 2282734907006386265
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 1
+        isViewEnabled: 1
     - rid: 4105391196587950080
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -956,6 +968,7 @@ MonoBehaviour:
         - rid: 4105391196587950099
         - rid: 4105391196587950110
         - rid: 7865778993126178820
+        - rid: 2282734907006386264
     - rid: 4105391196587950086
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1017,6 +1030,7 @@ MonoBehaviour:
         - rid: 4105391196587950097
         - rid: 4105391196587950088
         - rid: 4105391196587950118
+        - rid: 2282734907006386265
     - rid: 4105391196587950088
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1083,8 +1097,7 @@ MonoBehaviour:
         target: {fileID: 3029080117750411629}
         mode: 0
         orientation: {x: 0, y: 0, z: 0}
-        smoothing: 0
-        maxAngle: 180
+        duration: 0.5
         keepLookingAtAfterFinish: 1
         attachSmoothing: 0
     - rid: 4105391196587950099
@@ -1208,7 +1221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 6146235486278242704}
   _zoomInput: {fileID: 11400000, guid: d6f253c87f6a51844be5f3aa31d97aea, type: 2}
-  _sensitivity: -0.01
+  _sensitivity: -1
   _fovSmoothing: 3
   _fovRange: {x: 3, y: 8}
   _playerFovRange: {x: 0, y: 0}
