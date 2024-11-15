@@ -22,17 +22,17 @@ public class ForestMonster : MonoBehaviour {
     [SerializeField] private EventReference caughtEvent;
     [SerializeField] private float caughtDistance = 2f;
     
-    public event Action Stopped = delegate {};
-    
+    public event Action OnStop = delegate {};
+    public bool IsStopped { get; private set; }
+
     private Transform _transform;
     private NavMeshAgent _agent;
     private AudioSource _source;
 
-    private bool _stopped;
     private Vector3 _startHeadScale;
     private float _startLightRange;
-    
-    void Awake() {
+
+    private void Awake() {
         _agent = GetComponent<NavMeshAgent>();
         _source = GetComponent<AudioSource>();
         _startHeadScale = head.transform.localScale;
@@ -41,7 +41,7 @@ public class ForestMonster : MonoBehaviour {
 
     private void OnEnable() {
         _transform = CharacterSystem.Instance.GetCharacter().GetComponent<Transform>();
-        _stopped = false;
+        IsStopped = false;
         _agent.isStopped = false;
 
         head.transform.localScale = _startHeadScale;
@@ -49,11 +49,11 @@ public class ForestMonster : MonoBehaviour {
         light.range = _startLightRange;
     }
 
-    void Stop(bool caught = false) {
-        if (!caught) Stopped.Invoke();
+    private void Stop(bool caught = false) {
+        if (!caught) OnStop.Invoke();
         
         _agent.isStopped = true;
-        _stopped = true;
+        IsStopped = true;
 
         death.Play();
         body.Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -68,7 +68,7 @@ public class ForestMonster : MonoBehaviour {
     }
 
     private void Update() {
-        if (_stopped) return;
+        if (IsStopped) return;
 
         _agent.SetDestination(_transform.position);
         
