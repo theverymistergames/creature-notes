@@ -958,6 +958,20 @@ MonoBehaviour:
       data:
         isEnabled: 1
         isViewEnabled: 1
+    - rid: 2282734923904712900
+      type: {class: ChangeVolumeWeightAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        volume: {fileID: 1382178363167860539}
+        weight: 1
+        duration: 0.5
+    - rid: 2282734923904712901
+      type: {class: ChangeVolumeWeightAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        volume: {fileID: 1382178363167860539}
+        weight: 0
+        duration: 0.2
     - rid: 4105391196587950080
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -969,6 +983,7 @@ MonoBehaviour:
         - rid: 4105391196587950110
         - rid: 7865778993126178820
         - rid: 2282734907006386264
+        - rid: 2282734923904712900
     - rid: 4105391196587950086
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1031,6 +1046,7 @@ MonoBehaviour:
         - rid: 4105391196587950088
         - rid: 4105391196587950118
         - rid: 2282734907006386265
+        - rid: 2282734923904712901
     - rid: 4105391196587950088
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1235,6 +1251,55 @@ MonoBehaviour:
   _angleAxis: {x: 0, y: 0, z: 1}
   _positionRange: {x: 0, y: 0.0005}
   _positionAxis: {x: 0, y: 1, z: 0}
+--- !u!1 &2860914579852593370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7273155092333769049}
+  - component: {fileID: 1382178363167860539}
+  m_Layer: 0
+  m_Name: Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7273155092333769049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2860914579852593370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8112731213020411922}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1382178363167860539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2860914579852593370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 1
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 7e923ed5b2aead74da927d559649cfee, type: 2}
 --- !u!1 &3301784058741267782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,6 +2676,7 @@ Transform:
   - {fileID: 3039083433754078250}
   - {fileID: 7059373723476388590}
   - {fileID: 6674708568983247267}
+  - {fileID: 7273155092333769049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1149097703783997471
