@@ -28,8 +28,6 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeField] [Min(0f)] private float _fadeDurationFinal = 3f;
         [SerializeField] [Min(0f)] private float _fadeSmoothingFinal = 3f;
         [SerializeField] private AnimationCurve _fadeCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-        [SerializeField] private float _fadeNoise = 0.2f;
-        [SerializeField] private float _fadeNoiseFreq = 1f;
         
         [Header("Color")]
         [ColorUsage(showAlpha: true)]
@@ -211,11 +209,11 @@ namespace _Project.Scripts.Runtime.Telescope {
             var ts = PlayerLoopStage.Update.Get();
 
             while (!cancellationToken.IsCancellationRequested && _checkId == id) {
-                t = Mathf.Clamp(t + speed * ts.DeltaTime, 0f, 1f + _fadeNoise);
+                t = Mathf.Clamp01(t + speed * ts.DeltaTime);
                 
                 if (!wasDetected) UpdateGroup(index, _fadeCurve.Evaluate(t), false, ts.DeltaTime);
 
-                if (t >= 1f + _fadeNoise) break;
+                if (t >= 1f) break;
 
                 await UniTask.Yield();
             }
@@ -226,10 +224,10 @@ namespace _Project.Scripts.Runtime.Telescope {
             t = 0f;
             
             while (!cancellationToken.IsCancellationRequested && _checkId == id) {
-                t = Mathf.Clamp(t + speed * ts.DeltaTime, 0f, 1f + _fadeNoise);
+                t = Mathf.Clamp01(t + speed * ts.DeltaTime);
                 UpdateGroup(index, _fadeCurve.Evaluate(t), true, ts.DeltaTime);
 
-                if (t >= 1f + _fadeNoise) break;
+                if (t >= 1f) break;
 
                 await UniTask.Yield();
             }
@@ -260,17 +258,14 @@ namespace _Project.Scripts.Runtime.Telescope {
             for (int i = 0; i < starImages.Length; i++) {
                 var starImage = starImages[i];
                 if (starImage == null) continue;
-                    
-                float p = t + _fadeNoise * Mathf.PerlinNoise1D(Time.time * _fadeNoiseFreq + (float) i / starImages.Length);
-                starImage.color = Color.Lerp(startColorStar, endColorStar, p);
+                
+                starImage.color = Color.Lerp(startColorStar, endColorStar, t);
             }
 
             for (int i = 0; i < lines.Length; i++) {
                 var line = lines[i];
                 if (line == null) continue;
                     
-                float p = t + _fadeNoise * Mathf.PerlinNoise1D(Time.time * _fadeNoiseFreq + (float) i / lines.Length);
-
 #if UNITY_EDITOR
                 var mat = Application.isPlaying ? line.material : line.sharedMaterial; 
                 if (mat == null) continue;
@@ -281,14 +276,14 @@ namespace _Project.Scripts.Runtime.Telescope {
                 if (allDetected) {
                     mat.SetColor(
                         _EmissiveColor,
-                        Color.Lerp(mat.GetColor(_EmissiveColor), Color.Lerp(startColorLineEmissive, endColorLineEmissive, p), dt * _fadeSmoothingFinal)
+                        Color.Lerp(mat.GetColor(_EmissiveColor), Color.Lerp(startColorLineEmissive, endColorLineEmissive, t), dt * _fadeSmoothingFinal)
                     );
                 }
                 else {
-                    mat.SetColor(_EmissiveColor, Color.Lerp(startColorLineEmissive, endColorLineEmissive, p));   
+                    mat.SetColor(_EmissiveColor, Color.Lerp(startColorLineEmissive, endColorLineEmissive, t));   
                 }
                 
-                mat.SetColor(_Color, Color.Lerp(startColorLine, endColorLine, p));
+                mat.SetColor(_Color, Color.Lerp(startColorLine, endColorLine, t));
             }
 
             for (int i = 0; i < customLinks.Count; i++) {
@@ -301,7 +296,6 @@ namespace _Project.Scripts.Runtime.Telescope {
                 bool detectedB = _groups[customLink.b.x].detected;
 
                 bool enableLine = detectedA && detectedB;
-                float p = t + _fadeNoise * Mathf.PerlinNoise1D(Time.time * _fadeNoiseFreq + (float) i / customLinks.Count);
                 float v0 = (!enableLine).AsFloat() * _groups[customLink.a.x].fader * _groups[customLink.b.x].fader;
                 float v1 = enableLine.AsFloat();
 
@@ -318,16 +312,16 @@ namespace _Project.Scripts.Runtime.Telescope {
                 var mat = line.material;
 #endif
                 
-                mat.SetColor(_Color, Color.Lerp(startColor, endColor, p));
+                mat.SetColor(_Color, Color.Lerp(startColor, endColor, t));
                 
                 if (allDetected) {
                     mat.SetColor(
                         _EmissiveColor,
-                        Color.Lerp(mat.GetColor(_EmissiveColor), Color.Lerp(startColorEmissive, v1 * endColorEmissive, p), dt * _fadeSmoothingFinal)
+                        Color.Lerp(mat.GetColor(_EmissiveColor), Color.Lerp(startColorEmissive, v1 * endColorEmissive, t), dt * _fadeSmoothingFinal)
                     );
                 }
                 else {
-                    mat.SetColor(_EmissiveColor, Color.Lerp(startColorEmissive, endColorEmissive, p));   
+                    mat.SetColor(_EmissiveColor, Color.Lerp(startColorEmissive, endColorEmissive, t));   
                 }
             }
         }
