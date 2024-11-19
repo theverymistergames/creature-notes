@@ -13,11 +13,14 @@ namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class MonsterSpawner : MonoBehaviour {
 
+        [Header("Events")]
         [SerializeField] private EventReference _spawnedMonsterEvent;
         [SerializeField] private EventReference _killMonsterTotalEvent;
         [SerializeField] private EventReference _killMonsterPerWaveEvent;
         [SerializeField] private EventReference _startedWavesEvent;
         [SerializeField] private EventReference _completedWavesEvent;
+        
+        [Header("Waves")]
         [SerializeField] private MonsterWave[] _monsterWaves;
         
         [Serializable]
@@ -55,8 +58,6 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void StartSpawning() {
-            if (!enabled) return;
-            
             KillAllMonsters(instant: true);
             StartSpawningAsync(_enableCts.Token).Forget();
         }
@@ -103,7 +104,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             var wave = _monsterWaves[waveIndex];
             
             int kills = _killMonsterPerWaveEvent.WithSubId(waveIndex).GetRaiseCount();
-            if (kills < wave.killsToCompleteWave) return false;
+            if (wave.killsToCompleteWave < 0 || kills < wave.killsToCompleteWave) return false;
             
             _completedWavesEvent.SetCount(++waveIndex);
             return true;
@@ -125,8 +126,12 @@ namespace _Project.Scripts.Runtime.Enemies {
         private void CheckSpawns(int waveIndex, float waveStartTime) {
             ref var wave = ref _monsterWaves[waveIndex];
             float time = Time.time;
-            
-            if (_aliveMonsters.Count >= wave.maxSpawnedMonstersAtMoment || time < _nextSpawnTime) return;
+
+            if (time < _nextSpawnTime ||
+                wave.maxSpawnedMonstersAtMoment >= 0 && _aliveMonsters.Count >= wave.maxSpawnedMonstersAtMoment
+            ) {
+                return;
+            }
             
             int kills = _killMonsterPerWaveEvent.WithSubId(waveIndex).GetRaiseCount();
             wave.monsterPresets.Shuffle();
@@ -145,7 +150,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 _aliveMonsters.Add(preset.monster);
                 _spawnedMonsterEvent.Raise();
                 
-                float t = wave.killsToCompleteWave > 0 ? (float) kills / wave.killsToCompleteWave : 1f;
+                float t = wave.killsToCompleteWave > 0 ? (float) kills / wave.killsToCompleteWave : 0f;
                 float respawnDelay = Mathf.Lerp(
                     Random.Range(wave.respawnDelayRangeStart.x, wave.respawnDelayRangeStart.y),
                     Random.Range(wave.respawnDelayRangeEnd.x, wave.respawnDelayRangeEnd.y),
