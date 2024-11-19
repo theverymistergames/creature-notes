@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Buffers;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using MisterGames.Actors;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Lists;
-using MisterGames.Common.Pooling;
 using MisterGames.Scenario.Events;
-using MisterGames.Tweens;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,133 +13,159 @@ namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class MonsterSpawner : MonoBehaviour {
 
-        [SerializeField] [MinMaxSlider(0f, 100f)] private Vector2 _respawnDelay;
-        [SerializeField] private EventReference _monsterKillEvent;
-        [SerializeField] [Min(0)] private int _maxKills;
-        [SerializeField] [Min(0)] private int _maxSpawnedMonstersAtMoment;
-        [SerializeField] private AnimationCurve _respawnSpeedCurve = AnimationCurve.Linear(0f, 1f, 1f, 2f);
-        [SerializeField] private MonsterPreset[] _monsterPresets;
+        [SerializeField] private EventReference _spawnedMonsterEvent;
+        [SerializeField] private EventReference _killMonsterTotalEvent;
+        [SerializeField] private EventReference _killMonsterPerWaveEvent;
+        [SerializeField] private EventReference _startedWavesEvent;
+        [SerializeField] private EventReference _completedWavesEvent;
+        [SerializeField] private MonsterWave[] _monsterWaves;
+        
+        [Serializable]
+        private struct MonsterWave {
+            [Min(0f)] public float startDelay;
+            [MinMaxSlider(0f, 100f)] public Vector2 respawnDelayRangeStart;
+            [MinMaxSlider(0f, 100f)] public Vector2 respawnDelayRangeEnd;
+            [Min(-1)] public int killsToCompleteWave;
+            [Min(-1)] public int maxSpawnedMonstersAtMoment;
+            public MonsterPreset[] monsterPresets;
+        }
         
         [Serializable]
         private struct MonsterPreset {
-            public Actor prefab;
-            [Min(0)] public int minKills;
-            public TweenRunner[] spawnPoints;
+            public Monster monster;
+            [Min(0f)] public float allowSpawnDelay;
+            [Min(0f)] public int minKillsToAllowSpawn;
         }
 
-        private struct MonsterData {
-            public TweenRunner spawnPoint;
-            public Monster monster;
-        }
-        
-        private readonly Dictionary<HealthBehaviour, MonsterData> _spawnedMonstersMap = new();
-        private readonly HashSet<TweenRunner> _occupiedSpawnPoints = new();
+        private readonly HashSet<Monster> _aliveMonsters = new();
         private CancellationTokenSource _enableCts;
+        private byte _spawnProcessId;
+        private float _waveStartTime;
+        private float _nextSpawnTime;
+        private int _currentWave = -1;
 
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
-            StartSpawn(_enableCts.Token).Forget();
+            StartSpawning();
         }
 
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
-            ReleaseAllMonsters(destroyCancellationToken);
+            StopSpawning();
         }
 
-        private void ReleaseAllMonsters(CancellationToken cancellationToken) {
-            var healths = ArrayPool<HealthBehaviour>.Shared.Rent(_spawnedMonstersMap.Count);
-            _spawnedMonstersMap.Keys.CopyTo(healths, 0);
-
-            for (int i = 0; i < healths.Length; i++) {
-                ReleaseMonster(healths[i], cancellationToken).Forget();
-            }
-
-            ArrayPool<HealthBehaviour>.Shared.Return(healths);
+        private void StartSpawning() {
+            if (!enabled) return;
             
-            _spawnedMonstersMap.Clear();
-            _occupiedSpawnPoints.Clear();
+            KillAllMonsters(instant: true);
+            StartSpawningAsync(_enableCts.Token).Forget();
         }
 
-        private async UniTask StartSpawn(CancellationToken cancellationToken) {
-            while (!cancellationToken.IsCancellationRequested && 
-                   _monsterKillEvent.GetRaiseCount() < _maxKills
-            ) {
-                if (CanSpawnNextMonster()) TrySpawnMonster();
+        private void StopSpawning() {
+            _spawnProcessId++;
+            KillAllMonsters(instant: false);
+        }
+
+        private async UniTask StartSpawningAsync(CancellationToken cancellationToken) {
+            byte id = ++_spawnProcessId;
+
+            while (id == _spawnProcessId && !cancellationToken.IsCancellationRequested) {
+                if (TryFinishWave(ref _currentWave)) {
+                    KillAllMonsters(instant: false);
+                    
+                    if (_currentWave >= _monsterWaves.Length) break;
+
+                    var wave = _monsterWaves[_currentWave];
+                    await UniTask.Delay(TimeSpan.FromSeconds(wave.startDelay), cancellationToken: cancellationToken)
+                        .SuppressCancellationThrow();
+         
+                    if (id != _spawnProcessId || cancellationToken.IsCancellationRequested) break;
+                    
+                    _startedWavesEvent.SetCount(_currentWave + 1);
+                    _waveStartTime = Time.time;
+                }
                 
-                await UniTask.Delay(TimeSpan.FromSeconds(GetRespawnDelay()), cancellationToken: cancellationToken)
-                    .SuppressCancellationThrow();
+                CheckKills(_currentWave);
+                CheckSpawns(_currentWave, _waveStartTime);
+
+                await UniTask.Yield();
+            }
+        }
+        
+        private bool TryFinishWave(ref int waveIndex) {
+            int completedWaves = _completedWavesEvent.GetRaiseCount();
+            
+            if (waveIndex < 0 || waveIndex >= _monsterWaves.Length) {
+                waveIndex = completedWaves;
+                return true;
+            }
+
+            var wave = _monsterWaves[waveIndex];
+            
+            int kills = _killMonsterPerWaveEvent.WithSubId(waveIndex).GetRaiseCount();
+            if (kills < wave.killsToCompleteWave) return false;
+            
+            _completedWavesEvent.SetCount(++waveIndex);
+            return true;
+        }
+
+        private void CheckKills(int waveIndex) {
+            ref var wave = ref _monsterWaves[waveIndex];
+            
+            for (int i = 0; i < wave.monsterPresets.Length; i++) {
+                ref var preset = ref wave.monsterPresets[i];
+                if (!preset.monster.IsDead || !_aliveMonsters.Contains(preset.monster)) continue;
+
+                _aliveMonsters.Remove(preset.monster);
+                _killMonsterPerWaveEvent.WithSubId(waveIndex).Raise();
+                _killMonsterTotalEvent.Raise();
             }
         }
 
-        private void TrySpawnMonster() {
-            _monsterPresets.Shuffle();
+        private void CheckSpawns(int waveIndex, float waveStartTime) {
+            ref var wave = ref _monsterWaves[waveIndex];
+            float time = Time.time;
+            
+            if (_aliveMonsters.Count >= wave.maxSpawnedMonstersAtMoment || time < _nextSpawnTime) return;
+            
+            int kills = _killMonsterPerWaveEvent.WithSubId(waveIndex).GetRaiseCount();
+            wave.monsterPresets.Shuffle();
 
-            for (int i = 0; i < _monsterPresets.Length; i++) {
-                var monsterPreset = _monsterPresets[i];
+            for (int i = 0; i < wave.monsterPresets.Length; i++) {
+                ref var preset = ref wave.monsterPresets[i];
                 
-                if (_monsterKillEvent.GetRaiseCount() < monsterPreset.minKills ||
-                    !TryGetFreeSpawnPoint(monsterPreset.spawnPoints, out var tweenRunner)
+                if (!preset.monster.IsDead ||
+                    time < waveStartTime + preset.allowSpawnDelay ||
+                    kills < preset.minKillsToAllowSpawn
                 ) {
                     continue;
                 }
                 
-                tweenRunner.transform.GetPositionAndRotation(out var pos, out var rot);
-                var actor = PrefabPool.Main.Get(monsterPreset.prefab, pos, rot);
+                preset.monster.Respawn();
+                _aliveMonsters.Add(preset.monster);
+                _spawnedMonsterEvent.Raise();
                 
-                var health = actor.GetComponent<HealthBehaviour>();
-                health.RestoreFullHealth();
-
-                health.OnDeath -= OnMonsterDeath;
-                health.OnDeath += OnMonsterDeath;
+                float t = wave.killsToCompleteWave > 0 ? (float) kills / wave.killsToCompleteWave : 1f;
+                float respawnDelay = Mathf.Lerp(
+                    Random.Range(wave.respawnDelayRangeStart.x, wave.respawnDelayRangeStart.y),
+                    Random.Range(wave.respawnDelayRangeEnd.x, wave.respawnDelayRangeEnd.y),
+                    t
+                );
                 
-                var monster = actor.GetComponent<Monster>();
-                monster.Bind(tweenRunner);
-
-                _occupiedSpawnPoints.Add(tweenRunner);
-                _spawnedMonstersMap[health] = new MonsterData { spawnPoint = tweenRunner, monster = monster };
-
+                _nextSpawnTime = time + respawnDelay;
+                
                 return;
             }
         }
 
-        private void OnMonsterDeath(HealthBehaviour health) {
-            _monsterKillEvent.Raise();
-            ReleaseMonster(health, _enableCts.Token).Forget();
-        }
-
-        private async UniTask ReleaseMonster(HealthBehaviour health, CancellationToken cancellationToken) {
-            health.OnDeath -= OnMonsterDeath;
-
-            _spawnedMonstersMap.Remove(health, out var data);
-
-            await data.monster.Unbind(cancellationToken);
+        private void KillAllMonsters(bool instant = false) {
+            _nextSpawnTime = 0f;
             
-            if (cancellationToken.IsCancellationRequested) return;
-            
-            PrefabPool.Main.Release(data.monster);
-            _occupiedSpawnPoints.Remove(data.spawnPoint);
-        }
-
-        private bool TryGetFreeSpawnPoint(TweenRunner[] spawnPoints, out TweenRunner tweenRunner) {
-            for (int i = 0; i < spawnPoints.Length; i++) {
-                var spawnPoint = spawnPoints[i];
-                if (_occupiedSpawnPoints.Contains(spawnPoint)) continue;
-
-                tweenRunner = spawnPoint;
-                return true;
+            foreach (var monster in _aliveMonsters) {
+                monster.Kill(instant);
             }
-
-            tweenRunner = null;
-            return false;
-        }
-
-        private bool CanSpawnNextMonster() {
-            return _occupiedSpawnPoints.Count < _maxSpawnedMonstersAtMoment;
-        }
-
-        private float GetRespawnDelay() {
-            float delay = Random.Range(_respawnDelay.x, _respawnDelay.y);
-            return delay / _respawnSpeedCurve.Evaluate(_monsterKillEvent.GetRaiseCount() / (float) _maxKills);
+            
+            _aliveMonsters.Clear();
         }
     }
     

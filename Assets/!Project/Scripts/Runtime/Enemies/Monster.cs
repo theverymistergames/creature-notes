@@ -1,19 +1,26 @@
-﻿using System.Threading;
-using Cysharp.Threading.Tasks;
-using MisterGames.Actors;
-using MisterGames.Tweens;
+﻿using MisterGames.Actors;
+using MisterGames.Logic.Damage;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class Monster : MonoBehaviour, IActorComponent {
 
-        public void Bind(TweenRunner tweenRunner) {
-            
+        public bool IsDead => _health.IsDead;
+
+        private IActor _actor;
+        private HealthBehaviour _health;
+        
+        void IActorComponent.OnAwake(IActor actor) {
+            _health = actor.GetComponent<HealthBehaviour>();
         }
 
-        public async UniTask Unbind(CancellationToken cancellationToken) {
-            
+        public void Kill(bool instant = false) {
+            _health.Kill(notifyDamage: !instant);
+        }
+
+        public void Respawn() {
+            _health.RestoreFullHealth();
         }
     }
     
