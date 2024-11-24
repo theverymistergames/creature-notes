@@ -1,46 +1,27 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Common.Async;
-using MisterGames.Common.Attributes;
 using MisterGames.Common.Lists;
+using MisterGames.Common.Maths;
 using MisterGames.Scenario.Events;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class MonsterSpawner : MonoBehaviour {
 
-        [Header("Events")]
-        [SerializeField] private EventReference _spawnedMonsterEvent;
-        [SerializeField] private EventReference _killMonsterTotalEvent;
-        [SerializeField] private EventReference _killMonsterPerWaveEvent;
-        [SerializeField] private EventReference _startedWavesEvent;
-        [SerializeField] private EventReference _completedWavesEvent;
-        
-        [Header("Waves")]
-        [SerializeField] private MonsterWave[] _monsterWaves;
-        
-        [Serializable]
-        private struct MonsterWave {
-            [Min(0f)] public float startDelay;
-            [MinMaxSlider(0f, 100f)] public Vector2 respawnDelayRangeStart;
-            [MinMaxSlider(0f, 100f)] public Vector2 respawnDelayRangeEnd;
-            [Min(-1)] public int killsToCompleteWave;
-            [Min(-1)] public int maxSpawnedMonstersAtMoment;
-            public MonsterPreset[] monsterPresets;
-        }
-        
-        [Serializable]
-        private struct MonsterPreset {
-            public Monster monster;
-            [Min(0f)] public float allowSpawnDelay;
-            [Min(0f)] public int minKillsToAllowSpawn;
-        }
+        [SerializeField] private MonsterSpawnerConfig _config;
 
+        [Header("Debug")]
+        [SerializeField] private bool _showDebugInfo;
+        
         private readonly HashSet<Monster> _aliveMonsters = new();
+        private readonly HashSet<Monster> _armedMonsters = new();
+        private MonsterSpawnerConfig.MonsterPreset[] _monsterPresetsCache;
+        
         private CancellationTokenSource _enableCts;
         private byte _spawnProcessId;
         private float _waveStartTime;
@@ -58,13 +39,26 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void StartSpawning() {
-            KillAllMonsters(instant: true);
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: start spawning. " +
+                                          $"Waves completed {_config.completedWavesCounter.GetRaiseCount()}/{_config.monsterWaves.Length}, " + 
+                                          $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+#endif
+            
+            KillAllMonsters(notifyDamage: false);
             StartSpawningAsync(_enableCts.Token).Forget();
         }
 
         private void StopSpawning() {
             _spawnProcessId++;
-            KillAllMonsters(instant: false);
+            DisposeMonsterPresetsCache();
+            KillAllMonsters(notifyDamage: false);
+            
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning. " +
+                                          $"Waves completed {_config.completedWavesCounter.GetRaiseCount()}/{_config.monsterWaves.Length}, " + 
+                                          $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+#endif
         }
 
         private async UniTask StartSpawningAsync(CancellationToken cancellationToken) {
@@ -72,21 +66,35 @@ namespace _Project.Scripts.Runtime.Enemies {
 
             while (id == _spawnProcessId && !cancellationToken.IsCancellationRequested) {
                 if (TryFinishWave(ref _currentWave)) {
-                    KillAllMonsters(instant: false);
+                    KillAllMonsters(notifyDamage: true);
                     
-                    if (_currentWave >= _monsterWaves.Length) break;
-
-                    var wave = _monsterWaves[_currentWave];
+                    if (_currentWave >= _config.monsterWaves.Length) break;
+                    
+                    var wave = _config.monsterWaves[_currentWave];
+                    
+#if UNITY_EDITOR
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: starting wave {_currentWave} in {wave.startDelay} s. " +
+                                                  $"Kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+#endif
+                    
                     await UniTask.Delay(TimeSpan.FromSeconds(wave.startDelay), cancellationToken: cancellationToken)
                         .SuppressCancellationThrow();
          
                     if (id != _spawnProcessId || cancellationToken.IsCancellationRequested) break;
+
+#if UNITY_EDITOR
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started wave {_currentWave}. " +
+                                                  $"Kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+#endif
+
                     
-                    _startedWavesEvent.SetCount(_currentWave + 1);
+                    _config.startedWavesCounter.SetCount(_currentWave + 1);
                     _waveStartTime = Time.time;
+                    
+                    RecreateMonsterPresetsCache(_currentWave);
                 }
                 
-                CheckKills(_currentWave);
+                CheckAliveMonsters(_currentWave);
                 CheckSpawns(_currentWave, _waveStartTime);
 
                 await UniTask.Yield();
@@ -94,49 +102,87 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
         
         private bool TryFinishWave(ref int waveIndex) {
-            int completedWaves = _completedWavesEvent.GetRaiseCount();
+            int completedWaves = _config.completedWavesCounter.GetRaiseCount();
             
-            if (waveIndex < 0 || waveIndex >= _monsterWaves.Length) {
+            if (waveIndex < 0 || waveIndex >= _config.monsterWaves.Length) {
                 waveIndex = completedWaves;
+                
+#if UNITY_EDITOR
+                if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: {completedWaves} completed waves, set wave index {waveIndex}.");
+#endif
                 return true;
             }
 
-            var wave = _monsterWaves[waveIndex];
+            ref var wave = ref _config.monsterWaves[waveIndex];
             
-            int kills = _killMonsterPerWaveEvent.WithSubId(waveIndex).GetRaiseCount();
+            int kills = _config.killedMonstersPerWaveCounter.WithSubId(waveIndex).GetRaiseCount();
             if (wave.killsToCompleteWave < 0 || kills < wave.killsToCompleteWave) return false;
             
-            _completedWavesEvent.SetCount(++waveIndex);
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: completed wave {waveIndex}. " +
+                                          $"Kills per wave {_config.killedMonstersPerWaveCounter.GetRaiseCount()}/{wave.killsToCompleteWave}, " +
+                                          $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+#endif
+            
+            _config.completedWavesCounter.SetCount(++waveIndex);
             return true;
         }
 
-        private void CheckKills(int waveIndex) {
-            ref var wave = ref _monsterWaves[waveIndex];
+        private void CheckAliveMonsters(int waveIndex) {
+            ref var wave = ref _config.monsterWaves[waveIndex];
             
             for (int i = 0; i < wave.monsterPresets.Length; i++) {
                 ref var preset = ref wave.monsterPresets[i];
-                if (!preset.monster.IsDead || !_aliveMonsters.Contains(preset.monster)) continue;
+                if (!_aliveMonsters.Contains(preset.monster)) continue;
+                
+                if (preset.monster.IsDead) {
+                    _aliveMonsters.Remove(preset.monster);
+                    _armedMonsters.Remove(preset.monster);
+                    
+                    _config.killedMonstersPerWaveCounter.WithSubId(waveIndex).Raise();
+                    _config.killedMonstersTotalCounter.Raise();
+                    
+#if UNITY_EDITOR
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, killed monster [{preset.monster}]. " +
+                                                  $"Kills per wave {_config.killedMonstersPerWaveCounter.GetRaiseCount()}/{wave.killsToCompleteWave}, " +
+                                                  $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}, " +
+                                                  $"alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
+#endif
+                    
+                    continue;
+                }
 
-                _aliveMonsters.Remove(preset.monster);
-                _killMonsterPerWaveEvent.WithSubId(waveIndex).Raise();
-                _killMonsterTotalEvent.Raise();
+                if (preset.monster.IsArmed && _armedMonsters.Add(preset.monster)) {
+                    _config.monsterArmedEvent.Raise();
+                    
+#if UNITY_EDITOR
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, armed monster [{preset.monster}]. " +
+                                                  $"Alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}, " +
+                                                  $"armed monsters {_armedMonsters.Count}.");
+#endif
+                    continue;
+                }
+                
+                if (!preset.monster.IsArmed && _armedMonsters.Contains(preset.monster)) {
+                    _armedMonsters.Remove(preset.monster);
+                }
             }
         }
 
         private void CheckSpawns(int waveIndex, float waveStartTime) {
-            ref var wave = ref _monsterWaves[waveIndex];
+            ref var wave = ref _config.monsterWaves[waveIndex];
             float time = Time.time;
 
             if (time < _nextSpawnTime ||
-                wave.maxSpawnedMonstersAtMoment >= 0 && _aliveMonsters.Count >= wave.maxSpawnedMonstersAtMoment
+                wave.maxAliveMonstersAtMoment >= 0 && _aliveMonsters.Count >= wave.maxAliveMonstersAtMoment
             ) {
                 return;
             }
             
-            int kills = _killMonsterPerWaveEvent.WithSubId(waveIndex).GetRaiseCount();
-            wave.monsterPresets.Shuffle();
+            int kills = _config.killedMonstersPerWaveCounter.WithSubId(waveIndex).GetRaiseCount();
+            _monsterPresetsCache.Shuffle();
 
-            for (int i = 0; i < wave.monsterPresets.Length; i++) {
+            for (int i = 0; i < _monsterPresetsCache.Length; i++) {
                 ref var preset = ref wave.monsterPresets[i];
                 
                 if (!preset.monster.IsDead ||
@@ -146,31 +192,71 @@ namespace _Project.Scripts.Runtime.Enemies {
                     continue;
                 }
                 
-                preset.monster.Respawn();
-                _aliveMonsters.Add(preset.monster);
-                _spawnedMonsterEvent.Raise();
-                
                 float t = wave.killsToCompleteWave > 0 ? (float) kills / wave.killsToCompleteWave : 0f;
+                
                 float respawnDelay = Mathf.Lerp(
-                    Random.Range(wave.respawnDelayRangeStart.x, wave.respawnDelayRangeStart.y),
-                    Random.Range(wave.respawnDelayRangeEnd.x, wave.respawnDelayRangeEnd.y),
+                    wave.respawnDelayStart.GetRandomInRange(),
+                    wave.respawnDelayEnd.GetRandomInRange(),
                     t
                 );
                 
+                float armDuration = Mathf.Lerp(
+                    preset.armDurationStart.GetRandomInRange(),
+                    preset.armDurationEnd.GetRandomInRange(),
+                    t
+                );
+
+                var attackCooldownRange = new Vector2(
+                    Mathf.Lerp(preset.attackCooldownStart.x, preset.attackCooldownEnd.x, t),
+                    Mathf.Lerp(preset.attackCooldownStart.y, preset.attackCooldownEnd.y, t)
+                );
+                
+                preset.monster.Respawn(armDuration, attackCooldownRange);
+                
+                _aliveMonsters.Add(preset.monster);
+                _config.monsterRespawnedEvent.Raise();
+                
                 _nextSpawnTime = time + respawnDelay;
+                
+#if UNITY_EDITOR
+                if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, respawned monster [{preset.monster}] with arm duration {armDuration} s. " +
+                                              $"Next respawn available in {respawnDelay} s. " +
+                                              $"Alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
+#endif
                 
                 return;
             }
         }
 
-        private void KillAllMonsters(bool instant = false) {
+        private void KillAllMonsters(bool notifyDamage = true) {
             _nextSpawnTime = 0f;
             
             foreach (var monster in _aliveMonsters) {
-                monster.Kill(instant);
+                monster.Kill(notifyDamage);
             }
             
+            _armedMonsters.Clear();
             _aliveMonsters.Clear();
+            
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: killed all monsters.");
+#endif
+        }
+
+        private void RecreateMonsterPresetsCache(int waveIndex) {
+            DisposeMonsterPresetsCache();
+            
+            ref var wave = ref _config.monsterWaves[waveIndex];
+
+            _monsterPresetsCache = ArrayPool<MonsterSpawnerConfig.MonsterPreset>.Shared.Rent(wave.monsterPresets.Length);
+            Array.Copy(wave.monsterPresets, _monsterPresetsCache, _monsterPresetsCache.Length);
+        }
+
+        private void DisposeMonsterPresetsCache() {
+            if (_monsterPresetsCache == null) return;
+            
+            ArrayPool<MonsterSpawnerConfig.MonsterPreset>.Shared.Return(_monsterPresetsCache);
+            _monsterPresetsCache = null;
         }
     }
     
