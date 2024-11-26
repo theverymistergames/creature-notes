@@ -10,6 +10,7 @@ public class MusicBoxCylinderDetectable : MonoBehaviour {
     [SerializeField] private HDAdditionalLightData lightObj;
     [SerializeField] private GameObject cylinderGO;
     [SerializeField] private GameObject placeGO;
+    [SerializeField] private GameObject paintingGO;
     [SerializeField] private ParticleSystem particles;
     private Detectable _detectable;
     private float _startIntensity;
@@ -41,6 +42,7 @@ public class MusicBoxCylinderDetectable : MonoBehaviour {
         
         _currentTween = LMotion.Create(0f, 1f, 3f).WithOnComplete(() => {
             cylinderGO.SetActive(false);
+            paintingGO.SetActive(false);
             placeGO.SetActive(true);
             particles.Play();
         }).Bind(t => {
