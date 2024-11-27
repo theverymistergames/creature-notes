@@ -28,12 +28,13 @@ public class Level4FoxesLogic : MonoBehaviour, IEventListener
             fadeTransitionImage.color = c;
         });
         
-        await UniTask.Delay((int)transitionTime * 1000);
+        await UniTask.Delay((int)(transitionTime * 1000));
         
+        foxFoundEvent.SetCount(foxFoundEvent.GetRaiseCount() - 1);
         var c = foxFoundEvent.GetRaiseCount();
         foxLogics[c].Reset();
         
-        await UniTask.Delay((int)transitionTime * 1000);
+        await UniTask.Delay((int)(transitionTime * 1000));
         
         LMotion.Create(1f, 0f, transitionTime).Bind(t => {
             var c = fadeTransitionImage.color;
