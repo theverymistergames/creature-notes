@@ -735,8 +735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cf7e2d03e54500b87c531c700b36fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeSourceStage: 1
   _maxHits: 6
+  _maxValidDotProduct: -0.001
   _distance: 0.55
   _distanceAddition: 0.15
   _radius: 0.2
@@ -744,8 +744,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _showDebugInfo: 0
-  _bottomPoint: -0.45
-  _traceDuration: 3
+  _traceDuration: 0
 --- !u!114 &1115517514154010951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3050,7 +3049,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _translationRoot: {fileID: 3510025717400960321}
   _rotationRoot: {fileID: 707758600212363166}
-  _cameraSmoothing: 20
+  _positionSmoothing: 20
+  _rotationSmoothing: 30
 --- !u!114 &8747505263324604120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3085,6 +3085,7 @@ GameObject:
   - component: {fileID: 6001925815983117520}
   - component: {fileID: 5382468787250592907}
   - component: {fileID: 5155746605723487674}
+  - component: {fileID: 6632526846847538305}
   m_Layer: 2
   m_Name: Motion
   m_TagString: Untagged
@@ -3127,14 +3128,6 @@ MonoBehaviour:
   _forceCorrectionAngle: {x: 15, y: 120}
   _slopeAngle: {x: 25, y: 45}
   _inputSmoothing: 20
-  _frictionGrounded: 0.6
-  _frictionAir: 0
-  _frictionSlope: 1
-  _frictionSlopeOverMaxAngle: 0.6
-  _frictionCombineGrounded: 0
-  _frictionCombineAir: 1
-  _frictionCombineSlope: 3
-  _frictionCombineSlopeOverMaxAngle: 0
   _capsuleCastDistance: 0.2
   _capsuleCastRadiusOffset: -0.02
   _lowerPointOffset: -0.1
@@ -3179,11 +3172,13 @@ MonoBehaviour:
   _maxHits: 6
   _maxStepHeight: 0.3
   _maxStepHeightAir: 0
-  _climbSpeedMin: {x: 0.5, y: 1, z: 0.5}
-  _climbSpeedMax: {x: 0.5, y: 1.5, z: 1}
+  _climbSpeedMin: {x: 0, y: 1.2, z: 0.7}
+  _climbSpeedMax: {x: 0, y: 1.2, z: 1.2}
   _speedMultiplierGround: 1
   _speedMultiplierAir: 0
-  _speedSmoothing: 2
+  _forceMultiplierGround: 1.5
+  _forceMultiplierAir: 0
+  _speedSmoothing: 3
   _showDebugInfo: 0
 --- !u!114 &6409746516802656098
 MonoBehaviour:
@@ -3246,6 +3241,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _applyFallForceBelowVerticalSpeed: 0
   _fallForce: 5
+--- !u!114 &6632526846847538305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586869188020231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282c33b2f0d44eee8aa9fd552a3382a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frictionGrounded: 0.6
+  _frictionSlope: 1
+  _frictionSlopeOverMaxAngle: 0.6
+  _minDotProduct: -0.001
+  _showDebugInfo: 0
 --- !u!1 &7205586869398250321
 GameObject:
   m_ObjectHideFlags: 0
