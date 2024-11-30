@@ -13,13 +13,15 @@ namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class Monster : MonoBehaviour, IActorComponent, IUpdate {
 
+        [SerializeField] [Range(0f, 1f)] private float _progress;
+        
         public event Action OnArmed = delegate { };
         public event Action OnAttackStarted = delegate { };
         public event Action OnAttackPerformed = delegate { };
         
         public bool IsDead => _health.IsDead;
         public bool IsArmed => Progress >= 1f;
-        public float Progress { get; private set; }
+        public float Progress => _progress;
 
         private CancellationTokenSource _enableCts;
         
@@ -57,28 +59,30 @@ namespace _Project.Scripts.Runtime.Enemies {
             _health.RestoreFullHealth();
             _progressSpeed = armDuration > 0f ? 1f / armDuration : float.MaxValue;
             _attackCooldownRange = attackCooldownRange;
+            _nextAttackTime = 0f;
         }
 
         public void Kill(bool notifyDamage = true) {
             _health.Kill(notifyDamage);
             
             if (notifyDamage) return;
-            
+
+            _progress = 0f;
             _progressSpeed = 0f;
-            Progress = 0f;
         }
 
         void IUpdate.OnUpdate(float dt) {
             bool wasArmed = IsArmed;
-            Progress = Mathf.Clamp01(Progress + dt * _progressSpeed);
+            _progress = Mathf.Clamp01(_progress + dt * _progressSpeed);
             
             if (_health.IsDead) return;
             
             if (!wasArmed && IsArmed) OnArmed.Invoke();
 
             float time = Time.time;
+            
             if (IsArmed && time >= _nextAttackTime) {
-                _nextAttackTime = time + _attackCooldownRange.GetRandomInRange();
+                _nextAttackTime = time + GetNextCooldown();
                 PerformAttack(_enableCts.Token).Forget();
             }
         }
@@ -97,8 +101,11 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             if (cancellationToken.IsCancellationRequested) return;
             
-            _monsterData.debuffEvent.SetCount(_monsterData.debuffType.value);
             OnAttackPerformed.Invoke();
+        }
+
+        private float GetNextCooldown() {
+            return _monsterData.allowMultipleAttacks ? _attackCooldownRange.GetRandomInRange() : float.MaxValue;
         }
     }
     

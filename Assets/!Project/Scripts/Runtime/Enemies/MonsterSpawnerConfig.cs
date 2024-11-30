@@ -9,12 +9,9 @@ namespace _Project.Scripts.Runtime.Enemies {
     public sealed class MonsterSpawnerConfig : ScriptableObject{
         
         [Header("Events")]
-        public EventReference monsterRespawnedEvent;
-        public EventReference monsterArmedEvent;
-        public EventReference killedMonstersTotalCounter;
-        public EventReference killedMonstersPerWaveCounter;
-        public EventReference startedWavesCounter;
+        public EventReference startedWaveEvent;
         public EventReference completedWavesCounter;
+        public EventReference monsterKilledEvent;
         
         [Header("Waves")]
         public MonsterWave[] monsterWaves;
