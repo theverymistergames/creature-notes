@@ -41,6 +41,10 @@ namespace _Project.Scripts.Runtime.Enemies {
             _debuffData.debuffEvent.Raise(_debuffData.debuffImage);
             _onAttack?.Apply(_actor, _enableCts.Token).Forget();
         }
+
+#if UNITY_EDITOR
+        [Button] private void ApplyAttack() => OnAttackPerformed();
+#endif
     }
     
 }

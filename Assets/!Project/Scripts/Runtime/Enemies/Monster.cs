@@ -5,7 +5,6 @@ using MisterGames.Actors;
 using MisterGames.Common.Async;
 using MisterGames.Common.Maths;
 using MisterGames.Logic.Damage;
-using MisterGames.Scenario.Events;
 using MisterGames.Tick.Core;
 using UnityEngine;
 
