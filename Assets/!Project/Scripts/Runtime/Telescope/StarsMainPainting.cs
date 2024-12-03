@@ -182,7 +182,7 @@ namespace _Project.Scripts.Runtime.Telescope {
             for (int i = 0; i < _groups?.Length; i++) {
                 ref var group = ref _groups[i];
                 
-                bool groupDetected = _starGroupDetectedEvent.WithSubId(i).GetRaiseCount() > 0;
+                bool groupDetected = _starGroupDetectedEvent.WithSubId(i).GetCount() > 0;
                 if (!force && groupDetected == group.detected && !allDetected) continue;
 
                 bool wasDetected = group.detected;

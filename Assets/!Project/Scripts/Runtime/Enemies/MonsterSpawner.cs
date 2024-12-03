@@ -44,7 +44,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         private void StartSpawning() {
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: start spawning, " +
-                                          $"waves completed {_config.completedWavesCounter.GetRaiseCount()}/{_config.monsterWaves.Length}.");
+                                          $"waves completed {_config.completedWavesCounter.GetCount()}/{_config.monsterWaves.Length}.");
 #endif
 
             _currentWave = -1;
@@ -63,7 +63,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning, " +
-                                          $"waves completed {_config.completedWavesCounter.GetRaiseCount()}/{_config.monsterWaves.Length}.");
+                                          $"waves completed {_config.completedWavesCounter.GetCount()}/{_config.monsterWaves.Length}.");
 #endif
         }
 
@@ -105,7 +105,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
         
         private bool TryFinishWave(ref int waveIndex) {
-            int completedWaves = _config.completedWavesCounter.GetRaiseCount();
+            int completedWaves = _config.completedWavesCounter.GetCount();
             
             if (waveIndex < 0 || waveIndex >= _config.monsterWaves.Length) {
                 waveIndex = completedWaves;
