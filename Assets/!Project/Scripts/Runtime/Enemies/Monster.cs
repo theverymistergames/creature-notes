@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Common.Async;
+using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
 using MisterGames.Logic.Damage;
 using MisterGames.Tick.Core;
@@ -13,6 +14,11 @@ namespace _Project.Scripts.Runtime.Enemies {
     public sealed class Monster : MonoBehaviour, IActorComponent, IUpdate {
 
         [SerializeField] [Range(0f, 1f)] private float _progress;
+
+        [Header("Debug")]
+        [SerializeField] private bool _showDebugInfo;
+        [SerializeField] private float _armDurationTest = 1f;
+        [SerializeField] private Vector2 _attackCooldownRangeTest = Vector2.one;
         
         public event Action OnArmed = delegate { };
         public event Action OnAttackStarted = delegate { };
@@ -59,10 +65,19 @@ namespace _Project.Scripts.Runtime.Enemies {
             _progressSpeed = armDuration > 0f ? 1f / armDuration : float.MaxValue;
             _attackCooldownRange = attackCooldownRange;
             _nextAttackTime = 0f;
+
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].Respawn: f {Time.frameCount}, arm duration {armDuration:0.00}, " +
+                                          $"attack cooldown {attackCooldownRange.x:0.00} - {attackCooldownRange.y:0.00}");
+#endif
         }
 
         public void Kill(bool notifyDamage = true) {
-            _health.Kill(notifyDamage);
+            _health.Kill(notifyDamage: notifyDamage);
+            
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].Kill: f {Time.frameCount}, notifyDamage {notifyDamage}");
+#endif
             
             if (notifyDamage) return;
 
@@ -86,9 +101,13 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
         }
         
-        private void OnDamage(HealthBehaviour health, DamageInfo info) {
+        private void OnDamage(DamageInfo info) {
             if (!info.mortal) return;
 
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].OnDamage: f {Time.frameCount}, mortal true");
+#endif
+            
             _progressSpeed = _monsterData.deathDuration > 0f ? -1f / _monsterData.deathDuration : float.MinValue;
         }
 
@@ -98,7 +117,11 @@ namespace _Project.Scripts.Runtime.Enemies {
             await UniTask.Delay(TimeSpan.FromSeconds(_monsterData.attackDelay), cancellationToken: cancellationToken)
                 .SuppressCancellationThrow();
             
-            if (cancellationToken.IsCancellationRequested) return;
+            if (cancellationToken.IsCancellationRequested || _health.IsDead) return;
+            
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].PerformAttack: f {Time.frameCount}, performed");
+#endif
             
             OnAttackPerformed.Invoke();
         }
@@ -106,6 +129,10 @@ namespace _Project.Scripts.Runtime.Enemies {
         private float GetNextCooldown() {
             return _monsterData.allowMultipleAttacks ? _attackCooldownRange.GetRandomInRange() : float.MaxValue;
         }
+        
+#if UNITY_EDITOR
+        [Button] private void RespawnTest() => Respawn(_armDurationTest, _attackCooldownRangeTest);
+#endif
     }
     
 }

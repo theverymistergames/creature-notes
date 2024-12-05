@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Common.Colors;
 using MisterGames.Common.Pooling;
@@ -16,6 +17,8 @@ namespace _Project.Scripts.Runtime.HUD {
         [SerializeField] [Min(0f)] private float _debuffImageDuration = 1f;
         [SerializeField] private AnimationCurve _alphaCurve = AnimationCurve.Linear(0f, 1f, 1f, 0f);
 
+        private readonly HashSet<Image> _images = new();
+        
         private void OnEnable() {
             _debuffImageEvent.Subscribe(this);
         }
@@ -24,12 +27,22 @@ namespace _Project.Scripts.Runtime.HUD {
             _debuffImageEvent.Unsubscribe(this);
         }
 
+        private void OnDestroy() {
+            foreach (var image in _images) {
+                PrefabPool.Main.Release(image);
+            }
+            
+            _images.Clear();
+        }
+
         void IEventListener<Sprite>.OnEventRaised(EventReference e, Sprite data) {
             SpawnDebuff(data, _debuffImageDuration, destroyCancellationToken).Forget();
         }
 
         private async UniTask SpawnDebuff(Sprite sprite, float duration, CancellationToken token) {
             var image = PrefabPool.Main.Get(_debuffImagePrefab, transform, worldPositionStays: false);
+
+            _images.Add(image);
             
             image.sprite = sprite;
             image.color = _startColor;
@@ -49,6 +62,7 @@ namespace _Project.Scripts.Runtime.HUD {
             if (token.IsCancellationRequested) return;
             
             PrefabPool.Main.Release(image);
+            _images.Remove(image);
         }
     }
     

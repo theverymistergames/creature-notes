@@ -8500,7 +8500,7 @@ GameObject:
   - component: {fileID: 1395754890}
   - component: {fileID: 1395754889}
   - component: {fileID: 1395754896}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MonsterTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8533,6 +8533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _progress: 0
+  _showDebugInfo: 0
+  _armDurationTest: 1
+  _attackCooldownRangeTest: {x: 1, y: 1}
 --- !u!114 &1395754891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8560,9 +8563,9 @@ MonoBehaviour:
     - rid: 986509382513852500
       type: {class: MonsterData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
       data:
-        allowMultipleAttacks: 0
-        attackDelay: 0
-        deathDuration: 0
+        allowMultipleAttacks: 1
+        attackDelay: 1
+        deathDuration: 1
         respawnSound:
           attach: 1
           volume: 1
@@ -8695,11 +8698,11 @@ Transform:
   m_GameObject: {fileID: 1395754888}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.979, y: 0.96, z: 1.218}
-  m_LocalScale: {x: 0.15425, y: 1, z: 0.20996}
+  m_LocalPosition: {x: -3.01, y: 1.569, z: -5.88}
+  m_LocalScale: {x: 0.28106, y: 1, z: 0.31576}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1410200896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1395754896
 MonoBehaviour:
@@ -8720,6 +8723,53 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!1 &1410200894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410200896}
+  - component: {fileID: 1410200895}
+  m_Layer: 0
+  m_Name: MonsterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1410200895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410200894}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790551b7a4bd4a4e9950f7b9dd328fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 0}
+  _showDebugInfo: 0
+--- !u!4 &1410200896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410200894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1395754895}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419238057
 GameObject:
   m_ObjectHideFlags: 0
@@ -11684,7 +11734,7 @@ SceneRoots:
   - {fileID: 1744414174}
   - {fileID: 1519207152}
   - {fileID: 1700342759}
-  - {fileID: 1395754895}
+  - {fileID: 1410200896}
   - {fileID: 788994659}
   - {fileID: 229746948}
   - {fileID: 433222096}
