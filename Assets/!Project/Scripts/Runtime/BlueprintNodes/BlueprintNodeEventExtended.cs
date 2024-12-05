@@ -59,11 +59,11 @@ namespace MisterGames.BlueprintLib {
         }
 
         int IBlueprintOutput<int>.GetPortValue(IBlueprint blueprint, NodeToken token, int port) {
-            return port == 4 ? _event.GetRaiseCount() : default;
+            return port == 4 ? _event.GetCount() : default;
         }
 
         bool IBlueprintOutput<bool>.GetPortValue(IBlueprint blueprint, NodeToken token, int port) {
-            return port == 5 ? _event.GetRaiseCount() > 0 : default;
+            return port == 5 ? _event.GetCount() > 0 : default;
         }
 
         public void OnEventRaised(EventReference e) {

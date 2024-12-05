@@ -26,7 +26,10 @@ namespace _Project.Scripts.Runtime.Enemies {
         private byte _spawnProcessId;
         private float _waveStartTime;
         private float _nextSpawnTime;
-        private int _currentWave = -1;
+        
+        private int _currentWave;
+        private int _currentWaveKills;
+        private int _totalKills;
 
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
@@ -40,10 +43,13 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void StartSpawning() {
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: start spawning. " +
-                                          $"Waves completed {_config.completedWavesCounter.GetRaiseCount()}/{_config.monsterWaves.Length}, " + 
-                                          $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: start spawning, " +
+                                          $"waves completed {_config.completedWavesCounter.GetCount()}/{_config.monsterWaves.Length}.");
 #endif
+
+            _currentWave = -1;
+            _totalKills = 0;
+            _currentWaveKills = 0;
             
             KillAllMonsters(notifyDamage: false);
             StartSpawningAsync(_enableCts.Token).Forget();
@@ -51,13 +57,13 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void StopSpawning() {
             _spawnProcessId++;
+            
             DisposeMonsterPresetsCache();
             KillAllMonsters(notifyDamage: false);
             
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning. " +
-                                          $"Waves completed {_config.completedWavesCounter.GetRaiseCount()}/{_config.monsterWaves.Length}, " + 
-                                          $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning, " +
+                                          $"waves completed {_config.completedWavesCounter.GetCount()}/{_config.monsterWaves.Length}.");
 #endif
         }
 
@@ -73,8 +79,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                     var wave = _config.monsterWaves[_currentWave];
                     
 #if UNITY_EDITOR
-                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: starting wave {_currentWave} in {wave.startDelay} s. " +
-                                                  $"Kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: starting wave {_currentWave} in {wave.startDelay} s.");
 #endif
                     
                     await UniTask.Delay(TimeSpan.FromSeconds(wave.startDelay), cancellationToken: cancellationToken)
@@ -83,12 +88,10 @@ namespace _Project.Scripts.Runtime.Enemies {
                     if (id != _spawnProcessId || cancellationToken.IsCancellationRequested) break;
 
 #if UNITY_EDITOR
-                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started wave {_currentWave}. " +
-                                                  $"Kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started wave {_currentWave}.");
 #endif
-
                     
-                    _config.startedWavesCounter.SetCount(_currentWave + 1);
+                    _config.startedWaveEvent.Raise();
                     _waveStartTime = Time.time;
                     
                     RecreateMonsterPresetsCache(_currentWave);
@@ -102,10 +105,11 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
         
         private bool TryFinishWave(ref int waveIndex) {
-            int completedWaves = _config.completedWavesCounter.GetRaiseCount();
+            int completedWaves = _config.completedWavesCounter.GetCount();
             
             if (waveIndex < 0 || waveIndex >= _config.monsterWaves.Length) {
                 waveIndex = completedWaves;
+                _currentWaveKills = 0;
                 
 #if UNITY_EDITOR
                 if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: {completedWaves} completed waves, set wave index {waveIndex}.");
@@ -114,16 +118,17 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
 
             ref var wave = ref _config.monsterWaves[waveIndex];
-            
-            int kills = _config.killedMonstersPerWaveCounter.WithSubId(waveIndex).GetRaiseCount();
-            if (wave.killsToCompleteWave < 0 || kills < wave.killsToCompleteWave) return false;
+            if (wave.killsToCompleteWave < 0 || _currentWaveKills < wave.killsToCompleteWave) {
+                return false;
+            }
             
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: completed wave {waveIndex}. " +
-                                          $"Kills per wave {_config.killedMonstersPerWaveCounter.GetRaiseCount()}/{wave.killsToCompleteWave}, " +
-                                          $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}.");
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: completed wave {waveIndex}, " +
+                                          $"kills per wave {_currentWaveKills}/{wave.killsToCompleteWave}, " +
+                                          $"kills total {_totalKills}.");
 #endif
-            
+
+            _currentWaveKills = 0;
             _config.completedWavesCounter.SetCount(++waveIndex);
             return true;
         }
@@ -138,14 +143,15 @@ namespace _Project.Scripts.Runtime.Enemies {
                 if (preset.monster.IsDead) {
                     _aliveMonsters.Remove(preset.monster);
                     _armedMonsters.Remove(preset.monster);
-                    
-                    _config.killedMonstersPerWaveCounter.WithSubId(waveIndex).Raise();
-                    _config.killedMonstersTotalCounter.Raise();
+
+                    _currentWaveKills++;
+                    _totalKills++;
+                    _config.monsterKilledEvent.Raise();
                     
 #if UNITY_EDITOR
                     if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, killed monster [{preset.monster}]. " +
-                                                  $"Kills per wave {_config.killedMonstersPerWaveCounter.GetRaiseCount()}/{wave.killsToCompleteWave}, " +
-                                                  $"kills total {_config.killedMonstersTotalCounter.GetRaiseCount()}, " +
+                                                  $"Kills per wave {_currentWaveKills}/{wave.killsToCompleteWave}, " +
+                                                  $"kills total {_totalKills}, " +
                                                   $"alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
 #endif
                     
@@ -153,8 +159,6 @@ namespace _Project.Scripts.Runtime.Enemies {
                 }
 
                 if (preset.monster.IsArmed && _armedMonsters.Add(preset.monster)) {
-                    _config.monsterArmedEvent.Raise();
-                    
 #if UNITY_EDITOR
                     if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, armed monster [{preset.monster}]. " +
                                                   $"Alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}, " +
@@ -179,7 +183,6 @@ namespace _Project.Scripts.Runtime.Enemies {
                 return;
             }
             
-            int kills = _config.killedMonstersPerWaveCounter.WithSubId(waveIndex).GetRaiseCount();
             _monsterPresetsCache.Shuffle();
 
             for (int i = 0; i < _monsterPresetsCache.Length; i++) {
@@ -187,12 +190,12 @@ namespace _Project.Scripts.Runtime.Enemies {
                 
                 if (!preset.monster.IsDead ||
                     time < waveStartTime + preset.allowSpawnDelay ||
-                    kills < preset.minKillsToAllowSpawn
+                    _currentWaveKills < preset.minKillsToAllowSpawn
                 ) {
                     continue;
                 }
                 
-                float t = wave.killsToCompleteWave > 0 ? (float) kills / wave.killsToCompleteWave : 0f;
+                float t = wave.killsToCompleteWave > 0 ? (float) _currentWaveKills / wave.killsToCompleteWave : 0f;
                 
                 float respawnDelay = Mathf.Lerp(
                     wave.respawnDelayStart.GetRandomInRange(),
@@ -207,15 +210,13 @@ namespace _Project.Scripts.Runtime.Enemies {
                 );
 
                 var attackCooldownRange = new Vector2(
-                    Mathf.Lerp(preset.attackCooldownStart.x, preset.attackCooldownEnd.x, t),
+                    Mathf.Lerp(preset.attackCooldownStart.x, preset.attackCooldownEnd.x, t), 
                     Mathf.Lerp(preset.attackCooldownStart.y, preset.attackCooldownEnd.y, t)
                 );
                 
                 preset.monster.Respawn(armDuration, attackCooldownRange);
                 
                 _aliveMonsters.Add(preset.monster);
-                _config.monsterRespawnedEvent.Raise();
-                
                 _nextSpawnTime = time + respawnDelay;
                 
 #if UNITY_EDITOR

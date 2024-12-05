@@ -8484,6 +8484,292 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246272179}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1395754888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1395754895}
+  - component: {fileID: 1395754894}
+  - component: {fileID: 1395754893}
+  - component: {fileID: 1395754892}
+  - component: {fileID: 1395754891}
+  - component: {fileID: 1395754890}
+  - component: {fileID: 1395754889}
+  - component: {fileID: 1395754896}
+  m_Layer: 6
+  m_Name: MonsterTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1395754889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f525fd18f3554d408e2ebec3075e08ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restoreFullHealthOnAwake: 0
+--- !u!114 &1395754890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7765d717ab41484da45578df09ca45ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _progress: 0
+  _showDebugInfo: 0
+  _armDurationTest: 1
+  _attackCooldownRangeTest: {x: 1, y: 1}
+--- !u!114 &1395754891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66aaec23d4547148945b6c8f04eadc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 0}
+  _dataOverrides:
+  - rid: 986509382513852499
+  - rid: 986509382513852500
+  - rid: 986509382513852501
+  references:
+    version: 2
+    RefIds:
+    - rid: 986509382513852499
+      type: {class: HealthData, ns: MisterGames.Logic.Damage, asm: MisterGames.Logic}
+      data:
+        health: 1
+    - rid: 986509382513852500
+      type: {class: MonsterData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        allowMultipleAttacks: 1
+        attackDelay: 1
+        deathDuration: 1
+        respawnSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        deathSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        armSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        startAttackSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        performAttackSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+    - rid: 986509382513852501
+      type: {class: MonsterDebuffData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        debuffEvent:
+          _eventDomain: {fileID: 11400000, guid: 09344a19d1d18bd47b22dd1d0e4e266b,
+            type: 2}
+          _eventId: 1
+          _subId: 0
+        debuffImage: {fileID: 21300000, guid: e1156e7706588fc45850896164aa8b57, type: 3}
+--- !u!65 &1395754892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1395754893
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1395754894
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1395754895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.01, y: 1.569, z: -5.88}
+  m_LocalScale: {x: 0.28106, y: 1, z: 0.31576}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1410200896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395754896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395754888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf479e994744617a0b000f826143eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onAttack:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!1 &1410200894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410200896}
+  - component: {fileID: 1410200895}
+  m_Layer: 0
+  m_Name: MonsterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1410200895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410200894}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790551b7a4bd4a4e9950f7b9dd328fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _config: {fileID: 0}
+  _showDebugInfo: 0
+--- !u!4 &1410200896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410200894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1395754895}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419238057
 GameObject:
   m_ObjectHideFlags: 0
@@ -11448,6 +11734,7 @@ SceneRoots:
   - {fileID: 1744414174}
   - {fileID: 1519207152}
   - {fileID: 1700342759}
+  - {fileID: 1410200896}
   - {fileID: 788994659}
   - {fileID: 229746948}
   - {fileID: 433222096}

@@ -35,7 +35,7 @@ public class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
     }
 
     private void SetActiveIfNeeded() {
-        var count = levelLoadedEvent.GetRaiseCount();
+        var count = levelLoadedEvent.GetCount();
         
         if (levels.Contains(count)) {
             if (_emissive) {

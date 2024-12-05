@@ -12,7 +12,7 @@ public class Level2FakeMonstersController : MonoBehaviour, IEventListener {
 
     public void OnEventRaised(EventReference e) {
         if (e.EventId == partEvent.EventId) {
-            var count = e.GetRaiseCount();
+            var count = e.GetCount();
             var counter = 0;
             
             foreach (var m in fakeMonsters) {

@@ -40,11 +40,11 @@ namespace _Project.Scripts.Runtime.Enemies {
             _monster.OnAttackPerformed -= OnAttackPerformed;
         }
 
-        private void OnRestoreHealth(HealthBehaviour health) {
+        private void OnRestoreHealth() {
             _monsterData.respawnSound.Apply(_actor, destroyCancellationToken).Forget();
         }
 
-        private void OnDamage(HealthBehaviour health, DamageInfo info) {
+        private void OnDamage(DamageInfo info) {
             if (!info.mortal) return;
 
             _monsterData.deathSound.Apply(_actor, destroyCancellationToken).Forget();

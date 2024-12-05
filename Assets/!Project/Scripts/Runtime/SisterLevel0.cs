@@ -52,7 +52,7 @@ public class SisterLevel0 : MonoBehaviour, IEventListener {
             _interactive.enabled = false;
         }
         
-        if (questGivenEvent.GetRaiseCount() == 0) questGivenEvent.Raise();
+        if (questGivenEvent.GetCount() == 0) questGivenEvent.Raise();
     }
 
     void PlayBubbleTween() {

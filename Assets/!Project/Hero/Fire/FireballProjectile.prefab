@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 1199770344801727228}
   - component: {fileID: 1987504562849350213}
   - component: {fileID: 4335760545786688146}
-  m_Layer: 0
+  - component: {fileID: 7420868513281049782}
+  m_Layer: 7
   m_Name: FireballProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,9 +115,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939634505636510374}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 4.298809
   m_Range: 2
@@ -166,8 +166,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0.71
   m_ShadowAngle: 0
+  m_LightUnit: 0
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &6759368990904295310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,14 +184,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 54.020428
+  m_PointlightHDType: 0
+  m_SpotLightShape: 0
+  m_AreaLightShape: 0
   m_EnableSpotReflector: 1
+  m_LightUnit: 0
   m_LuxAtDistance: 1
+  m_Intensity: 54.020428
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 0
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
@@ -207,15 +214,27 @@ MonoBehaviour:
   m_IESPoint: {fileID: 0}
   m_IESSpot: {fileID: 0}
   m_IncludeForRayTracing: 1
+  m_IncludeForPathTracing: 1
   m_AreaLightShadowCone: 120
   m_UseScreenSpaceShadows: 0
   m_InteractsWithSky: 1
   m_AngularDiameter: 0.5
-  m_FlareSize: 2
-  m_FlareTint: {r: 1, g: 1, b: 1, a: 1}
-  m_FlareFalloff: 4
-  m_SurfaceTexture: {fileID: 0}
-  m_SurfaceTint: {r: 1, g: 1, b: 1, a: 1}
+  diameterMultiplerMode: 0
+  diameterMultiplier: 1
+  diameterOverride: 0.5
+  celestialBodyShadingSource: 1
+  sunLightOverride: {fileID: 0}
+  sunColor: {r: 1, g: 1, b: 1, a: 1}
+  sunIntensity: 130000
+  moonPhase: 0.2
+  moonPhaseRotation: 0
+  earthshine: 1
+  flareSize: 2
+  flareTint: {r: 1, g: 1, b: 1, a: 1}
+  flareFalloff: 4
+  flareMultiplier: 1
+  surfaceTexture: {fileID: 0}
+  surfaceTint: {r: 1, g: 1, b: 1, a: 1}
   m_Distance: 1.5e+11
   m_UseRayTracedShadows: 0
   m_NumRayTracingSamples: 4
@@ -236,6 +255,14 @@ MonoBehaviour:
   m_BlockerSampleCount: 24
   m_FilterSampleCount: 16
   m_MinFilterSize: 0.1
+  m_DirLightPCSSBlockerSampleCount: 24
+  m_DirLightPCSSFilterSampleCount: 16
+  m_DirLightPCSSMaxPenumbraSize: 0.56
+  m_DirLightPCSSMaxSamplingDistance: 0.5
+  m_DirLightPCSSMinFilterSizeTexels: 1.5
+  m_DirLightPCSSMinFilterMaxAngularDiameter: 10
+  m_DirLightPCSSBlockerSearchAngularDiameter: 12
+  m_DirLightPCSSBlockerSamplingClumpExponent: 2
   m_KernelSize: 5
   m_LightAngle: 1
   m_MaxDepthBias: 0.001
@@ -282,14 +309,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
-  m_Version: 11
+  m_Version: 13
   m_ObsoleteShadowResolutionTier: 1
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
   m_ObsoleteContactShadows: 0
-  m_PointlightHDType: 0
-  m_SpotLightShape: 0
-  m_AreaLightShape: 0
 --- !u!114 &1199770344801727228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +377,7 @@ MonoBehaviour:
       type: {class: DestroyGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
         asm: MisterGames.ActionLib}
       data:
-        delay: 0.1
+        delay: 0.01
         gameObjects:
         - {fileID: 1939634505636510374}
 --- !u!114 &4335760545786688146
@@ -370,8 +394,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 3153
   _collideWithTriggers: 0
+--- !u!114 &7420868513281049782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 675941ed4faa48e886b62591ffef85f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEmitter: {fileID: 4335760545786688146}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _damageAuthor: 1
+  _applyOnlyOnce: 1
+  _damage: 1
 --- !u!1001 &3291606852075556075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -388,7 +431,7 @@ PrefabInstance:
     - target: {fileID: 1182510434573455553, guid: aed9c66d04356d64a8683c2aaa273d19,
         type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2225785660891080230, guid: aed9c66d04356d64a8683c2aaa273d19,
         type: 3}
@@ -702,17 +745,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3126187896891084477, guid: aed9c66d04356d64a8683c2aaa273d19,
         type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 1d11412570f90ba4caf1b0b6dea27152, type: 2}
     - target: {fileID: 3608826882870384412, guid: aed9c66d04356d64a8683c2aaa273d19,
         type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4690878523159273918, guid: aed9c66d04356d64a8683c2aaa273d19,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: bf88af72084132746823869f28b070f8, type: 2}
     - target: {fileID: 5469491429279236559, guid: aed9c66d04356d64a8683c2aaa273d19,
@@ -851,7 +894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 669663405635127152, guid: fc77783f395f37242b9db630f024d1bb,
         type: 3}
-      propertyPath: TriggerModule.primitives.Array.data[0]
+      propertyPath: 'TriggerModule.primitives.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 669663405635127152, guid: fc77783f395f37242b9db630f024d1bb,
@@ -997,7 +1040,7 @@ PrefabInstance:
     - target: {fileID: 3650041682021199184, guid: fc77783f395f37242b9db630f024d1bb,
         type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3650041682021199184, guid: fc77783f395f37242b9db630f024d1bb,
         type: 3}
@@ -1067,7 +1110,7 @@ PrefabInstance:
     - target: {fileID: 4242258394390587272, guid: fc77783f395f37242b9db630f024d1bb,
         type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4242258394390587272, guid: fc77783f395f37242b9db630f024d1bb,
         type: 3}
@@ -1077,7 +1120,7 @@ PrefabInstance:
     - target: {fileID: 4708174732345943764, guid: fc77783f395f37242b9db630f024d1bb,
         type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7174500983497736816, guid: fc77783f395f37242b9db630f024d1bb,
         type: 3}

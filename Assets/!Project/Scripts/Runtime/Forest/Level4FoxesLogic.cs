@@ -30,8 +30,8 @@ public class Level4FoxesLogic : MonoBehaviour, IEventListener
         
         await UniTask.Delay((int)(transitionTime * 1000));
         
-        foxFoundEvent.SetCount(foxFoundEvent.GetRaiseCount() - 1);
-        var c = foxFoundEvent.GetRaiseCount();
+        foxFoundEvent.SetCount(foxFoundEvent.GetCount() - 1);
+        var c = foxFoundEvent.GetCount();
         foxLogics[c].Reset();
         
         await UniTask.Delay((int)(transitionTime * 1000));

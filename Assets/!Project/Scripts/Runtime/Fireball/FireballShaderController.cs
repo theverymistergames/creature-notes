@@ -44,15 +44,15 @@ namespace _Project.Scripts.Runtime.Fireball {
         
         [Serializable]
         private struct StageSetting {
-            public Optional<FireballBehaviour.Stage> previousStage;
-            public FireballBehaviour.Stage currentStage;
+            public Optional<FireballShootingBehaviour.Stage> previousStage;
+            public FireballShootingBehaviour.Stage currentStage;
             public MaterialSetting setting;
         }
         
         [Serializable]
         private struct TransitionSetting {
-            public Optional<FireballBehaviour.Stage> previousStage;
-            public FireballBehaviour.Stage currentStage;
+            public Optional<FireballShootingBehaviour.Stage> previousStage;
+            public FireballShootingBehaviour.Stage currentStage;
             [Min(0f)] public float duration;
             public MaterialSetting setting;
         }
@@ -74,7 +74,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             [Range(0f, 1f)] public float colorBorderEnd;
         }
         
-        private FireballBehaviour _fireballBehaviour;
+        private FireballShootingBehaviour _fireballBehaviour;
         private CameraContainer _cameraContainer;
 
         private Material _runtimeMaterial;
@@ -111,7 +111,7 @@ namespace _Project.Scripts.Runtime.Fireball {
 
         void IActorComponent.OnAwake(IActor actor) {
             _cameraContainer = actor.GetComponent<CameraContainer>();
-            _fireballBehaviour = actor.GetComponent<FireballBehaviour>();
+            _fireballBehaviour = actor.GetComponent<FireballShootingBehaviour>();
             
             _speedBuffer = new float[_bufferSize];
             _deltaBuffer = new Vector2[_bufferSize];
@@ -187,12 +187,12 @@ namespace _Project.Scripts.Runtime.Fireball {
             _overrideSpeed = duration > 0f ? 1f / duration : float.MaxValue;
         }
 
-        private void OnStageChanged(FireballBehaviour.Stage previous, FireballBehaviour.Stage current) {
+        private void OnStageChanged(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
             UpdateStageSetting(previous, current);
             UpdateTransitionSetting(previous, current);
         }
 
-        private void UpdateStageSetting(FireballBehaviour.Stage previous, FireballBehaviour.Stage current) {
+        private void UpdateStageSetting(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
             for (int i = 0; i < _stages.Length; i++) {
                 ref var stage = ref _stages[i];
                 
@@ -209,7 +209,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             _stageSetting = _defaultSetting;
         }
 
-        private void UpdateTransitionSetting(FireballBehaviour.Stage previous, FireballBehaviour.Stage current) {
+        private void UpdateTransitionSetting(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
             for (int i = 0; i < _transitions.Length; i++) {
                 ref var transition = ref _transitions[i];
                 

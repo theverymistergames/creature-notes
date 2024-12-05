@@ -112,7 +112,7 @@ namespace _Project.Scripts.Runtime.Telescope {
             
             if (_currentLens != null) {
                 var canvas = _currentLens.GetComponentInChildren<StarGroupsCanvas>(includeInactive: true);
-                if (_detectStarGroupEvent.WithSubId(canvas.SelectedStarGroupIndex).GetRaiseCount() <= 0) return;
+                if (_detectStarGroupEvent.WithSubId(canvas.SelectedStarGroupIndex).GetCount() <= 0) return;
 
                 _selectedStarGroupIndex = -1;
                 await TakeLensOff(cancellationToken);
@@ -124,8 +124,8 @@ namespace _Project.Scripts.Runtime.Telescope {
             int selectedIndex = -1;
             
             for (int i = 0; i < count; i++) {
-                if (_pickLensEvent.WithSubId(i).GetRaiseCount() <= 0 ||
-                    _detectStarGroupEvent.WithSubId(i).GetRaiseCount() > 0
+                if (_pickLensEvent.WithSubId(i).GetCount() <= 0 ||
+                    _detectStarGroupEvent.WithSubId(i).GetCount() > 0
                 ) {
                     continue;
                 }

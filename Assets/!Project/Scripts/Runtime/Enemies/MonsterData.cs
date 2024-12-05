@@ -1,8 +1,6 @@
 ﻿using MisterGames.Actors;
 using System;
 using MisterGames.ActionLib.Sounds;
-using MisterGames.Common.Labels;
-using MisterGames.Scenario.Events;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Enemies {
@@ -11,8 +9,7 @@ namespace _Project.Scripts.Runtime.Enemies {
     public sealed class MonsterData : IActorData {
 
         [Header("Attack")]
-        public EventReference debuffEvent;
-        public LabelValue debuffType;
+        public bool allowMultipleAttacks;
         [Min(0f)] public float attackDelay;
         
         [Header("Death")]

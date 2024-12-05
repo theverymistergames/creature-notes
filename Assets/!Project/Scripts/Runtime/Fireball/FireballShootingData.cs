@@ -16,7 +16,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         [Min(0f)] public float overheatCooldownDuration;
 
         [Header("Shot")]
-        public Rigidbody shotPrefab;
+        public Actor shotPrefab;
         public Vector3 spawnOffset;
         [Min(0f)] public float forceStart;
         [Min(0f)] public float forceEnd;
