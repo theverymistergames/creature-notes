@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
+using MisterGames.Character.Core;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Scenario.Events;
@@ -11,7 +12,8 @@ namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class MonsterDebuff  : MonoBehaviour, IActorComponent {
 
-        [SerializeReference] [SubclassSelector] private IActorAction _onAttack;
+        [SerializeReference] [SubclassSelector] private IActorAction _onAttackSelf;
+        [SerializeReference] [SubclassSelector] private IActorAction _onAttackCharacter;
 
         private CancellationTokenSource _enableCts;
         private IActor _actor;
@@ -39,7 +41,9 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void OnAttackPerformed() {
             _debuffData.debuffEvent.Raise(_debuffData.debuffImage);
-            _onAttack?.Apply(_actor, _enableCts.Token).Forget();
+            
+            _onAttackSelf?.Apply(_actor, _enableCts.Token).Forget();
+            _onAttackCharacter?.Apply(CharacterSystem.Instance.GetCharacter(), destroyCancellationToken).Forget();
         }
 
 #if UNITY_EDITOR

@@ -8532,10 +8532,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7765d717ab41484da45578df09ca45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _monsterId:
+    library: {fileID: 0}
+    array: -1
+    value: 0
   _progress: 0
   _showDebugInfo: 0
   _armDurationTest: 1
-  _attackCooldownRangeTest: {x: 1, y: 1}
+  _attackCooldownRangeTest: {x: 3, y: 3}
 --- !u!114 &1395754891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8716,13 +8720,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf479e994744617a0b000f826143eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onAttack:
+  _onAttackSelf:
     rid: -2
+  _onAttackCharacter:
+    rid: 986509540182196314
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 986509540182196314
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          array: 0
+          value: 0
 --- !u!1 &1410200894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8753,6 +8766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 0}
+  _monsters: []
   _showDebugInfo: 0
 --- !u!4 &1410200896
 Transform:
