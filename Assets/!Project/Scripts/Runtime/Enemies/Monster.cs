@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
+using MisterGames.Common.Labels;
 using MisterGames.Common.Maths;
 using MisterGames.Logic.Damage;
 using MisterGames.Tick.Core;
@@ -13,6 +14,7 @@ namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class Monster : MonoBehaviour, IActorComponent, IUpdate {
 
+        [SerializeField] private LabelValue _monsterId;
         [SerializeField] [Range(0f, 1f)] private float _progress;
 
         [Header("Debug")]
@@ -24,6 +26,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         public event Action OnAttackStarted = delegate { };
         public event Action OnAttackPerformed = delegate { };
         
+        public int Id => _monsterId.value;
         public bool IsDead => _health.IsDead;
         public bool IsArmed => Progress >= 1f;
         public float Progress => _progress;

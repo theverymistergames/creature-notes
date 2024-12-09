@@ -1,5 +1,6 @@
 ﻿using System;
 using MisterGames.Common.Attributes;
+using MisterGames.Common.Labels;
 using MisterGames.Scenario.Events;
 using UnityEngine;
 
@@ -24,17 +25,25 @@ namespace _Project.Scripts.Runtime.Enemies {
             [Min(-1)] public int killsToCompleteWave;
             [Min(-1)] public int maxAliveMonstersAtMoment;
             public MonsterPreset[] monsterPresets;
+            public SpawnExceptionGroup[] disallowSpawnTogether;
         }
         
         [Serializable]
         public struct MonsterPreset {
-            public Monster monster;
+            public LabelValue[] monsterIds;
+            [Min(0)] public int maxMonstersAtMoment;
             [Min(0f)] public float allowSpawnDelay;
-            [Min(0)] public int minKillsToAllowSpawn;
+            [Min(0)] public int allowSpawnMinKills;
             [MinMaxSlider(0f, 100f)] public Vector2 armDurationStart;
             [MinMaxSlider(0f, 100f)] public Vector2 armDurationEnd;
             [MinMaxSlider(0f, 100f)] public Vector2 attackCooldownStart;
             [MinMaxSlider(0f, 100f)] public Vector2 attackCooldownEnd;
+        }
+
+        [Serializable]
+        public struct SpawnExceptionGroup {
+            public LabelValue[] theseMonsters;
+            public LabelValue[] withTheseMonsters;
         }
     }
     
