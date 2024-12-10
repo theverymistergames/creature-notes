@@ -157,7 +157,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 ref var preset = ref wave.monsterPresets[i];
 
                 for (int j = 0; j < preset.monsterIds.Length; j++) {
-                    int monsterId = preset.monsterIds[j].value;
+                    int monsterId = preset.monsterIds[j].GetValue();
                     
                     if (!_aliveMonsters.Contains(monsterId) || !_monstersMap.TryGetValue(monsterId, out var monster)) {
                         continue;
@@ -241,7 +241,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 
 #if UNITY_EDITOR
                 if (_showDebugInfo) {
-                    preset.monsterIds.TryFind(newMonsterId, (l, id) => l.value == id, out var labelValue);
+                    preset.monsterIds.TryFind(newMonsterId, (l, id) => l.GetValue() == id, out var labelValue);
                     Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, respawned monster [{labelValue.GetLabel()}] with arm duration {armDuration} s. " +
                                               $"Next respawn available in {respawnDelay} s. " +
                                               $"Alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
@@ -280,7 +280,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             int aliveCount = 0;
             for (int i = 0; i < preset.monsterIds.Length; i++) {
-                if (_aliveMonsters.Contains(preset.monsterIds[i].value)) aliveCount++;
+                if (_aliveMonsters.Contains(preset.monsterIds[i].GetValue())) aliveCount++;
             }
             
             if (aliveCount >= preset.maxMonstersAtMoment) return false;
@@ -289,7 +289,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _monsterIdsCache.Shuffle();
             
             for (int i = 0; i < _monsterIdsCache.Length; i++) {
-                id = _monsterIdsCache[i].value;
+                id = _monsterIdsCache[i].GetValue();
                 if (_monstersMap.ContainsKey(id) && !HasSpawnExceptions(ref wave, id)) return true;
             }
 
@@ -303,7 +303,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 bool isMember = false;
 
                 for (int j = 0; j < group.Length; j++) {
-                    int memberId = group[j].value;
+                    int memberId = group[j].GetValue();
 
                     hasAliveMembers |= _aliveMonsters.Contains(memberId);
                     isMember |= monsterId == memberId;
@@ -314,7 +314,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 group = wave.disallowSpawnTogether[i].withTheseMonsters;
                 
                 for (int j = 0; j < group.Length; j++) {
-                    int memberId = group[j].value;
+                    int memberId = group[j].GetValue();
 
                     if (isMember && _aliveMonsters.Contains(memberId) ||
                         hasAliveMembers && monsterId == memberId

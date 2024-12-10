@@ -26,7 +26,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         public event Action OnAttackStarted = delegate { };
         public event Action OnAttackPerformed = delegate { };
         
-        public int Id => _monsterId.value;
+        public int Id => _monsterId.GetValue();
         public bool IsDead => _health.IsDead;
         public bool IsArmed => Progress >= 1f;
         public float Progress => _progress;
