@@ -42,7 +42,7 @@ public class DialogController : MonoBehaviour {
     
     private float _totalHeight;
     private int _currentStepID;
-
+    
     private List<Text> _texts = new();
 
     private void OnEnable() {
@@ -150,10 +150,19 @@ public class DialogController : MonoBehaviour {
                 text.text = role + line;
                 return;
             }
-            
-            text.text = role + line[..(i + 1)];
 
-            await UniTask.Delay(20 + Random.Range(0, 20));
+            var add = 0;
+
+            var part = line[..(i + 1)];
+            
+            text.text = role + part;
+            
+            if (part.Length > 3) {
+                var last = part[^1..];
+                if (last.Equals("…")) add = 300;
+            }
+            
+            await UniTask.Delay(20 + Random.Range(0, 20) + add);
         }
     }
 
