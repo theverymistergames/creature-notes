@@ -7,6 +7,7 @@ using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
 using MisterGames.Tick.Core;
 using UnityEngine;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Flesh {
@@ -21,6 +22,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         [SerializeField] private SpherifyDeformer _spherePrefab;
         [SerializeField] private GameObject _sphereExplosionVfx;
         [SerializeField] [Min(0f)] private float _sphereExplosionDuration = 0.1f;
+        [SerializeField] [Min(0f)] private float _minRadiusToSpawnExplosion = 0.3f;
         [SerializeField] private float _maxSphereLevelAboveSurface = -0.1f;
         [SerializeField] private SpawnProfile[] _spawnProfiles;
 
@@ -81,6 +83,8 @@ namespace _Project.Scripts.Runtime.Flesh {
                 this.deformer = deformer;
             }
         }
+        
+        private static readonly int RadiusId = Shader.PropertyToID("Radius"); 
 
         private readonly List<BubbleData> _bubbles = new();
         private readonly HashSet<Transform> _explosions = new();
@@ -138,10 +142,17 @@ namespace _Project.Scripts.Runtime.Flesh {
             for (int i = _bubbles.Count - 1; i >= 0; i--) {
                 var bubbleData = _bubbles[i];
                 float progress = bubbleData.lifetime > 0f ? Mathf.Clamp01((time - bubbleData.createTime) / bubbleData.lifetime) : 1f;
-
+                
+                float scale = Mathf.Lerp(bubbleData.startScale, bubbleData.endScale, progress);
+                bubbleData.transform.localScale = scale * Vector3.one;
+                
                 if (progress >= 1f) {
-                    if (_explosions.Add(bubbleData.transform)) {
-                        //PrefabPool.Main.Get(_sphereExplosionVfx, bubbleData.transform.position, Quaternion.identity).transform.localScale = bubbleData.transform.localScale;
+                    if (_explosions.Add(bubbleData.transform) && 
+                        bubbleData.endScale >= _minRadiusToSpawnExplosion &&
+                        bubbleData.transform.localPosition.y > -bubbleData.endScale) 
+                    {
+                        var vfx = PrefabPool.Main.Get<VisualEffect>(_sphereExplosionVfx, bubbleData.transform.position, Quaternion.identity);
+                        vfx.SetFloat(RadiusId, bubbleData.endScale);
                     }
                     
                     float t = _sphereExplosionDuration > 0f ? (time - bubbleData.createTime - bubbleData.lifetime) / _sphereExplosionDuration : 1f;
@@ -158,36 +169,31 @@ namespace _Project.Scripts.Runtime.Flesh {
                 }
                 
                 var speed = Vector3.Lerp(bubbleData.startSpeed, bubbleData.endSpeed, progress);
-                float scale = Mathf.Lerp(bubbleData.startScale, bubbleData.endScale, progress);
-
                 var position = bubbleData.transform.localPosition + speed * dt;
+                
                 position.y = Mathf.Clamp(position.y, -scale, scale * _maxSphereLevelAboveSurface);
                 
-                bubbleData.transform.localScale = scale * Vector3.one;
                 bubbleData.transform.localPosition = position;
             }
         }
         
         private void Spawn(ref SpawnProfile profile) {
             var position = GetRandomSpawnPosition(profile.excludeCenter);
-            SpawnSingle(ref profile, position, 1f);
+            SpawnSingle(ref profile, position);
             
             if (Random.Range(0f, 1f) > profile.burstChance) return;
             
             int burstCount = Random.Range(0, profile.maxBurst);
-            float maxScale = 1f;
             
             for (int i = 0; i < burstCount; i++) {
                 var spread = Random.insideUnitCircle * profile.burstDistanceRange.GetRandomInRange();
                 var pos = position + new Vector3(spread.x, 0f, spread.y);
-                float scale = Random.Range(maxScale * 0.5f, maxScale);
-                maxScale = Mathf.Clamp01(maxScale - scale);
 
-                SpawnSingle(ref profile, pos, scale);
+                SpawnSingle(ref profile, pos);
             }
         }
 
-        private void SpawnSingle(ref SpawnProfile profile, Vector3 position, float scale) {
+        private void SpawnSingle(ref SpawnProfile profile, Vector3 position) {
             var sphere = PrefabPool.Main.Get(_spherePrefab, position, Quaternion.identity, _fleshController.Root);
             var sphereTransform = sphere.transform;
 
@@ -195,8 +201,8 @@ namespace _Project.Scripts.Runtime.Flesh {
                 sphere,
                 Time.time,
                 profile.lifetimeRange.GetRandomInRange(), 
-                profile.startScaleRange.GetRandomInRange() * scale, 
-                profile.endScaleRange.GetRandomInRange() * scale,
+                profile.startScaleRange.GetRandomInRange(), 
+                profile.endScaleRange.GetRandomInRange(),
                 profile.startSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.startSpeedRangeSide),
                 profile.endSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.endSpeedRangeSide)
             );
