@@ -13,6 +13,10 @@ namespace _Project.Scripts.Runtime.Enemies {
         public EventReference startedWaveEvent;
         public EventReference completedWavesCounter;
         public EventReference monsterKilledEvent;
+        public EventReference killCharacterEvent;
+
+        [Header("Flesh")]
+        [Range(0f, 1f)] public float killCharacterAtFleshProgress = 0.99f;
         
         [Header("Waves")]
         public MonsterWave[] monsterWaves;
@@ -24,6 +28,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             [MinMaxSlider(0f, 100f)] public Vector2 respawnDelayEnd;
             [Min(-1)] public int killsToCompleteWave;
             [Min(-1)] public int maxAliveMonstersAtMoment;
+            [Min(0)] public int armedMonstersToKillCharacter;
             public MonsterPreset[] monsterPresets;
             public SpawnExceptionGroup[] disallowSpawnTogether;
         }

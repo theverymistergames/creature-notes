@@ -2,6 +2,7 @@
 using System.Buffers;
 using System.Collections.Generic;
 using System.Threading;
+using _Project.Scripts.Runtime.Flesh;
 using Cysharp.Threading.Tasks;
 using MisterGames.Common.Async;
 using MisterGames.Common.Labels;
@@ -15,6 +16,7 @@ namespace _Project.Scripts.Runtime.Enemies {
     public sealed class MonsterSpawner : MonoBehaviour {
 
         [SerializeField] private MonsterSpawnerConfig _config;
+        [SerializeField] private FleshController _fleshController;
         [SerializeField] private Monster[] _monsters;
         
         [Header("Debug")]
@@ -34,6 +36,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         private int _currentWave;
         private int _currentWaveKills;
         private int _totalKills;
+
+        private bool _characterKilled;
 
         private void Awake() {
             FetchMonstersMap();
@@ -65,6 +69,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _currentWave = -1;
             _totalKills = 0;
             _currentWaveKills = 0;
+            _characterKilled = false;
             
             KillAllMonsters(notifyDamage: false);
             StartSpawningAsync(_enableCts.Token).Forget();
@@ -114,6 +119,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                     RecreateMonsterPresetsCache(_currentWave);
                 }
                 
+                CheckFleshProgress();
                 CheckAliveMonsters(_currentWave);
                 CheckSpawns(_currentWave);
 
@@ -178,6 +184,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                                                       $"alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
 #endif
                     
+                        UpdateFlesh(waveIndex);
                         continue;
                     }
 
@@ -187,11 +194,14 @@ namespace _Project.Scripts.Runtime.Enemies {
                                                       $"Alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}, " +
                                                       $"armed monsters {_armedMonsters.Count}.");
 #endif
+                        
+                        UpdateFlesh(waveIndex);
                         continue;
                     }
                 
                     if (!monster.IsArmed && _armedMonsters.Contains(monsterId)) {
                         _armedMonsters.Remove(monsterId);
+                        UpdateFlesh(waveIndex);
                     }   
                 }
             }
@@ -253,6 +263,30 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
         }
 
+        private void CheckFleshProgress() {
+            if (_characterKilled || _fleshController.GetProgress() < _config.killCharacterAtFleshProgress) return;
+
+            _config.killCharacterEvent.Raise();
+        }
+
+        private void UpdateFlesh(int waveIndex) {
+            ref var wave = ref _config.monsterWaves[waveIndex];
+
+            float progress = wave.armedMonstersToKillCharacter > 0f
+                ? Mathf.Clamp01((float) _armedMonsters.Count / wave.armedMonstersToKillCharacter)
+                : 1f;
+            
+            SetFleshProgress(progress);
+        }
+
+        private void SetFleshProgress(float progress) {
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: update flesh progress to {progress:0.00}.");
+#endif
+            
+            _fleshController.SetProgress(progress);            
+        }
+
         private void KillAllMonsters(bool notifyDamage = true) {
             _nextSpawnTime = 0f;
             
@@ -266,6 +300,8 @@ namespace _Project.Scripts.Runtime.Enemies {
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: killed all monsters.");
 #endif
+            
+            SetFleshProgress(0f);
         }
 
         private bool CanSpawn(ref MonsterSpawnerConfig.MonsterWave wave, ref MonsterSpawnerConfig.MonsterPreset preset, out int id) {
