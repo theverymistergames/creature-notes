@@ -26,6 +26,7 @@ public class MatrixTransition : MonoBehaviour {
         element.SetActive(false);
     }
 
+    //TODO: prefab pool
     void SpawnParticles(int count) {
         for (var i = 0; i < count; i++) {
             var el = Instantiate(element, gameObject.transform);
