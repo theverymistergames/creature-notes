@@ -37,7 +37,7 @@ namespace MisterGames.Character.Transport {
 
             var rotOffset = Quaternion.Euler(_rotationOffset);
             
-            if (!diffProj.sqrMagnitude.IsNearlyZero()) {
+            if (diffProj != Vector3.zero) {
                 _axis.rotation = Quaternion.LookRotation(diffProj, up) * rotOffset;
             }
 

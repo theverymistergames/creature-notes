@@ -140,8 +140,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2236722660689622430}
   - component: {fileID: 6169025681448676973}
-  - component: {fileID: 6105622827973123828}
   - component: {fileID: 1115517514154010951}
+  - component: {fileID: 702872700590475939}
   m_Layer: 2
   m_Name: Collisions
   m_TagString: Untagged
@@ -176,28 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3313713ebe6e4514976c90fc0d80ae74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6105622827973123828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662950266165396430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9cf7e2d03e54500b87c531c700b36fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHits: 6
-  _maxValidDotProduct: -0.001
-  _distance: 0.55
-  _distanceAddition: 0.15
-  _radius: 0.2
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _showDebugInfo: 0
-  _traceDuration: 0
 --- !u!114 &1115517514154010951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +201,30 @@ MonoBehaviour:
   _debugDrawCast: 0
   _debugDrawHasCeilingText: 0
   _debugDrawHasCeilingTextOffset: {x: 0, y: 0.5, z: 0}
+--- !u!114 &702872700590475939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662950266165396430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cf7e2d03e54500b87c531c700b36fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHits: 6
+  _maxValidDotProduct: -0.001
+  _originPointLevel: 0
+  _distance: 0.25
+  _distanceAddition: 0.15
+  _radius: 0.2
+  _secondaryRadiusOffset: -0.01
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  _showDebugInfo: 0
+  _traceDuration: 0
 --- !u!1 &1727031898436235196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,17 +1129,12 @@ MonoBehaviour:
   _noGravityVelocityDamping: 10
   _speedCorrectionSide: 0.8
   _speedCorrectionBack: 0.6
-  _forceCorrection: {x: 0, y: 0.2}
-  _forceCorrectionAngle: {x: 15, y: 120}
   _slopeAngle: {x: 25, y: 45}
   _inputSmoothing: 20
-  _capsuleCastDistance: 0.2
-  _capsuleCastRadiusOffset: -0.02
-  _lowerPointOffset: -0.1
-  _maxHits: 12
-  _layer:
-    serializedVersion: 2
-    m_Bits: 1
+  _forceCorrectionTurnAngle: {x: 15, y: 120}
+  _forceCorrectionSlopeAngle: {x: 3, y: 30}
+  _forceCorrectionTurnAngleWeight: 0.5
+  _forceCorrectionSlopeAngleWeight: 1
   _showDebugInfo: 0
 --- !u!114 &4269949916693310703
 MonoBehaviour:
@@ -1175,13 +1172,12 @@ MonoBehaviour:
   _maxHits: 6
   _maxStepHeight: 0.3
   _maxStepHeightAir: 0
-  _climbSpeedMin: {x: 0, y: 1.2, z: 0.7}
-  _climbSpeedMax: {x: 0, y: 1.2, z: 1.2}
+  _climbSpeed: {x: 0, y: 1.2, z: 0.3}
+  _climbForce: {x: 0, y: 2, z: 0.3}
   _speedMultiplierGround: 1
   _speedMultiplierAir: 0
-  _forceMultiplierGround: 1.5
+  _forceMultiplierGround: 5
   _forceMultiplierAir: 0
-  _speedSmoothing: 3
   _showDebugInfo: 0
 --- !u!114 &6409746516802656098
 MonoBehaviour:
@@ -1212,9 +1208,9 @@ MonoBehaviour:
   _jumpTakeoffDuration: 0.1
   _minGroundedTimeToAllowJump: 0.2
   _retryFailedJumpDuration: 0.1
-  _coyoteTime: 0
-  _jumpImpulseDelay: 0
-  _maxSlopeAngle: 30
+  _coyoteTime: 0.1
+  _jumpImpulseDelay: 0.05
+  _maxSlopeAngle: 40
   _jumpCondition: {fileID: 11400000, guid: 01fcaf96b4135e04e976fb78eddbe945, type: 2}
 --- !u!114 &5382468787250592907
 MonoBehaviour:
@@ -1259,7 +1255,7 @@ MonoBehaviour:
   _frictionGrounded: 0.6
   _frictionSlope: 1
   _frictionSlopeOverMaxAngle: 0.6
-  _minDotProduct: -0.001
+  _minDotProduct: -0.01
   _showDebugInfo: 0
 --- !u!1 &7205586869398250321
 GameObject:
@@ -1686,11 +1682,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b7c1ce4f00644d38bed2cb8aa4a1040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerLoopStage: 1
   _feetDistance: 0.3
   _feetForwardOffset: 0.3
   _speedMin: 0.1
   _speedMax: 10
+  _minSpeedDetectDuration: 0.15
+  _skipNotGroundedDuration: 0.15
   _stepLengthMin: 0.4
   _stepLengthMultiplier: 2
   _stepLengthBySpeed:
@@ -1726,7 +1723,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _debugDrawStep: 0
+  _showDebugInfo: 1
 --- !u!114 &7391322638178157487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1742,7 +1739,7 @@ MonoBehaviour:
   _cameraWeight: 1
   _smooth: 3
   _returnSmooth: 5
-  _minSpeed: 0.2
+  _minSpeed: 0
   _maxSpeed: 6
   _baseAmplitude: 1
   _baseAmplitudeRandom: 0.2
@@ -1752,12 +1749,12 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.5
-      inSlope: 1.3702832
-      outSlope: 1.3702832
-      tangentMode: 0
-      weightedMode: 0
+      inSlope: 1.6029932
+      outSlope: 7.840406
+      tangentMode: 1
+      weightedMode: 2
       inWeight: 0
-      outWeight: 0.05679862
+      outWeight: 0.06671554
     - serializedVersion: 3
       time: 1
       value: 1
@@ -1799,7 +1796,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
     y:
-      multiplier: 0.3
+      multiplier: 0.2
       addRandom: 0.04
       curve:
         serializedVersion: 2
