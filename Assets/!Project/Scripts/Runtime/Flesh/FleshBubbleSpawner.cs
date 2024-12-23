@@ -120,7 +120,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
         private void ProcessSpawns() {
-            float progress = _fleshController.GetProgress();
+            float progress = _fleshController.Progress;
             if (progress <= 0f) return;
             
             float time = Time.time;

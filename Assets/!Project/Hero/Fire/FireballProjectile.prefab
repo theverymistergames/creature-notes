@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1199770344801727228}
   - component: {fileID: 1987504562849350213}
   - component: {fileID: 4335760545786688146}
-  - component: {fileID: 7420868513281049782}
+  - component: {fileID: 8701382063509834311}
   m_Layer: 7
   m_Name: FireballProjectile
   m_TagString: Untagged
@@ -396,7 +396,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3153
   _collideWithTriggers: 0
---- !u!114 &7420868513281049782
+--- !u!114 &8701382063509834311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,16 +405,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939634505636510374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 675941ed4faa48e886b62591ffef85f7, type: 3}
+  m_Script: {fileID: 11500000, guid: da8ff317dd144c98b7064dcfb0d1bf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _eventSource: 0
   _collisionEmitter: {fileID: 4335760545786688146}
+  _triggerEmitter: {fileID: 0}
+  _eventType: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 64
-  _damageAuthor: 1
-  _applyOnlyOnce: 1
+  _damageDealer: 1
   _damage: 1
+  _disableAfterFirstDamage: 1
 --- !u!1001 &3291606852075556075
 PrefabInstance:
   m_ObjectHideFlags: 0

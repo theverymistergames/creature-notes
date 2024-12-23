@@ -17,6 +17,7 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         [Header("Flesh")]
         [Range(0f, 1f)] public float killCharacterAtFleshProgress = 0.99f;
+        [Min(0f)] public float fleshProgressSmoothing = 1f;
         
         [Header("Waves")]
         public MonsterWave[] monsterWaves;
@@ -37,8 +38,9 @@ namespace _Project.Scripts.Runtime.Enemies {
         public struct MonsterPreset {
             public LabelValue[] monsterIds;
             [Min(0)] public int maxMonstersAtMoment;
-            [Min(0f)] public float allowSpawnDelay;
             [Min(0)] public int allowSpawnMinKills;
+            [Min(0f)] public float allowSpawnDelayAfterWaveStart;
+            [Min(0f)] public float respawnCooldownAfterKill;
             [MinMaxSlider(0f, 100f)] public Vector2 armDurationStart;
             [MinMaxSlider(0f, 100f)] public Vector2 armDurationEnd;
             [MinMaxSlider(0f, 100f)] public Vector2 attackCooldownStart;

@@ -17,11 +17,36 @@ MonoBehaviour:
     _eventId: -1
     _subId: 0
   completedWavesCounter:
-    _eventDomain: {fileID: 0}
-    _eventId: -1
+    _eventDomain: {fileID: 11400000, guid: 09344a19d1d18bd47b22dd1d0e4e266b, type: 2}
+    _eventId: 2
     _subId: 0
   monsterKilledEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
     _subId: 0
-  monsterWaves: []
+  killCharacterEvent:
+    _eventDomain: {fileID: 0}
+    _eventId: -1
+    _subId: 0
+  killCharacterAtFleshProgress: 0.99
+  fleshProgressSmoothing: 1
+  monsterWaves:
+  - startDelay: 0
+    respawnDelayStart: {x: 4.5108433, y: 9.472772}
+    respawnDelayEnd: {x: 3.1575904, y: 6.315181}
+    killsToCompleteWave: 5
+    maxAliveMonstersAtMoment: 1
+    armedMonstersToKillCharacter: 3
+    monsterPresets:
+    - monsterIds:
+      - library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
+        id: 3
+      maxMonstersAtMoment: 2
+      allowSpawnMinKills: 0
+      allowSpawnDelayAfterWaveStart: 0
+      respawnCooldownAfterKill: 3
+      armDurationStart: {x: 7.1951504, y: 14.390301}
+      armDurationEnd: {x: 6.2957563, y: 9.443635}
+      attackCooldownStart: {x: 10.343028, y: 13.940603}
+      attackCooldownEnd: {x: 4.946666, y: 6.2957563}
+    disallowSpawnTogether: []

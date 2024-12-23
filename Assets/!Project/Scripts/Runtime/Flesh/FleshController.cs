@@ -1,45 +1,23 @@
 ﻿using MisterGames.Common.Maths;
-using MisterGames.Tick.Core;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Flesh {
     
-    public sealed class FleshController : MonoBehaviour, IUpdate {
+    public sealed class FleshController : MonoBehaviour {
 
         [Header("Positioning")]
         [SerializeField] private Transform _fleshRoot;
         [SerializeField] private float _bottomY;
         [SerializeField] private float _topY;
-        [SerializeField] [Min(0f)] private float _smoothing = 1f;
         
         [Header("Debug")]
         [SerializeField] [Range(0f, 1f)] private float _progress;
 
         public Transform Root => _fleshRoot;
-        private float _smoothProgress;
-        
-        private void OnEnable() {
-            PlayerLoopStage.Update.Subscribe(this);
-        }
+        public float Progress => _progress;
 
-        private void OnDisable() {
-            PlayerLoopStage.Update.Unsubscribe(this);
-        }
-
-        void IUpdate.OnUpdate(float dt) {
-            _smoothProgress = _smoothProgress.SmoothExpNonZero(_progress, dt * _smoothing);
-            ApplyProgress(_smoothProgress);
-        }
-        
-        public float GetProgress() {
-            return _smoothProgress;
-        }
-
-        public void SetProgress(float progress) {
+        public void ApplyProgress(float progress) {
             _progress = progress;
-        }
-
-        private void ApplyProgress(float progress) {
             _fleshRoot.position = _fleshRoot.position.WithY(Mathf.Lerp(_bottomY, _topY, progress));
         }
 

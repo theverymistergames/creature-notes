@@ -9,24 +9,26 @@ using MisterGames.Common.Labels;
 using MisterGames.Common.Lists;
 using MisterGames.Common.Maths;
 using MisterGames.Scenario.Events;
+using MisterGames.Tick.Core;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Enemies {
     
-    public sealed class MonsterSpawner : MonoBehaviour {
+    public sealed class MonsterSpawner : MonoBehaviour, IUpdate {
 
         [SerializeField] private MonsterSpawnerConfig _config;
-        [SerializeField] private FleshController _fleshController;
+        [SerializeField] private FleshController[] _fleshControllers;
         [SerializeField] private Monster[] _monsters;
         
         [Header("Debug")]
         [SerializeField] private bool _showDebugInfo;
         
         private readonly Dictionary<int, Monster> _monstersMap = new();
+        private readonly Dictionary<int, float> _monsterKillTimeMap = new();
         private readonly HashSet<int> _aliveMonsters = new();
         private readonly HashSet<int> _armedMonsters = new();
-        private MonsterSpawnerConfig.MonsterPreset[] _monsterPresetsCache;
-        private LabelValue[] _monsterIdsCache;
+        private int[] _indicesCache;
         
         private CancellationTokenSource _enableCts;
         private byte _spawnProcessId;
@@ -38,6 +40,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         private int _totalKills;
 
         private bool _characterKilled;
+        private float _fleshProgressTarget;
+        private float _fleshProgressSmoothed;
 
         private void Awake() {
             FetchMonstersMap();
@@ -45,11 +49,13 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
+            PlayerLoopStage.Update.Subscribe(this);
             StartSpawning();
         }
 
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
+            PlayerLoopStage.Update.Unsubscribe(this);
             StopSpawning();
         }
 
@@ -58,6 +64,10 @@ namespace _Project.Scripts.Runtime.Enemies {
                 var monster = _monsters[i];
                 _monstersMap.Add(monster.Id, monster);
             }
+        }
+
+        void IUpdate.OnUpdate(float dt) {
+            UpdateFleshProgressSmoothed(dt);
         }
 
         private void StartSpawning() {
@@ -78,11 +88,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         private void StopSpawning() {
             _spawnProcessId++;
             
-            DisposeMonsterPresetsCache();
-            DisposeMonsterIdsCache();
-            
             KillAllMonsters(notifyDamage: false);
-            
+            DisposeArray(ref _indicesCache);
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning, " +
                                           $"waves completed {_config.completedWavesCounter.GetCount()}/{_config.monsterWaves.Length}.");
@@ -110,16 +117,17 @@ namespace _Project.Scripts.Runtime.Enemies {
                     if (id != _spawnProcessId || cancellationToken.IsCancellationRequested) break;
 
 #if UNITY_EDITOR
-                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started wave {_currentWave}.");
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started wave {_currentWave}. " +
+                                                  $"kills to complete wave {wave.killsToCompleteWave}, " +
+                                                  $"max alive monsters {wave.maxAliveMonstersAtMoment}, " +
+                                                  $"armed monsters to kill character {wave.armedMonstersToKillCharacter}");
 #endif
                     
                     _config.startedWaveEvent.Raise();
                     _waveStartTime = Time.time;
-                    
-                    RecreateMonsterPresetsCache(_currentWave);
                 }
                 
-                CheckFleshProgress();
+                CheckCanKillCharacter();
                 CheckAliveMonsters(_currentWave);
                 CheckSpawns(_currentWave);
 
@@ -158,6 +166,7 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void CheckAliveMonsters(int waveIndex) {
             ref var wave = ref _config.monsterWaves[waveIndex];
+            float time = Time.time;
             
             for (int i = 0; i < wave.monsterPresets.Length; i++) {
                 ref var preset = ref wave.monsterPresets[i];
@@ -172,7 +181,9 @@ namespace _Project.Scripts.Runtime.Enemies {
                     if (monster.IsDead) {
                         _aliveMonsters.Remove(monsterId);
                         _armedMonsters.Remove(monsterId);
-
+                        
+                        _monsterKillTimeMap[monsterId] = time;
+                        
                         _currentWaveKills++;
                         _totalKills++;
                         _config.monsterKilledEvent.Raise();
@@ -181,27 +192,27 @@ namespace _Project.Scripts.Runtime.Enemies {
                         if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, killed monster [{preset.monsterIds[j]}]. " +
                                                       $"Kills per wave {_currentWaveKills}/{wave.killsToCompleteWave}, " +
                                                       $"kills total {_totalKills}, " +
-                                                      $"alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
+                                                      $"alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
 #endif
                     
-                        UpdateFlesh(waveIndex);
+                        SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
                         continue;
                     }
 
                     if (monster.IsArmed && _armedMonsters.Add(monsterId)) {
 #if UNITY_EDITOR
                         if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, armed monster [{preset.monsterIds[j]}]. " +
-                                                      $"Alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}, " +
-                                                      $"armed monsters {_armedMonsters.Count}.");
+                                                      $"Alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}, " +
+                                                      $"armed monsters {_armedMonsters.Count}/{wave.armedMonstersToKillCharacter}.");
 #endif
                         
-                        UpdateFlesh(waveIndex);
+                        SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
                         continue;
                     }
                 
                     if (!monster.IsArmed && _armedMonsters.Contains(monsterId)) {
                         _armedMonsters.Remove(monsterId);
-                        UpdateFlesh(waveIndex);
+                        SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
                     }   
                 }
             }
@@ -216,13 +227,16 @@ namespace _Project.Scripts.Runtime.Enemies {
             ) {
                 return;
             }
-            
-            _monsterPresetsCache.Shuffle();
 
-            for (int i = 0; i < _monsterPresetsCache.Length; i++) {
-                ref var preset = ref wave.monsterPresets[i];
+            int length = wave.monsterPresets.Length;
+            RecreateAndShuffleArray(ref _indicesCache, length);
+            
+            for (int i = 0; i < length; i++) {
+                ref var preset = ref wave.monsterPresets[_indicesCache[i]];
                 
-                if (!CanSpawn(ref wave, ref preset, out int newMonsterId) || !_monstersMap.TryGetValue(newMonsterId, out var monster)) {
+                if (!CanSpawnMonsterFromPreset(ref wave, ref preset, out int newMonsterId) || 
+                    !_monstersMap.TryGetValue(newMonsterId, out var monster)) 
+                {
                     continue;
                 }
                 
@@ -254,7 +268,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                     preset.monsterIds.TryFind(newMonsterId, (l, id) => l.GetValue() == id, out var labelValue);
                     Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, respawned monster [{labelValue.GetLabel()}] with arm duration {armDuration} s. " +
                                               $"Next respawn available in {respawnDelay} s. " +
-                                              $"Alive monsters per wave {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
+                                              $"Alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
                     
                 }
 #endif
@@ -263,28 +277,38 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
         }
 
-        private void CheckFleshProgress() {
-            if (_characterKilled || _fleshController.GetProgress() < _config.killCharacterAtFleshProgress) return;
+        private void CheckCanKillCharacter() {
+            if (_characterKilled || _fleshProgressSmoothed < _config.killCharacterAtFleshProgress) return;
 
             _config.killCharacterEvent.Raise();
         }
 
-        private void UpdateFlesh(int waveIndex) {
+        private float GetTargetFleshProgress(int waveIndex) {
             ref var wave = ref _config.monsterWaves[waveIndex];
 
-            float progress = wave.armedMonstersToKillCharacter > 0f
+            return wave.armedMonstersToKillCharacter > 0f
                 ? Mathf.Clamp01((float) _armedMonsters.Count / wave.armedMonstersToKillCharacter)
                 : 1f;
+        }
+        
+        private void SetTargetFleshProgress(float progress) {
+            _fleshProgressTarget = progress;
             
-            SetFleshProgress(progress);
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: update flesh progress to {_fleshProgressTarget:0.00}.");
+#endif
         }
 
-        private void SetFleshProgress(float progress) {
-#if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: update flesh progress to {progress:0.00}.");
-#endif
+        private void UpdateFleshProgressSmoothed(float dt) {
+            _fleshProgressSmoothed = _fleshProgressSmoothed.SmoothExpNonZero(_fleshProgressTarget, dt * _config.fleshProgressSmoothing);
             
-            _fleshController.SetProgress(progress);            
+            ApplyFleshProgress(_fleshProgressSmoothed);      
+        }
+        
+        private void ApplyFleshProgress(float progress) {
+            for (int i = 0; i < _fleshControllers.Length; i++) {
+                _fleshControllers[i].ApplyProgress(progress);
+            }
         }
 
         private void KillAllMonsters(bool notifyDamage = true) {
@@ -296,18 +320,23 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             _armedMonsters.Clear();
             _aliveMonsters.Clear();
+            _monsterKillTimeMap.Clear();
             
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: killed all monsters.");
 #endif
             
-            SetFleshProgress(0f);
+            ApplyFleshProgress(0f);
         }
 
-        private bool CanSpawn(ref MonsterSpawnerConfig.MonsterWave wave, ref MonsterSpawnerConfig.MonsterPreset preset, out int id) {
+        private bool CanSpawnMonsterFromPreset(
+            ref MonsterSpawnerConfig.MonsterWave wave,
+            ref MonsterSpawnerConfig.MonsterPreset preset, 
+            out int id) 
+        {
             id = 0;
             
-            if (Time.time < _waveStartTime + preset.allowSpawnDelay ||
+            if (Time.time < _waveStartTime + preset.allowSpawnDelayAfterWaveStart ||
                 _currentWaveKills < preset.allowSpawnMinKills || 
                 preset.monsterIds.Length <= 0
             ) {
@@ -321,18 +350,28 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             if (aliveCount >= preset.maxMonstersAtMoment) return false;
 
-            RecreateMonsterIdsCache(preset.monsterIds);
-            _monsterIdsCache.Shuffle();
+            int length = preset.monsterIds.Length;
+            RecreateAndShuffleArray(ref _indicesCache, length);
             
-            for (int i = 0; i < _monsterIdsCache.Length; i++) {
-                id = _monsterIdsCache[i].GetValue();
-                if (_monstersMap.ContainsKey(id) && !HasSpawnExceptions(ref wave, id)) return true;
+            for (int i = 0; i < length; i++) {
+                id = preset.monsterIds[_indicesCache[i]].GetValue();
+                if (_monstersMap.ContainsKey(id) && CanSpawnMonster(ref wave, ref preset, id)) return true;
             }
 
             return false;
         }
 
-        private bool HasSpawnExceptions(ref MonsterSpawnerConfig.MonsterWave wave, int monsterId) {
+        private bool CanSpawnMonster(
+            ref MonsterSpawnerConfig.MonsterWave wave,
+            ref MonsterSpawnerConfig.MonsterPreset preset,
+            int monsterId) 
+        {
+            if (_monsterKillTimeMap.TryGetValue(monsterId, out float killTime) && 
+                Time.time < killTime + preset.respawnCooldownAfterKill) 
+            {
+                return false;
+            }
+            
             for (int i = 0; i < wave.disallowSpawnTogether.Length; i++) {
                 var group = wave.disallowSpawnTogether[i].theseMonsters;
                 bool hasAliveMembers = false;
@@ -355,51 +394,27 @@ namespace _Project.Scripts.Runtime.Enemies {
                     if (isMember && _aliveMonsters.Contains(memberId) ||
                         hasAliveMembers && monsterId == memberId
                     ) {
-                        return true;
+                        return false;
                     }
                 }
             }
 
-            return false;
+            return true;
         }
-        
-        private void RecreateMonsterIdsCache(LabelValue[] source) {
-            _monsterIdsCache ??= ArrayPool<LabelValue>.Shared.Rent(source.Length);
+
+        private static void RecreateAndShuffleArray<T>(ref T[] dest, int length) {
+            dest ??= ArrayPool<T>.Shared.Rent(length);
             
-            if (_monsterIdsCache.Length != source.Length) {
-                DisposeMonsterIdsCache();
-                _monsterIdsCache = ArrayPool<LabelValue>.Shared.Rent(source.Length);    
+            if (dest.Length < length) {
+                ArrayPool<T>.Shared.Return(dest);
+                dest = ArrayPool<T>.Shared.Rent(length);
             }
             
-            Array.Copy(source, _monsterIdsCache, _monsterIdsCache.Length);
+            dest.Shuffle(length);
         }
 
-        private void DisposeMonsterIdsCache() {
-            if (_monsterIdsCache == null) return;
-            
-            ArrayPool<LabelValue>.Shared.Return(_monsterIdsCache);
-            _monsterIdsCache = null;
-        }
-
-        private void RecreateMonsterPresetsCache(int waveIndex) {
-            ref var wave = ref _config.monsterWaves[waveIndex];
-            var source = wave.monsterPresets;
-            
-            _monsterPresetsCache ??= ArrayPool<MonsterSpawnerConfig.MonsterPreset>.Shared.Rent(source.Length);
-            
-            if (_monsterPresetsCache.Length != source.Length) {
-                DisposeMonsterPresetsCache();
-                _monsterPresetsCache = ArrayPool<MonsterSpawnerConfig.MonsterPreset>.Shared.Rent(source.Length); 
-            }
-            
-            Array.Copy(source, _monsterPresetsCache, _monsterPresetsCache.Length);
-        }
-
-        private void DisposeMonsterPresetsCache() {
-            if (_monsterPresetsCache == null) return;
-            
-            ArrayPool<MonsterSpawnerConfig.MonsterPreset>.Shared.Return(_monsterPresetsCache);
-            _monsterPresetsCache = null;
+        private static void DisposeArray<T>(ref T[] indices) {
+            if (indices != null) ArrayPool<T>.Shared.Return(indices);
         }
     }
     
