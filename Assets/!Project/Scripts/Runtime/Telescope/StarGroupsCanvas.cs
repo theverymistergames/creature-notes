@@ -225,39 +225,67 @@ namespace _Project.Scripts.Runtime.Telescope {
         
         private void SetupStarPrefabs() {
             if (_starPrefab == null || _canvas == null) return;
+
+            bool changed = false;
+            int groupsCount = _starGroups?.Length ?? 0;
             
             UnityEditor.Undo.RecordObject(gameObject, "SetupStarPrefabs");
             
-            for (int i = 0; i < (_starGroups?.Length ?? 0); i++) {
-                ref var starGroup = ref _starGroups[i];
+            for (int i = 0; i < groupsCount; i++) {
+                ref var starGroup = ref _starGroups![i];
 
-                for (int j = starGroup.initialStarsData?.Length ?? 0; j < (starGroup.stars?.Length ?? 0); j++) {
-                    var s = starGroup.stars[j];
-                    if (s != null) UnityEditor.Undo.DestroyObjectImmediate(s.gameObject);
+                int targetCount = starGroup.initialStarsData?.Length ?? 0;
+                int currentCount = starGroup.stars?.Length ?? 0;
+                
+                for (int j = targetCount; j < currentCount; j++) {
+                    var s = starGroup.stars![j];
+                    if (s == null) continue;
+                    
+                    UnityEditor.Undo.DestroyObjectImmediate(s.gameObject);
+                    changed = true;
+                }
+
+                if (starGroup.stars == null) {
+                    starGroup.stars = new RectTransform[targetCount];
+                    changed = true;
                 }
                 
-                if (starGroup.stars == null) starGroup.stars = new RectTransform[starGroup.initialStarsData?.Length ?? 0];
-                else Array.Resize(ref starGroup.stars, starGroup.initialStarsData?.Length ?? 0);
+                if (currentCount != targetCount) {
+                    Array.Resize(ref starGroup.stars, targetCount);
+                    changed = true;
+                }
                 
-                for (int j = 0; j < (starGroup.stars?.Length ?? 0); j++) {
+                for (int j = 0; j < targetCount; j++) {
                     ref var s = ref starGroup.stars[j];
                     if (s != null) continue;
 
                     s = (RectTransform) UnityEditor.PrefabUtility.InstantiatePrefab(_starPrefab, _canvas);
                     UnityEditor.Undo.RegisterCreatedObjectUndo(s.gameObject, "SetupStarPrefabs");
+                    changed = true;
                 }
 
-                int targetLinksCount = (starGroup.stars?.Length ?? 0) - 1;
+                int targetLinksCount = targetCount - 1;
+                int currentLinksCount = starGroup.links?.Length ?? 0;
                 
-                for (int j = targetLinksCount; j >= 0 && j < (starGroup.links?.Length ?? 0); j++) {
-                    var s = starGroup.links[j];
-                    if (s != null) UnityEditor.Undo.DestroyObjectImmediate(s.gameObject);
+                for (int j = targetLinksCount; j >= 0 && j < currentLinksCount; j++) {
+                    var s = starGroup.links![j];
+                    if (s == null) continue;
+                    
+                    UnityEditor.Undo.DestroyObjectImmediate(s.gameObject);
+                    changed = true;
                 }
 
                 if (targetLinksCount <= 0 || _linkPrefab == null) continue;
-                
-                if (starGroup.links == null) starGroup.links = new LineRenderer[targetLinksCount];
-                else Array.Resize(ref starGroup.links, targetLinksCount);
+
+                if (starGroup.links == null) {
+                    starGroup.links = new LineRenderer[targetLinksCount];
+                    changed = true;
+                }
+
+                if (starGroup.links.Length != targetLinksCount) {
+                    Array.Resize(ref starGroup.links, targetLinksCount);
+                    changed = true;
+                }
                 
                 for (int j = 0; j < targetLinksCount; j++) {
                     ref var s = ref starGroup.links[j];
@@ -265,10 +293,11 @@ namespace _Project.Scripts.Runtime.Telescope {
 
                     s = (LineRenderer) UnityEditor.PrefabUtility.InstantiatePrefab(_linkPrefab, _canvas);
                     UnityEditor.Undo.RegisterCreatedObjectUndo(s.gameObject, "SetupStarPrefabs");
+                    changed = true;
                 }
             }
             
-            UnityEditor.EditorUtility.SetDirty(gameObject);
+            if (changed) UnityEditor.EditorUtility.SetDirty(gameObject);
         }
         
         [Button]
@@ -378,18 +407,34 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         private void SetupCustomLinks() {
+            if (_starGroups == null) return;
+            
             UnityEditor.Undo.RecordObject(gameObject, "SetupCustomLinks");
 
-            for (int i = _customLinks?.Length ?? 0; i < (_customLines?.Length ?? 0); i++) {
-                var l = _customLines[i];
-                if (l != null) UnityEditor.Undo.DestroyObjectImmediate(l.gameObject);
+            bool changed = false;
+            int customLinksCount = _customLinks?.Length ?? 0;
+            int customLinesCount = _customLines?.Length ?? 0;
+            
+            for (int i = customLinksCount; i < customLinesCount; i++) {
+                var l = _customLines![i];
+                if (l == null) continue;
+                
+                UnityEditor.Undo.DestroyObjectImmediate(l.gameObject);
+                changed = true;
             }
 
-            if (_customLines == null) _customLines = new LineRenderer[_customLinks?.Length ?? 0];
-            else Array.Resize(ref _customLines, _customLinks?.Length ?? 0);
+            if (_customLines == null) {
+                _customLines = new LineRenderer[customLinksCount];
+                changed = true;
+            }
+
+            if (customLinesCount != customLinksCount) {
+                Array.Resize(ref _customLines, customLinksCount);
+                changed = true;
+            }
             
-            for (int i = 0; i < _customLinks.Length; i++) {
-                ref var customLink = ref _customLinks[i];
+            for (int i = 0; i < customLinksCount; i++) {
+                ref var customLink = ref _customLinks![i];
                 
                 if (customLink.a.x < 0 || customLink.a.x >= (_starGroups?.Length ?? 0) ||
                     customLink.b.x < 0 || customLink.b.x >= (_starGroups?.Length ?? 0) || 
@@ -398,7 +443,7 @@ namespace _Project.Scripts.Runtime.Telescope {
                     continue;
                 }
 
-                var groupA = _starGroups[customLink.a.x];
+                var groupA = _starGroups![customLink.a.x];
                 var groupB = _starGroups[customLink.b.x];
                 
                 if (customLink.a.y < 0 || customLink.a.y >= (groupA.stars?.Length ?? 0) ||
@@ -414,16 +459,18 @@ namespace _Project.Scripts.Runtime.Telescope {
                     UnityEditor.Undo.RegisterCreatedObjectUndo(s.gameObject, "SetupCustomLinks");
                 }
                 
-                var p0 = groupA.stars[customLink.a.y].position;
-                var p1 = groupB.stars[customLink.b.y].position;
+                var p0 = groupA.stars![customLink.a.y].position;
+                var p1 = groupB.stars![customLink.b.y].position;
                 
                 s.SetPosition(0, p0 + (p1 - p0).normalized * _linkOffset);
                 s.SetPosition(1, p1 + (p0 - p1).normalized * _linkOffset);
 
                 s.widthMultiplier = _linkWidth;
+                
+                changed = true;
             }
             
-            UnityEditor.EditorUtility.SetDirty(gameObject);
+            if (changed) UnityEditor.EditorUtility.SetDirty(gameObject);
         }
 
         private void OnValidate() {
