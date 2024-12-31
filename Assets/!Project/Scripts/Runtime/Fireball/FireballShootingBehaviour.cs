@@ -159,7 +159,7 @@ namespace _Project.Scripts.Runtime.Fireball {
 
         private void PerformShot(float progress) {
             var orient = _view.Rotation;
-            var pos = _view.HeadPosition;
+            var pos = _view.Position;
 
             var shotActor = PrefabPool.Main.Get(_shootingData.shotPrefab, pos + orient * _shootingData.spawnOffset, orient);
 
