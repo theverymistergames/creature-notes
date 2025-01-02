@@ -35,6 +35,8 @@ namespace _Project.Scripts.Runtime.Telescope {
         [Header("Groups")]
         [SerializeField] private StarGroup[] _starGroups = Array.Empty<StarGroup>();
 
+        [Header("Debug")]
+        [SerializeField] private bool _enableEditMode;
         
         [Serializable]
         public struct CustomLink {
@@ -296,8 +298,10 @@ namespace _Project.Scripts.Runtime.Telescope {
                     changed = true;
                 }
             }
-            
-            if (changed) UnityEditor.EditorUtility.SetDirty(gameObject);
+
+            if (changed) {
+                UnityEditor.EditorUtility.SetDirty(gameObject);
+            }
         }
         
         [Button]
@@ -469,11 +473,15 @@ namespace _Project.Scripts.Runtime.Telescope {
                 
                 changed = true;
             }
-            
-            if (changed) UnityEditor.EditorUtility.SetDirty(gameObject);
+
+            if (changed) {
+                UnityEditor.EditorUtility.SetDirty(gameObject);
+            }
         }
 
         private void OnValidate() {
+            if (!_enableEditMode) return;
+            
             SetupStarPrefabs();
             SelectDefaultStarGroup();
             SetupCustomLinks();

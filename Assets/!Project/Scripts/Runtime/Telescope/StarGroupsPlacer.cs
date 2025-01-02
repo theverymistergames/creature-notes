@@ -15,7 +15,10 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeField] private float _starScale;
         [SerializeField] private float _groupScale;
         [SerializeField] private StarGroup[] _starGroups;
-        
+
+        [Header("Debug")]
+        [SerializeField] private bool _enableEditMode;
+
         [Serializable]
         public struct StarGroup {
             public Vector3 canvasRotation;
@@ -60,16 +63,22 @@ namespace _Project.Scripts.Runtime.Telescope {
                         canvasGroupCenter
                     );
                     
+                    var pos = worldGroupCenter + rotationOffset * centeredData.position;
+
+                    if (s.position == pos && s.rotation == centeredData.rotation && s.localScale == centeredData.scale) {
+                        continue;
+                    }
+                    
 #if UNITY_EDITOR
                     if (!Application.isPlaying) Undo.RecordObject(s, $"{nameof(StarGroupsPlacer)}.PlaceStarGroups");
 #endif
-                    
-                    s.SetPositionAndRotation(
-                        worldGroupCenter + rotationOffset * centeredData.position,
-                        centeredData.rotation
-                    );
-                    
+
+                    s.SetPositionAndRotation(pos, centeredData.rotation);
                     s.localScale = centeredData.scale;
+
+#if UNITY_EDITOR
+                    if (!Application.isPlaying) EditorUtility.SetDirty(s);
+#endif
                 }
             }
         }
@@ -134,6 +143,8 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         private void OnValidate() {
+            if (!_enableEditMode) return;
+            
             PlaceStarGroups();
         }
 #endif

@@ -47,7 +47,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         [SerializeReference] [SubclassSelector] private IActorAction _onInteractDetectedAll;
 
         [Header("Debug")]
-        [SerializeField] private bool _applyChangesInEditMode;
+        [SerializeField] private bool _enableEditMode;
         
         private static readonly int _EmissiveColor = Shader.PropertyToID("_EmissiveColor");
         private static readonly int _Color = Shader.PropertyToID("_UnlitColor");
@@ -328,7 +328,7 @@ namespace _Project.Scripts.Runtime.Telescope {
 
 #if UNITY_EDITOR
         private void OnValidate() {
-            if (!_applyChangesInEditMode || _starGroupsCanvas == null) return;
+            if (!_enableEditMode || _starGroupsCanvas == null) return;
             
             int groups = _starGroupsCanvas.StarGroupCount;
             for (int i = 0; i < groups; i++) {

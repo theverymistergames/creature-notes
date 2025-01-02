@@ -23,7 +23,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void OnEnable() {
-            _health.OnRestoreHealth += OnRestoreHealth;
+            _health.OnRestoreFullHealth += OnRestoreHealth;
             _health.OnDamage += OnDamage;
             
             _monster.OnArmed += OnArmed;
@@ -32,7 +32,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void OnDisable() {
-            _health.OnRestoreHealth -= OnRestoreHealth;
+            _health.OnRestoreFullHealth -= OnRestoreHealth;
             _health.OnDamage -= OnDamage;
             
             _monster.OnArmed -= OnArmed;
