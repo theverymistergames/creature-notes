@@ -40,7 +40,7 @@ namespace _Project.Scripts.Runtime.Flesh {
             [MinMaxSlider(0f, 10f)] public Vector2 burstDistanceRange;
             
             [Header("Positioning")]
-            public Vector3 excludeCenter;
+            public Vector2 excludeCenter;
             [MinMaxSlider(0f, 2f)] public Vector2 startScaleRange;
             [MinMaxSlider(0f, 2f)] public Vector2 endScaleRange;
             [MinMaxSlider(-2f, 2f)] public Vector2 startSpeedRangeUp;
@@ -90,8 +90,11 @@ namespace _Project.Scripts.Runtime.Flesh {
         private readonly HashSet<Transform> _explosions = new();
         private float[] _spawnTimes;
         private BoxCollider _boxCollider;
+        private Transform _transform;
         
         private void Awake() {
+            _transform = transform;
+            
             _boxCollider = GetComponent<BoxCollider>();
             _boxCollider.isTrigger = true;
             
@@ -178,18 +181,17 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
         
         private void Spawn(ref SpawnProfile profile) {
-            var position = GetRandomSpawnPosition(profile.excludeCenter);
-            SpawnSingle(ref profile, position);
+            var firstPos = ApplyBounds(GetRandomPointInBounds(), profile.excludeCenter);
+            SpawnSingle(ref profile, firstPos);
             
             if (Random.Range(0f, 1f) > profile.burstChance) return;
             
             int burstCount = Random.Range(0, profile.maxBurst);
+            var up = _transform.up;
             
             for (int i = 0; i < burstCount; i++) {
-                var spread = Random.insideUnitCircle * profile.burstDistanceRange.GetRandomInRange();
-                var pos = position + new Vector3(spread.x, 0f, spread.y);
-
-                SpawnSingle(ref profile, pos);
+                var burstPos = firstPos + GetRandomFlatVector(profile.burstDistanceRange, up);
+                SpawnSingle(ref profile, ApplyBounds(burstPos, profile.excludeCenter));
             }
         }
 
@@ -203,8 +205,8 @@ namespace _Project.Scripts.Runtime.Flesh {
                 profile.lifetimeRange.GetRandomInRange(), 
                 profile.startScaleRange.GetRandomInRange(), 
                 profile.endScaleRange.GetRandomInRange(),
-                profile.startSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.startSpeedRangeSide),
-                profile.endSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.endSpeedRangeSide)
+                profile.startSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.startSpeedRangeSide, Vector3.up),
+                profile.endSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.endSpeedRangeSide, Vector3.up)
             );
 
             sphereTransform.localScale = data.startScale * Vector3.one;
@@ -214,40 +216,41 @@ namespace _Project.Scripts.Runtime.Flesh {
             _deformable.AddDeformer(sphere);
         }
 
-        private Vector3 GetRandomSpawnPosition(Vector3 excludeCenter) {
+        private Vector3 GetRandomPointInBounds() {
             var bounds = _boxCollider.bounds;
-            var box = _boxCollider.transform;
+            var rot = _transform.rotation;
+            var local = RandomExtensions.GetRandomPointInBox(_boxCollider.size * 0.5f).WithY(0f);
+            return bounds.center + rot * local;
+        }
+        
+        private Vector3 ApplyBounds(Vector3 point, Vector2 excludeCenter) {
+            var bounds = _boxCollider.bounds;
+            var local = _transform.InverseTransformPoint(point) + 
+                        _transform.InverseTransformDirection(bounds.center - _transform.position);
+
+            local = RandomExtensions
+                    .PlacePointInBounds(local.WithoutY(), _boxCollider.size.WithoutY() * 0.5f, excludeCenter)
+                    .ToXZY(local.y);
             
-            var local = new Vector3(
-                GetRandomExcluded(bounds.extents.x, excludeCenter.x), 
-                GetRandomExcluded(bounds.extents.y, excludeCenter.y), 
-                GetRandomExcluded(bounds.extents.z, excludeCenter.z) 
-            );
-
-            return (bounds.center + box.TransformDirection(local)).WithY(box.position.y);
+            return bounds.center + _transform.TransformDirection(local);
         }
-
-        private static float GetRandomExcluded(float range, float exclude) {
-            range = Mathf.Abs(range);
-            exclude = Mathf.Min(Mathf.Abs(exclude), range);
-            return Random.Range(exclude, range) * (Random.Range(0, 2) * 2 - 1);
-        }
-
-        private static Vector3 GetRandomFlatVector(Vector2 range) {
-            var dir = Random.insideUnitCircle;
-            return range.GetRandomInRange() * new Vector3(dir.x, 0, dir.y);
+        
+        private static Vector3 GetRandomFlatVector(Vector2 range, Vector3 axis) {
+            return range.GetRandomInRange() * RandomExtensions.OnUnitCircle(axis);
         }
 
 #if UNITY_EDITOR
         private void OnDrawGizmos() {
-            var pos = transform.position;
+            if (_boxCollider == null) _boxCollider = GetComponent<BoxCollider>();
+            
             var rot = transform.rotation;
+            var pos = _boxCollider.bounds.center;
             
             for (int i = 0; i < _spawnProfiles?.Length; i++) {
                 ref var spawnProfile = ref _spawnProfiles[i];
                 if (!spawnProfile.showDebugInfo) continue;
                 
-                DebugExt.DrawBox(pos, rot, spawnProfile.excludeCenter, Color.red, gizmo: true);
+                DebugExt.DrawBox(pos, rot, spawnProfile.excludeCenter.ToXZY(1f) * 2f, Color.red, gizmo: true);
             }
         }
 #endif

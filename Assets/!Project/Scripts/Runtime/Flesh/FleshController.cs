@@ -18,12 +18,12 @@ namespace _Project.Scripts.Runtime.Flesh {
 
         public void ApplyProgress(float progress) {
             _progress = progress;
-            _fleshRoot.position = _fleshRoot.position.WithY(Mathf.Lerp(_bottomY, _topY, progress));
+            _fleshRoot.localPosition = _fleshRoot.localPosition.WithY(Mathf.Lerp(_bottomY, _topY, progress));
         }
 
 #if UNITY_EDITOR
         private void OnValidate() {
-            if (!Application.isPlaying && _fleshRoot != null) ApplyProgress(_progress);
+            if (_fleshRoot != null) ApplyProgress(_progress);
         }
 #endif
     }
