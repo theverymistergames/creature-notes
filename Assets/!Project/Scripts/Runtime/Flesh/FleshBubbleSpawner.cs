@@ -7,7 +7,6 @@ using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
 using MisterGames.Tick.Core;
 using UnityEngine;
-using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Flesh {
@@ -84,8 +83,6 @@ namespace _Project.Scripts.Runtime.Flesh {
             }
         }
         
-        private static readonly int RadiusId = Shader.PropertyToID("Radius"); 
-
         private readonly List<BubbleData> _bubbles = new();
         private readonly HashSet<Transform> _explosions = new();
         private float[] _spawnTimes;
@@ -105,7 +102,7 @@ namespace _Project.Scripts.Runtime.Flesh {
             for (int i = 0; i < _bubbles.Count; i++) {
                 var bubbleData = _bubbles[i];
                 _deformable.RemoveDeformer(bubbleData.deformer);
-                PrefabPool.Main.Release(bubbleData.transform);
+                PrefabPool.Main?.Release(bubbleData.transform);
             }
         }
 
@@ -154,8 +151,8 @@ namespace _Project.Scripts.Runtime.Flesh {
                         bubbleData.endScale >= _minRadiusToSpawnExplosion &&
                         bubbleData.transform.localPosition.y > -bubbleData.endScale) 
                     {
-                        var vfx = PrefabPool.Main.Get<VisualEffect>(_sphereExplosionVfx, bubbleData.transform.position, Quaternion.identity);
-                        vfx.SetFloat(RadiusId, bubbleData.endScale);
+                        var vfx = PrefabPool.Main.Get(_sphereExplosionVfx, bubbleData.transform.position, Quaternion.identity);
+                        vfx.transform.localScale = bubbleData.transform.localScale;
                     }
                     
                     float t = _sphereExplosionDuration > 0f ? (time - bubbleData.createTime - bubbleData.lifetime) / _sphereExplosionDuration : 1f;
@@ -240,7 +237,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
 #if UNITY_EDITOR
-        private void OnDrawGizmos() {
+        private void OnDrawGizmosSelected() {
             if (_boxCollider == null) _boxCollider = GetComponent<BoxCollider>();
             
             var rot = transform.rotation;
