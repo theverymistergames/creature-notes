@@ -304,6 +304,7 @@ MonoBehaviour:
     - {fileID: 3372496023411091304}
     - {fileID: 6997469091248915423}
     - {fileID: 3017620502461939593}
+  _enableEditMode: 0
 --- !u!114 &2467628339378286653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,8 +980,8 @@ MonoBehaviour:
         layer:
           serializedVersion: 2
           m_Bits: 1
-        rayElevation: 2
-        maxDistance: 4
+        rayElevation: 0.5
+        maxDistance: 2
         groundOffset: 0.5
         progressCurve:
           serializedVersion: 2
@@ -1257,8 +1258,8 @@ MonoBehaviour:
   _target: {fileID: 1795499199808511590}
   _rotationInput: {fileID: 11400000, guid: adb9a20403e1e3847babd989f1412023, type: 2}
   _sensitivity: {x: 0.1, y: 0.1}
-  _smoothing: 3
-  _inputSmoothing: 1
+  _smoothing: 5
+  _inputSmoothing: 5
   _viewClamp:
     _horizontal:
       mode: 3
@@ -1310,7 +1311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7273155092333769049}
   - component: {fileID: 1382178363167860539}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
