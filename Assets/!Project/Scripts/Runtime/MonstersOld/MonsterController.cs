@@ -24,7 +24,7 @@ public class MonsterController : MonoBehaviour {
     private List<Monster> monsters;
     private bool _inProgress;
 
-    private DebuffsController _debuffsController;
+    //private DebuffsController _debuffsController;
 
     private int _spawnedMonsters;
 
@@ -34,6 +34,8 @@ public class MonsterController : MonoBehaviour {
     [SerializeField] private EventReference charDeathEvent;
 
     private void Start() {
+        return;
+        
         _source = GetComponent<AudioSource>();
         
         foreach (var monster in monsters) {
@@ -41,10 +43,12 @@ public class MonsterController : MonoBehaviour {
             monster.monsterFinished = () => OnMonsterFinished(monster);
         }
 
-        _debuffsController = FindObjectOfType<DebuffsController>();
+        //_debuffsController = FindObjectOfType<DebuffsController>();
     }
 
     public void Stop() {
+        return;
+        
         _inProgress = false;
         _spawnedMonsters = 0;
         
@@ -62,7 +66,7 @@ public class MonsterController : MonoBehaviour {
         
         _spawnedMonsters++;
         UpdateFlesh();
-        _debuffsController.StartDebuff(monster.type);
+        //_debuffsController.StartDebuff(monster.type);
 
         if (_spawnedMonsters == maxMonsters) {
             charDeathEvent.Raise();
@@ -83,6 +87,7 @@ public class MonsterController : MonoBehaviour {
     }
 
     public void SpawnSingle(MonsterType type) {
+        return;
         var m = monsters.Find(m => m.type == type);
         
         if (m) {
@@ -112,6 +117,7 @@ public class MonsterController : MonoBehaviour {
     }
 
     public void StartSpawn() {
+        return;
         if (_inProgress) return;
         _inProgress = true;
 
@@ -119,6 +125,7 @@ public class MonsterController : MonoBehaviour {
     }
 
     private void Update() {
+        return;
         if (Input.GetKeyDown(KeyCode.M)) {
             StartSpawn();
         }

@@ -359,27 +359,45 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
-        - rid: 4206470293715681283
         - rid: 4206470293715681285
-    - rid: 4206470293715681283
-      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
-      data:
-        attach: 0
-        volume: 1
-        pitch: 1
-        pitchRandomAdd: 0
-        spatialBlend: 1
-        loop: 0
-        audioClipVariants:
-        - weight: 0
-          value: {fileID: 8300000, guid: f85e149d7be38344a9700fbfe12d0a90, type: 3}
+        - rid: 9124718431322767453
+        - rid: 9124718431322767456
     - rid: 4206470293715681285
       type: {class: DestroyGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
         asm: MisterGames.ActionLib}
       data:
-        delay: 0.01
+        delay: 0
         gameObjects:
         - {fileID: 1939634505636510374}
+    - rid: 9124718431322767453
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 3569319054158441281, guid: 6c02f4e5b64ba9d42bbb225e6e01ae85,
+          type: 3}
+        mode: 0
+        explicitTransform: {fileID: 0}
+        inheritPosition: 1
+        inheritRotation: 0
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 1
+          _value: {x: 0.25, y: 0.25, z: 0.25}
+        parentToTransform: 0
+    - rid: 9124718431322767456
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        volume: 0.7
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        audioClipVariants:
+        - weight: 1
+          value: {fileID: 8300000, guid: 51daa016a25804942ae9ab4da417aed2, type: 3}
+        - weight: 1
+          value: {fileID: 8300000, guid: 57828174a18656541ab8cf2c824fcd13, type: 3}
 --- !u!114 &4335760545786688146
 MonoBehaviour:
   m_ObjectHideFlags: 0

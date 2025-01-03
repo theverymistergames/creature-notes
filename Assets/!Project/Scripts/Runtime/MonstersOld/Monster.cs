@@ -49,6 +49,7 @@ public class Monster : MonoBehaviour {
     }
 
     public void Spawn(float time, float threshold) {
+        return;
         if (!_enabled) return;
 
         if (_source && type != MonsterType.Light) {
@@ -63,6 +64,7 @@ public class Monster : MonoBehaviour {
     }
 
     public void GetDamage() {
+        return;
         if (_damageTween.IsActive()) _damageTween.Cancel();
         
         _isNeedToUpdateProgress = false;
@@ -78,6 +80,7 @@ public class Monster : MonoBehaviour {
     }
 
     public void Stop() {
+        return;
         _spawned = false;
         _finished = false;
         _isNeedToUpdateProgress = false;
@@ -95,6 +98,7 @@ public class Monster : MonoBehaviour {
     }
 
     private void Update() {
+        return;
         if (!_spawned) return;
         
         if (_isNeedToUpdateProgress) _progress += Time.deltaTime / _spawnTime;

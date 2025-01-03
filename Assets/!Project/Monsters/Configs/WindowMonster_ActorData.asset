@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b655659af1b64c2cadaef1322418cc40, type: 3}
+  m_Name: WindowMonster_ActorData
+  m_EditorClassIdentifier: 
+  _data:
+  - rid: 9124718431322767445
+  - rid: 9124718431322767446
+  - rid: 9124718431322767447
+  references:
+    version: 2
+    RefIds:
+    - rid: 9124718431322767445
+      type: {class: HealthData, ns: MisterGames.Logic.Damage, asm: MisterGames.Logic}
+      data:
+        health: 1
+    - rid: 9124718431322767446
+      type: {class: MonsterData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        allowMultipleAttacks: 0
+        attackDelay: 0
+        deathDuration: 0.5
+        respawnSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        deathSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        armSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        startAttackSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+        performAttackSound:
+          attach: 1
+          volume: 1
+          pitch: 1
+          pitchRandomAdd: 0
+          spatialBlend: 1
+          loop: 0
+          audioClipVariants: []
+    - rid: 9124718431322767447
+      type: {class: MonsterDebuffData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        debuffEvent:
+          _eventDomain: {fileID: 11400000, guid: 09344a19d1d18bd47b22dd1d0e4e266b,
+            type: 2}
+          _eventId: 1
+          _subId: 0
+        debuffImage: {fileID: 21300000, guid: e97f742adfa54d343a32951d395ed5e6, type: 3}

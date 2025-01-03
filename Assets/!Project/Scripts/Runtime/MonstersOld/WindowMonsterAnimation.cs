@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class WindowMonsterAnimation : MonsterAnimation {
 
@@ -9,7 +10,7 @@ public class WindowMonsterAnimation : MonsterAnimation {
     private float _startMonsterY;
 
     private void Start() {
-        SubscribeUpdate();
+        //SubscribeUpdate();
         
         monster.SetActive(false);
         
@@ -33,4 +34,12 @@ public class WindowMonsterAnimation : MonsterAnimation {
             monster.transform.localPosition = new Vector3(monster.transform.localPosition.x, _startMonsterY, 0);
         }
     }
+
+#if UNITY_EDITOR
+    [SerializeField] [Range(0f, 1f)] private float _testProgress;
+    
+    private void OnValidate() {
+        ProceedUpdate(_testProgress);
+    }
+#endif
 }

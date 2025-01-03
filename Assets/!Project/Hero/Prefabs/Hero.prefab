@@ -223,6 +223,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 3393
+  _normalElevation: 0.05
+  _maxNormalHits: 3
   _showDebugInfo: 0
   _traceDuration: 0
 --- !u!1 &1727031898436235196
@@ -1170,6 +1172,7 @@ MonoBehaviour:
   _minInclineAngle: 70
   _maxStepDepth: 0.1
   _maxHits: 6
+  _disableIfNotUsingGravity: 0
   _maxStepHeight: 0.35
   _maxStepHeightAir: 0
   _climbSpeed: {x: 0, y: 3, z: 0.3}
@@ -2372,11 +2375,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7205586870401899320}
     m_Modifications:
-    - target: {fileID: 843930100840174705, guid: f2e4c9cefa4446e499e55aa7f706c514,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1892012199252629670, guid: f2e4c9cefa4446e499e55aa7f706c514,
         type: 3}
       propertyPath: m_Name
@@ -2436,11 +2434,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7617258140524486458, guid: f2e4c9cefa4446e499e55aa7f706c514,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

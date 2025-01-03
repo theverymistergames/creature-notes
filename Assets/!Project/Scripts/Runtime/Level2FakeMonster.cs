@@ -14,7 +14,7 @@ public class Level2FakeMonster : MonoBehaviour {
     void OnEnable() {
         _animation = GetComponent<MonsterAnimation>();
         
-        Animate();
+        //Animate();
         _stopped = false;
     }
 
