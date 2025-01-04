@@ -20,7 +20,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             [SerializeReference] [SubclassSelector] public IActorAction action;
         }
         
-        private CancellationTokenSource _enableCts;
+        private CancellationTokenSource _healthCts;
         private IActor _actor;
         private Monster _monster;
         private MonsterDebuffData _debuffData;
@@ -35,28 +35,34 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void OnEnable() {
-            AsyncExt.RecreateCts(ref _enableCts);
+            if (!_monster.IsDead) AsyncExt.RecreateCts(ref _healthCts);
+            
             _monster.OnMonsterEvent += OnMonsterEvent;
         }
 
         private void OnDisable() {
-            AsyncExt.DisposeCts(ref _enableCts);
+            AsyncExt.DisposeCts(ref _healthCts);
+            
             _monster.OnMonsterEvent -= OnMonsterEvent;
         }
 
         private void OnMonsterEvent(MonsterEventType evt) {
+            if (evt is MonsterEventType.Respawn or MonsterEventType.Death) {
+                AsyncExt.RecreateCts(ref _healthCts);
+            }
+            
             for (int i = 0; i < _debuffData.debuffImages.Length; i++) {
                 ref var debuffImage = ref _debuffData.debuffImages[i];
                 if (debuffImage.eventType != evt) continue;
 
-                ApplyDebuff(debuffImage.delay, debuffImage.sprite, _enableCts.Token).Forget();
+                ApplyDebuff(debuffImage.delay, debuffImage.sprite, _healthCts.Token).Forget();
             }
 
             for (int i = 0; i < _debuffActions.Length; i++) {
                 ref var debuffAction = ref _debuffActions[i];
                 if (debuffAction.eventType != evt) continue;
 
-                debuffAction.action?.Apply(_actor, _enableCts.Token).Forget();
+                debuffAction.action?.Apply(_actor, _healthCts.Token).Forget();
             }
         }
 
