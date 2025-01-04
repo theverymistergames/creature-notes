@@ -48,8 +48,8 @@ namespace _Project.Scripts.Runtime.Enemies {
             for (int i = 0; i < _debuffData.debuffImages.Length; i++) {
                 ref var debuffImage = ref _debuffData.debuffImages[i];
                 if (debuffImage.eventType != evt) continue;
-                
-                _debuffData.debuffEvent.Raise(debuffImage.sprite);
+
+                ApplyDebuff(debuffImage.delay, debuffImage.sprite, _enableCts.Token).Forget();
             }
 
             for (int i = 0; i < _debuffActions.Length; i++) {
@@ -58,6 +58,15 @@ namespace _Project.Scripts.Runtime.Enemies {
 
                 debuffAction.action?.Apply(_actor, _enableCts.Token).Forget();
             }
+        }
+
+        private async UniTask ApplyDebuff(float delay, Sprite sprite, CancellationToken cancellationToken) {
+            await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: cancellationToken)
+                         .SuppressCancellationThrow();
+            
+            if (cancellationToken.IsCancellationRequested) return;
+            
+            _debuffData.debuffEvent.Raise(sprite);
         }
 
 #if UNITY_EDITOR

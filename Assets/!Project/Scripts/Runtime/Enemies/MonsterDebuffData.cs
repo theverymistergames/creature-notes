@@ -14,6 +14,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         [Serializable]
         public struct DebuffImage {
             public MonsterEventType eventType;
+            [Min(0f)] public float delay;
             public Sprite sprite;
         }
     }
