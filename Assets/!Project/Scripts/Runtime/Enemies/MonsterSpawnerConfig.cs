@@ -43,6 +43,8 @@ namespace _Project.Scripts.Runtime.Enemies {
             [Min(0f)] public float respawnCooldownAfterKill;
             [MinMaxSlider(0f, 100f)] public Vector2 armDurationStart;
             [MinMaxSlider(0f, 100f)] public Vector2 armDurationEnd;
+            [MinMaxSlider(0f, 100f)] public Vector2 attackDurationStart;
+            [MinMaxSlider(0f, 100f)] public Vector2 attackDurationEnd;
             [MinMaxSlider(0f, 100f)] public Vector2 attackCooldownStart;
             [MinMaxSlider(0f, 100f)] public Vector2 attackCooldownEnd;
         }

@@ -16,6 +16,7 @@ MonoBehaviour:
   - rid: 9124718431322767445
   - rid: 9124718431322767446
   - rid: 9124718431322767447
+  - rid: 9124718454358933596
   references:
     version: 2
     RefIds:
@@ -26,49 +27,9 @@ MonoBehaviour:
     - rid: 9124718431322767446
       type: {class: MonsterData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
       data:
-        allowMultipleAttacks: 0
-        attackDelay: 0
+        allowMultipleAttacks: 1
+        attackDelay: 1
         deathDuration: 0.5
-        respawnSound:
-          attach: 1
-          volume: 1
-          pitch: 1
-          pitchRandomAdd: 0
-          spatialBlend: 1
-          loop: 0
-          audioClipVariants: []
-        deathSound:
-          attach: 1
-          volume: 1
-          pitch: 1
-          pitchRandomAdd: 0
-          spatialBlend: 1
-          loop: 0
-          audioClipVariants: []
-        armSound:
-          attach: 1
-          volume: 1
-          pitch: 1
-          pitchRandomAdd: 0
-          spatialBlend: 1
-          loop: 0
-          audioClipVariants: []
-        startAttackSound:
-          attach: 1
-          volume: 1
-          pitch: 1
-          pitchRandomAdd: 0
-          spatialBlend: 1
-          loop: 0
-          audioClipVariants: []
-        performAttackSound:
-          attach: 1
-          volume: 1
-          pitch: 1
-          pitchRandomAdd: 0
-          spatialBlend: 1
-          loop: 0
-          audioClipVariants: []
     - rid: 9124718431322767447
       type: {class: MonsterDebuffData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
       data:
@@ -77,4 +38,10 @@ MonoBehaviour:
             type: 2}
           _eventId: 1
           _subId: 0
-        debuffImage: {fileID: 21300000, guid: e97f742adfa54d343a32951d395ed5e6, type: 3}
+        debuffImages:
+        - eventType: 2
+          sprite: {fileID: 21300000, guid: e97f742adfa54d343a32951d395ed5e6, type: 3}
+    - rid: 9124718454358933596
+      type: {class: MonsterFxData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        sounds: []

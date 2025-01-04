@@ -1,8 +1,8 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
-using MisterGames.Character.Core;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Scenario.Events;
@@ -10,11 +10,16 @@ using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Enemies {
     
-    public sealed class MonsterDebuff  : MonoBehaviour, IActorComponent {
+    public sealed class MonsterDebuff : MonoBehaviour, IActorComponent {
 
-        [SerializeReference] [SubclassSelector] private IActorAction _onAttackSelf;
-        [SerializeReference] [SubclassSelector] private IActorAction _onAttackCharacter;
+        [SerializeField] private DebuffAction[] _debuffActions;
 
+        [Serializable]
+        private struct DebuffAction {
+            public MonsterEventType eventType;
+            [SerializeReference] [SubclassSelector] public IActorAction action;
+        }
+        
         private CancellationTokenSource _enableCts;
         private IActor _actor;
         private Monster _monster;
@@ -31,23 +36,33 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
-            _monster.OnAttackPerformed += OnAttackPerformed;
+            _monster.OnMonsterEvent += OnMonsterEvent;
         }
 
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
-            _monster.OnAttackPerformed -= OnAttackPerformed;
+            _monster.OnMonsterEvent -= OnMonsterEvent;
         }
 
-        private void OnAttackPerformed() {
-            _debuffData.debuffEvent.Raise(_debuffData.debuffImage);
-            
-            _onAttackSelf?.Apply(_actor, _enableCts.Token).Forget();
-            _onAttackCharacter?.Apply(CharacterSystem.Instance.GetCharacter(), destroyCancellationToken).Forget();
+        private void OnMonsterEvent(MonsterEventType evt) {
+            for (int i = 0; i < _debuffData.debuffImages.Length; i++) {
+                ref var debuffImage = ref _debuffData.debuffImages[i];
+                if (debuffImage.eventType != evt) continue;
+                
+                _debuffData.debuffEvent.Raise(debuffImage.sprite);
+            }
+
+            for (int i = 0; i < _debuffActions.Length; i++) {
+                ref var debuffAction = ref _debuffActions[i];
+                if (debuffAction.eventType != evt) continue;
+
+                debuffAction.action?.Apply(_actor, _enableCts.Token).Forget();
+            }
         }
 
 #if UNITY_EDITOR
-        [Button] private void ApplyAttack() => OnAttackPerformed();
+        [SerializeField] private MonsterEventType _testMonsterEventType;
+        [Button] private void TestDebuff() => OnMonsterEvent(_testMonsterEventType);
 #endif
     }
     

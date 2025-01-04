@@ -253,13 +253,18 @@ namespace _Project.Scripts.Runtime.Enemies {
                     preset.armDurationEnd.GetRandomInRange(),
                     t
                 );
+                
+                var attackDurationRange = new Vector2(
+                    Mathf.Lerp(preset.attackDurationStart.x, preset.attackDurationEnd.x, t), 
+                    Mathf.Lerp(preset.attackDurationStart.y, preset.attackDurationEnd.y, t)
+                );
 
                 var attackCooldownRange = new Vector2(
                     Mathf.Lerp(preset.attackCooldownStart.x, preset.attackCooldownEnd.x, t), 
                     Mathf.Lerp(preset.attackCooldownStart.y, preset.attackCooldownEnd.y, t)
                 );
                 
-                monster.Respawn(armDuration, attackCooldownRange);
+                monster.Respawn(armDuration, attackDurationRange, attackCooldownRange);
                 _aliveMonsters.Add(newMonsterId);
                 _nextSpawnTime = time + respawnDelay;
                 

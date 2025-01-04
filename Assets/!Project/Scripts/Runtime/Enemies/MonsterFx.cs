@@ -6,7 +6,6 @@ using MisterGames.Actors.Actions;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
-using MisterGames.Logic.Damage;
 using MisterGames.Common.Tick;
 using MisterGames.Tweens;
 using UnityEngine;
@@ -18,12 +17,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         [Header("Progress")]
         [SerializeField] private ProgressAction[] _progressActions;
         
-        [Header("Actions")]
-        [SerializeReference] [SubclassSelector] private IActorAction _onRespawn;
-        [SerializeReference] [SubclassSelector] private IActorAction _onDeath;
-        [SerializeReference] [SubclassSelector] private IActorAction _onArmed;
-        [SerializeReference] [SubclassSelector] private IActorAction _onAttackStarted;
-        [SerializeReference] [SubclassSelector] private IActorAction _onAttackPerformed;
+        [Header("Monster Events")]
+        [SerializeField] private EventAction[] _eventActions;
         
         [Serializable]
         private struct ProgressAction {
@@ -34,46 +29,45 @@ namespace _Project.Scripts.Runtime.Enemies {
             public TweenEvent[] events;
         }
 
+        [Serializable]
+        private struct EventAction {
+            public MonsterEventType eventType;
+            [SerializeReference] [SubclassSelector] public IActorAction action;
+        }
+
         private float[] _progressArray;
         private CancellationTokenSource _enableCts;
+        private CancellationTokenSource _healthCts;
         private IActor _actor;
         private Monster _monster;
-        private HealthBehaviour _health;
-        private MonsterData _monsterData;
+        private MonsterFxData _monsterFxData;
         
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
-            _health = actor.GetComponent<HealthBehaviour>();
             _monster = actor.GetComponent<Monster>();
             _progressArray = new float[_progressActions?.Length ?? 0];
         }
         
         void IActorComponent.OnSetData(IActor actor) {
-            _monsterData = actor.GetData<MonsterData>();
+            _monsterFxData = actor.GetData<MonsterFxData>();
         }
         
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
             PlayerLoopStage.Update.Subscribe(this);
             
-            _health.OnRestoreFullHealth += OnRestoreHealth;
-            _health.OnDamage += OnDamage;
+            _monster.OnMonsterEvent += OnMonsterEvent;
             
-            _monster.OnArmed += OnArmed;
-            _monster.OnAttackStarted += OnAttackStarted;
-            _monster.OnAttackPerformed += OnAttackPerformed;
+            if (!_monster.IsDead) AsyncExt.RecreateCts(ref _healthCts);
         }
 
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
+            AsyncExt.DisposeCts(ref _healthCts);
+            
             PlayerLoopStage.Update.Unsubscribe(this);
-            
-            _health.OnRestoreFullHealth -= OnRestoreHealth;
-            _health.OnDamage -= OnDamage;
-            
-            _monster.OnArmed -= OnArmed;
-            _monster.OnAttackStarted -= OnAttackStarted;
-            _monster.OnAttackPerformed -= OnAttackPerformed;
+         
+            _monster.OnMonsterEvent -= OnMonsterEvent;
         }
 
         void IUpdate.OnUpdate(float dt) {
@@ -93,32 +87,25 @@ namespace _Project.Scripts.Runtime.Enemies {
                 action.events.NotifyTweenEvents(_actor, p, oldP, _enableCts.Token);
             }
         }
-        
-        private void OnRestoreHealth() {
-            _monsterData.respawnSound.Apply(_actor, destroyCancellationToken).Forget();
-            _onRespawn?.Apply(_actor, destroyCancellationToken).Forget();
-        }
 
-        private void OnDamage(DamageInfo info) {
-            if (!info.mortal) return;
+        private void OnMonsterEvent(MonsterEventType evt) {
+            if (evt is MonsterEventType.Respawn or MonsterEventType.Death) {
+                AsyncExt.RecreateCts(ref _healthCts);
+            }
 
-            _monsterData.deathSound.Apply(_actor, destroyCancellationToken).Forget();
-            _onDeath?.Apply(_actor, destroyCancellationToken).Forget();
-        }
+            for (int i = 0; i < _eventActions.Length; i++) {
+                ref var eventAction = ref _eventActions[i];
+                if (eventAction.eventType != evt) continue;
 
-        private void OnArmed() {
-            _monsterData.armSound.Apply(_actor, destroyCancellationToken).Forget();
-            _onArmed?.Apply(_actor, destroyCancellationToken).Forget();
-        }
-        
-        private void OnAttackStarted() {
-            _monsterData.startAttackSound.Apply(_actor, destroyCancellationToken).Forget();
-            _onAttackStarted?.Apply(_actor, destroyCancellationToken).Forget();
-        }
+                eventAction.action?.Apply(_actor, _healthCts.Token).Forget();
+            }
+            
+            for (int i = 0; i < _monsterFxData.sounds.Length; i++) {
+                ref var sound = ref _monsterFxData.sounds[i];
+                if (sound.eventType != evt) continue;
 
-        private void OnAttackPerformed() {
-            _monsterData.performAttackSound.Apply(_actor, destroyCancellationToken).Forget();
-            _onAttackPerformed?.Apply(_actor, destroyCancellationToken).Forget();
+                sound.soundAction?.Apply(_actor, _healthCts.Token).Forget();
+            }
         }
     }
     

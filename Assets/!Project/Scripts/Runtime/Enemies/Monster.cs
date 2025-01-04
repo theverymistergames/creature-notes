@@ -17,14 +17,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         [SerializeField] private LabelValue _monsterId;
         [SerializeField] [Range(0f, 1f)] private float _progress;
 
-        [Header("Debug")]
-        [SerializeField] private bool _showDebugInfo;
-        [SerializeField] private float _armDurationTest = 1f;
-        [SerializeField] private Vector2 _attackCooldownRangeTest = Vector2.one;
-        
-        public event Action OnArmed = delegate { };
-        public event Action OnAttackStarted = delegate { };
-        public event Action OnAttackPerformed = delegate { };
+        public delegate void EventCallback(MonsterEventType evt);
+        public event EventCallback OnMonsterEvent = delegate { };
         
         public int Id => _monsterId.GetValue();
         public bool IsDead => _health.IsDead;
@@ -37,9 +31,11 @@ namespace _Project.Scripts.Runtime.Enemies {
         private HealthBehaviour _health;
         private MonsterData _monsterData;
 
+        private Vector2 _attackDurationRange;
         private Vector2 _attackCooldownRange;
         private float _progressSpeed;
         private float _nextAttackTime;
+        private byte _attackId;
         
         void IActorComponent.OnAwake(IActor actor) {
             _health = actor.GetComponent<HealthBehaviour>();
@@ -63,16 +59,22 @@ namespace _Project.Scripts.Runtime.Enemies {
             _health.OnDamage -= OnDamage;
         }
 
-        public void Respawn(float armDuration, Vector2 attackCooldownRange) {
+        public void Respawn(float armDuration, Vector2 attackDurationRange, Vector2 attackCooldownRange) {
             _health.RestoreFullHealth();
             _progressSpeed = armDuration > 0f ? 1f / armDuration : float.MaxValue;
+            _attackDurationRange = attackDurationRange;
             _attackCooldownRange = attackCooldownRange;
             _nextAttackTime = 0f;
-
+            _attackId++;
+            
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"Monster[{name}].Respawn: f {Time.frameCount}, arm duration {armDuration:0.00}, " +
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].Respawn: f {Time.frameCount}, " +
+                                          $"arm duration {armDuration:0.00}, " +
+                                          $"attack duration {attackDurationRange.x:0.00} - {attackDurationRange.y:0.00}, " +
                                           $"attack cooldown {attackCooldownRange.x:0.00} - {attackCooldownRange.y:0.00}");
 #endif
+            
+            OnMonsterEvent.Invoke(MonsterEventType.Respawn);
         }
 
         public void Kill(bool notifyDamage = true) {
@@ -86,6 +88,7 @@ namespace _Project.Scripts.Runtime.Enemies {
 
             _progress = 0f;
             _progressSpeed = 0f;
+            _attackId++;
         }
 
         void IUpdate.OnUpdate(float dt) {
@@ -93,14 +96,23 @@ namespace _Project.Scripts.Runtime.Enemies {
             _progress = Mathf.Clamp01(_progress + dt * _progressSpeed);
             
             if (_health.IsDead) return;
-            
-            if (!wasArmed && IsArmed) OnArmed.Invoke();
+
+            if (!wasArmed && IsArmed) {
+#if UNITY_EDITOR
+                if (_showDebugInfo) Debug.Log($"Monster[{name}].OnUpdate: f {Time.frameCount}, armed");
+#endif                
+                
+                OnMonsterEvent.Invoke(MonsterEventType.Arm);
+            }
 
             float time = Time.time;
             
             if (IsArmed && time >= _nextAttackTime) {
-                _nextAttackTime = time + GetNextCooldown();
-                PerformAttack(_enableCts.Token).Forget();
+                float attackDuration = _attackDurationRange.GetRandomInRange();
+                float attackCooldown = _monsterData.allowMultipleAttacks ? _attackCooldownRange.GetRandomInRange() : float.MaxValue;
+                _nextAttackTime = time + _monsterData.attackDelay + attackDuration + attackCooldown;
+                
+                PerformAttack(_monsterData.attackDelay, attackDuration, _enableCts.Token).Forget();
             }
         }
         
@@ -112,29 +124,50 @@ namespace _Project.Scripts.Runtime.Enemies {
 #endif
             
             _progressSpeed = _monsterData.deathDuration > 0f ? -1f / _monsterData.deathDuration : float.MinValue;
+            _attackId++;
+            
+            OnMonsterEvent.Invoke(MonsterEventType.Death);
         }
 
-        private async UniTask PerformAttack(CancellationToken cancellationToken) {
-            OnAttackStarted.Invoke();
+        private async UniTask PerformAttack(float delay, float duration, CancellationToken cancellationToken) {
+            byte id = ++_attackId;
             
-            await UniTask.Delay(TimeSpan.FromSeconds(_monsterData.attackDelay), cancellationToken: cancellationToken)
+            OnMonsterEvent.Invoke(MonsterEventType.AttackPrepare);
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: cancellationToken)
                 .SuppressCancellationThrow();
             
-            if (cancellationToken.IsCancellationRequested || _health.IsDead) return;
+            if (cancellationToken.IsCancellationRequested || id != _attackId) return;
             
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"Monster[{name}].PerformAttack: f {Time.frameCount}, performed");
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].PerformAttack: f {Time.frameCount}, attack #{_attackId} started");
 #endif
             
-            OnAttackPerformed.Invoke();
+            OnMonsterEvent.Invoke(MonsterEventType.AttackStart);
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: cancellationToken)
+                         .SuppressCancellationThrow();
+            
+            if (cancellationToken.IsCancellationRequested || id != _attackId) return;
+            
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].PerformAttack: f {Time.frameCount}, attack #{_attackId} finished");
+#endif      
+            
+            OnMonsterEvent.Invoke(MonsterEventType.AttackFinish);
         }
 
-        private float GetNextCooldown() {
-            return _monsterData.allowMultipleAttacks ? _attackCooldownRange.GetRandomInRange() : float.MaxValue;
-        }
-        
 #if UNITY_EDITOR
-        [Button] private void RespawnTest() => Respawn(_armDurationTest, _attackCooldownRangeTest);
+        [Header("Debug")]
+        [SerializeField] private bool _showDebugInfo;
+        [SerializeField] private float _armDurationTest = 1f;
+        [SerializeField] private Vector2 _attackDurationRangeTest = Vector2.one;
+        [SerializeField] private Vector2 _attackCooldownRangeTest = Vector2.one;
+
+        [Button] 
+        private void RespawnTest() {
+            Respawn(_armDurationTest, _attackDurationRangeTest, _attackCooldownRangeTest);
+        }
 #endif
     }
     

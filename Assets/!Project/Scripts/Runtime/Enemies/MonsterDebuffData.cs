@@ -7,8 +7,15 @@ namespace _Project.Scripts.Runtime.Enemies {
 
     [Serializable]
     public sealed class MonsterDebuffData : IActorData {
+        
         public EventReference debuffEvent;
-        public Sprite debuffImage;
+        public DebuffImage[] debuffImages;
+        
+        [Serializable]
+        public struct DebuffImage {
+            public MonsterEventType eventType;
+            public Sprite sprite;
+        }
     }
     
 }
