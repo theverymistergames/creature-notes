@@ -45,33 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMainPool: 1
+  _totalTakeCountToCreatePool: 3
+  _activeCountToCreatePool: 3
+  _autoPoolMaxSize: 100
+  _unusedPoolClearTimeout: 300
+  _autoPoolCheckPeriod: 1
   _defaultInitialSize: 0
   _defaultMaxSize: 3
-  _predefinedPools:
-  - name: Hero
-    enabled: 1
-    initialSize: 0
-    maxSize: 1
-    prefabs:
-    - {fileID: 7205586870401899322, guid: 8eb4ea36122b5da4da483a1b605c6cda, type: 3}
-  - name: Audio
-    enabled: 1
-    initialSize: 0
-    maxSize: 30
-    prefabs:
-    - {fileID: 2866839772663519018, guid: cde8a6a658aca7f47aaf244c1b244947, type: 3}
-  - name: Hero prefabs
-    enabled: 1
-    initialSize: 0
-    maxSize: 3
-    prefabs:
-    - {fileID: 1939634505636510374, guid: a213e9dbaf5edbf4e939b7abfc80048c, type: 3}
-  - name: Flesh Bubbles
-    enabled: 1
-    initialSize: 10
-    maxSize: 200
-    prefabs:
-    - {fileID: 8084980823660755239, guid: 7570e13ed983a204689139b80ee2b0a4, type: 3}
-    - {fileID: 2646391046023174099, guid: 1ee2559cc78e07f49b8194a43351dedd, type: 3}
+  _predefinedPools: []
   _showDebugLogs: 0
-  _lastPredefinedPoolsCount: 4
+  _lastPredefinedPoolsCount: 0

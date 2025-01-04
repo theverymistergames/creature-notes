@@ -4,7 +4,7 @@ using MisterGames.Character.View;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Data;
 using MisterGames.Common.Maths;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Fireball {

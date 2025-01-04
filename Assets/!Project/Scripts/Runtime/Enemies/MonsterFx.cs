@@ -7,7 +7,7 @@ using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
 using MisterGames.Logic.Damage;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using MisterGames.Tweens;
 using UnityEngine;
 

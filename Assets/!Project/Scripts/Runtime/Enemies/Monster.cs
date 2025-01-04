@@ -7,7 +7,7 @@ using MisterGames.Common.Attributes;
 using MisterGames.Common.Labels;
 using MisterGames.Common.Maths;
 using MisterGames.Logic.Damage;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Enemies {

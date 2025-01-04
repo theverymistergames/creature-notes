@@ -7,7 +7,7 @@ using MisterGames.Common.Async;
 using MisterGames.Common.GameObjects;
 using MisterGames.Common.Pooling;
 using MisterGames.Input.Actions;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Fireball {

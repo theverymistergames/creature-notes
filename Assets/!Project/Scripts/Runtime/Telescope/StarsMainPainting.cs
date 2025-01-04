@@ -9,7 +9,7 @@ using MisterGames.Common.GameObjects;
 using MisterGames.Common.Maths;
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using UnityEngine;
 using UnityEngine.UI;
 

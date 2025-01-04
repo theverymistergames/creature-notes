@@ -6,7 +6,7 @@ using LitMotion;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
 using MisterGames.Character.Inventory;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;

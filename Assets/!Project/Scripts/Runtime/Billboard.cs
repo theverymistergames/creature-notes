@@ -1,5 +1,5 @@
 using MisterGames.Character.Core;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using UnityEngine;
 
 public sealed class Billboard : MonoBehaviour, IUpdate

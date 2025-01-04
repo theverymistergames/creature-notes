@@ -9,7 +9,7 @@ using MisterGames.Common.Labels;
 using MisterGames.Common.Lists;
 using MisterGames.Common.Maths;
 using MisterGames.Scenario.Events;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

@@ -8,7 +8,7 @@ using MisterGames.Common.Async;
 using MisterGames.Common.Pooling;
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
-using MisterGames.Tick.Core;
+using MisterGames.Common.Tick;
 using MisterGames.Tweens;
 using UnityEngine;
 using Random = UnityEngine.Random;
