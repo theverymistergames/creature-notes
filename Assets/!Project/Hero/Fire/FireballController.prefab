@@ -96,6 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8846303a7a44465e84ffcc9003da5912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weight: 1
+  _weightSmoothingUp: 5
+  _weightSmoothingDown: 1
+  _offsetMultiplier: 1
+  _noiseMultiplier: 1
   _fireDurationMin: 0.2
   _fireDurationMax: 0.6
   _startFireProgressMax: 0.5
@@ -586,7 +591,6 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-  _weight: 1
   _defaultSmoothing: 5
   _stages:
   - previousStage:

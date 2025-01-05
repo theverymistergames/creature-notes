@@ -50,19 +50,23 @@ namespace _Project.Scripts.Runtime.Enemies {
             if (evt is MonsterEventType.Respawn or MonsterEventType.Death) {
                 AsyncExt.RecreateCts(ref _healthCts);
             }
-            
+
+            ProcessActions(evt, _healthCts.Token);
+        }
+
+        private void ProcessActions(MonsterEventType eventType, CancellationToken cancellationToken) {
             for (int i = 0; i < _debuffData.debuffImages.Length; i++) {
                 ref var debuffImage = ref _debuffData.debuffImages[i];
-                if (debuffImage.eventType != evt) continue;
+                if (debuffImage.eventType != eventType) continue;
 
-                ApplyDebuff(debuffImage.delay, debuffImage.sprite, _healthCts.Token).Forget();
+                ApplyDebuff(debuffImage.delay, debuffImage.sprite, cancellationToken).Forget();
             }
 
             for (int i = 0; i < _debuffActions.Length; i++) {
                 ref var debuffAction = ref _debuffActions[i];
-                if (debuffAction.eventType != evt) continue;
+                if (debuffAction.eventType != eventType) continue;
 
-                debuffAction.action?.Apply(_actor, _healthCts.Token).Forget();
+                debuffAction.action?.Apply(_actor, cancellationToken).Forget();
             }
         }
 
@@ -77,7 +81,11 @@ namespace _Project.Scripts.Runtime.Enemies {
 
 #if UNITY_EDITOR
         [SerializeField] private MonsterEventType _testMonsterEventType;
-        [Button] private void TestDebuff() => OnMonsterEvent(_testMonsterEventType);
+        
+        [Button] 
+        private void TestDebuff() {
+            if (Application.isPlaying) ProcessActions(_testMonsterEventType, destroyCancellationToken);
+        }
 #endif
     }
     

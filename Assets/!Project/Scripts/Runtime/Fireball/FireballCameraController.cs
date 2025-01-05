@@ -11,6 +11,11 @@ namespace _Project.Scripts.Runtime.Fireball {
     
     public sealed class FireballCameraController : MonoBehaviour, IActorComponent, IUpdate {
         
+        [Header("Weight")]
+        [SerializeField] private float _weight = 1f;
+        [SerializeField] private float _offsetMultiplier = 1f;
+        [SerializeField] private float _noiseMultiplier = 1f;
+        
         [Header("Fire")]
         [SerializeField] [Min(0f)] private float _fireDurationMin;
         [SerializeField] [Min(0f)] private float _fireDurationMax;
@@ -18,7 +23,6 @@ namespace _Project.Scripts.Runtime.Fireball {
         [SerializeField] private CameraSetting _fireSetting;
         
         [Header("Stages")]
-        [SerializeField] private float _weight = 1f;
         [SerializeField] [Min(0f)] private float _defaultSmoothing = 5f;
         [SerializeField] private StageSetting[] _stages;
         [SerializeField] private TransitionSetting[] _transitions;
@@ -165,7 +169,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             UpdateStageSetting(previous, current);
             UpdateTransitionSetting(previous, current);
         }
-
+        
         private void UpdateStageSetting(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
             for (int i = 0; i < _stages.Length; i++) {
                 ref var stage = ref _stages[i];
@@ -236,7 +240,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             var rotationNoise = setting.rotationNoise.Evaluate(progress).Multiply(_rotationNoiseMul);
 
             float smoothing = setting.smoothingStart + progress * (setting.smoothingEnd - setting.smoothingStart);
-
+            
             _fov = _fov.SmoothExp(fov, dt * smoothing);
             _position = _position.SmoothExp(position, dt * smoothing);
             _rotation = _rotation.SmoothExp(rotation, dt * smoothing);
@@ -246,12 +250,12 @@ namespace _Project.Scripts.Runtime.Fireball {
             _rotationNoise = _rotationNoise.SmoothExp(rotationNoise, dt * smoothing);
             
             _cameraContainer.SetFovOffset(_stageMotionId, _weight, _fov);
-            _cameraContainer.SetPositionOffset(_stageMotionId, _weight, _position);
-            _cameraContainer.SetRotationOffset(_stageMotionId, _weight, Quaternion.Euler(_rotation));
+            _cameraContainer.SetPositionOffset(_stageMotionId, _weight, _position * _offsetMultiplier);
+            _cameraContainer.SetRotationOffset(_stageMotionId, _weight, Quaternion.Euler(_rotation * _offsetMultiplier));
             
             _cameraShaker.SetSpeed(_stageShakeId, _noiseSpeed);
-            _cameraShaker.SetPosition(_stageShakeId, setting.positionNoiseOffset, _positionNoise);
-            _cameraShaker.SetRotation(_stageShakeId, setting.rotationNoiseOffset, _rotationNoise);
+            _cameraShaker.SetPosition(_stageShakeId, setting.positionNoiseOffset, _positionNoise * _noiseMultiplier);
+            _cameraShaker.SetRotation(_stageShakeId, setting.rotationNoiseOffset, _rotationNoise * _noiseMultiplier);
         }
 
         private void SetupMultipliers(CameraSetting setting) {
