@@ -1,0 +1,426 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1169970853498461220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4204461378012177960}
+  - component: {fileID: 907389240642422301}
+  - component: {fileID: 2764827636858325360}
+  m_Layer: 0
+  m_Name: Bend
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4204461378012177960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169970853498461220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5905676133398314376}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907389240642422301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169970853498461220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596018e53e94bfb4d9de7a811cb67477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  angle: -167.17
+  factor: 0
+  mode: 1
+  top: 0.9582631
+  bottom: 0.05
+  axis: {fileID: 4204461378012177960}
+--- !u!114 &2764827636858325360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169970853498461220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _playAtStart: 0
+  _tweenPlayer:
+    _progress: 0
+    _speed: 1
+    _yoyo: 2
+    _loop: 1
+    _invertNextPlay: 0
+    _tween:
+      rid: 9124718480527720536
+  _events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 9124718480527720536
+      type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        mode: 1
+        tweens:
+        - rid: 9124718480527720537
+        - rid: 9124718480527720542
+        events: []
+    - rid: 9124718480527720537
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 5
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 9124718480527720538
+        events: []
+    - rid: 9124718480527720538
+      type: {class: TweenProgressActionTransformNoise, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 4204461378012177960}
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        positionOffset: {x: 0, y: 5, z: 10}
+        rotationOffset: {x: 15, y: 20, z: 25}
+        scaleOffset: {x: 0, y: 0, z: 0}
+        positionMultiplier: {x: 0.05, y: 0.12, z: 0.05}
+        rotationMultiplier: {x: 27.18, y: 23.78, z: 25.6}
+        scaleMultiplier: {x: 0, y: 0, z: 0}
+        noiseScale: 20
+        useLocal: 1
+        applyMode: 3
+    - rid: 9124718480527720542
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 5
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: 9124718480527720543
+        action:
+          rid: 9124718480527720544
+        events: []
+    - rid: 9124718480527720543
+      type: {class: ProgressModulatorNoise, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        seed: 0
+        scale: 1
+        clamp01: 1
+        speedMul: 5
+        speedCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 9124718480527720544
+      type: {class: BendDeformAngleTweenProgressAction, ns: MisterGames.TweenLib.Deform,
+        asm: MisterGames.TweenLib}
+      data:
+        bendDeformer: {fileID: 907389240642422301}
+        startAngle: -90
+        endAngle: -200
+--- !u!1 &9215524100611011799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5905676133398314376}
+  m_Layer: 0
+  m_Name: Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5905676133398314376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9215524100611011799}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.057289567, y: -0.4319392, z: 0.89321685, w: 0.11095092}
+  m_LocalPosition: {x: 0.00238, y: 0.00367, z: -0.00168}
+  m_LocalScale: {x: 0.02682983, y: 0.016579492, z: 0.025001748}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4204461378012177960}
+  m_Father: {fileID: 4932201467476642745}
+  m_LocalEulerAnglesHint: {x: 51.66, y: 0.6, z: 166.129}
+--- !u!1001 &3669008929947372621
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 853838976427662795, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_Name
+      value: curtain_01 low deformable Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 951027877773212687, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183635161950465179, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183635161950465179, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: eb6bf07fc8a2bb04793f08478a8f9135, type: 2}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 104.75044
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 58.448902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 91.39841
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.5310835
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5501814
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.83575857
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.033642836
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.033642836
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.706306
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7063061
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -174.546
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5905676133398314376}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 853838976427662795, guid: c69b352e94c8c58489455e254ac352ce,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3555286729198252544}
+  m_SourcePrefab: {fileID: 100100000, guid: c69b352e94c8c58489455e254ac352ce, type: 3}
+--- !u!1 &4121781195747185030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 853838976427662795, guid: c69b352e94c8c58489455e254ac352ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 3669008929947372621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3555286729198252544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4121781195747185030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85212d1b13358614ca54e74ba56f93ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignOriginalMeshOnDisable: 1
+  updateMode: 0
+  cullingMode: 1
+  normalsRecalculation: 0
+  boundsRecalculation: 0
+  colliderRecalculation: 0
+  meshCollider: {fileID: 0}
+  data:
+    OriginalMesh: {fileID: -5767126361239384380, guid: 5d94fe48af5dce1438579306c161daf5,
+      type: 3}
+    Target:
+      meshFilter: {fileID: 4600509475501486146}
+      skinnedMeshRenderer: {fileID: 0}
+    initialized: 1
+  deformerElements:
+  - component: {fileID: 907389240642422301}
+    active: 1
+  customBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0.25}
+--- !u!33 &4600509475501486146 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 951027877773212687, guid: c69b352e94c8c58489455e254ac352ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 3669008929947372621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4932201467476642745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8545654187690870772, guid: c69b352e94c8c58489455e254ac352ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 3669008929947372621}
+  m_PrefabAsset: {fileID: 0}
