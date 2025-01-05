@@ -490,63 +490,31 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
-        - rid: 9124718454358933595
+        - rid: 9124718454358933629
         - rid: 9124718454358933608
         - rid: 9124718454358933609
-    - rid: 9124718454358933595
-      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        enabled: 0
-        delay: 0
-        gameObjects:
-        - {fileID: 4095273331624918551}
     - rid: 9124718454358933598
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
-        - rid: 9124718454358933599
+        - rid: 9124718454358933630
         - rid: 9124718454358933610
         - rid: 9124718454358933611
         - rid: 9124718454358933614
-    - rid: 9124718454358933599
-      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        enabled: 0
-        delay: 0
-        gameObjects:
-        - {fileID: 4095273331624918551}
     - rid: 9124718454358933600
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
-        - rid: 9124718454358933601
-    - rid: 9124718454358933601
-      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        enabled: 1
-        delay: 0
-        gameObjects:
-        - {fileID: 4095273331624918551}
+        - rid: 9124718454358933631
     - rid: 9124718454358933602
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
-        - rid: 9124718454358933603
+        - rid: 9124718454358933632
         - rid: 9124718454358933613
-    - rid: 9124718454358933603
-      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        enabled: 0
-        delay: 0
-        gameObjects:
-        - {fileID: 4095273331624918551}
     - rid: 9124718454358933604
       type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -641,10 +609,38 @@ MonoBehaviour:
     - rid: 9124718454358933621
       type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
       data:
-        delay: 1
+        delay: 0.7
         mode: 0
         action:
           rid: -2
+    - rid: 9124718454358933629
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 4095273331624918551}
+    - rid: 9124718454358933630
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 4095273331624918551}
+    - rid: 9124718454358933631
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 1
+        delay: 0
+        objects:
+        - {fileID: 4095273331624918551}
+    - rid: 9124718454358933632
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 4095273331624918551}
 --- !u!114 &7127274343565264203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,6 +1900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 2.8069174
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009637338532276540, guid: 709672643f0b9744489697c10cea4791,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5009637338532276540, guid: 709672643f0b9744489697c10cea4791,
         type: 3}
