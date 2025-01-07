@@ -9711,6 +9711,7 @@ GameObject:
   - component: {fileID: 4335760545786688146}
   - component: {fileID: 8701382063509834311}
   - component: {fileID: 1007778587790521582}
+  - component: {fileID: -1372905692749563779}
   m_Layer: 7
   m_Name: Fireball_projectile_small
   m_TagString: Untagged
@@ -10179,6 +10180,28 @@ MonoBehaviour:
   _smoothing: 25
   _minSpeed: 0.1
   _randomRotation: 0
+--- !u!114 &-1372905692749563779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68eacb05c4e5438db1689071489be57a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEmitter: {fileID: 4335760545786688146}
+  _triggerEvent: 0
+  prefabs:
+  - parentMode: 2
+    scaleMode: 1
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffset: {x: 180, y: 0, z: 180}
+    scale: {x: 3, y: 3, z: 3}
+    prefabs:
+    - {fileID: 4444918992618951640, guid: 558a46d7455845d4cb265c08f6dc1814, type: 3}
 --- !u!1 &5531917473399837426
 GameObject:
   m_ObjectHideFlags: 0
