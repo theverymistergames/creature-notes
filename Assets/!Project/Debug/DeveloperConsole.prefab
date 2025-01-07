@@ -92,15 +92,39 @@ MonoBehaviour:
   _greeting: MisterGames Debug Console
   _activationInput: {fileID: 11400000, guid: cc25600298f40554a9241809af3f877c, type: 2}
   _consoleModules:
-  - rid: -2
-  - rid: -2
-  - rid: -2
-  - rid: -2
+  - rid: 9124718520716755044
+  - rid: 9124718520716755045
+  - rid: 9124718520716755046
+  - rid: 9124718520716755047
+  - rid: 9124718520716755048
+  - rid: 9124718520716755049
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 9124718520716755044
+      type: {class: HeroConsoleModule, ns: MisterGames.ConsoleCommandsLib.Modules,
+        asm: MisterGames.ConsoleCommandsLib}
+      data:
+        _heroPrefab: {fileID: 7205586870401899322, guid: 8eb4ea36122b5da4da483a1b605c6cda,
+          type: 3}
+    - rid: 9124718520716755045
+      type: {class: PoolConsoleModule, ns: MisterGames.ConsoleCommandsLib.Modules,
+        asm: MisterGames.ConsoleCommandsLib}
+      data: 
+    - rid: 9124718520716755046
+      type: {class: SaveConsoleModule, ns: MisterGames.ConsoleCommandsLib.Modules,
+        asm: MisterGames.ConsoleCommandsLib}
+      data: 
+    - rid: 9124718520716755047
+      type: {class: SceneConsoleModule, ns: MisterGames.ConsoleCommandsLib.Modules,
+        asm: MisterGames.ConsoleCommandsLib}
+      data: 
+    - rid: 9124718520716755048
+      type: {class: HelpConsoleModule, ns: MisterGames.Dbg.Console.Modules, asm: MisterGames.Dbg}
+      data: 
+    - rid: 9124718520716755049
+      type: {class: TextConsoleModule, ns: MisterGames.Dbg.Console.Modules, asm: MisterGames.Dbg}
+      data: 
 --- !u!114 &-8721823811315351641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,15 +456,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_TextWrappingMode: 3
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
+  m_ActiveFontFeatures: 
   m_enableExtraPadding: 1
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
@@ -629,10 +655,13 @@ MonoBehaviour:
   m_GlobalFontAsset: {fileID: 0}
   m_OnFocusSelectAll: 1
   m_ResetOnDeActivation: 1
+  m_KeepTextSelectionVisible: 0
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
+  isAlert: 0
   m_InputValidator: {fileID: 0}
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &3231216616019215224
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,15 +946,17 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
+  m_EmojiFallbackSupport: 1
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0

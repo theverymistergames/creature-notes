@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4335760545786688146}
   - component: {fileID: 8701382063509834311}
   m_Layer: 7
-  m_Name: FireballProjectile
+  m_Name: Fireball_projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!135 &4412857026217403834
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -354,12 +354,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 4206470293715681282
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
-        - rid: 9124718431322767453
+        - rid: 9124718520716755035
         - rid: 9124718431322767456
         - rid: 4206470293715681285
     - rid: 4206470293715681285
@@ -369,20 +371,6 @@ MonoBehaviour:
         delay: 0
         gameObjects:
         - {fileID: 1939634505636510374}
-    - rid: 9124718431322767453
-      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
-      data:
-        prefab: {fileID: 3569319054158441281, guid: 6c02f4e5b64ba9d42bbb225e6e01ae85,
-          type: 3}
-        mode: 0
-        explicitTransform: {fileID: 0}
-        inherit: 5
-        offset: {x: 0, y: 0, z: 0}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        scale:
-          _hasValue: 1
-          _value: {x: 0.25, y: 0.25, z: 0.25}
-        parentToTransform: 0
     - rid: 9124718431322767456
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
@@ -397,6 +385,98 @@ MonoBehaviour:
           value: {fileID: 8300000, guid: 51daa016a25804942ae9ab4da417aed2, type: 3}
         - weight: 1
           value: {fileID: 8300000, guid: 57828174a18656541ab8cf2c824fcd13, type: 3}
+    - rid: 9124718520716755035
+      type: {class: SwitchAction, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        cases:
+        - condition:
+            rid: 9124718520716755036
+          action:
+            rid: 9124718520716755037
+        - condition:
+            rid: 9124718520716755039
+          action:
+            rid: 9124718520716755040
+        - condition:
+            rid: -2
+          action:
+            rid: 9124718520716755042
+    - rid: 9124718520716755036
+      type: {class: TransformScaleCondition, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 3957165838251526101}
+        compareValue: 0
+        mode: 3
+        value: 0.5
+    - rid: 9124718520716755037
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 9124718520716755038
+    - rid: 9124718520716755038
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 2767922150578293872, guid: 1611d7110335598468e952886f202d67,
+          type: 3}
+        mode: 0
+        explicitTransform: {fileID: 0}
+        inherit: 1
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 1
+          _value: {x: 0.15, y: 0.15, z: 0.15}
+        parentToTransform: 0
+    - rid: 9124718520716755039
+      type: {class: TransformScaleCondition, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 3957165838251526101}
+        compareValue: 0
+        mode: 3
+        value: 0.75
+    - rid: 9124718520716755040
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 9124718520716755041
+    - rid: 9124718520716755041
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 3784768209989943230, guid: 9ecfc794700666f478f53c0a18796618,
+          type: 3}
+        mode: 0
+        explicitTransform: {fileID: 0}
+        inherit: 1
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 1
+          _value: {x: 0.2, y: 0.2, z: 0.2}
+        parentToTransform: 0
+    - rid: 9124718520716755042
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 9124718520716755043
+    - rid: 9124718520716755043
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 3196212657382870704, guid: 1b78fea393d533d418bf33224c482f48,
+          type: 3}
+        mode: 0
+        explicitTransform: {fileID: 0}
+        inherit: 1
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 1
+          _value: {x: 0.25, y: 0.25, z: 0.25}
+        parentToTransform: 0
 --- !u!114 &4335760545786688146
 MonoBehaviour:
   m_ObjectHideFlags: 0
