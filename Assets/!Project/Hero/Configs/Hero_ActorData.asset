@@ -27,8 +27,16 @@ MonoBehaviour:
         cooldownDuration: 0.2
         overheatDuration: 5
         overheatCooldownDuration: 1
-        shotPrefab: {fileID: 7772859148283415474, guid: a213e9dbaf5edbf4e939b7abfc80048c,
-          type: 3}
+        shotPrefabs:
+        - chargeProgress: 0.25
+          shotPrefab: {fileID: 7772859148283415474, guid: a213e9dbaf5edbf4e939b7abfc80048c,
+            type: 3}
+        - chargeProgress: 0.6
+          shotPrefab: {fileID: 1600743158182465063, guid: 6f2871a78056fca4cbc6000863660a40,
+            type: 3}
+        - chargeProgress: 1
+          shotPrefab: {fileID: 7534482707555656569, guid: ac1910b89c644f542813997ed75d6438,
+            type: 3}
         spawnOffset: {x: 0, y: -0.2, z: 0.5}
         scaleStart: 0.3
         scaleEnd: 1

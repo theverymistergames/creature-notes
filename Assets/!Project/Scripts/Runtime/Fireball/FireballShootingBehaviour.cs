@@ -161,10 +161,22 @@ namespace _Project.Scripts.Runtime.Fireball {
             var orient = _view.Rotation;
             var pos = _view.Position;
 
-            var shotActor = PrefabPool.Main.Get(_shootingData.shotPrefab, pos + orient * _shootingData.spawnOffset, orient);
+            Actor prefab = null;
+
+            for (int i = 0; i < _shootingData.shotPrefabs.Length; i++) {
+                ref var data = ref _shootingData.shotPrefabs[i];
+                if (data.chargeProgress < progress) continue;
+
+                prefab = data.shotPrefab;
+                break;
+            }
+            
+            if (prefab == null) return;
+
+            var shotActor = PrefabPool.Main.Get(prefab, pos + orient * _shootingData.spawnOffset, orient);
             shotActor.ParentActor = _actor;
-            shotActor.Transform.localScale = _shootingData.shotPrefab.transform.localScale * 
-                                             Mathf.Lerp(_shootingData.scaleStart, _shootingData.scaleEnd, _shootingData.forceByChargeProgress.Evaluate(progress));
+            shotActor.Transform.localScale = prefab.transform.localScale * 
+                                             Mathf.Lerp(_shootingData.scaleStart, _shootingData.scaleEnd, _shootingData.scaleByChargeProgress.Evaluate(progress));
             
             if (shotActor.TryGetComponent(out Rigidbody rb)) {
                 float force = Mathf.Lerp(_shootingData.forceStart, _shootingData.forceEnd, _shootingData.forceByChargeProgress.Evaluate(progress));
