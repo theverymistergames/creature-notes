@@ -162,15 +162,13 @@ namespace _Project.Scripts.Runtime.Fireball {
             var pos = _view.Position;
 
             var shotActor = PrefabPool.Main.Get(_shootingData.shotPrefab, pos + orient * _shootingData.spawnOffset, orient);
-
             shotActor.ParentActor = _actor;
+            shotActor.Transform.localScale = _shootingData.shotPrefab.transform.localScale * 
+                                             Mathf.Lerp(_shootingData.scaleStart, _shootingData.scaleEnd, _shootingData.forceByChargeProgress.Evaluate(progress));
             
             if (shotActor.TryGetComponent(out Rigidbody rb)) {
-                float force = _shootingData.forceStart + 
-                              _shootingData.forceByChargeProgress.Evaluate(progress) * (_shootingData.forceEnd - _shootingData.forceStart);
-            
-                float angle = _shootingData.angleStart + 
-                              _shootingData.angleByChargeProgress.Evaluate(progress) * (_shootingData.angleEnd - _shootingData.angleStart);
+                float force = Mathf.Lerp(_shootingData.forceStart, _shootingData.forceEnd, _shootingData.forceByChargeProgress.Evaluate(progress));
+                float angle = Mathf.Lerp(_shootingData.angleStart, _shootingData.angleEnd, _shootingData.angleByChargeProgress.Evaluate(progress));
             
                 rb.linearVelocity = Quaternion.AngleAxis(angle, orient * Vector3.left) * orient * (Vector3.forward * force);
                 rb.rotation = Quaternion.LookRotation(rb.linearVelocity);
