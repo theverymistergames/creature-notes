@@ -81,6 +81,16 @@ namespace _Project.Scripts.Runtime.Fireball {
             _enableGameObjects.SetActive(false);
         }
 
+        public void ForceStage(Stage stage, float progress = 0f) {
+            var oldStage = CurrentStage;
+            CurrentStage = StartNextStage(stage, _shootingData.overheatDuration, progress);
+
+            if (oldStage == CurrentStage) return;
+            
+            NotifyEnableVisuals(CurrentStage != Stage.None);
+            OnStageChanged.Invoke(oldStage, CurrentStage);
+        }
+        
         void IUpdate.OnUpdate(float dt) {
             ProcessCurrentStage(dt);
         }
@@ -101,7 +111,6 @@ namespace _Project.Scripts.Runtime.Fireball {
             if (oldStage == CurrentStage) return;
             
             NotifyEnableVisuals(CurrentStage != Stage.None);
-            
             OnStageChanged.Invoke(oldStage, CurrentStage);
         }
 
@@ -148,8 +157,8 @@ namespace _Project.Scripts.Runtime.Fireball {
                 : StartNextStage(Stage.None, _shootingData.noneDuration);
         }
 
-        private Stage StartNextStage(Stage stage, float duration = 0f) {
-            StageProgress = 0f;
+        private Stage StartNextStage(Stage stage, float duration = 0f, float progress = 0f) {
+            StageProgress = Mathf.Clamp01(progress);
             StageDuration = duration;
             
             _stageSpeed = duration > 0f ? 1f / duration : float.MaxValue;
