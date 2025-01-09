@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 233647225708023971}
   - component: {fileID: 235480104857840031}
   - component: {fileID: 1356674331301145324}
+  - component: {fileID: -5990362223874393875}
   m_Layer: 0
   m_Name: Toy2 (1)
   m_TagString: Untagged
@@ -119,7 +120,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 22872
+    _version: 22930
   _blackboard:
     _propertyList: 8c8c6cac87c72846c741ac5c03614885
     _propertyMap:
@@ -363,6 +364,56 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-5990362223874393875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740369705089024161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cancelOnNextAction: 0
+  _startAction:
+    rid: 8090405788601810945
+  _stopAction:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 8090405788601810945
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 8090405788601810947
+        - rid: 8090405788601810946
+    - rid: 8090405788601810946
+      type: {class: CharacterTakePutItemAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: Assembly-CSharp}
+      data:
+        method: 0
+        duration: 0.3
+        ease: 7
+        disableCollider: 1
+        item: {fileID: 4945764513774270664}
+    - rid: 8090405788601810947
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        volume: 1
+        pitch: 1
+        pitchRandomAdd: 0.3
+        spatialBlend: 1
+        loop: 0
+        audioClipVariants:
+        - weight: 1
+          value: {fileID: 8300000, guid: 8b8963f3428114245945ba8fe0984e51, type: 3}
 --- !u!1001 &6604310348119533396
 PrefabInstance:
   m_ObjectHideFlags: 0

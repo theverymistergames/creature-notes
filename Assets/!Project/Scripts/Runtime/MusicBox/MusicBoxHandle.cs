@@ -30,7 +30,7 @@ public class MusicBoxHandle : MonoBehaviour {
 
     private void Play() {
         if (parts.ToArray().Count(p => p.isActiveAndEnabled) > 0
-            && parts.ToArray().Where(p => p.isActiveAndEnabled).Count(p => !p.IsRight()) == 0) {
+            && parts.ToArray().Where(p => p.isActiveAndEnabled).Count(p => !p.IsRight()) == 0 && !playOnAwake) {
             overlay.SetActive(true);
             _isFinished = true;
             questFinishedEvent.Raise();
