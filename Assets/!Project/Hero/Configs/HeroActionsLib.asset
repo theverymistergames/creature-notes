@@ -15,16 +15,28 @@ MonoBehaviour:
   _labelArrays:
   - id: 1
     name: Camera Shakes
-    usage: 0
     comment: "\u042D\u043A\u0448\u0435\u043D\u044B \u0434\u043B\u044F \u0448\u0435\u0439\u043A\u043E\u0432
       \u043A\u0430\u043C\u0435\u0440\u044B"
+    usage: 0
     none: 0
     labels:
     - id: 2
       name: MonsterAttackDefault
       data:
         rid: 986509540182196313
-  _lastId: 3
+    - id: 5
+      name: FireballExplosionSmall
+      data:
+        rid: 9124718529086488664
+    - id: 3
+      name: FireballExplosionNorm
+      data:
+        rid: 9124718529086488660
+    - id: 4
+      name: FireballExplosionBig
+      data:
+        rid: 9124718529086488663
+  _lastId: 6
   references:
     version: 2
     RefIds:
@@ -32,7 +44,770 @@ MonoBehaviour:
       type: {class: CameraShakeAction, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:
         weight: 1
+        offsetMultiplier: 1
         duration: 0.7
+        positionOffset: {x: 0, y: 5, z: 10}
+        rotationOffset: {x: 15, y: 20, z: 25}
+        noiseSpeed:
+          x:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+        positionMultiplier:
+          x:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+        rotationMultiplier:
+          x:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+    - rid: 9124718529086488660
+      type: {class: CameraShakeAction, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        weight: 1
+        offsetMultiplier: 0.8
+        duration: 0.5
+        positionOffset: {x: 0, y: 5, z: 10}
+        rotationOffset: {x: 15, y: 20, z: 25}
+        noiseSpeed:
+          x:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+        positionMultiplier:
+          x:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+        rotationMultiplier:
+          x:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+    - rid: 9124718529086488663
+      type: {class: CameraShakeAction, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        weight: 1
+        offsetMultiplier: 1
+        duration: 0.6
+        positionOffset: {x: 0, y: 5, z: 10}
+        rotationOffset: {x: 15, y: 20, z: 25}
+        noiseSpeed:
+          x:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 10
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+        positionMultiplier:
+          x:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 0
+            addRandom: 0
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+        rotationMultiplier:
+          x:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          y:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+          z:
+            multiplier: 5
+            addRandom: 10
+            curve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 1
+                inSlope: 0
+                outSlope: -3.000003
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0
+                outWeight: 0.333333
+              - serializedVersion: 3
+                time: 1
+                value: 0
+                inSlope: 0
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 3
+                inWeight: 0.33333302
+                outWeight: 0
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+    - rid: 9124718529086488664
+      type: {class: CameraShakeAction, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
+      data:
+        weight: 1
+        offsetMultiplier: 0.7
+        duration: 0.5
         positionOffset: {x: 0, y: 5, z: 10}
         rotationOffset: {x: 15, y: 20, z: 25}
         noiseSpeed:

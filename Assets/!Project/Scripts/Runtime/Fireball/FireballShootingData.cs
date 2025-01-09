@@ -16,14 +16,23 @@ namespace _Project.Scripts.Runtime.Fireball {
         [Min(0f)] public float overheatCooldownDuration;
 
         [Header("Shot")]
-        public Actor shotPrefab;
+        public ShotData[] shotPrefabs;
         public Vector3 spawnOffset;
+        public float scaleStart = 0.3f;
+        public float scaleEnd = 1f;
         [Min(0f)] public float forceStart;
         [Min(0f)] public float forceEnd;
         [Range(-90f, 90f)] public float angleStart;
         [Range(-90f, 90f)] public float angleEnd;
+        public AnimationCurve scaleByChargeProgress = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         public AnimationCurve forceByChargeProgress = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         public AnimationCurve angleByChargeProgress = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+
+        [Serializable]
+        public struct ShotData {
+            [Range(0f, 1f)] public float chargeProgress;
+            public Actor shotPrefab;
+        }
     }
     
 }

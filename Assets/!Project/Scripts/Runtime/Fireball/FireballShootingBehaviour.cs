@@ -81,6 +81,16 @@ namespace _Project.Scripts.Runtime.Fireball {
             _enableGameObjects.SetActive(false);
         }
 
+        public void ForceStage(Stage stage, float progress = 0f) {
+            var oldStage = CurrentStage;
+            CurrentStage = StartNextStage(stage, _shootingData.overheatDuration, progress);
+
+            if (oldStage == CurrentStage) return;
+            
+            NotifyEnableVisuals(CurrentStage != Stage.None);
+            OnStageChanged.Invoke(oldStage, CurrentStage);
+        }
+        
         void IUpdate.OnUpdate(float dt) {
             ProcessCurrentStage(dt);
         }
@@ -101,7 +111,6 @@ namespace _Project.Scripts.Runtime.Fireball {
             if (oldStage == CurrentStage) return;
             
             NotifyEnableVisuals(CurrentStage != Stage.None);
-            
             OnStageChanged.Invoke(oldStage, CurrentStage);
         }
 
@@ -148,8 +157,8 @@ namespace _Project.Scripts.Runtime.Fireball {
                 : StartNextStage(Stage.None, _shootingData.noneDuration);
         }
 
-        private Stage StartNextStage(Stage stage, float duration = 0f) {
-            StageProgress = 0f;
+        private Stage StartNextStage(Stage stage, float duration = 0f, float progress = 0f) {
+            StageProgress = Mathf.Clamp01(progress);
             StageDuration = duration;
             
             _stageSpeed = duration > 0f ? 1f / duration : float.MaxValue;
@@ -161,16 +170,26 @@ namespace _Project.Scripts.Runtime.Fireball {
             var orient = _view.Rotation;
             var pos = _view.Position;
 
-            var shotActor = PrefabPool.Main.Get(_shootingData.shotPrefab, pos + orient * _shootingData.spawnOffset, orient);
+            Actor prefab = null;
 
+            for (int i = 0; i < _shootingData.shotPrefabs.Length; i++) {
+                ref var data = ref _shootingData.shotPrefabs[i];
+                if (data.chargeProgress < progress) continue;
+
+                prefab = data.shotPrefab;
+                break;
+            }
+            
+            if (prefab == null) return;
+
+            var shotActor = PrefabPool.Main.Get(prefab, pos + orient * _shootingData.spawnOffset, orient);
             shotActor.ParentActor = _actor;
+            shotActor.Transform.localScale = prefab.transform.localScale * 
+                                             Mathf.Lerp(_shootingData.scaleStart, _shootingData.scaleEnd, _shootingData.scaleByChargeProgress.Evaluate(progress));
             
             if (shotActor.TryGetComponent(out Rigidbody rb)) {
-                float force = _shootingData.forceStart + 
-                              _shootingData.forceByChargeProgress.Evaluate(progress) * (_shootingData.forceEnd - _shootingData.forceStart);
-            
-                float angle = _shootingData.angleStart + 
-                              _shootingData.angleByChargeProgress.Evaluate(progress) * (_shootingData.angleEnd - _shootingData.angleStart);
+                float force = Mathf.Lerp(_shootingData.forceStart, _shootingData.forceEnd, _shootingData.forceByChargeProgress.Evaluate(progress));
+                float angle = Mathf.Lerp(_shootingData.angleStart, _shootingData.angleEnd, _shootingData.angleByChargeProgress.Evaluate(progress));
             
                 rb.linearVelocity = Quaternion.AngleAxis(angle, orient * Vector3.left) * orient * (Vector3.forward * force);
                 rb.rotation = Quaternion.LookRotation(rb.linearVelocity);
