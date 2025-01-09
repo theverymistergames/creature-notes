@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2830088398854830430}
   - component: {fileID: 7274186029898379214}
   - component: {fileID: 8219720410745012220}
-  - component: {fileID: 2250106657659911651}
   - component: {fileID: 1751295625688926864}
   m_Layer: 0
   m_Name: Level0GrabItem
@@ -120,7 +119,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 19933
+    _version: 20881
   _blackboard:
     _propertyList: 8c8c6cac87c72846c741ac5c03614885
     _propertyMap:
@@ -240,6 +239,7 @@ MonoBehaviour:
               _eventDomain: {fileID: 11400000, guid: f318188466a84fe4899d31777fd56ef8,
                 type: 2}
               _eventId: 4
+              _subId: 0
           _count: 1
           _version: 1
           _freeList: -1
@@ -259,60 +259,13 @@ MonoBehaviour:
   enableEvent:
     _eventDomain: {fileID: 11400000, guid: fd4832f77dedf2f49a6e0499d8972334, type: 2}
     _eventId: 3
+    _subId: 0
   disableEvent:
     _eventDomain: {fileID: 0}
-    _eventId: 0
+    _eventId: -1
+    _subId: 0
   disableOnStart: 1
---- !u!114 &2250106657659911651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296612634309363066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cancelOnNextAction: 0
-  _startAction:
-    rid: 335627338441818123
-  _stopAction:
-    rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 335627338441818123
-      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
-      data:
-        mode: 0
-        actions:
-        - rid: 335627338441818125
-        - rid: 335627338441818126
-    - rid: 335627338441818125
-      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
-      data:
-        source: {fileID: 1751295625688926864}
-        mode: 0
-        loop: 0
-        volume: 1
-        pitch: 1
-        pitchRandomAdd: 0.1
-        audioClipVariants:
-        - weight: 1
-          value: {fileID: 8300000, guid: 8b8963f3428114245945ba8fe0984e51, type: 3}
-    - rid: 335627338441818126
-      type: {class: CharacterTakePutItemAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: Assembly-CSharp}
-      data:
-        method: 0
-        duration: 0.3
-        ease: 7
-        disableCollider: 1
-        item: {fileID: 734903157287568159}
+  useInteractive: 0
 --- !u!82 &1751295625688926864
 AudioSource:
   m_ObjectHideFlags: 0
@@ -324,6 +277,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8b8963f3428114245945ba8fe0984e51, type: 3}
+  m_Resource: {fileID: 8300000, guid: 8b8963f3428114245945ba8fe0984e51, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
