@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using LitMotion;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Level2FakeMonster : MonoBehaviour {
@@ -34,7 +35,7 @@ public class Level2FakeMonster : MonoBehaviour {
 
     private void OnDisable() {
         _stopped = true;
-        _handle.Cancel();
+        if (!_handle.IsUnityNull()) _handle.Cancel();
         _animation.ForceProceedUpdate(0);
     }
 }
