@@ -14,13 +14,13 @@ namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class Monster : MonoBehaviour, IActorComponent, IUpdate {
 
-        [SerializeField] private LabelValue _monsterId;
+        [SerializeField] private LabelValue _monsterType;
         [SerializeField] [Range(0f, 1f)] private float _progress;
 
         public delegate void EventCallback(MonsterEventType evt);
         public event EventCallback OnMonsterEvent = delegate { };
         
-        public int Id => _monsterId.GetValue();
+        public int TypeId => _monsterType.GetValue();
         public bool IsDead => _health.IsDead;
         public bool IsArmed => Progress >= 1f;
         public float Progress => _progress;
@@ -155,6 +155,10 @@ namespace _Project.Scripts.Runtime.Enemies {
 #endif      
             
             OnMonsterEvent.Invoke(MonsterEventType.AttackFinish);
+        }
+
+        public override string ToString() {
+            return $"{nameof(Monster)}({_monsterType})";
         }
 
 #if UNITY_EDITOR

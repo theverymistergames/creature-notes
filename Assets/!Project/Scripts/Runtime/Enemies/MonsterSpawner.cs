@@ -11,7 +11,6 @@ using MisterGames.Common.Maths;
 using MisterGames.Scenario.Events;
 using MisterGames.Common.Tick;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Enemies {
     
@@ -24,12 +23,13 @@ namespace _Project.Scripts.Runtime.Enemies {
         [Header("Debug")]
         [SerializeField] private bool _showDebugInfo;
         
-        private readonly Dictionary<int, Monster> _monstersMap = new();
-        private readonly Dictionary<int, float> _monsterKillTimeMap = new();
-        private readonly HashSet<int> _aliveMonsters = new();
-        private readonly HashSet<int> _armedMonsters = new();
+        private readonly Dictionary<Monster, float> _monsterKillTimeMap = new();
+        private readonly Dictionary<int, int> _aliveMonsterTypeMap = new();
+        private readonly HashSet<Monster> _aliveMonsters = new();
+        private readonly HashSet<Monster> _armedMonsters = new();
+        private readonly List<Monster> _monstersBuffer = new();
         private int[] _indicesCache;
-        
+
         private CancellationTokenSource _enableCts;
         private byte _spawnProcessId;
         private float _waveStartTime;
@@ -43,10 +43,6 @@ namespace _Project.Scripts.Runtime.Enemies {
         private float _fleshProgressTarget;
         private float _fleshProgressSmoothed;
 
-        private void Awake() {
-            FetchMonstersMap();
-        }
-
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
             PlayerLoopStage.Update.Subscribe(this);
@@ -57,13 +53,6 @@ namespace _Project.Scripts.Runtime.Enemies {
             AsyncExt.DisposeCts(ref _enableCts);
             PlayerLoopStage.Update.Unsubscribe(this);
             StopSpawning();
-        }
-
-        private void FetchMonstersMap() {
-            for (int i = 0; i < _monsters.Length; i++) {
-                var monster = _monsters[i];
-                _monstersMap.Add(monster.Id, monster);
-            }
         }
 
         void IUpdate.OnUpdate(float dt) {
@@ -167,53 +156,50 @@ namespace _Project.Scripts.Runtime.Enemies {
         private void CheckAliveMonsters(int waveIndex) {
             ref var wave = ref _config.monsterWaves[waveIndex];
             float time = Time.time;
-            
-            for (int i = 0; i < wave.monsterPresets.Length; i++) {
-                ref var preset = ref wave.monsterPresets[i];
 
-                for (int j = 0; j < preset.monsterIds.Length; j++) {
-                    int monsterId = preset.monsterIds[j].GetValue();
-                    
-                    if (!_aliveMonsters.Contains(monsterId) || !_monstersMap.TryGetValue(monsterId, out var monster)) {
-                        continue;
-                    }
-                    
-                    if (monster.IsDead) {
-                        _aliveMonsters.Remove(monsterId);
-                        _armedMonsters.Remove(monsterId);
-                        
-                        _monsterKillTimeMap[monsterId] = time;
-                        
-                        _currentWaveKills++;
-                        _totalKills++;
-                        _config.monsterKilledEvent.Raise();
-                    
-#if UNITY_EDITOR
-                        if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, killed monster [{preset.monsterIds[j]}]. " +
-                                                      $"Kills per wave {_currentWaveKills}/{wave.killsToCompleteWave}, " +
-                                                      $"kills total {_totalKills}, " +
-                                                      $"alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
-#endif
-                    
-                        SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
-                        continue;
-                    }
-
-                    if (monster.IsArmed && _armedMonsters.Add(monsterId)) {
-#if UNITY_EDITOR
-                        if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, armed monster [{preset.monsterIds[j]}]. " +
-                                                      $"Alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}, " +
-                                                      $"armed monsters {_armedMonsters.Count}/{wave.armedMonstersToKillCharacter}.");
-#endif
-                        
-                        SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
-                        continue;
-                    }
+            for (int i = 0; i < _monsters.Length; i++) {
+                var monster = _monsters[i];
+                int monsterType = monster.TypeId;
                 
-                    if (!monster.IsArmed && _armedMonsters.Contains(monsterId)) {
-                        _armedMonsters.Remove(monsterId);
-                        SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
-                    }   
+                if (monster.IsDead) {
+                    _aliveMonsters.Remove(monster);
+                    _armedMonsters.Remove(monster);
+                    
+                    int monsterTypeAliveCount = _aliveMonsterTypeMap.GetValueOrDefault(monsterType) - 1;
+                    if (monsterTypeAliveCount > 0) _aliveMonsterTypeMap[monsterType] = monsterTypeAliveCount;
+                    else _aliveMonsterTypeMap.Remove(monsterType);
+                        
+                    _monsterKillTimeMap[monster] = time;
+                        
+                    _currentWaveKills++;
+                    _totalKills++;
+                    _config.monsterKilledEvent.Raise();
+                    
+#if UNITY_EDITOR
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, killed monster [{monster}]. " +
+                                                  $"Kills per wave {_currentWaveKills}/{wave.killsToCompleteWave}, " +
+                                                  $"kills total {_totalKills}, " +
+                                                  $"alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
+#endif
+                    
+                    SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
+                    continue;
+                }
+
+                if (monster.IsArmed && _armedMonsters.Add(monster)) {
+#if UNITY_EDITOR
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, armed monster [{monster}]. " +
+                                                  $"Alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}, " +
+                                                  $"armed monsters {_armedMonsters.Count}/{wave.armedMonstersToKillCharacter}.");
+#endif
+                        
+                    SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
+                    continue;
+                }
+                
+                if (!monster.IsArmed && _armedMonsters.Contains(monster)) {
+                    _armedMonsters.Remove(monster);
+                    SetTargetFleshProgress(GetTargetFleshProgress(waveIndex));
                 }
             }
         }
@@ -233,13 +219,9 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             for (int i = 0; i < length; i++) {
                 ref var preset = ref wave.monsterPresets[_indicesCache[i]];
+                if (!CanSpawnMonsterFromPreset(ref wave, ref preset, out var newMonster)) continue;
                 
-                if (!CanSpawnMonsterFromPreset(ref wave, ref preset, out int newMonsterId) || 
-                    !_monstersMap.TryGetValue(newMonsterId, out var monster)) 
-                {
-                    continue;
-                }
-                
+                int monsterType = newMonster.TypeId;
                 float t = wave.killsToCompleteWave > 0 ? (float) _currentWaveKills / wave.killsToCompleteWave : 0f;
                 
                 float respawnDelay = Mathf.Lerp(
@@ -264,16 +246,17 @@ namespace _Project.Scripts.Runtime.Enemies {
                     Mathf.Lerp(preset.attackCooldownStart.y, preset.attackCooldownEnd.y, t)
                 );
                 
-                monster.Respawn(armDuration, attackDurationRange, attackCooldownRange);
-                _aliveMonsters.Add(newMonsterId);
+                newMonster.Respawn(armDuration, attackDurationRange, attackCooldownRange);
+                
+                _aliveMonsters.Add(newMonster);
+                _aliveMonsterTypeMap[monsterType] = _aliveMonsterTypeMap.GetValueOrDefault(monsterType) + 1;
                 _nextSpawnTime = time + respawnDelay;
                 
 #if UNITY_EDITOR
                 if (_showDebugInfo) {
-                    preset.monsterIds.TryFind(newMonsterId, (l, id) => l.GetValue() == id, out var labelValue);
-                    Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, respawned monster [{labelValue.GetLabel()}] with arm duration {armDuration} s. " +
-                                              $"Next respawn available in {respawnDelay} s. " +
-                                              $"Alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
+                    Debug.Log($"MonsterSpawner [{name}]: wave {waveIndex}, respawned monster [{newMonster}] with arm duration {armDuration} s. " +
+                              $"Next respawn available in {respawnDelay} s. " +
+                              $"Alive monsters {_aliveMonsters.Count}/{wave.maxAliveMonstersAtMoment}.");
                     
                 }
 #endif
@@ -319,13 +302,15 @@ namespace _Project.Scripts.Runtime.Enemies {
         private void KillAllMonsters(bool notifyDamage = true) {
             _nextSpawnTime = 0f;
             
-            foreach (int monsterId in _aliveMonsters) {
-                if (_monstersMap.TryGetValue(monsterId, out var monster)) monster.Kill(notifyDamage);
+            foreach (var monster in _aliveMonsters) {
+                monster.Kill(notifyDamage);
             }
             
             _armedMonsters.Clear();
             _aliveMonsters.Clear();
+            _aliveMonsterTypeMap.Clear();
             _monsterKillTimeMap.Clear();
+            _monstersBuffer.Clear();
             
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: killed all monsters.");
@@ -337,68 +322,73 @@ namespace _Project.Scripts.Runtime.Enemies {
         private bool CanSpawnMonsterFromPreset(
             ref MonsterSpawnerConfig.MonsterWave wave,
             ref MonsterSpawnerConfig.MonsterPreset preset, 
-            out int id) 
+            out Monster monster) 
         {
-            id = 0;
+            monster = null;
             
             if (Time.time < _waveStartTime + preset.allowSpawnDelayAfterWaveStart ||
-                _currentWaveKills < preset.allowSpawnMinKills || 
-                preset.monsterIds.Length <= 0
+                _currentWaveKills < preset.allowSpawnMinKills
             ) {
                 return false;
             }
             
-            int aliveCount = 0;
-            for (int i = 0; i < preset.monsterIds.Length; i++) {
-                if (_aliveMonsters.Contains(preset.monsterIds[i].GetValue())) aliveCount++;
+            int monsterType = preset.monsterType.GetValue();
+            int aliveCount = _aliveMonsterTypeMap.GetValueOrDefault(monsterType);
+
+            if (aliveCount >= preset.maxMonstersAtMoment ||
+                !CanSpawnMonsterOfType(monsterType, wave.disallowSpawnTogether)) 
+            {
+                return false;
             }
             
-            if (aliveCount >= preset.maxMonstersAtMoment) return false;
+            _monstersBuffer.Clear();
 
-            int length = preset.monsterIds.Length;
-            RecreateAndShuffleArray(ref _indicesCache, length);
+            for (int i = 0; i < _monsters.Length; i++) {
+                var m = _monsters[i];
+                if (m.IsDead) _monstersBuffer.Add(m);
+            }
+
+            _monstersBuffer.Shuffle();
             
-            for (int i = 0; i < length; i++) {
-                id = preset.monsterIds[_indicesCache[i]].GetValue();
-                if (_monstersMap.ContainsKey(id) && CanSpawnMonster(ref wave, ref preset, id)) return true;
+            for (int i = 0; i < _monstersBuffer.Count; i++) {
+                var m = _monstersBuffer[i];
+                
+                if (_monsterKillTimeMap.TryGetValue(m, out float killTime) && 
+                    Time.time < killTime + preset.respawnCooldownAfterKill) 
+                {
+                    continue;
+                }
+                
+                monster = m;
+                return true;
             }
 
             return false;
         }
 
-        private bool CanSpawnMonster(
-            ref MonsterSpawnerConfig.MonsterWave wave,
-            ref MonsterSpawnerConfig.MonsterPreset preset,
-            int monsterId) 
-        {
-            if (_monsterKillTimeMap.TryGetValue(monsterId, out float killTime) && 
-                Time.time < killTime + preset.respawnCooldownAfterKill) 
-            {
-                return false;
-            }
-            
-            for (int i = 0; i < wave.disallowSpawnTogether.Length; i++) {
-                var group = wave.disallowSpawnTogether[i].theseMonsters;
+        private bool CanSpawnMonsterOfType(int monsterType, MonsterSpawnerConfig.SpawnExceptionGroup[] disallowSpawnTogether) {
+            for (int i = 0; i < disallowSpawnTogether.Length; i++) {
+                var group = disallowSpawnTogether[i].theseMonsters;
                 bool hasAliveMembers = false;
                 bool isMember = false;
 
-                for (int j = 0; j < group.Length; j++) {
-                    int memberId = group[j].GetValue();
+                for (int j = 0; j < group.Length; j++) { 
+                    int memberType = group[j].GetValue();
 
-                    hasAliveMembers |= _aliveMonsters.Contains(memberId);
-                    isMember |= monsterId == memberId;
+                    hasAliveMembers |= _aliveMonsterTypeMap.GetValueOrDefault(memberType) > 0;
+                    isMember |= monsterType == memberType;
                 }
                 
                 if (!hasAliveMembers && !isMember) continue;
                 
-                group = wave.disallowSpawnTogether[i].withTheseMonsters;
+                group = disallowSpawnTogether[i].withTheseMonsters;
                 
                 for (int j = 0; j < group.Length; j++) {
-                    int memberId = group[j].GetValue();
+                    int memberType = group[j].GetValue();
 
-                    if (isMember && _aliveMonsters.Contains(memberId) ||
-                        hasAliveMembers && monsterId == memberId
-                    ) {
+                    if (isMember && _aliveMonsterTypeMap.GetValueOrDefault(memberType) > 0 ||
+                        hasAliveMembers && monsterType == memberType) 
+                    {
                         return false;
                     }
                 }
@@ -418,8 +408,8 @@ namespace _Project.Scripts.Runtime.Enemies {
             dest.Shuffle(length);
         }
 
-        private static void DisposeArray<T>(ref T[] indices) {
-            if (indices != null) ArrayPool<T>.Shared.Return(indices);
+        private static void DisposeArray<T>(ref T[] array) {
+            if (array != null) ArrayPool<T>.Shared.Return(array);
         }
     }
     

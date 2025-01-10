@@ -36,7 +36,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         
         [Serializable]
         public struct MonsterPreset {
-            public LabelValue[] monsterIds;
+            public LabelValue monsterType;
             [Min(0)] public int maxMonstersAtMoment;
             [Min(0)] public int allowSpawnMinKills;
             [Min(0f)] public float allowSpawnDelayAfterWaveStart;
