@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3702730587585597661}
   - component: {fileID: 2393461888169995634}
   - component: {fileID: 6729516556076133742}
+  - component: {fileID: 7130645189854405674}
   m_Layer: 13
   m_Name: SpiderWebLine
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2530968929467505313}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6443048, y: 0.22889124, z: -0.22263809, w: 0.69491905}
-  m_LocalPosition: {x: 1.074, y: -0.149, z: -1.467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -52.519, y: -276.128, z: 276.663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &2393461888169995634
 LineRenderer:
   serializedVersion: 2
@@ -80,7 +81,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1.73}
+  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -146,7 +147,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
 --- !u!65 &6729516556076133742
@@ -170,3 +171,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0.5}
+--- !u!114 &7130645189854405674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530968929467505313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cedcbf155d348dd94138bc2ba14afbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lineRenderer: {fileID: 2393461888169995634}
+  _collider: {fileID: 6729516556076133742}
+  _testBurnTimeRange: {x: 0, y: 0}

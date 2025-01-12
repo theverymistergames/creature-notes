@@ -9714,6 +9714,8 @@ GameObject:
   - component: {fileID: -1372905692749563779}
   - component: {fileID: 7710060067791649780}
   - component: {fileID: 3593999117273638839}
+  - component: {fileID: 590529300237276574}
+  - component: {fileID: 3906747325048174042}
   m_Layer: 7
   m_Name: Fireball_projectile_small
   m_TagString: Untagged
@@ -10239,6 +10241,34 @@ MonoBehaviour:
     excludeLayers:
       serializedVersion: 2
       m_Bits: 0
+--- !u!114 &590529300237276574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd0e967f8a1459582119515ec452ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerEmitter: {fileID: 3906747325048174042}
+--- !u!114 &3906747325048174042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f6b83071154b439c8d0f71c036ac42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!1 &5531917473399837426
 GameObject:
   m_ObjectHideFlags: 0
