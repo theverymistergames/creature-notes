@@ -40,6 +40,8 @@ namespace _Project.Scripts.Runtime.Spider {
             
             PlayerLoopStage.FixedUpdate.Unsubscribe(this);
             _colliders.Clear();
+            
+            if (_disableGravity) _rigidbodyData.RemoveUseGravity(this);
         }
 
         private void TriggerEnter(Collider collider) {
@@ -61,7 +63,7 @@ namespace _Project.Scripts.Runtime.Spider {
         }
 
         void IUpdate.OnUpdate(float dt) {
-            _colliders.RemoveWhere(c => c == null || !c.gameObject.activeSelf);
+            _colliders.RemoveWhere(c => c == null || !c.enabled);
             
             float slowFactorTarget = GetTargetSlowFactor(_colliders.Count);
             float smoothing = slowFactorTarget > 0f ? _slowFactorSmoothing : 0f;
