@@ -21,7 +21,6 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeField] [Min(0f)] private float _maxSearchDistance;
         [SerializeField] [Min(0f)] private float _maxNextPointDistance;
         [SerializeField] [Min(0f)] private float _maxWebLineDistance;
-        [SerializeField] [Min(0f)] private float _spawnPointElevation = 0.02f;
         [SerializeField] [Min(1)] private int _maxHits = 6;
         [SerializeField] [Min(0)] private int _maxRetryAttempts = 20;
 
@@ -50,16 +49,16 @@ namespace _Project.Scripts.Runtime.Spider {
             bool spawnedAtLeastOne = false;
             
             for (int i = 0; i < pointsCount; i++) {
-                if (!TryGetClosestPointOnSurface(pos, rot, out var point) &&
-                    !TryGetClosestPointOnSurface(pos, rot * Quaternion.Euler(45f, 45f, 0f), out point)) 
+                if (!TryGetClosestPointOnSurface(pos, rot, out var hit) &&
+                    !TryGetClosestPointOnSurface(pos, rot * Quaternion.Euler(45f, 45f, 0f), out hit)) 
                 {
                     continue;
                 }
             
-                spawnedAtLeastOne |= PlaceWebFromPoint(point, dest);
+                spawnedAtLeastOne |= PlaceWebFromPoint(hit.point, hit.normal, dest);
                 
                 var newPos = position + Random.insideUnitSphere * _maxNextPointDistance;
-                pos = Raycast(pos, (newPos - pos).normalized, _maxNextPointDistance, out var hit)
+                pos = Raycast(pos, (newPos - pos).normalized, _maxNextPointDistance, out hit)
                     ? hit.point
                     : newPos;
             }
@@ -67,7 +66,7 @@ namespace _Project.Scripts.Runtime.Spider {
             return spawnedAtLeastOne;
         }
 
-        private bool PlaceWebFromPoint(Vector3 point, List<LineRenderer> dest) {
+        private bool PlaceWebFromPoint(Vector3 point, Vector3 normal, List<LineRenderer> dest) {
             int raysCount = _raysCount.GetRandomInRange();
             bool spawnedAtLeastOne = false;
             
@@ -77,24 +76,36 @@ namespace _Project.Scripts.Runtime.Spider {
                 var endPoint = Vector3.zero;
                 
                 while (attempts++ < _maxRetryAttempts && !canPlaceRay) {
-                    canPlaceRay = Raycast(point, Random.onUnitSphere, _maxWebLineDistance, out var hit);
+                    canPlaceRay = Raycast(point, GetRandomDir(normal), _maxWebLineDistance, out var hit);
                     endPoint = hit.point;
                 }
                 
                 if (!canPlaceRay) continue;
 
                 var line = CreateLine();
-                line.SetPosition(0, point);
-                line.SetPosition(1, endPoint);
-
-                line.startWidth = 0f;
-                line.endWidth = _rayWidth.GetRandomInRange() * (endPoint - point).magnitude;
+                PlaceLine(line, point, endPoint);
 
                 spawnedAtLeastOne = true;
                 dest.Add(line);
             }
 
             return spawnedAtLeastOne;
+        }
+
+        private void PlaceLine(LineRenderer line, Vector3 start, Vector3 end) {
+            float distance = Vector3.Distance(start, end);
+            float width = _rayWidth.GetRandomInRange() * distance;
+            
+            var t = line.transform;
+            t.SetPositionAndRotation(start, Quaternion.LookRotation(end - start));
+            t.localScale = new Vector3(width, width, distance);
+            
+            line.useWorldSpace = false;
+            line.SetPosition(0, Vector3.zero);
+            line.SetPosition(1, Vector3.forward);
+
+            line.startWidth = 0f;
+            line.endWidth = width;
         }
         
         private LineRenderer CreateLine() {
@@ -105,19 +116,19 @@ namespace _Project.Scripts.Runtime.Spider {
             return PrefabPool.Main.Get(_webLinePrefab, transform);
         }
 
-        private bool TryGetClosestPointOnSurface(Vector3 pos, Quaternion rot, out Vector3 point) {
+        private bool TryGetClosestPointOnSurface(Vector3 pos, Quaternion rot, out RaycastHit hit) {
             float minSqrDistance = float.MaxValue;
-            point = Vector3.zero;
+            hit = default;
             
             for (int i = 0; i < Directions.Length; i++) {
                 var dir = Directions[i];
-                if (!Raycast(pos, rot * dir, _maxSearchDistance, out var hit)) continue;
+                if (!Raycast(pos, rot * dir, _maxSearchDistance, out var h)) continue;
                 
-                float sqrDistance = (hit.point - pos).sqrMagnitude;
+                float sqrDistance = (h.point - pos).sqrMagnitude;
                 if (sqrDistance > minSqrDistance) continue;
                 
                 minSqrDistance = sqrDistance;
-                point = hit.point + hit.normal * _spawnPointElevation;
+                hit = h;
             }
             
             return minSqrDistance < float.MaxValue;
@@ -129,6 +140,11 @@ namespace _Project.Scripts.Runtime.Spider {
 
             return _hits.RemoveInvalidHits(ref hitCount)
                 .TryGetMinimumDistanceHit(hitCount, out hit);
+        }
+
+        private static Vector3 GetRandomDir(Vector3 normal) {
+            var dir = Random.onUnitSphere;
+            return Vector3.Dot(dir, normal) > 0f ? dir : -dir;
         }
 
 #if UNITY_EDITOR
