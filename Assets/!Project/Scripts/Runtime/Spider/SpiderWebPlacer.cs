@@ -117,7 +117,7 @@ namespace _Project.Scripts.Runtime.Spider {
                     ? hit.point
                     : newPos;
             }
-            
+
             PlayerLoopStage.Update.Subscribe(this);
         }
         
@@ -181,7 +181,7 @@ namespace _Project.Scripts.Runtime.Spider {
             line.startWidth = 0f;
             line.endWidth = 0f;
 
-            float startTime = Time.time + Random.Range(0f, _spawnDelayMax);
+            float startTime = TimeSources.time + Random.Range(0f, _spawnDelayMax);
             float endTime = startTime + _spawnDurationRange.GetRandomInRange();
 
             _animationList.Add(new LineAnimationData(line, startTime, endTime, new Vector2(0f, width), new Vector2(0f, distance)));
@@ -193,9 +193,9 @@ namespace _Project.Scripts.Runtime.Spider {
         }
 
         void IUpdate.OnUpdate(float dt) {
-            float time = Time.time;
+            float time = TimeSources.time;
             int finishedCount = 0;
-            
+
             for (int i = 0; i < _animationList.Count; i++) {
                 var data = _animationList[i];
 
