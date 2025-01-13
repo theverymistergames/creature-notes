@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6729516556076133742}
   - component: {fileID: 7130645189854405674}
   m_Layer: 13
-  m_Name: SpiderWebLine
+  m_Name: SpiderWeb_line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,4 +185,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 2393461888169995634}
   _collider: {fileID: 6729516556076133742}
-  _testBurnTimeRange: {x: 0, y: 0}
+  _prevNode: {fileID: 0}
+  _nextNode: {fileID: 0}
+  _burnTimeRange: {x: 0, y: 0}
+  _dissolveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _burnAction:
+    rid: 9124718656077430869
+  references:
+    version: 2
+    RefIds:
+    - rid: 9124718656077430869
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 6158112250595531075, guid: 771a210bdc3b3bd42af3e9cc3aa76b1e,
+          type: 3}
+        mode: 1
+        explicitTransform: {fileID: 3702730587585597661}
+        inherit: -1
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 0
+          _value: {x: 1, y: 1, z: 1}
+        parentToTransform: 0

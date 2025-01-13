@@ -1,5 +1,7 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
+using MisterGames.Actors;
+using MisterGames.Actors.Actions;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
@@ -9,7 +11,7 @@ using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Spider {
 
-    public sealed class SpiderWebLine : MonoBehaviour {
+    public sealed class SpiderWebLine : MonoBehaviour, IActorComponent {
 
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private Collider _collider;
@@ -19,15 +21,20 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeField] private SpiderWebLine _nextNode;
         [SerializeField] private Vector2 _burnTimeRange;
         [SerializeField] private AnimationCurve _dissolveCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        [SerializeReference] [SubclassSelector] private IActorAction _burnAction;
         
         private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
         
         public LineRenderer Line => _lineRenderer;
 
         private CancellationTokenSource _enableCts;
-        
+        private IActor _actor;
         private bool _isBurnt;
-        
+
+        void IActorComponent.OnAwake(IActor actor) {
+            _actor = actor;
+        }
+
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
             
@@ -88,10 +95,12 @@ namespace _Project.Scripts.Runtime.Spider {
             if (_prevNode != null) _prevNode.BurnSelfAndNeighbours();
             if (_nextNode != null) _nextNode.BurnSelfAndNeighbours();
             
-            BurnMaterial(_burnTimeRange.GetRandomInRange(), _enableCts.Token).Forget();
+            BurnAsync(_burnTimeRange.GetRandomInRange(), _enableCts.Token).Forget();
         }
 
-        private async UniTask BurnMaterial(float duration, CancellationToken cancellationToken) {
+        private async UniTask BurnAsync(float duration, CancellationToken cancellationToken) {
+            _burnAction?.Apply(_actor, cancellationToken).Forget();
+            
             float t = 0f;
             float speed = duration > 0f ? 1f / duration : float.MaxValue;
 
