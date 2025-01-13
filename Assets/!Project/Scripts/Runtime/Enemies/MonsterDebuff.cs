@@ -80,6 +80,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
 #if UNITY_EDITOR
+        [Header("Debug")]
         [SerializeField] private MonsterEventType _testMonsterEventType;
         
         [Button] 

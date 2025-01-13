@@ -22,9 +22,9 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeField] [MinMaxSlider(0, 100)] private Vector2Int _spawnPointsCount;
         [SerializeField] [MinMaxSlider(0, 100)] private Vector2Int _raysCount;
         [SerializeField] [MinMaxSlider(0f, 2f)] private Vector2 _rayWidth;
-        [SerializeField] [Min(0f)] private float _spawnDelayMax = 1;
-        [SerializeField] [MinMaxSlider(0f, 10f)] private Vector2 _spawnDurationRange;
         [SerializeField] private AnimationCurve _spawnScaleCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        [SerializeField] private SpawnMode _spawnMode;
+        [SerializeField] private BoxCollider[] _boxBounds;
         
         [Header("Detection")]
         [SerializeField] private LayerMask _layerMask;
@@ -38,6 +38,11 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeField] private BurnMode _burnMode = BurnMode.LinesFromOnePoint;
         [SerializeField] [MinMaxSlider(0f, 10f)] private Vector2 _burnTimeRange;
 
+        private enum SpawnMode {
+            AutoUpdate,
+            ManualUpdate,
+        }
+        
         private enum BurnMode {
             AllLines,
             LinesFromOnePoint,
@@ -48,16 +53,16 @@ namespace _Project.Scripts.Runtime.Spider {
             
             public readonly LineRenderer line;
             public readonly Transform transform;
-            public readonly float startTime;
-            public readonly float endTime;
+            public readonly Vector2 time;
+            public readonly Vector2 progress;
             public readonly Vector2 width;
             public readonly Vector2 distance;
             
-            public LineAnimationData(LineRenderer line, float startTime, float endTime, Vector2 width, Vector2 distance) {
+            public LineAnimationData(LineRenderer line, Vector2 time, Vector2 progress, Vector2 width, Vector2 distance) {
                 this.line = line;
                 transform = line.transform;
-                this.startTime = startTime;
-                this.endTime = endTime;
+                this.time = time;
+                this.progress = progress;
                 this.width = width;
                 this.distance = distance;
             }
@@ -90,13 +95,24 @@ namespace _Project.Scripts.Runtime.Spider {
         public void BurnWeb() {
             for (int i = 0; i < _spiderWebLines.Count; i++) {
                 var line = _spiderWebLines[i];
-                if (line == null) continue;
-                
-                line.Burn();
+                if (line != null) line.Burn();
             }
+            
+            _spiderWebLines.Clear();
+            _animationList.Clear();
+        }
+
+        public Vector3 GetRandomSpawnPosition() {
+            if (_boxBounds.Length == 0) return transform.position;
+            
+            int i = Random.Range(0, _boxBounds.Length);
+            var box = _boxBounds[i];
+            var local = RandomExtensions.GetRandomPointInBox(box.size * 0.5f);
+            
+            return box.bounds.center + box.transform.rotation * local;
         }
         
-        public void PlaceWeb(Vector3 position) {
+        public void PlaceWeb(Vector3 position, Vector2 spawnDurationRange) {
             var pos = position;
             var rot = transform.rotation;
             
@@ -110,18 +126,27 @@ namespace _Project.Scripts.Runtime.Spider {
                     continue;
                 }
             
-                prevLine = PlaceWebFromPoint(hit.point, hit.normal, prevLine);
+                prevLine = PlaceWebFromPoint(hit.point, hit.normal, spawnDurationRange, prevLine);
                 
                 var newPos = position + Random.insideUnitSphere * _maxNextPointDistance;
                 pos = Raycast(pos, (newPos - pos).normalized, _maxNextPointDistance, out hit)
                     ? hit.point
                     : newPos;
             }
-
-            PlayerLoopStage.Update.Subscribe(this);
+            
+            if (_spawnMode == SpawnMode.AutoUpdate) PlayerLoopStage.Update.Subscribe(this);
         }
         
-        private SpiderWebLine PlaceWebFromPoint(Vector3 point, Vector3 normal, SpiderWebLine prevLine) {
+        public void SetSpawnProgressManual(float progress) {
+            if (_spawnMode != SpawnMode.ManualUpdate) return;
+            
+            for (int i = 0; i < _animationList.Count; i++) {
+                var data = _animationList[i];
+                SetSpawnProgress(ref data, progress);
+            }
+        }
+        
+        private SpiderWebLine PlaceWebFromPoint(Vector3 point, Vector3 normal, Vector2 spawnDurationRange, SpiderWebLine prevLine) {
             int raysCount = _raysCount.GetRandomInRange();
             SpiderWebLine line = null;
             
@@ -145,6 +170,7 @@ namespace _Project.Scripts.Runtime.Spider {
                 if (!canPlaceRay) continue;
 
                 line = CreateLine();
+                
                 line.Restore();
                 line.SetBurnTimeRange(_burnTimeRange);
 
@@ -158,7 +184,7 @@ namespace _Project.Scripts.Runtime.Spider {
                 }
                 
                 prevLine = line;
-                PlaceLine(line.Line, point, endPoint);
+                SpawnLine(line.Line, point, endPoint, spawnDurationRange);
                 
                 _spiderWebLines.Add(line);
             }
@@ -166,7 +192,7 @@ namespace _Project.Scripts.Runtime.Spider {
             return line;
         }
 
-        private void PlaceLine(LineRenderer line, Vector3 start, Vector3 end) {
+        private void SpawnLine(LineRenderer line, Vector3 start, Vector3 end, Vector2 spawnDurationRange) {
             float distance = Vector3.Distance(start, end);
             float width = _rayWidth.GetRandomInRange() * distance;
             
@@ -181,14 +207,29 @@ namespace _Project.Scripts.Runtime.Spider {
             line.startWidth = 0f;
             line.endWidth = 0f;
 
-            float startTime = TimeSources.time + Random.Range(0f, _spawnDelayMax);
-            float endTime = startTime + _spawnDurationRange.GetRandomInRange();
+            float startTime = TimeSources.time;
+            float finishTime = startTime + spawnDurationRange.y;
+            
+            float startProgress = spawnDurationRange.y > 0f 
+                ? Random.Range(0f, 1f - spawnDurationRange.x / spawnDurationRange.y)
+                : 0f;
+            float endProgress = spawnDurationRange.y > 0f 
+                ? Random.Range(startProgress + spawnDurationRange.x / spawnDurationRange.y, 1f)
+                : 0f;
 
-            _animationList.Add(new LineAnimationData(line, startTime, endTime, new Vector2(0f, width), new Vector2(0f, distance)));
+            var data = new LineAnimationData(
+                line,
+                new Vector2(startTime, finishTime), 
+                new Vector2(startProgress, endProgress), 
+                new Vector2(0f, width), 
+                new Vector2(0f, distance)
+            );
+            
+            _animationList.Add(data);
 
 #if UNITY_EDITOR
-            EditorUtility.SetDirty(t);
-            EditorUtility.SetDirty(line);
+            if (!Application.isPlaying) EditorUtility.SetDirty(t);
+            if (!Application.isPlaying) EditorUtility.SetDirty(line);
 #endif
         }
 
@@ -206,19 +247,13 @@ namespace _Project.Scripts.Runtime.Spider {
                 }
 #endif
                 
-                float t = data.endTime.IsNearlyEqual(data.startTime) 
+                float progress = data.time.y.IsNearlyEqual(data.time.x) 
                     ? 1f 
-                    : Mathf.Clamp01(time - data.startTime) / (data.endTime - data.startTime);
-                float p = _spawnScaleCurve.Evaluate(t);
+                    : (time - data.time.x) / (data.time.y - data.time.x);
                 
-                data.line.endWidth = Mathf.Lerp(data.width.x, data.width.y, p);
-                data.transform.localScale = Vector3.Lerp(
-                    new Vector3(data.width.x, data.width.x, data.distance.x), 
-                    new Vector3(data.width.y, data.width.y, data.distance.y), 
-                    p
-                );
+                SetSpawnProgress(ref data, progress);
                 
-                if (t >= 1f) finishedCount++;
+                if (progress >= 1f) finishedCount++;
             }
             
             if (finishedCount < _animationList.Count) return;
@@ -227,6 +262,21 @@ namespace _Project.Scripts.Runtime.Spider {
             PlayerLoopStage.Update.Unsubscribe(this);
         }
 
+        private void SetSpawnProgress(ref LineAnimationData data, float progress) {
+            float t = data.progress.x.IsNearlyEqual(data.progress.y)
+                ? 1f
+                : Mathf.Clamp01((progress - data.progress.x) / (data.progress.y - data.progress.x));
+            
+            float p = _spawnScaleCurve.Evaluate(t);
+                
+            data.line.endWidth = Mathf.Lerp(data.width.x, data.width.y, p);
+            data.transform.localScale = Vector3.Lerp(
+                new Vector3(data.width.x, data.width.x, data.distance.x), 
+                new Vector3(data.width.y, data.width.y, data.distance.y), 
+                p
+            );
+        }
+        
         private bool TryGetClosestPointOnSurface(Vector3 pos, Quaternion rot, out RaycastHit hit) {
             float minSqrDistance = float.MaxValue;
             hit = default;
@@ -272,7 +322,15 @@ namespace _Project.Scripts.Runtime.Spider {
 
 #if UNITY_EDITOR
         private const string UndoKey = "SpiderWeb_PlaceWeb";
+
+        [Header("Debug")]
+        [SerializeField] [MinMaxSlider(0f, 10f)] private Vector2 _testSpawnDurationRange = new(1f, 2f);
+        [SerializeField] [Range(0f, 1f)] private float _testManualProgress;
         
+        private void OnValidate() {
+            SetSpawnProgressManual(_testManualProgress);
+        }
+
         [Button]
         private void PlaceWeb() {
             Undo.RecordObject(gameObject, UndoKey);
@@ -281,7 +339,7 @@ namespace _Project.Scripts.Runtime.Spider {
             
             _hits ??= new RaycastHit[_maxHits];
             
-            PlaceWeb(transform.position);
+            PlaceWeb(transform.position, _testSpawnDurationRange);
             
             EditorUtility.SetDirty(gameObject);
         }
@@ -290,9 +348,10 @@ namespace _Project.Scripts.Runtime.Spider {
         private void RemoveWeb() {
             Undo.RecordObject(gameObject, UndoKey);
 
-            var lines = GetComponentsInChildren<SpiderWebLine>();
             _spiderWebLines.Clear();
+            _animationList.Clear();
             
+            var lines = GetComponentsInChildren<SpiderWebLine>();
             for (int i = 0; i < lines.Length; i++) {
                 if (lines[i] is {} line) Undo.DestroyObjectImmediate(line.gameObject);
             }

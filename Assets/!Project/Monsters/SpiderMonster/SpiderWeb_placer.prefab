@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpiderWeb_placer
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -49,8 +49,6 @@ MonoBehaviour:
   _spawnPointsCount: {x: 3, y: 7}
   _raysCount: {x: 10, y: 20}
   _rayWidth: {x: 0.1, y: 0.4}
-  _spawnDelayMax: 0.5
-  _spawnDurationRange: {x: 0.2, y: 1}
   _spawnScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -75,6 +73,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _spawnMode: 0
+  _boxBounds: []
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -85,3 +85,5 @@ MonoBehaviour:
   _maxRetryAttempts: 20
   _burnMode: 1
   _burnTimeRange: {x: 1, y: 2}
+  _testSpawnDurationRange: {x: 1, y: 2}
+  _testManualProgress: 0

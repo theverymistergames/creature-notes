@@ -214,10 +214,8 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
         private Vector3 GetRandomPointInBounds() {
-            var bounds = _boxCollider.bounds;
-            var rot = _transform.rotation;
             var local = RandomExtensions.GetRandomPointInBox(_boxCollider.size * 0.5f).WithY(0f);
-            return bounds.center + rot * local;
+            return _boxCollider.bounds.center + _transform.rotation * local;
         }
         
         private Vector3 ApplyBounds(Vector3 point, Vector2 excludeCenter) {

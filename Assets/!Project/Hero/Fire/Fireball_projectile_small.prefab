@@ -9710,12 +9710,14 @@ GameObject:
   - component: {fileID: 1987504562849350213}
   - component: {fileID: 4335760545786688146}
   - component: {fileID: 8701382063509834311}
+  - component: {fileID: 1578583962404484620}
   - component: {fileID: 1007778587790521582}
   - component: {fileID: -1372905692749563779}
   - component: {fileID: 7710060067791649780}
   - component: {fileID: 3593999117273638839}
-  - component: {fileID: 590529300237276574}
   - component: {fileID: 3906747325048174042}
+  - component: {fileID: 2437170232788380720}
+  - component: {fileID: 590529300237276574}
   m_Layer: 7
   m_Name: Fireball_projectile_small
   m_TagString: Untagged
@@ -10160,6 +10162,28 @@ MonoBehaviour:
   _damageDealer: 1
   _damage: 1
   _disableAfterFirstDamage: 1
+--- !u!114 &1578583962404484620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8ff317dd144c98b7064dcfb0d1bf31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventSource: 1
+  _collisionEmitter: {fileID: 4335760545786688146}
+  _triggerEmitter: {fileID: 3906747325048174042}
+  _eventType: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8256
+  _damageDealer: 1
+  _damage: 1
+  _disableAfterFirstDamage: 1
 --- !u!114 &1007778587790521582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10242,19 +10266,6 @@ MonoBehaviour:
     excludeLayers:
       serializedVersion: 2
       m_Bits: 0
---- !u!114 &590529300237276574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939634505636510374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd0e967f8a1459582119515ec452ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _triggerEmitter: {fileID: 3906747325048174042}
 --- !u!114 &3906747325048174042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10269,7 +10280,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
+    m_Bits: 8256
+--- !u!114 &2437170232788380720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c360b921c0405bb69d614410fd1070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerEmitter: {fileID: 3906747325048174042}
+  _layerMask:
+    serializedVersion: 2
     m_Bits: 8192
+--- !u!114 &590529300237276574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd0e967f8a1459582119515ec452ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerEmitter: {fileID: 2437170232788380720}
 --- !u!1 &5531917473399837426
 GameObject:
   m_ObjectHideFlags: 0
