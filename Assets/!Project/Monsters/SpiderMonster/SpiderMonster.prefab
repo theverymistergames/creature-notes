@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1763743065523991633}
   - component: {fileID: 7085844526884696811}
   - component: {fileID: 5674118931749773217}
+  - component: {fileID: 2027209148522990612}
   m_Layer: 6
   m_Name: SpiderMonster
   m_TagString: Enemy
@@ -35,7 +36,8 @@ Transform:
   m_LocalPosition: {x: 9.158, y: 0.549, z: 6.803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7995568551152074189}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!54 &772033847867699764
@@ -155,36 +157,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _progressActions:
-  - progressSmoothing: 5
+  - progressSmoothing: 0
     progressCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 5.5710864
-        outSlope: 5.5710864
+        inSlope: 0
+        outSlope: 1.5735515
         tangentMode: 0
         weightedMode: 3
         inWeight: 0
-        outWeight: 0.104496345
-      - serializedVersion: 3
-        time: 0.99103826
-        value: 1.0610389
-        inSlope: 0.37714458
-        outSlope: 0.37714458
-        tangentMode: 0
-        weightedMode: 3
-        inWeight: 0.33710134
-        outWeight: 0.33102295
+        outWeight: 0.330931
       - serializedVersion: 3
         time: 1
         value: 1
         inSlope: -0.0009282457
-        outSlope: -0.0009282457
+        outSlope: 0
         tangentMode: 0
         weightedMode: 3
-        inWeight: 0.33570486
+        inWeight: 0.358689
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -192,7 +185,7 @@ MonoBehaviour:
     progressModulator:
       rid: -2
     progressAction:
-      rid: 9124718656077430874
+      rid: 929716580877860949
     events: []
   _eventActions:
   - eventType: 0
@@ -218,6 +211,23 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 929716580877860949
+      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        actions:
+        - rid: 929716580877860950
+        - rid: 929716580877860951
+    - rid: 929716580877860950
+      type: {class: SpiderWebPlacerProgressTweenAction, ns: _Project.Scripts.Runtime.Spider,
+        asm: Assembly-CSharp}
+      data:
+        spiderWebPlacer: {fileID: 5674118931749773217}
+    - rid: 929716580877860951
+      type: {class: TweenProgressActionScaleTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 7995568551152074189}
+        startLocalScale: {x: 0, y: 0, z: 0}
+        endLocalScale: {x: 0.23, y: 0.23, z: 0.23}
     - rid: 9124718454358933594
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -254,15 +264,11 @@ MonoBehaviour:
       type: {class: PlaceSpiderWebAction, ns: _Project.Scripts.Runtime.Spider, asm: Assembly-CSharp}
       data:
         spiderWebPlacer: {fileID: 5674118931749773217}
+        spawnDurationRange: {x: 1, y: 2}
         position: 0
         point: {fileID: 0}
     - rid: 9124718656077430873
       type: {class: BurnSpiderWebAction, ns: _Project.Scripts.Runtime.Spider, asm: Assembly-CSharp}
-      data:
-        spiderWebPlacer: {fileID: 5674118931749773217}
-    - rid: 9124718656077430874
-      type: {class: SpiderWebPlacerProgressTweenAction, ns: _Project.Scripts.Runtime.Spider,
-        asm: Assembly-CSharp}
       data:
         spiderWebPlacer: {fileID: 5674118931749773217}
 --- !u!114 &5674118931749773217
@@ -279,9 +285,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _webLinePrefab: {fileID: 7130645189854405674, guid: eaac73c71db0fb94386a8437e4e2857a,
     type: 3}
-  _spawnPointsCount: {x: 3, y: 7}
-  _raysCount: {x: 20, y: 40}
-  _rayWidth: {x: 0, y: 0.4}
+  _spawnPointsCount: {x: 5, y: 9}
+  _raysCount: {x: 30, y: 50}
+  _rayWidth: {x: 0, y: 1}
   _spawnScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -306,17 +312,112 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _spawnMode: 1
+  _spawnAnimationMode: 1
+  _firstSpawnPointMode: 0
+  _nextSpawnPointsMode: 2
   _boxBounds: []
   _layerMask:
     serializedVersion: 2
     m_Bits: 1025
   _maxSearchDistance: 5
-  _maxNextPointDistance: 0.5
+  _maxNextPointDistance: 0.2
   _maxWebLineDistance: 1
   _maxHits: 6
   _maxRetryAttempts: 20
   _burnMode: 1
-  _burnTimeRange: {x: 1, y: 2}
+  _burnTimeRange: {x: 2, y: 3}
   _testSpawnDurationRange: {x: 1, y: 2}
   _testManualProgress: 0
+--- !u!114 &2027209148522990612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153366761900700767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e228e2f1524bd2b994445d16f3a739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spiderWebPlacer: {fileID: 5674118931749773217}
+  _target: {fileID: 7995568551152074189}
+--- !u!1001 &7995568551151930899
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2464450036391797813}
+    m_Modifications:
+    - target: {fileID: 144700, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_Name
+      value: Spider 1 DEMO
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+--- !u!4 &7995568551152074189 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70,
+    type: 3}
+  m_PrefabInstance: {fileID: 7995568551151930899}
+  m_PrefabAsset: {fileID: 0}

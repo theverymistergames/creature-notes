@@ -12,7 +12,7 @@ namespace _Project.Scripts.Runtime.Spider {
     public sealed class PlaceSpiderWebAction : IActorAction {
 
         public SpiderWebPlacer spiderWebPlacer;
-        [MinMaxSlider(0f, 10f)] private Vector2 spawnDurationRange = new(1f, 2f);
+        [MinMaxSlider(0f, 10f)] public Vector2 spawnDurationRange = new(1f, 2f);
         public PositionMode position;
         [VisibleIf(nameof(position), 2)]
         public Transform point;

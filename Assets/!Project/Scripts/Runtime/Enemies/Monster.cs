@@ -60,6 +60,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         public void Respawn(float armDuration, Vector2 attackDurationRange, Vector2 attackCooldownRange) {
+            if (_health.IsAlive) return;
+            
             _health.RestoreFullHealth();
             _progressSpeed = armDuration > 0f ? 1f / armDuration : float.MaxValue;
             _attackDurationRange = attackDurationRange;
@@ -78,6 +80,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         public void Kill(bool notifyDamage = true) {
+            if (_health.IsDead) return;
+            
             _health.Kill(notifyDamage: notifyDamage);
             
 #if UNITY_EDITOR
