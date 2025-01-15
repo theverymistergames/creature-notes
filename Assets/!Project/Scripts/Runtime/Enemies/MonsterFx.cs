@@ -25,6 +25,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             [Min(0f)] public float progressSmoothing;
             public AnimationCurve progressCurve;
             [SerializeReference] [SubclassSelector] public IProgressModulator progressModulator;
+            public TweenDirection notifyProgressDirection;
             [SerializeReference] [SubclassSelector] public ITweenProgressAction progressAction;
             public TweenEvent[] events;
         }
@@ -82,8 +83,11 @@ namespace _Project.Scripts.Runtime.Enemies {
                 
                 float oldP = p;
                 p = p.SmoothExpNonZero(targetProgress, action.progressSmoothing * dt);
+
+                if (action.notifyProgressDirection.NeedNotifyProgress(oldP, p)) {
+                    action.progressAction?.OnProgressUpdate(p);
+                }
                 
-                action.progressAction?.OnProgressUpdate(p);
                 action.events.NotifyTweenEvents(_actor, p, oldP, _enableCts.Token);
             }
         }
