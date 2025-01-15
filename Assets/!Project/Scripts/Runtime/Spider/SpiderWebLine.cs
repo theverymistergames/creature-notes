@@ -15,6 +15,7 @@ namespace _Project.Scripts.Runtime.Spider {
 
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private Collider _collider;
+        [SerializeField] private float _randomUvOffset = 10f;
         
         [Header("Burn")]
         [SerializeField] private SpiderWebLine _prevNode;
@@ -24,6 +25,7 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeReference] [SubclassSelector] private IActorAction _burnAction;
         
         private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
+        private static readonly int Offset = Shader.PropertyToID("_Offset");
         
         public LineRenderer Line => _lineRenderer;
 
@@ -77,7 +79,10 @@ namespace _Project.Scripts.Runtime.Spider {
             _isBurnt = false;
             _collider.enabled = true;
             
+            var offset = new Vector2(Random.Range(-_randomUvOffset, _randomUvOffset), Random.Range(-_randomUvOffset, _randomUvOffset));
+            
             _lineRenderer.material.SetFloat(Dissolve, 0f);
+            _lineRenderer.material.SetVector(Offset, offset);
         }
 
         public void Burn() {
