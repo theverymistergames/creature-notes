@@ -9740,6 +9740,7 @@ Transform:
   m_Children:
   - {fileID: 7370610865605643556}
   - {fileID: 78186779515540403}
+  - {fileID: 3571162223641592012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &-1619856747426278736
@@ -10034,6 +10035,7 @@ MonoBehaviour:
   - {fileID: 4412857026217403834}
   - {fileID: 5103855454638281842}
   - {fileID: 4451592760088402986}
+  - {fileID: 7090171221868856844}
   _replaceGameObjectsWithPrefabs: []
 --- !u!114 &1987504562849350213
 MonoBehaviour:
@@ -10083,6 +10085,7 @@ MonoBehaviour:
         pitch: 1
         pitchRandomAdd: 0.1
         spatialBlend: 1
+        startTime: {x: 0, y: 0}
         loop: 0
         audioClipVariants:
         - {fileID: 8300000, guid: 7052762773cca5e4ca5643125580a004, type: 3}
@@ -10117,6 +10120,7 @@ MonoBehaviour:
         - {fileID: 4412857026217403834}
         - {fileID: 5103855454638281842}
         - {fileID: 4451592760088402986}
+        - {fileID: 7090171221868856844}
     - rid: 9124718529086488667
       type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
       data:
@@ -15154,6 +15158,71 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &7090171221868856844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3571162223641592012}
+  - component: {fileID: 399579068569401991}
+  m_Layer: 7
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3571162223641592012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7090171221868856844}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3957165838251526101}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &399579068569401991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7090171221868856844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c60cb64e64c4bc197ab9ee39a855b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useCharacterAsActor: 0
+  _cancelOnNextAction: 1
+  _cancelOnDisable: 1
+  _launchMode: 3
+  _action:
+    rid: 929716762397638741
+  references:
+    version: 2
+    RefIds:
+    - rid: 929716762397638741
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        volume: 1
+        pitch: 1
+        pitchRandomAdd: 0
+        spatialBlend: 1
+        startTime: {x: 0, y: 1}
+        loop: 1
+        audioClipVariants:
+        - {fileID: 8300000, guid: 88e1c450880b8c6478a7dbb87178a03a, type: 3}
 --- !u!1001 &3291606852075556075
 PrefabInstance:
   m_ObjectHideFlags: 0
