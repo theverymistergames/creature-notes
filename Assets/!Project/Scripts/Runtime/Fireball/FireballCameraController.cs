@@ -22,6 +22,10 @@ namespace _Project.Scripts.Runtime.Fireball {
         [SerializeField] [Range(0f, 1f)] private float _startFireProgressMax;
         [SerializeField] private CameraSetting _fireSetting;
         
+        [Header("Fire Fail")]
+        [SerializeField] [Min(0f)] private float _fireFailDuration;
+        [SerializeField] private CameraSetting _fireFailSetting;
+        
         [Header("Stages")]
         [SerializeField] [Min(0f)] private float _defaultSmoothing = 5f;
         [SerializeField] private StageSetting[] _stages;
@@ -110,6 +114,7 @@ namespace _Project.Scripts.Runtime.Fireball {
 
             _fireballBehaviour.OnStageChanged += OnStageChanged;
             _fireballBehaviour.OnFire += OnFire;
+            _fireballBehaviour.OnCannotCharge += OnCannotCharge;
             
             PlayerLoopStage.LateUpdate.Subscribe(this);
         }
@@ -120,6 +125,7 @@ namespace _Project.Scripts.Runtime.Fireball {
 
             _fireballBehaviour.OnStageChanged -= OnStageChanged;
             _fireballBehaviour.OnFire -= OnFire;
+            _fireballBehaviour.OnCannotCharge -= OnCannotCharge;
             
             PlayerLoopStage.LateUpdate.Unsubscribe(this);
         }
@@ -163,6 +169,15 @@ namespace _Project.Scripts.Runtime.Fireball {
             float duration = _fireDurationMin + progress * (_fireDurationMax - _fireDurationMin);
             _overrideProgress = Mathf.Min(_startFireProgressMax, 1f - progress);
             _overrideSpeed = duration > 0f ? 1f / duration : float.MaxValue;
+        }
+        
+        private void OnCannotCharge(FireballShootingBehaviour.Stage stage) {
+            if (stage != FireballShootingBehaviour.Stage.Cooldown) return;
+            
+            _overrideSetting = _fireFailSetting;
+            
+            _overrideProgress = 0f;
+            _overrideSpeed = _fireFailDuration > 0f ? 1f / _fireFailDuration : float.MaxValue;
         }
 
         private void OnStageChanged(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
