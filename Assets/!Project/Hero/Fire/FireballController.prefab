@@ -1,5 +1,350 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1163337489323240744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438519562544322435}
+  - component: {fileID: 4077158003984071501}
+  m_Layer: 0
+  m_Name: SoundsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438519562544322435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163337489323240744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6997253119769459857}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4077158003984071501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163337489323240744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368f5961f523430baf5e283b47af73c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localPosition: {x: 0, y: 0, z: 0}
+  _fireFailSound:
+    volume: 0
+    pitch: {x: 0, y: 0}
+    spatialBlend: 0
+    clipVariants: []
+  _stageSounds:
+  - stage: 1
+    loopSounds:
+    - progressRange: {x: 0, y: 1}
+      startTime: {x: 0, y: 0}
+      startVolume: 0.6
+      endVolume: 0.8
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 2.000003
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.333333
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333302
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 1, y: 1}
+      spatialBlend: 0
+      fadeIn: 0.05
+      fadeOut: 0.2
+      clipVariants:
+      - {fileID: 8300000, guid: cd803a69b89d43649a951096664bcd27, type: 3}
+      - {fileID: 8300000, guid: 7eb6cf0b4d6232041b466d69646196df, type: 3}
+      - {fileID: 8300000, guid: bc91e1f808ad2ba4ab837994f379f875, type: 3}
+    oneShotSounds: []
+  - stage: 2
+    loopSounds:
+    - progressRange: {x: 0, y: 1}
+      startTime: {x: 0, y: 1}
+      startVolume: 0
+      endVolume: 1
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.333333
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2.0000029
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333302
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 0.9, y: 1.1}
+      spatialBlend: 0
+      fadeIn: 0.3
+      fadeOut: 0.3
+      clipVariants:
+      - {fileID: 8300000, guid: 4e54feb3c97451b40bdd5a222c069fce, type: 3}
+    - progressRange: {x: 0.2, y: 1}
+      startTime: {x: 0, y: 1}
+      startVolume: 0
+      endVolume: 1
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0.013942395
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.434789
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 3.9858193
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.269099
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 0.9, y: 1.1}
+      spatialBlend: 0
+      fadeIn: 0.2
+      fadeOut: 0.4
+      clipVariants:
+      - {fileID: 8300000, guid: 0d3687bef9a637c4daf5d6b901605669, type: 3}
+    - progressRange: {x: 0, y: 1}
+      startTime: {x: 0, y: 1}
+      startVolume: 0.37
+      endVolume: 0.8
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 1, y: 1}
+      spatialBlend: 0
+      fadeIn: 0.2
+      fadeOut: 0.4
+      clipVariants:
+      - {fileID: 8300000, guid: e7542d9db33c94449b3b336547a6cbfb, type: 3}
+    oneShotSounds: []
+  - stage: 3
+    loopSounds:
+    - progressRange: {x: 0, y: 1}
+      startTime: {x: 0, y: 1}
+      startVolume: 1
+      endVolume: 0.3
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 3.000003
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.333333
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333302
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 0.9, y: 1.1}
+      spatialBlend: 0
+      fadeIn: 0.05
+      fadeOut: 0.5
+      clipVariants:
+      - {fileID: 8300000, guid: 0d3687bef9a637c4daf5d6b901605669, type: 3}
+    - progressRange: {x: 0.5, y: 1}
+      startTime: {x: 0, y: 1}
+      startVolume: 0.7
+      endVolume: 0.2
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.333333
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2.0000029
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333302
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 0.9, y: 1.1}
+      spatialBlend: 0
+      fadeIn: 0.2
+      fadeOut: 0.5
+      clipVariants:
+      - {fileID: 8300000, guid: 4e54feb3c97451b40bdd5a222c069fce, type: 3}
+    - progressRange: {x: 0, y: 1}
+      startTime: {x: 0, y: 1}
+      startVolume: 0.8
+      endVolume: 0.6
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 1, y: 1}
+      spatialBlend: 0
+      fadeIn: 0.2
+      fadeOut: 0.4
+      clipVariants:
+      - {fileID: 8300000, guid: e7542d9db33c94449b3b336547a6cbfb, type: 3}
+    oneShotSounds:
+    - volume: 1
+      pitch: {x: 0.8, y: 1.2}
+      spatialBlend: 0
+      clipVariants:
+      - {fileID: 8300000, guid: 724f80e1d09c4374398fc8b9ec412837, type: 3}
+      - {fileID: 8300000, guid: 02f559bcf428cf14cad6881d95beb437, type: 3}
+      - {fileID: 8300000, guid: f0dedb80a562b3b42828c52bab28b883, type: 3}
+      - {fileID: 8300000, guid: 8471a3bb2fa4d3e4598963a1518dc8d4, type: 3}
+  - stage: 4
+    loopSounds:
+    - progressRange: {x: 0, y: 1}
+      startTime: {x: 0, y: 1}
+      startVolume: 0.6
+      endVolume: 0
+      volumeCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      pitch: {x: 1, y: 1}
+      spatialBlend: 0
+      fadeIn: 0.05
+      fadeOut: 0.4
+      clipVariants:
+      - {fileID: 8300000, guid: e7542d9db33c94449b3b336547a6cbfb, type: 3}
+    oneShotSounds: []
 --- !u!1 &1892012199252629670
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,6 +377,7 @@ Transform:
   m_Children:
   - {fileID: 3728593274598756479}
   - {fileID: 6869066848733461454}
+  - {fileID: 438519562544322435}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6178778513988475128
@@ -2263,7 +2609,7 @@ MonoBehaviour:
       smoothingStart: 8
       smoothingEnd: 5
       distortionBlendStart: 0.3
-      distortionBlendEnd: 0.2
+      distortionBlendEnd: 0
       colorBlendStart: 0.5
       colorBlendEnd: 0
       colorDistortionBlendStart: 0.3

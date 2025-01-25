@@ -15207,22 +15207,43 @@ MonoBehaviour:
   _cancelOnDisable: 1
   _launchMode: 3
   _action:
-    rid: 929716762397638741
+    rid: 929716808716124245
   references:
     version: 2
     RefIds:
-    - rid: 929716762397638741
+    - rid: 929716808716124245
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 929716808716124247
+        - rid: 929716808716124246
+    - rid: 929716808716124246
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
         volume: 1
         pitch: 1
-        pitchRandomAdd: 0
+        pitchRandomAdd: 0.1
         spatialBlend: 1
         startTime: {x: 0, y: 1}
         loop: 1
         audioClipVariants:
         - {fileID: 8300000, guid: 88e1c450880b8c6478a7dbb87178a03a, type: 3}
+    - rid: 929716808716124247
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        volume: 1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        startTime: {x: 0, y: 0}
+        loop: 0
+        audioClipVariants:
+        - {fileID: 8300000, guid: 80f3af8eeb677534eb59ec9b37d8b962, type: 3}
+        - {fileID: 8300000, guid: fc827e79a30b43a4ab96d23d9fc8ceda, type: 3}
+        - {fileID: 8300000, guid: 2c1b449ea8103ad4f938ecf3b8c39161, type: 3}
 --- !u!1001 &3291606852075556075
 PrefabInstance:
   m_ObjectHideFlags: 0

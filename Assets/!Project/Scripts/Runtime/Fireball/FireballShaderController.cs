@@ -74,6 +74,8 @@ namespace _Project.Scripts.Runtime.Fireball {
             [Range(0f, 1f)] public float colorBorderEnd;
         }
         
+        public Vector2 CenterOffset { get; private set; }
+        
         private FireballShootingBehaviour _fireballBehaviour;
         private CameraContainer _cameraContainer;
 
@@ -90,7 +92,6 @@ namespace _Project.Scripts.Runtime.Fireball {
         private int _speedPointer;
         private int _deltaPointer;
         private Vector3 _lastPoint;
-        private Vector2 _centerOffsetSmoothed;
 
         private MaterialSetting _defaultSetting;
         private MaterialSetting _stageSetting;
@@ -156,7 +157,7 @@ namespace _Project.Scripts.Runtime.Fireball {
 
         private void ResetCenterOffset() {
             _lastPoint = _cameraContainer.CameraTransform.rotation * Vector3.forward;
-            _centerOffsetSmoothed = Vector2.zero;
+            CenterOffset = Vector2.zero;
         }
 
         private void ResetBlends() {
@@ -243,9 +244,9 @@ namespace _Project.Scripts.Runtime.Fireball {
 
             var deltaAvg = _deltaBuffer.WriteToCircularBufferAndGetAverage(delta, ref _deltaPointer);
             var centerOffset = deltaAvg.normalized * Mathf.Min(_speedCurve.Evaluate(relativeSpeed) * _speedMul, _maxOffset);
-            _centerOffsetSmoothed = _centerOffsetSmoothed.SmoothExp(centerOffset, dt * _offsetSmoothing);
+            CenterOffset = CenterOffset.SmoothExp(centerOffset, dt * _offsetSmoothing);
             
-            _runtimeMaterial.SetVector(_centerOffsetId, _centerOffsetSmoothed);
+            _runtimeMaterial.SetVector(_centerOffsetId, CenterOffset);
         }
 
         private void ProcessCurrentSetting(float dt) {
