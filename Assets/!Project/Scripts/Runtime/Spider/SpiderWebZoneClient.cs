@@ -67,7 +67,7 @@ namespace _Project.Scripts.Runtime.Spider {
             
             float slowFactorTarget = GetTargetSlowFactor(_colliders.Count);
             float smoothing = slowFactorTarget > 0f ? _slowFactorSmoothing : 0f;
-            _slowFactorSmoothed = _slowFactorSmoothed.SmoothExpNonZero(slowFactorTarget, dt * smoothing);
+            _slowFactorSmoothed = _slowFactorSmoothed.SmoothExpNonZero(slowFactorTarget, smoothing, dt);
             
             var force = dt > 0f ? _rigidbodyData.Rigidbody.linearVelocity / dt : Vector3.zero;
             _rigidbodyData.Rigidbody.AddForce(-force * _slowFactorSmoothed, ForceMode.Acceleration);

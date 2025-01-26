@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &438519562544322435
 Transform:
   m_ObjectHideFlags: 0
@@ -44,14 +44,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368f5961f523430baf5e283b47af73c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _localPosition: {x: 0, y: 0, z: 0}
+  _stereoPanMul: 2
+  _centerOffsetMax: 1
+  _centerOffsetVolumeMul: 1
+  _volumeSmoothing: 10
+  _movingFireSpatialBlend: 1
+  _movingFireSound: {fileID: 8300000, guid: 65e04376f00c542439c09311b15f6996, type: 3}
+  _movingFireStageSounds:
+  - stage: 1
+    startVolume: 0
+    endVolume: 0.2
+  - stage: 2
+    startVolume: 0.4
+    endVolume: 1
+  - stage: 3
+    startVolume: 1
+    endVolume: 0.3
+  - stage: 4
+    startVolume: 0.3
+    endVolume: 0
+  _stageSpatialBlend: 0
   _fireFailSound:
-    volume: 0
-    pitch: {x: 0, y: 0}
-    spatialBlend: 0
-    clipVariants: []
+    volume: 1
+    pitch: {x: 0.9, y: 1.1}
+    clipVariants:
+    - {fileID: 8300000, guid: 50b495816ae89684aa12220aef9fad6b, type: 3}
+    - {fileID: 8300000, guid: 357394215bcb8954099e273825384773, type: 3}
+    - {fileID: 8300000, guid: bd83fcaba20c0784486d5d6bcfb1f3fa, type: 3}
+    - {fileID: 8300000, guid: e67de926862de674a838a4dafa6e9b09, type: 3}
   _stageSounds:
   - stage: 1
+    oneShotSounds: []
     loopSounds:
     - progressRange: {x: 0, y: 1}
       startTime: {x: 0, y: 0}
@@ -82,15 +105,14 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 1, y: 1}
-      spatialBlend: 0
       fadeIn: 0.05
       fadeOut: 0.2
       clipVariants:
       - {fileID: 8300000, guid: cd803a69b89d43649a951096664bcd27, type: 3}
       - {fileID: 8300000, guid: 7eb6cf0b4d6232041b466d69646196df, type: 3}
       - {fileID: 8300000, guid: bc91e1f808ad2ba4ab837994f379f875, type: 3}
-    oneShotSounds: []
   - stage: 2
+    oneShotSounds: []
     loopSounds:
     - progressRange: {x: 0, y: 1}
       startTime: {x: 0, y: 1}
@@ -121,7 +143,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 0.9, y: 1.1}
-      spatialBlend: 0
       fadeIn: 0.3
       fadeOut: 0.3
       clipVariants:
@@ -155,7 +176,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 0.9, y: 1.1}
-      spatialBlend: 0
       fadeIn: 0.2
       fadeOut: 0.4
       clipVariants:
@@ -189,18 +209,24 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 1, y: 1}
-      spatialBlend: 0
       fadeIn: 0.2
       fadeOut: 0.4
       clipVariants:
       - {fileID: 8300000, guid: e7542d9db33c94449b3b336547a6cbfb, type: 3}
-    oneShotSounds: []
   - stage: 3
+    oneShotSounds:
+    - volume: 1
+      pitch: {x: 0.8, y: 1.2}
+      clipVariants:
+      - {fileID: 8300000, guid: 724f80e1d09c4374398fc8b9ec412837, type: 3}
+      - {fileID: 8300000, guid: 02f559bcf428cf14cad6881d95beb437, type: 3}
+      - {fileID: 8300000, guid: f0dedb80a562b3b42828c52bab28b883, type: 3}
+      - {fileID: 8300000, guid: 8471a3bb2fa4d3e4598963a1518dc8d4, type: 3}
     loopSounds:
     - progressRange: {x: 0, y: 1}
       startTime: {x: 0, y: 1}
       startVolume: 1
-      endVolume: 0.3
+      endVolume: 0.1
       volumeCurve:
         serializedVersion: 2
         m_Curve:
@@ -226,7 +252,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 0.9, y: 1.1}
-      spatialBlend: 0
       fadeIn: 0.05
       fadeOut: 0.5
       clipVariants:
@@ -260,7 +285,6 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 0.9, y: 1.1}
-      spatialBlend: 0
       fadeIn: 0.2
       fadeOut: 0.5
       clipVariants:
@@ -294,21 +318,12 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 1, y: 1}
-      spatialBlend: 0
       fadeIn: 0.2
       fadeOut: 0.4
       clipVariants:
       - {fileID: 8300000, guid: e7542d9db33c94449b3b336547a6cbfb, type: 3}
-    oneShotSounds:
-    - volume: 1
-      pitch: {x: 0.8, y: 1.2}
-      spatialBlend: 0
-      clipVariants:
-      - {fileID: 8300000, guid: 724f80e1d09c4374398fc8b9ec412837, type: 3}
-      - {fileID: 8300000, guid: 02f559bcf428cf14cad6881d95beb437, type: 3}
-      - {fileID: 8300000, guid: f0dedb80a562b3b42828c52bab28b883, type: 3}
-      - {fileID: 8300000, guid: 8471a3bb2fa4d3e4598963a1518dc8d4, type: 3}
   - stage: 4
+    oneShotSounds: []
     loopSounds:
     - progressRange: {x: 0, y: 1}
       startTime: {x: 0, y: 1}
@@ -339,12 +354,10 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       pitch: {x: 1, y: 1}
-      spatialBlend: 0
       fadeIn: 0.05
       fadeOut: 0.4
       clipVariants:
       - {fileID: 8300000, guid: e7542d9db33c94449b3b336547a6cbfb, type: 3}
-    oneShotSounds: []
 --- !u!1 &1892012199252629670
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +410,7 @@ MonoBehaviour:
   _enableGameObjects:
   - {fileID: 843930100840174705}
   - {fileID: 7617258140524486458}
+  - {fileID: 1163337489323240744}
   _disableDelay: 4
 --- !u!1 &7617258140524486458
 GameObject:

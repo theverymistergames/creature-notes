@@ -8,25 +8,38 @@ using MisterGames.Common.Audio;
 using MisterGames.Common.Maths;
 using MisterGames.Common.Tick;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Fireball {
     
     public sealed class FireballSoundsController : MonoBehaviour, IActorComponent, IUpdate {
 
-        [Header("Settings")]
-        [SerializeField] private Vector3 _localPosition;
-        
-        [Header("Fire Fail")]
-        [SerializeField] private OneShotSound _fireFailSound;
-        
+        [Header("Moving Fire")]
+        [SerializeField] private float _stereoPanMul = 1f;
+        [SerializeField] [Min(0f)] private float _centerOffsetMax = 0f;
+        [SerializeField] [Min(0f)] private float _centerOffsetVolumeMul = 1f;
+        [SerializeField] [Min(0f)] private float _volumeSmoothing = 10f;
+        [SerializeField] [Range(0f, 1f)] private float _movingFireSpatialBlend = 1f;
+        [SerializeField] private AudioClip _movingFireSound;
+        [SerializeField] private MovingFireStageSound[] _movingFireStageSounds;
+
         [Header("Stages")]
+        [SerializeField] [Range(0f, 1f)] private float _stageSpatialBlend = 0f;
+        [SerializeField] private OneShotSound _fireFailSound;
         [SerializeField] private StageSound[] _stageSounds;
+
+        [Serializable]
+        private struct MovingFireStageSound {
+            public FireballShootingBehaviour.Stage stage;
+            [Range(0f, 1f)] public float startVolume;
+            [Range(0f, 1f)] public float endVolume;
+        }
         
         [Serializable]
         private struct StageSound {
             public FireballShootingBehaviour.Stage stage;
-            public LoopSound[] loopSounds;
             public OneShotSound[] oneShotSounds;
+            public LoopSound[] loopSounds;
         }
 
         [Serializable]
@@ -37,7 +50,6 @@ namespace _Project.Scripts.Runtime.Fireball {
             [Range(0f, 1f)] public float endVolume;
             public AnimationCurve volumeCurve;
             [MinMaxSlider(0f, 2f)] public Vector2 pitch;
-            [Range(0f, 1f)] public float spatialBlend;
             [Min(0f)] public float fadeIn;
             [Min(0f)] public float fadeOut;
             public AudioClip[] clipVariants;
@@ -47,7 +59,6 @@ namespace _Project.Scripts.Runtime.Fireball {
         private struct OneShotSound {
             public float volume;
             [MinMaxSlider(0f, 2f)] public Vector2 pitch;
-            [Range(0f, 1f)] public float spatialBlend;
             public AudioClip[] clipVariants;
         }
 
@@ -87,17 +98,24 @@ namespace _Project.Scripts.Runtime.Fireball {
 
         private readonly List<LoopSoundData> _currentStageLoopSounds = new();
         private readonly List<FadeOutData> _fadeOutList = new();
+        private AudioHandle _movingFireAudioHandle;
+        private MovingFireStageSound _currentMovingFireStageSound;
+        private StageSound _currentStageSound;
         
         private CancellationTokenSource _enableCts;
         private FireballShootingBehaviour _fireballShootingBehaviour;
         private FireballShaderController _fireballShaderController;
+        private FireballShootingData _fireballShootingData;
         private Transform _transform;
-        private StageSound _currentStageSound;
         
         void IActorComponent.OnAwake(IActor actor) {
             _transform = actor.Transform;
             _fireballShootingBehaviour = actor.GetComponent<FireballShootingBehaviour>();
             _fireballShaderController = actor.GetComponent<FireballShaderController>();
+        }
+
+        void IActorComponent.OnSetData(IActor actor) {
+            _fireballShootingData = actor.GetData<FireballShootingData>();
         }
 
         private void OnEnable() {
@@ -106,6 +124,8 @@ namespace _Project.Scripts.Runtime.Fireball {
             
             _fireballShootingBehaviour.OnStageChanged += OnStageChanged;
             _fireballShootingBehaviour.OnCannotCharge += OnCannotCharge;
+            
+            StartMovingFireSound();
         }
 
         private void OnDisable() {
@@ -116,9 +136,26 @@ namespace _Project.Scripts.Runtime.Fireball {
             _fireballShootingBehaviour.OnCannotCharge -= OnCannotCharge;
         }
 
+        private void StartMovingFireSound() {
+            _movingFireAudioHandle = AudioPool.Main.Play(
+                _movingFireSound,
+                _transform,
+                localPosition: default,
+                fadeIn: 0f,
+                volume: 0f,
+                pitch: 1f,
+                _movingFireSpatialBlend,
+                normalizedTime: Random.value,
+                loop: true,
+                cancellationToken: _enableCts.Token
+            );
+        }
+
         private void OnStageChanged(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
-            MoveLastStageLoopSoundsToFadeOutList();
+            SelectCurrentMovingFireStageSound(current);
             SelectCurrentStageSound(current);
+            
+            MoveLastStageLoopSoundsToFadeOutList();
             PlayCurrentStageLoopSounds();
             PlayCurrentStageOneShotSounds();
         }
@@ -129,6 +166,18 @@ namespace _Project.Scripts.Runtime.Fireball {
             PlayOneShotSound(ref _fireFailSound);
         }
 
+        private void SelectCurrentMovingFireStageSound(FireballShootingBehaviour.Stage stage) {
+            for (int i = 0; i < _movingFireStageSounds.Length; i++) {
+                ref var stageSound = ref _movingFireStageSounds[i];
+                if (stageSound.stage != stage) continue;
+
+                _currentMovingFireStageSound = stageSound;
+                return;
+            }
+
+            _currentMovingFireStageSound = default;
+        }
+        
         private void SelectCurrentStageSound(FireballShootingBehaviour.Stage stage) {
             for (int i = 0; i < _stageSounds.Length; i++) {
                 ref var stageSound = ref _stageSounds[i];
@@ -154,10 +203,11 @@ namespace _Project.Scripts.Runtime.Fireball {
             AudioPool.Main.Play(
                 clip,
                 _transform,
-                _localPosition,
+                localPosition: default,
+                fadeIn: 0f,
                 sound.volume,
                 sound.pitch.GetRandomInRange(),
-                sound.spatialBlend,
+                _stageSpatialBlend,
                 cancellationToken: _enableCts.Token
             );
         }
@@ -182,10 +232,11 @@ namespace _Project.Scripts.Runtime.Fireball {
                 var audioHandle = AudioPool.Main.Play(
                     clip,
                     _transform,
-                    _localPosition,
+                    localPosition: default,
+                    fadeIn: 0f,
                     volume: 0f,
                     sound.pitch.GetRandomInRange(),
-                    sound.spatialBlend,
+                    _stageSpatialBlend,
                     sound.startTime.GetRandomInRange(),
                     loop: true,
                     _enableCts.Token
@@ -203,10 +254,25 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
         
         void IUpdate.OnUpdate(float dt) {
+            ProcessMovingFireSound(dt);
             ProcessCurrentStageLoopSounds();
             ProcessFadeOutLoopSounds();
         }
 
+        private void ProcessMovingFireSound(float dt) {
+            float stageVolume = Mathf.Lerp(_currentMovingFireStageSound.startVolume, _currentMovingFireStageSound.endVolume, _fireballShootingBehaviour.StageProgress);
+            
+            var centerOffset = _fireballShaderController.CenterOffset;
+            float centerOffsetProgress = _centerOffsetMax > 0f ? centerOffset.magnitude / _centerOffsetMax : 0f;
+            float centerOffsetProgressX = Mathf.Clamp(_centerOffsetMax > 0f ? centerOffset.x / _centerOffsetMax : 0f, -1f, 1f);
+            
+            float centerOffsetVolumeMul = Mathf.Lerp(0f, _centerOffsetVolumeMul, centerOffsetProgress);
+            float targetVolume = stageVolume * centerOffsetVolumeMul;
+            
+            _movingFireAudioHandle.Volume = _movingFireAudioHandle.Volume.SmoothExpNonZero(targetVolume, _volumeSmoothing, dt);
+            _movingFireAudioHandle.StereoPan = centerOffsetProgressX * _stereoPanMul;
+        }
+        
         private void ProcessCurrentStageLoopSounds() {
             float stageProgress = _fireballShootingBehaviour.StageProgress;
             float stageDuration = _fireballShootingBehaviour.StageDuration;

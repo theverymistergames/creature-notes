@@ -82,7 +82,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 targetProgress = action.progressModulator?.Modulate(targetProgress) ?? targetProgress;
                 
                 float oldP = p;
-                p = p.SmoothExpNonZero(targetProgress, action.progressSmoothing * dt);
+                p = p.SmoothExpNonZero(targetProgress, action.progressSmoothing, dt);
 
                 if (action.notifyProgressDirection.NeedNotifyProgress(oldP, p)) {
                     action.progressAction?.OnProgressUpdate(p);
