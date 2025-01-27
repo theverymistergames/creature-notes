@@ -46,8 +46,9 @@ namespace _Project.Scripts.Runtime.HUD {
             
             image.sprite = sprite;
             image.color = _startColor;
-            image.rectTransform.localScale = _debuffImagePrefab.transform.localScale;
-            image.transform.rotation = _debuffImagePrefab.transform.rotation;
+            image.rectTransform.offsetMin = Vector2.zero;
+            image.rectTransform.offsetMax = Vector2.zero;
+            image.rectTransform.localScale = Vector3.one;
             
             float t = 0f;
             float speed = duration > 0f ? 1f / duration : float.MaxValue;
