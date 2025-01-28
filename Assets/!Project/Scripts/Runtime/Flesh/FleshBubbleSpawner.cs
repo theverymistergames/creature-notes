@@ -214,7 +214,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
         private Vector3 GetRandomPointInBounds() {
-            var local = RandomExtensions.GetRandomPointInBox(_boxCollider.size * 0.5f).WithY(0f);
+            var local = RandomExtensions.GetRandomPointInBox(_boxCollider.size.Multiply(_transform.localScale) * 0.5f).WithY(0f);
             return _boxCollider.bounds.center + _transform.rotation * local;
         }
         

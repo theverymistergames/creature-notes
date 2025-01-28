@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MisterGames.Collisions.Utils;
 using MisterGames.Common.Attributes;
+using MisterGames.Common.Lists;
 using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
 using MisterGames.Common.Tick;
@@ -14,7 +15,7 @@ using UnityEditor;
 
 namespace _Project.Scripts.Runtime.Spider {
     
-    public sealed class SpiderWebPlacer : MonoBehaviour, IUpdate {
+    public sealed class SpiderWebPlacer : MonoBehaviour, IUpdate, ISpiderWebPlacer {
 
         [SerializeField] private SpiderWebLine _webLinePrefab;
         
@@ -37,9 +38,17 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeField] [Min(0)] private int _maxRetryAttempts = 20;
 
         [Header("Burn")]
-        [SerializeField] private BurnMode _burnMode = BurnMode.LinesFromOnePoint;
+        [SerializeField] private LinkMode _burnMode = LinkMode.LinesFromOnePoint;
         [SerializeField] [MinMaxSlider(0f, 10f)] private Vector2 _burnTimeRange;
 
+        [Header("Material")]
+        [SerializeField] private Material _sharedMaterial;
+        [SerializeField] private float _randomUvOffset = 10f;
+        
+        [Header("Lines")]
+        [BeginReadOnlyGroup]
+        [SerializeField] private List<SpiderWebLine> _spiderWebLines;
+        
         private enum SpawnPointMode {
             FreePoint,
             SearchPointOnSurface,
@@ -51,8 +60,9 @@ namespace _Project.Scripts.Runtime.Spider {
             ManualUpdate,
         }
         
-        private enum BurnMode {
+        private enum LinkMode {
             AllLines,
+            LinesFromOneWeb,
             LinesFromOnePoint,
             SingleLine,
         }
@@ -76,6 +86,9 @@ namespace _Project.Scripts.Runtime.Spider {
             }
         }
         
+        private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
+        private static readonly int Offset = Shader.PropertyToID("_Offset");
+        
         private static readonly Vector3[] Directions = {
             Vector3.up,
             Vector3.down,
@@ -84,19 +97,27 @@ namespace _Project.Scripts.Runtime.Spider {
             Vector3.forward,
             Vector3.back,
         };
-
+        
         public event Action OnWebUpdated = delegate { };
         public IReadOnlyList<Vector3> WebCenters => _webCenters;
         public IReadOnlyList<Vector3> WebNormals => _webNormals;
         
         private readonly List<LineAnimationData> _animationList = new();
-        private readonly List<SpiderWebLine> _spiderWebLines = new();
         private readonly List<Vector3> _webCenters = new();
         private readonly List<Vector3> _webNormals = new();
         private RaycastHit[] _hits;
+        private Material _globalMaterial;
         
         private void Awake() {
             _hits = new RaycastHit[_maxHits];
+            _globalMaterial = CreateMaterial();
+        }
+
+        private void OnEnable() {
+            for (int i = 0; i < _spiderWebLines.Count; i++) {
+                var line = _spiderWebLines[i];
+                if (line != null) line.Restore(this);
+            }
         }
 
         private void OnDisable() {
@@ -105,15 +126,18 @@ namespace _Project.Scripts.Runtime.Spider {
 
         private void OnDestroy() {
             _animationList.Clear();
-            _spiderWebLines.Clear();
             _webCenters.Clear();
             _webNormals.Clear();
+        }
+
+        void ISpiderWebPlacer.NotifyBurn() {
+            _spiderWebLines.RemoveIf(x => x == null || x.State == SpiderWebLine.LineState.Burnt);
         }
 
         public void BurnWeb() {
             for (int i = 0; i < _spiderWebLines.Count; i++) {
                 var line = _spiderWebLines[i];
-                if (line != null) line.Burn();
+                if (line != null) line.Burn(notifyBurn: false);
             }
             
             _spiderWebLines.Clear();
@@ -127,8 +151,9 @@ namespace _Project.Scripts.Runtime.Spider {
             
             int i = Random.Range(0, _boxBounds.Length);
             var box = _boxBounds[i];
-            var local = RandomExtensions.GetRandomPointInBox(box.size * 0.5f);
-            
+            var t = box.transform;
+            var local = RandomExtensions.GetRandomPointInBox(box.size.Multiply(t.localScale) * 0.5f);
+
             return box.bounds.center + box.transform.rotation * local;
         }
         
@@ -136,20 +161,28 @@ namespace _Project.Scripts.Runtime.Spider {
             var pos = position;
             
             int pointsCount = _spawnPointsCount.GetRandomInRange();
-            SpiderWebLine prevLine = null;
+            var line = _burnMode switch {
+                LinkMode.AllLines => _spiderWebLines.Count > 0 ? _spiderWebLines[^1] : null,
+                LinkMode.LinesFromOneWeb => null,
+                LinkMode.LinesFromOnePoint => null,
+                LinkMode.SingleLine => null,
+                _ => throw new ArgumentOutOfRangeException()
+            };
             
             var avgPoint = Vector3.zero;
             var avgNormal = Vector3.zero;
             int spawnedPointCount = 0;
             
+            int startLineIndex = _spiderWebLines.Count;
+            int lineCount = 0;
+
             for (int i = 0; i < pointsCount; i++) {
                 if (!TryFindSpawnPoint(i, pos, out var point, out var normal)) continue;
 
                 spawnedPointCount++;
                 avgPoint += point;
                 avgNormal += normal;
-                
-                prevLine = PlaceWebFromPoint(point, normal, spawnDurationRange, prevLine);
+                lineCount += PlaceWebFromPoint(point, normal, spawnDurationRange, ref line);
                 
                 var newPos = position + Random.insideUnitSphere * _maxNextPointDistance;
                 pos = Raycast(pos, (newPos - pos).normalized, _maxNextPointDistance, out var hit)
@@ -159,6 +192,10 @@ namespace _Project.Scripts.Runtime.Spider {
 
             if (spawnedPointCount <= 0) return;
 
+            for (int i = startLineIndex; i < startLineIndex + lineCount && i < _spiderWebLines.Count; i++) {
+                _spiderWebLines[i].Restore(this);
+            }
+            
             _webCenters.Add(avgPoint / spawnedPointCount);
             _webNormals.Add(avgNormal / spawnedPointCount);
 
@@ -176,48 +213,15 @@ namespace _Project.Scripts.Runtime.Spider {
             }
         }
 
-        private bool TryFindSpawnPoint(int index, Vector3 position, out Vector3 point, out Vector3 normal) {
-            var rot = transform.rotation;
-            var mode = index <= 0 ? _firstSpawnPointMode : _nextSpawnPointsMode;
-
-            if (mode == SpawnPointMode.Random) {
-                mode = Random.value > 0.5f 
-                    ? SpawnPointMode.FreePoint 
-                    : SpawnPointMode.SearchPointOnSurface;
-            }
-            
-            switch (mode) {
-                case SpawnPointMode.FreePoint:
-                    point = position;
-                    normal = Vector3.zero;
-                    return true;
-            
-                case SpawnPointMode.SearchPointOnSurface:
-                    if (TryGetClosestPointOnSurface(position, rot, out var hit) ||
-                        TryGetClosestPointOnSurface(position, rot * Quaternion.Euler(45f, 45f, 0f), out hit)) 
-                    {
-                        point = hit.point;
-                        normal = hit.normal;
-                        return true;
-                    }
-
-                    point = position;
-                    normal = Vector3.zero;
-                    return false;
-                
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-        
-        private SpiderWebLine PlaceWebFromPoint(Vector3 point, Vector3 normal, Vector2 spawnDurationRange, SpiderWebLine prevLine) {
+        private int PlaceWebFromPoint(Vector3 point, Vector3 normal, Vector2 spawnDurationRange, ref SpiderWebLine prevLine) {
             int raysCount = _raysCount.GetRandomInRange();
-            SpiderWebLine line = null;
+            int lineCount = 0;
             
             prevLine = _burnMode switch {
-                BurnMode.AllLines => prevLine,
-                BurnMode.LinesFromOnePoint => null,
-                BurnMode.SingleLine => null,
+                LinkMode.AllLines => prevLine,
+                LinkMode.LinesFromOneWeb => prevLine,
+                LinkMode.LinesFromOnePoint => null,
+                LinkMode.SingleLine => null,
                 _ => throw new ArgumentOutOfRangeException()
             };
             
@@ -227,18 +231,20 @@ namespace _Project.Scripts.Runtime.Spider {
                 var endPoint = Vector3.zero;
                 
                 while (attempts++ < _maxRetryAttempts && !canPlaceRay) {
-                    canPlaceRay = Raycast(point, GetRandomDir(normal), _maxWebLineDistance, out var hit);
+                    canPlaceRay = Raycast(point, GetRandomDir(normal), _maxWebLineDistance, out var hit) && point != hit.point;
                     endPoint = hit.point;
                 }
                 
                 if (!canPlaceRay) continue;
 
-                line = CreateLine();
+                var line = CreateLine();
                 
-                line.Restore();
+                _spiderWebLines.Add(line);
+                lineCount++;
+                
                 line.SetBurnTimeRange(_burnTimeRange);
 
-                if (_burnMode != BurnMode.SingleLine && prevLine is not null) {
+                if (_burnMode != LinkMode.SingleLine && prevLine is not null) {
                     prevLine.SetNextNode(line);
                     line.SetPreviousNode(prevLine);
                 }
@@ -249,11 +255,13 @@ namespace _Project.Scripts.Runtime.Spider {
                 
                 prevLine = line;
                 SpawnLine(line.Line, point, endPoint, spawnDurationRange);
-                
-                _spiderWebLines.Add(line);
+
+#if UNITY_EDITOR
+                if (!Application.isPlaying) EditorUtility.SetDirty(this);
+#endif
             }
 
-            return line;
+            return lineCount;
         }
 
         private void SpawnLine(LineRenderer line, Vector3 start, Vector3 end, Vector2 spawnDurationRange) {
@@ -295,6 +303,40 @@ namespace _Project.Scripts.Runtime.Spider {
             if (!Application.isPlaying) EditorUtility.SetDirty(t);
             if (!Application.isPlaying) EditorUtility.SetDirty(line);
 #endif
+        }
+
+        private bool TryFindSpawnPoint(int index, Vector3 position, out Vector3 point, out Vector3 normal) {
+            var rot = transform.rotation;
+            var mode = index <= 0 ? _firstSpawnPointMode : _nextSpawnPointsMode;
+
+            if (mode == SpawnPointMode.Random) {
+                mode = Random.value > 0.5f 
+                    ? SpawnPointMode.FreePoint 
+                    : SpawnPointMode.SearchPointOnSurface;
+            }
+            
+            switch (mode) {
+                case SpawnPointMode.FreePoint:
+                    point = position;
+                    normal = Vector3.zero;
+                    return true;
+            
+                case SpawnPointMode.SearchPointOnSurface:
+                    if (TryGetClosestPointOnSurface(position, rot, out var hit) ||
+                        TryGetClosestPointOnSurface(position, rot * Quaternion.Euler(45f, 45f, 0f), out hit)) 
+                    {
+                        point = hit.point;
+                        normal = hit.normal;
+                        return true;
+                    }
+
+                    point = position;
+                    normal = Vector3.zero;
+                    return false;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         void IUpdate.OnUpdate(float dt) {
@@ -371,12 +413,28 @@ namespace _Project.Scripts.Runtime.Spider {
             return PrefabPool.Main.Get(_webLinePrefab, transform);
         }
 
+        Material ISpiderWebPlacer.GetMaterial() {
+            return _burnMode switch {
+                LinkMode.AllLines => _globalMaterial,
+                _ => CreateMaterial(),
+            };
+        }
+
+        private Material CreateMaterial() {
+            var material = new Material(_sharedMaterial);
+            var offset = new Vector2(Random.Range(-_randomUvOffset, _randomUvOffset), Random.Range(-_randomUvOffset, _randomUvOffset));
+
+            material.SetFloat(Dissolve, 0f);
+            material.SetVector(Offset, offset);
+
+            return material;
+        }
+
         private bool Raycast(Vector3 origin, Vector3 dir, float distance, out RaycastHit hit) {
             int hitCount = Physics.RaycastNonAlloc(origin, dir, _hits, distance, _layerMask, QueryTriggerInteraction.Ignore);
             hit = default;
 
-            return _hits.RemoveInvalidHits(ref hitCount)
-                .TryGetMinimumDistanceHit(hitCount, out hit);
+            return _hits.RemoveInvalidHits(ref hitCount).TryGetMinimumDistanceHit(hitCount, out hit);
         }
 
         private static Vector3 GetRandomDir(Vector3 normal) {
@@ -396,10 +454,8 @@ namespace _Project.Scripts.Runtime.Spider {
         }
 
         [Button]
-        private void PlaceWeb() {
+        private void PlaceNewWeb() {
             Undo.RecordObject(gameObject, UndoKey);
-            
-            RemoveWeb();
             
             _hits ??= new RaycastHit[_maxHits];
             
@@ -407,29 +463,31 @@ namespace _Project.Scripts.Runtime.Spider {
             
             EditorUtility.SetDirty(gameObject);
         }
-        
+
+        [Button]
+        private void ReplaceWeb() {
+            RemoveWeb();
+            PlaceNewWeb();
+        }
+
         [Button]
         private void RemoveWeb() {
             Undo.RecordObject(gameObject, UndoKey);
 
+            for (int i = 0; i < _spiderWebLines.Count; i++) {
+                if (_spiderWebLines[i] is {} line) Undo.DestroyObjectImmediate(line.gameObject);
+            }
+            
             _spiderWebLines.Clear();
             _animationList.Clear();
             _webCenters.Clear();
             _webNormals.Clear();
-            
-            var lines = GetComponentsInChildren<SpiderWebLine>();
-            for (int i = 0; i < lines.Length; i++) {
-                if (lines[i] is {} line) Undo.DestroyObjectImmediate(line.gameObject);
-            }
             
             EditorUtility.SetDirty(gameObject);
         }
 
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void BurnAllWeb() {
-            var lines = GetComponentsInChildren<SpiderWebLine>();
-            _spiderWebLines.AddRange(lines);
-            
             BurnWeb();
         }
 #endif

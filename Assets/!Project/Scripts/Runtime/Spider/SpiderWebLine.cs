@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
-using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
@@ -12,10 +11,9 @@ using UnityEngine;
 namespace _Project.Scripts.Runtime.Spider {
 
     public sealed class SpiderWebLine : MonoBehaviour, IActorComponent {
-
+        
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] private Collider _collider;
-        [SerializeField] private float _randomUvOffset = 10f;
         
         [Header("Burn")]
         [SerializeField] private SpiderWebLine _prevNode;
@@ -23,28 +21,23 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeField] private Vector2 _burnTimeRange;
         [SerializeField] private AnimationCurve _dissolveCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
         [SerializeReference] [SubclassSelector] private IActorAction _burnAction;
+
+        public enum LineState {
+            None,
+            Restored,
+            Burnt,
+        }
         
         private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
-        private static readonly int Offset = Shader.PropertyToID("_Offset");
         
         public LineRenderer Line => _lineRenderer;
+        public LineState State { get; private set; }
 
-        private CancellationTokenSource _enableCts;
+        private ISpiderWebPlacer _spiderWebPlacer;
         private IActor _actor;
-        private bool _isBurnt;
 
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
-        }
-
-        private void OnEnable() {
-            AsyncExt.RecreateCts(ref _enableCts);
-            
-            Restore();
-        }
-
-        private void OnDisable() { 
-            AsyncExt.DisposeCts(ref _enableCts);
         }
 
         public void SetPreviousNode(SpiderWebLine node) {
@@ -70,56 +63,88 @@ namespace _Project.Scripts.Runtime.Spider {
             if (!Application.isPlaying) EditorUtility.SetDirty(this);
 #endif
         }
-
-        public void Restore() {
+        
+        public void Restore(ISpiderWebPlacer spiderWebPlacer) {
 #if UNITY_EDITOR
             if (!Application.isPlaying) return;
 #endif
             
-            _isBurnt = false;
-            _collider.enabled = true;
-            
-            var offset = new Vector2(Random.Range(-_randomUvOffset, _randomUvOffset), Random.Range(-_randomUvOffset, _randomUvOffset));
-            
-            _lineRenderer.material.SetFloat(Dissolve, 0f);
-            _lineRenderer.material.SetVector(Offset, offset);
+            if (State == LineState.Restored) return;
+
+            RestoreSelfAndNeighbours(spiderWebPlacer, spiderWebPlacer.GetMaterial());
         }
 
-        public void Burn() {
-            if (_isBurnt) return;
-
+        public void Burn(bool notifyBurn = true) {
+#if UNITY_EDITOR
+            if (!Application.isPlaying) return;
+#endif
+            
+            if (State == LineState.Burnt) return;
+            
+            var spiderWebPlacer = _spiderWebPlacer;
+            
+            BurnAsync(_burnTimeRange.GetRandomInRange(), destroyCancellationToken).Forget();
             BurnSelfAndNeighbours();
+            
+            if (notifyBurn) spiderWebPlacer?.NotifyBurn();
+        }
+
+        private void RestoreSelfAndNeighbours(ISpiderWebPlacer spiderWebPlacer, Material material) {
+            if (State == LineState.Restored) return;
+
+            State = LineState.Restored;
+            _collider.enabled = true;
+            _lineRenderer.sharedMaterial = material;
+            _spiderWebPlacer = spiderWebPlacer;
+            
+            if (_prevNode != null) _prevNode.RestoreSelfAndNeighbours(spiderWebPlacer, material);
+            if (_nextNode != null) _nextNode.RestoreSelfAndNeighbours(spiderWebPlacer, material);
         }
 
         private void BurnSelfAndNeighbours() {
-            if (_isBurnt) return;
-            _isBurnt = true;
+            if (State == LineState.Burnt) return;
             
+            State = LineState.Burnt;
             _collider.enabled = false;
+            _spiderWebPlacer = null;
             
             if (_prevNode != null) _prevNode.BurnSelfAndNeighbours();
             if (_nextNode != null) _nextNode.BurnSelfAndNeighbours();
-            
-            BurnAsync(_burnTimeRange.GetRandomInRange(), _enableCts.Token).Forget();
         }
 
+        private void ReleaseSelfAndNeighbours() {
+            if (State == LineState.None) return;
+            
+            State = LineState.None;
+            _collider.enabled = false;
+            
+            PrefabPool.Main.Release(gameObject);
+            
+            if (_prevNode != null) _prevNode.ReleaseSelfAndNeighbours();
+            if (_nextNode != null) _nextNode.ReleaseSelfAndNeighbours();
+        }
+        
         private async UniTask BurnAsync(float duration, CancellationToken cancellationToken) {
             _burnAction?.Apply(_actor, cancellationToken).Forget();
             
             float t = 0f;
             float speed = duration > 0f ? 1f / duration : float.MaxValue;
-
+            var material = _lineRenderer.sharedMaterial;
+            
             while (!cancellationToken.IsCancellationRequested && t < 1f) {
                 t = Mathf.Clamp01(t + Time.deltaTime * speed);
-                
-                _lineRenderer.material.SetFloat(Dissolve, _dissolveCurve.Evaluate(t));
+                material.SetFloat(Dissolve, _dissolveCurve.Evaluate(t));
                 
                 await UniTask.Yield();
             }
             
             if (cancellationToken.IsCancellationRequested) return;
             
-            PrefabPool.Main.Release(gameObject);
+            ReleaseSelfAndNeighbours();
+        }
+
+        public override string ToString() {
+            return $"{nameof(SpiderWebLine)}({State})";
         }
 
 #if UNITY_EDITOR
