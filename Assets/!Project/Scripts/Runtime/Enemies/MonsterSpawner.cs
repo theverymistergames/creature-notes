@@ -215,7 +215,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
 
             int length = wave.monsterPresets.Length;
-            RecreateAndShuffleArray(ref _indicesCache, length);
+            RecreateAndShuffleIndices(ref _indicesCache, length);
             
             for (int i = 0; i < length; i++) {
                 ref var preset = ref wave.monsterPresets[_indicesCache[i]];
@@ -397,14 +397,18 @@ namespace _Project.Scripts.Runtime.Enemies {
             return true;
         }
 
-        private static void RecreateAndShuffleArray<T>(ref T[] dest, int length) {
-            dest ??= ArrayPool<T>.Shared.Rent(length);
+        private static void RecreateAndShuffleIndices(ref int[] dest, int length) {
+            dest ??= ArrayPool<int>.Shared.Rent(length);
             
             if (dest.Length < length) {
-                ArrayPool<T>.Shared.Return(dest);
-                dest = ArrayPool<T>.Shared.Rent(length);
+                ArrayPool<int>.Shared.Return(dest);
+                dest = ArrayPool<int>.Shared.Rent(length);
             }
-            
+
+            for (int i = 0; i < length; i++) {
+                dest[i] = i;
+            }
+
             dest.Shuffle(length);
         }
 
