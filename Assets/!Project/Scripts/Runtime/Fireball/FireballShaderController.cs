@@ -62,6 +62,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             public AnimationCurve blendCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
             [Min(0f)] public float smoothingStart;
             [Min(0f)] public float smoothingEnd;
+            [Min(0f)] public float fadeIn;
             [Range(0f, 1f)] public float distortionBlendStart;
             [Range(0f, 1f)] public float distortionBlendEnd;
             [Range(0f, 1f)] public float colorBlendStart;
@@ -104,6 +105,13 @@ namespace _Project.Scripts.Runtime.Fireball {
         private float _colorVignette;
         private float _colorBorder;
 
+        private float _distortionBlendLast;
+        private float _colorBlendLast;
+        private float _colorDistortionBlendLast;
+        private float _colorVignetteLast;
+        private float _colorBorderLast;
+        private float _fadeInStartTime;
+        
         private float _transitionProgress;
         private float _transitionSpeed;
         
@@ -153,6 +161,8 @@ namespace _Project.Scripts.Runtime.Fireball {
                 smoothingStart = _defaultSmoothing,
                 smoothingEnd = _defaultSmoothing,
             };
+            
+            ApplyMaterialProperties();
         }
 
         private void ResetCenterOffset() {
@@ -171,6 +181,12 @@ namespace _Project.Scripts.Runtime.Fireball {
             _colorVignette = 0f;
             _colorBorder = 0f;
             
+            _distortionBlendLast = 0f;
+            _colorBlendLast = 0f;
+            _colorDistortionBlendLast = 0f;
+            _colorVignetteLast = 0f;
+            _colorBorderLast = 0f;
+            
             _transitionProgress = 1f;
             _transitionSpeed = 0f;
 
@@ -186,13 +202,26 @@ namespace _Project.Scripts.Runtime.Fireball {
             float duration = _fireDurationMin + progress * (_fireDurationMax - _fireDurationMin);
             _overrideProgress = Mathf.Min(_startFireProgressMax, 1f - progress);
             _overrideSpeed = duration > 0f ? 1f / duration : float.MaxValue;
+            
+            StartFadeIn();
         }
 
         private void OnStageChanged(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
+            StartFadeIn();
             UpdateStageSetting(previous, current);
             UpdateTransitionSetting(previous, current);
         }
 
+        private void StartFadeIn() {
+            _distortionBlendLast = _distortionBlend;
+            _colorBlendLast = _colorBlend;
+            _colorDistortionBlendLast = _colorDistortionBlend;
+            _colorVignetteLast = _colorVignette;
+            _colorBorderLast = _colorBorder;
+
+            _fadeInStartTime = Time.time;
+        }
+        
         private void UpdateStageSetting(FireballShootingBehaviour.Stage previous, FireballShootingBehaviour.Stage current) {
             for (int i = 0; i < _stages.Length; i++) {
                 ref var stage = ref _stages[i];
@@ -223,6 +252,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                 _transitionSetting = transition.setting;
                 _transitionSpeed = transition.duration > 0f ? 1f / transition.duration : float.MaxValue;
                 _transitionProgress = 0f;
+                
                 return;
             }
         }
@@ -250,8 +280,17 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void ProcessCurrentSetting(float dt) {
+            float transitionProgressOld = _transitionProgress;
+            float overrideProgressOld = _overrideProgress;
+            
             _transitionProgress = Mathf.Clamp01(_transitionProgress + dt * _transitionSpeed);
             _overrideProgress = Mathf.Clamp01(_overrideProgress + dt * _overrideSpeed);
+
+            if (transitionProgressOld < 1f && _transitionProgress >= 1f ||
+                overrideProgressOld < 1f && _overrideProgress >= 1f) 
+            {
+                StartFadeIn();
+            }
             
             MaterialSetting setting;
             float progress;
@@ -273,11 +312,19 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void ProcessMaterialSetting(MaterialSetting setting, float progress, float dt) {
+            float fadeInProgress = setting.fadeIn > 0f ? Mathf.Clamp01((Time.time - _fadeInStartTime) / setting.fadeIn) : 1f;
+            
             float distortionBlend = setting.distortionBlendStart + setting.blendCurve.Evaluate(progress) * (setting.distortionBlendEnd - setting.distortionBlendStart);
             float colorBlend = setting.colorBlendStart + setting.blendCurve.Evaluate(progress) * (setting.colorBlendEnd - setting.colorBlendStart);
             float colorDistortionBlend = setting.colorDistortionBlendStart + setting.blendCurve.Evaluate(progress) * (setting.colorDistortionBlendEnd - setting.colorDistortionBlendStart);
             float colorVignette = setting.colorVignetteStart + setting.blendCurve.Evaluate(progress) * (setting.colorVignetteEnd - setting.colorVignetteStart);
             float colorBorder = setting.colorBorderStart + setting.blendCurve.Evaluate(progress) * (setting.colorBorderEnd - setting.colorBorderStart);
+            
+            distortionBlend = Mathf.Lerp(_distortionBlendLast, distortionBlend, fadeInProgress);
+            colorBlend = Mathf.Lerp(_colorBlendLast, colorBlend, fadeInProgress);
+            colorDistortionBlend = Mathf.Lerp(_colorDistortionBlendLast, colorDistortionBlend, fadeInProgress);
+            colorVignette = Mathf.Lerp(_colorVignetteLast, colorVignette, fadeInProgress);
+            colorBorder = Mathf.Lerp(_colorBorderLast, colorBorder, fadeInProgress);
             
             float smoothing = setting.smoothingStart + setting.blendCurve.Evaluate(progress) * (setting.smoothingEnd - setting.smoothingStart);
             

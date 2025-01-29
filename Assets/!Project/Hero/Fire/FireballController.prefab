@@ -407,6 +407,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chargeInput: {fileID: 11400000, guid: bd6a83e1a6f2c1a49bf1b04857872c1e, type: 2}
   _fireInput: {fileID: 11400000, guid: bd6a83e1a6f2c1a49bf1b04857872c1e, type: 2}
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 3393
+  _maxHits: 4
   _enableGameObjects:
   - {fileID: 843930100840174705}
   - {fileID: 7617258140524486458}
@@ -2415,6 +2419,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     smoothingStart: 30
     smoothingEnd: 10
+    fadeIn: 0
     distortionBlendStart: 1
     distortionBlendEnd: 0.2
     colorBlendStart: 1
@@ -2425,7 +2430,7 @@ MonoBehaviour:
     colorVignetteEnd: 0.3
     colorBorderStart: 0.8
     colorBorderEnd: 0
-  _defaultSmoothing: 15
+  _defaultSmoothing: 3
   _stages:
   - previousStage:
       _hasValue: 0
@@ -2458,6 +2463,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       smoothingStart: 3
       smoothingEnd: 3
+      fadeIn: 0
       distortionBlendStart: 0
       distortionBlendEnd: 0.3
       colorBlendStart: 0
@@ -2497,8 +2503,9 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      smoothingStart: 8
+      smoothingStart: 1
       smoothingEnd: 4
+      fadeIn: 0
       distortionBlendStart: 0.3
       distortionBlendEnd: 0.5
       colorBlendStart: 0.4
@@ -2540,6 +2547,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       smoothingStart: 8
       smoothingEnd: 4
+      fadeIn: 0
       distortionBlendStart: 1
       distortionBlendEnd: 0.7
       colorBlendStart: 0.9
@@ -2581,6 +2589,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       smoothingStart: 3
       smoothingEnd: 2
+      fadeIn: 0
       distortionBlendStart: 0.5
       distortionBlendEnd: 0
       colorBlendStart: 0.7
@@ -2622,6 +2631,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       smoothingStart: 8
       smoothingEnd: 5
+      fadeIn: 0
       distortionBlendStart: 0.3
       distortionBlendEnd: 0
       colorBlendStart: 0.5
@@ -2637,7 +2647,7 @@ MonoBehaviour:
       _hasValue: 1
       _value: 1
     currentStage: 2
-    duration: 0.7
+    duration: 0.4
     setting:
       blendCurve:
         serializedVersion: 2
@@ -2665,6 +2675,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       smoothingStart: 5
       smoothingEnd: 4
+      fadeIn: 0.3
       distortionBlendStart: 0.5
       distortionBlendEnd: 0.4
       colorBlendStart: 1
@@ -2707,6 +2718,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       smoothingStart: 25
       smoothingEnd: 12
+      fadeIn: 0
       distortionBlendStart: 1
       distortionBlendEnd: 0.8
       colorBlendStart: 1

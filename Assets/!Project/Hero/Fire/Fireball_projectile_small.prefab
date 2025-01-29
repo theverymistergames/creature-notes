@@ -9718,6 +9718,7 @@ GameObject:
   - component: {fileID: 3906747325048174042}
   - component: {fileID: 2437170232788380720}
   - component: {fileID: 590529300237276574}
+  - component: {fileID: 3655020352500255753}
   m_Layer: 7
   m_Name: Fireball_projectile_small
   m_TagString: Untagged
@@ -10223,10 +10224,10 @@ MonoBehaviour:
     scaleMode: 1
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffset: {x: 180, y: 0, z: 180}
-    scale: {x: 3, y: 3, z: 3}
+    scale: {x: 0.8, y: 0.8, z: 0.8}
     prefabs:
     - {fileID: 4444918992618951640, guid: 558a46d7455845d4cb265c08f6dc1814, type: 3}
-  - parentMode: 2
+  - parentMode: 0
     scaleMode: 1
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffset: {x: 180, y: 0, z: 180}
@@ -10314,6 +10315,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerEmitter: {fileID: 2437170232788380720}
+--- !u!114 &3655020352500255753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3c674481494f34866801ec2a96f3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionEmitter: {fileID: 4335760545786688146}
+  _force: 0.3
+  _forceMode: 2
 --- !u!1 &4451592760088402986
 GameObject:
   m_ObjectHideFlags: 0

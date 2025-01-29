@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7999551992435337449}
   - component: {fileID: 5859559316917721451}
   - component: {fileID: 2501395509973758302}
+  - component: {fileID: 954580953373042803}
   - component: {fileID: 4973571305140979786}
   - component: {fileID: 3120813333944773575}
   - component: {fileID: 6046473025227464220}
@@ -90,7 +91,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 8256
+    m_Bits: 10561
+--- !u!114 &954580953373042803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3569319054158441281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c360b921c0405bb69d614410fd1070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _triggerEmitter: {fileID: 2501395509973758302}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!114 &4973571305140979786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd0e967f8a1459582119515ec452ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerEmitter: {fileID: 2501395509973758302}
+  _triggerEmitter: {fileID: 954580953373042803}
 --- !u!54 &6046473025227464220
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Character.View;
+using MisterGames.Collisions.Utils;
 using MisterGames.Common.Async;
 using MisterGames.Common.GameObjects;
 using MisterGames.Common.Pooling;
@@ -18,6 +19,10 @@ namespace _Project.Scripts.Runtime.Fireball {
         [SerializeField] private InputActionKey _chargeInput;
         [SerializeField] private InputActionKey _fireInput;
 
+        [Header("Shoot Position")]
+        [SerializeField] private LayerMask _obstacleLayer;
+        [SerializeField] [Min(0)] private int _maxHits = 4;
+        
         [Header("Visuals")]
         [SerializeField] private GameObject[] _enableGameObjects;
         [SerializeField] [Min(0f)] private float _disableDelay;
@@ -40,7 +45,8 @@ namespace _Project.Scripts.Runtime.Fireball {
         public Stage CurrentStage { get; private set; }
         public float StageProgress { get; private set; }
         public float StageDuration { get; private set; }
-        
+
+        private RaycastHit[] _hits;
         private CancellationTokenSource _enableCts;
         private IActor _actor;
         private CharacterViewPipeline _view;
@@ -51,6 +57,8 @@ namespace _Project.Scripts.Runtime.Fireball {
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
             _view = actor.GetComponent<CharacterViewPipeline>();
+            
+            _hits = new RaycastHit[_maxHits];
         }
 
         void IActorComponent.OnSetData(IActor actor) {
@@ -115,13 +123,13 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private Stage ProcessNoneStage() {
-            return _chargeInput.IsPressed 
+            return CanCharge() 
                 ? StartNextStage(Stage.Prepare, _shootingData.prepareDuration) 
                 : Stage.None;
         }
 
         private Stage ProcessPrepareStage(float progress) {
-            if (!_chargeInput.IsPressed) {
+            if (!CanCharge()) {
                 return StartNextStage(Stage.None, _shootingData.noneDuration);
             }
             
@@ -136,7 +144,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                 return StartNextStage(Stage.Cooldown, _shootingData.cooldownDuration);
             }
             
-            if (!_chargeInput.IsPressed) {
+            if (!CanCharge()) {
                 return StartNextStage(Stage.Cooldown, _shootingData.cooldownDuration);
             }
                 
@@ -182,7 +190,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             
             if (prefab == null) return;
 
-            var shotActor = PrefabPool.Main.Get(prefab, pos + orient * _shootingData.spawnOffset, orient);
+            var shotActor = PrefabPool.Main.Get(prefab, GetShootPosition(pos, orient), orient);
             shotActor.ParentActor = _actor;
             shotActor.Transform.localScale = prefab.transform.localScale * 
                                              Mathf.Lerp(_shootingData.scaleStart, _shootingData.scaleEnd, _shootingData.scaleByChargeProgress.Evaluate(progress));
@@ -197,11 +205,27 @@ namespace _Project.Scripts.Runtime.Fireball {
             
             OnFire.Invoke(progress);
         }
+
+        private Vector3 GetShootPosition(Vector3 origin, Quaternion orientation) {
+            var targetPoint = origin + orientation * _shootingData.spawnOffset;
+            
+            var dir = targetPoint - origin;
+            float distance = dir.magnitude;
+            dir.Normalize();
+            
+            int hitCount = Physics.RaycastNonAlloc(origin, dir, _hits, distance, _obstacleLayer, QueryTriggerInteraction.Ignore);
+
+            return _hits.TryGetMinimumDistanceHit(hitCount, out var hit) ? hit.point : targetPoint;
+        }
         
         private void OnChargeInputPressed() {
             if (CurrentStage is Stage.Overheat or Stage.Cooldown) {
                 OnCannotCharge.Invoke(CurrentStage);
             }
+        }
+
+        private bool CanCharge() {
+            return _chargeInput.IsPressed;
         }
 
         private void NotifyEnableVisuals(bool active) {
