@@ -4209,7 +4209,7 @@ MonoBehaviour:
   _onIgnitionStart:
     rid: 1899962946944237575
   _onIgnitionOn:
-    rid: 1899962970671939584
+    rid: 7921366691419258965
   _onIgnitionOff:
     rid: 1899962970671939586
   _engineAudioSource: {fileID: 5124093165022575864}
@@ -4248,7 +4248,15 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.05
         spatialBlend: 1
@@ -4259,7 +4267,15 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.05
         spatialBlend: 1
@@ -4270,30 +4286,34 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
+        attachId:
+          _hash: -1451257385
+          _name: ignition
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.05
         spatialBlend: 1
         loop: 0
         audioClipVariants:
         - {fileID: 8300000, guid: ebbdd64255a55e840b82e8bce0cb90a3, type: 3}
-    - rid: 1899962970671939584
-      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
-      data:
-        attach: 1
-        volume: 1
-        pitch: 1
-        pitchRandomAdd: 0.05
-        spatialBlend: 1
-        loop: 0
-        audioClipVariants:
-        - weight: 1
-          value: {fileID: 8300000, guid: 49ea36e50b1cb404c9681e5150f42acd, type: 3}
     - rid: 1899962970671939585
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.05
         spatialBlend: 1
@@ -4311,7 +4331,15 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.05
         spatialBlend: 1
@@ -4321,32 +4349,45 @@ MonoBehaviour:
     - rid: 1899962970671939588
       type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
-        source: {fileID: 494705084541968766}
-        fadeOut: 0.3
-        fadeOutCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 1
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 1
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
+        attachId:
+          _hash: -1451257385
+          _name: ignition
+        position: 0
+        transform: {fileID: 0}
+    - rid: 7921366691419258965
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 7921366691419258966
+        - rid: 7921366691419258967
+    - rid: 7921366691419258966
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.05
+        spatialBlend: 1
+        loop: 0
+        audioClipVariants:
+        - {fileID: 8300000, guid: 49ea36e50b1cb404c9681e5150f42acd, type: 3}
+    - rid: 7921366691419258967
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: -1451257385
+          _name: ignition
+        position: 0
+        transform: {fileID: 0}
 --- !u!114 &7080171002369433912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4378,7 +4419,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 33685
+    _version: 34269
   _blackboard:
     _propertyList: a43ce5533c9171fa
     _propertyMap:
