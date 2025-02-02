@@ -41,16 +41,11 @@ namespace _Project.Scripts.Runtime.Enemies {
         private CancellationTokenSource _healthCts;
         private IActor _actor;
         private Monster _monster;
-        private MonsterFxData _monsterFxData;
         
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
             _monster = actor.GetComponent<Monster>();
             _progressArray = new float[_progressActions?.Length ?? 0];
-        }
-        
-        void IActorComponent.OnSetData(IActor actor) {
-            _monsterFxData = actor.GetData<MonsterFxData>();
         }
         
         private void OnEnable() {
@@ -102,13 +97,6 @@ namespace _Project.Scripts.Runtime.Enemies {
                 if (eventAction.eventType != evt) continue;
 
                 eventAction.action?.Apply(_actor, _healthCts.Token).Forget();
-            }
-            
-            for (int i = 0; i < _monsterFxData.sounds.Length; i++) {
-                ref var sound = ref _monsterFxData.sounds[i];
-                if (sound.eventType != evt) continue;
-
-                sound.soundAction?.Apply(_actor, _healthCts.Token).Forget();
             }
         }
     }

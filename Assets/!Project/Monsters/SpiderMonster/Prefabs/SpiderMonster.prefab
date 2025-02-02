@@ -9705,7 +9705,6 @@ GameObject:
   - component: {fileID: 131668852273082716}
   - component: {fileID: 2573535894375949778}
   - component: {fileID: 6913692702783370961}
-  - component: {fileID: 1763743065523991633}
   - component: {fileID: 7085844526884696811}
   - component: {fileID: 5674118931749773217}
   - component: {fileID: 2027209148522990612}
@@ -9813,32 +9812,6 @@ MonoBehaviour:
   _armDurationTest: 5
   _attackDurationRangeTest: {x: 3, y: 3}
   _attackCooldownRangeTest: {x: 1, y: 1}
---- !u!114 &1763743065523991633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3153366761900700767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf479e994744617a0b000f826143eee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _debuffActions:
-  - eventType: 2
-    action:
-      rid: 9124718656077430871
-  _testMonsterEventType: 2
-  references:
-    version: 2
-    RefIds:
-    - rid: 9124718656077430871
-      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
-      data:
-        action:
-          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
-          id: 2
 --- !u!114 &7085844526884696811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10044,18 +10017,81 @@ MonoBehaviour:
       data:
         target: {fileID: 7995568551152074189}
         scale: {x: 0, y: 0, z: 0}
+    - rid: 7921366710108553305
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 1}
+        volume: 1
+        fadeIn: 1
+        fadeOut: 0.5
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 1
+        audioClipVariants:
+        - {fileID: 8300000, guid: e0b0afc2448b29441aae274c0a5f3c7c, type: 3}
+    - rid: 7921366710108553306
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        audioClipVariants:
+        - {fileID: 8300000, guid: 2a3e5308c0b9d0a4d98c5be6a7f88bcd, type: 3}
+        - {fileID: 8300000, guid: 633efb80fd1f0d34e8b5064961107f78, type: 3}
+        - {fileID: 8300000, guid: 1f0ebab1e2e3d1b4c81eccaefc7521a1, type: 3}
+    - rid: 7921366710108553310
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0.2
+        mode: 0
+        action:
+          rid: -2
+    - rid: 7921366710108553311
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 2
+    - rid: 7921366710108553312
+      type: {class: ApplyDebuffAction, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        debuffEvent:
+          _eventDomain: {fileID: 11400000, guid: 09344a19d1d18bd47b22dd1d0e4e266b,
+            type: 2}
+          _eventId: 1
+          _subId: 0
+        sprite: {fileID: 21300000, guid: 941df4fc39e26164593b5695f749ba56, type: 3}
     - rid: 9124718454358933594
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
+        - rid: 929716875461656682
+        - rid: 929716875461656676
         - rid: 9124718656077430872
         - rid: 929716875461656576
         - rid: 929716875461656578
         - rid: 929716875461656579
         - rid: 929716875461656583
-        - rid: 929716875461656682
-        - rid: 929716875461656676
+        - rid: 7921366710108553305
     - rid: 9124718454358933598
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -10087,6 +10123,10 @@ MonoBehaviour:
         mode: 0
         actions:
         - rid: 929716875461656580
+        - rid: 7921366710108553306
+        - rid: 7921366710108553310
+        - rid: 7921366710108553312
+        - rid: 7921366710108553311
     - rid: 9124718454358933618
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -25286,6 +25326,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 690699621560018390}
+    - targetCorrespondingSourceObject: {fileID: 199976, guid: 729af0dba514147a4835ed9afaa40b70,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1606981294857604588}
+    - targetCorrespondingSourceObject: {fileID: 126504, guid: 729af0dba514147a4835ed9afaa40b70,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8771816097030412475}
   m_SourcePrefab: {fileID: 100100000, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
 --- !u!95 &7995568551142599949 stripped
 Animator:
@@ -25412,6 +25460,64 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+--- !u!1 &7995568551151862587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 199976, guid: 729af0dba514147a4835ed9afaa40b70,
+    type: 3}
+  m_PrefabInstance: {fileID: 7995568551151930899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1606981294857604588
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995568551151862587}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.55
+  m_Height: 2.09
+  m_Direction: 0
+  m_Center: {x: -0.98, y: 0.06, z: 0}
+--- !u!1 &7995568551152050235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 126504, guid: 729af0dba514147a4835ed9afaa40b70,
+    type: 3}
+  m_PrefabInstance: {fileID: 7995568551151930899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &8771816097030412475
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995568551152050235}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.88
+  m_Direction: 0
+  m_Center: {x: -0.42, y: 0, z: 0}
 --- !u!4 &7995568551152074189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70,
