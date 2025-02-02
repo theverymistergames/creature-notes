@@ -212,12 +212,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _restoreAction:
+    rid: 7921366710108553304
   _burnAction:
-    rid: 9124718656077430869
+    rid: 7921366710108553301
   references:
     version: 2
     RefIds:
-    - rid: 9124718656077430869
+    - rid: 7921366710108553301
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 7921366710108553303
+        - rid: 7921366710108553302
+    - rid: 7921366710108553302
       type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
       data:
         prefab: {fileID: 6158112250595531075, guid: 771a210bdc3b3bd42af3e9cc3aa76b1e,
@@ -231,3 +240,43 @@ MonoBehaviour:
           _hasValue: 0
           _value: {x: 1, y: 1, z: 1}
         parentToTransform: 0
+    - rid: 7921366710108553303
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 3702730587585597661}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        audioClipVariants:
+        - {fileID: 8300000, guid: 910348a5579ac574a93f822a6ae89fbe, type: 3}
+        - {fileID: 8300000, guid: 902ecf1de2bf67041b34629b3bc6ed00, type: 3}
+        - {fileID: 8300000, guid: 999f0553a996aeb489333d8f80113e81, type: 3}
+    - rid: 7921366710108553304
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 3702730587585597661}
+        startTime: {x: 0, y: 1}
+        volume: 1
+        fadeIn: 0.4
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 1
+        audioClipVariants:
+        - {fileID: 8300000, guid: c40e44b4db7df9b448aa956bd981cfc0, type: 3}

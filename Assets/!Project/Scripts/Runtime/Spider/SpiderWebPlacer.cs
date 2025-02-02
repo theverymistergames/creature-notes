@@ -116,7 +116,7 @@ namespace _Project.Scripts.Runtime.Spider {
         private void OnEnable() {
             for (int i = 0; i < _spiderWebLines.Count; i++) {
                 var line = _spiderWebLines[i];
-                if (line != null) line.Restore(this);
+                if (line != null) line.Restore(this, duration: 0f);
             }
         }
 
@@ -193,7 +193,7 @@ namespace _Project.Scripts.Runtime.Spider {
             if (spawnedPointCount <= 0) return;
 
             for (int i = startLineIndex; i < startLineIndex + lineCount && i < _spiderWebLines.Count; i++) {
-                _spiderWebLines[i].Restore(this);
+                _spiderWebLines[i].Restore(this, duration: spawnDurationRange.y);
             }
             
             _webCenters.Add(avgPoint / spawnedPointCount);

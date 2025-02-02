@@ -9928,39 +9928,39 @@ MonoBehaviour:
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         parameter:
-          library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
-          id: 7
+          _hash: -1418007274
+          _name: Prepare
         value: 1
     - rid: 929716875461656577
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
         parameter:
-          library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
-          id: 9
+          _hash: 646380074
+          _name: Death
         operation: 0
     - rid: 929716875461656578
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
         parameter:
-          library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
-          id: 9
+          _hash: 646380074
+          _name: Death
         operation: 1
     - rid: 929716875461656579
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
         parameter:
-          library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
-          id: 8
+          _hash: 1080829965
+          _name: Attack
         operation: 1
     - rid: 929716875461656580
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         parameter:
-          library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
-          id: 7
+          _hash: -1418007274
+          _name: Prepare
         value: 0
     - rid: 929716875461656582
       type: {class: PlaceSpiderWebAction, ns: _Project.Scripts.Runtime.Spider, asm: Assembly-CSharp}
@@ -9995,8 +9995,8 @@ MonoBehaviour:
         asm: MisterGames.ActionLib}
       data:
         parameter:
-          library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
-          id: 8
+          _hash: 1080829965
+          _name: Attack
         operation: 0
     - rid: 929716875461656587
       type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
@@ -10035,8 +10035,8 @@ MonoBehaviour:
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         parameter:
-          library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
-          id: 7
+          _hash: -1418007274
+          _name: Prepare
         value: 0
     - rid: 929716875461656682
       type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
@@ -25281,8 +25281,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 144700, guid: 729af0dba514147a4835ed9afaa40b70,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 690699621560018390}
   m_SourcePrefab: {fileID: 100100000, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
+--- !u!95 &7995568551142599949 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9544478, guid: 729af0dba514147a4835ed9afaa40b70,
+    type: 3}
+  m_PrefabInstance: {fileID: 7995568551151930899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &7995568551146802203 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 13746696, guid: 729af0dba514147a4835ed9afaa40b70,
@@ -25301,6 +25311,107 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7995568551151930899}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &690699621560018390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995568551151811375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _playAtStart: 1
+  _tweenPlayer:
+    _progress: 0.62357515
+    _speed: 1
+    _yoyo: 0
+    _loop: 1
+    _invertNextPlay: 0
+    _tween:
+      rid: 7921366691419258997
+  _events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7921366691419258997
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 10
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: 7921366691419259004
+        action:
+          rid: 7921366691419258999
+        events: []
+    - rid: 7921366691419258999
+      type: {class: ProgressTweenActionAnimatorFloat, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        animator: {fileID: 7995568551142599949}
+        parameter:
+          _hash: -2146256263
+          _name: Turn
+        startValue: -0.6
+        endValue: 0.6
+    - rid: 7921366691419259004
+      type: {class: ProgressModulatorNoise, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        seed: 0
+        scale: 3
+        clamp01: 1
+        speedMul: 1
+        speedCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
 --- !u!4 &7995568551152074189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70,

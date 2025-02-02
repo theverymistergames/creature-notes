@@ -1,7 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
+using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
@@ -20,6 +22,9 @@ namespace _Project.Scripts.Runtime.Spider {
         [SerializeField] private SpiderWebLine _nextNode;
         [SerializeField] private Vector2 _burnTimeRange;
         [SerializeField] private AnimationCurve _dissolveCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        
+        [Header("Actions")]
+        [SerializeReference] [SubclassSelector] private IActorAction _restoreAction;
         [SerializeReference] [SubclassSelector] private IActorAction _burnAction;
 
         public enum LineState {
@@ -33,11 +38,16 @@ namespace _Project.Scripts.Runtime.Spider {
         public LineRenderer Line => _lineRenderer;
         public LineState State { get; private set; }
 
+        private CancellationTokenSource _cts;
         private ISpiderWebPlacer _spiderWebPlacer;
         private IActor _actor;
 
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
+        }
+
+        private void OnDestroy() {
+            AsyncExt.DisposeCts(ref _cts);
         }
 
         public void SetPreviousNode(SpiderWebLine node) {
@@ -64,13 +74,16 @@ namespace _Project.Scripts.Runtime.Spider {
 #endif
         }
         
-        public void Restore(ISpiderWebPlacer spiderWebPlacer) {
+        public void Restore(ISpiderWebPlacer spiderWebPlacer, float duration) {
 #if UNITY_EDITOR
             if (!Application.isPlaying) return;
 #endif
             
             if (State == LineState.Restored) return;
 
+            AsyncExt.RecreateCts(ref _cts);
+            if (duration > 0f) RestoreAsync(duration, _cts.Token).Forget();
+            
             RestoreSelfAndNeighbours(spiderWebPlacer, spiderWebPlacer.GetMaterial());
         }
 
@@ -83,7 +96,9 @@ namespace _Project.Scripts.Runtime.Spider {
             
             var spiderWebPlacer = _spiderWebPlacer;
             
-            BurnAsync(_burnTimeRange.GetRandomInRange(), destroyCancellationToken).Forget();
+            AsyncExt.RecreateCts(ref _cts);
+            BurnAsync(_burnTimeRange.GetRandomInRange(), _cts.Token).Forget();
+            
             BurnSelfAndNeighbours();
             
             if (notifyBurn) spiderWebPlacer?.NotifyBurn();
@@ -122,6 +137,17 @@ namespace _Project.Scripts.Runtime.Spider {
             
             if (_prevNode != null) _prevNode.ReleaseSelfAndNeighbours();
             if (_nextNode != null) _nextNode.ReleaseSelfAndNeighbours();
+        }
+        
+        private async UniTask RestoreAsync(float duration, CancellationToken cancellationToken) {
+            _restoreAction?.Apply(_actor, cancellationToken).Forget();
+
+            await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: cancellationToken)
+                .SuppressCancellationThrow();
+            
+            if (cancellationToken.IsCancellationRequested) return;
+            
+            AsyncExt.DisposeCts(ref _cts);
         }
         
         private async UniTask BurnAsync(float duration, CancellationToken cancellationToken) {
