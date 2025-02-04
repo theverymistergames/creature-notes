@@ -263,7 +263,7 @@ namespace _Project.Scripts.Runtime.Telescope {
         }
 
         private float GetAngleToPoint(Vector3 point) {
-            return Vector3.Angle(point - _starGroupsPlacer.Center.position, _view.Rotation * Vector3.forward);
+            return Vector3.Angle(point - _starGroupsPlacer.Center.position, _view.HeadRotation * Vector3.forward);
         }
 
         private bool IsFovInRange(float fov, Vector2 fovRange) {

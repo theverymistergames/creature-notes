@@ -175,8 +175,8 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void PerformShot(float progress) {
-            var orient = _view.Rotation;
-            var pos = _view.Position;
+            var orient = _view.HeadRotation;
+            var pos = _view.HeadPosition;
 
             Actor prefab = null;
 

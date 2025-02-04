@@ -1419,6 +1419,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 1382178363167860539, guid: dc3e37d513fd1a04f9f70f2978042062,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2121718412601202677, guid: dc3e37d513fd1a04f9f70f2978042062,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41148,7 +41153,6 @@ MonoBehaviour:
         actions:
         - rid: 7921366736756015194
         - rid: 7921366736756015196
-        - rid: 7921366736756015199
         - rid: -2
         - rid: 7921366736756015202
     - rid: 7921366736756015194
@@ -41181,48 +41185,6 @@ MonoBehaviour:
       data:
         horizontal: 1
         vertical: 1
-    - rid: 7921366736756015199
-      type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        targetType: 0
-        localPosition: {x: 0, y: 0, z: 0}
-        useTargetAsCurvePointOrigin: 0
-        target: {fileID: 0}
-        offsetMode: 0
-        offset: {x: 0, y: 0, z: 0}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        attach: 0
-        attachSmoothing: 0
-        attachMode: 0
-        speed: 1
-        reduceSpeedBelowDistance: 0.5
-        speedMin: 0.01
-        curvature: 1
-        progressCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 1
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 1
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
     - rid: 7921366736756015200
       type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -41243,8 +41205,6 @@ MonoBehaviour:
         speed: 1
         reduceSpeedBelowDistance: 0.5
         speedCoeffMin: 0.01
-        exitAt: 1
-        pullToPositionAfterExit: 0
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -41314,8 +41274,6 @@ MonoBehaviour:
         speed: 1
         reduceSpeedBelowDistance: 0.5
         speedCoeffMin: 0.01
-        exitAt: 1
-        pullToPositionAfterExit: 0
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -47349,12 +47307,12 @@ PrefabInstance:
     - target: {fileID: 4630464529900941424, guid: 174dc66dbc476414cbe6e0b74d362495,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.522
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4630464529900941424, guid: 174dc66dbc476414cbe6e0b74d362495,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.15
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 4630464529900941424, guid: 174dc66dbc476414cbe6e0b74d362495,
         type: 3}
