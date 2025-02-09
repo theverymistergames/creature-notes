@@ -1846,8 +1846,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5173720579174946430, guid: dc3e37d513fd1a04f9f70f2978042062,
         type: 3}
+      propertyPath: managedReferences[4105391196587950086].speed
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173720579174946430, guid: dc3e37d513fd1a04f9f70f2978042062,
+        type: 3}
       propertyPath: managedReferences[986509787974598740].target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173720579174946430, guid: dc3e37d513fd1a04f9f70f2978042062,
+        type: 3}
+      propertyPath: managedReferences[4105391196587950098].angularSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173720579174946430, guid: dc3e37d513fd1a04f9f70f2978042062,
+        type: 3}
+      propertyPath: managedReferences[4105391196587950086].attachSmoothing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173720579174946430, guid: dc3e37d513fd1a04f9f70f2978042062,
+        type: 3}
+      propertyPath: managedReferences[4105391196587950098].attachSmoothing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173720579174946430, guid: dc3e37d513fd1a04f9f70f2978042062,
+        type: 3}
+      propertyPath: managedReferences[4105391196587950110].fovOffset.multiplier
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5442063009370080841, guid: dc3e37d513fd1a04f9f70f2978042062,
         type: 3}
@@ -41145,6 +41170,7 @@ MonoBehaviour:
         actions:
         - rid: 7921366736756015195
         - rid: 7921366823315439701
+        - rid: 7921366823315439706
     - rid: 7921366736756015192
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -41168,7 +41194,7 @@ MonoBehaviour:
           _value:
             mode: 3
             absolute: 0
-            bounds: {x: -5, y: 5}
+            bounds: {x: 0, y: 0}
             springs: {x: 0, y: 0}
             springFactors: {x: 0, y: 0}
         vertical:
@@ -41176,7 +41202,7 @@ MonoBehaviour:
           _value:
             mode: 3
             absolute: 0
-            bounds: {x: -5, y: 5}
+            bounds: {x: 0, y: 0}
             springs: {x: 0, y: 0}
             springFactors: {x: 0, y: 0}
     - rid: 7921366736756015196
@@ -41247,7 +41273,7 @@ MonoBehaviour:
         target: {fileID: 1784870107}
         mode: 0
         orientation: {x: 0, y: 0, z: 0}
-        angularSpeed: 15
+        angularSpeed: 3
         maxAngleDiff: 5
         progressCurve:
           serializedVersion: 2
@@ -41256,25 +41282,65 @@ MonoBehaviour:
             time: 0
             value: 0
             inSlope: 0
-            outSlope: 1.5735515
+            outSlope: 1
             tangentMode: 0
-            weightedMode: 3
+            weightedMode: 0
             inWeight: 0
-            outWeight: 0.330931
+            outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: -0.0009282457
+            inSlope: 1
             outSlope: 0
             tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.358689
+            weightedMode: 0
+            inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
         keepLookingAtAfterFinish: 1
-        attachSmoothing: 0
+        attachSmoothing: 5
+    - rid: 7921366823315439706
+      type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        targetType: 1
+        localPosition: {x: 0, y: 0, z: 0}
+        useTargetAsCurvePointOrigin: 0
+        target: {fileID: 1784870107}
+        offsetMode: 0
+        offset: {x: 0, y: 0, z: -2}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        speed: 1
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        attach: 1
+        attachSmoothing: 5
+        attachMode: 0
 --- !u!114 &1784870109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47330,7 +47396,7 @@ PrefabInstance:
     - target: {fileID: 4630464529900941424, guid: 174dc66dbc476414cbe6e0b74d362495,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 0.223
       objectReference: {fileID: 0}
     - target: {fileID: 4630464529900941424, guid: 174dc66dbc476414cbe6e0b74d362495,
         type: 3}
@@ -47340,7 +47406,7 @@ PrefabInstance:
     - target: {fileID: 4630464529900941424, guid: 174dc66dbc476414cbe6e0b74d362495,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.506
+      value: -0.741
       objectReference: {fileID: 0}
     - target: {fileID: 4630464529900941424, guid: 174dc66dbc476414cbe6e0b74d362495,
         type: 3}

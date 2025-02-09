@@ -966,23 +966,13 @@ MonoBehaviour:
       data:
         targetType: 1
         target: {fileID: 0}
+        saveHeadPosition: 1
         offset: {x: 0, y: 0, z: 0}
         rotationOffset: {x: 0, y: 0, z: 0}
         offsetMode: 1
+        disableCollisionsWhileMoving: 1
         speed: 0
-        reduceSpeedBelowDistance: 0
-        pointRadius: 0
-        smoothing: 0
         curvature: 0
-        allowTranslationY: 1
-        saveHeadPosition: 1
-        detectGround: 1
-        layer:
-          serializedVersion: 2
-          m_Bits: 1
-        rayElevation: 0.5
-        maxDistance: 2
-        groundOffset: 0.5
         progressCurve:
           serializedVersion: 2
           m_Curve:
@@ -1007,6 +997,14 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        detectGround: 1
+        allowTranslationY: 1
+        layer:
+          serializedVersion: 2
+          m_Bits: 1
+        rayElevation: 0.5
+        maxDistance: 2
+        groundOffset: 0.5
     - rid: 986509787974598743
       type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -1030,12 +1028,7 @@ MonoBehaviour:
         offsetMode: 0
         offset: {x: 0, y: 0, z: 0}
         rotationOffset: {x: 0, y: 0, z: 0}
-        attach: 0
-        attachSmoothing: 0
-        attachMode: 0
         speed: 1
-        reduceSpeedBelowDistance: 0.3
-        speedMin: 0.02
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -1070,6 +1063,9 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        attach: 0
+        attachSmoothing: 0
+        attachMode: 0
     - rid: 986509787974598747
       type: {class: CharacterActionCameraClearPersistentStates, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1110,7 +1106,6 @@ MonoBehaviour:
         - rid: 4105391196587950098
         - rid: 4105391196587950099
         - rid: 4105391196587950110
-        - rid: 7865778993126178820
         - rid: 2282734907006386264
         - rid: 2282734923904712900
     - rid: 4105391196587950086
@@ -1124,12 +1119,7 @@ MonoBehaviour:
         offsetMode: 0
         offset: {x: 0, y: 0, z: 0.17}
         rotationOffset: {x: 0, y: 0, z: 0}
-        attach: 1
-        attachSmoothing: 0
-        attachMode: 1
-        speed: 1
-        reduceSpeedBelowDistance: 0.2
-        speedMin: 0.3
+        speed: 0.1
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -1164,6 +1154,9 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        attach: 1
+        attachSmoothing: 15
+        attachMode: 1
     - rid: 4105391196587950098
       type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1171,9 +1164,34 @@ MonoBehaviour:
         target: {fileID: 3029080117750411629}
         mode: 0
         orientation: {x: 0, y: 0, z: 0}
-        duration: 0.5
+        angularSpeed: 60
+        maxAngleDiff: 0
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333333
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 2.0000029
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333302
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
         keepLookingAtAfterFinish: 1
-        attachSmoothing: 0
+        attachSmoothing: 25
     - rid: 4105391196587950099
       type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1238,11 +1256,6 @@ MonoBehaviour:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
-    - rid: 7865778993126178820
-      type: {class: CharacterActionSetViewSmoothing, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        viewSmoothFactor: 0
 --- !u!114 &8591546782952774112
 MonoBehaviour:
   m_ObjectHideFlags: 0
