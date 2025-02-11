@@ -489,7 +489,8 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f417dd6a6f9b6e045b0c457df400518c, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2106543082340368678, guid: a149cf940d70aac42a4b4f0220f94207, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7682498217437632957, guid: a149cf940d70aac42a4b4f0220f94207,
@@ -3419,6 +3420,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
+      propertyPath: 'managedReferences[7921366916270129152]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.Time.DelayAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
       propertyPath: managedReferences[1899963317691088896].mode
       value: 0
       objectReference: {fileID: 0}
@@ -3464,6 +3470,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
+      propertyPath: managedReferences[7921366916270129152].mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
       propertyPath: managedReferences[1899963317691088898].delay
       value: 0
       objectReference: {fileID: 0}
@@ -3491,6 +3502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[1899963317691088917].image
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[7921366916270129152].delay
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
@@ -3569,6 +3585,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 3e005370db499214094166c970770083,
         type: 3}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[7921366916270129152].action
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
       propertyPath: managedReferences[1899963317691088899].duration
@@ -3702,7 +3723,12 @@ PrefabInstance:
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
       propertyPath: managedReferences[1899963317691088899].angularSpeed
-      value: 5
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].maxAngleDiff
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
@@ -4056,6 +4082,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
       propertyPath: managedReferences[1899963317691088904].fovOffset.curve.m_PreInfinity
       value: 2
       objectReference: {fileID: 0}
@@ -4126,6 +4167,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
       propertyPath: managedReferences[1899963317691088897].horizontal._value.springFactors.x
       value: 0
       objectReference: {fileID: 0}
@@ -4153,6 +4199,36 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[1899963317691088909].fovOffset.curve.m_Curve.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
@@ -4216,6 +4292,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].inSlope
+      value: 1.5725082
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].inSlope
+      value: -0.0009312395
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
       propertyPath: managedReferences[1899963317691088904].fovOffset.curve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
@@ -4273,6 +4364,51 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[1899963317691088909].fovOffset.curve.m_Curve.Array.data[2].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].outSlope
+      value: -0.0012029491
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].inWeight
+      value: 0.326514
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].outSlope
+      value: 1.5733721
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].inWeight
+      value: 0.358688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].outWeight
+      value: 0.36078
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33093
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].outWeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
@@ -4456,6 +4592,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
       propertyPath: managedReferences[1899963317691088904].fovOffset.curve.m_Curve.Array.data[0].outWeight
       value: 0.36078
       objectReference: {fileID: 0}
@@ -4513,6 +4664,21 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[1899963317691088909].fovOffset.curve.m_Curve.Array.data[2].outWeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[0].weightedMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[1].weightedMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
+        type: 3}
+      propertyPath: managedReferences[1899963317691088899].progressCurve.m_Curve.Array.data[2].weightedMode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7626293932516682475, guid: cfa8970e1164c684dad53e58e86c5a62,
         type: 3}

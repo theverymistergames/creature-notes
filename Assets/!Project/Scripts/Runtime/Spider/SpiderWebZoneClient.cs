@@ -73,7 +73,7 @@ namespace _Project.Scripts.Runtime.Spider {
                 _moveSound,
                 _actor.Transform,
                 localPosition: default,
-                hash: 0,
+                attachId: 0,
                 volume: 0f,
                 _fadeIn,
                 _fadeOut,

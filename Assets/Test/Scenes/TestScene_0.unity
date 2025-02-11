@@ -5405,17 +5405,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 02c0d9e7e8bf55240ab702f684ed0fba, type: 2}
+      objectReference: {fileID: 4300000, guid: 57b69248ca260b5459154fb2617a93d8, type: 2}
     - target: {fileID: 4912311245511941723, guid: 606d1d185f7ea5542bbabb8196eb3e38,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 0bb8418c4d818564eacf0f5e3875fed8, type: 2}
+      objectReference: {fileID: 4300000, guid: 705f9116dd9012944803d16d53c723ed, type: 2}
     - target: {fileID: 5225341324813397722, guid: 606d1d185f7ea5542bbabb8196eb3e38,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: b7de059fe27d54a42a88515d8fb29c99, type: 2}
+      objectReference: {fileID: 4300000, guid: 6928264add6d0d346a5ca705c87e8c10, type: 2}
     - target: {fileID: 5535305502957207737, guid: 606d1d185f7ea5542bbabb8196eb3e38,
         type: 3}
       propertyPath: m_Name
@@ -5425,17 +5425,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 51e7203318a06ab45a4197bbbf85b8ba, type: 2}
+      objectReference: {fileID: 4300000, guid: 35099a130f9c0b4499e50a5c90ba913a, type: 2}
     - target: {fileID: 7385966066547792033, guid: 606d1d185f7ea5542bbabb8196eb3e38,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: b0c8ad2e5391af340900ebad58df9fb5, type: 2}
+      objectReference: {fileID: 4300000, guid: 6c6c2677e43db4e45b050acbed96edb8, type: 2}
     - target: {fileID: 7570399081197056882, guid: 606d1d185f7ea5542bbabb8196eb3e38,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 0ef3093335209d740b8df063f4576e72, type: 2}
+      objectReference: {fileID: 4300000, guid: 9c6686204093ca94dad0bb7ae077cce0, type: 2}
     m_RemovedComponents:
     - {fileID: 4044977915321907214, guid: 606d1d185f7ea5542bbabb8196eb3e38, type: 3}
     m_RemovedGameObjects: []
@@ -10741,6 +10741,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Easel Stars
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085846511387929179, guid: 7e9f123dd6ad4ba4e846db765270ae73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6200475649785550397, guid: 7e9f123dd6ad4ba4e846db765270ae73,
         type: 3}
@@ -19931,6 +19936,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindowMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 1441123824328478759, guid: 77f114f1a1d30c24abcb6a7fef325a54,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3044617498489034159, guid: 77f114f1a1d30c24abcb6a7fef325a54,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22977,7 +22987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784870106}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.91952574, z: 0, w: 0.3930299}
   m_LocalPosition: {x: 12.15, y: 0.77, z: 33.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -23009,9 +23019,8 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
+        - rid: 7921366916270129240
         - rid: 7921366736756015195
-        - rid: 7921366823315439701
-        - rid: 7921366894969880662
     - rid: 7921366736756015192
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -23100,22 +23109,15 @@ MonoBehaviour:
         attach: 0
         attachSmoothing: 0
         attachMode: 0
-    - rid: 7921366823315439701
-      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
-      data:
-        delay: 0
-        mode: 2
-        action:
-          rid: 7921366823315439702
-    - rid: 7921366823315439702
+    - rid: 7921366916270129240
       type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
         target: {fileID: 1784870107}
         mode: 0
         orientation: {x: 0, y: 0, z: 0}
-        angularSpeed: 15
-        maxAngleDiff: 5
+        angularSpeed: 5
+        maxAngleDiff: 0
         progressCurve:
           serializedVersion: 2
           m_Curve:
@@ -23140,48 +23142,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        keepLookingAtAfterFinish: 1
+        keepLookingAtAfterFinish: 0
         attachSmoothing: 0
-    - rid: 7921366894969880662
-      type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        targetType: 1
-        localPosition: {x: 0, y: 0, z: 0}
-        useTargetAsCurvePointOrigin: 0
-        target: {fileID: 1784870107}
-        offsetMode: 0
-        offset: {x: 0, y: 0, z: -2}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        speed: 1
-        curvature: 1
-        progressCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 1
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 1
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        attach: 1
-        attachSmoothing: 5
-        attachMode: 0
 --- !u!114 &1784870109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23292,13 +23254,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784870106}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
-  _playAtStart: 1
+  _playAtStart: 0
   _tweenPlayer:
     _progress: 0
     _speed: 1
@@ -23316,7 +23278,7 @@ MonoBehaviour:
     - rid: 7921366803577045079
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
-        duration: 6
+        duration: 3
         durationRandomAdd: 0
         curve:
           serializedVersion: 2
@@ -23346,7 +23308,11 @@ MonoBehaviour:
           rid: -2
         action:
           rid: 7921366803577045080
-        events: []
+        events:
+        - direction: 0
+          progress: 0
+          action:
+            rid: 7921366916270129241
     - rid: 7921366803577045080
       type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
         asm: MisterGames.TweenLib}
@@ -23356,6 +23322,10 @@ MonoBehaviour:
         endEulerAngles: {x: 0, y: 360, z: 0}
         useLocal: 1
         useEulerInterpolation: 1
+    - rid: 7921366916270129241
+      type: {class: LogAction, ns: MisterGames.ActionLib.GameObjects, asm: Assembly-CSharp}
+      data:
+        text: log
 --- !u!1 &1798028761
 GameObject:
   m_ObjectHideFlags: 0
@@ -27273,6 +27243,11 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 1cd4ad27c79cc44429b8ad2bd38131cd, type: 2}
+    - target: {fileID: 7995568551151811375, guid: e598642c89b18c74d82901870ae62b19,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7995568551152074189, guid: e598642c89b18c74d82901870ae62b19,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27609,8 +27584,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1631081717}
-  - {fileID: 1735115112}
   - {fileID: 2047752688}
+  - {fileID: 1735115112}
   - {fileID: 2007145975}
   - {fileID: 1984826570}
   - {fileID: 9129135582864321694}
