@@ -9702,6 +9702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3957165838251526101}
   - component: {fileID: -1619856747426278736}
+  - component: {fileID: 6058779830086824563}
   - component: {fileID: 4412857026217403834}
   - component: {fileID: 7772859148283415474}
   - component: {fileID: 5103855454638281842}
@@ -9771,6 +9772,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &6058779830086824563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939634505636510374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682620d4a1ab443b94c5f5b6eb08b837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: -1619856747426278736}
+  _gravityMode: 1
+  _localGravitySource: {fileID: 0}
+  _useGravity: 1
+  _gravityScale: 1
+  _allowSleeping: 0
+  _velocityMin: 0.01
+  _sleepDelay: 1
 --- !u!135 &4412857026217403834
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10102,7 +10123,6 @@ MonoBehaviour:
     - rid: 9124718520716755050
       type: {class: SetKinematicAction, ns: MisterGames.ActionLib.Phys, asm: MisterGames.ActionLib}
       data:
-        rigidbody: {fileID: -1619856747426278736}
         isKinematic: 1
     - rid: 9124718520716755052
       type: {class: PlayParticleSystemAction, ns: MisterGames.ActionLib.Materials,
