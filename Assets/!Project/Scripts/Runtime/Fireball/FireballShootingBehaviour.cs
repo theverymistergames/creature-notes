@@ -2,6 +2,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
+using MisterGames.Character.Motion;
 using MisterGames.Character.View;
 using MisterGames.Collisions.Utils;
 using MisterGames.Common.Async;
@@ -50,6 +51,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         private CancellationTokenSource _enableCts;
         private IActor _actor;
         private CharacterViewPipeline _view;
+        private CharacterGravity _characterGravity;
         private FireballShootingData _shootingData;
         private float _stageSpeed;
         private byte _visualsEnableId;
@@ -57,6 +59,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
             _view = actor.GetComponent<CharacterViewPipeline>();
+            _characterGravity = actor.GetComponent<CharacterGravity>();
             
             _hits = new RaycastHit[_maxHits];
         }
@@ -198,7 +201,9 @@ namespace _Project.Scripts.Runtime.Fireball {
             if (shotActor.TryGetComponent(out Rigidbody rb)) {
                 float force = Mathf.Lerp(_shootingData.forceStart, _shootingData.forceEnd, _shootingData.forceByChargeProgress.Evaluate(progress));
                 float angle = Mathf.Lerp(_shootingData.angleStart, _shootingData.angleEnd, _shootingData.angleByChargeProgress.Evaluate(progress));
-            
+
+                angle = Mathf.Clamp(angle * _characterGravity.GravityMagnitude / 9.81f, 0f, Mathf.Max(_shootingData.angleStart, _shootingData.angleEnd));
+                
                 rb.linearVelocity = Quaternion.AngleAxis(angle, orient * Vector3.left) * orient * (Vector3.forward * force);
                 rb.rotation = Quaternion.LookRotation(rb.linearVelocity);
             }
