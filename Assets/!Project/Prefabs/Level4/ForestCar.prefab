@@ -4509,7 +4509,32 @@ MonoBehaviour:
         target: {fileID: 6343331099434872525}
         mode: 1
         orientation: {x: 0, y: 0, z: 0}
-        duration: 0.5
+        angularSpeed: 30
+        maxAngleDiff: 0
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1.5735515
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.330931
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009282457
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358689
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
         keepLookingAtAfterFinish: 1
         attachSmoothing: 10
     - rid: 1899962879316066307
@@ -4523,12 +4548,7 @@ MonoBehaviour:
         offsetMode: 0
         offset: {x: 0, y: 0.15, z: -0.8}
         rotationOffset: {x: 0, y: 0, z: 0}
-        attach: 1
-        attachSmoothing: 15
-        attachMode: 2
         speed: 1
-        reduceSpeedBelowDistance: 0.5
-        speedMin: 0.01
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -4554,6 +4574,9 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        attach: 1
+        attachSmoothing: 15
+        attachMode: 2
     - rid: 1899962879316066309
       type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
       data:
@@ -4572,12 +4595,12 @@ MonoBehaviour:
       type: {class: CharacterActionEnableCollisions, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
+        blockSourceMode: 0
+        blockSource: {fileID: 0}
         isEnabled: 0
     - rid: 1899962890230431744
-      type: {class: CharacterActionEnableGravity, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
+      type: {class: SetKinematicAction, ns: MisterGames.ActionLib.Phys, asm: MisterGames.ActionLib}
       data:
-        useGravity: 0
         isKinematic: 1
     - rid: 1899962890230431760
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
@@ -4614,12 +4637,7 @@ MonoBehaviour:
         offsetMode: 0
         offset: {x: 0, y: 0.5, z: -1}
         rotationOffset: {x: 0, y: 0, z: 0}
-        attach: 1
-        attachSmoothing: 10
-        attachMode: 0
         speed: 1
-        reduceSpeedBelowDistance: 0.5
-        speedMin: 0.01
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -4645,6 +4663,9 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        attach: 1
+        attachSmoothing: 10
+        attachMode: 0
     - rid: 1899962890230431765
       type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
       data:
@@ -4667,12 +4688,12 @@ MonoBehaviour:
       type: {class: CharacterActionEnableCollisions, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
+        blockSourceMode: 0
+        blockSource: {fileID: 0}
         isEnabled: 1
     - rid: 1899962890230431769
-      type: {class: CharacterActionEnableGravity, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
+      type: {class: SetKinematicAction, ns: MisterGames.ActionLib.Phys, asm: MisterGames.ActionLib}
       data:
-        useGravity: 1
         isKinematic: 0
     - rid: 1899962890230431770
       type: {class: CharacterMoveToTargetAction, ns: MisterGames.ActionLib.Character,
@@ -4680,23 +4701,13 @@ MonoBehaviour:
       data:
         targetType: 1
         target: {fileID: 6343331099434872525}
+        saveHeadPosition: 1
         offset: {x: 0, y: 0, z: 0}
         rotationOffset: {x: 0, y: 0, z: 0}
         offsetMode: 1
+        disableCollisionsWhileMoving: 1
         speed: 0
-        reduceSpeedBelowDistance: 0
-        pointRadius: 0
-        smoothing: 0
         curvature: 0
-        allowTranslationY: 1
-        saveHeadPosition: 1
-        detectGround: 1
-        layer:
-          serializedVersion: 2
-          m_Bits: 1
-        rayElevation: 2
-        maxDistance: 4
-        groundOffset: 0.5
         progressCurve:
           serializedVersion: 2
           m_Curve:
@@ -4721,6 +4732,14 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        detectGround: 1
+        allowTranslationY: 1
+        layer:
+          serializedVersion: 2
+          m_Bits: 1
+        rayElevation: 2
+        maxDistance: 4
+        groundOffset: 0.5
     - rid: 1899962890230431780
       type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:

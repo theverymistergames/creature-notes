@@ -39,7 +39,7 @@ public class WindowMonsterAnimation : MonsterAnimation {
     [SerializeField] [Range(0f, 1f)] private float _testProgress;
     
     private void OnValidate() {
-        ProceedUpdate(_testProgress);
+        //ProceedUpdate(_testProgress);
     }
 #endif
 }

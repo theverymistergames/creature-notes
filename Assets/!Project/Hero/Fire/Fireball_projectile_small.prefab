@@ -10082,9 +10082,15 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 0
-        fadeIn: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
         startTime: {x: 0, y: 0}
         volume: 0.7
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.1
         spatialBlend: 1
@@ -10094,18 +10100,10 @@ MonoBehaviour:
         - {fileID: 8300000, guid: 676ca36677e832f49896008454e9b345, type: 3}
         - {fileID: 8300000, guid: 72bfca8d33964084a97680b0a03d0213, type: 3}
     - rid: 9124718520716755050
-      type: {class: SetRigidbodyParamsAction, ns: MisterGames.ActionLib.Phys, asm: MisterGames.ActionLib}
+      type: {class: SetKinematicAction, ns: MisterGames.ActionLib.Phys, asm: MisterGames.ActionLib}
       data:
         rigidbody: {fileID: -1619856747426278736}
-        isKinematic:
-          _hasValue: 1
-          _value: 1
-        useGravity:
-          _hasValue: 0
-          _value: 0
-        interpolation:
-          _hasValue: 0
-          _value: 0
+        isKinematic: 1
     - rid: 9124718520716755052
       type: {class: PlayParticleSystemAction, ns: MisterGames.ActionLib.Materials,
         asm: MisterGames.ActionLib}
@@ -20084,9 +20082,15 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
-        fadeIn: 0.3
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
         startTime: {x: 0, y: 1}
         volume: 1
+        fadeIn: 0.3
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.1
         spatialBlend: 1
@@ -20097,9 +20101,15 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
-        fadeIn: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
         startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.1
         spatialBlend: 0.7
