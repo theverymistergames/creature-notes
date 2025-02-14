@@ -52,6 +52,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         private IActor _actor;
         private CharacterViewPipeline _view;
         private CharacterGravity _characterGravity;
+        private Rigidbody _rigidbody;
         private FireballShootingData _shootingData;
         private float _stageSpeed;
         private byte _visualsEnableId;
@@ -60,6 +61,7 @@ namespace _Project.Scripts.Runtime.Fireball {
             _actor = actor;
             _view = actor.GetComponent<CharacterViewPipeline>();
             _characterGravity = actor.GetComponent<CharacterGravity>();
+            _rigidbody = actor.GetComponent<Rigidbody>();
             
             _hits = new RaycastHit[_maxHits];
         }
@@ -202,11 +204,15 @@ namespace _Project.Scripts.Runtime.Fireball {
                 float force = Mathf.Lerp(_shootingData.forceStart, _shootingData.forceEnd, _shootingData.forceByChargeProgress.Evaluate(progress));
                 float angle = Mathf.Lerp(_shootingData.angleStart, _shootingData.angleEnd, _shootingData.angleByChargeProgress.Evaluate(progress));
 
-                angle = Mathf.Clamp(angle * _characterGravity.GravityMagnitude / 9.81f, 0f, Mathf.Max(_shootingData.angleStart, _shootingData.angleEnd));
+                float gravityK = _characterGravity.GravityMagnitude / 9.81f;
+                angle = Mathf.Clamp(angle * gravityK, 0f, Mathf.Max(_shootingData.angleStart, _shootingData.angleEnd));
                 
                 rb.linearVelocity = Quaternion.AngleAxis(angle, orient * Vector3.left) * orient * (Vector3.forward * force);
                 rb.rotation = Quaternion.LookRotation(rb.linearVelocity);
             }
+            
+            float recoil = Mathf.Lerp(_shootingData.recoilStart, _shootingData.recoilEnd, _shootingData.recoilByChargeProgress.Evaluate(progress));
+            _rigidbody.AddForce(orient * (recoil * Vector3.back), ForceMode.VelocityChange);
             
             OnFire.Invoke(progress);
         }
