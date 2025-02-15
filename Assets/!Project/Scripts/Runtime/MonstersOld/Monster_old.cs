@@ -2,13 +2,15 @@
 using LitMotion;
 using UnityEngine;
 
+[Obsolete("Use MonsterLib.MonsterIds labels instead.")]
 public enum MonsterType {
     Window,
     Bed,
     Light,
 }
 
-public class Monster : MonoBehaviour {
+[Obsolete("Use Monster class instead")]
+public class Monster_old : MonoBehaviour {
 
     [SerializeField]
     protected float _damage = 1;

@@ -21,7 +21,7 @@ public class MonsterController : MonoBehaviour {
     [SerializeField] private AudioClip spawnSound;
     
     [SerializeField]
-    private List<Monster> monsters;
+    private List<Monster_old> monsters;
     private bool _inProgress;
 
     //private DebuffsController _debuffsController;
@@ -61,7 +61,7 @@ public class MonsterController : MonoBehaviour {
         StopCoroutine(SpawnRoutine());
     }
 
-    void OnMonsterFinished(Monster monster) {
+    void OnMonsterFinished(Monster_old monster) {
         _source.PlayOneShot(spawnSound);
         
         _spawnedMonsters++;
@@ -73,7 +73,7 @@ public class MonsterController : MonoBehaviour {
         }
     }
 
-    private void OnMonsterKilled(Monster monster) {
+    private void OnMonsterKilled(Monster_old monster) {
         if (monster.IsFinished()) {
             _spawnedMonsters--;
             UpdateFlesh();
@@ -95,7 +95,7 @@ public class MonsterController : MonoBehaviour {
         }
     }
 
-    private void SpawnMonster(Monster monster) {
+    private void SpawnMonster(Monster_old monster) {
         Debug.Log(monster.type);
         monster.Spawn(spawnTime, harbringerThreshold);
     }

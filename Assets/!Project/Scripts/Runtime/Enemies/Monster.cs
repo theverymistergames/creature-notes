@@ -172,7 +172,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         [SerializeField] private Vector2 _attackDurationRangeTest = Vector2.one;
         [SerializeField] private Vector2 _attackCooldownRangeTest = Vector2.one;
 
-        [Button] 
+        [Button(mode: ButtonAttribute.Mode.Runtime)] 
         private void RespawnTest() {
             Respawn(_armDurationTest, _attackDurationRangeTest, _attackCooldownRangeTest);
         }

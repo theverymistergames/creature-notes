@@ -53,7 +53,7 @@ public class ProjectileContainer : MonoBehaviour {
         GetComponent<Collider>().enabled = false;
 
         if (other.transform.CompareTag("Enemy")) {
-            var monster = other.transform.GetComponent<Monster>();
+            var monster = other.transform.GetComponent<Monster_old>();
             
             if (monster.IsSpawned()) {
                 var main = explosion.main;
