@@ -214,8 +214,8 @@ MonoBehaviour:
   _progress: 0
   _showDebugInfo: 0
   _armDurationTest: 5
-  _attackDurationRangeTest: {x: 5, y: 5}
-  _attackCooldownRangeTest: {x: 5, y: 5}
+  _attackDurationRangeTest: {x: 2, y: 2}
+  _attackCooldownRangeTest: {x: 1, y: 1}
 --- !u!114 &3882595919986483968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +413,7 @@ MonoBehaviour:
         actions:
         - rid: 7921367002276429923
         - rid: 7921367002276429940
+        - rid: 7921367002276429948
     - rid: 7921367002276429921
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
@@ -439,6 +440,8 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
+        - rid: 7921367002276429949
+        - rid: 7921367002276429950
         - rid: 7921367002276429929
     - rid: 7921367002276429929
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
@@ -453,6 +456,8 @@ MonoBehaviour:
         mode: 0
         actions:
         - rid: 7921367002276429931
+        - rid: 7921367002276429945
+        - rid: 7921367002276429946
     - rid: 7921367002276429931
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
@@ -535,6 +540,54 @@ MonoBehaviour:
         deformer: {fileID: 2369157372919283145}
         startFactor: 0
         endFactor: 1
+    - rid: 7921367002276429945
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0.32
+        mode: 0
+        action:
+          rid: -2
+    - rid: 7921367002276429946
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 7982499970978087407, guid: 0c39ec698febd6f4c9a91eb63fe533dc,
+          type: 3}
+        mode: 1
+        explicitTransform: {fileID: 8994812921028012351}
+        inherit: 3
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 0
+          _value: {x: 1, y: 1, z: 1}
+        parentToTransform: 1
+    - rid: 7921367002276429948
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 2
+    - rid: 7921367002276429949
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 7982499970978087407, guid: 8a47fe191e1ca4e47875ceab2d23c971,
+          type: 3}
+        mode: 1
+        explicitTransform: {fileID: 8994812921028012351}
+        inherit: 3
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 0
+          _value: {x: 1, y: 1, z: 1}
+        parentToTransform: 1
+    - rid: 7921367002276429950
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 1
+        mode: 0
+        action:
+          rid: -2
 --- !u!1 &3354743305217567482
 GameObject:
   m_ObjectHideFlags: 0
