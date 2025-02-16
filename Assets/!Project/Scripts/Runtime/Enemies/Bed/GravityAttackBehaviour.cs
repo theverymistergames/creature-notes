@@ -2,9 +2,8 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
-using MisterGames.Actors.Actions;
 using MisterGames.Character.Core;
-using MisterGames.Character.View;
+using MisterGames.Character.Motion;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Easing;
@@ -44,139 +43,37 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
         [SerializeField] private bool _shuffleDirections;
         [SerializeField] private Vector3[] _randomStopDirections;
 
-        [SerializeReference] [SubclassSelector] private IActorAction _startAction;
-        [SerializeReference] [SubclassSelector] private IActorAction _finishAction;
-        
         private enum StopMode {
             ReturnToNormalGravity,
             UseLastRotation,
             RandomOnUnitSphere,
             RandomFromList
         }
-        
-        private CancellationTokenSource _cts;
-        private IActor _actor;
+
+        public bool IsAttackInProcess { get; private set; }
+
+        private CancellationTokenSource _enableCts;
         private byte _operationId;
-        private bool _inAntiGravity;
         private int _lastStopDirectionIndex = -1;
 
-        public void OnAwake(IActor actor) {
-            _actor = actor;
+        private void OnEnable() {
+            AsyncExt.RecreateCts(ref _enableCts);
         }
 
         private void OnDisable() {
+            AsyncExt.DisposeCts(ref _enableCts);
             ReturnToNormalGravity();
         }
         
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         public void StartAntiGravity() {
-            AsyncExt.RecreateCts(ref _cts);
-            StartAntiGravityAsync(_cts.Token).Forget();
+            StartAntiGravityAsync(_enableCts.Token).Forget();
         }
 
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         public void StopAntiGravity() {
-            AsyncExt.RecreateCts(ref _cts);
-            StopAntiGravityAsync(_cts.Token).Forget();
-        }
-
-        [Button(mode: ButtonAttribute.Mode.Runtime)]
-        public void ReturnToNormalGravity() {
-            AsyncExt.DisposeCts(ref _cts);
             _operationId++;
-
-            if (_inAntiGravity) {
-                _finishAction?.Apply(_actor, destroyCancellationToken).Forget();
-            }
-            
-            _inAntiGravity = false;
-            
-            UnblockCharacterGravityAlign();
-            
-            _gravitySource.forward = Vector3.down;
-            _gravitySource.localScale = Vector3.one;
-            
-            _lastStopDirectionIndex = -1;
-        }
-
-        private async UniTask StartAntiGravityAsync(CancellationToken cancellationToken) {
-            byte id = ++_operationId;
-            _inAntiGravity = true;
-            
-            if (_startAction != null) {
-                await _startAction.Apply(_actor, cancellationToken);
-            }
-            
-            var originDir = _gravitySource.forward;
-
-            var flatDir = RandomExtensions.OnUnitCircle(-originDir);
-            var axis = Vector3.Cross(flatDir, -originDir);
-            var flipDir = Quaternion.AngleAxis(_flipAngle.GetRandomInRange(), axis) * flatDir;
-            
-            if (_flipDuration > 0f) {
-                if (_blockCharacterGravityAlign) BlockCharacterGravityAlign(cancellationToken);
-
-                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
-                
-                if (cancellationToken.IsCancellationRequested || _operationId != id) return;
-
-                _gravitySource.forward = flipDir;
-                _gravitySource.localScale = Vector3.one.WithZ(_flipMagnitude.GetRandomInRange());
-            
-                await UniTask.Delay(TimeSpan.FromSeconds(_flipDuration), cancellationToken: cancellationToken)
-                    .SuppressCancellationThrow();
-            
-                if (cancellationToken.IsCancellationRequested || _operationId != id) return;
-            }
-
-            _gravitySource.forward = -flipDir;
-
-            var startRot = _gravitySource.rotation;
-            var endRot = _gravitySource.rotation * 
-                         Quaternion.FromToRotation(-flipDir, RandomExtensions.OnUnitCircle(flipDir));
-            
-            float t = 0f;
-            float inc = _rotationDuration > 0f ? 1f / _rotationDuration : float.MaxValue;
-            float tSettle = _rotationDuration > 0f ? _settleDuration / _rotationDuration : 0f;
-            float tRot = 0f;
-            
-            bool unblockedAlign = false;
-            
-            while (!cancellationToken.IsCancellationRequested && _operationId == id && t < 1f) {
-                float dt = Time.deltaTime;
-                t += dt * inc;
-                
-                float speed = Mathf.Lerp(_rotationSpeedStart, _rotationSpeedEnd, _rotationCurve.Evaluate(t));
-                tRot += dt * speed;
-
-                float magnitude = t < tSettle
-                    ? Mathf.Lerp(_settleMagnitudeStart, _settleMagnitudeEnd, t / tSettle)
-                    : Mathf.Lerp(_rotationMagnitudeStart, _rotationMagnitudeEnd, t);
-                
-                _gravitySource.rotation = Quaternion.SlerpUnclamped(startRot, endRot, tRot);
-                _gravitySource.localScale = Vector3.one.WithZ(magnitude);
-                
-                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
-
-                if (!unblockedAlign) {
-                    if (cancellationToken.IsCancellationRequested || _operationId != id) return;
-                    
-                    unblockedAlign = true;
-                    UnblockCharacterGravityAlign();
-                }
-            }
-        }
-
-        private async UniTask StopAntiGravityAsync(CancellationToken cancellationToken) {
-            byte id = ++_operationId;
-            
-            if (_inAntiGravity) {
-                await _finishAction.Apply(_actor, cancellationToken);
-                
-                if (cancellationToken.IsCancellationRequested || _operationId != id) return;
-            }
-            
-            _inAntiGravity = false;
+            IsAttackInProcess = false;
             
             UnblockCharacterGravityAlign();
 
@@ -217,15 +114,92 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
             }
         }
 
+        [Button(mode: ButtonAttribute.Mode.Runtime)]
+        public void ReturnToNormalGravity() {
+            _operationId++;
+            IsAttackInProcess = false;
+            
+            UnblockCharacterGravityAlign();
+            
+            _gravitySource.forward = Vector3.down;
+            _gravitySource.localScale = Vector3.one;
+            
+            _lastStopDirectionIndex = -1;
+        }
+
+        private async UniTask StartAntiGravityAsync(CancellationToken cancellationToken) {
+            byte id = ++_operationId;
+            
+            IsAttackInProcess = true;
+            var originDir = _gravitySource.forward;
+
+            var flatDir = RandomExtensions.OnUnitCircle(-originDir);
+            var axis = Vector3.Cross(flatDir, -originDir);
+            var flipDir = Quaternion.AngleAxis(_flipAngle.GetRandomInRange(), axis) * flatDir;
+            
+            if (_flipDuration > 0f) {
+                if (_blockCharacterGravityAlign) BlockCharacterGravityAlign(cancellationToken);
+
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+                
+                if (cancellationToken.IsCancellationRequested || _operationId != id) return;
+
+                _gravitySource.forward = flipDir;
+                _gravitySource.localScale = Vector3.one.WithZ(_flipMagnitude.GetRandomInRange());
+            
+                await UniTask.Delay(TimeSpan.FromSeconds(_flipDuration), cancellationToken: cancellationToken)
+                    .SuppressCancellationThrow();
+            
+                if (cancellationToken.IsCancellationRequested || _operationId != id) return;
+            }
+
+            _gravitySource.forward = -flipDir;
+
+            var startRot = _gravitySource.rotation;
+            var endRot = _gravitySource.rotation * 
+                         Quaternion.FromToRotation(-flipDir, RandomExtensions.OnUnitCircle(flipDir));
+            
+            float t = 0f;
+            float inc = _rotationDuration > 0f ? 1f / _rotationDuration : float.MaxValue;
+            float tSettle = _rotationDuration > 0f ? _settleDuration / _rotationDuration : 0f;
+            float tRot = 0f;
+            
+            bool unblockedAlign = false;
+
+            while (!cancellationToken.IsCancellationRequested && _operationId == id && t < 1f) {
+                float dt = Time.fixedDeltaTime;
+                t += dt * inc;
+                
+                float speed = Mathf.Lerp(_rotationSpeedStart, _rotationSpeedEnd, _rotationCurve.Evaluate(t));
+                tRot += dt * speed;
+
+                float magnitude = t < tSettle
+                    ? Mathf.Lerp(_settleMagnitudeStart, _settleMagnitudeEnd, t / tSettle)
+                    : Mathf.Lerp(_rotationMagnitudeStart, _rotationMagnitudeEnd, t);
+
+                _gravitySource.rotation = Quaternion.SlerpUnclamped(startRot, endRot, tRot);
+                _gravitySource.localScale = Vector3.one.WithZ(magnitude);
+                
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+
+                if (!unblockedAlign) {
+                    if (cancellationToken.IsCancellationRequested || _operationId != id) return;
+                    
+                    unblockedAlign = true;
+                    UnblockCharacterGravityAlign();
+                }
+            }
+        }
+
         private void BlockCharacterGravityAlign(CancellationToken cancellationToken) {
-            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterViewPipeline view) ?? false) {
-                view.BlockGravityAlign(this, block: true, cancellationToken);
+            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterGravity characterGravity) ?? false) {
+                characterGravity.BlockGravityAlign(this, block: true, cancellationToken);
             }
         }
         
         private void UnblockCharacterGravityAlign() {
-            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterViewPipeline view) ?? false) {
-                view.BlockGravityAlign(this, block: false);
+            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterGravity characterGravity) ?? false) {
+                characterGravity.BlockGravityAlign(this, block: false);
             }
         }
     }
