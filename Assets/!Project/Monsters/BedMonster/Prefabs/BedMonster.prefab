@@ -286,7 +286,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     progressModulator:
-      rid: -2
+      rid: 7921367023928213506
     notifyProgressDirection: 0
     progressAction:
       rid: 7921367002276429934
@@ -317,7 +317,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     progressModulator:
-      rid: -2
+      rid: 7921367023928213507
     notifyProgressDirection: 0
     progressAction:
       rid: 7921367002276429942
@@ -484,14 +484,14 @@ MonoBehaviour:
       data:
         actions:
         - rid: 7921367002276429939
-        - rid: 7921367002276429938
+        - rid: 7921367023928213517
         - rid: 7921367002276429936
         - rid: 7921367002276429937
     - rid: 7921367002276429936
       type: {class: TweenProgressActionScaleTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
         transform: {fileID: 7128330724530286876}
-        startLocalScale: {x: 0.5, y: 0.5, z: 0.5}
+        startLocalScale: {x: 0.1, y: 0.1, z: 0.1}
         endLocalScale: {x: 1.5, y: 1.5, z: 1.5}
     - rid: 7921367002276429937
       type: {class: TweenProgressActionEnableObject, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
@@ -499,15 +499,6 @@ MonoBehaviour:
         target: {fileID: 7613119298026941350}
         enabledBeforeThreshold: 0
         enableThreshold: 0.1
-    - rid: 7921367002276429938
-      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
-        asm: MisterGames.TweenLib}
-      data:
-        transform: {fileID: 7128330724530286876}
-        startEulerAngles: {x: 0, y: 90, z: -5}
-        endEulerAngles: {x: 0, y: 90, z: 15}
-        useLocal: 1
-        useEulerInterpolation: 0
     - rid: 7921367002276429939
       type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -588,6 +579,27 @@ MonoBehaviour:
         mode: 0
         action:
           rid: -2
+    - rid: 7921367023928213506
+      type: {class: ProgressModulatorRemap, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        startValue: -2
+        endValue: 1
+        clamp01: 1
+    - rid: 7921367023928213507
+      type: {class: ProgressModulatorRemap, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        startValue: -5
+        endValue: 1
+        clamp01: 1
+    - rid: 7921367023928213517
+      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 7128330724530286876}
+        startEulerAngles: {x: 0, y: 90, z: -5}
+        endEulerAngles: {x: 0, y: 90, z: 15}
+        useLocal: 1
+        useEulerInterpolation: 0
 --- !u!1 &3354743305217567482
 GameObject:
   m_ObjectHideFlags: 0
