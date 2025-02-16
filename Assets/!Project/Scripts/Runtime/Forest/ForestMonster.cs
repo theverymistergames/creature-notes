@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using MisterGames.Character.Core;
 using MisterGames.Common.Attributes;
@@ -49,11 +50,13 @@ public class ForestMonster : MonoBehaviour {
         light.range = _startLightRange;
     }
 
-    private void Stop(bool caught = false) {
+    private async void Stop(bool caught = false) {
         if (!caught) OnStop.Invoke();
         
         _agent.isStopped = true;
         IsStopped = true;
+
+        if (!caught) await UniTask.Delay(2000);
 
         death.Play();
         body.Stop(true, ParticleSystemStopBehavior.StopEmitting);
