@@ -117,7 +117,7 @@ GameObject:
   m_Layer: 0
   m_Name: BedMonster
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -136,6 +136,7 @@ Transform:
   m_Children:
   - {fileID: 3023824713508723283}
   - {fileID: 8338069464813873449}
+  - {fileID: 950783920131357538}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!54 &8972386327103390370
@@ -286,7 +287,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     progressModulator:
-      rid: -2
+      rid: 7921367023928213506
     notifyProgressDirection: 0
     progressAction:
       rid: 7921367002276429934
@@ -317,10 +318,41 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     progressModulator:
-      rid: -2
+      rid: 7921367023928213507
     notifyProgressDirection: 0
     progressAction:
       rid: 7921367002276429942
+    events: []
+  - progressSmoothing: 0
+    progressCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    progressModulator:
+      rid: -2
+    notifyProgressDirection: 1
+    progressAction:
+      rid: 7921367023928213622
     events: []
   _eventActions:
   - eventType: 0
@@ -337,10 +369,10 @@ MonoBehaviour:
       rid: -2
   - eventType: 4
     action:
-      rid: 7921367002276429930
+      rid: 7921367023928213611
   - eventType: 5
     action:
-      rid: 7921367002276429928
+      rid: 7921367023928213616
   references:
     version: 2
     RefIds:
@@ -390,6 +422,8 @@ MonoBehaviour:
         actions:
         - rid: 7921367002276429921
         - rid: 7921367002276429922
+        - rid: 7921367023928213617
+        - rid: 7921367023928213619
     - rid: 7921367002276429917
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -398,6 +432,8 @@ MonoBehaviour:
         - rid: 7921367002276429932
         - rid: 7921367002276429933
         - rid: 7921367002276429918
+        - rid: 7921367023928213618
+        - rid: 7921367023928213620
     - rid: 7921367002276429918
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
@@ -411,6 +447,7 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
+        - rid: 7921367023928213621
         - rid: 7921367002276429923
         - rid: 7921367002276429940
         - rid: 7921367002276429948
@@ -435,36 +472,6 @@ MonoBehaviour:
           _hash: -1418007274
           _name: Prepare
         value: 0
-    - rid: 7921367002276429928
-      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
-      data:
-        mode: 0
-        actions:
-        - rid: 7921367002276429949
-        - rid: 7921367002276429950
-        - rid: 7921367002276429929
-    - rid: 7921367002276429929
-      type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
-      data:
-        parameter:
-          _hash: 1080829965
-          _name: Attack
-        value: 0
-    - rid: 7921367002276429930
-      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
-      data:
-        mode: 0
-        actions:
-        - rid: 7921367002276429931
-        - rid: 7921367002276429945
-        - rid: 7921367002276429946
-    - rid: 7921367002276429931
-      type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
-      data:
-        parameter:
-          _hash: 1080829965
-          _name: Attack
-        value: 1
     - rid: 7921367002276429932
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
@@ -484,14 +491,14 @@ MonoBehaviour:
       data:
         actions:
         - rid: 7921367002276429939
-        - rid: 7921367002276429938
+        - rid: 7921367023928213517
         - rid: 7921367002276429936
         - rid: 7921367002276429937
     - rid: 7921367002276429936
       type: {class: TweenProgressActionScaleTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
         transform: {fileID: 7128330724530286876}
-        startLocalScale: {x: 0.5, y: 0.5, z: 0.5}
+        startLocalScale: {x: 0.1, y: 0.1, z: 0.1}
         endLocalScale: {x: 1.5, y: 1.5, z: 1.5}
     - rid: 7921367002276429937
       type: {class: TweenProgressActionEnableObject, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
@@ -499,15 +506,6 @@ MonoBehaviour:
         target: {fileID: 7613119298026941350}
         enabledBeforeThreshold: 0
         enableThreshold: 0.1
-    - rid: 7921367002276429938
-      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
-        asm: MisterGames.TweenLib}
-      data:
-        transform: {fileID: 7128330724530286876}
-        startEulerAngles: {x: 0, y: 90, z: -5}
-        endEulerAngles: {x: 0, y: 90, z: 15}
-        useLocal: 1
-        useEulerInterpolation: 0
     - rid: 7921367002276429939
       type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -540,54 +538,102 @@ MonoBehaviour:
         deformer: {fileID: 2369157372919283145}
         startFactor: 0
         endFactor: 1
-    - rid: 7921367002276429945
-      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
-      data:
-        delay: 0.32
-        mode: 0
-        action:
-          rid: -2
-    - rid: 7921367002276429946
-      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
-      data:
-        prefab: {fileID: 7982499970978087407, guid: 0c39ec698febd6f4c9a91eb63fe533dc,
-          type: 3}
-        mode: 1
-        explicitTransform: {fileID: 8994812921028012351}
-        inherit: 3
-        offset: {x: 0, y: 0, z: 0}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        scale:
-          _hasValue: 0
-          _value: {x: 1, y: 1, z: 1}
-        parentToTransform: 1
     - rid: 7921367002276429948
       type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
       data:
         action:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 2
-    - rid: 7921367002276429949
-      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+    - rid: 7921367023928213506
+      type: {class: ProgressModulatorRemap, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
-        prefab: {fileID: 7982499970978087407, guid: 8a47fe191e1ca4e47875ceab2d23c971,
-          type: 3}
-        mode: 1
-        explicitTransform: {fileID: 8994812921028012351}
-        inherit: 3
-        offset: {x: 0, y: 0, z: 0}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        scale:
-          _hasValue: 0
-          _value: {x: 1, y: 1, z: 1}
-        parentToTransform: 1
-    - rid: 7921367002276429950
-      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+        startValue: -2
+        endValue: 1
+        clamp01: 1
+    - rid: 7921367023928213507
+      type: {class: ProgressModulatorRemap, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
-        delay: 1
-        mode: 0
-        action:
-          rid: -2
+        startValue: -5
+        endValue: 1
+        clamp01: 1
+    - rid: 7921367023928213517
+      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 7128330724530286876}
+        startEulerAngles: {x: 0, y: 90, z: -5}
+        endEulerAngles: {x: 0, y: 90, z: 15}
+        useLocal: 1
+        useEulerInterpolation: 0
+    - rid: 7921367023928213611
+      type: {class: StartGravityAttackAction, ns: _Project.Scripts.Runtime.Enemies.Bed,
+        asm: Assembly-CSharp}
+      data: 
+    - rid: 7921367023928213616
+      type: {class: StopGravityAttackAction, ns: _Project.Scripts.Runtime.Enemies.Bed,
+        asm: Assembly-CSharp}
+      data: 
+    - rid: 7921367023928213617
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 1
+        delay: 0
+        gameObjects:
+        - {fileID: 6887217192680979297}
+    - rid: 7921367023928213618
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        gameObjects:
+        - {fileID: 6887217192680979297}
+    - rid: 7921367023928213619
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: -1649680362
+          _name: jitter
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 1}
+        volume: 0
+        fadeIn: 0.5
+        fadeOut: 0.3
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 1
+        audioClipVariants:
+        - {fileID: 8300000, guid: 1b0d650ec22637c4ba645d93f4956a80, type: 3}
+    - rid: 7921367023928213620
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: -1649680362
+          _name: jitter
+        position: 0
+        transform: {fileID: 0}
+    - rid: 7921367023928213621
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: -1649680362
+          _name: jitter
+        position: 0
+        transform: {fileID: 0}
+    - rid: 7921367023928213622
+      type: {class: ProgressTweenActionSoundVolume, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 3332266136305362847}
+        attachId:
+          _hash: -1649680362
+          _name: jitter
+        startValue: 0
+        endValue: 1
 --- !u!1 &3354743305217567482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1112,499 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 92688e594bc8fb743a63389d7c74dd90,
     type: 3}
   m_PrefabInstance: {fileID: 5660176410841844812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6863932335649004870
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3332266136305362847}
+    m_Modifications:
+    - target: {fileID: 60193435153032743, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_Name
+      value: GravityAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 60193435153032743, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220415961109264190, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: _showDebugInfo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: _startAction
+      value: 7921367023928213606
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: _finishAction
+      value: 7921367023928213612
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213603]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.GameObjects.SpawnPrefabAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213606]'
+      value: MisterGames.Actors MisterGames.Actors.Actions.ActionGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213607]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.Animation.SetAnimatorBoolAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213608]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.Time.DelayAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213609]'
+      value: Assembly-CSharp _Project.Scripts.Runtime.Enemies.Bed.StartGravityAttackAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213610]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.GameObjects.SpawnPrefabAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213612]'
+      value: MisterGames.Actors MisterGames.Actors.Actions.ActionGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213613]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.GameObjects.SpawnPrefabAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213614]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.Time.DelayAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213615]'
+      value: MisterGames.ActionLib MisterGames.ActionLib.Animation.SetAnimatorBoolAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213606].mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213608].mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213612].mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213614].mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213607].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213608].delay
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213614].delay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213615].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].prefab
+      value: 
+      objectReference: {fileID: 7982499970978087407, guid: 0c39ec698febd6f4c9a91eb63fe533dc,
+        type: 3}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213608].action
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].prefab
+      value: 
+      objectReference: {fileID: 7982499970978087407, guid: 0c39ec698febd6f4c9a91eb63fe533dc,
+        type: 3}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].prefab
+      value: 
+      objectReference: {fileID: 7982499970978087407, guid: 8a47fe191e1ca4e47875ceab2d23c971,
+        type: 3}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213614].action
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].inherit
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].inherit
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].inherit
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].offset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].offset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].offset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].scale._value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].scale._value.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].scale._value.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].scale._value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].scale._value.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].scale._value.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].scale._value.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].scale._value.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].scale._value.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].scale._hasValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213607].parameter._hash
+      value: 1080829965
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213607].parameter._name
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].scale._hasValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].scale._hasValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213615].parameter._hash
+      value: 1080829965
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213615].parameter._name
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].rotationOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].rotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].rotationOffset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].rotationOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].rotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].rotationOffset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].rotationOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].rotationOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].rotationOffset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].explicitTransform
+      value: 
+      objectReference: {fileID: 8994812921028012351}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213603].parentToTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].explicitTransform
+      value: 
+      objectReference: {fileID: 8994812921028012351}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213610].parentToTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].explicitTransform
+      value: 
+      objectReference: {fileID: 8994812921028012351}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213613].parentToTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213606].actions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: managedReferences[7921367023928213612].actions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213606].actions.Array.data[0]'
+      value: 7921367023928213607
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213606].actions.Array.data[1]'
+      value: 7921367023928213608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213606].actions.Array.data[2]'
+      value: 7921367023928213610
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213606].actions.Array.data[3]'
+      value: 7921367023928213610
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213612].actions.Array.data[0]'
+      value: 7921367023928213613
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213612].actions.Array.data[1]'
+      value: 7921367023928213614
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208731538122618775, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: 'managedReferences[7921367023928213612].actions.Array.data[2]'
+      value: 7921367023928213615
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.604
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69587acd15faa2a4982f06180a2f6536, type: 3}
+--- !u!4 &950783920131357538 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5940330267405723172, guid: 69587acd15faa2a4982f06180a2f6536,
+    type: 3}
+  m_PrefabInstance: {fileID: 6863932335649004870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6887217192680979297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 60193435153032743, guid: 69587acd15faa2a4982f06180a2f6536,
+    type: 3}
+  m_PrefabInstance: {fileID: 6863932335649004870}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7306618136837232375
 PrefabInstance:

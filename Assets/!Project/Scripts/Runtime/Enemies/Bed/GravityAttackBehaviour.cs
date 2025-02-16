@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using MisterGames.Actors;
+using MisterGames.Actors.Actions;
 using MisterGames.Character.Core;
 using MisterGames.Character.View;
-using MisterGames.Common;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Easing;
@@ -14,7 +15,7 @@ using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Enemies.Bed {
     
-    public sealed class GravityAttackBehaviour : MonoBehaviour {
+    public sealed class GravityAttackBehaviour : MonoBehaviour, IActorComponent {
 
         [SerializeField] private Transform _gravitySource;
 
@@ -42,6 +43,9 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
         [SerializeField] private Vector2 _stopMagnitude = Vector2.one;
         [SerializeField] private bool _shuffleDirections;
         [SerializeField] private Vector3[] _randomStopDirections;
+
+        [SerializeReference] [SubclassSelector] private IActorAction _startAction;
+        [SerializeReference] [SubclassSelector] private IActorAction _finishAction;
         
         private enum StopMode {
             ReturnToNormalGravity,
@@ -50,79 +54,42 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
             RandomFromList
         }
         
-        private CancellationTokenSource _enableCts;
-        private Vector3 _initialForward;
+        private CancellationTokenSource _cts;
+        private IActor _actor;
         private byte _operationId;
+        private bool _inAntiGravity;
         private int _lastStopDirectionIndex = -1;
 
-        private void Awake() {
-            _initialForward = _gravitySource.forward;
-        }
-
-        private void OnEnable() {
-            AsyncExt.RecreateCts(ref _enableCts);
+        public void OnAwake(IActor actor) {
+            _actor = actor;
         }
 
         private void OnDisable() {
-            AsyncExt.DisposeCts(ref _enableCts);
-            
-            _gravitySource.forward = _initialForward;
-            _gravitySource.localScale = Vector3.one;
-
-            _lastStopDirectionIndex = -1;
+            ReturnToNormalGravity();
         }
         
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         public void StartAntiGravity() {
-            StartAntiGravityAsync(_enableCts.Token).Forget();
+            AsyncExt.RecreateCts(ref _cts);
+            StartAntiGravityAsync(_cts.Token).Forget();
         }
 
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         public void StopAntiGravity() {
-            _operationId++;
-            
-            UnblockCharacterGravityAlign();
-
-            float stopMagnitude = _stopMagnitude.GetRandomInRange();
-            
-            switch (_stopMode) {
-                case StopMode.ReturnToNormalGravity:
-                    _gravitySource.forward = Vector3.down;
-                    _gravitySource.localScale = Vector3.one;
-                    break;
-                
-                case StopMode.UseLastRotation:
-                    _gravitySource.localScale = Vector3.one.WithZ(stopMagnitude);
-                    break;
-                
-                case StopMode.RandomOnUnitSphere:
-                    _gravitySource.forward = Random.onUnitSphere;
-                    _gravitySource.localScale = Vector3.one.WithZ(stopMagnitude);
-                    break;
-                
-                case StopMode.RandomFromList:
-                    int excludeIndex = _shuffleDirections ? _lastStopDirectionIndex : -1;
-                    int index = _randomStopDirections.GetRandomIndex(excludeIndex);
-                    _lastStopDirectionIndex = index;
-
-                    if (index >= 0) {
-                        _gravitySource.forward = _randomStopDirections[index].normalized;
-                        _gravitySource.localScale = Vector3.one.WithZ(stopMagnitude);
-                    }
-                    else {
-                        _gravitySource.forward = Vector3.down;
-                        _gravitySource.localScale = Vector3.one;
-                    }
-                    break;
-                
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            AsyncExt.RecreateCts(ref _cts);
+            StopAntiGravityAsync(_cts.Token).Forget();
         }
 
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         public void ReturnToNormalGravity() {
+            AsyncExt.DisposeCts(ref _cts);
             _operationId++;
+
+            if (_inAntiGravity) {
+                _finishAction?.Apply(_actor, destroyCancellationToken).Forget();
+            }
+            
+            _inAntiGravity = false;
             
             UnblockCharacterGravityAlign();
             
@@ -134,6 +101,11 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
 
         private async UniTask StartAntiGravityAsync(CancellationToken cancellationToken) {
             byte id = ++_operationId;
+            _inAntiGravity = true;
+            
+            if (_startAction != null) {
+                await _startAction.Apply(_actor, cancellationToken);
+            }
             
             var originDir = _gravitySource.forward;
 
@@ -192,6 +164,56 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
                     unblockedAlign = true;
                     UnblockCharacterGravityAlign();
                 }
+            }
+        }
+
+        private async UniTask StopAntiGravityAsync(CancellationToken cancellationToken) {
+            byte id = ++_operationId;
+            
+            if (_inAntiGravity) {
+                await _finishAction.Apply(_actor, cancellationToken);
+                
+                if (cancellationToken.IsCancellationRequested || _operationId != id) return;
+            }
+            
+            _inAntiGravity = false;
+            
+            UnblockCharacterGravityAlign();
+
+            float stopMagnitude = _stopMagnitude.GetRandomInRange();
+            
+            switch (_stopMode) {
+                case StopMode.ReturnToNormalGravity:
+                    _gravitySource.forward = Vector3.down;
+                    _gravitySource.localScale = Vector3.one;
+                    break;
+                
+                case StopMode.UseLastRotation:
+                    _gravitySource.localScale = Vector3.one.WithZ(stopMagnitude);
+                    break;
+                
+                case StopMode.RandomOnUnitSphere:
+                    _gravitySource.forward = Random.onUnitSphere;
+                    _gravitySource.localScale = Vector3.one.WithZ(stopMagnitude);
+                    break;
+                
+                case StopMode.RandomFromList:
+                    int excludeIndex = _shuffleDirections ? _lastStopDirectionIndex : -1;
+                    int index = _randomStopDirections.GetRandomIndex(excludeIndex);
+                    _lastStopDirectionIndex = index;
+
+                    if (index >= 0) {
+                        _gravitySource.forward = _randomStopDirections[index].normalized;
+                        _gravitySource.localScale = Vector3.one.WithZ(stopMagnitude);
+                    }
+                    else {
+                        _gravitySource.forward = Vector3.down;
+                        _gravitySource.localScale = Vector3.one;
+                    }
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
