@@ -3,7 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Character.Core;
-using MisterGames.Character.View;
+using MisterGames.Character.Motion;
 using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Easing;
@@ -73,7 +73,6 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         public void StopAntiGravity() {
             _operationId++;
-            
             IsAttackInProcess = false;
             
             UnblockCharacterGravityAlign();
@@ -132,7 +131,6 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
             byte id = ++_operationId;
             
             IsAttackInProcess = true;
-            
             var originDir = _gravitySource.forward;
 
             var flatDir = RandomExtensions.OnUnitCircle(-originDir);
@@ -167,9 +165,9 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
             float tRot = 0f;
             
             bool unblockedAlign = false;
-            
+
             while (!cancellationToken.IsCancellationRequested && _operationId == id && t < 1f) {
-                float dt = Time.deltaTime;
+                float dt = Time.fixedDeltaTime;
                 t += dt * inc;
                 
                 float speed = Mathf.Lerp(_rotationSpeedStart, _rotationSpeedEnd, _rotationCurve.Evaluate(t));
@@ -178,7 +176,7 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
                 float magnitude = t < tSettle
                     ? Mathf.Lerp(_settleMagnitudeStart, _settleMagnitudeEnd, t / tSettle)
                     : Mathf.Lerp(_rotationMagnitudeStart, _rotationMagnitudeEnd, t);
-                
+
                 _gravitySource.rotation = Quaternion.SlerpUnclamped(startRot, endRot, tRot);
                 _gravitySource.localScale = Vector3.one.WithZ(magnitude);
                 
@@ -194,14 +192,14 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
         }
 
         private void BlockCharacterGravityAlign(CancellationToken cancellationToken) {
-            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterViewPipeline view) ?? false) {
-                view.BlockGravityAlign(this, block: true, cancellationToken);
+            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterGravity characterGravity) ?? false) {
+                characterGravity.BlockGravityAlign(this, block: true, cancellationToken);
             }
         }
         
         private void UnblockCharacterGravityAlign() {
-            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterViewPipeline view) ?? false) {
-                view.BlockGravityAlign(this, block: false);
+            if (CharacterSystem.Instance.GetCharacter()?.TryGetComponent(out CharacterGravity characterGravity) ?? false) {
+                characterGravity.BlockGravityAlign(this, block: false);
             }
         }
     }
