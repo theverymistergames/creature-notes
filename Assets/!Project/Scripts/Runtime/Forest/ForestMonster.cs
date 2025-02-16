@@ -69,12 +69,15 @@ public class ForestMonster : MonoBehaviour {
 
     private void Update() {
         if (IsStopped) return;
-
-        _agent.SetDestination(_transform.position);
+        
+        var path = new NavMeshPath();
+        var position = _transform.position;
+        var canReach = _agent.CalculatePath(position, path);
+        _agent.SetDestination(position);
         
         float distance = GetPathRemainingDistance(_agent);
 
-        if (distance > stopDistance && distance < 10000f || distance < 0f && _agent.pathStatus != NavMeshPathStatus.PathComplete) {
+        if (distance > stopDistance && distance < 10000f || !canReach) {
             Stop();
         } else if (distance < caughtDistance && distance > 0) {
             Stop(true);
