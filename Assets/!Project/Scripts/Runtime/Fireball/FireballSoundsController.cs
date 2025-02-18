@@ -148,7 +148,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                 pitch: 1f,
                 _movingFireSpatialBlend,
                 normalizedTime: Random.value,
-                loop: true,
+                options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale,
                 cancellationToken: _enableCts.Token
             );
         }
@@ -244,7 +244,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                     sound.pitch.GetRandomInRange(),
                     _stageSpatialBlend,
                     sound.startTime.GetRandomInRange(),
-                    loop: true,
+                    options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale,
                     _enableCts.Token
                 );
                 
