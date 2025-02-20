@@ -24,6 +24,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         public bool IsDead => _health.IsDead;
         public bool IsArmed => Progress >= 1f;
         public float Progress => _progress;
+        public float AttackDuration { get; private set; }
 
         private CancellationTokenSource _enableCts;
         
@@ -136,6 +137,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         private async UniTask PerformAttack(float delay, float duration, CancellationToken cancellationToken) {
             byte id = ++_attackId;
             
+            AttackDuration = duration;
             OnMonsterEvent.Invoke(MonsterEventType.AttackPrepare);
             
             await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: cancellationToken)

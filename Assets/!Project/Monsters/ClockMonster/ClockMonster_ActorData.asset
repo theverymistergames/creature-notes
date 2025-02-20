@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b655659af1b64c2cadaef1322418cc40, type: 3}
+  m_Name: ClockMonster_ActorData
+  m_EditorClassIdentifier: 
+  _data:
+  - rid: 9124718431322767445
+  - rid: 9124718431322767446
+  references:
+    version: 2
+    RefIds:
+    - rid: 9124718431322767445
+      type: {class: HealthData, ns: MisterGames.Logic.Damage, asm: MisterGames.Logic}
+      data:
+        health: 1
+    - rid: 9124718431322767446
+      type: {class: MonsterData, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        allowMultipleAttacks: 1
+        attackDelay: 3
+        deathDuration: 1
