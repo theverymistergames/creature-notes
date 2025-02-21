@@ -128,11 +128,203 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ac4ac2279c4efcbf0344a8df15e96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _progressActions: []
-  _eventActions: []
+  _progressActions:
+  - progressSmoothing: 0
+    progressCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1.5735515
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.330931
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: -0.0009282457
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.358689
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    progressModulator:
+      rid: -2
+    notifyProgressDirection: 0
+    progressAction:
+      rid: 7921367143073710080
+    events: []
+  - progressSmoothing: 0
+    progressCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1.5735515
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.330931
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: -0.0009282457
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.358689
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    progressModulator:
+      rid: -2
+    notifyProgressDirection: 0
+    progressAction:
+      rid: 7921367143073710087
+    events: []
+  _eventActions:
+  - eventType: 0
+    action:
+      rid: 7921367143073710082
+  - eventType: 1
+    action:
+      rid: 7921367143073710089
+  - eventType: 2
+    action:
+      rid: 7921367143073710084
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7921367143073710080
+      type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 8127601499463692735}
+        useLocal: 1
+        startPosition: {x: 0, y: -0.2944, z: 0.004}
+        endPosition: {x: 0, y: -0.2944, z: 0.186}
+        curvature: 0
+        curvatureAxis: {x: 0, y: 1, z: 0}
+    - rid: 7921367143073710082
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 7921367143073710083
+    - rid: 7921367143073710083
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 1469752144
+          _name: arming
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 1}
+        volume: 0
+        fadeIn: 0.5
+        fadeOut: 0.3
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 1
+        affectedByTimeScale: 1
+        audioClipVariants:
+        - {fileID: 8300000, guid: a8bfa047169924a439d1feef7277b7c5, type: 3}
+    - rid: 7921367143073710084
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 7921367143073710086
+        - rid: 7921367143073710088
+    - rid: 7921367143073710086
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 1469752144
+          _name: arming
+        position: 0
+        transform: {fileID: 0}
+    - rid: 7921367143073710087
+      type: {class: ProgressTweenActionSoundVolume, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 6681067767543027514}
+        attachId:
+          _hash: 1469752144
+          _name: arming
+        startValue: 0
+        endValue: 1
+    - rid: 7921367143073710088
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        audioClipVariants:
+        - {fileID: 8300000, guid: 83bcd3fb4fa278743a90c2543a705038, type: 3}
+        - {fileID: 8300000, guid: 5d27c66c6cb7c5040a2634461ddeb86e, type: 3}
+        - {fileID: 8300000, guid: f2d2beb89b3cacd43a3986e0b43e71ab, type: 3}
+    - rid: 7921367143073710089
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 7921367143073710090
+        - rid: 7921367143073710091
+    - rid: 7921367143073710090
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 1469752144
+          _name: arming
+        position: 0
+        transform: {fileID: 0}
+    - rid: 7921367143073710091
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        audioClipVariants:
+        - {fileID: 8300000, guid: 38f2ac75577c3f64ebe88101a7764e17, type: 3}
+        - {fileID: 8300000, guid: e297e7a00f615544d8c11978a82f22c5, type: 3}
+        - {fileID: 8300000, guid: a6f2ff4320c72ff4b86ea47d29cfeeb5, type: 3}
 --- !u!114 &34668341704269416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,8 +370,8 @@ MonoBehaviour:
     _hash: -1099186542
     _name: clock
   _volumeDuringAttack: 1
-  _volumeAfterAttackFinishedSlow: 0.3
-  _volumeAfterAttackFinishedFast: 0.6
+  _volumeAfterAttackFinishedSlow: 0.6
+  _volumeAfterAttackFinishedFast: 0.8
   _volumeSmoothing: 2
   _startActionEveryNSecond: 1
   _tickAction:
@@ -203,7 +395,7 @@ MonoBehaviour:
         fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0
-        spatialBlend: 1
+        spatialBlend: 0.7
         loop: 0
         affectedByTimeScale: 1
         audioClipVariants:
@@ -273,6 +465,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5923518783821632855, guid: ea67109b8def7eb4cb55320d31c389e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923518783821632855, guid: ea67109b8def7eb4cb55320d31c389e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.004
+      objectReference: {fileID: 0}
     - target: {fileID: 6407240854730780008, guid: ea67109b8def7eb4cb55320d31c389e4,
         type: 3}
       propertyPath: m_Name
@@ -286,6 +488,12 @@ PrefabInstance:
 --- !u!4 &2203440168440501794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4353761876187083466, guid: ea67109b8def7eb4cb55320d31c389e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2521904136564106472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8127601499463692735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5923518783821632855, guid: ea67109b8def7eb4cb55320d31c389e4,
     type: 3}
   m_PrefabInstance: {fileID: 2521904136564106472}
   m_PrefabAsset: {fileID: 0}
