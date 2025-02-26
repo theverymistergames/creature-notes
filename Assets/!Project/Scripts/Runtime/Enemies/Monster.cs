@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Common.Async;
@@ -15,6 +14,7 @@ namespace _Project.Scripts.Runtime.Enemies {
     public sealed class Monster : MonoBehaviour, IActorComponent, IUpdate {
 
         [SerializeField] private LabelValue _monsterType;
+        [SerializeField] private bool _affectedByTimeScale = true;
         [SerializeField] [Range(0f, 1f)] private float _progress;
 
         public delegate void EventCallback(MonsterEventType evt);
@@ -35,7 +35,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         private Vector2 _attackDurationRange;
         private Vector2 _attackCooldownRange;
         private float _progressSpeed;
-        private float _nextAttackTime;
+        private float _timer;
         private byte _attackId;
         
         void IActorComponent.OnAwake(IActor actor) {
@@ -48,14 +48,14 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
-            PlayerLoopStage.Update.Subscribe(this);
+            PlayerLoopStage.UnscaledUpdate.Subscribe(this);
             
             _health.OnDamage += OnDamage;
         }
 
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
-            PlayerLoopStage.Update.Unsubscribe(this);
+            PlayerLoopStage.UnscaledUpdate.Unsubscribe(this);
             
             _health.OnDamage -= OnDamage;
         }
@@ -67,7 +67,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _progressSpeed = armDuration > 0f ? 1f / armDuration : float.MaxValue;
             _attackDurationRange = attackDurationRange;
             _attackCooldownRange = attackCooldownRange;
-            _nextAttackTime = 0f;
+            _timer = 0f;
             _attackId++;
             
 #if UNITY_EDITOR
@@ -97,8 +97,12 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         void IUpdate.OnUpdate(float dt) {
+            dt *= _affectedByTimeScale || Time.timeScale <= 0f ? Time.timeScale : 1f;
+            
             bool wasArmed = IsArmed;
+            
             _progress = Mathf.Clamp01(_progress + dt * _progressSpeed);
+            _timer = Mathf.Max(0f, _timer - dt);
             
             if (_health.IsDead) return;
 
@@ -109,13 +113,11 @@ namespace _Project.Scripts.Runtime.Enemies {
                 
                 OnMonsterEvent.Invoke(MonsterEventType.Arm);
             }
-
-            float time = Time.time;
             
-            if (IsArmed && time >= _nextAttackTime) {
+            if (IsArmed && _timer <= 0f) {
                 float attackDuration = _attackDurationRange.GetRandomInRange();
                 float attackCooldown = _monsterData.allowMultipleAttacks ? _attackCooldownRange.GetRandomInRange() : float.MaxValue;
-                _nextAttackTime = time + _monsterData.attackDelay + attackDuration + attackCooldown;
+                _timer = _monsterData.attackDelay + attackDuration + attackCooldown;
                 
                 PerformAttack(_monsterData.attackDelay, attackDuration, _enableCts.Token).Forget();
             }
@@ -139,9 +141,8 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             AttackDuration = duration;
             OnMonsterEvent.Invoke(MonsterEventType.AttackPrepare);
-            
-            await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: cancellationToken)
-                .SuppressCancellationThrow();
+
+            await Delay(delay, cancellationToken);
             
             if (cancellationToken.IsCancellationRequested || id != _attackId) return;
             
@@ -151,8 +152,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             OnMonsterEvent.Invoke(MonsterEventType.AttackStart);
             
-            await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: cancellationToken)
-                         .SuppressCancellationThrow();
+            await Delay(duration, cancellationToken);
             
             if (cancellationToken.IsCancellationRequested || id != _attackId) return;
             
@@ -161,6 +161,18 @@ namespace _Project.Scripts.Runtime.Enemies {
 #endif      
             
             OnMonsterEvent.Invoke(MonsterEventType.AttackFinish);
+        }
+
+        private async UniTask Delay(float duration, CancellationToken cancellationToken) {
+            float t = 0f;
+            float speed = duration > 0f ? 1f / duration : float.MaxValue;
+            
+            while (t < 1f && !cancellationToken.IsCancellationRequested) {
+                float dt = _affectedByTimeScale || Time.timeScale <= 0f ? Time.deltaTime : Time.unscaledDeltaTime;
+                t += dt * speed;
+
+                await UniTask.Yield();
+            }
         }
 
         public override string ToString() {
