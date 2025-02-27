@@ -244,6 +244,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                     sound.pitch.GetRandomInRange(),
                     _stageSpatialBlend,
                     sound.startTime.GetRandomInRange(),
+                    mixerGroup: default,
                     options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale,
                     _enableCts.Token
                 );
