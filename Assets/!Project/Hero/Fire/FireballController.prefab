@@ -391,6 +391,7 @@ Transform:
   - {fileID: 3728593274598756479}
   - {fileID: 6869066848733461454}
   - {fileID: 438519562544322435}
+  - {fileID: 2850157906733093511}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6178778513988475128
@@ -415,7 +416,675 @@ MonoBehaviour:
   - {fileID: 843930100840174705}
   - {fileID: 7617258140524486458}
   - {fileID: 1163337489323240744}
+  - {fileID: 6056712962445988617}
   _disableDelay: 4
+--- !u!1 &6056712962445988617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2850157906733093511}
+  - component: {fileID: 5336184749825391890}
+  m_Layer: 0
+  m_Name: VibrationController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2850157906733093511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056712962445988617}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6997253119769459857}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5336184749825391890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056712962445988617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6223c1a6404927a8814c29de5a3dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority:
+    library: {fileID: 11400000, guid: a0e6bad67ecfd7348825facce588e8c2, type: 2}
+    id: 2
+  _fireDurationMin: 0.1
+  _fireDurationMax: 0.5
+  _fireAmplitudeByProgress:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _fireSetting:
+    weight: 3
+    amplitude: 1
+    curveLeft:
+      curve0:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: -0
+          outSlope: -6.815432
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.155667
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -0.031243885
+          outSlope: -0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.636963
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      curve1:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      scale0: 1
+      scale1: 0
+      oscillateFreq0: 1
+      oscillateFreq1: 1
+      oscillateThr: 0.218
+    curveRight:
+      curve0:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: -0
+          outSlope: -1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -1
+          outSlope: -0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      curve1:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      scale0: 1
+      scale1: 1
+      oscillateFreq0: 1
+      oscillateFreq1: 1
+      oscillateThr: 0.381
+  _fireFailDuration: 0.22
+  _fireFailSetting:
+    weight: 1
+    amplitude: 0.05
+    curveLeft:
+      curve0:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      curve1:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      scale0: 0
+      scale1: 0
+      oscillateFreq0: 0
+      oscillateFreq1: 0
+      oscillateThr: 0
+    curveRight:
+      curve0:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      curve1:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      scale0: 1
+      scale1: 1
+      oscillateFreq0: 4.85
+      oscillateFreq1: 0
+      oscillateThr: 0.846
+  _stages:
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 1
+    setting:
+      weight: 1
+      amplitude: 0.1
+      curveLeft:
+        curve0:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 0
+          m_PostInfinity: 0
+          m_RotationOrder: 0
+        curve1:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 0
+          m_PostInfinity: 0
+          m_RotationOrder: 0
+        scale0: 0
+        scale1: 0
+        oscillateFreq0: 0
+        oscillateFreq1: 0
+        oscillateThr: 0
+      curveRight:
+        curve0:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012084927
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1.5725082
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curve1:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        scale0: 1
+        scale1: 0
+        oscillateFreq0: 1
+        oscillateFreq1: 3
+        oscillateThr: 1
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 2
+    setting:
+      weight: 1
+      amplitude: 1
+      curveLeft:
+        curve0:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0.031243885
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.636963
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 6.815432
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.155667
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curve1:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        scale0: 0.05
+        scale1: 0
+        oscillateFreq0: 0
+        oscillateFreq1: 0
+        oscillateThr: 0
+      curveRight:
+        curve0:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0.099975586
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1.5725082
+            outSlope: 1.5725082
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curve1:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        scale0: 1
+        scale1: 0
+        oscillateFreq0: 0
+        oscillateFreq1: 0
+        oscillateThr: 0
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 3
+    setting:
+      weight: 1
+      amplitude: 1
+      curveLeft:
+        curve0:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: -3.0000029
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.33333302
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.333333
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curve1:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        scale0: 1
+        scale1: 0
+        oscillateFreq0: 0
+        oscillateFreq1: 0
+        oscillateThr: 0
+      curveRight:
+        curve0:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.33333302
+          - serializedVersion: 3
+            time: 1
+            value: 0.098083496
+            inSlope: -2.232992
+            outSlope: -2.232992
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.34698206
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curve1:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        scale0: 1
+        scale1: 0
+        oscillateFreq0: 0
+        oscillateFreq1: 0
+        oscillateThr: 0
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 4
+    setting:
+      weight: 1
+      amplitude: 0
+      curveLeft:
+        curve0:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curve1:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        scale0: 0
+        scale1: 0
+        oscillateFreq0: 0
+        oscillateFreq1: 0
+        oscillateThr: 0
+      curveRight:
+        curve0:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: -0
+            outSlope: -3.9858193
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.269099
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -0.013942395
+            outSlope: -0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.434789
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        curve1:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        scale0: 1
+        scale1: 0
+        oscillateFreq0: 0
+        oscillateFreq1: 0
+        oscillateThr: 0
 --- !u!1 &7617258140524486458
 GameObject:
   m_ObjectHideFlags: 0
