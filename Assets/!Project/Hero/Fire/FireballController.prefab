@@ -368,6 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6997253119769459857}
   - component: {fileID: 6178778513988475128}
+  - component: {fileID: 1979683201572106948}
   m_Layer: 0
   m_Name: FireballController
   m_TagString: Untagged
@@ -418,6 +419,261 @@ MonoBehaviour:
   - {fileID: 1163337489323240744}
   - {fileID: 6056712962445988617}
   _disableDelay: 4
+--- !u!114 &1979683201572106948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892012199252629670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af091bc530354e5db42971055eb5df81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trigger: 1
+  _defaultSetting:
+    triggerEffectStart:
+      EffectType: 0
+      StartPosition: 0.2
+      EndPosition: 0
+      BeginForce: 1
+      MiddleForce: 0
+      EndForce: 0
+      Frequency: 0
+      KeepEffect: 0
+    triggerEffectEnd:
+      _hasValue: 0
+      _value:
+        EffectType: 0
+        StartPosition: 0
+        EndPosition: 0
+        BeginForce: 0
+        MiddleForce: 0
+        EndForce: 0
+        Frequency: 0
+        KeepEffect: 0
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  _stages:
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 1
+    setting:
+      triggerEffectStart:
+        EffectType: 1
+        StartPosition: 1
+        EndPosition: 0
+        BeginForce: 1
+        MiddleForce: 0
+        EndForce: 0
+        Frequency: 0
+        KeepEffect: 0
+      triggerEffectEnd:
+        _hasValue: 1
+        _value:
+          EffectType: 1
+          StartPosition: 0
+          EndPosition: 0
+          BeginForce: 1
+          MiddleForce: 0
+          EndForce: 0
+          Frequency: 0
+          KeepEffect: 0
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 2
+    setting:
+      triggerEffectStart:
+        EffectType: 3
+        StartPosition: 1
+        EndPosition: 0
+        BeginForce: 0
+        MiddleForce: 0.5
+        EndForce: 1
+        Frequency: 0.01
+        KeepEffect: 1
+      triggerEffectEnd:
+        _hasValue: 1
+        _value:
+          EffectType: 3
+          StartPosition: 1
+          EndPosition: 0
+          BeginForce: 1
+          MiddleForce: 1
+          EndForce: 1
+          Frequency: 0.25
+          KeepEffect: 1
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.333333
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2.0000029
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333302
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 3
+    setting:
+      triggerEffectStart:
+        EffectType: 3
+        StartPosition: 0
+        EndPosition: 0
+        BeginForce: 1
+        MiddleForce: 1
+        EndForce: 1
+        Frequency: 0.4
+        KeepEffect: 1
+      triggerEffectEnd:
+        _hasValue: 1
+        _value:
+          EffectType: 3
+          StartPosition: 1
+          EndPosition: 0
+          BeginForce: 1
+          MiddleForce: 1
+          EndForce: 1
+          Frequency: 0
+          KeepEffect: 1
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0
+          outWeight: 0.333333
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 3.0000029
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 3
+          inWeight: 0.33333302
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 4
+    setting:
+      triggerEffectStart:
+        EffectType: 0
+        StartPosition: 0
+        EndPosition: 0
+        BeginForce: 0
+        MiddleForce: 0
+        EndForce: 0
+        Frequency: 0
+        KeepEffect: 0
+      triggerEffectEnd:
+        _hasValue: 0
+        _value:
+          EffectType: 0
+          StartPosition: 0
+          EndPosition: 0
+          BeginForce: 0
+          MiddleForce: 0
+          EndForce: 0
+          Frequency: 0
+          KeepEffect: 0
+      curve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 1
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 1
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
 --- !u!1 &6056712962445988617
 GameObject:
   m_ObjectHideFlags: 0
