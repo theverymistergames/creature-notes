@@ -265,6 +265,7 @@ MonoBehaviour:
   _monsterType:
     library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
     id: 10
+  _affectedByTimeScale: 1
   _progress: 0
   _showDebugInfo: 0
   _armDurationTest: 1
@@ -431,6 +432,13 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 626082853760270601
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 14
+        waitAction: 0
     - rid: 7921367002276429910
       type: {class: TweenProgressActionTransformNoise, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -512,6 +520,7 @@ MonoBehaviour:
         - rid: 7921367023928213624
         - rid: 7921367023928213623
         - rid: 7921367002276429948
+        - rid: 626082853760270601
     - rid: 7921367002276429921
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
@@ -596,6 +605,7 @@ MonoBehaviour:
         action:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 2
+        waitAction: 0
     - rid: 7921367023928213506
       type: {class: ProgressModulatorRemap, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -650,6 +660,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 1
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 1b0d650ec22637c4ba645d93f4956a80, type: 3}
     - rid: 7921367023928213620
@@ -704,6 +717,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 1cbdb0ab1acafce4795b05714b4061b5, type: 3}
         - {fileID: 8300000, guid: 26d34ec17e8d82c48b7c678e3b9f16d7, type: 3}
@@ -725,6 +741,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: a1c782f46a9dd63439d3b6665cde1550, type: 3}
         - {fileID: 8300000, guid: 50fffbb10aceb6f42b4899e28e34dec1, type: 3}
@@ -762,6 +781,9 @@ MonoBehaviour:
         pitchRandomAdd: 0
         spatialBlend: 1
         loop: 1
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: be8afbcb6ce007b45a7df077765da47d, type: 3}
     - rid: 7921367023928213638
@@ -781,6 +803,9 @@ MonoBehaviour:
         pitchRandomAdd: 0
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: f434dd765716c614b9d82441daea260d, type: 3}
         - {fileID: 8300000, guid: fac747e762cf5024f8dd8b77f69bb8a3, type: 3}
@@ -880,6 +905,9 @@ MonoBehaviour:
         pitchRandomAdd: 0
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: ff00d522ce2f32c45b810976e4d25831, type: 3}
         - {fileID: 8300000, guid: 469184c2c12b1d648bdd3045fb7d7f33, type: 3}
@@ -980,6 +1008,9 @@ MonoBehaviour:
         pitchRandomAdd: 0
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: ff00d522ce2f32c45b810976e4d25831, type: 3}
         - {fileID: 8300000, guid: 469184c2c12b1d648bdd3045fb7d7f33, type: 3}

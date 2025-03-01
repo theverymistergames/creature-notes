@@ -55,7 +55,11 @@ MonoBehaviour:
       name: Fireball Explosion Big
       data:
         rid: 626082853760270597
-  _lastId: 14
+    - id: 14
+      name: Monster Debuff
+      data:
+        rid: 626082853760270598
+  _lastId: 15
   references:
     version: 2
     RefIds:
@@ -264,6 +268,127 @@ MonoBehaviour:
           scale1: 0
           oscillateFreq0: 0
           oscillateFreq1: 0
+          oscillateThr: 0
+    - rid: 626082853760270598
+      type: {class: PlayGamepadVibrationAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        priority:
+          library: {fileID: 11400000, guid: a0e6bad67ecfd7348825facce588e8c2, type: 2}
+          id: 3
+        weightLeft: 1
+        weightRight: 1
+        duration: 0.5
+        durationRandom: 0
+        amplitude: 1
+        amplitudeRandom: 0.2
+        curveLeft:
+          curve0:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          curve1:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          scale0: 0
+          scale1: 0.01
+          oscillateFreq0: 1
+          oscillateFreq1: 1
+          oscillateThr: 0
+        curveRight:
+          curve0:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          curve1:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          scale0: 0.05
+          scale1: 0
+          oscillateFreq0: 1
+          oscillateFreq1: 1
           oscillateThr: 0
     - rid: 986509540182196313
       type: {class: CameraShakeAction, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}

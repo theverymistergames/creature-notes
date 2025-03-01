@@ -9807,6 +9807,7 @@ MonoBehaviour:
   _monsterType:
     library: {fileID: 11400000, guid: 8ef3ee88c762ae5499efc1a25c31c4b1, type: 2}
     id: 4
+  _affectedByTimeScale: 1
   _progress: 0
   _showDebugInfo: 0
   _armDurationTest: 5
@@ -9880,6 +9881,13 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 626082853760270600
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 14
+        waitAction: 0
     - rid: 929716580877860949
       type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -10034,6 +10042,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 1
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: e0b0afc2448b29441aae274c0a5f3c7c, type: 3}
     - rid: 7921366710108553306
@@ -10053,6 +10064,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 2a3e5308c0b9d0a4d98c5be6a7f88bcd, type: 3}
         - {fileID: 8300000, guid: 633efb80fd1f0d34e8b5064961107f78, type: 3}
@@ -10070,6 +10084,7 @@ MonoBehaviour:
         action:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 2
+        waitAction: 0
     - rid: 7921366710108553312
       type: {class: ApplyDebuffAction, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
       data:
@@ -10096,6 +10111,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 63381b7b91cb5864d84b6727fb00d172, type: 3}
         - {fileID: 8300000, guid: 9ada15b46348ce646b3cc057d972bbfe, type: 3}
@@ -10118,6 +10136,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: d261634c1288d784098e445668aaacf8, type: 3}
     - rid: 7921366710108553315
@@ -10145,6 +10166,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 350ceb6d90155b242a8a98ff70c9e426, type: 3}
         - {fileID: 8300000, guid: 7a264ce6ae976b542a9fe8b91464b752, type: 3}
@@ -10202,6 +10226,7 @@ MonoBehaviour:
         - rid: 7921366710108553310
         - rid: 7921366710108553312
         - rid: 7921366710108553311
+        - rid: 626082853760270600
     - rid: 9124718454358933618
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:

@@ -5512,6 +5512,13 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 626082853760270602
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 14
+        waitAction: 0
     - rid: 7921367143073710082
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -5537,6 +5544,8 @@ MonoBehaviour:
         spatialBlend: 1
         loop: 1
         affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: a8bfa047169924a439d1feef7277b7c5, type: 3}
     - rid: 7921367143073710084
@@ -5549,6 +5558,7 @@ MonoBehaviour:
         - rid: 7921367237063606278
         - rid: 7921367256014520327
         - rid: 7921367256014520328
+        - rid: 626082853760270602
     - rid: 7921367143073710086
       type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
@@ -5585,6 +5595,8 @@ MonoBehaviour:
         spatialBlend: 1
         loop: 0
         affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 83bcd3fb4fa278743a90c2543a705038, type: 3}
         - {fileID: 8300000, guid: 5d27c66c6cb7c5040a2634461ddeb86e, type: 3}
@@ -5624,6 +5636,8 @@ MonoBehaviour:
         spatialBlend: 1
         loop: 0
         affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 38f2ac75577c3f64ebe88101a7764e17, type: 3}
         - {fileID: 8300000, guid: e297e7a00f615544d8c11978a82f22c5, type: 3}
@@ -5721,6 +5735,8 @@ MonoBehaviour:
         spatialBlend: 1
         loop: 0
         affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 90e42fc8fb9791242bc99af667b4e67d, type: 3}
         - {fileID: 8300000, guid: 8613d4264d2eb4b4f81f5f2b25aa449a, type: 3}
@@ -5740,6 +5756,7 @@ MonoBehaviour:
         action:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 2
+        waitAction: 0
 --- !u!114 &34668341704269416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5813,6 +5830,8 @@ MonoBehaviour:
         spatialBlend: 0.7
         loop: 0
         affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 519f579cf87d6b04e9bac8c437f9698e, type: 3}
         - {fileID: 8300000, guid: f515da40371e0984bb77ba612c96c1f6, type: 3}
