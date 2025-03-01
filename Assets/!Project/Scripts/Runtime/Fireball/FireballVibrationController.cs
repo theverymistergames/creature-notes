@@ -72,7 +72,7 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
 
         private void OnDisable() {
-            DeviceService.Instance.GamepadVibration.Unregister(this);
+            DeviceService.Instance?.GamepadVibration.Unregister(this);
 
             _fireballBehaviour.OnStageChanged -= OnStageChanged;
             _fireballBehaviour.OnFire -= OnFire;

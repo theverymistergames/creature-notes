@@ -36,10 +36,235 @@ MonoBehaviour:
       name: FireballExplosionBig
       data:
         rid: 9124718529086488663
-  _lastId: 6
+  - id: 6
+    name: Gamepad Vibrations
+    comment: "\u042D\u043A\u0448\u0435\u043D\u044B \u0434\u043B\u044F \u0448\u0435\u0439\u043A\u043E\u0432
+      \u043A\u0430\u043C\u0435\u0440\u044B"
+    usage: 0
+    none: 0
+    labels:
+    - id: 11
+      name: Fireball Explosion Small
+      data:
+        rid: 626082851664429314
+    - id: 12
+      name: Fireball Explosion Norm
+      data:
+        rid: 626082853760270597
+    - id: 13
+      name: Fireball Explosion Big
+      data:
+        rid: 626082853760270597
+  _lastId: 14
   references:
     version: 2
     RefIds:
+    - rid: 626082851664429314
+      type: {class: PlayGamepadVibrationAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        priority:
+          library: {fileID: 11400000, guid: a0e6bad67ecfd7348825facce588e8c2, type: 2}
+          id: 3
+        weightLeft: 0
+        weightRight: 1
+        duration: 0.15
+        durationRandom: 0
+        amplitude: 1
+        amplitudeRandom: 0.2
+        curveLeft:
+          curve0:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          curve1:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          scale0: 0
+          scale1: 0
+          oscillateFreq0: 0
+          oscillateFreq1: 0
+          oscillateThr: 0
+        curveRight:
+          curve0:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: -0
+              outSlope: -1.5725082
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0
+              outWeight: 0.326514
+            - serializedVersion: 3
+              time: 1
+              value: 0
+              inSlope: 0.0012084927
+              outSlope: -0
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.36078
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          curve1:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          scale0: 1
+          scale1: 0
+          oscillateFreq0: 0
+          oscillateFreq1: 0
+          oscillateThr: 0
+    - rid: 626082853760270597
+      type: {class: PlayGamepadVibrationAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        priority:
+          library: {fileID: 11400000, guid: a0e6bad67ecfd7348825facce588e8c2, type: 2}
+          id: 3
+        weightLeft: 1
+        weightRight: 1
+        duration: 0.35
+        durationRandom: 0
+        amplitude: 1
+        amplitudeRandom: 0.2
+        curveLeft:
+          curve0:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: -1.5725082
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0
+              outWeight: 0.326514
+            - serializedVersion: 3
+              time: 1
+              value: 0
+              inSlope: 0.0012084927
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.36078
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          curve1:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          scale0: 1
+          scale1: 0
+          oscillateFreq0: 0
+          oscillateFreq1: 0
+          oscillateThr: 0
+        curveRight:
+          curve0:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: -1.5725082
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0
+              outWeight: 0.326514
+            - serializedVersion: 3
+              time: 1
+              value: 0
+              inSlope: 0.0012084927
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.36078
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          curve1:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+          scale0: 1
+          scale1: 0
+          oscillateFreq0: 0
+          oscillateFreq1: 0
+          oscillateThr: 0
     - rid: 986509540182196313
       type: {class: CameraShakeAction, ns: MisterGames.ActionLib.Character, asm: MisterGames.ActionLib}
       data:

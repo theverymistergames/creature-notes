@@ -10082,6 +10082,22 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 626082853760270595
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0.1
+        mode: 0
+        action:
+          rid: -2
+    - rid: 626082853760270596
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 11
+        waitAction: 0
     - rid: 4206470293715681282
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -10092,6 +10108,8 @@ MonoBehaviour:
         - rid: 9124718520716755052
         - rid: 9124718520716755053
         - rid: 9124718529086488667
+        - rid: 626082853760270595
+        - rid: 626082853760270596
         - rid: 4206470293715681285
     - rid: 4206470293715681285
       type: {class: DestroyGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
@@ -10117,6 +10135,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 7052762773cca5e4ca5643125580a004, type: 3}
         - {fileID: 8300000, guid: 676ca36677e832f49896008454e9b345, type: 3}
@@ -10148,6 +10169,7 @@ MonoBehaviour:
         action:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 5
+        waitAction: 0
 --- !u!114 &4335760545786688146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20116,6 +20138,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 1
         loop: 1
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 88e1c450880b8c6478a7dbb87178a03a, type: 3}
     - rid: 929716808716124247
@@ -20135,6 +20160,9 @@ MonoBehaviour:
         pitchRandomAdd: 0.1
         spatialBlend: 0.7
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 80f3af8eeb677534eb59ec9b37d8b962, type: 3}
         - {fileID: 8300000, guid: fc827e79a30b43a4ab96d23d9fc8ceda, type: 3}
