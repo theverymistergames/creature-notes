@@ -24,9 +24,9 @@ namespace _Project.Scripts.Runtime.Fireball {
 
         [Serializable]
         private sealed class TriggerSetting {
+            public AnimationCurve curve = EasingType.Linear.ToAnimationCurve();
             public TriggerEffect triggerEffectStart;
             public Optional<TriggerEffect> triggerEffectEnd;
-            public AnimationCurve curve = EasingType.Linear.ToAnimationCurve();
         }
 
         private FireballShootingBehaviour _fireballBehaviour;
