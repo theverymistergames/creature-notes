@@ -433,26 +433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trigger: 1
   _defaultSetting:
-    triggerEffectStart:
-      EffectType: 0
-      StartPosition: 0.2
-      EndPosition: 0
-      BeginForce: 1
-      MiddleForce: 0
-      EndForce: 0
-      Frequency: 0
-      KeepEffect: 0
-    triggerEffectEnd:
-      _hasValue: 0
-      _value:
-        EffectType: 0
-        StartPosition: 0
-        EndPosition: 0
-        BeginForce: 0
-        MiddleForce: 0
-        EndForce: 0
-        Frequency: 0
-        KeepEffect: 0
     curve:
       serializedVersion: 2
       m_Curve:
@@ -477,32 +457,32 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    triggerEffectStart:
+      EffectType: 0
+      StartPosition: 0
+      EndPosition: 0
+      BeginForce: 1
+      MiddleForce: 0
+      EndForce: 0
+      Frequency: 0
+      KeepEffect: 0
+    triggerEffectEnd:
+      _hasValue: 0
+      _value:
+        EffectType: 0
+        StartPosition: 0
+        EndPosition: 0
+        BeginForce: 0
+        MiddleForce: 0
+        EndForce: 0
+        Frequency: 0
+        KeepEffect: 0
   _stages:
   - previousStage:
       _hasValue: 0
       _value: 0
     currentStage: 1
     setting:
-      triggerEffectStart:
-        EffectType: 1
-        StartPosition: 1
-        EndPosition: 0
-        BeginForce: 1
-        MiddleForce: 0
-        EndForce: 0
-        Frequency: 0
-        KeepEffect: 0
-      triggerEffectEnd:
-        _hasValue: 1
-        _value:
-          EffectType: 1
-          StartPosition: 0
-          EndPosition: 0
-          BeginForce: 1
-          MiddleForce: 0
-          EndForce: 0
-          Frequency: 0
-          KeepEffect: 0
       curve:
         serializedVersion: 2
         m_Curve:
@@ -527,31 +507,31 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+      triggerEffectStart:
+        EffectType: 2
+        StartPosition: 0.5
+        EndPosition: 1
+        BeginForce: 0.7
+        MiddleForce: 1
+        EndForce: 1
+        Frequency: 0.05
+        KeepEffect: 1
+      triggerEffectEnd:
+        _hasValue: 0
+        _value:
+          EffectType: 2
+          StartPosition: 0.5
+          EndPosition: 1
+          BeginForce: 1
+          MiddleForce: 0
+          EndForce: 0
+          Frequency: 0
+          KeepEffect: 0
   - previousStage:
       _hasValue: 0
       _value: 0
     currentStage: 2
     setting:
-      triggerEffectStart:
-        EffectType: 3
-        StartPosition: 1
-        EndPosition: 0
-        BeginForce: 0
-        MiddleForce: 0.5
-        EndForce: 1
-        Frequency: 0.01
-        KeepEffect: 1
-      triggerEffectEnd:
-        _hasValue: 1
-        _value:
-          EffectType: 3
-          StartPosition: 1
-          EndPosition: 0
-          BeginForce: 1
-          MiddleForce: 1
-          EndForce: 1
-          Frequency: 0.25
-          KeepEffect: 1
       curve:
         serializedVersion: 2
         m_Curve:
@@ -576,19 +556,14 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - previousStage:
-      _hasValue: 0
-      _value: 0
-    currentStage: 3
-    setting:
       triggerEffectStart:
         EffectType: 3
-        StartPosition: 0
+        StartPosition: 1
         EndPosition: 0
-        BeginForce: 1
-        MiddleForce: 1
+        BeginForce: 0
+        MiddleForce: 0.5
         EndForce: 1
-        Frequency: 0.4
+        Frequency: 0.01
         KeepEffect: 1
       triggerEffectEnd:
         _hasValue: 1
@@ -599,8 +574,13 @@ MonoBehaviour:
           BeginForce: 1
           MiddleForce: 1
           EndForce: 1
-          Frequency: 0
+          Frequency: 0.25
           KeepEffect: 1
+  - previousStage:
+      _hasValue: 0
+      _value: 0
+    currentStage: 3
+    setting:
       curve:
         serializedVersion: 2
         m_Curve:
@@ -625,31 +605,31 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+      triggerEffectStart:
+        EffectType: 3
+        StartPosition: 0
+        EndPosition: 0
+        BeginForce: 1
+        MiddleForce: 1
+        EndForce: 1
+        Frequency: 0.4
+        KeepEffect: 1
+      triggerEffectEnd:
+        _hasValue: 1
+        _value:
+          EffectType: 3
+          StartPosition: 1
+          EndPosition: 0
+          BeginForce: 1
+          MiddleForce: 1
+          EndForce: 1
+          Frequency: 0
+          KeepEffect: 1
   - previousStage:
       _hasValue: 0
       _value: 0
     currentStage: 4
     setting:
-      triggerEffectStart:
-        EffectType: 0
-        StartPosition: 0
-        EndPosition: 0
-        BeginForce: 0
-        MiddleForce: 0
-        EndForce: 0
-        Frequency: 0
-        KeepEffect: 0
-      triggerEffectEnd:
-        _hasValue: 0
-        _value:
-          EffectType: 0
-          StartPosition: 0
-          EndPosition: 0
-          BeginForce: 0
-          MiddleForce: 0
-          EndForce: 0
-          Frequency: 0
-          KeepEffect: 0
       curve:
         serializedVersion: 2
         m_Curve:
@@ -657,15 +637,15 @@ MonoBehaviour:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
+          value: 0
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -674,6 +654,26 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+      triggerEffectStart:
+        EffectType: 1
+        StartPosition: 0
+        EndPosition: 0
+        BeginForce: 10
+        MiddleForce: 0
+        EndForce: 0
+        Frequency: 0
+        KeepEffect: 0
+      triggerEffectEnd:
+        _hasValue: 0
+        _value:
+          EffectType: 1
+          StartPosition: 1
+          EndPosition: 0
+          BeginForce: 1
+          MiddleForce: 0
+          EndForce: 0
+          Frequency: 0
+          KeepEffect: 0
 --- !u!1 &6056712962445988617
 GameObject:
   m_ObjectHideFlags: 0
