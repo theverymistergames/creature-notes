@@ -1,5 +1,4 @@
 ﻿using MisterGames.Common.Attributes;
-using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
 using UnityEditor;
 using UnityEngine;
@@ -8,7 +7,7 @@ using UnityEngine.Rendering.HighDefinition;
 namespace _Project.Scripts.Runtime.Enemies.Painting {
     
     public sealed class PaintingDecalPlacer : MonoBehaviour {
-
+        
         [SerializeField] private MeshRenderer _paintingPlane;
         [SerializeField] private DecalProjector _decalProjectorPrefab;
         [SerializeField] private Vector3 _planeNormal = Vector3.right;
@@ -17,27 +16,30 @@ namespace _Project.Scripts.Runtime.Enemies.Painting {
 
         [ReadOnly]
         [SerializeField] private DecalProjector _decal;
-        
+
+        private static readonly int Metallic = Shader.PropertyToID("_Metallic");
+        private static readonly int Smoothness = Shader.PropertyToID("_Smoothness");
+
         private Material _decalMaterialInstance;
 
-        private void Awake() {
+        private void OnEnable() {
             PlaceDecal();
         }
 
-        private void OnDestroy() {
+        private void OnDisable() {
             RemoveDecal();
         }
 
-        private DecalProjector CreateDecal() {
+        private void CreateDecal() {
 #if UNITY_EDITOR
             if (!Application.isPlaying) {
-                var decal = PrefabUtility.InstantiatePrefab(_decalProjectorPrefab, gameObject.scene) as DecalProjector;
-                Undo.RegisterCreatedObjectUndo(decal, "PlaceDecal");
-                return decal;
+                _decal = PrefabUtility.InstantiatePrefab(_decalProjectorPrefab, gameObject.scene) as DecalProjector;
+                Undo.RegisterCreatedObjectUndo(_decal, "PlaceDecal");
+                return;
             }
 #endif
 
-            return PrefabPool.Main.Get(_decalProjectorPrefab);
+            _decal = PrefabPool.Main.Get(_decalProjectorPrefab);
         }
 
         [Button]
@@ -51,9 +53,10 @@ namespace _Project.Scripts.Runtime.Enemies.Painting {
             if (!Application.isPlaying) Undo.RecordObject(this, "PlaceDecal");
 #endif
             
-            if (_decal == null) _decal = CreateDecal();
+            if (_decal == null) CreateDecal();
 
             var t = _decal!.transform;
+            var plane = _paintingPlane.transform;
             
 #if UNITY_EDITOR
             if (!Application.isPlaying) Undo.RecordObject(t, "PlaceDecal"); 
@@ -63,14 +66,21 @@ namespace _Project.Scripts.Runtime.Enemies.Painting {
             t.SetLocalPositionAndRotation(default, Quaternion.identity);
             t.localScale = _decalProjectorPrefab.transform.localScale;
             
-            _paintingPlane.transform.GetLocalPositionAndRotation(out var pos, out var rot);
+            plane.GetLocalPositionAndRotation(out var pos, out var rot);
             var forward = rot * _planeNormal;
-            var scale = _paintingPlane.transform.localScale.Multiply(new Vector3(_scaleMul, _scaleMul, _scaleMul * _scaleZ));
+            var scale = plane.rotation * plane.localScale * _scaleMul;
             
-            t.SetParent(_paintingPlane.transform.parent, worldPositionStays: false);
+            scale.z *= _scaleZ;
+            if (scale.z < 0) {
+                forward = -forward;
+                scale.z = -scale.z;
+            }
+            
+            t.SetParent(plane.parent, worldPositionStays: false);
             t.SetLocalPositionAndRotation(pos, rot);
-            t.localScale = scale;
+            
             t.forward = forward;
+            t.localScale = scale;
             
             if (_decalMaterialInstance == null) {
                 _decalMaterialInstance = new Material(_decalProjectorPrefab.material);
@@ -87,7 +97,12 @@ namespace _Project.Scripts.Runtime.Enemies.Painting {
             if (!Application.isPlaying) Undo.RecordObject(_decal, "PlaceDecal"); 
 #endif
 
-            _decalMaterialInstance.mainTexture = _paintingPlane.sharedMaterial.mainTexture;
+            var mat = _paintingPlane.sharedMaterial;
+            
+            _decalMaterialInstance.mainTexture = mat.mainTexture;
+            _decalMaterialInstance.SetFloat(Metallic, mat.GetFloat(Metallic));
+            _decalMaterialInstance.SetFloat(Smoothness, mat.GetFloat(Smoothness));
+            
             _decal.material = _decalMaterialInstance;
 
 #if UNITY_EDITOR
