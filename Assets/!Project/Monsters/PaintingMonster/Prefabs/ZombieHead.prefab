@@ -1747,10 +1747,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2583232784149922642}
+  - component: {fileID: 7083489513621201628}
   - component: {fileID: 1247132632211112312}
   - component: {fileID: 1362541115671124528}
-  - component: {fileID: 7083489513621201628}
   - component: {fileID: 2477873945806179783}
+  - component: {fileID: 7527977646260920589}
   m_Layer: 0
   m_Name: ZombieHead
   m_TagString: Untagged
@@ -1775,6 +1776,25 @@ Transform:
   - {fileID: 5596331201401638698}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &7083489513621201628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661742734621353899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9107aa9d783c485fb435530d29fefe3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _paintingPlane: {fileID: 0}
+  _decalProjectorPrefab: {fileID: 6879772422382099199, guid: 5cf0001716f42fe4c83f682299b8892e,
+    type: 3}
+  _planeNormal: {x: 1, y: 0, z: 0}
+  _scaleMul: 10
+  _scaleZ: 1
+  _decal: {fileID: 0}
 --- !u!114 &1247132632211112312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1791,7 +1811,7 @@ MonoBehaviour:
   _positionOffset: {x: 0, y: 5, z: 10}
   _rotationOffset: {x: 15, y: 20, z: 25}
   _scaleOffset: {x: 30, y: 35, z: 40}
-  _positionMultiplier: {x: 0.02, y: 0, z: 0.1}
+  _positionMultiplier: {x: 0.1, y: 0, z: 0.05}
   _rotationMultiplier: {x: 25, y: 25, z: 10}
   _scaleMultiplier: {x: 0.1, y: 0.1, z: 0.1}
   _noiseScale: 1
@@ -1811,7 +1831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  _name: attack
   _playAtStart: 0
   _tweenPlayer:
     _progress: 0
@@ -1916,25 +1936,6 @@ MonoBehaviour:
         transform: {fileID: 5790880360619472800}
         startLocalScale: {x: 0.027, y: 0.027, z: 0.027}
         endLocalScale: {x: 0.033, y: 0.033, z: 0.033}
---- !u!114 &7083489513621201628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6661742734621353899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9107aa9d783c485fb435530d29fefe3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _paintingPlane: {fileID: 0}
-  _decalProjectorPrefab: {fileID: 6879772422382099199, guid: 5cf0001716f42fe4c83f682299b8892e,
-    type: 3}
-  _planeNormal: {x: 1, y: 0, z: 0}
-  _scaleMul: 10
-  _scaleZ: 1
-  _decal: {fileID: 0}
 --- !u!114 &2477873945806179783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1947,10 +1948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
+  _name: idle
   _playAtStart: 0
   _tweenPlayer:
-    _progress: 0
+    _progress: 0.405
     _speed: 1
     _yoyo: 2
     _loop: 1
@@ -2008,7 +2009,7 @@ MonoBehaviour:
       type: {class: ProgressModulatorNoise, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
         seed: 0
-        scale: 0.8
+        scale: 1
         clamp01: 1
         speedMul: 30
         speedCurve:
@@ -2057,6 +2058,171 @@ MonoBehaviour:
         index: 1
         startWeight: 0
         endWeight: 100
+--- !u!114 &7527977646260920589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661742734621353899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: arm
+  _playAtStart: 0
+  _tweenPlayer:
+    _progress: 0
+    _speed: 1
+    _yoyo: 0
+    _loop: 0
+    _invertNextPlay: 0
+    _tween:
+      rid: 626082963369230372
+  _events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 626082963369230372
+      type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        mode: 1
+        tweens:
+        - rid: 626082963369230373
+        - rid: 626082963369230374
+        events: []
+    - rid: 626082963369230373
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 1.5
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 82.29906
+            outSlope: 82.29906
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.011764671
+          - serializedVersion: 3
+            time: 0.20526123
+            value: 0.9961548
+            inSlope: -0.013514569
+            outSlope: -0.013514569
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 1
+            outWeight: 0.35425758
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -3.4871109
+            outSlope: -3.4871109
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.15405576
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 626082963369230375
+        events: []
+    - rid: 626082963369230374
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 1
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333333
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 2.0000029
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333302
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 626082963369230376
+        events: []
+    - rid: 626082963369230375
+      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        actions:
+        - rid: 626082963369230377
+        - rid: 626082963369230378
+        - rid: 626082963369230384
+    - rid: 626082963369230376
+      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        actions:
+        - rid: 626082963369230379
+        - rid: 626082963369230380
+    - rid: 626082963369230377
+      type: {class: SetBlendShapeProgressAction, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        skinnedMeshRenderer: {fileID: 8754045317698630906}
+        index: 0
+        startWeight: 0
+        endWeight: 100
+    - rid: 626082963369230378
+      type: {class: SetBlendShapeProgressAction, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        skinnedMeshRenderer: {fileID: 8754045317698630906}
+        index: 1
+        startWeight: 0
+        endWeight: 100
+    - rid: 626082963369230379
+      type: {class: SetTransformNoiseAmplitudeProgressAction, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transformNoise: {fileID: 1247132632211112312}
+        noiseAmplitudeStart: 0.2
+        noiseAmplitudeEnd: 2
+    - rid: 626082963369230380
+      type: {class: SetTransformNoiseScaleProgressAction, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transformNoise: {fileID: 1247132632211112312}
+        noiseScaleStart: 1
+        noiseScaleEnd: 1
+    - rid: 626082963369230384
+      type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 1465457945332748385}
+        useLocal: 1
+        startPosition: {x: -1.9709482e-17, y: -0.01029337, z: 0.9146167}
+        endPosition: {x: -1.9709482e-17, y: -6.22, z: 0.9146167}
+        curvature: 0
+        curvatureAxis: {x: 0, y: 1, z: 0}
 --- !u!1 &6708358143283160555
 GameObject:
   m_ObjectHideFlags: 0
