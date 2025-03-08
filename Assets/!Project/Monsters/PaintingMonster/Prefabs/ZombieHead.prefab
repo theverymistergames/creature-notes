@@ -951,7 +951,7 @@ Transform:
   m_GameObject: {fileID: 3971555321697828883}
   serializedVersion: 2
   m_LocalRotation: {x: 0.01118797, y: 0.72653574, z: 0.0288085, w: -0.6864335}
-  m_LocalPosition: {x: -0.00038, y: 0.0012, z: -0.0005}
+  m_LocalPosition: {x: -0.00502, y: 0.0014, z: -0.0008}
   m_LocalScale: {x: 0.030000385, y: 0.029999942, z: 0.029999595}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1235,8 +1235,8 @@ Transform:
   m_GameObject: {fileID: 4384406375027846386}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3276404, y: 0.63057494, z: 0.2860493, w: -0.64280856}
-  m_LocalPosition: {x: -0.0095, y: -0.001, z: 0.0002}
-  m_LocalScale: {x: 0.0223104, y: 0.0223104, z: 0.0223104}
+  m_LocalPosition: {x: -0.0141, y: 0.0004, z: 0.0004}
+  m_LocalScale: {x: 0.02112728, y: 0.02112728, z: 0.02112728}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6010997864453998904}
@@ -1887,6 +1887,7 @@ GameObject:
   - component: {fileID: 1362541115671124528}
   - component: {fileID: 2477873945806179783}
   - component: {fileID: 7527977646260920589}
+  - component: {fileID: 8190964158373824281}
   m_Layer: 0
   m_Name: ZombieHead
   m_TagString: Untagged
@@ -2367,6 +2368,32 @@ MonoBehaviour:
         endPosition: {x: -1.9709482e-17, y: -6.22, z: 0.9146167}
         curvature: 0
         curvatureAxis: {x: 0, y: 1, z: 0}
+--- !u!114 &8190964158373824281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6661742734621353899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e9b803be384b32b2bdc3f5d3b8e4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _root: {fileID: 2583232784149922642}
+  _eyes:
+  - {fileID: 6866136180663851234}
+  - {fileID: 7978735982521971798}
+  _preserveOriginRotationOffset: 0
+  _smoothing: 20
+  _minAngleHorizontal: -30
+  _maxAngleHorizontal: 30
+  _minAngleVertical: -10
+  _maxAngleVertical: 20
+  _changeDirectionTime: {x: 0.2, y: 3}
+  _pointDistance: {x: 3, y: 10}
+  _separateRandomDirection: 0.5
+  _showDebugInfo: 0
 --- !u!1 &6708358143283160555
 GameObject:
   m_ObjectHideFlags: 0
