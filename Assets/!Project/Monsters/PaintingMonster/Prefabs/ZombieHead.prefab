@@ -758,7 +758,7 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 513
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 437f8da92d546cf4d814f812f59e7e4c, type: 2}
@@ -985,7 +985,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 513
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: fed62d0ec98814d41bdc16ac7618e974, type: 2}
@@ -1269,7 +1269,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 513
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: fed62d0ec98814d41bdc16ac7618e974, type: 2}
@@ -1887,7 +1887,6 @@ GameObject:
   - component: {fileID: 1362541115671124528}
   - component: {fileID: 2477873945806179783}
   - component: {fileID: 7527977646260920589}
-  - component: {fileID: 3443989978814354272}
   - component: {fileID: 8190964158373824281}
   - component: {fileID: 1833777140729079165}
   m_Layer: 0
@@ -2361,98 +2360,6 @@ MonoBehaviour:
         transformNoise: {fileID: 1247132632211112312}
         noiseScaleStart: 0.5
         noiseScaleEnd: 0.5
-    - rid: 626082963369230384
-      type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
-      data:
-        transform: {fileID: 1465457945332748385}
-        useLocal: 1
-        startPosition: {x: -1.9709482e-17, y: -0.01029337, z: 0.9146167}
-        endPosition: {x: -1.9709482e-17, y: -6.22, z: 0.9146167}
-        curvature: 0
-        curvatureAxis: {x: 0, y: 1, z: 0}
---- !u!114 &3443989978814354272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6661742734621353899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: death
-  _playAtStart: 0
-  _tweenPlayer:
-    _progress: 0
-    _speed: 1
-    _yoyo: 0
-    _loop: 0
-    _invertNextPlay: 0
-    _tween:
-      rid: 626082963369230372
-  _events: []
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 626082963369230372
-      type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
-      data:
-        mode: 1
-        tweens:
-        - rid: 626082963369230373
-        events: []
-    - rid: 626082963369230373
-      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
-      data:
-        duration: 0.6
-        durationRandomAdd: 0
-        curve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 82.29906
-            outSlope: 82.29906
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0
-            outWeight: 0.011764671
-          - serializedVersion: 3
-            time: 0.20526123
-            value: 0.9961548
-            inSlope: -0.013514569
-            outSlope: -0.013514569
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 1
-            outWeight: 0.35425758
-          - serializedVersion: 3
-            time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.35331342
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        modulator:
-          rid: -2
-        action:
-          rid: 626082963369230375
-        events: []
-    - rid: 626082963369230375
-      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
-      data:
-        actions:
-        - rid: 626082963369230384
     - rid: 626082963369230384
       type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
