@@ -4855,6 +4855,7 @@ GameObject:
   - component: {fileID: 670190319436635923}
   - component: {fileID: 2699039753627572527}
   - component: {fileID: 1760447706899553814}
+  - component: {fileID: 6536523406683457310}
   m_Layer: 6
   m_Name: PaintingMonster_GirlInRed
   m_TagString: Untagged
@@ -5635,6 +5636,55 @@ MonoBehaviour:
   _noiseRotationOffset: {x: 15, y: 20, z: 25}
   _noisePositionMul: {x: 0.05, y: 0.05, z: 0}
   _noiseRotationMul: {x: 3, y: 3, z: 5}
+--- !u!114 &6536523406683457310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344941467438258205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332eb0a2d95941d69df171700a3a3cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 5682295543846568885}
+  _useLocal: 1
+  _minAngleChange: 3
+  _minAngularSpeed: 10
+  _minCooldown: 1
+  _speedBufferSize: 3
+  _action:
+    rid: 626083098201948266
+  _showDebugInfo: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 626083098201948266
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 0.3
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 20b6ffae8fc64234fbe54922f66fbda5, type: 3}
+        - {fileID: 8300000, guid: d7dc630da1e6a2348bb3a467f8013947, type: 3}
+        - {fileID: 8300000, guid: 92f32b9f8b54fb94bb157868769acab6, type: 3}
+        - {fileID: 8300000, guid: 6862a45bbe1b71741ada79af7389c747, type: 3}
 --- !u!1 &7204488303849837844
 GameObject:
   m_ObjectHideFlags: 0
@@ -11255,6 +11305,12 @@ GameObject:
 --- !u!4 &3803194976686584551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5487668198647550000, guid: 26d6e3ba32cfb864abcc5d94fb3357ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8714382302432223959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5682295543846568885 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3905787700941087074, guid: 26d6e3ba32cfb864abcc5d94fb3357ed,
     type: 3}
   m_PrefabInstance: {fileID: 8714382302432223959}
   m_PrefabAsset: {fileID: 0}
