@@ -4857,6 +4857,7 @@ GameObject:
   - component: {fileID: 1760447706899553814}
   - component: {fileID: 6536523406683457310}
   - component: {fileID: 4544422127253596609}
+  - component: {fileID: 5813878061434202261}
   m_Layer: 6
   m_Name: PaintingMonster_GirlInRed
   m_TagString: Untagged
@@ -5151,6 +5152,7 @@ MonoBehaviour:
         - rid: 626083002046218589
         - rid: 626083002046218590
         - rid: 626083053817299036
+        - rid: 626083098201948269
         - rid: 626083053817299040
         - rid: 626083053817299042
         - rid: 626083002046218592
@@ -5222,6 +5224,7 @@ MonoBehaviour:
         - rid: 626083053817299039
         - rid: 626083053817299032
         - rid: 626083053817299037
+        - rid: 626083098201948267
     - rid: 626083002046218242
       type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
       data:
@@ -5243,6 +5246,7 @@ MonoBehaviour:
         mode: 0
         actions:
         - rid: 626083053817299038
+        - rid: 626083098201948268
         - rid: 626083053817299033
         - rid: 626083002046218565
         - rid: 626083002046218566
@@ -5464,7 +5468,7 @@ MonoBehaviour:
         weight: 0
         smoothing:
           _hasValue: 1
-          _value: 5
+          _value: 1
     - rid: 626083053817299039
       type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
       data:
@@ -5613,6 +5617,63 @@ MonoBehaviour:
         - {fileID: 8300000, guid: 189e1bb5fdced104a94c334c43d13f1a, type: 3}
         - {fileID: 8300000, guid: 5673a980d0c5a8a4aa864b2591b36343, type: 3}
         - {fileID: 8300000, guid: 38dcbaa467713b644b320ca1b19fda88, type: 3}
+    - rid: 626083098201948267
+      type: {class: GamepadVibrationWeightAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        gamepadVibrationBehaviour: {fileID: 5813878061434202261}
+        left:
+          _hasValue: 1
+          _value:
+            weight: 1
+            smoothing:
+              _hasValue: 1
+              _value: 1
+        right:
+          _hasValue: 1
+          _value:
+            weight: 1
+            smoothing:
+              _hasValue: 1
+              _value: 2
+    - rid: 626083098201948268
+      type: {class: GamepadVibrationWeightAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        gamepadVibrationBehaviour: {fileID: 5813878061434202261}
+        left:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
+        right:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
+    - rid: 626083098201948269
+      type: {class: GamepadVibrationWeightAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        gamepadVibrationBehaviour: {fileID: 5813878061434202261}
+        left:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
+        right:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
 --- !u!114 &1760447706899553814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5868,6 +5929,141 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5813878061434202261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344941467438258205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be95423913a845c8897108be896ca0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority:
+    library: {fileID: 11400000, guid: a0e6bad67ecfd7348825facce588e8c2, type: 2}
+    id: 2
+  _targetWeightLeft: 0
+  _targetWeightRight: 0
+  _leftWeightMul: 5
+  _rightWeightMul: 5
+  _weightSmoothingLeft: 2
+  _weightSmoothingRight: 2
+  _leftFreqStart: 0
+  _leftFreqEnd: 1
+  _rightFreqStart: 0
+  _rightFreqEnd: 1
+  _leftFreqCurve:
+    curve0:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0.031243885
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.636963
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 6.815432
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.155667
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curve1:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.333333
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 3.0000029
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.33333302
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    scale0: 1
+    scale1: 1
+    oscillateFreq0: 10
+    oscillateFreq1: 10
+    oscillateThr: 0
+    phase: 0.268
+  _rightFreqCurve:
+    curve0:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: -0.0012084927
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.36078
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1.5725082
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.326514
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curve1:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0.0021623378
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.55403
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 459.26703
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.0011979938
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    scale0: 1
+    scale1: 1
+    oscillateFreq0: 10
+    oscillateFreq1: 10
+    oscillateThr: 0
+    phase: 0.239
 --- !u!1 &7204488303849837844
 GameObject:
   m_ObjectHideFlags: 0
