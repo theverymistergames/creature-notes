@@ -25,7 +25,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sfx_noEQ
+  m_Name: Gameplay_unaffected
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 636387c5ac1c3a24aae4c70172843221
   m_Children: []
@@ -71,6 +71,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-505434015867981635
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9e49453ba35431b4bbdf550bfa6111c1
+  m_EffectName: Attenuation
+  m_MixLevel: 3f7cb62396d498a4aa9faa8e64260e0f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -86,13 +100,18 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 46701de2cf4f704419d884f8e914d2c1
+    name: MainVolume
+  - guid: fce06afba0339984ba4c6e93d0bd68b2
+    name: MainLPFreq
   m_AudioMixerGroupViews:
   - guids:
     - bd810e7319da37348bb67f985badef8b
     - 2301200bd328ccd4f8ade2ae16569fda
     - 99d8413e2347de640a8ce791acc875f7
     - 636387c5ac1c3a24aae4c70172843221
+    - 98c34635ba98bf24c9e48cd9bae36cd6
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -106,8 +125,7 @@ AudioMixerGroupController:
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: bd810e7319da37348bb67f985badef8b
   m_Children:
-  - {fileID: -6301888716785178258}
-  - {fileID: -726695251665929627}
+  - {fileID: 6578139736983245398}
   - {fileID: -4128104837343033563}
   m_Volume: a17bb51ed424a8b47837e80afb33527e
   m_Pitch: 27fdee8bf9cac894e82d58ce4662c55d
@@ -143,6 +161,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 8d3e637084652cf44a40b216ddab0293
   m_FloatValues:
     c4f90c51963e04d469e08f2750f0bf19: -0.025776558
+    fce06afba0339984ba4c6e93d0bd68b2: 22000
   m_TransitionOverrides: {}
 --- !u!244 &2027787164473151638
 AudioMixerEffectController:
@@ -155,6 +174,24 @@ AudioMixerEffectController:
   m_EffectName: Attenuation
   m_MixLevel: 3bb2a01767088e842a6c9424b9d2c777
   m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &2380796575372751032
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 0c42bb0bb23439c40b3c8425c9f019f2
+  m_EffectName: Lowpass
+  m_MixLevel: fd13ac0655dd78e46a284328d08d378e
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: fce06afba0339984ba4c6e93d0bd68b2
+  - m_ParameterName: Resonance
+    m_GUID: 14c1c76c7d1da7b40850e1ac41f01208
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -172,3 +209,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &6578139736983245398
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Gameplay
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 98c34635ba98bf24c9e48cd9bae36cd6
+  m_Children:
+  - {fileID: -726695251665929627}
+  - {fileID: -6301888716785178258}
+  m_Volume: 46701de2cf4f704419d884f8e914d2c1
+  m_Pitch: fc93cdf49e305c646993c29a90603049
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -505434015867981635}
+  - {fileID: 2380796575372751032}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0

@@ -4855,6 +4855,9 @@ GameObject:
   - component: {fileID: 670190319436635923}
   - component: {fileID: 2699039753627572527}
   - component: {fileID: 1760447706899553814}
+  - component: {fileID: 6536523406683457310}
+  - component: {fileID: 4544422127253596609}
+  - component: {fileID: 5813878061434202261}
   m_Layer: 6
   m_Name: PaintingMonster_GirlInRed
   m_TagString: Untagged
@@ -4957,9 +4960,9 @@ MonoBehaviour:
   _affectedByTimeScale: 1
   _progress: 0
   _showDebugInfo: 0
-  _armDurationTest: 5
-  _attackDurationRangeTest: {x: 5, y: 5}
-  _attackCooldownRangeTest: {x: 5, y: 5}
+  _armDurationTest: 3
+  _attackDurationRangeTest: {x: 10, y: 10}
+  _attackCooldownRangeTest: {x: 3, y: 3}
 --- !u!114 &2699039753627572527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5035,6 +5038,37 @@ MonoBehaviour:
     progressAction:
       rid: 626082963369230385
     events: []
+  - progressSmoothing: 0
+    progressCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: -0.0012084927
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.36078
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1.5725082
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.326514
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    progressModulator:
+      rid: -2
+    notifyProgressDirection: 1
+    progressAction:
+      rid: 626083098201948160
+    events: []
   _eventActions:
   - eventType: 0
     action:
@@ -5073,6 +5107,7 @@ MonoBehaviour:
         - rid: 626083002046218577
         - rid: 626083002046218578
         - rid: 626083053817299035
+        - rid: 626083098201948161
     - rid: 626082963369230349
       type: {class: ResetTweenAction, ns: MisterGames.ActionLib.Tweens, asm: Assembly-CSharp}
       data:
@@ -5108,6 +5143,8 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
+        - rid: 626083098201948162
+        - rid: 626083098201948178
         - rid: 626083053817299034
         - rid: 626083002046218561
         - rid: 626083002046218562
@@ -5115,6 +5152,7 @@ MonoBehaviour:
         - rid: 626083002046218589
         - rid: 626083002046218590
         - rid: 626083053817299036
+        - rid: 626083098201948269
         - rid: 626083053817299040
         - rid: 626083053817299042
         - rid: 626083002046218592
@@ -5123,6 +5161,11 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
+        - rid: 626083098201948163
+        - rid: 626083098201948164
+        - rid: 626083098201948175
+        - rid: 626083098201948176
+        - rid: 626083098201948177
         - rid: 626082963369230357
         - rid: 626082963369230382
         - rid: 626083002046218579
@@ -5181,6 +5224,7 @@ MonoBehaviour:
         - rid: 626083053817299039
         - rid: 626083053817299032
         - rid: 626083053817299037
+        - rid: 626083098201948267
     - rid: 626083002046218242
       type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
       data:
@@ -5202,6 +5246,7 @@ MonoBehaviour:
         mode: 0
         actions:
         - rid: 626083053817299038
+        - rid: 626083098201948268
         - rid: 626083053817299033
         - rid: 626083002046218565
         - rid: 626083002046218566
@@ -5423,7 +5468,7 @@ MonoBehaviour:
         weight: 0
         smoothing:
           _hasValue: 1
-          _value: 5
+          _value: 1
     - rid: 626083053817299039
       type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
       data:
@@ -5452,6 +5497,183 @@ MonoBehaviour:
         particleSystem: {fileID: 3474679945464900012}
         operation: 0
         withChildren: 0
+    - rid: 626083098201948160
+      type: {class: ProgressTweenActionSoundVolume, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 5054841064881252048}
+        attachId:
+          _hash: 1690817674
+          _name: prepare
+        startValue: 0
+        endValue: 0.5
+    - rid: 626083098201948161
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 1690817674
+          _name: prepare
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 1}
+        volume: 1
+        fadeIn: 0.5
+        fadeOut: 0.5
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 1
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: e20994dd1959fd344a3018d78b82767b, type: 3}
+    - rid: 626083098201948162
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 1690817674
+          _name: prepare
+        position: 0
+        transform: {fileID: 0}
+    - rid: 626083098201948163
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 1690817674
+          _name: prepare
+        position: 0
+        transform: {fileID: 0}
+    - rid: 626083098201948164
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 0.7
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: d8cce8b9c16834d44afcd9ae547bd293, type: 3}
+        - {fileID: 8300000, guid: 8094360af8455b04fadad1ae4b1172af, type: 3}
+        - {fileID: 8300000, guid: 5f21504c3d3fad94f9a8e6c540db860a, type: 3}
+        - {fileID: 8300000, guid: d39c808e5ffdd86419c2f019c06bc8df, type: 3}
+    - rid: 626083098201948175
+      type: {class: ApplyDebuffAction, ns: _Project.Scripts.Runtime.Enemies, asm: Assembly-CSharp}
+      data:
+        debuffEvent:
+          _eventDomain: {fileID: 11400000, guid: 09344a19d1d18bd47b22dd1d0e4e266b,
+            type: 2}
+          _eventId: 1
+          _subId: 0
+        sprite: {fileID: 21300000, guid: 79aba9c4937d0b8469f67e9500cbf826, type: 3}
+    - rid: 626083098201948176
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 2
+        waitAction: 0
+    - rid: 626083098201948177
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 14
+        waitAction: 0
+    - rid: 626083098201948178
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 189e1bb5fdced104a94c334c43d13f1a, type: 3}
+        - {fileID: 8300000, guid: 5673a980d0c5a8a4aa864b2591b36343, type: 3}
+        - {fileID: 8300000, guid: 38dcbaa467713b644b320ca1b19fda88, type: 3}
+    - rid: 626083098201948267
+      type: {class: GamepadVibrationWeightAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        gamepadVibrationBehaviour: {fileID: 5813878061434202261}
+        left:
+          _hasValue: 1
+          _value:
+            weight: 1
+            smoothing:
+              _hasValue: 1
+              _value: 1
+        right:
+          _hasValue: 1
+          _value:
+            weight: 1
+            smoothing:
+              _hasValue: 1
+              _value: 2
+    - rid: 626083098201948268
+      type: {class: GamepadVibrationWeightAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        gamepadVibrationBehaviour: {fileID: 5813878061434202261}
+        left:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
+        right:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
+    - rid: 626083098201948269
+      type: {class: GamepadVibrationWeightAction, ns: MisterGames.ActionLib.Inputs,
+        asm: MisterGames.ActionLib}
+      data:
+        gamepadVibrationBehaviour: {fileID: 5813878061434202261}
+        left:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
+        right:
+          _hasValue: 1
+          _value:
+            weight: 0
+            smoothing:
+              _hasValue: 1
+              _value: 2
 --- !u!114 &1760447706899553814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5476,6 +5698,372 @@ MonoBehaviour:
   _noiseRotationOffset: {x: 15, y: 20, z: 25}
   _noisePositionMul: {x: 0.05, y: 0.05, z: 0}
   _noiseRotationMul: {x: 3, y: 3, z: 5}
+--- !u!114 &6536523406683457310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344941467438258205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332eb0a2d95941d69df171700a3a3cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 5682295543846568885}
+  _useLocal: 1
+  _minAngleChange: 3
+  _minAngularSpeed: 10
+  _minCooldown: 1
+  _speedBufferSize: 3
+  _action:
+    rid: 626083098201948266
+  _showDebugInfo: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 626083098201948266
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 0.3
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 20b6ffae8fc64234fbe54922f66fbda5, type: 3}
+        - {fileID: 8300000, guid: d7dc630da1e6a2348bb3a467f8013947, type: 3}
+        - {fileID: 8300000, guid: 92f32b9f8b54fb94bb157868769acab6, type: 3}
+        - {fileID: 8300000, guid: 6862a45bbe1b71741ada79af7389c747, type: 3}
+--- !u!114 &4544422127253596609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344941467438258205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e7987a0eff47069e417c5ca2225a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _screamSounds:
+  - {fileID: 8300000, guid: e563de105062c7148ae96679cca68f37, type: 3}
+  - {fileID: 8300000, guid: 46df1df3ad9ecd34e852996d3718cc42, type: 3}
+  - {fileID: 8300000, guid: 5894b1da256171c4988539743ef31464, type: 3}
+  _volume: 1
+  _fadeIn: 0.25
+  _fadeOut: 0.4
+  _pitch: 1
+  _pitchRandom: 0.1
+  _spatialBlend: 0.5
+  _mixerGroup: {fileID: 0}
+  _stunSound: {fileID: 8300000, guid: a3f1ba4173b4eb64f9de6f10a3c24826, type: 3}
+  _stunDelay: 3
+  _stunVolume: 1
+  _stunPitch: 1
+  _stunPitchRandom: 0
+  _stunSpatialBlend: 0
+  _stunFadeIn: 3
+  _stunFadeOut: 5
+  _stunFadeInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.013942395
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.434789
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.9858193
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.269099
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _stunFadeOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 2.000003
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.333333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333302
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _stunMixerGroup: {fileID: -4128104837343033563, guid: 928df19ba875ee2458e73acbec03d785,
+    type: 2}
+  _audioMixer: {fileID: 24100000, guid: 928df19ba875ee2458e73acbec03d785, type: 2}
+  _mainVolume: MainVolume
+  _mainVolumeEnd: -25
+  _mainVolumeFadeDownCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.333333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.0000029
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333302
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _mainVolumeFadeUpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.333333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.0000029
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333302
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _mainLowPassFreq: MainLPFreq
+  _mainLowPassFreqEnd: 400
+  _mainLowPassFreqFadeDownCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _mainLowPassFreqFadeUpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.031243885
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.636963
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 6.815432
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.155667
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &5813878061434202261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344941467438258205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be95423913a845c8897108be896ca0a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority:
+    library: {fileID: 11400000, guid: a0e6bad67ecfd7348825facce588e8c2, type: 2}
+    id: 2
+  _targetWeightLeft: 0
+  _targetWeightRight: 0
+  _leftWeightMul: 5
+  _rightWeightMul: 5
+  _weightSmoothingLeft: 2
+  _weightSmoothingRight: 2
+  _leftFreqStart: 0
+  _leftFreqEnd: 1
+  _rightFreqStart: 0
+  _rightFreqEnd: 1
+  _leftFreqCurve:
+    curve0:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0.031243885
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.636963
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 6.815432
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.155667
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curve1:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.333333
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 3.0000029
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.33333302
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    scale0: 1
+    scale1: 1
+    oscillateFreq0: 10
+    oscillateFreq1: 10
+    oscillateThr: 0
+    phase: 0.268
+  _rightFreqCurve:
+    curve0:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: -0.0012084927
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.36078
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1.5725082
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.326514
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curve1:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0.0021623378
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0
+        outWeight: 0.55403
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 459.26703
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 3
+        inWeight: 0.0011979938
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    scale0: 1
+    scale1: 1
+    oscillateFreq0: 10
+    oscillateFreq1: 10
+    oscillateThr: 0
+    phase: 0.239
 --- !u!1 &7204488303849837844
 GameObject:
   m_ObjectHideFlags: 0
@@ -11096,6 +11684,12 @@ GameObject:
 --- !u!4 &3803194976686584551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5487668198647550000, guid: 26d6e3ba32cfb864abcc5d94fb3357ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8714382302432223959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5682295543846568885 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3905787700941087074, guid: 26d6e3ba32cfb864abcc5d94fb3357ed,
     type: 3}
   m_PrefabInstance: {fileID: 8714382302432223959}
   m_PrefabAsset: {fileID: 0}
