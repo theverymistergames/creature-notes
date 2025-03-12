@@ -4856,6 +4856,7 @@ GameObject:
   - component: {fileID: 2699039753627572527}
   - component: {fileID: 1760447706899553814}
   - component: {fileID: 6536523406683457310}
+  - component: {fileID: 4544422127253596609}
   m_Layer: 6
   m_Name: PaintingMonster_GirlInRed
   m_TagString: Untagged
@@ -4958,9 +4959,9 @@ MonoBehaviour:
   _affectedByTimeScale: 1
   _progress: 0
   _showDebugInfo: 0
-  _armDurationTest: 5
-  _attackDurationRangeTest: {x: 5, y: 5}
-  _attackCooldownRangeTest: {x: 5, y: 5}
+  _armDurationTest: 3
+  _attackDurationRangeTest: {x: 10, y: 10}
+  _attackCooldownRangeTest: {x: 3, y: 3}
 --- !u!114 &2699039753627572527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5685,6 +5686,188 @@ MonoBehaviour:
         - {fileID: 8300000, guid: d7dc630da1e6a2348bb3a467f8013947, type: 3}
         - {fileID: 8300000, guid: 92f32b9f8b54fb94bb157868769acab6, type: 3}
         - {fileID: 8300000, guid: 6862a45bbe1b71741ada79af7389c747, type: 3}
+--- !u!114 &4544422127253596609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344941467438258205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e7987a0eff47069e417c5ca2225a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _screamSounds:
+  - {fileID: 8300000, guid: e563de105062c7148ae96679cca68f37, type: 3}
+  - {fileID: 8300000, guid: 46df1df3ad9ecd34e852996d3718cc42, type: 3}
+  - {fileID: 8300000, guid: 5894b1da256171c4988539743ef31464, type: 3}
+  _volume: 1
+  _fadeIn: 0.25
+  _fadeOut: 0.4
+  _pitch: 1
+  _pitchRandom: 0.1
+  _spatialBlend: 0.5
+  _mixerGroup: {fileID: 0}
+  _stunSound: {fileID: 8300000, guid: a3f1ba4173b4eb64f9de6f10a3c24826, type: 3}
+  _stunDelay: 3
+  _stunVolume: 1
+  _stunPitch: 1
+  _stunPitchRandom: 0
+  _stunSpatialBlend: 0
+  _stunFadeIn: 3
+  _stunFadeOut: 5
+  _stunFadeInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.013942395
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.434789
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.9858193
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.269099
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _stunFadeOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 2.000003
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.333333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333302
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _stunMixerGroup: {fileID: -4128104837343033563, guid: 928df19ba875ee2458e73acbec03d785,
+    type: 2}
+  _audioMixer: {fileID: 24100000, guid: 928df19ba875ee2458e73acbec03d785, type: 2}
+  _mainVolume: MainVolume
+  _mainVolumeEnd: -25
+  _mainVolumeFadeDownCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.333333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.0000029
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333302
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _mainVolumeFadeUpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.333333
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2.0000029
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.33333302
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _mainLowPassFreq: MainLPFreq
+  _mainLowPassFreqEnd: 400
+  _mainLowPassFreqFadeDownCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _mainLowPassFreqFadeUpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.031243885
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.636963
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 6.815432
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.155667
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7204488303849837844
 GameObject:
   m_ObjectHideFlags: 0
