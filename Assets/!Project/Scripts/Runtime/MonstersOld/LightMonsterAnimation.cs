@@ -20,14 +20,14 @@ public class LightMonsterAnimation : MonsterAnimation {
     private static readonly int EmissionColor = Shader.PropertyToID("_EmissiveColor");
 
     private void Start() {
-        SubscribeUpdate();
+        //SubscribeUpdate();
 
-        _audio = GetComponent<AudioSource>();
-        monster.SetActive(false);
+        //_audio = GetComponent<AudioSource>();
+        //monster.SetActive(false);
 
-        _material = emissiveObject.materials[0];
-        _color = _material.GetColor(EmissionColor);
-        _startEmissionIntensity = _material.GetFloat(EmissionIntensity);
+        //_material = emissiveObject.materials[0];
+        //_color = _material.GetColor(EmissionColor);
+        //_startEmissionIntensity = _material.GetFloat(EmissionIntensity);
     }
 
     protected override void ProceedUpdate(float progress) {

@@ -12,13 +12,14 @@ public class WindowMonsterAnimation : MonsterAnimation {
     private void Start() {
         //SubscribeUpdate();
         
-        monster.SetActive(false);
+        //monster.SetActive(false);
         
-        _startWindowY = window.transform.localPosition.y;
-        _startMonsterY = monster.transform.localPosition.y;
+        //_startWindowY = window.transform.localPosition.y;
+        //_startMonsterY = monster.transform.localPosition.y;
     }
 
     protected override void ProceedUpdate(float progress) {
+        return;
         if (progress == 0) {
             monster.SetActive(false);
         }

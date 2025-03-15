@@ -8,10 +8,11 @@ public class Flesh : MonoBehaviour {
 
     private int _currentIndex;
     void Start() {
-        transform.localPosition = new Vector3(transform.localPosition.x, positions[0], transform.localPosition.z);
+        //transform.localPosition = new Vector3(transform.localPosition.x, positions[0], transform.localPosition.z);
     }
 
     public void SetPosition(int index) {
+        return;
         if (positions.Length <= index) return;
         
         if (index > _currentIndex) {
@@ -25,6 +26,7 @@ public class Flesh : MonoBehaviour {
     }
 
     void SetPositionByIndex(int index) {
+        return;
         transform.localPosition = new Vector3(transform.localPosition.x, positions[index], transform.localPosition.z);
     }
 

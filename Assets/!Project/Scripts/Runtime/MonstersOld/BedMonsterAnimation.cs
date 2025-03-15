@@ -11,15 +11,16 @@ public class BedMonsterAnimation : MonsterAnimation {
     private Vector3 _startMonsterPosition;
 
     private void Start() {
-        SubscribeUpdate();
+        //SubscribeUpdate();
         
-        monster.SetActive(false);
+        //monster.SetActive(false);
         
-        _startBedX = bed.transform.localPosition.x;
-        _startMonsterPosition = monster.transform.localPosition;
+        //_startBedX = bed.transform.localPosition.x;
+        //_startMonsterPosition = monster.transform.localPosition;
     }
 
     protected override void ProceedUpdate(float progress) {
+        return;
         if (progress == 0) {
             monster.SetActive(false);
         }

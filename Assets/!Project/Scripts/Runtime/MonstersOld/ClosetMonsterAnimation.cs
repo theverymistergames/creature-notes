@@ -16,15 +16,16 @@ public class ClosetMonsterAnimation : MonsterAnimation
     private Vector3 _startMonsterPosition;
 
     private void Start() {
-        SubscribeUpdate();
+        //SubscribeUpdate();
         
-        monster.SetActive(false);
+        //monster.SetActive(false);
         
-        _startDoorAngle = door.transform.eulerAngles.y;
-        _startMonsterPosition = monster.transform.localPosition;
+        //_startDoorAngle = door.transform.eulerAngles.y;
+        //_startMonsterPosition = monster.transform.localPosition;
     }
 
    protected override void ProceedUpdate(float progress) {
+       return;
        if (progress == 0) {
            monster.SetActive(false);
        }
