@@ -55,18 +55,18 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         [SerializeField] [Range(0f, 1f)] private float _spatialBlend = 0f;
         
         [Header("Blink Sounds")]
-        [SerializeField] private AudioClip _lampBlinkSound;
         [SerializeField] [Range(0f, 2f)] private float _blinkVolume = 1f;
         [SerializeField] [Min(0f)] private float _blinkVolumeSmoothing = 7f;
         [SerializeField] private AnimationCurve _blinkVolumeCurve = EasingType.Linear.ToAnimationCurve();
         [SerializeField] [Min(0f)] private float _blinkFadeOut = 0.3f;
+        [SerializeField] private AudioClip[] _lampBlinkSounds;
         
         [Header("Switch Sounds")]
-        [SerializeField] private AudioClip[] _lampSwitchOnSounds;
-        [SerializeField] private AudioClip[] _lampSwitchOffSounds;
         [SerializeField] [Range(0f, 2f)] private float _switchVolume = 1f;
         [SerializeField] [Range(0f, 2f)] private float _switchVolumeRandom = 0.1f;
-        
+        [SerializeField] private AudioClip[] _lampSwitchOnSounds;
+        [SerializeField] private AudioClip[] _lampSwitchOffSounds;
+
         private CancellationTokenSource _enableCts;
         
         private Vector3 _monsterScale;
@@ -76,7 +76,7 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         private float _switchCooldown;
         private float _blinkTimer;
         private float _blinkCooldown;
-        private float _blinkSmoothed;
+        private float _blinkSmoothed = 1f;
         
         private AudioHandle _blinkSound;
         
@@ -176,13 +176,17 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         }
         
         private void ProcessMonster(float weight, float lampWeight) {
-            _monsterTransform.localScale = _monsterScale * Mathf.Lerp(_scaleStart, _scaleEnd, weight);
+            float scaleWeight = _visibleMinWeight < 1f 
+                ? Mathf.Clamp01((weight - _visibleMinWeight) / (1f - _visibleMinWeight))
+                : 1f;
+            
+            _monsterTransform.localScale = _monsterScale * Mathf.Lerp(_scaleStart, _scaleEnd, scaleWeight);
             _monsterVisuals.SetActive(lampWeight <= 0f && weight >= _visibleMinWeight);
         }
 
         
         private void ProcessBlinkSound(float lampWeight, float dt) {
-            float vol = _blinkVolumeCurve.Evaluate(lampWeight) * _blinkVolume;
+            float vol = _blinkVolumeCurve.Evaluate(1f - lampWeight) * _blinkVolume;
             _blinkSound.Volume = _blinkSound.Volume.SmoothExpNonZero(vol, _blinkVolumeSmoothing, dt);
         }
 
@@ -198,6 +202,8 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         }
 
         private void PlaySwitchSound(AudioClip[] clips, CancellationToken cancellationToken) {
+            if (clips is not { Length: > 0 }) return;
+            
             AudioPool.Main.Play(
                 clip: AudioPool.Main.ShuffleClips(clips),
                 _lamp.transform.position,
@@ -214,10 +220,10 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         }
         
         private void StartFailureSoundLoop(CancellationToken cancellationToken) {
-            if (_blinkSound.IsValid()) return;
+            if (_lampBlinkSounds is not { Length: > 0 } || _blinkSound.IsValid()) return;
             
             _blinkSound = AudioPool.Main.Play(
-                _lampBlinkSound,
+                clip: AudioPool.Main.ShuffleClips(_lampBlinkSounds),
                 _lamp.transform.position,
                 volume: 0f,
                 fadeIn: 0f,
@@ -233,7 +239,7 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
 
 #if UNITY_EDITOR
         private void OnValidate() {
-            if (!Application.isPlaying) return;
+            if (!Application.isPlaying || _enableCts == null) return;
             
             SetWeight(_weight);
         }
