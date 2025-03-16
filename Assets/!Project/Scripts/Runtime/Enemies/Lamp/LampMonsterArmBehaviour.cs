@@ -25,6 +25,7 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         [SerializeField] private float _scaleStart = 0f;
         [SerializeField] private float _scaleEnd = 1.5f;
         [SerializeField] [Range(0f, 1f)] private float _visibleMinWeight = 0.7f;
+        [SerializeField] private bool _visibleOnMaxWeight = true;
         
         [Header("Blink")]
         [SerializeField] [MinMaxSlider(0f, 1f)] private Vector2 _activateBlinkWeightRange = new(0.1f, 1f);
@@ -106,10 +107,15 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
                 return;
             }
 
-            _blinkSound.Release();
+            _blinkSmoothed = 1f;
+            
             _lamp.Weight = 0f;
+            
+            _monsterVisuals.SetActive(_visibleOnMaxWeight);
             ProcessMonster(weight: 1f, lampWeight: 0f);
+            
             PlaySwitchSound(_lampSwitchOffSounds, _enableCts.Token);
+            _blinkSound.Release();
             
             PlayerLoopStage.Update.Unsubscribe(this);
         }
@@ -176,6 +182,8 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         }
         
         private void ProcessMonster(float weight, float lampWeight) {
+            if (!_hasMonster) return;
+            
             float scaleWeight = _visibleMinWeight < 1f 
                 ? Mathf.Clamp01((weight - _visibleMinWeight) / (1f - _visibleMinWeight))
                 : 1f;
@@ -183,7 +191,6 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
             _monsterTransform.localScale = _monsterScale * Mathf.Lerp(_scaleStart, _scaleEnd, scaleWeight);
             _monsterVisuals.SetActive(lampWeight <= 0f && weight >= _visibleMinWeight);
         }
-
         
         private void ProcessBlinkSound(float lampWeight, float dt) {
             float vol = _blinkVolumeCurve.Evaluate(1f - lampWeight) * _blinkVolume;
