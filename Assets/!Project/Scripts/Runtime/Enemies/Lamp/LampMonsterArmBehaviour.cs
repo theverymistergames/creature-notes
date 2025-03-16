@@ -6,7 +6,7 @@ using MisterGames.Common.Easing;
 using MisterGames.Common.GameObjects;
 using MisterGames.Common.Maths;
 using MisterGames.Common.Tick;
-using MisterGames.Logic.Interactives;
+using MisterGames.Logic.Rendering;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
