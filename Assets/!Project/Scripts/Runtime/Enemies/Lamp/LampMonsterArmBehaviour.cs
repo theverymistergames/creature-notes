@@ -20,6 +20,8 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         [SerializeField] [Range(0f, 1f)] private float _weight;
 
         [Header("Monster")]
+        [SerializeField] private bool _affectVisibility = true;
+        [SerializeField] private bool _affectScale = true;
         [SerializeField] private Transform _monsterTransform;
         [SerializeField] private GameObject[] _monsterVisuals;
         [SerializeField] private float _scaleStart = 0f;
@@ -94,6 +96,14 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
             PlayerLoopStage.Update.Unsubscribe(this);
+        }
+
+        public void AffectMonsterVisibility(bool affect) {
+            _affectVisibility = affect;
+        }
+        
+        public void AffectMonsterScale(bool affect) {
+            _affectScale = affect;
         }
         
         public void SetWeight(float weight) {
@@ -182,14 +192,17 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
         }
         
         private void ProcessMonster(float weight, float lampWeight) {
-            if (!_hasMonster) return;
+            if (_affectScale) {
+                float scaleWeight = _visibleMinWeight < 1f 
+                    ? Mathf.Clamp01((weight - _visibleMinWeight) / (1f - _visibleMinWeight))
+                    : 1f;
             
-            float scaleWeight = _visibleMinWeight < 1f 
-                ? Mathf.Clamp01((weight - _visibleMinWeight) / (1f - _visibleMinWeight))
-                : 1f;
-            
-            _monsterTransform.localScale = _monsterScale * Mathf.Lerp(_scaleStart, _scaleEnd, scaleWeight);
-            _monsterVisuals.SetActive(lampWeight <= 0f && weight >= _visibleMinWeight);
+                _monsterTransform.localScale = _monsterScale * Mathf.Lerp(_scaleStart, _scaleEnd, scaleWeight);   
+            }
+
+            if (_affectVisibility) {
+                _monsterVisuals.SetActive(lampWeight <= 0f && weight >= _visibleMinWeight);
+            }
         }
         
         private void ProcessBlinkSound(float lampWeight, float dt) {
