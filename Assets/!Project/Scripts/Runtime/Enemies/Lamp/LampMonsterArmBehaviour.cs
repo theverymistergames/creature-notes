@@ -13,11 +13,11 @@ using Random = UnityEngine.Random;
 namespace _Project.Scripts.Runtime.Enemies.Lamp {
     
     public sealed class LampMonsterArmBehaviour : MonoBehaviour, IUpdate {
-    
-        [SerializeField] private LampBehaviour _lamp;
 
-        [Header("Weight")]
         [SerializeField] [Range(0f, 1f)] private float _weight;
+
+        [Header("Lamp")]
+        [SerializeField] private LampBehaviour _lamp;
 
         [Header("Monster")]
         [SerializeField] private bool _affectVisibility = true;
