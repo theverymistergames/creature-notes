@@ -5855,6 +5855,7 @@ MonoBehaviour:
         - rid: 626083183669543004
         - rid: 626083183669543005
         - rid: 626083183669543033
+        - rid: 626083239178535007
     - rid: 626083183669543004
       type: {class: SetLampIntensityProgressAction, ns: MisterGames.TweenLib.Rendering,
         asm: MisterGames.TweenLib}
@@ -5879,6 +5880,16 @@ MonoBehaviour:
           _name: dark_loop
         startValue: 0
         endValue: 0.3
+    - rid: 626083239178535007
+      type: {class: ProgressTweenActionSoundVolume, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 6948531911033918723}
+        attachId:
+          _hash: 174156932
+          _name: dark_replics
+        startValue: 0
+        endValue: 1
 --- !u!114 &8438294234457556622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7696,7 +7707,7 @@ MonoBehaviour:
   _useCharacterAsContext: 0
   _cancelOnNextAction: 1
   _enableAction:
-    rid: 626083183669543029
+    rid: 626083239178535002
   _disableAction:
     rid: -2
   references:
@@ -7704,7 +7715,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 626083183669543029
+    - rid: 626083239178535002
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 626083239178535004
+        - rid: 626083239178535005
+    - rid: 626083239178535004
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 0
@@ -7726,6 +7744,44 @@ MonoBehaviour:
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 1b9f7039b50ee6e49a70d69db58b4a57, type: 3}
+    - rid: 626083239178535005
+      type: {class: DelayRepeatAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delayFrom: 15
+        delayTo: 25
+        action:
+          rid: 626083239178535006
+    - rid: 626083239178535006
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 174156932
+          _name: dark_replics
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 0
+        fadeIn: 0
+        fadeOut: 0.3
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 0
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 58926e28e17c4e24f90614948afc12ec, type: 3}
+        - {fileID: 8300000, guid: 5999cc529468cbb47b6422cd0cd1156b, type: 3}
+        - {fileID: 8300000, guid: 32c55580b91df8c42a0716faaa5e800d, type: 3}
+        - {fileID: 8300000, guid: b7f30d7783fc5da4daaf39274f94b62a, type: 3}
+        - {fileID: 8300000, guid: 74046823eff7f3241acc02fe07ce50d0, type: 3}
+        - {fileID: 8300000, guid: 5c80093cc34784e44a0e68c6930aab6f, type: 3}
+        - {fileID: 8300000, guid: 78a0f95e7af2d9642852a73d1b8b9f6e, type: 3}
+        - {fileID: 8300000, guid: 2c8aba5b3267dc9428944b145bfba941, type: 3}
+        - {fileID: 8300000, guid: c583c3d7ace96444789394d36e4aebad, type: 3}
+        - {fileID: 8300000, guid: 08d0d4138003f894287be0880dcfbaaf, type: 3}
 --- !u!1001 &7174637027710170035
 PrefabInstance:
   m_ObjectHideFlags: 0
