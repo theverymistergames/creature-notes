@@ -4968,7 +4968,7 @@ MonoBehaviour:
   _affectedByTimeScale: 1
   _progress: 0
   _showDebugInfo: 0
-  _armDurationTest: 10
+  _armDurationTest: 5
   _attackDurationRangeTest: {x: 5, y: 5}
   _attackCooldownRangeTest: {x: 5, y: 5}
 --- !u!114 &2143844380215670526
@@ -5059,7 +5059,7 @@ MonoBehaviour:
   - eventType: 4
     action:
       rid: 626083183669543018
-  - eventType: 4
+  - eventType: 5
     action:
       rid: 626083183669543020
   references:
@@ -5076,11 +5076,13 @@ MonoBehaviour:
         - rid: 626083162525532278
         - rid: 626083183669543009
         - rid: 626083183669543014
+        - rid: 626083257546178644
     - rid: 626083162525532263
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
+        - rid: 626083257546178645
         - rid: 626083183669543030
         - rid: 626083162525532275
         - rid: 626083162525532277
@@ -5356,6 +5358,7 @@ MonoBehaviour:
         mode: 0
         actions:
         - rid: 626083183669543019
+        - rid: 626083257546178643
     - rid: 626083183669543019
       type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
         asm: MisterGames.ActionLib}
@@ -5367,13 +5370,8 @@ MonoBehaviour:
       data:
         mode: 0
         actions:
-        - rid: 626083183669543021
-    - rid: 626083183669543021
-      type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        target: {fileID: 8726413076606518382}
-        scale: {x: 7, y: 7, z: 7}
+        - rid: 626083257546178647
+        - rid: 626083257546178646
     - rid: 626083183669543022
       type: {class: PlayTweenProgressAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
       data:
@@ -5501,6 +5499,94 @@ MonoBehaviour:
         - {fileID: 8300000, guid: a3495a2717cc2dc41b973b3774e43ad3, type: 3}
         - {fileID: 8300000, guid: dc2d39f82f26ee7418e4c2c5de882a8e, type: 3}
         - {fileID: 8300000, guid: 48be80529a5315349b9d652c394065ba, type: 3}
+    - rid: 626083257546178643
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 0
+        loop: 0
+        affectedByTimeScale: 0
+        occlusion: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: e4cd618eb2e2d214f84ffb8e99d1b1c7, type: 3}
+        - {fileID: 8300000, guid: ba008b0b23564664080b889e4fcb98e8, type: 3}
+        - {fileID: 8300000, guid: a16bb22073ba9f845ae651e7f8229514, type: 3}
+    - rid: 626083257546178644
+      type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 8726413076606518382}
+        scale: {x: 7, y: 7, z: 7}
+    - rid: 626083257546178645
+      type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 8726413076606518382}
+        scale: {x: 7, y: 7, z: 7}
+    - rid: 626083257546178646
+      type: {class: TransformScaleAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        transform: {fileID: 8726413076606518382}
+        duration: 1
+        endScale: {x: 7, y: 7, z: 7}
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333333
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 3.0000029
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333302
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+    - rid: 626083257546178647
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 0
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: e820e59368319554f8d35978708caa7d, type: 3}
 --- !u!114 &3104908056285443932
 MonoBehaviour:
   m_ObjectHideFlags: 0
