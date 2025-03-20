@@ -24,7 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Lava_organic
-  m_Shader: {fileID: -6465566751694194690, guid: aab1f5f1afab33747ae6352e8c235b2b,
+  m_Shader: {fileID: -6465566751694194690, guid: f11a4966efed79348aa22609c2cb0d09,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -52,6 +52,10 @@ Material:
     m_TexEnvs:
     - _Albedo_Texture:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Alpha_Mask:
+        m_Texture: {fileID: 2800000, guid: b69640fe397b13c41903235ce938e32b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:
@@ -291,8 +295,8 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
-    - _Ripples_Max_Frequency: 0.27
-    - _Ripples_Speed: 0.62
+    - _Ripples_Max_Frequency: 0.12
+    - _Ripples_Speed: 0.82
     - _Ripples_Strength: 1
     - _Rotation_Step: 6.48
     - _Scale: 1.39
@@ -360,6 +364,8 @@ Material:
     - _AccentColor: {r: 15.813397, g: 2.4811676, b: 0, a: 0}
     - _AccentColor2: {r: 1.4454424, g: 0.542428, b: 0.3318152, a: 0}
     - _Albedo: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+    - _Alpha_Offset: {r: -0.49, g: 0.49, b: 0, a: 0}
+    - _Alpha_Tiling: {r: 0.0555, g: 0.062, b: 0, a: 0}
     - _BaseColor: {r: 0.7075472, g: 0.19134918, b: 0.19134918, a: 0}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Brightness: {r: 4.25, g: -5.49, b: 0, a: 0}
@@ -373,7 +379,7 @@ Material:
     - _Fractal_Color: {r: 0.59131736, g: 0.025103085, b: 0.025103085, a: 1}
     - _Fractal_Color_1: {r: 0, g: 0, b: 0, a: 0}
     - _Fractal_Color_2: {r: 0, g: 0, b: 0, a: 0}
-    - _Fractal_Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Fractal_Offset: {r: -0.4, g: 0, b: 0, a: 0}
     - _Fractal_Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _Fractal_to_Normal_Remap_in: {r: 0, g: 311.65, b: 0, a: 0}
     - _Fractal_to_Normal_Remap_out: {r: 0, g: 1, b: 0, a: 0}
@@ -385,6 +391,7 @@ Material:
     - _Mask_Brightness: {r: -12.4, g: 38.36, b: 0, a: 0}
     - _Mask_Color: {r: 0.54132617, g: 0, b: 0.8867924, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Position_Offset: {r: 0, g: 0.78, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
