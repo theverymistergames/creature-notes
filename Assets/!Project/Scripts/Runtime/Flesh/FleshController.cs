@@ -9,8 +9,6 @@ namespace _Project.Scripts.Runtime.Flesh {
         [SerializeField] private Transform _fleshRoot;
         [SerializeField] private float _bottomY;
         [SerializeField] private float _topY;
-        
-        [Header("Debug")]
         [SerializeField] [Range(0f, 1f)] private float _progress;
 
         public Transform Root => _fleshRoot;
@@ -22,8 +20,10 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
 #if UNITY_EDITOR
+        [SerializeField] private bool _applyProgressInEditor;
+        
         private void OnValidate() {
-            if (_fleshRoot != null) ApplyProgress(_progress);
+            if (_applyProgressInEditor && _fleshRoot != null) ApplyProgress(_progress);
         }
 #endif
     }
