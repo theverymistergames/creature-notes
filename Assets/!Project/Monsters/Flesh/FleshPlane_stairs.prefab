@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5070478747485394112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6810831493585141110}
+  - component: {fileID: 5906196550907229778}
+  - component: {fileID: 572567497664176734}
+  - component: {fileID: 7861068772571946865}
+  - component: {fileID: 3903849685951422930}
+  - component: {fileID: 4003886782232056516}
+  - component: {fileID: 4843447948689339066}
+  m_Layer: 0
+  m_Name: FleshPlane_stairs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6810831493585141110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.37319896, y: 0.0053848177, z: 0.01316528, w: 0.9276423}
+  m_LocalPosition: {x: 28.886, y: 1.809, z: 21.386}
+  m_LocalScale: {x: 0.09178, y: 1, z: 0.3393313}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 43.808, y: 1.574, z: 2.259}
+--- !u!33 &5906196550907229778
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Mesh: {fileID: 0}
+--- !u!23 &572567497664176734
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d8ea95c4f7c144845ab49f394eac1233, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7861068772571946865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85212d1b13358614ca54e74ba56f93ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignOriginalMeshOnDisable: 1
+  updateMode: 0
+  cullingMode: 1
+  normalsRecalculation: 0
+  boundsRecalculation: 0
+  colliderRecalculation: 0
+  meshCollider: {fileID: 0}
+  data:
+    OriginalMesh: {fileID: 1163648058834999851, guid: 1842293e7af4f5f40bd00b33345e1d00,
+      type: 3}
+    Target:
+      meshFilter: {fileID: 5906196550907229778}
+      skinnedMeshRenderer: {fileID: 0}
+    initialized: 1
+  deformerElements: []
+  customBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0.25}
+--- !u!65 &3903849685951422930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 16, y: 2.67, z: 16}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4003886782232056516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f20cdabcea6438b9b56e22d762cf176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fleshController: {fileID: 4843447948689339066}
+  _deformable: {fileID: 7861068772571946865}
+  _spherePrefab: {fileID: 1812761224299415417, guid: 7570e13ed983a204689139b80ee2b0a4,
+    type: 3}
+  _sphereExplosionVfx: {fileID: 2646391046023174099, guid: 1ee2559cc78e07f49b8194a43351dedd,
+    type: 3}
+  _sphereExplosionDuration: 0.2
+  _minRadiusToSpawnExplosion: 0.3
+  _maxSphereLevelAboveSurface: -0.1
+  _spawnProfiles:
+  - progressRange: {x: 0, y: 1}
+    spawnDelayRange: {x: 0.25313067, y: 0.5882545}
+    lifetimeRange: {x: 1.0843219, y: 2.366738}
+    burstChance: 0.766
+    maxBurst: 10
+    burstDistanceRange: {x: 1.2830096, y: 2.96657}
+    excludeCenter: {x: 0, y: 0}
+    startScaleRange: {x: 0.5205412, y: 0.9817356}
+    endScaleRange: {x: 0.3279724, y: 1.0700431}
+    startSpeedRangeUp: {x: 0.23061067, y: 1.1386402}
+    endSpeedRangeUp: {x: -0.37474233, y: 0.72065836}
+    startSpeedRangeSide: {x: 0, y: 0.5025655}
+    endSpeedRangeSide: {x: 0, y: 0.49004766}
+    showDebugInfo: 1
+--- !u!114 &4843447948689339066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d088f5644cfe4a03b839fd35ef7063bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fleshRoot: {fileID: 6810831493585141110}
+  _bottomY: 0
+  _topY: 1
+  _progress: 0
+  _applyProgressInEditor: 0
