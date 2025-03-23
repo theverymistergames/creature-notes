@@ -288,7 +288,10 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void UpdateFleshProgressSmoothed(float dt) {
+            float oldProgress = _fleshProgressSmoothed;
             _fleshProgressSmoothed = _fleshProgressSmoothed.SmoothExpNonZero(_fleshProgressTarget, _config.fleshProgressSmoothing, dt);
+            
+            if (oldProgress.IsNearlyEqual(_fleshProgressSmoothed)) return;
             
             ApplyFleshProgress(_fleshProgressSmoothed);      
         }
