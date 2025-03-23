@@ -19,6 +19,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         
         public Transform Root => _transform;
         public float Progress => _progress;
+        public float MaterialOffsetY => Mathf.Lerp(_materialOffsetYStart, _materialOffsetYEnd, _curve.Evaluate(_progress));
 
         private Vector3 _materialOffsetDefault;
         private Vector3 _transformPositionDefault;

@@ -7,6 +7,7 @@ using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
 using MisterGames.Common.Tick;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Runtime.Flesh {
@@ -18,7 +19,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         [SerializeField] private Deformable _deformable;
         
         [Header("Spawn Settings")]
-        [SerializeField] private SpherifyDeformer _spherePrefab;
+        [SerializeField] private FleshBubble _spherePrefab;
         [SerializeField] private GameObject _sphereExplosionVfx;
         [SerializeField] [Min(0f)] private float _sphereExplosionDuration = 0.1f;
         [SerializeField] [Min(0f)] private float _minRadiusToSpawnExplosion = 0.3f;
@@ -30,12 +31,17 @@ namespace _Project.Scripts.Runtime.Flesh {
             
             [Header("Spawn")]
             [MinMaxSlider(0f, 1f)] public Vector2 progressRange;
-            [MinMaxSlider(0f, 10f)] public Vector2 spawnDelayRange;
-            [MinMaxSlider(0f, 10f)] public Vector2 lifetimeRange;
+            public AnimationCurve progressCurve;
+            [FormerlySerializedAs("spawnDelayRange")] [MinMaxSlider(0f, 10f)] public Vector2 spawnDelayRange0;
+            [MinMaxSlider(0f, 10f)] public Vector2 spawnDelayRange1;
+            [FormerlySerializedAs("lifetimeRange")] [MinMaxSlider(0f, 10f)] public Vector2 lifetimeRange0;
+            [MinMaxSlider(0f, 10f)] public Vector2 lifetimeRange1;
             
             [Header("Burst")]
-            [Range(0f, 1f)] public float burstChance;
-            [Min(0)] public int maxBurst;
+            [FormerlySerializedAs("burstChance")] [Range(0f, 1f)] public float burstChance0;
+            [Range(0f, 1f)] public float burstChance1;
+            [FormerlySerializedAs("maxBurst")] [Min(0)] public int maxBurst0;
+            [Min(0)] public int maxBurst1;
             [MinMaxSlider(0f, 10f)] public Vector2 burstDistanceRange;
             
             [Header("Positioning")]
@@ -53,7 +59,7 @@ namespace _Project.Scripts.Runtime.Flesh {
 
         private readonly struct BubbleData {
             
-            public readonly SpherifyDeformer deformer;
+            public readonly FleshBubble bubble;
             public readonly Transform transform;
             public readonly float createTime;
             public readonly float lifetime;
@@ -63,7 +69,7 @@ namespace _Project.Scripts.Runtime.Flesh {
             public readonly Vector3 endSpeed;
             
             public BubbleData(
-                SpherifyDeformer deformer,
+                FleshBubble bubble,
                 float createTime,
                 float lifetime,
                 float startScale,
@@ -71,15 +77,14 @@ namespace _Project.Scripts.Runtime.Flesh {
                 Vector3 startSpeed,
                 Vector3 endSpeed) 
             {
-                this.deformer = deformer;
-                transform = deformer.transform;
+                this.bubble = bubble;
+                transform = bubble.transform;
                 this.createTime = createTime;
                 this.lifetime = lifetime;
                 this.startScale = startScale;
                 this.endScale = endScale;
                 this.startSpeed = startSpeed;
                 this.endSpeed = endSpeed;
-                this.deformer = deformer;
             }
         }
         
@@ -101,7 +106,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         private void OnDestroy() {
             for (int i = 0; i < _bubbles.Count; i++) {
                 var bubbleData = _bubbles[i];
-                _deformable.RemoveDeformer(bubbleData.deformer);
+                _deformable.RemoveDeformer(bubbleData.bubble.SpherifyDeformer);
                 PrefabPool.Main?.Release(bubbleData.transform);
             }
         }
@@ -130,9 +135,11 @@ namespace _Project.Scripts.Runtime.Flesh {
                 ref float spawnTime = ref _spawnTimes[i];
                 
                 if (!progress.InRange(spawnProfile.progressRange) || spawnTime > time) continue;
+
+                float p = spawnProfile.progressCurve.Evaluate(progress.Map01(spawnProfile.progressRange));
                 
-                spawnTime = time + spawnProfile.spawnDelayRange.GetRandomInRange();
-                Spawn(ref spawnProfile);
+                spawnTime = time + Mathf.Lerp(spawnProfile.spawnDelayRange0.GetRandomInRange(), spawnProfile.spawnDelayRange1.GetRandomInRange(), p);
+                Spawn(ref spawnProfile, p);
             }
         }
 
@@ -151,7 +158,8 @@ namespace _Project.Scripts.Runtime.Flesh {
                         bubbleData.endScale >= _minRadiusToSpawnExplosion &&
                         bubbleData.transform.localPosition.y > -bubbleData.endScale) 
                     {
-                        var vfx = PrefabPool.Main.Get(_sphereExplosionVfx, bubbleData.transform.position, Quaternion.identity);
+                        var pos = bubbleData.transform.TransformPoint(bubbleData.bubble.Collider.center);
+                        var vfx = PrefabPool.Main.Get(_sphereExplosionVfx, pos, Quaternion.identity);
                         vfx.transform.localScale = bubbleData.transform.localScale;
                     }
                     
@@ -161,7 +169,7 @@ namespace _Project.Scripts.Runtime.Flesh {
                     if (t >= 1f) {
                         _explosions.Remove(bubbleData.transform);
                         _bubbles.RemoveAt(i);
-                        _deformable.RemoveDeformer(bubbleData.deformer);
+                        _deformable.RemoveDeformer(bubbleData.bubble.SpherifyDeformer);
                         PrefabPool.Main.Release(bubbleData.transform);
                     }
                     
@@ -177,29 +185,30 @@ namespace _Project.Scripts.Runtime.Flesh {
             }
         }
         
-        private void Spawn(ref SpawnProfile profile) {
+        private void Spawn(ref SpawnProfile profile, float progress) {
             var firstPos = ApplyBounds(GetRandomPointInBounds(), profile.excludeCenter);
-            SpawnSingle(ref profile, firstPos);
+            SpawnSingle(ref profile, firstPos, progress);
             
-            if (Random.Range(0f, 1f) > profile.burstChance) return;
+            float burstChance = Mathf.Lerp(profile.burstChance0, profile.burstChance1, progress);
+            if (Random.value >= burstChance) return;
             
-            int burstCount = Random.Range(0, profile.maxBurst);
+            int burstCount = Random.Range(0, Mathf.CeilToInt(Mathf.Lerp(profile.maxBurst0, profile.maxBurst1, progress)));
             var up = _transform.up;
             
             for (int i = 0; i < burstCount; i++) {
                 var burstPos = firstPos + GetRandomFlatVector(profile.burstDistanceRange, up);
-                SpawnSingle(ref profile, ApplyBounds(burstPos, profile.excludeCenter));
+                SpawnSingle(ref profile, ApplyBounds(burstPos, profile.excludeCenter), progress);
             }
         }
 
-        private void SpawnSingle(ref SpawnProfile profile, Vector3 position) {
-            var sphere = PrefabPool.Main.Get(_spherePrefab, position, Quaternion.identity, _fleshController.Root);
-            var sphereTransform = sphere.transform;
+        private void SpawnSingle(ref SpawnProfile profile, Vector3 position, float progress) {
+            var bubble = PrefabPool.Main.Get(_spherePrefab, position, Quaternion.identity, _fleshController.Root);
+            var sphereTransform = bubble.transform;
 
             var data = new BubbleData(
-                sphere,
+                bubble,
                 Time.time,
-                profile.lifetimeRange.GetRandomInRange(), 
+                Mathf.Lerp(profile.lifetimeRange0.GetRandomInRange(), profile.lifetimeRange1.GetRandomInRange(), progress), 
                 profile.startScaleRange.GetRandomInRange(), 
                 profile.endScaleRange.GetRandomInRange(),
                 profile.startSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.startSpeedRangeSide, Vector3.up),
@@ -209,8 +218,10 @@ namespace _Project.Scripts.Runtime.Flesh {
             sphereTransform.localScale = data.startScale * Vector3.one;
             sphereTransform.localPosition = sphereTransform.localPosition.WithY(-data.startScale);
 
+            bubble.Collider.center = bubble.Collider.center.WithY(_fleshController.MaterialOffsetY); 
+            
             _bubbles.Add(data);
-            _deformable.AddDeformer(sphere);
+            _deformable.AddDeformer(bubble.SpherifyDeformer);
         }
 
         private Vector3 GetRandomPointInBounds() {
@@ -220,8 +231,8 @@ namespace _Project.Scripts.Runtime.Flesh {
         
         private Vector3 ApplyBounds(Vector3 point, Vector2 excludeCenter) {
             var bounds = _boxCollider.bounds;
-            var local = _transform.InverseTransformPoint(point) + 
-                        _transform.InverseTransformDirection(bounds.center - _transform.position);
+            var local = _transform.InverseTransformPoint(point) - 
+                        _transform.InverseTransformPoint(bounds.center);
 
             local = RandomExtensions
                     .PlacePointInBounds(local.WithoutY(), _boxCollider.size.WithoutY() * 0.5f, excludeCenter)

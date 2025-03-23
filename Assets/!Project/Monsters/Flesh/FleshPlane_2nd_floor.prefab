@@ -32,7 +32,7 @@ Transform:
   - {fileID: 8447175612340493808}
   m_Father: {fileID: 411703076737601118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6792618769236662503
+--- !u!1 &4359275251071239608
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,49 +40,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 411703076737601118}
-  - component: {fileID: 2741757382058888790}
-  - component: {fileID: 3577194177766917362}
-  - component: {fileID: 2397559062741656387}
-  - component: {fileID: 4737842006116885122}
+  - component: {fileID: 1216489197533237574}
+  - component: {fileID: 3411077863968042292}
+  - component: {fileID: 9064564711747327272}
+  - component: {fileID: 6654358258141608934}
   m_Layer: 0
-  m_Name: FleshPlane_2nd_floor
+  m_Name: Flesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &411703076737601118
+--- !u!4 &1216489197533237574
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6792618769236662503}
+  m_GameObject: {fileID: 4359275251071239608}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0028794762, y: 0.00004096168, z: 0.014223895, w: 0.99989474}
-  m_LocalPosition: {x: 46.97, y: 1.79, z: 16.32}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.65, y: 1, z: 0.85}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6243263882809836621}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -0.33, y: 0, z: 1.63}
---- !u!33 &2741757382058888790
+  m_Children: []
+  m_Father: {fileID: 411703076737601118}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3411077863968042292
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6792618769236662503}
+  m_GameObject: {fileID: 4359275251071239608}
   m_Mesh: {fileID: 0}
---- !u!23 &3577194177766917362
+--- !u!23 &9064564711747327272
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6792618769236662503}
+  m_GameObject: {fileID: 4359275251071239608}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -121,13 +119,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2397559062741656387
+--- !u!114 &6654358258141608934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6792618769236662503}
+  m_GameObject: {fileID: 4359275251071239608}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85212d1b13358614ca54e74ba56f93ef, type: 3}
@@ -144,13 +142,47 @@ MonoBehaviour:
     OriginalMesh: {fileID: 1163648058834999851, guid: 1842293e7af4f5f40bd00b33345e1d00,
       type: 3}
     Target:
-      meshFilter: {fileID: 2741757382058888790}
+      meshFilter: {fileID: 3411077863968042292}
       skinnedMeshRenderer: {fileID: 0}
     initialized: 1
   deformerElements: []
   customBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.25, y: 0.25, z: 0.25}
+--- !u!1 &6792618769236662503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411703076737601118}
+  - component: {fileID: 4737842006116885122}
+  m_Layer: 0
+  m_Name: FleshPlane_2nd_floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &411703076737601118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792618769236662503}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0028794762, y: 0.00004096168, z: 0.014223895, w: 0.99989474}
+  m_LocalPosition: {x: 46.97, y: 1.79, z: 16.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1216489197533237574}
+  - {fileID: 6243263882809836621}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -0.33, y: 0, z: 1.63}
 --- !u!114 &4737842006116885122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,8 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 6243263882809836621}
-  _renderer: {fileID: 3577194177766917362}
-  _transformOffsetY: 2
+  _renderer: {fileID: 9064564711747327272}
+  _transformOffsetY: 0
   _materialOffsetYStart: 0
   _materialOffsetYEnd: 2
   _curve:
@@ -181,8 +213,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.01979472
     - serializedVersion: 3
-      time: 0.033343755
-      value: 0.34708494
+      time: 0.049472295
+      value: 0.40860838
       inSlope: 0.47171023
       outSlope: 0.47171023
       tangentMode: 0
@@ -190,8 +222,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.27127272
     - serializedVersion: 3
-      time: 0.54918045
-      value: 0.5136638
+      time: 0.55284256
+      value: 0.59059864
       inSlope: 0.22561769
       outSlope: 0.22561769
       tangentMode: 0
@@ -199,8 +231,8 @@ MonoBehaviour:
       inWeight: 0.38145956
       outWeight: 0.31175575
     - serializedVersion: 3
-      time: 0.90173346
-      value: 0.63504606
+      time: 0.9464112
+      value: 0.7485257
       inSlope: 0.38305518
       outSlope: 0.38305518
       tangentMode: 0
@@ -272,8 +304,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.7257214, y: 0.32744265, z: 5.5040064}
-  m_Center: {x: -0.095246024, y: 0.33627868, z: -0.1838712}
+  m_Size: {x: 1.9796867, y: 0.32744265, z: 10.244167}
+  m_Center: {x: -0.6122265, y: 0.33627868, z: 3.915514}
 --- !u!114 &6311132641472145644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,26 +319,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fleshController: {fileID: 4737842006116885122}
-  _deformable: {fileID: 2397559062741656387}
-  _spherePrefab: {fileID: 1812761224299415417, guid: 7570e13ed983a204689139b80ee2b0a4,
+  _deformable: {fileID: 6654358258141608934}
+  _spherePrefab: {fileID: 6165973379451301150, guid: 7570e13ed983a204689139b80ee2b0a4,
     type: 3}
   _sphereExplosionVfx: {fileID: 2646391046023174099, guid: 1ee2559cc78e07f49b8194a43351dedd,
     type: 3}
   _sphereExplosionDuration: 0.2
-  _minRadiusToSpawnExplosion: 0.3
+  _minRadiusToSpawnExplosion: 0.1
   _maxSphereLevelAboveSurface: -0.1
   _spawnProfiles:
-  - progressRange: {x: 0, y: 1}
-    spawnDelayRange: {x: 0.25313067, y: 0.5882545}
-    lifetimeRange: {x: 1.0843219, y: 2.366738}
-    burstChance: 0.766
-    maxBurst: 10
-    burstDistanceRange: {x: 1.2830096, y: 2.96657}
+  - progressRange: {x: 0.5, y: 1}
+    progressCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    spawnDelayRange0: {x: 1, y: 2}
+    spawnDelayRange1: {x: 0.2, y: 0.4}
+    lifetimeRange0: {x: 1, y: 2}
+    lifetimeRange1: {x: 2, y: 3}
+    burstChance0: 0
+    burstChance1: 0.5
+    maxBurst0: 3
+    maxBurst1: 6
+    burstDistanceRange: {x: 1, y: 2}
     excludeCenter: {x: 0, y: 0}
-    startScaleRange: {x: 0.5205412, y: 0.9817356}
-    endScaleRange: {x: 0.3279724, y: 1.0700431}
+    startScaleRange: {x: 0.05, y: 0.1}
+    endScaleRange: {x: 0.1, y: 0.3}
     startSpeedRangeUp: {x: 0.23061067, y: 1.1386402}
     endSpeedRangeUp: {x: -0.37474233, y: 0.72065836}
-    startSpeedRangeSide: {x: 0, y: 0.5025655}
-    endSpeedRangeSide: {x: 0, y: 0.49004766}
+    startSpeedRangeSide: {x: 0, y: 0.2}
+    endSpeedRangeSide: {x: 0, y: 0.1}
     showDebugInfo: 1
