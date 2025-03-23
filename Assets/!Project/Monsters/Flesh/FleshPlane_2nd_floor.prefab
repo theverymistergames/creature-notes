@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8447175612340493808}
+  - {fileID: 7672800282332092464}
   m_Father: {fileID: 411703076737601118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4359275251071239608
@@ -149,6 +150,124 @@ MonoBehaviour:
   customBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.25, y: 0.25, z: 0.25}
+--- !u!1 &4361116155437563615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7672800282332092464}
+  - component: {fileID: 5664598285565299050}
+  - component: {fileID: 7942823006027578591}
+  m_Layer: 0
+  m_Name: Bubbles (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7672800282332092464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361116155437563615}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.681, y: 0, z: 0.243}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6243263882809836621}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5664598285565299050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361116155437563615}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.6263542, y: 0.32744265, z: 6.8389053}
+  m_Center: {x: -0.9355602, y: 0.33627868, z: 2.212883}
+--- !u!114 &7942823006027578591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361116155437563615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f20cdabcea6438b9b56e22d762cf176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fleshController: {fileID: 4737842006116885122}
+  _deformable: {fileID: 6654358258141608934}
+  _spherePrefab: {fileID: 6165973379451301150, guid: 7570e13ed983a204689139b80ee2b0a4,
+    type: 3}
+  _sphereExplosionVfx: {fileID: 2646391046023174099, guid: 1ee2559cc78e07f49b8194a43351dedd,
+    type: 3}
+  _sphereExplosionDuration: 0.2
+  _minRadiusToSpawnExplosion: 0.1
+  _maxSphereLevelAboveSurface: -0.1
+  _spawnProfiles:
+  - progressRange: {x: 0.5, y: 1}
+    progressCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    spawnDelayRange0: {x: 1, y: 2}
+    spawnDelayRange1: {x: 0.2, y: 0.4}
+    lifetimeRange0: {x: 1, y: 2}
+    lifetimeRange1: {x: 2, y: 3}
+    burstChance0: 0
+    burstChance1: 0.5
+    maxBurst0: 3
+    maxBurst1: 6
+    burstDistanceRange: {x: 1, y: 2}
+    excludeCenter: {x: 0, y: 0}
+    startScaleRange: {x: 0.05, y: 0.1}
+    endScaleRange: {x: 0.1, y: 0.3}
+    startSpeedRangeUp: {x: 0.23061067, y: 1.1386402}
+    endSpeedRangeUp: {x: -0.37474233, y: 0.72065836}
+    startSpeedRangeSide: {x: 0, y: 0.2}
+    endSpeedRangeSide: {x: 0, y: 0.1}
+    showDebugInfo: 1
 --- !u!1 &6792618769236662503
 GameObject:
   m_ObjectHideFlags: 0

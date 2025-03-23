@@ -6,7 +6,6 @@ namespace _Project.Scripts.Runtime.Flesh {
     
     public sealed class FleshController : MonoBehaviour {
 
-        [Header("Positioning")]
         [SerializeField] private Transform _transform;
         [SerializeField] private Renderer _renderer;
         [SerializeField] private float _transformOffsetY = 2f;

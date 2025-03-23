@@ -17,7 +17,7 @@ namespace _Project.Scripts.Runtime.Enemies {
     public sealed class MonsterSpawner : MonoBehaviour, IUpdate {
 
         [SerializeField] private MonsterSpawnerConfig _config;
-        [SerializeField] private FleshController[] _fleshControllers;
+        [SerializeField] private FleshControllerGroup _fleshControllerGroup;
         [SerializeField] private Monster[] _monsters;
         
         [Header("Debug")]
@@ -297,9 +297,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
         
         private void ApplyFleshProgress(float progress) {
-            for (int i = 0; i < _fleshControllers.Length; i++) {
-                _fleshControllers[i].ApplyProgress(progress);
-            }
+            _fleshControllerGroup.ApplyProgress(progress);
         }
 
         private void KillAllMonsters(bool notifyDamage = true) {
