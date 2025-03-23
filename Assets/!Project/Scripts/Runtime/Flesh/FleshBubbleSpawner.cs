@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Deform;
+using MisterGames.ActionLib.Sounds;
 using MisterGames.Common;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
@@ -24,8 +25,9 @@ namespace _Project.Scripts.Runtime.Flesh {
         [SerializeField] [Min(0f)] private float _sphereExplosionDuration = 0.1f;
         [SerializeField] [Min(0f)] private float _minRadiusToSpawnExplosion = 0.3f;
         [SerializeField] private float _maxSphereLevelAboveSurface = -0.1f;
+        [SerializeField] private PlaySoundAction _soundAction;
         [SerializeField] private SpawnProfile[] _spawnProfiles;
-
+        
         [Serializable]
         private struct SpawnProfile {
             
@@ -161,6 +163,10 @@ namespace _Project.Scripts.Runtime.Flesh {
                         var pos = bubbleData.transform.TransformPoint(bubbleData.bubble.Collider.center);
                         var vfx = PrefabPool.Main.Get(_sphereExplosionVfx, pos, Quaternion.identity);
                         vfx.transform.localScale = bubbleData.transform.localScale;
+
+                        _soundAction.position = PlaySoundAction.PositionMode.ExplicitTransform;
+                        _soundAction.transform = vfx.transform;
+                        _soundAction.Apply(null);
                     }
                     
                     float t = _sphereExplosionDuration > 0f ? (time - bubbleData.createTime - bubbleData.lifetime) / _sphereExplosionDuration : 1f;
