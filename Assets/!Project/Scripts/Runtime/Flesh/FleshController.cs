@@ -13,6 +13,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         [SerializeField] private float _materialOffsetYEnd = 2f;
         [SerializeField] private AnimationCurve _curve = EasingType.Linear.ToAnimationCurve();
         [SerializeField] [Range(0f, 1f)] private float _progress;
+        [SerializeField] [Range(0f, 1f)] private float _enableAtProgress;
 
         private static readonly int PositionOffset = Shader.PropertyToID("_Position_Offset");
         
@@ -33,6 +34,13 @@ namespace _Project.Scripts.Runtime.Flesh {
         public void ApplyProgress(float progress) {
             _progress = progress;
             float t = _curve.Evaluate(progress);
+
+            if (progress <= _enableAtProgress) {
+                gameObject.SetActive(false);
+                return;
+            }
+            
+            gameObject.SetActive(true);
             
             _transform.localPosition = _transformPositionDefault.WithY(Mathf.Lerp(_transformPositionDefault.y, _transformPositionDefault.y + _transformOffsetY, t));
             _renderer.material.SetVector(PositionOffset, _materialOffsetDefault.WithY(Mathf.Lerp(_materialOffsetYStart, _materialOffsetYEnd, t)));
