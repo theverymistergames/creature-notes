@@ -335,6 +335,84 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2744505264131228374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4106386443847984562}
+  - component: {fileID: 4975886895877894465}
+  - component: {fileID: 7635218191489098372}
+  m_Layer: 0
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4106386443847984562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744505264131228374}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.685857, y: -2.4500735, z: -17.693}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7205586870401899320}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4975886895877894465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744505264131228374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f525fd18f3554d408e2ebec3075e08ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restoreFullHealthOnAwake: 1
+  _health: 1
+--- !u!114 &7635218191489098372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2744505264131228374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9afc13071a6e426fb9d07901e81e3e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _action:
+    rid: 626083393715306590
+  references:
+    version: 2
+    RefIds:
+    - rid: 626083393715306590
+      type: {class: SpawnPrefabAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        prefab: {fileID: 4557845918836158890, guid: fdc8aa3b9b7175c40b1eb8b4fc6dfec0,
+          type: 3}
+        mode: 1
+        explicitTransform: {fileID: 7205586869398250320}
+        inherit: 3
+        offset: {x: 0, y: 0, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        scale:
+          _hasValue: 0
+          _value: {x: 1, y: 1, z: 1}
+        parentToTransform: 1
 --- !u!1 &2896990999052018342
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,6 +2096,7 @@ Transform:
   - {fileID: 7205586869188020230}
   - {fileID: 3737484179122843177}
   - {fileID: 1668132340117076409}
+  - {fileID: 4106386443847984562}
   - {fileID: 2944110433625575914}
   - {fileID: 7205586868813128935}
   - {fileID: 8993632890533737768}
