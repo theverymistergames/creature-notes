@@ -41,9 +41,15 @@ namespace _Project.Scripts.Runtime.Flesh {
             }
             
             gameObject.SetActive(true);
+
+            float materialOffset = Mathf.Lerp(_materialOffsetYStart, _materialOffsetYEnd, t);
             
             _transform.localPosition = _transformPositionDefault.WithY(Mathf.Lerp(_transformPositionDefault.y, _transformPositionDefault.y + _transformOffsetY, t));
-            _renderer.material.SetVector(PositionOffset, _materialOffsetDefault.WithY(Mathf.Lerp(_materialOffsetYStart, _materialOffsetYEnd, t)));
+            _renderer.material.SetVector(PositionOffset, _materialOffsetDefault.WithY(materialOffset));
+
+            var bounds = _renderer.localBounds;
+            bounds.size = bounds.size.WithY(materialOffset * 2f);
+            _renderer.localBounds = bounds;
         }
 
 #if UNITY_EDITOR
