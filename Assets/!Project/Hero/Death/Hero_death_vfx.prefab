@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3185939845566649000}
   - component: {fileID: 6728100789820664008}
   m_Layer: 0
-  m_Name: Post
+  m_Name: Post_FleshSwallow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,10 +61,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsGlobal: 1
   fadeRadius: 0
-  priority: 0
+  priority: -1
   customPasses:
   - rid: 626083372579160165
-  injectionPoint: 3
+  injectionPoint: 2
   m_TargetCamera: {fileID: 0}
   useTargetCamera: 0
   references:
@@ -202,6 +202,7 @@ Transform:
   m_Children:
   - {fileID: 8159669533725671641}
   - {fileID: 7488088825540569836}
+  - {fileID: 7239254995004860680}
   - {fileID: 6159441908327821465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -354,6 +355,8 @@ MonoBehaviour:
         tweens:
         - rid: 626083393715306592
         - rid: 626083393715306596
+        - rid: 626083439674130521
+        - rid: 626083439674130523
         - rid: 626083393715306602
         - rid: 626083393715306608
         - rid: 626083393715306614
@@ -373,19 +376,19 @@ MonoBehaviour:
             time: 0
             value: 0
             inSlope: 0
-            outSlope: 0
+            outSlope: 1
             tangentMode: 0
-            weightedMode: 3
+            weightedMode: 0
             inWeight: 0
-            outWeight: 0.333333
+            outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 2.0000029
+            inSlope: 1
             outSlope: 0
             tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.33333302
+            weightedMode: 0
+            inWeight: 0
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
@@ -404,31 +407,31 @@ MonoBehaviour:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: 0
+            time: 0.0007324219
             value: 0
-            inSlope: 2.6845555
-            outSlope: 2.6845555
+            inSlope: 0.51686
+            outSlope: 0.51686
             tangentMode: 0
             weightedMode: 3
             inWeight: 0
-            outWeight: 0.12493584
+            outWeight: 0.1908823
           - serializedVersion: 3
-            time: 0.7804155
-            value: 0.48303393
+            time: 0.82948774
+            value: 0.61764693
             inSlope: 1.7608464
-            outSlope: 1.2399504
+            outSlope: 5.601676
             tangentMode: 1
             weightedMode: 3
             inWeight: 0.268584
-            outWeight: 0.35895953
+            outWeight: 0.17078108
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 6.147827
-            outSlope: 6.147827
+            inSlope: 0.8703943
+            outSlope: 0.8703943
             tangentMode: 0
             weightedMode: 3
-            inWeight: 0.21584013
+            inWeight: 0.633898
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
@@ -803,6 +806,103 @@ MonoBehaviour:
         endPosition: {x: -0.448, y: 0.64, z: 0.546}
         curvature: 0
         curvatureAxis: {x: 0, y: 1, z: 0}
+    - rid: 626083439674130521
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 7
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333333
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 3.0000029
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333302
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 626083439674130522
+        events: []
+    - rid: 626083439674130522
+      type: {class: SetCustomPassMaterialFloatProgressAction, ns: MisterGames.TweenLib.Materials,
+        asm: MisterGames.TweenLib}
+      data:
+        customPassVolumeMaterialInstance: {fileID: 2631684627973245508}
+        fieldName:
+          _hash: 5063
+          _name: _Blur
+        startValue: 0
+        endValue: 5
+    - rid: 626083439674130523
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 7
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0.54722375
+            outSlope: 0.54722375
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.5703133
+          - serializedVersion: 3
+            time: 0.87938136
+            value: 0.8460066
+            inSlope: 3.5005805
+            outSlope: 3.5005805
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.16042309
+            outWeight: 0.22134767
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.036944836
+            outSlope: 0.036944836
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.41882074
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 626083439674130524
+        events: []
+    - rid: 626083439674130524
+      type: {class: SetCustomPassMaterialFloatProgressAction, ns: MisterGames.TweenLib.Materials,
+        asm: MisterGames.TweenLib}
+      data:
+        customPassVolumeMaterialInstance: {fileID: 2631684627973245508}
+        fieldName:
+          _hash: 938
+          _name: _Brightness
+        startValue: 1
+        endValue: 0
 --- !u!114 &5398912195309900159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,6 +1063,92 @@ Transform:
   - {fileID: 5502376994290759161}
   m_Father: {fileID: 2167450665573368651}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7384141298871085101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7239254995004860680}
+  - component: {fileID: 2631684627973245508}
+  - component: {fileID: 1123762125081574304}
+  m_Layer: 0
+  m_Name: Post_Blur
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7239254995004860680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384141298871085101}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2167450665573368651}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2631684627973245508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384141298871085101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e21250f5c741d1bf46477aaab6a147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customPassVolume: {fileID: 1123762125081574304}
+  _material: {fileID: 2100000, guid: 5c5b447df75f9634385c78b48429262e, type: 2}
+--- !u!114 &1123762125081574304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7384141298871085101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26d6499a6bd256e47b859377446493a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  fadeRadius: 0
+  priority: 0
+  customPasses:
+  - rid: 626083372579160165
+  injectionPoint: 1
+  m_TargetCamera: {fileID: 0}
+  useTargetCamera: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 626083372579160165
+      type: {class: FullScreenCustomPass, ns: UnityEngine.Rendering.HighDefinition,
+        asm: Unity.RenderPipelines.HighDefinition.Runtime}
+      data:
+        m_Name: Blur
+        enabled: 1
+        targetColorBuffer: 0
+        targetDepthBuffer: 0
+        clearFlags: 0
+        passFoldout: 0
+        m_Version: 0
+        fullscreenPassMaterial: {fileID: 2100000, guid: 5c5b447df75f9634385c78b48429262e,
+          type: 2}
+        materialPassIndex: 0
+        materialPassName: Custom Pass 0
+        fetchColorBuffer: 0
 --- !u!1 &7436977124048416972
 GameObject:
   m_ObjectHideFlags: 0
