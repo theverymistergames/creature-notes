@@ -52,7 +52,59 @@ MonoBehaviour:
   - {fileID: 5782163679001021426}
   - {fileID: 4247465479164752058}
   - {fileID: 5386143036669874775}
+  _enableGameObjects:
+  - {fileID: 8950165368491450558}
   _progress: 0
+  _fovWeight: 3
+  _fovOffset: 15
+  _fovCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.024118112
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.519568
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 4.951815
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.225963
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _fovWeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0.024118112
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.519568
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 4.951815
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.225963
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _effects:
   - progressCurve:
       serializedVersion: 2
@@ -79,7 +131,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     progressAction:
-      rid: 626083439674130537
+      rid: 626083439674130544
   - progressCurve:
       serializedVersion: 2
       m_Curve:
@@ -109,28 +161,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 626083439674130537
-      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
-      data:
-        actions:
-        - rid: 626083439674130538
-        - rid: 626083439674130539
-    - rid: 626083439674130538
-      type: {class: TweenProgressActionEnableObject, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
-      data:
-        target: {fileID: 8950165368491450558}
-        enabledBeforeThreshold: 0
-        enableThreshold: 0.001
-    - rid: 626083439674130539
-      type: {class: ProgressTweenActionSoundVolume, ns: MisterGames.TweenLib.Animations,
-        asm: MisterGames.TweenLib}
-      data:
-        transform: {fileID: 4854690966251873492}
-        attachId:
-          _hash: 508566855
-          _name: flesh_loop
-        startValue: 0
-        endValue: 1
     - rid: 626083439674130541
       type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -157,6 +187,16 @@ MonoBehaviour:
           _name: heartbeat
         startValue: 0.5
         endValue: 1.5
+    - rid: 626083439674130544
+      type: {class: ProgressTweenActionSoundVolume, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 4854690966251873492}
+        attachId:
+          _hash: 508566855
+          _name: flesh_loop
+        startValue: 0
+        endValue: 1
 --- !u!1 &8950165368491450558
 GameObject:
   m_ObjectHideFlags: 0
