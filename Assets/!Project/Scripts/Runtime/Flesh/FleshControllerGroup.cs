@@ -1,5 +1,5 @@
-﻿using MisterGames.Common.Attributes;
-using MisterGames.Common.Easing;
+﻿using System;
+using MisterGames.Common.Attributes;
 using MisterGames.Tweens;
 using UnityEngine;
 
@@ -9,10 +9,15 @@ namespace _Project.Scripts.Runtime.Flesh {
 
         [SerializeField] private FleshController[] _fleshControllers;
         [SerializeField] [Range(0f, 1f)] private float _progress;
-        
+
         [Header("Effects")]
-        [SerializeField] private AnimationCurve _progressCurve = EasingType.Linear.ToAnimationCurve();
-        [SerializeReference] [SubclassSelector] private ITweenProgressAction _progressAction;
+        [SerializeField] private Effect[] _effects;
+
+        [Serializable]
+        private struct Effect {
+            public AnimationCurve progressCurve;
+            [SerializeReference] [SubclassSelector] public ITweenProgressAction progressAction;
+        }
         
         private void Awake() {
             ApplyProgress(_progress);
@@ -24,8 +29,11 @@ namespace _Project.Scripts.Runtime.Flesh {
             for (int i = 0; i < _fleshControllers.Length; i++) {
                 _fleshControllers[i].ApplyProgress(progress);
             }
-            
-            _progressAction?.OnProgressUpdate(_progressCurve.Evaluate(progress));
+
+            for (int i = 0; i < _effects.Length; i++) {
+                ref var effect = ref _effects[i];
+                effect.progressAction?.OnProgressUpdate(effect.progressCurve.Evaluate(progress));   
+            }
         }
 
 #if UNITY_EDITOR
