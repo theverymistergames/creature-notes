@@ -72,6 +72,9 @@ MonoBehaviour:
     type: 3}
   _sphereExplosionVfx: {fileID: 2646391046023174099, guid: 1ee2559cc78e07f49b8194a43351dedd,
     type: 3}
+  _sphereExplosionDuration: 0.2
+  _minRadiusToSpawnExplosion: 0.1
+  _maxSphereLevelAboveSurface: -0.1
   _soundAction:
     attach: 0
     attachId:
@@ -98,9 +101,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5b2b917a56432af478023fc321ded310, type: 3}
     - {fileID: 8300000, guid: e06a5baf33ba5b5429fd659edd27ce3d, type: 3}
     - {fileID: 8300000, guid: 91cb13fb2d25837469f6d2a016bb47b4, type: 3}
-  _sphereExplosionDuration: 0.2
-  _minRadiusToSpawnExplosion: 0.1
-  _maxSphereLevelAboveSurface: -0.1
   _spawnProfiles:
   - progressRange: {x: 0.5, y: 1}
     progressCurve:
@@ -309,7 +309,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.65, y: 1, z: 0.85}
+  m_LocalScale: {x: 0.85, y: 1, z: 0.85}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8657984807563211964}
