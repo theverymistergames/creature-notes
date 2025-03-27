@@ -240,6 +240,9 @@ MonoBehaviour:
         - rid: 626083393715306624
         - rid: 626083393715306625
         - rid: 626083393715306634
+        - rid: 626083439674130526
+        - rid: 626083439674130527
+        - rid: 626083439674130529
     - rid: 626083372579160159
       type: {class: UseCharacterContextAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -320,6 +323,79 @@ MonoBehaviour:
           _hash: -823668238
           _name: Speed
         value: 0.96
+    - rid: 626083439674130526
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 4
+        waitAction: 0
+    - rid: 626083439674130527
+      type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
+      data:
+        action:
+          library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
+          id: 13
+        waitAction: 0
+    - rid: 626083439674130529
+      type: {class: UseCharacterContextAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        action:
+          rid: 626083439674130530
+    - rid: 626083439674130530
+      type: {class: CharacterActionCameraFov, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        keepChanges: 0
+        weight: 1
+        duration: 0.7
+        durationRandom: 0.1
+        fovOffset:
+          multiplier: 5
+          addRandom: 1
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 0.11330283
+              value: 0.9738226
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0.33333334
+              outWeight: 0.33333334
+            - serializedVersion: 3
+              time: 0.3465719
+              value: 0.14514606
+              inSlope: -0.07962673
+              outSlope: -0.07962673
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0.33333334
+              outWeight: 0.052860137
+            - serializedVersion: 3
+              time: 1
+              value: 0
+              inSlope: -0.37842777
+              outSlope: -0.37842777
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0.061833628
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
 --- !u!114 &8457059204524356209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,22 +492,22 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0.1908823
           - serializedVersion: 3
-            time: 0.82948774
-            value: 0.61764693
+            time: 0.8609819
+            value: 0.58302474
             inSlope: 1.7608464
-            outSlope: 5.601676
+            outSlope: 1.6949162
             tangentMode: 1
             weightedMode: 3
             inWeight: 0.268584
-            outWeight: 0.17078108
+            outWeight: 0.41138372
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 0.8703943
-            outSlope: 0.8703943
+            inSlope: 6.8340516
+            outSlope: 6.8340516
             tangentMode: 0
             weightedMode: 3
-            inWeight: 0.633898
+            inWeight: 0.24919522
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
