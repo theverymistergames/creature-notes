@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2167450665573368651}
-  - component: {fileID: 4003945535933400121}
+  - component: {fileID: 2495938621153649593}
   - component: {fileID: 8457059204524356209}
   - component: {fileID: 5398912195309900159}
   - component: {fileID: 9022935712693927945}
@@ -206,7 +206,7 @@ Transform:
   - {fileID: 6159441908327821465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4003945535933400121
+--- !u!114 &2495938621153649593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,50 +215,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 4557845918836158890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c60cb64e64c4bc197ab9ee39a855b2b, type: 3}
+  m_Script: {fileID: 11500000, guid: e5a14bdd0212f7e4099954334846960c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useCharacterAsActor: 0
-  _cancelOnNextAction: 0
-  _cancelOnDisable: 0
-  _launchMode: 3
-  _action:
-    rid: 626083372579160158
+  _useCharacterAsContext: 1
+  _cancelOnNextAction: 1
+  _enableAction:
+    rid: 626083439674130550
+  _disableAction:
+    rid: 626083439674130573
   references:
     version: 2
     RefIds:
-    - rid: 626083372579160158
+    - rid: 626083439674130550
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 1
         actions:
-        - rid: 626083372579160159
-        - rid: 626083372579160161
-        - rid: 626083393715306612
-        - rid: 626083393715306613
-        - rid: 626083393715306618
-        - rid: 626083393715306624
-        - rid: 626083393715306625
-        - rid: 626083393715306634
-        - rid: 626083439674130526
-        - rid: 626083439674130527
-        - rid: 626083439674130529
-    - rid: 626083372579160159
-      type: {class: UseCharacterContextAction, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        action:
-          rid: 626083372579160160
-    - rid: 626083372579160160
-      type: {class: CharacterActionPlayMocapClip, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        motionCaptureClip: {fileID: 11400000, guid: fde39c275dc05414d86ea1a127da6cac,
-          type: 2}
-        applyPosition: 0
-        applyRotation: 1
-        _crop: {x: 0, y: 1}
-    - rid: 626083372579160161
+        - rid: 626083439674130552
+        - rid: 626083439674130553
+        - rid: 626083439674130554
+        - rid: 626083439674130555
+        - rid: 626083439674130556
+        - rid: 626083439674130557
+        - rid: 626083439674130558
+        - rid: 626083439674130559
+        - rid: 626083439674130560
+        - rid: 626083439674130569
+        - rid: 626083439674130570
+        - rid: 626083439674130571
+        - rid: 626083439674130572
+        - rid: 626083439674130568
+    - rid: 626083439674130552
       type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
       data:
         tweenRunner: {fileID: 8457059204524356209}
@@ -269,7 +257,7 @@ MonoBehaviour:
           _hasValue: 1
           _value: 0
         waitTween: 0
-    - rid: 626083393715306612
+    - rid: 626083439674130553
       type: {class: SetAnimatorFloatAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         mode: 1
@@ -278,7 +266,7 @@ MonoBehaviour:
           _hash: -823668238
           _name: Speed
         value: 1
-    - rid: 626083393715306613
+    - rid: 626083439674130554
       type: {class: SetAnimatorFloatAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         mode: 1
@@ -287,7 +275,7 @@ MonoBehaviour:
           _hash: -823668238
           _name: Speed
         value: 0.97
-    - rid: 626083393715306618
+    - rid: 626083439674130555
       type: {class: SetAnimatorFloatAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         mode: 1
@@ -296,7 +284,7 @@ MonoBehaviour:
           _hash: -823668238
           _name: Speed
         value: 1.03
-    - rid: 626083393715306624
+    - rid: 626083439674130556
       type: {class: SetAnimatorFloatAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         mode: 1
@@ -305,7 +293,7 @@ MonoBehaviour:
           _hash: -823668238
           _name: Speed
         value: 0.94
-    - rid: 626083393715306625
+    - rid: 626083439674130557
       type: {class: SetAnimatorFloatAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         mode: 1
@@ -314,7 +302,7 @@ MonoBehaviour:
           _hash: -823668238
           _name: Speed
         value: 1.06
-    - rid: 626083393715306634
+    - rid: 626083439674130558
       type: {class: SetAnimatorFloatAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
         mode: 1
@@ -323,27 +311,30 @@ MonoBehaviour:
           _hash: -823668238
           _name: Speed
         value: 0.96
-    - rid: 626083439674130526
+    - rid: 626083439674130559
       type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
       data:
         action:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 4
         waitAction: 0
-    - rid: 626083439674130527
+    - rid: 626083439674130560
       type: {class: LibraryAction, ns: MisterGames.ActionLib.Libs, asm: MisterGames.ActionLib}
       data:
         action:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 13
         waitAction: 0
-    - rid: 626083439674130529
-      type: {class: UseCharacterContextAction, ns: MisterGames.ActionLib.Character,
+    - rid: 626083439674130568
+      type: {class: CharacterActionPlayMocapClip, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
-        action:
-          rid: 626083439674130530
-    - rid: 626083439674130530
+        motionCaptureClip: {fileID: 11400000, guid: fde39c275dc05414d86ea1a127da6cac,
+          type: 2}
+        applyPosition: 0
+        applyRotation: 1
+        _crop: {x: 0, y: 1}
+    - rid: 626083439674130569
       type: {class: CharacterActionCameraFov, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
@@ -396,6 +387,149 @@ MonoBehaviour:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
+    - rid: 626083439674130570
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 2167450665573368651}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 0
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 0
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: ba19a5f6be04e194c826ba7dd8d853b2, type: 3}
+        - {fileID: 8300000, guid: 652e3c44f9da2f843b4683af75aca561, type: 3}
+        - {fileID: 8300000, guid: 554c5e4da8f54cd4182719c751bd5a87, type: 3}
+    - rid: 626083439674130571
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 2167450665573368651}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0
+        spatialBlend: 0
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 0
+        useActorDestroyToken: 1
+        mixerGroup: {fileID: 5266693419298880169, guid: 928df19ba875ee2458e73acbec03d785,
+          type: 2}
+        audioClipVariants:
+        - {fileID: 8300000, guid: b96ab4a710cfec54485a9003aba775fb, type: 3}
+        - {fileID: 8300000, guid: 9021e82c73ab51f4889359c8dcdca621, type: 3}
+        - {fileID: 8300000, guid: 6ca6a04da1b34d34c91ecd99a7ed43fc, type: 3}
+    - rid: 626083439674130572
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        horizontal:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: -5, y: 5}
+            springs: {x: 5, y: -5}
+            springFactors: {x: 5, y: 5}
+        vertical:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 1
+            bounds: {x: -5, y: 5}
+            springs: {x: 5, y: -5}
+            springFactors: {x: 5, y: 5}
+    - rid: 626083439674130573
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 626083439674130579
+        - rid: 626083439674130574
+        - rid: 626083439674130580
+    - rid: 626083439674130574
+      type: {class: CharacterActionResetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        horizontal: 1
+        vertical: 1
+    - rid: 626083439674130579
+      type: {class: StopTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
+      data:
+        tweenRunner: {fileID: 8457059204524356209}
+    - rid: 626083439674130580
+      type: {class: PlayTweenProgressAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
+      data:
+        startProgress: 1
+        endProgress: 1
+        duration: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 626083439674130581
+    - rid: 626083439674130581
+      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        actions:
+        - rid: 626083439674130582
+        - rid: 626083439674130583
+    - rid: 626083439674130582
+      type: {class: SetMixerParamProgressAction, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        mixer: {fileID: 24100000, guid: 928df19ba875ee2458e73acbec03d785, type: 2}
+        param: Gameplay_volume
+        startValue: 1
+        endValue: 1
+    - rid: 626083439674130583
+      type: {class: SetMixerParamProgressAction, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        mixer: {fileID: 24100000, guid: 928df19ba875ee2458e73acbec03d785, type: 2}
+        param: Gameplay_LPfreq
+        startValue: 22000
+        endValue: 22000
 --- !u!114 &8457059204524356209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +573,8 @@ MonoBehaviour:
         - rid: 626083393715306620
         - rid: 626083393715306626
         - rid: 626083393715306630
+        - rid: 626083439674130575
+        - rid: 626083439674130577
         events: []
     - rid: 626083393715306592
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
@@ -979,6 +1115,90 @@ MonoBehaviour:
           _name: _Brightness
         startValue: 1
         endValue: 0
+    - rid: 626083439674130575
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 7
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333333
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 3.0000029
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333302
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 626083439674130576
+        events: []
+    - rid: 626083439674130576
+      type: {class: SetMixerParamProgressAction, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        mixer: {fileID: 24100000, guid: 928df19ba875ee2458e73acbec03d785, type: 2}
+        param: Gameplay_volume
+        startValue: 1
+        endValue: 0
+    - rid: 626083439674130577
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 7
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 626083439674130578
+        events: []
+    - rid: 626083439674130578
+      type: {class: SetMixerParamProgressAction, ns: MisterGames.TweenLib.Animations,
+        asm: MisterGames.TweenLib}
+      data:
+        mixer: {fileID: 24100000, guid: 928df19ba875ee2458e73acbec03d785, type: 2}
+        param: Gameplay_LPfreq
+        startValue: 22000
+        endValue: 500
 --- !u!114 &5398912195309900159
 MonoBehaviour:
   m_ObjectHideFlags: 0
