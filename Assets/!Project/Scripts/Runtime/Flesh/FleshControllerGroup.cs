@@ -90,7 +90,9 @@ namespace _Project.Scripts.Runtime.Flesh {
 
 #if UNITY_EDITOR
         private void OnValidate() {
-            if (Application.isPlaying) ApplyProgress(_progress);
+            if (!Application.isPlaying || _cameraContainer == null) return;
+            
+            ApplyProgress(_progress);
         }
 #endif
     }
