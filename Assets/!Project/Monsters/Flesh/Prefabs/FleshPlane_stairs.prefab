@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 572567497664176734}
   - component: {fileID: 7861068772571946865}
   - component: {fileID: 4843447948689339066}
-  m_Layer: 0
+  - component: {fileID: 6319533197486957097}
+  - component: {fileID: 3263326899129058488}
+  - component: {fileID: 3582991340027165214}
+  m_Layer: 14
   m_Name: FleshPlane_stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,6 +191,67 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _progress: 0
+  _enableAtProgress: 0
+--- !u!65 &6319533197486957097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 16, y: 0.9482614, z: 12.616405}
+  m_Center: {x: -0.0000305604, y: 0.4217454, z: -1.6917951}
+--- !u!114 &3263326899129058488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae954261c5b46d097bdfc44b37de287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshFilter: {fileID: 5906196550907229778}
+  _meshRenderer: {fileID: 572567497664176734}
+  _updateVerticesPeriod: 0.5
+  _gridSizeX: 6
+  _gridSizeZ: 20
+  _showDebugInfo: 0
+--- !u!114 &3582991340027165214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070478747485394112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d6395566ab4862b4a868db56b0d7f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshHeightData: {fileID: 3263326899129058488}
+  _meshFilter: {fileID: 5906196550907229778}
+  _meshRenderer: {fileID: 572567497664176734}
+  _fractalMul: 0.434
+  _alphaPowR: 2.15
+  _showVertices: 0
+  _showTestPoint: 0
+  _showSamples: 0
+  _testPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &7951355213237122278
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4596629705988338232}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

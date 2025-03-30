@@ -13,7 +13,7 @@ namespace _Project.Scripts.Runtime.Flesh {
         [SerializeField] private MeshHeightData _meshHeightData;
         [SerializeField] private MeshFilter _meshFilter;
         [SerializeField] private MeshRenderer _meshRenderer;
-        [SerializeField] private float _fractalMul = 1f;
+        [SerializeField] private float _fractalMul = 0.434f;
         [SerializeField] private float _alphaPowR = 2.15f;
         
         private static readonly int RipplesStrength = Shader.PropertyToID("_Ripples_Strength"); 
@@ -55,6 +55,14 @@ namespace _Project.Scripts.Runtime.Flesh {
             
             var center = _bounds.center;
             worldPosition = _transform.TransformPoint(Sample(_transform.InverseTransformPoint(worldPosition) - center) + center);
+
+#if UNITY_EDITOR
+            if (_showSamples) {
+                DebugExt.DrawCircle(worldPosition, _transform.rotation, 0.05f, Color.green, gizmo: true);
+                DebugExt.DrawRay(worldPosition, _transform.up * 0.005f, Color.green, gizmo: true);
+            }
+#endif
+            
             return true;
         }
         
@@ -174,13 +182,14 @@ namespace _Project.Scripts.Runtime.Flesh {
         [Header("Debug")]
         [SerializeField] private bool _showVertices;
         [SerializeField] private bool _showTestPoint;
+        [SerializeField] private bool _showSamples;
         [SerializeField] private Vector3 _testPoint;
         
         private readonly List<Vector3> _vertices = new();
         
         private void OnDrawGizmos() {
             if (_showVertices) DrawVertices();
-            if (_showTestPoint) DrawPoint(_transform.TransformPoint(_testPoint));
+            if (_showTestPoint && _meshRenderer != null) DrawPoint(_meshRenderer.transform.TransformPoint(_testPoint));
         }
         
         private void DrawVertices() {
@@ -200,11 +209,17 @@ namespace _Project.Scripts.Runtime.Flesh {
 
         private void DrawPoint(Vector3 point) {
             if (_meshRenderer == null) return;
-            
+
             var trf = _meshRenderer.transform;
-            var center  = _meshRenderer.localBounds.center;
+            var sample = point;
             
-            var sample = trf.TransformPoint(Sample(trf.InverseTransformPoint(point) - center) + center);
+            if (Application.isPlaying) {
+                if (!TrySamplePosition(ref sample)) return;
+            }
+            else {
+                var center  = _meshRenderer.localBounds.center;
+                sample = trf.TransformPoint(Sample(trf.InverseTransformPoint(point) - center) + center);
+            }
             
             DebugExt.DrawCircle(sample, trf.rotation, 0.05f, Color.green, gizmo: true);
             DebugExt.DrawRay(sample, trf.up * 0.005f, Color.green, gizmo: true);

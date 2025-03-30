@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6243263882809836621}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,12 @@ GameObject:
   - component: {fileID: 3411077863968042292}
   - component: {fileID: 9064564711747327272}
   - component: {fileID: 6654358258141608934}
-  m_Layer: 0
+  - component: {fileID: 7739943985439538370}
+  - component: {fileID: 987854307629476125}
+  - component: {fileID: 5204944074510365554}
+  - component: {fileID: 1597554987321872178}
+  - component: {fileID: 7908275761908929857}
+  m_Layer: 14
   m_Name: Flesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +155,107 @@ MonoBehaviour:
   customBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.25, y: 0.25, z: 0.25}
+--- !u!114 &7739943985439538370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359275251071239608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d6395566ab4862b4a868db56b0d7f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshHeightData: {fileID: 987854307629476125}
+  _meshFilter: {fileID: 3411077863968042292}
+  _meshRenderer: {fileID: 9064564711747327272}
+  _fractalMul: 0.434
+  _alphaPowR: 2.15
+  _showVertices: 0
+  _showTestPoint: 0
+  _testPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &987854307629476125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359275251071239608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae954261c5b46d097bdfc44b37de287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshFilter: {fileID: 3411077863968042292}
+  _meshRenderer: {fileID: 9064564711747327272}
+  _updateVerticesPeriod: 0.2
+  _gridSizeX: 30
+  _gridSizeZ: 40
+  _showDebugInfo: 0
+--- !u!65 &5204944074510365554
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359275251071239608}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.648502, y: 2.3361168, z: 10.03218}
+  m_Center: {x: -1.9064089, y: 1.1868525, z: 2.9838862}
+--- !u!65 &1597554987321872178
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359275251071239608}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.089616, y: 2.2341375, z: 13.621786}
+  m_Center: {x: 3.0884573, y: 1.1358628, z: -0.8217985}
+--- !u!65 &7908275761908929857
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359275251071239608}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.9872842, y: 2.0816035, z: 4.984953}
+  m_Center: {x: -6.531165, y: 1.0595958, z: 0.30908245}
 --- !u!1 &4361116155437563615
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +267,7 @@ GameObject:
   - component: {fileID: 7672800282332092464}
   - component: {fileID: 5664598285565299050}
   - component: {fileID: 7942823006027578591}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bubbles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,6 +348,7 @@ MonoBehaviour:
     loop: 0
     affectedByTimeScale: 1
     occlusion: 1
+    useActorDestroyToken: 0
     mixerGroup: {fileID: 0}
     audioClipVariants:
     - {fileID: 8300000, guid: 6e0a81dc5389f6f46989413c9a63f403, type: 3}
@@ -304,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 411703076737601118}
   - component: {fileID: 4737842006116885122}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FleshPlane_2nd_floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +516,7 @@ GameObject:
   - component: {fileID: 8447175612340493808}
   - component: {fileID: 5666210315963105060}
   - component: {fileID: 6311132641472145644}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bubbles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,6 +597,7 @@ MonoBehaviour:
     loop: 0
     affectedByTimeScale: 1
     occlusion: 1
+    useActorDestroyToken: 0
     mixerGroup: {fileID: 0}
     audioClipVariants:
     - {fileID: 8300000, guid: 6e0a81dc5389f6f46989413c9a63f403, type: 3}
