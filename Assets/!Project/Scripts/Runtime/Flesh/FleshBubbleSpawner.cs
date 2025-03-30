@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Deform;
 using MisterGames.ActionLib.Sounds;
 using MisterGames.Common;
+using MisterGames.Common.Async;
 using MisterGames.Common.Attributes;
 using MisterGames.Common.Maths;
 using MisterGames.Common.Pooling;
@@ -89,7 +91,8 @@ namespace _Project.Scripts.Runtime.Flesh {
                 this.endSpeed = endSpeed;
             }
         }
-        
+
+        private CancellationTokenSource _enableCts;
         private readonly List<BubbleData> _bubbles = new();
         private readonly HashSet<Transform> _explosions = new();
         private float[] _spawnTimes;
@@ -114,10 +117,12 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
         private void OnEnable() {
+            AsyncExt.RecreateCts(ref _enableCts);
             PlayerLoopStage.Update.Subscribe(this);
         }
 
         private void OnDisable() {
+            AsyncExt.DisposeCts(ref _enableCts);
             PlayerLoopStage.Update.Unsubscribe(this);
         }
 
@@ -166,7 +171,7 @@ namespace _Project.Scripts.Runtime.Flesh {
 
                         _soundAction.position = PlaySoundAction.PositionMode.ExplicitTransform;
                         _soundAction.transform = vfx.transform;
-                        _soundAction.Apply(null);
+                        _soundAction.Apply(null, _enableCts.Token);
                     }
                     
                     float t = _sphereExplosionDuration > 0f ? (time - bubbleData.createTime - bubbleData.lifetime) / _sphereExplosionDuration : 1f;

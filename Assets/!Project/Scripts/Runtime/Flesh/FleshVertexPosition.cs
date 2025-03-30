@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MisterGames.Common;
-using MisterGames.Common.Maths;
+using MisterGames.Logic.Rendering;
 using Unity.Mathematics;
 using UnityEngine;
 using static Unity.Mathematics.math;
@@ -9,14 +9,12 @@ using float2 = Unity.Mathematics.float2;
 namespace _Project.Scripts.Runtime.Flesh {
     
     public sealed class FleshVertexPosition : MonoBehaviour {
-        
+
+        [SerializeField] private MeshHeightData _meshHeightData;
         [SerializeField] private MeshFilter _meshFilter;
         [SerializeField] private MeshRenderer _meshRenderer;
-        [SerializeField] [Min(1)] private int _gridSizeX = 10;
-        [SerializeField] [Min(1)] private int _gridSizeZ = 10;
         [SerializeField] private float _fractalMul = 1f;
         [SerializeField] private float _alphaPowR = 2.15f;
-        [SerializeField] private float _timeOffset = 0f;
         
         private static readonly int RipplesStrength = Shader.PropertyToID("_Ripples_Strength"); 
         private static readonly int RipplesMaxFrequency = Shader.PropertyToID("_Ripples_Max_Frequency"); 
@@ -43,15 +41,31 @@ namespace _Project.Scripts.Runtime.Flesh {
         private static readonly int MaskDisplacement = Shader.PropertyToID("_Mask_Displacement");
         private static readonly int AlphaMask = Shader.PropertyToID("_Alpha_Mask");
         private static readonly int Time1 = Shader.PropertyToID("_Time");
+        
+        private Transform _transform;
+        private Bounds _bounds;
+        
+        private void Awake() {
+            _transform = _meshFilter.transform;
+            _bounds = _meshRenderer.localBounds;
+        }
 
-        private Vector3 Sample(Vector2 uv) {
+        public bool TrySamplePosition(ref Vector3 worldPosition) {
+            if (!_meshHeightData.TrySamplePosition(ref worldPosition)) return false;
+            
+            var center = _bounds.center;
+            worldPosition = _transform.TransformPoint(Sample(_transform.InverseTransformPoint(worldPosition) - center) + center);
+            return true;
+        }
+        
+        private Vector3 Sample(Vector3 point) {
 #if UNITY_EDITOR
             var mat = Application.isPlaying ? _meshRenderer.material : _meshRenderer.sharedMaterial;
 #else
             var mat = _meshRenderer.material;
 #endif
 
-            float time = Shader.GetGlobalVector(Time1).y + _timeOffset;
+            float time = Shader.GetGlobalVector(Time1).y;
             
             float ripplesStrength = mat.GetFloat(RipplesStrength);
             float ripplesMaxFrequency = mat.GetFloat(RipplesMaxFrequency);
@@ -59,12 +73,6 @@ namespace _Project.Scripts.Runtime.Flesh {
             
             Vector2 fractalTiling = mat.GetVector(FractalTiling);
             Vector2 fractalOffset = mat.GetVector(FractalOffset);
-            
-            Vector2 alphaTiling = mat.GetVector(AlphaTiling);
-            Vector2 alphaOffset = mat.GetVector(AlphaOffset);
-           
-            Vector3 intensityVector = mat.GetVector(IntensityVector);
-            Vector3 positionOffset = mat.GetVector(PositionOffset);
             
             float rotationStep = mat.GetFloat(RotationStep);
             float uvAnimationSpeed  = mat.GetFloat(UvAnimationSpeed);
@@ -84,6 +92,13 @@ namespace _Project.Scripts.Runtime.Flesh {
             float maskDisplacement = mat.GetFloat(MaskDisplacement);
 
             var alphaMask = (Texture2D) mat.GetTexture(AlphaMask);
+            Vector2 alphaTiling = mat.GetVector(AlphaTiling);
+            Vector2 alphaOffset = mat.GetVector(AlphaOffset);
+           
+            Vector3 intensityVector = mat.GetVector(IntensityVector);
+            Vector3 positionOffset = mat.GetVector(PositionOffset);
+
+            var uv = new float2(point.x, point.z); 
             
             float ripples = GetRipples(uv, time, ripplesStrength, ripplesMaxFrequency, ripplesSpeed);
 
@@ -95,25 +110,16 @@ namespace _Project.Scripts.Runtime.Flesh {
             float fractalInput = _fractalMul * (fractal * displacement + fractalMask * maskDisplacement);
 
             var alphaMaskColor = SampleTexture2D(alphaMask, TilingAndOffset(uv, alphaTiling, alphaOffset));
-            
-            var position = new Vector3(uv.x, 0f, uv.y);
+
             var normal = Vector3.up;
 
             var lerp = new Vector3(
-                Mathf.Lerp(position.x, fractalInput * normal.x, alphaMaskColor.r * intensityVector.x),
-                Mathf.Lerp(position.y, fractalInput * normal.y, alphaMaskColor.r * intensityVector.y),
-                Mathf.Lerp(position.z, fractalInput * normal.z, alphaMaskColor.r * intensityVector.z)
+                Mathf.Lerp(point.x, fractalInput * normal.x, alphaMaskColor.r * intensityVector.x),
+                Mathf.Lerp(point.y, fractalInput * normal.y, alphaMaskColor.r * intensityVector.y),
+                Mathf.Lerp(point.z, fractalInput * normal.z, alphaMaskColor.r * intensityVector.z)
             );
 
             return lerp + positionOffset * pow(alphaMaskColor.r, _alphaPowR);
-        }
-        
-        private Vector3 CellToLocalPosition(int cell) {
-            float x = (Mathf.FloorToInt((float) cell / _gridSizeZ) + 0.5f) / _gridSizeX - 0.5f;
-            float z = (cell % _gridSizeZ + 0.5f) / _gridSizeZ - 0.5f;
-            
-            var size = _meshRenderer.localBounds.size;
-            return new Vector3(size.x * x, 0f, size.z * z);
         }
 
         private static Color SampleTexture2D(Texture2D texture, Vector2 uv) {
@@ -166,63 +172,42 @@ namespace _Project.Scripts.Runtime.Flesh {
         
 #if UNITY_EDITOR
         [Header("Debug")]
-        [SerializeField] private bool _showGrid;
         [SerializeField] private bool _showVertices;
-
+        [SerializeField] private bool _showTestPoint;
+        [SerializeField] private Vector3 _testPoint;
+        
         private readonly List<Vector3> _vertices = new();
         
         private void OnDrawGizmos() {
-            if (_showGrid) DrawGrid();
-            if (_showVertices) DrawCellPositions();
-        }
-
-        private void DrawGrid() {
-            if (_meshRenderer == null) return;
-
-            var bounds = _meshRenderer.localBounds;
-            var center  = bounds.center;
-            var ext = bounds.extents.WithY(0f);
-            var trf = _meshRenderer.transform;
-            
-            for (int i = 0; i <= _gridSizeX; i++) {
-                float x = ((float) i / _gridSizeX - 0.5f) * ext.x * 2f;
-                float z0 = ext.z;
-                float z1 = -ext.z;
-                
-                var p0 = trf.TransformPoint(center + new Vector3(x, 0, z0));
-                var p1 = trf.TransformPoint(center + new Vector3(x, 0, z1));
-                
-                DebugExt.DrawLine(p0, p1, Color.yellow, gizmo: true);
-            }
-            
-            for (int i = 0; i <= _gridSizeZ; i++) {
-                float z = ((float) i / _gridSizeZ - 0.5f) * ext.z * 2f;
-                float x0 = ext.x;
-                float x1 = -ext.x;
-                
-                var p0 = trf.TransformPoint(center + new Vector3(x0, 0, z));
-                var p1 = trf.TransformPoint(center + new Vector3(x1, 0, z));
-                
-                DebugExt.DrawLine(p0, p1, Color.yellow, gizmo: true);
-            }
+            if (_showVertices) DrawVertices();
+            if (_showTestPoint) DrawPoint(_transform.TransformPoint(_testPoint));
         }
         
-        private void DrawCellPositions() {
-            if (_meshRenderer == null) return;
+        private void DrawVertices() {
+            if (_meshRenderer == null || _meshFilter == null) return;
 
             var trf = _meshRenderer.transform;
-            var bounds = _meshRenderer.localBounds;
-            var center  = bounds.center;
-
+            var center  = _meshRenderer.localBounds.center;
+            
             _meshFilter.sharedMesh.GetVertices(_vertices);
             
             for (int i = 0; i < _vertices.Count; i++) {
-                var cellLocal = _vertices[i];
-                var uv = new Vector2(cellLocal.x, cellLocal.z);
-                var point = Sample(uv);
+                var point = Sample(_vertices[i]);
                 
                 DebugExt.DrawRay(trf.TransformPoint(center + point), trf.up * 0.005f, Color.yellow, gizmo: true);
             }
+        }
+
+        private void DrawPoint(Vector3 point) {
+            if (_meshRenderer == null) return;
+            
+            var trf = _meshRenderer.transform;
+            var center  = _meshRenderer.localBounds.center;
+            
+            var sample = trf.TransformPoint(Sample(trf.InverseTransformPoint(point) - center) + center);
+            
+            DebugExt.DrawCircle(sample, trf.rotation, 0.05f, Color.green, gizmo: true);
+            DebugExt.DrawRay(sample, trf.up * 0.005f, Color.green, gizmo: true);
         }
 #endif
     }
