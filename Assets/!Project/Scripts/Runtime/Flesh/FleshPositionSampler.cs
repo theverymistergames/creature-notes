@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MisterGames.Collisions.Rigidbodies;
+using MisterGames.Common.Layers;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Flesh {
@@ -7,6 +8,7 @@ namespace _Project.Scripts.Runtime.Flesh {
     public sealed class FleshPositionSampler : MonoBehaviour {
 
         [SerializeField] private TriggerEmitter _triggerEmitter;
+        [SerializeField] private LayerMask _layerMask;
         [SerializeField] [Min(0f)] private float _maxDistance = 0.3f;
         
         private readonly HashSet<FleshVertexPosition> _fleshVertexPositions = new();
@@ -29,8 +31,8 @@ namespace _Project.Scripts.Runtime.Flesh {
                 var p = point;
                 
                 if (!fleshVertexPosition.TrySamplePosition(ref p) ||
-                    (point - p).sqrMagnitude is var sqrDistance && 
-                    (sqrDistance > minSqrDistance || sqrDistance > _maxDistance * _maxDistance)) 
+                    (point - p).sqrMagnitude is var sqrDistance &&
+                    (sqrDistance > minSqrDistance || sqrDistance > _maxDistance * _maxDistance))
                 {
                     continue;
                 }
@@ -38,19 +40,27 @@ namespace _Project.Scripts.Runtime.Flesh {
                 minSqrDistance = sqrDistance;
                 resultPoint = p;
             }
-            
+
             point = resultPoint;
             return minSqrDistance < float.MaxValue;
         }
 
         private void TriggerEnter(Collider collider) {
-            if (!collider.TryGetComponent(out FleshVertexPosition fleshVertexPosition)) return;
+            if (!_layerMask.Contains(collider.gameObject.layer) ||
+                !collider.TryGetComponent(out FleshVertexPosition fleshVertexPosition)) 
+            {
+                return;
+            }
 
             _fleshVertexPositions.Add(fleshVertexPosition);
         }
 
         private void TriggerExit(Collider collider) {
-            if (!collider.TryGetComponent(out FleshVertexPosition fleshVertexPosition)) return;
+            if (!_layerMask.Contains(collider.gameObject.layer) ||
+                !collider.TryGetComponent(out FleshVertexPosition fleshVertexPosition)) 
+            {
+                return;
+            }
 
             _fleshVertexPositions.Remove(fleshVertexPosition);
         }

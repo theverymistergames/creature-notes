@@ -58,8 +58,8 @@ namespace _Project.Scripts.Runtime.Flesh {
 
 #if UNITY_EDITOR
             if (_showSamples) {
-                DebugExt.DrawCircle(worldPosition, _transform.rotation, 0.05f, Color.green, gizmo: true);
-                DebugExt.DrawRay(worldPosition, _transform.up * 0.005f, Color.green, gizmo: true);
+                DebugExt.DrawCircle(worldPosition, _transform.rotation, 0.05f, Color.green);
+                DebugExt.DrawRay(worldPosition, _transform.up * 0.005f, Color.green);
             }
 #endif
             
