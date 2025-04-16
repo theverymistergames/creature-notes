@@ -7,7 +7,7 @@ using UnityEngine;
 namespace _Project.Scripts.Runtime.Enemies {
 
     [CreateAssetMenu(fileName = nameof(MonsterSpawnerConfig), menuName = "Monsters/" + nameof(MonsterSpawnerConfig))]
-    public sealed class MonsterSpawnerConfig : ScriptableObject{
+    public sealed class MonsterSpawnerConfig : ScriptableObject {
         
         [Header("Events")]
         public EventReference startedWaveEvent;
