@@ -1140,6 +1140,8 @@ GameObject:
   - component: {fileID: 5812217121935433494}
   - component: {fileID: 7937889267273526398}
   - component: {fileID: 8747505263324604120}
+  - component: {fileID: 8438087330733388237}
+  - component: {fileID: 1097238606327441101}
   m_Layer: 2
   m_Name: View
   m_TagString: Untagged
@@ -1251,6 +1253,50 @@ MonoBehaviour:
   _positionMultiplier: {x: 0, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0}
   _rotationMultiplier: {x: 0, y: 0, z: 0}
+--- !u!114 &8438087330733388237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586868813128952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795defef707d44a696987ac1092be574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionDetector: {fileID: 1097238606327441101}
+  _volumeProfile: {fileID: 11400000, guid: 8ba92e2dd7f884a0f88b98fa2d235fe7, type: 2}
+  _defaultDistance: 5
+  _maxDistance: 100
+  _nearFadeStart: 5
+  _nearFadeEnd: 30
+  _depthStart: 10
+  _depthEnd: 50
+  _farFadeStart: 5
+  _farFadeEnd: 30
+  _smoothing: 20
+--- !u!114 &1097238606327441101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205586868813128952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605e87d9a70f4559a0dbaaad07b70361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 7205586869398250320}
+  _timeSourceStage: 1
+  _maxHits: 20
+  _radius: 0.1
+  _maxDistance: 100
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 27089
+  _triggerInteraction: 1
 --- !u!1 &7205586869188020231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,12 +2548,22 @@ PrefabInstance:
     - target: {fileID: 209711430486026954, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
       propertyPath: _maxDistance
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 209711430486026954, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
+        type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 28113
       objectReference: {fileID: 0}
     - target: {fileID: 643996480201117138, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
       propertyPath: _maxDistance
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 643996480201117138, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
+        type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 28145
       objectReference: {fileID: 0}
     - target: {fileID: 1842259765735774900, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
@@ -2527,7 +2583,7 @@ PrefabInstance:
     - target: {fileID: 2348077145790693796, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
       propertyPath: _maxDistance
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3248882044609864277, guid: 3197c3c2ccd50b249a7b3ef86a4980c3,
         type: 3}
