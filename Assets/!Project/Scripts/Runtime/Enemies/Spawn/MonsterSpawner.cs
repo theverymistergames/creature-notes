@@ -9,8 +9,8 @@ using MisterGames.Common.Attributes;
 using MisterGames.Common.Labels;
 using MisterGames.Common.Lists;
 using MisterGames.Common.Maths;
-using MisterGames.Scenario.Events;
 using MisterGames.Common.Tick;
+using MisterGames.Scenario.Events;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Enemies {
@@ -31,7 +31,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         private readonly HashSet<Monster> _armedMonsters = new();
         private Monster[] _monsters;
         private float[] _monstersKillTimers;
-        private int[] _indicesCache;
+        private int[] _presetIndicesCache;
+        private int[] _monsterIndicesCache;
 
         private CancellationTokenSource _enableCts;
         private byte _spawnProcessId;
@@ -54,17 +55,17 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void OnEnable() {
-            _forceUpdateFlesh = true;
-            
             AsyncExt.RecreateCts(ref _enableCts);
             PlayerLoopStage.Update.Subscribe(this);
+            
+            _forceUpdateFlesh = true;
         }
 
         private void OnDisable() {
             AsyncExt.DisposeCts(ref _enableCts);
             PlayerLoopStage.Update.Unsubscribe(this);
             
-            StopSpawning();
+            StopSpawning(resetFlesh: true);
         }
 
         void IUpdate.OnUpdate(float dt) {
@@ -72,7 +73,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             UpdateFleshProgress(dt);
         }
 
-        public void StartSpawning(MonsterSpawnerConfig config) {
+        public void StartSpawning(MonsterSpawnerConfig config, bool resetFlesh) {
             if (config == null) {
                 Debug.LogWarning($"MonsterSpawner [{name}]: trying to start spawning with null config, skip.");
                 return;
@@ -81,13 +82,16 @@ namespace _Project.Scripts.Runtime.Enemies {
             _config = config;
             
             _currentWave = -1;
-            _totalKills = 0;
             _currentWaveKills = 0;
+            _totalKills = 0;
             _characterKilled = false;
+            
             _waveTimer = 0f;
             _nextSpawnDelay = 0f;
             _nextSpawnTimer = 0f;
-
+            
+            _forceUpdateFlesh = true;
+            
             for (int i = 0; i < _monstersKillTimers.Length; i++) {
                 _monstersKillTimers[i] = 0f;
             }
@@ -97,22 +101,32 @@ namespace _Project.Scripts.Runtime.Enemies {
                                           $"waves completed {GetCompletedWaves()}/{_config.monsterWaves.Length}.");
 #endif
             
-            KillAllMonsters(notifyDamage: false, resetFleshInstantly: true);
+            KillAllMonsters(notifyDamage: false, resetFleshInstantly: resetFlesh);
             StartSpawningAsync(_enableCts.Token).Forget();
         }
 
-        public void ContinueSpawningFromCompletedWaves() {
+        public void ContinueSpawningFromCompletedWaves(bool resetFlesh) {
             if (_config == null) {
                 Debug.LogWarning($"MonsterSpawner [{name}]: trying to continue spawning with null config, skip.");
                 return;
             }
 
-            _totalKills = GetTotalKills(GetCompletedWaves());
-            _currentWaveKills = 0;
+            int completedWaves = GetCompletedWaves();
+
+            // Setup previous completed wave to start from next wave.
+            _currentWave = completedWaves - 1;
+            _currentWaveKills = _currentWave >= 0 && _currentWave < _config.monsterWaves.Length
+                ? _config.monsterWaves[_currentWave].killsToCompleteWave
+                : 0;
+            
+            _totalKills = GetTotalKills(completedWaves);
             _characterKilled = false;
+            
             _waveTimer = 0f;
             _nextSpawnDelay = 0f;
             _nextSpawnTimer = 0f;
+            
+            _forceUpdateFlesh = true;
             
             for (int i = 0; i < _monstersKillTimers.Length; i++) {
                 _monstersKillTimers[i] = 0f;
@@ -120,19 +134,23 @@ namespace _Project.Scripts.Runtime.Enemies {
             
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: continue spawning, " +
-                                          $"waves completed {GetCompletedWaves()}/{_config.monsterWaves.Length}.");
+                                          $"waves completed {completedWaves}/{_config.monsterWaves.Length}.");
 #endif
             
-            KillAllMonsters(notifyDamage: false, resetFleshInstantly: true);
+            KillAllMonsters(notifyDamage: false, resetFleshInstantly: resetFlesh);
             StartSpawningAsync(_enableCts.Token).Forget();
         }
         
-        public void StopSpawning() {
+        public void StopSpawning(bool resetFlesh) {
             _spawnProcessId++;
             
-            KillAllMonsters(notifyDamage: false, resetFleshInstantly: false);
-            DisposeArray(ref _indicesCache);
+            KillAllMonsters(notifyDamage: false, resetFleshInstantly: resetFlesh);
             
+            DisposeArray(ref _presetIndicesCache);
+            DisposeArray(ref _monsterIndicesCache);
+            
+            _forceUpdateFlesh = true;
+                
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning, " +
                                           $"waves completed {GetCompletedWaves()}/{(_config == null ? 0 : _config.monsterWaves.Length)}.");
@@ -188,16 +206,18 @@ namespace _Project.Scripts.Runtime.Enemies {
                     if (id != _spawnProcessId || cancellationToken.IsCancellationRequested) break;
 
 #if UNITY_EDITOR
-                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started wave {_currentWave}. " +
+                    if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started wave {_currentWave}, " +
                                                   $"kills to complete wave {wave.killsToCompleteWave}, " +
                                                   $"max alive monsters {wave.maxAliveMonstersAtMoment}, " +
                                                   $"armed monsters to kill character {wave.armedMonstersToKillCharacter}");
 #endif
-                    
-                    _config.startedWaveEvent.Raise();
+
+                    _currentWaveKills = 0;
                     _waveTimer = 0f;
                     _nextSpawnDelay = 0f;
                     _nextSpawnTimer = 0f;
+                    
+                    _config.startedWaveEvent.Raise();
                 }
                 
                 CheckCanKillCharacter();
@@ -209,21 +229,17 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
         
         private bool TryFinishWave(ref int waveIndex) {
-            int completedWaves = GetCompletedWaves();
-            
             if (waveIndex < 0) {
                 waveIndex = 0;
-                _currentWaveKills = 0;
                 
 #if UNITY_EDITOR
-                if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: {completedWaves} started first wave, wave index {waveIndex}.");
+                if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: started first wave, wave index {waveIndex}.");
 #endif
                 return true;
             }
             
             if (waveIndex >= _config.monsterWaves.Length) {
                 waveIndex = _config.monsterWaves.Length;
-                _currentWaveKills = 0;
                 
 #if UNITY_EDITOR
                 if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: all waves completed, set wave index {waveIndex}.");
@@ -243,7 +259,6 @@ namespace _Project.Scripts.Runtime.Enemies {
 #endif
 
             _config.completedWaveEvent.Raise();
-            _currentWaveKills = 0;
             waveIndex++;
 
             return true;
@@ -321,10 +336,11 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
 
             int length = wave.monsterPresets.Length;
-            RecreateAndShuffleIndices(ref _indicesCache, length);
-            
+            RecreateAndShuffleIndices(ref _presetIndicesCache, length);
+
             for (int i = 0; i < length; i++) {
-                ref var preset = ref wave.monsterPresets[_indicesCache[i]];
+                ref var preset = ref wave.monsterPresets[_presetIndicesCache[i]];
+                
                 if (!CanSpawnMonsterFromPreset(ref wave, ref preset, out var newMonster)) continue;
                 
                 int monsterType = newMonster.TypeId;
@@ -375,7 +391,19 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         private void CheckCanKillCharacter() {
             if (_characterKilled || _fleshProgressSmoothed < _config.killCharacterAtFleshProgress) return;
+                
+#if UNITY_EDITOR
+            int killsToCompleteWave = _currentWave >= 0 && _currentWave < _config.monsterWaves.Length
+                ? _config.monsterWaves[_currentWave].killsToCompleteWave
+                : 0;
+            
+            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: flesh reached critical level {_config.killCharacterAtFleshProgress}, killing hero. " +
+                                          $"waves {_currentWave}/{_config.monsterWaves.Length}, " +
+                                          $"kills per wave {_currentWaveKills}/{killsToCompleteWave}, " +
+                                          $"kills total {_totalKills}.");
+#endif
 
+            _characterKilled = true;
             _config.killCharacterEvent.Raise();
         }
 
@@ -448,10 +476,10 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
             
             int length = _monsters.Length;
-            RecreateAndShuffleIndices(ref _indicesCache, length);
+            RecreateAndShuffleIndices(ref _monsterIndicesCache, length);
             
             for (int i = 0; i < length; i++) {
-                int idx = _indicesCache[i];
+                int idx = _monsterIndicesCache[i];
                 var m = _monsters[idx];
                 
                 if (m.TypeId != monsterType ||
@@ -523,17 +551,17 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void StartSpawnCurrentConfig() {
-            StartSpawning(_config);
+            StartSpawning(_config, resetFlesh: true);
         }
         
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void ContinueCompletedWaves() {
-            ContinueSpawningFromCompletedWaves();
+            ContinueSpawningFromCompletedWaves(resetFlesh: true);
         }
         
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void StopSpawn() {
-            StopSpawning();
+            StopSpawning(resetFlesh: true);
         }
 #endif
     }

@@ -37,6 +37,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         
         [Serializable]
         public struct MonsterPreset {
+            [LabelFilter("MonstersLib")]
             public LabelValue monsterType;
             [Min(0)] public int maxMonstersAtMoment;
             [Min(0)] public int allowSpawnMinKills;

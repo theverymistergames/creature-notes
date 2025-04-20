@@ -248,6 +248,7 @@ MonoBehaviour:
         - rid: 626083439674130568
         - rid: 626083439674130585
         - rid: 626083439674130586
+        - rid: 1688049880287674461
     - rid: 626083439674130552
       type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
       data:
@@ -467,6 +468,7 @@ MonoBehaviour:
         actions:
         - rid: 626083439674130579
         - rid: 626083439674130574
+        - rid: 1688049880287674462
         - rid: 626083439674130580
     - rid: 626083439674130574
       type: {class: CharacterActionResetViewClamp, ns: MisterGames.ActionLib.Character,
@@ -1040,6 +1042,15 @@ MonoBehaviour:
               m_PreInfinity: 2
               m_PostInfinity: 2
               m_RotationOrder: 4
+    - rid: 1688049880287674461
+      type: {class: CharacterActionSetViewSmoothing, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        viewSmoothFactor: 4
+    - rid: 1688049880287674462
+      type: {class: CharacterActionResetViewSmoothing, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data: 
 --- !u!114 &8457059204524356209
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -28,7 +28,8 @@ namespace _Project.Scripts.Runtime.Enemies {
             
             hero.GetComponent<HealthBehaviour>().Kill();
             
-            PrefabPool.Main.Get(_deathEffect, hero.GetComponent<Camera>().transform);
+            PrefabPool.Main.Get(_deathEffect, hero.GetComponent<Camera>().transform)
+                .transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
             
             _deathAction?.Apply(CharacterSystem.Instance.GetCharacter()).Forget();
         }
