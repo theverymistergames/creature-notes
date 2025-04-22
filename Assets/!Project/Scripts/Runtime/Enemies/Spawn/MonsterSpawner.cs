@@ -217,7 +217,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                     _nextSpawnDelay = 0f;
                     _nextSpawnTimer = 0f;
                     
-                    _config.startedWaveEvent.Raise();
+                    _config.startedWaveEvent.Raise<int>(_currentWave);
                 }
                 
                 CheckCanKillCharacter();
@@ -258,7 +258,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                                           $"kills total {_totalKills}.");
 #endif
 
-            _config.completedWaveEvent.Raise();
+            _config.completedWaveEvent.Raise<int>(waveIndex);
             waveIndex++;
 
             return true;

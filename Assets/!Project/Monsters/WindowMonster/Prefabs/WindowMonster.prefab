@@ -318,14 +318,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3044617498489034159}
+  - component: {fileID: 5531611940443769811}
   - component: {fileID: 5635924226197789655}
   - component: {fileID: 7919315134552300}
   - component: {fileID: 8805335588238733019}
   - component: {fileID: 375773107644956717}
-  - component: {fileID: 7127274343565264203}
-  - component: {fileID: 8007748265311216233}
-  - component: {fileID: 142521305651305845}
-  - component: {fileID: 5531611940443769811}
   m_Layer: 6
   m_Name: WindowMonster
   m_TagString: Enemy
@@ -353,6 +350,33 @@ Transform:
   - {fileID: 2625471838027748935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &5531611940443769811
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441123824328478759}
+  serializedVersion: 4
+  m_Mass: 1000
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &5635924226197789655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +580,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 13c3924b72cafb0409c6ee3483e889c4, type: 3}
@@ -593,6 +618,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: b3e500a873efc22429c38f009182c775, type: 3}
@@ -625,6 +651,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 73646468305c5ff4490b2c22c182a186, type: 3}
@@ -666,6 +693,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: dbbc06329c6fc9640ab3ac35635958fe, type: 3}
@@ -699,6 +727,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: e4dd71f8630c9c34dbdb12cb20731ae5, type: 3}
@@ -726,6 +755,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 9e77d91d0e6a7494e8635fdc7f9743fb, type: 3}
@@ -762,6 +792,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 0d7126bc73c637240b625a92ece0eab8, type: 3}
@@ -793,6 +824,7 @@ MonoBehaviour:
         loop: 1
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 396efca050e929742a2bc18b2ba11de7, type: 3}
@@ -847,6 +879,7 @@ MonoBehaviour:
         loop: 1
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 171af0047841f0545b75712738ad3c9b, type: 3}
@@ -951,6 +984,8 @@ MonoBehaviour:
     - rid: 9124718454358933608
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: -1418007274
           _name: Prepare
@@ -958,6 +993,8 @@ MonoBehaviour:
     - rid: 9124718454358933609
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 1080829965
           _name: Attack
@@ -965,6 +1002,8 @@ MonoBehaviour:
     - rid: 9124718454358933610
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: -1418007274
           _name: Prepare
@@ -972,6 +1011,8 @@ MonoBehaviour:
     - rid: 9124718454358933611
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 1080829965
           _name: Attack
@@ -979,6 +1020,8 @@ MonoBehaviour:
     - rid: 9124718454358933613
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 1080829965
           _name: Attack
@@ -987,6 +1030,8 @@ MonoBehaviour:
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 646380074
           _name: Death
@@ -1005,6 +1050,8 @@ MonoBehaviour:
     - rid: 9124718454358933617
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: -1418007274
           _name: Prepare
@@ -1023,6 +1070,8 @@ MonoBehaviour:
     - rid: 9124718454358933620
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 1080829965
           _name: Attack
@@ -1143,77 +1192,6 @@ MonoBehaviour:
         endPosition: {x: 0.3, y: -0.63, z: -0.04}
         curvature: 0.7
         curvatureAxis: {x: 0, y: 1, z: 0}
---- !u!114 &7127274343565264203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441123824328478759}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101a21f02382442e9bf7151ea72f14ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monster: {fileID: 285792553860981928}
-  harbingerThreshold: 0.8
-  window: {fileID: 5683021146918980845}
-  _testProgress: 0
---- !u!114 &8007748265311216233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441123824328478759}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1806c43a280f4760a1d3a3d65e56cf17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 1
-  _enabled: 1
-  type: 0
---- !u!114 &142521305651305845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441123824328478759}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35329a769faed6647bd99c639d775734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 30
---- !u!54 &5531611940443769811
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441123824328478759}
-  serializedVersion: 4
-  m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &3817917518550787155
 GameObject:
   m_ObjectHideFlags: 0
