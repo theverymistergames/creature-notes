@@ -66,7 +66,7 @@ namespace _Project.Scripts.Runtime.Enemies.Clocks {
             
             _clockBehaviour.OnTick -= OnTick;
             _monster.OnMonsterEvent -= OnMonsterEvent;
-            
+            Debug.Log($"ClockAttackBehaviour.OnDisable: f {Time.frameCount}, ");
             StopAttack();
         }
 
@@ -125,6 +125,8 @@ namespace _Project.Scripts.Runtime.Enemies.Clocks {
             _tickCounter = 0;
             
             TimescaleSystem.RemoveTimeScale(_timeScalePriority.GetValue());
+
+            Debug.Log($"ClockAttackBehaviour.StopAttack: f {Time.frameCount}, ");
         }
         
         private void OnTick(int second) {

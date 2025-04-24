@@ -17,7 +17,10 @@ namespace _Project.Scripts.Runtime.Enemies {
     
     public sealed class MonsterSpawner : MonoBehaviour, IUpdate {
 
+        [Header("Configs")]
         [SerializeField] private MonsterSpawnerConfig _config;
+        [SerializeField] private Config[] _configsByLevels;
+        [SerializeField] private EventReference _currentLevelEvent;
         
         [Header("Flesh")]
         [SerializeField] private FleshControllerGroup _fleshControllerGroup;
@@ -25,7 +28,15 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         [Header("Monsters")]
         [SerializeField] private Transform _monstersRoot;
-            
+
+        [Serializable]
+        private struct Config {
+            [Min(0)] public int level;
+            public MonsterSpawnerConfig config;
+        }
+        
+        public bool IsBattleRunning { get; private set; }
+        
         private readonly Dictionary<int, int> _aliveMonsterTypeMap = new();
         private readonly HashSet<Monster> _aliveMonsters = new();
         private readonly HashSet<Monster> _armedMonsters = new();
@@ -73,6 +84,26 @@ namespace _Project.Scripts.Runtime.Enemies {
             UpdateFleshProgress(dt);
         }
 
+        public bool TryGetCurrentConfig(out MonsterSpawnerConfig config) {
+            config = _config;
+            return config != null;
+        }
+        
+        public bool TryGetConfigForCurrentLevel(out MonsterSpawnerConfig config) {
+            int level = _currentLevelEvent.GetCount();
+            
+            for (int i = 0; i < _configsByLevels.Length; i++) {
+                ref var c = ref _configsByLevels[i];
+                if (c.level != level) continue;
+
+                config = c.config;
+                return true;
+            }
+
+            config = null;
+            return false;
+        }
+        
         public void StartSpawning(MonsterSpawnerConfig config, bool resetFlesh) {
             if (config == null) {
                 Debug.LogWarning($"MonsterSpawner [{name}]: trying to start spawning with null config, skip.");
@@ -90,6 +121,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _nextSpawnDelay = 0f;
             _nextSpawnTimer = 0f;
             
+            IsBattleRunning = true;
             _forceUpdateFlesh = true;
             
             for (int i = 0; i < _monstersKillTimers.Length; i++) {
@@ -126,6 +158,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _nextSpawnDelay = 0f;
             _nextSpawnTimer = 0f;
             
+            IsBattleRunning = true;
             _forceUpdateFlesh = true;
             
             for (int i = 0; i < _monstersKillTimers.Length; i++) {
@@ -150,7 +183,8 @@ namespace _Project.Scripts.Runtime.Enemies {
             DisposeArray(ref _monsterIndicesCache);
             
             _forceUpdateFlesh = true;
-                
+            IsBattleRunning = false;
+            
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning, " +
                                           $"waves completed {GetCompletedWaves()}/{(_config == null ? 0 : _config.monsterWaves.Length)}.");
@@ -219,8 +253,11 @@ namespace _Project.Scripts.Runtime.Enemies {
                     
                     _config.startedWaveEvent.Raise<int>(_currentWave);
                 }
+
+                if (CheckCanKillCharacter()) {
+                    break;
+                }
                 
-                CheckCanKillCharacter();
                 CheckAliveMonsters(_currentWave);
                 CheckSpawns(_currentWave);
 
@@ -275,6 +312,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 KillAllMonsters(notifyDamage: true, resetFleshInstantly: false);
             }
 
+            IsBattleRunning = false;
             _config.completedBattleEvent.Raise();
         }
 
@@ -389,8 +427,8 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
         }
 
-        private void CheckCanKillCharacter() {
-            if (_characterKilled || _fleshProgressSmoothed < _config.killCharacterAtFleshProgress) return;
+        private bool CheckCanKillCharacter() {
+            if (_characterKilled || _fleshProgressSmoothed < _config.killCharacterAtFleshProgress) return false;
                 
 #if UNITY_EDITOR
             int killsToCompleteWave = _currentWave >= 0 && _currentWave < _config.monsterWaves.Length
@@ -405,6 +443,9 @@ namespace _Project.Scripts.Runtime.Enemies {
 
             _characterKilled = true;
             _config.killCharacterEvent.Raise();
+            IsBattleRunning = false;
+
+            return true;
         }
 
         private float GetTargetFleshProgress(int waveIndex) {
