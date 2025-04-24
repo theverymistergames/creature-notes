@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using Deform;
 using MisterGames.ActionLib.Sounds;
 using MisterGames.Common;
 using MisterGames.Common.Async;
@@ -19,14 +18,10 @@ namespace _Project.Scripts.Runtime.Flesh {
     public sealed class FleshBubbleSpawner : MonoBehaviour, IUpdate {
 
         [SerializeField] private FleshController _fleshController;
-        [SerializeField] private Deformable _deformable;
+        [SerializeField] private FleshVertexPosition _fleshVertexPosition;
         
         [Header("Spawn Settings")]
-        [SerializeField] private FleshBubble _spherePrefab;
         [SerializeField] private GameObject _sphereExplosionVfx;
-        [SerializeField] [Min(0f)] private float _sphereExplosionDuration = 0.1f;
-        [SerializeField] [Min(0f)] private float _minRadiusToSpawnExplosion = 0.3f;
-        [SerializeField] private float _maxSphereLevelAboveSurface = -0.1f;
         [SerializeField] private PlaySoundAction _soundAction;
         [SerializeField] private SpawnProfile[] _spawnProfiles;
         
@@ -50,12 +45,7 @@ namespace _Project.Scripts.Runtime.Flesh {
             
             [Header("Positioning")]
             public Vector2 excludeCenter;
-            [MinMaxSlider(0f, 2f)] public Vector2 startScaleRange;
             [MinMaxSlider(0f, 2f)] public Vector2 endScaleRange;
-            [MinMaxSlider(-2f, 2f)] public Vector2 startSpeedRangeUp;
-            [MinMaxSlider(-2f, 2f)] public Vector2 endSpeedRangeUp;
-            [MinMaxSlider(0f, 2f)] public Vector2 startSpeedRangeSide;
-            [MinMaxSlider(0f, 2f)] public Vector2 endSpeedRangeSide;
 
             [Header("Debug")]
             public bool showDebugInfo;
@@ -63,39 +53,21 @@ namespace _Project.Scripts.Runtime.Flesh {
 
         private readonly struct BubbleData {
             
-            public readonly FleshBubble bubble;
-            public readonly Transform transform;
-            public readonly float createTime;
             public readonly float lifetime;
-            public readonly float startScale;
-            public readonly float endScale;
-            public readonly Vector3 startSpeed;
-            public readonly Vector3 endSpeed;
+            public readonly float scale;
+            public readonly Vector3 position;
             
-            public BubbleData(
-                FleshBubble bubble,
-                float createTime,
-                float lifetime,
-                float startScale,
-                float endScale,
-                Vector3 startSpeed,
-                Vector3 endSpeed) 
+            public BubbleData(float lifetime, Vector3 position, float scale) 
             {
-                this.bubble = bubble;
-                transform = bubble.transform;
-                this.createTime = createTime;
                 this.lifetime = lifetime;
-                this.startScale = startScale;
-                this.endScale = endScale;
-                this.startSpeed = startSpeed;
-                this.endSpeed = endSpeed;
+                this.position = position;
+                this.scale = scale;
             }
         }
 
         private CancellationTokenSource _enableCts;
         private readonly List<BubbleData> _bubbles = new();
-        private readonly HashSet<Transform> _explosions = new();
-        private float[] _spawnTimes;
+        private float[] _spawnTimers;
         private BoxCollider _boxCollider;
         private Transform _transform;
         
@@ -105,15 +77,7 @@ namespace _Project.Scripts.Runtime.Flesh {
             _boxCollider = GetComponent<BoxCollider>();
             _boxCollider.isTrigger = true;
             
-            _spawnTimes = new float[_spawnProfiles.Length];
-        }
-
-        private void OnDestroy() {
-            for (int i = 0; i < _bubbles.Count; i++) {
-                var bubbleData = _bubbles[i];
-                _deformable.RemoveDeformer(bubbleData.bubble.SpherifyDeformer);
-                PrefabPool.Main?.Release(bubbleData.transform);
-            }
+            _spawnTimers = new float[_spawnProfiles.Length];
         }
 
         private void OnEnable() {
@@ -127,72 +91,48 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
         void IUpdate.OnUpdate(float dt) {
-            ProcessSpawns();
+            ProcessSpawns(dt);
             ProcessBubbles(dt);
         }
 
-        private void ProcessSpawns() {
+        private void ProcessSpawns(float dt) {
             float progress = _fleshController.Progress;
             if (progress <= 0f) return;
             
-            float time = Time.time;
-            
             for (int i = 0; i < _spawnProfiles?.Length; i++) {
                 ref var spawnProfile = ref _spawnProfiles[i];
-                ref float spawnTime = ref _spawnTimes[i];
+                ref float spawnTimer = ref _spawnTimers[i];
+
+                spawnTimer -= dt;
                 
-                if (!progress.InRange(spawnProfile.progressRange) || spawnTime > time) continue;
+                if (spawnTimer > 0f || !progress.InRange(spawnProfile.progressRange)) continue;
 
                 float p = spawnProfile.progressCurve.Evaluate(progress.Map01(spawnProfile.progressRange));
+                spawnTimer = Mathf.Lerp(spawnProfile.spawnDelayRange0.GetRandomInRange(), spawnProfile.spawnDelayRange1.GetRandomInRange(), p);
                 
-                spawnTime = time + Mathf.Lerp(spawnProfile.spawnDelayRange0.GetRandomInRange(), spawnProfile.spawnDelayRange1.GetRandomInRange(), p);
                 Spawn(ref spawnProfile, p);
             }
         }
 
         private void ProcessBubbles(float dt) {
-            float time = Time.time;
-            
             for (int i = _bubbles.Count - 1; i >= 0; i--) {
                 var bubbleData = _bubbles[i];
-                float progress = bubbleData.lifetime > 0f ? Mathf.Clamp01((time - bubbleData.createTime) / bubbleData.lifetime) : 1f;
+                bubbleData = new BubbleData(bubbleData.lifetime - dt, bubbleData.position, bubbleData.scale);
+                _bubbles[i] = bubbleData;
                 
-                float scale = Mathf.Lerp(bubbleData.startScale, bubbleData.endScale, progress);
-                bubbleData.transform.localScale = scale * Vector3.one;
-                
-                if (progress >= 1f) {
-                    if (_explosions.Add(bubbleData.transform) && 
-                        bubbleData.endScale >= _minRadiusToSpawnExplosion &&
-                        bubbleData.transform.localPosition.y > -bubbleData.endScale) 
-                    {
-                        var pos = bubbleData.transform.TransformPoint(bubbleData.bubble.Collider.center);
-                        var vfx = PrefabPool.Main.Get(_sphereExplosionVfx, pos, Quaternion.identity);
-                        vfx.transform.localScale = bubbleData.transform.localScale;
+                if (bubbleData.lifetime > 0f) continue;
 
-                        _soundAction.position = PlaySoundAction.PositionMode.ExplicitTransform;
-                        _soundAction.transform = vfx.transform;
-                        _soundAction.Apply(null, _enableCts.Token);
-                    }
-                    
-                    float t = _sphereExplosionDuration > 0f ? (time - bubbleData.createTime - bubbleData.lifetime) / _sphereExplosionDuration : 1f;
-                    bubbleData.transform.localScale = Mathf.Lerp(bubbleData.endScale, 0f, t) * Vector3.one;
-
-                    if (t >= 1f) {
-                        _explosions.Remove(bubbleData.transform);
-                        _bubbles.RemoveAt(i);
-                        _deformable.RemoveDeformer(bubbleData.bubble.SpherifyDeformer);
-                        PrefabPool.Main.Release(bubbleData.transform);
-                    }
-                    
-                    continue;
-                }
+                var pos = bubbleData.position;
+                _fleshVertexPosition.TrySamplePosition(ref pos);
                 
-                var speed = Vector3.Lerp(bubbleData.startSpeed, bubbleData.endSpeed, progress);
-                var position = bubbleData.transform.localPosition + speed * dt;
+                var vfx = PrefabPool.Main.Get(_sphereExplosionVfx, pos, Quaternion.identity).transform;
+                vfx.localScale *= bubbleData.scale;
                 
-                position.y = Mathf.Clamp(position.y, -scale, scale * _maxSphereLevelAboveSurface);
+                _soundAction.position = PlaySoundAction.PositionMode.ExplicitTransform;
+                _soundAction.transform = vfx;
+                _soundAction.Apply(null, _enableCts.Token);
                 
-                bubbleData.transform.localPosition = position;
+                _bubbles.RemoveAt(i);
             }
         }
         
@@ -213,26 +153,11 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
         private void SpawnSingle(ref SpawnProfile profile, Vector3 position, float progress) {
-            var bubble = PrefabPool.Main.Get(_spherePrefab, position, Quaternion.identity, _fleshController.Root);
-            var sphereTransform = bubble.transform;
-
-            var data = new BubbleData(
-                bubble,
-                Time.time,
-                Mathf.Lerp(profile.lifetimeRange0.GetRandomInRange(), profile.lifetimeRange1.GetRandomInRange(), progress), 
-                profile.startScaleRange.GetRandomInRange(), 
-                profile.endScaleRange.GetRandomInRange(),
-                profile.startSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.startSpeedRangeSide, Vector3.up),
-                profile.endSpeedRangeUp.GetRandomInRange() * Vector3.up + GetRandomFlatVector(profile.endSpeedRangeSide, Vector3.up)
-            );
-
-            sphereTransform.localScale = data.startScale * Vector3.one;
-            sphereTransform.localPosition = sphereTransform.localPosition.WithY(-data.startScale);
-
-            bubble.Collider.center = bubble.Collider.center.WithY(_fleshController.MaterialOffsetY); 
-            
-            _bubbles.Add(data);
-            _deformable.AddDeformer(bubble.SpherifyDeformer);
+            _bubbles.Add(new BubbleData(
+                lifetime: Mathf.Lerp(profile.lifetimeRange0.GetRandomInRange(), profile.lifetimeRange1.GetRandomInRange(), progress),
+                position,
+                scale: profile.endScaleRange.GetRandomInRange()
+            ));
         }
 
         private Vector3 GetRandomPointInBounds() {

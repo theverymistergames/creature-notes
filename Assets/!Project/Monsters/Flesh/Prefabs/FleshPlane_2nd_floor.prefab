@@ -1,38 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3014138699221295846
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6243263882809836621}
-  m_Layer: 14
-  m_Name: Plane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6243263882809836621
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3014138699221295846}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8447175612340493808}
-  - {fileID: 7672800282332092464}
-  m_Father: {fileID: 411703076737601118}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4359275251071239608
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +141,7 @@ MonoBehaviour:
   _alphaPowR: 2.15
   _showVertices: 0
   _showTestPoint: 0
+  _showSamples: 0
   _testPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &987854307629476125
 MonoBehaviour:
@@ -282,12 +250,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4361116155437563615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.681, y: 0, z: 0.243}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.68099976, y: 0, z: 0.243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6243263882809836621}
+  m_Father: {fileID: 411703076737601118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5664598285565299050
 BoxCollider:
@@ -323,14 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fleshController: {fileID: 4737842006116885122}
-  _deformable: {fileID: 6654358258141608934}
-  _spherePrefab: {fileID: 6165973379451301150, guid: 7570e13ed983a204689139b80ee2b0a4,
-    type: 3}
+  _fleshVertexPosition: {fileID: 7739943985439538370}
   _sphereExplosionVfx: {fileID: 2646391046023174099, guid: 1ee2559cc78e07f49b8194a43351dedd,
     type: 3}
-  _sphereExplosionDuration: 0.2
-  _minRadiusToSpawnExplosion: 0.1
-  _maxSphereLevelAboveSurface: -0.1
   _soundAction:
     attach: 0
     attachId:
@@ -394,12 +357,7 @@ MonoBehaviour:
     maxBurst1: 6
     burstDistanceRange: {x: 1, y: 2}
     excludeCenter: {x: 0, y: 0}
-    startScaleRange: {x: 0.05, y: 0.1}
     endScaleRange: {x: 0.1, y: 0.3}
-    startSpeedRangeUp: {x: 0.23061067, y: 1.1386402}
-    endSpeedRangeUp: {x: -0.37474233, y: 0.72065836}
-    startSpeedRangeSide: {x: 0, y: 0.2}
-    endSpeedRangeSide: {x: 0, y: 0.1}
     showDebugInfo: 1
 --- !u!1 &6792618769236662503
 GameObject:
@@ -432,7 +390,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1216489197533237574}
-  - {fileID: 6243263882809836621}
+  - {fileID: 8447175612340493808}
+  - {fileID: 7672800282332092464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.33, y: 0, z: 1.63}
 --- !u!114 &4737842006116885122
@@ -447,7 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d088f5644cfe4a03b839fd35ef7063bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transform: {fileID: 6243263882809836621}
   _renderer: {fileID: 9064564711747327272}
   _transformOffsetY: 0
   _materialOffsetYStart: 0
@@ -531,12 +489,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6795391883126709527}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.65, y: 0, z: -4.56}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.6499996, y: 0, z: -4.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6243263882809836621}
+  m_Father: {fileID: 411703076737601118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5666210315963105060
 BoxCollider:
@@ -572,14 +530,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fleshController: {fileID: 4737842006116885122}
-  _deformable: {fileID: 6654358258141608934}
-  _spherePrefab: {fileID: 6165973379451301150, guid: 7570e13ed983a204689139b80ee2b0a4,
-    type: 3}
+  _fleshVertexPosition: {fileID: 7739943985439538370}
   _sphereExplosionVfx: {fileID: 2646391046023174099, guid: 1ee2559cc78e07f49b8194a43351dedd,
     type: 3}
-  _sphereExplosionDuration: 0.2
-  _minRadiusToSpawnExplosion: 0.1
-  _maxSphereLevelAboveSurface: -0.1
   _soundAction:
     attach: 0
     attachId:
@@ -643,10 +596,5 @@ MonoBehaviour:
     maxBurst1: 6
     burstDistanceRange: {x: 1, y: 2}
     excludeCenter: {x: 0, y: 0}
-    startScaleRange: {x: 0.05, y: 0.1}
     endScaleRange: {x: 0.1, y: 0.3}
-    startSpeedRangeUp: {x: 0.23061067, y: 1.1386402}
-    endSpeedRangeUp: {x: -0.37474233, y: 0.72065836}
-    startSpeedRangeSide: {x: 0, y: 0.2}
-    endSpeedRangeSide: {x: 0, y: 0.1}
     showDebugInfo: 1
