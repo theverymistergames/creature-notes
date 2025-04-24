@@ -80,20 +80,30 @@ namespace _Project.Scripts.Runtime.Enemies {
             OnMonsterEvent.Invoke(MonsterEventType.Respawn);
         }
 
-        public void Kill(bool notifyDamage = true) {
-            if (_health.IsDead) return;
-            
-            _health.Kill(notifyDamage: notifyDamage);
-            
+        public void Kill(bool instantReset) {
+            if (instantReset) {
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"Monster[{name}].Kill: f {Time.frameCount}, notifyDamage {notifyDamage}");
+                if (_showDebugInfo) Debug.Log($"Monster[{name}].Kill: f {Time.frameCount}, instant reset");
+#endif
+                
+                _health.Kill(notifyDamage: false);
+            
+                OnMonsterEvent.Invoke(MonsterEventType.Reset);
+                
+                _progress = 0f;
+                _progressSpeed = 0f;
+                _attackId++;
+                
+                return;
+            }
+            
+            if (_health.IsDead) return;
+
+#if UNITY_EDITOR
+            if (_showDebugInfo) Debug.Log($"Monster[{name}].Kill: f {Time.frameCount}, notify death");
 #endif
             
-            if (notifyDamage) return;
-
-            _progress = 0f;
-            _progressSpeed = 0f;
-            _attackId++;
+            _health.Kill(notifyDamage: true);
         }
 
         void IUpdate.OnUpdate(float dt) {

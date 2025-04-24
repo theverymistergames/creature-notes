@@ -17,7 +17,7 @@ namespace _Project.Scripts.Runtime.Spider {
         }
 
         private void TriggerEnter(Collider collider) {
-            if (collider.GetComponentFromCollider<SpiderWebLine>() is {} line) line.Burn();
+            if (collider.GetComponentFromCollider<SpiderWebLine>() is {} line) line.Burn(instant: false);
         }
     }
     

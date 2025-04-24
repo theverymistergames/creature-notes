@@ -9876,6 +9876,9 @@ MonoBehaviour:
   - eventType: 5
     action:
       rid: 9124718454358933602
+  - eventType: 6
+    action:
+      rid: 1688049974769090693
   references:
     version: 2
     RefIds:
@@ -9908,6 +9911,8 @@ MonoBehaviour:
     - rid: 929716875461656576
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: -1418007274
           _name: Prepare
@@ -9916,6 +9921,8 @@ MonoBehaviour:
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 646380074
           _name: Death
@@ -9924,6 +9931,8 @@ MonoBehaviour:
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 646380074
           _name: Death
@@ -9932,6 +9941,8 @@ MonoBehaviour:
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 1080829965
           _name: Attack
@@ -9939,6 +9950,8 @@ MonoBehaviour:
     - rid: 929716875461656580
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: -1418007274
           _name: Prepare
@@ -9971,10 +9984,13 @@ MonoBehaviour:
       type: {class: BurnSpiderWebAction, ns: _Project.Scripts.Runtime.Spider, asm: Assembly-CSharp}
       data:
         spiderWebPlacer: {fileID: 4551092612321447159}
+        instant: 0
     - rid: 929716875461656586
       type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
         asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: 1080829965
           _name: Attack
@@ -10015,11 +10031,67 @@ MonoBehaviour:
     - rid: 929716875461656678
       type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
       data:
+        mode: 0
+        animator: {fileID: 0}
         parameter:
           _hash: -1418007274
           _name: Prepare
         value: 0
     - rid: 929716875461656682
+      type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 7995568551152074189}
+        scale: {x: 0, y: 0, z: 0}
+    - rid: 1688049974769090693
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1688049974769090694
+        - rid: 1688049974769090695
+        - rid: 1688049974769090696
+        - rid: 1688049974769090701
+        - rid: 1688049974769090703
+        - rid: 1688049974769090705
+    - rid: 1688049974769090694
+      type: {class: BurnSpiderWebAction, ns: _Project.Scripts.Runtime.Spider, asm: Assembly-CSharp}
+      data:
+        spiderWebPlacer: {fileID: 5674118931749773217}
+        instant: 1
+    - rid: 1688049974769090695
+      type: {class: BurnSpiderWebAction, ns: _Project.Scripts.Runtime.Spider, asm: Assembly-CSharp}
+      data:
+        spiderWebPlacer: {fileID: 4551092612321447159}
+        instant: 1
+    - rid: 1688049974769090696
+      type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
+      data:
+        mode: 0
+        animator: {fileID: 0}
+        parameter:
+          _hash: -1418007274
+          _name: Prepare
+        value: 0
+    - rid: 1688049974769090701
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 1431444740
+          _name: burn
+        position: 0
+        transform: {fileID: 0}
+    - rid: 1688049974769090703
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        gameObjects:
+        - {fileID: 2056018905793414198}
+        - {fileID: 7995568551151811375}
+        - {fileID: 3936892085730756268}
+    - rid: 1688049974769090705
       type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
         asm: MisterGames.ActionLib}
       data:
@@ -10044,6 +10116,7 @@ MonoBehaviour:
         loop: 1
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: e0b0afc2448b29441aae274c0a5f3c7c, type: 3}
@@ -10066,6 +10139,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 2a3e5308c0b9d0a4d98c5be6a7f88bcd, type: 3}
@@ -10113,6 +10187,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 63381b7b91cb5864d84b6727fb00d172, type: 3}
@@ -10138,6 +10213,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: d261634c1288d784098e445668aaacf8, type: 3}
@@ -10168,6 +10244,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 350ceb6d90155b242a8a98ff70c9e426, type: 3}
@@ -10243,6 +10320,7 @@ MonoBehaviour:
       type: {class: BurnSpiderWebAction, ns: _Project.Scripts.Runtime.Spider, asm: Assembly-CSharp}
       data:
         spiderWebPlacer: {fileID: 5674118931749773217}
+        instant: 0
 --- !u!114 &5674118931749773217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25360,15 +25438,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406494, guid: 729af0dba514147a4835ed9afaa40b70, type: 3}
       propertyPath: m_LocalPosition.x

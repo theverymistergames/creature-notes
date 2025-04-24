@@ -76,7 +76,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             AsyncExt.DisposeCts(ref _enableCts);
             PlayerLoopStage.Update.Unsubscribe(this);
             
-            StopSpawning(resetFlesh: true);
+            StopSpawning(instantReset: true);
         }
 
         void IUpdate.OnUpdate(float dt) {
@@ -104,7 +104,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             return false;
         }
         
-        public void StartSpawning(MonsterSpawnerConfig config, bool resetFlesh) {
+        public void StartSpawning(MonsterSpawnerConfig config, bool instantReset) {
             if (config == null) {
                 Debug.LogWarning($"MonsterSpawner [{name}]: trying to start spawning with null config, skip.");
                 return;
@@ -133,11 +133,11 @@ namespace _Project.Scripts.Runtime.Enemies {
                                           $"waves completed {GetCompletedWaves()}/{_config.monsterWaves.Length}.");
 #endif
             
-            KillAllMonsters(notifyDamage: false, resetFleshInstantly: resetFlesh);
+            KillAllMonsters(instantReset);
             StartSpawningAsync(_enableCts.Token).Forget();
         }
 
-        public void ContinueSpawningFromCompletedWaves(bool resetFlesh) {
+        public void ContinueSpawningFromCompletedWaves(bool instantReset) {
             if (_config == null) {
                 Debug.LogWarning($"MonsterSpawner [{name}]: trying to continue spawning with null config, skip.");
                 return;
@@ -170,14 +170,14 @@ namespace _Project.Scripts.Runtime.Enemies {
                                           $"waves completed {completedWaves}/{_config.monsterWaves.Length}.");
 #endif
             
-            KillAllMonsters(notifyDamage: false, resetFleshInstantly: resetFlesh);
+            KillAllMonsters(instantReset);
             StartSpawningAsync(_enableCts.Token).Forget();
         }
         
-        public void StopSpawning(bool resetFlesh) {
+        public void StopSpawning(bool instantReset) {
             _spawnProcessId++;
             
-            KillAllMonsters(notifyDamage: false, resetFleshInstantly: resetFlesh);
+            KillAllMonsters(instantReset);
             
             DisposeArray(ref _presetIndicesCache);
             DisposeArray(ref _monsterIndicesCache);
@@ -226,7 +226,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                         break;
                     }
                     
-                    KillAllMonsters(notifyDamage: true, resetFleshInstantly: false);
+                    KillAllMonsters(instantReset: false);
                     
                     var wave = _config.monsterWaves[_currentWave];
                     
@@ -309,7 +309,7 @@ namespace _Project.Scripts.Runtime.Enemies {
 #endif
             
             if (_config.killAllMonstersOnCompleteBattle) {
-                KillAllMonsters(notifyDamage: true, resetFleshInstantly: false);
+                KillAllMonsters(instantReset: false);
             }
 
             IsBattleRunning = false;
@@ -474,12 +474,12 @@ namespace _Project.Scripts.Runtime.Enemies {
             _fleshControllerGroup.ApplyProgress(_fleshProgressSmoothed);      
         }
         
-        private void KillAllMonsters(bool notifyDamage = true, bool resetFleshInstantly = false) {
+        private void KillAllMonsters(bool instantReset) {
             _nextSpawnTimer = 0f;
             _nextSpawnDelay = float.MaxValue;
             
             foreach (var monster in _aliveMonsters) {
-                monster.Kill(notifyDamage);
+                monster.Kill(instantReset);
             }
             
             _armedMonsters.Clear();
@@ -491,7 +491,9 @@ namespace _Project.Scripts.Runtime.Enemies {
 #endif
 
             SetTargetFleshProgress(0f);
-            if (resetFleshInstantly) _fleshProgressSmoothed = 0f;
+            _forceUpdateFlesh = true;
+            
+            if (instantReset) _fleshProgressSmoothed = 0f;
         }
 
         private bool CanSpawnMonsterFromPreset(
@@ -592,17 +594,17 @@ namespace _Project.Scripts.Runtime.Enemies {
 
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void StartSpawnCurrentConfig() {
-            StartSpawning(_config, resetFlesh: true);
+            StartSpawning(_config, instantReset: true);
         }
         
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void ContinueCompletedWaves() {
-            ContinueSpawningFromCompletedWaves(resetFlesh: true);
+            ContinueSpawningFromCompletedWaves(instantReset: true);
         }
         
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void StopSpawn() {
-            StopSpawning(resetFlesh: true);
+            StopSpawning(instantReset: true);
         }
 #endif
     }

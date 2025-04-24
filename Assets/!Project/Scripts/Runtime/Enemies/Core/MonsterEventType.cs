@@ -7,6 +7,7 @@
         AttackPrepare,
         AttackStart,
         AttackFinish,
+        Reset,
     }
     
 }

@@ -1211,6 +1211,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 3e370c5f3da40d54eb38a59736b78aa9, type: 3}
@@ -1240,6 +1241,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 5240d3019952d704cbce536bad4170e4, type: 3}
@@ -7553,6 +7555,9 @@ MonoBehaviour:
   - eventType: 4
     action:
       rid: 7921367256014520321
+  - eventType: 6
+    action:
+      rid: 1688049974769090739
   references:
     version: 2
     RefIds:
@@ -7607,6 +7612,74 @@ MonoBehaviour:
         transform: {fileID: 5801618591333178253}
         startLocalScale: {x: -0.055785682, y: -0.05578569, z: -0.4053859}
         endLocalScale: {x: -0.038256597, y: -0.038256597, z: -0.2780048}
+    - rid: 1688049974769090739
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1688049974769090740
+        - rid: 1688049974769090742
+        - rid: 1688049974769090744
+        - rid: 1688049974769090745
+        - rid: 1688049974769090746
+        - rid: 1688049974769090748
+        - rid: 1688049974769090749
+        - rid: 1688049974769090750
+    - rid: 1688049974769090740
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 1469752144
+          _name: arming
+        position: 0
+        transform: {fileID: 0}
+    - rid: 1688049974769090742
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 173384112630223754}
+    - rid: 1688049974769090744
+      type: {class: SetTransformRotationAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 8526489939105545921}
+        rotation: {x: -0.000008651308, y: 180, z: 179.70633}
+        local: 1
+    - rid: 1688049974769090745
+      type: {class: SetTransformRotationAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 8292468311873927084}
+        rotation: {x: -0.000008651308, y: 180, z: 179.70633}
+        local: 1
+    - rid: 1688049974769090746
+      type: {class: SetTransformPositionAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 4383917943916198518}
+        position: {x: 0, y: 0.00001, z: 0}
+        local: 1
+    - rid: 1688049974769090748
+      type: {class: SetTransformRotationAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 5801618591333178253}
+        rotation: {x: 356.95697, y: 301.86917, z: 301.5525}
+        local: 1
+    - rid: 1688049974769090749
+      type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 4383917943916198518}
+        scale: {x: 0.2886399, y: 0.2886399, z: 0.2886399}
+    - rid: 1688049974769090750
+      type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 5801618591333178253}
+        scale: {x: -0.055785682, y: -0.05578569, z: -0.4053859}
     - rid: 7921367143073710082
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -7633,6 +7706,7 @@ MonoBehaviour:
         loop: 1
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: a8bfa047169924a439d1feef7277b7c5, type: 3}
@@ -7684,6 +7758,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 83bcd3fb4fa278743a90c2543a705038, type: 3}
@@ -7725,6 +7800,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 38f2ac75577c3f64ebe88101a7764e17, type: 3}
@@ -7815,6 +7891,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 90e42fc8fb9791242bc99af667b4e67d, type: 3}
@@ -7910,6 +7987,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 519f579cf87d6b04e9bac8c437f9698e, type: 3}

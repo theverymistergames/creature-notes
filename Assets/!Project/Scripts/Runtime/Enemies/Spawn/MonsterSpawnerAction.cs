@@ -14,7 +14,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         public Operation operation;
         [VisibleIf(nameof(operation), value: 0)]
         public MonsterSpawnerConfig config;
-        public bool resetFlesh;
+        public bool instantReset;
         
         public enum Operation {
             Start,
@@ -25,15 +25,15 @@ namespace _Project.Scripts.Runtime.Enemies {
         public UniTask Apply(IActor context, CancellationToken cancellationToken = default) {
             switch (operation) {
                 case Operation.Start:
-                    spawner.StartSpawning(config, resetFlesh);
+                    spawner.StartSpawning(config, instantReset);
                     break;
                 
                 case Operation.ContinueCompletedWaves:
-                    spawner.ContinueSpawningFromCompletedWaves(resetFlesh);
+                    spawner.ContinueSpawningFromCompletedWaves(instantReset);
                     break;
                 
                 case Operation.Stop:
-                    spawner.StopSpawning(resetFlesh);
+                    spawner.StopSpawning(instantReset);
                     break;
                 
                 default:

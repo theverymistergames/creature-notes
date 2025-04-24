@@ -549,6 +549,9 @@ MonoBehaviour:
   - eventType: 5
     action:
       rid: 9124718454358933602
+  - eventType: 6
+    action:
+      rid: 1688049974769090677
   references:
     version: 2
     RefIds:
@@ -561,6 +564,122 @@ MonoBehaviour:
           library: {fileID: 11400000, guid: 269127d9bd7b9b942ab95e18a6832d8e, type: 2}
           id: 14
         waitAction: 0
+    - rid: 1688049974769090677
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1688049974769090678
+        - rid: 1688049974769090679
+        - rid: 1688049974769090680
+        - rid: 1688049974769090681
+        - rid: 1688049974769090683
+        - rid: 1688049974769090684
+        - rid: 1688049974769090685
+        - rid: 1688049974769090686
+        - rid: 1688049974769090691
+        - rid: 1688049974769090692
+        - rid: 1688049974769090737
+        - rid: 1688049974769090738
+    - rid: 1688049974769090678
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 4095273331624918551}
+    - rid: 1688049974769090679
+      type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
+      data:
+        mode: 0
+        animator: {fileID: 0}
+        parameter:
+          _hash: -1418007274
+          _name: Prepare
+        value: 1
+    - rid: 1688049974769090680
+      type: {class: SetAnimatorBoolAction, ns: MisterGames.ActionLib.Animation, asm: MisterGames.ActionLib}
+      data:
+        mode: 0
+        animator: {fileID: 0}
+        parameter:
+          _hash: 1080829965
+          _name: Attack
+        value: 0
+    - rid: 1688049974769090681
+      type: {class: SetAnimatorTriggerAction, ns: MisterGames.ActionLib.Animation,
+        asm: MisterGames.ActionLib}
+      data:
+        mode: 0
+        animator: {fileID: 0}
+        parameter:
+          _hash: 646380074
+          _name: Death
+        operation: 0
+    - rid: 1688049974769090683
+      type: {class: PlayParticleSystemAction, ns: MisterGames.ActionLib.Materials,
+        asm: MisterGames.ActionLib}
+      data:
+        particleSystem: {fileID: 2522819693943111611}
+        operation: 1
+        withChildren: 1
+    - rid: 1688049974769090684
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 554390782
+          _name: wind
+        position: 0
+        transform: {fileID: 0}
+    - rid: 1688049974769090685
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: -601574123
+          _name: idle
+        position: 0
+        transform: {fileID: 0}
+    - rid: 1688049974769090686
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 96610438
+          _name: window_open
+        position: 0
+        transform: {fileID: 0}
+    - rid: 1688049974769090691
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: -960466293
+          _name: window_close
+        position: 0
+        transform: {fileID: 0}
+    - rid: 1688049974769090692
+      type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
+      data:
+        tweenRunner: {fileID: 8129528421735150538}
+        speed:
+          _hasValue: 1
+          _value: -0.2
+        progress:
+          _hasValue: 0
+          _value: 0
+        waitTween: 0
+    - rid: 1688049974769090737
+      type: {class: SetTransformPositionAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 629525918798691858}
+        position: {x: 0.3, y: -2, z: -0.04}
+        local: 1
+    - rid: 1688049974769090738
+      type: {class: SetTransformPositionAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 1147445798660069038}
+        position: {x: 0.1290193, y: -0.984, z: 0}
+        local: 1
     - rid: 7921366691419258968
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:

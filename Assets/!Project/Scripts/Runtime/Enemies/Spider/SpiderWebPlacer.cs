@@ -134,10 +134,10 @@ namespace _Project.Scripts.Runtime.Spider {
             _spiderWebLines.RemoveIf(x => x == null || x.State == SpiderWebLine.LineState.Burnt);
         }
 
-        public void BurnWeb() {
+        public void BurnWeb(bool instant) {
             for (int i = 0; i < _spiderWebLines.Count; i++) {
                 var line = _spiderWebLines[i];
-                if (line != null) line.Burn(notifyBurn: false);
+                if (line != null) line.Burn(instant, notifyBurn: false);
             }
             
             _spiderWebLines.Clear();
@@ -488,7 +488,7 @@ namespace _Project.Scripts.Runtime.Spider {
 
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void BurnAllWeb() {
-            BurnWeb();
+            BurnWeb(instant: false);
         }
 #endif
     }

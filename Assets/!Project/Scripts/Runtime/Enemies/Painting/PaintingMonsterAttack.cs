@@ -83,6 +83,7 @@ namespace _Project.Scripts.Runtime.Enemies.Painting {
                 
                 case MonsterEventType.AttackFinish:
                 case MonsterEventType.Death:
+                case MonsterEventType.Reset:
                     StopAttack();
                     break;
             }

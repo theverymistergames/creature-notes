@@ -87,7 +87,7 @@ namespace _Project.Scripts.Runtime.Spider {
             RestoreSelfAndNeighbours(spiderWebPlacer, spiderWebPlacer.GetMaterial());
         }
 
-        public void Burn(bool notifyBurn = true) {
+        public void Burn(bool instant, bool notifyBurn = true) {
 #if UNITY_EDITOR
             if (!Application.isPlaying) return;
 #endif
@@ -97,7 +97,7 @@ namespace _Project.Scripts.Runtime.Spider {
             var spiderWebPlacer = _spiderWebPlacer;
             
             AsyncExt.RecreateCts(ref _cts);
-            BurnAsync(_burnTimeRange.GetRandomInRange(), _cts.Token).Forget();
+            BurnAsync(duration: instant ? 0f : _burnTimeRange.GetRandomInRange(), _cts.Token).Forget();
             
             BurnSelfAndNeighbours();
             
@@ -151,7 +151,7 @@ namespace _Project.Scripts.Runtime.Spider {
         }
         
         private async UniTask BurnAsync(float duration, CancellationToken cancellationToken) {
-            _burnAction?.Apply(_actor, cancellationToken).Forget();
+            if (duration > 0f) _burnAction?.Apply(_actor, cancellationToken).Forget();
             
             float t = 0f;
             float speed = duration > 0f ? 1f / duration : float.MaxValue;
@@ -176,7 +176,7 @@ namespace _Project.Scripts.Runtime.Spider {
 #if UNITY_EDITOR
         [Button(mode: ButtonAttribute.Mode.Runtime)]
         private void TestBurn() {
-            Burn();
+            Burn(instant: false);
         }
 #endif
     }

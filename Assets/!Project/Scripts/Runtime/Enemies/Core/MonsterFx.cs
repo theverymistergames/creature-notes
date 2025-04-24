@@ -41,6 +41,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         private CancellationTokenSource _healthCts;
         private IActor _actor;
         private Monster _monster;
+        private MonsterEventType _lastEventType;
         
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
@@ -67,6 +68,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         void IUpdate.OnUpdate(float dt) {
+            if (_lastEventType == MonsterEventType.Reset) return;
+            
             float progress = _monster.Progress;
 
             for (int i = 0; i < _progressActions.Length; i++) {
@@ -88,7 +91,9 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         private void OnMonsterEvent(MonsterEventType evt) {
-            if (evt is MonsterEventType.Respawn or MonsterEventType.Death) {
+            _lastEventType = evt;
+            
+            if (evt is MonsterEventType.Respawn or MonsterEventType.Death or MonsterEventType.Reset) {
                 AsyncExt.RecreateCts(ref _healthCts);
             }
 

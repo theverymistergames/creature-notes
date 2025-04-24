@@ -10,9 +10,10 @@ namespace _Project.Scripts.Runtime.Spider {
     public sealed class BurnSpiderWebAction : IActorAction {
 
         public SpiderWebPlacer spiderWebPlacer;
+        public bool instant;
         
         public UniTask Apply(IActor context, CancellationToken cancellationToken = default) {
-            spiderWebPlacer.BurnWeb();
+            spiderWebPlacer.BurnWeb(instant);
             
             return default;
         }

@@ -5062,6 +5062,9 @@ MonoBehaviour:
   - eventType: 5
     action:
       rid: 626083183669543020
+  - eventType: 6
+    action:
+      rid: 1688049974769090772
   references:
     version: 2
     RefIds:
@@ -5148,6 +5151,7 @@ MonoBehaviour:
         loop: 1
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: f10d92096b5486442b85e1d30426d687, type: 3}
@@ -5251,6 +5255,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 147db9402c6775f48b0ec0dfe8742111, type: 3}
@@ -5493,6 +5498,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 75a764bb2e342964f9f857682e118189, type: 3}
@@ -5519,6 +5525,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 0
         occlusion: 0
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: e4cd618eb2e2d214f84ffb8e99d1b1c7, type: 3}
@@ -5585,6 +5592,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 0
         occlusion: 0
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: e820e59368319554f8d35978708caa7d, type: 3}
@@ -5647,6 +5655,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 0
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: caf7b8118c3b48748a8d00adc745252d, type: 3}
@@ -5683,6 +5692,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 0
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: c54c3028a09720047af6e682136fa17a, type: 3}
@@ -5700,6 +5710,130 @@ MonoBehaviour:
         - {fileID: 8300000, guid: f760bd6d7f5a8e846b3347f98dec5444, type: 3}
         - {fileID: 8300000, guid: 019680f7a0a31c0488ebcb4362a72c17, type: 3}
         - {fileID: 8300000, guid: c7ded2e970432274690b4a4c4eb76694, type: 3}
+    - rid: 1688049974769090772
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 1688049974769090773
+        - rid: 1688049974769090775
+        - rid: 1688049974769090776
+        - rid: 1688049974769090777
+        - rid: 1688049974769090778
+        - rid: 1688049974769090779
+        - rid: 1688049974769090781
+    - rid: 1688049974769090773
+      type: {class: SetTransformScaleAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 8726413076606518382}
+        scale: {x: 7, y: 7, z: 7}
+    - rid: 1688049974769090775
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: -1642985062
+          _name: blink_armed
+        position: 0
+        transform: {fileID: 0}
+    - rid: 1688049974769090776
+      type: {class: SetLampColorAction, ns: MisterGames.ActionLib.Logic, asm: MisterGames.ActionLib}
+      data:
+        lamp: {fileID: 1755341065897854023}
+        lightColorOperation: 1
+        lightColor: {r: 0, g: 0, b: 0, a: 0}
+        lightIndex: -1
+        materialColorOperation: 1
+        materialColor: {r: 0, g: 0, b: 0, a: 0}
+        materialIndex: -1
+    - rid: 1688049974769090777
+      type: {class: PlayParticleSystemAction, ns: MisterGames.ActionLib.Materials,
+        asm: MisterGames.ActionLib}
+      data:
+        particleSystem: {fileID: 4824750753648392723}
+        operation: 1
+        withChildren: 0
+    - rid: 1688049974769090778
+      type: {class: SetAffectLampMonsterAction, ns: _Project.Scripts.Runtime.Enemies.Lamp,
+        asm: Assembly-CSharp}
+      data:
+        lampMonsterArmBehaviour: {fileID: 3104908056285443932}
+        affectVisibility:
+          _hasValue: 1
+          _value: 0
+        affectScale:
+          _hasValue: 1
+          _value: 1
+    - rid: 1688049974769090779
+      type: {class: PlayTweenProgressAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
+      data:
+        startProgress: 0
+        endProgress: 0
+        duration: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        action:
+          rid: 1688049974769090782
+    - rid: 1688049974769090781
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        gameObjects:
+        - {fileID: 4003987829369621237}
+        - {fileID: 7995364366444284005}
+        - {fileID: 7321121524185693962}
+    - rid: 1688049974769090782
+      type: {class: TweenProgressActions, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
+      data:
+        actions:
+        - rid: 1688049974769090783
+        - rid: 1688049974769090784
+        - rid: 1688049974769090785
+    - rid: 1688049974769090783
+      type: {class: SetLampMonsterArmWeightProgressAction, ns: _Project.Scripts.Runtime.Enemies.Lamp,
+        asm: Assembly-CSharp}
+      data:
+        lampMonsterArmBehaviour: {fileID: 3104908056285443932}
+        startWeight: 0
+        endWeight: 0
+    - rid: 1688049974769090784
+      type: {class: SetWeightMulActionRunnerProgressAction, ns: MisterGames.TweenLib.Logic,
+        asm: MisterGames.TweenLib}
+      data:
+        weightActionRunner: {fileID: 4305812102486282038}
+        startValue: 0
+        endValue: 0
+    - rid: 1688049974769090785
+      type: {class: SetVolumeWeightProgressAction, ns: MisterGames.TweenLib.Rendering,
+        asm: MisterGames.TweenLib}
+      data:
+        volume: {fileID: 4688212189061526177}
+        startValue: 0
+        endValue: 0
 --- !u!114 &3104908056285443932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6210,6 +6344,7 @@ MonoBehaviour:
         loop: 1
         affectedByTimeScale: 0
         occlusion: 0
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: f7dce6970a105614aa65d818c48f869c, type: 3}
@@ -7922,6 +8057,7 @@ MonoBehaviour:
         loop: 1
         affectedByTimeScale: 1
         occlusion: 1
+        useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 1b9f7039b50ee6e49a70d69db58b4a57, type: 3}

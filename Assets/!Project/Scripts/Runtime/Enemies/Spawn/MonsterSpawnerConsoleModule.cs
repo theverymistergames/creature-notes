@@ -28,7 +28,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
 
             ConsoleRunner.AppendLine($"Start monsters spawning at {spawner.GetPathInScene()}, config {config.name}");
-            spawner.StartSpawning(config, resetFlesh: true);
+            spawner.StartSpawning(config, instantReset: true);
         }
         
         [ConsoleCommand("monsters/continue")]
@@ -46,7 +46,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
 
             ConsoleRunner.AppendLine($"Continue monsters spawning at {spawner.GetPathInScene()}, config {config.name}");
-            spawner.ContinueSpawningFromCompletedWaves(resetFlesh: false);
+            spawner.ContinueSpawningFromCompletedWaves(instantReset: true);
         }
 
         [ConsoleCommand("monsters/stop")]
@@ -64,7 +64,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
 
             ConsoleRunner.AppendLine($"Stop monsters spawning at {spawner.GetPathInScene()}");
-            spawner.StopSpawning(resetFlesh: true);
+            spawner.StopSpawning(instantReset: true);
         }
 
         [ConsoleCommand("monsters/toggle")]
