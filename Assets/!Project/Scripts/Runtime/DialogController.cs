@@ -50,16 +50,6 @@ public class DialogController : MonoBehaviour {
     
     private readonly List<string> _specialSigns = new() { ".", "?", "!" };
 
-    private void OnEnable() {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    private void OnDisable() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     private void Awake() {
         textInstance.text = "";
         _dialog = Deserialize<Dialog>("Assets/!Project/Levels/Chapter1/Chapter1Dialog.xml");
@@ -157,12 +147,6 @@ public class DialogController : MonoBehaviour {
         
         if (Input.GetKeyDown(KeyCode.S)) StartDialog();
         if (Input.GetKeyDown(KeyCode.Space)) Next();
-    }
-
-    //TODO: remove debug
-    private void LateUpdate() {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 
     private static T Deserialize<T>(string path) {
