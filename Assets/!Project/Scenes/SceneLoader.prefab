@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8023893773544311042}
   - component: {fileID: 8023893773544311045}
+  - component: {fileID: 1049799713011409109}
   m_Layer: 0
   m_Name: SceneLoader
   m_TagString: Untagged
@@ -44,9 +45,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343534c4b18c45428f88eb6ef4208e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _splashScreenScene:
+    scene: LoadingScene
   _startScene:
     scene: MenuScene
   _gameplayScene:
     scene: GameplayScene
-  _loadGameplayScene: 1
-  _forceLoadGameplaySceneInEditor: 1
+  _loadingScene:
+    scene: LoadingScene
+--- !u!114 &1049799713011409109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023893773544311044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2c08b241de4844829aa3ff1b21d048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
