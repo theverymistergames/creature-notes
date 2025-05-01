@@ -182,13 +182,15 @@ namespace _Project.Scripts.Runtime.Enemies {
             DisposeArray(ref _presetIndicesCache);
             DisposeArray(ref _monsterIndicesCache);
             
-            _forceUpdateFlesh = true;
-            IsBattleRunning = false;
-            
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: stopped spawning, " +
-                                          $"waves completed {GetCompletedWaves()}/{(_config == null ? 0 : _config.monsterWaves.Length)}.");
+            if (_showDebugInfo && IsBattleRunning) {
+                Debug.Log($"MonsterSpawner [{name}]: stopped spawning, " +
+                          $"waves completed {GetCompletedWaves()}/{(_config == null ? 0 : _config.monsterWaves.Length)}.");
+            }
 #endif
+
+            IsBattleRunning = false;
+            _forceUpdateFlesh = true;
         }
 
         private void UpdateTimers(float dt) {
@@ -457,10 +459,13 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
         
         private void SetTargetFleshProgress(float progress) {
+            float oldProgress = _fleshProgressTarget;
             _fleshProgressTarget = progress;
             
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: update flesh progress to {_fleshProgressTarget:0.00}.");
+            if (_showDebugInfo && !oldProgress.IsNearlyEqual(_fleshProgressTarget)) {
+                Debug.Log($"MonsterSpawner [{name}]: update flesh progress to {_fleshProgressTarget:0.00}.");
+            }
 #endif
         }
 
@@ -477,6 +482,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         private void KillAllMonsters(bool instantReset) {
             _nextSpawnTimer = 0f;
             _nextSpawnDelay = float.MaxValue;
+
+            int aliveMonstersCount = _aliveMonsters.Count;
             
             foreach (var monster in _aliveMonsters) {
                 monster.Kill(instantReset);
@@ -487,7 +494,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _aliveMonsterTypeMap.Clear();
             
 #if UNITY_EDITOR
-            if (_showDebugInfo) Debug.Log($"MonsterSpawner [{name}]: killed all monsters.");
+            if (_showDebugInfo && aliveMonstersCount > 0) Debug.Log($"MonsterSpawner [{name}]: killed all monsters ({aliveMonstersCount}).");
 #endif
 
             SetTargetFleshProgress(0f);
