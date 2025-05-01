@@ -586,6 +586,7 @@ Transform:
   - {fileID: 45180028}
   - {fileID: 152531658}
   - {fileID: 788042679}
+  - {fileID: 1737827732}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &918858613
@@ -881,7 +882,7 @@ MonoBehaviour:
   _resetOnDisable: 1
   applyMode: 3
   _noiseScale: 1
-  _noiseSpeedRandomize: 0.1
+  _noiseSpeedRandomize: 0.3
   _amplitude: 1
   _originalPosition: {x: 0, y: 0, z: 0}
   _originalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1231,6 +1232,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1564588256}
   m_CullTransparentMesh: 1
+--- !u!1 &1737827731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1737827732}
+  - component: {fileID: 1737827733}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1737827732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737827731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 918858612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1737827733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737827731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c60cb64e64c4bc197ab9ee39a855b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useCharacterAsActor: 0
+  _cancelOnNextAction: 0
+  _cancelOnDisable: 1
+  _launchMode: 3
+  _action:
+    rid: 6218635496305459289
+  references:
+    version: 2
+    RefIds:
+    - rid: 6218635496305459289
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 1737827732}
+        startTime: {x: 0, y: 1}
+        volume: 1
+        fadeIn: 0.4
+        fadeOut: 1
+        pitch: 1
+        pitchRandomAdd: 0
+        spatialBlend: 0
+        loop: 1
+        affectedByTimeScale: 0
+        occlusion: 0
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: -5168039131294569980, guid: 928df19ba875ee2458e73acbec03d785,
+          type: 2}
+        audioClipVariants:
+        - {fileID: 8300000, guid: b9d333bf0c80c3f4fa76322b327e9ea2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
