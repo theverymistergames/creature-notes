@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 4734967082043141291}
   - component: {fileID: 249947384757128190}
   - component: {fileID: 1656438094539248619}
-  - component: {fileID: 381170417290045525}
+  - component: {fileID: 6299945466590765134}
   m_Layer: 0
   m_Name: 'Dver '
   m_TagString: Untagged
@@ -233,6 +233,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 9007422851550543872
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -262,6 +264,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 9007422851550543873
         events: []
@@ -274,7 +278,7 @@ MonoBehaviour:
         endEulerAngles: {x: 0, y: 120, z: 0}
         useLocal: 1
         useEulerInterpolation: 0
---- !u!114 &381170417290045525
+--- !u!114 &6299945466590765134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,54 +287,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 5507452910399228313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
+  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blueprintAsset: {fileID: 11400000, guid: 742521d3ff211034ebbace87f81c510a, type: 2}
-  _subgraphTree:
-    _nodes: []
-    _rootIndexMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _nodeIndexMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _count: 0
-    _head: 0
-    _version: 1500
-  _blackboard:
-    _propertyList: 
-    _propertyMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _tables:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _tablesHead: 0
-  _rootMetaOverride:
+  _cancelOnNextAction: 1
+  _startAction:
+    rid: 3745621704057815098
+  _stopAction:
     rid: -2
-  _isRootOverrideEnabled: 0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 3745621704057815098
+      type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
+      data:
+        tweenRunner: {fileID: 1656438094539248619}
+        speed:
+          _hasValue: 0
+          _value: 1
+        progress:
+          _hasValue: 0
+          _value: 0
+        waitTween: 0
 --- !u!1 &6367948374756771386
 GameObject:
   m_ObjectHideFlags: 0
