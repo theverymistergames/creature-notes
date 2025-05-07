@@ -1,0 +1,340 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6115751228205662902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7569387335055295216}
+  m_Layer: 0
+  m_Name: DoorContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7569387335055295216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115751228205662902}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7602803903262720604}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6999224652288744732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7602803903262720604}
+  - component: {fileID: 3373930461232990235}
+  - component: {fileID: 1439142478718784308}
+  - component: {fileID: 1946348238840363842}
+  - component: {fileID: 518972474119027665}
+  - component: {fileID: 597355192721650705}
+  m_Layer: 0
+  m_Name: MultiStateDoor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7602803903262720604
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999224652288744732}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7569387335055295216}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3373930461232990235
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999224652288744732}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06458965, y: 1.4014119, z: 1.4216036}
+  m_Center: {x: -0.009021971, y: -0.26290238, z: 0.68978786}
+--- !u!114 &1439142478718784308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999224652288744732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
+  _debugDrawDetectable: 0
+--- !u!114 &1946348238840363842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999224652288744732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
+--- !u!114 &518972474119027665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999224652288744732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57270a0731e243fe9da2d6d92826a39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _playAtStart: 0
+  _tweenPlayer:
+    _progress: 0
+    _speed: 1
+    _yoyo: 0
+    _loop: 0
+    _invertNextPlay: 1
+    _tween:
+      rid: 9007422851550543872
+  _events: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3745621770594418777
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 7602803903262720604}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: c1f49fde197ac274c80f4a3b1cf7379e, type: 3}
+        - {fileID: 8300000, guid: 6b38fdda58c280844b0aba14f60f62ab, type: 3}
+        - {fileID: 8300000, guid: 0b62f703896957841b47093c04e6889a, type: 3}
+        - {fileID: 8300000, guid: f58ba77f05a497c4caa10b21ffb2635d, type: 3}
+        - {fileID: 8300000, guid: da9da0df0d2409f49868847bf668dc37, type: 3}
+        - {fileID: 8300000, guid: f15aafb6950373441b2c49beb941c6ba, type: 3}
+        - {fileID: 8300000, guid: 6a7eb2257028db748ac371e0616358fb, type: 3}
+        - {fileID: 8300000, guid: 52659fde79098d24abb9bf48c228ef63, type: 3}
+        - {fileID: 8300000, guid: a7b84f84a04ac09419342219a8683c20, type: 3}
+    - rid: 3745621770594418778
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 7602803903262720604}
+        startTime: {x: 0, y: 0}
+        volume: 0.7
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 98c5d68ba22e37c42b325040afb7cb22, type: 3}
+        - {fileID: 8300000, guid: 8cd57972029bc6f4ba80491163d1aefe, type: 3}
+        - {fileID: 8300000, guid: e064256f27fd31f4eb0fb369d86dbb36, type: 3}
+        - {fileID: 8300000, guid: 5e787538699f8e94db9fa4e6a80fad28, type: 3}
+        - {fileID: 8300000, guid: b9f2ddafeaadb8041a829ac27cc947f2, type: 3}
+        - {fileID: 8300000, guid: 0492cf697abbe854ab1f0c36fb9c1eb2, type: 3}
+        - {fileID: 8300000, guid: bff11c66157f57d49ba400f340d7ab8e, type: 3}
+        - {fileID: 8300000, guid: 9ac48ca4cea58874fb5a4cdc53bf10ac, type: 3}
+        - {fileID: 8300000, guid: cff11e9f3c3f91b4eaa2cdbfa472e87f, type: 3}
+    - rid: 9007422851550543872
+      type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
+      data:
+        duration: 0.7
+        durationRandomAdd: 0
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333334
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 2.9999938
+            outSlope: 2.9999943
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333403
+            outWeight: 0.33333397
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333397
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        modulator:
+          rid: -2
+        action:
+          rid: 9007422851550543873
+        events:
+        - direction: 1
+          progress: 0
+          action:
+            rid: 3745621770594418777
+        - direction: 2
+          progress: 0.1
+          action:
+            rid: 3745621770594418778
+    - rid: 9007422851550543873
+      type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
+        asm: MisterGames.TweenLib}
+      data:
+        transform: {fileID: 7602803903262720604}
+        startEulerAngles: {x: 0, y: 0, z: 0}
+        endEulerAngles: {x: 0, y: 85, z: 0}
+        useLocal: 1
+        useEulerInterpolation: 0
+--- !u!114 &597355192721650705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6999224652288744732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cancelOnNextAction: 0
+  _startAction:
+    rid: 3745621770594418779
+  _stopAction:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3745621770594418779
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 3745621770594418780
+        - rid: 3745621770594418781
+    - rid: 3745621770594418780
+      type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
+      data:
+        tweenRunner: {fileID: 518972474119027665}
+        speed:
+          _hasValue: 0
+          _value: 1
+        progress:
+          _hasValue: 0
+          _value: 0
+        waitTween: 0
+    - rid: 3745621770594418781
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 7602803903262720604}
+        startTime: {x: 0, y: 0}
+        volume: 0.7
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 6a5bf9febbab6b7478baee534f7a7b91, type: 3}
+        - {fileID: 8300000, guid: f4d9f6a12f9160f49ba9a17a94a7b3a6, type: 3}
+        - {fileID: 8300000, guid: a311644779969f547a7e1a1ad380856f, type: 3}
+        - {fileID: 8300000, guid: 44f051d6c8c57a9459555687d29c2f5f, type: 3}
+        - {fileID: 8300000, guid: 2c70039acc37aaa4da552a40c0b9cb29, type: 3}
+        - {fileID: 8300000, guid: 5a4205e74f007a44b9de555429e49f05, type: 3}
+        - {fileID: 8300000, guid: 69de3a9846652e74080bc3d10fb142be, type: 3}
+        - {fileID: 8300000, guid: 49159c4afdc57194cb8f1053a9fe3553, type: 3}

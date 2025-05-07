@@ -16,7 +16,14 @@ namespace MisterGames.BlueprintLib {
     {
 
         [SerializeField] private EventReference _event;
+        [SerializeField] private Mode _mode;
+        [SerializeField] private int _count = 1;
 
+        private enum Mode {
+            Raise,
+            Set,
+        }
+            
         private IBlueprint _blueprint;
         private NodeToken _token;
 
@@ -52,18 +59,31 @@ namespace MisterGames.BlueprintLib {
                     
                     _event.Subscribe(this);
                     break;
+                
                 case 1:
+                    switch (_mode) {
+                        case Mode.Raise:
+                            _event.Raise(_count);
+                            break;
+                        
+                        case Mode.Set:
+                            _event.SetCount(_count);
+                            break;
+                        
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                     _event.Raise();
                     break;
             }
         }
 
         int IBlueprintOutput<int>.GetPortValue(IBlueprint blueprint, NodeToken token, int port) {
-            return port == 4 ? _event.GetCount() : default;
+            return port == 4 ? _event.GetCount() : 0;
         }
 
         bool IBlueprintOutput<bool>.GetPortValue(IBlueprint blueprint, NodeToken token, int port) {
-            return port == 5 ? _event.GetCount() > 0 : default;
+            return port == 5 && _event.GetCount() > 0;
         }
 
         public void OnEventRaised(EventReference e) {
