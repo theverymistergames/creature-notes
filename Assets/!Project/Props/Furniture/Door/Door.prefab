@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 1656438094539248619}
   - component: {fileID: 6299945466590765134}
   m_Layer: 0
-  m_Name: 'Dver '
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,10 +235,66 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 3745621770594418777
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 4531430751414488565}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 2f0b8eaf7d20d9944ad6332a88be8694, type: 3}
+        - {fileID: 8300000, guid: b5146a4271e25c740b1edabd19fbbf34, type: 3}
+        - {fileID: 8300000, guid: 1ec5ee6f3471d9e4a91f66c0b420e93e, type: 3}
+        - {fileID: 8300000, guid: 722dfa6622d0178419bf94acab268462, type: 3}
+        - {fileID: 8300000, guid: 9cead6bd558e3d6478bf9569e7004ace, type: 3}
+        - {fileID: 8300000, guid: 9034010967aecda408afdafd56401114, type: 3}
+    - rid: 3745621770594418778
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 4531430751414488565}
+        startTime: {x: 0, y: 0}
+        volume: 0.75
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 31c7a81cb45bcf747800b5bdc86ef626, type: 3}
+        - {fileID: 8300000, guid: b3ce88283fc63024dafdf5354622b17d, type: 3}
+        - {fileID: 8300000, guid: 4165631e8c974fe4a96e598a79e2c01b, type: 3}
+        - {fileID: 8300000, guid: 895bce3359dcd014da249d0d1464cee6, type: 3}
+        - {fileID: 8300000, guid: d34d1ea489a87154e8666160f207fa0c, type: 3}
+        - {fileID: 8300000, guid: 5c1b25c5158714c499086aa2246487a8, type: 3}
     - rid: 9007422851550543872
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
-        duration: 0.3
+        duration: 0.7
         durationRandomAdd: 0
         curve:
           serializedVersion: 2
@@ -247,19 +303,28 @@ MonoBehaviour:
             time: 0
             value: 0
             inSlope: 0
-            outSlope: 1
+            outSlope: 0
             tangentMode: 0
-            weightedMode: 0
+            weightedMode: 3
             inWeight: 0
-            outWeight: 0
+            outWeight: 0.333334
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 2.9999938
+            outSlope: 2.9999943
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333403
+            outWeight: 0.33333397
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 1
+            inSlope: 0
             outSlope: 0
             tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
+            weightedMode: 3
+            inWeight: 0.33333397
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
@@ -268,7 +333,15 @@ MonoBehaviour:
           rid: -2
         action:
           rid: 9007422851550543873
-        events: []
+        events:
+        - direction: 1
+          progress: 0
+          action:
+            rid: 3745621770594418777
+        - direction: 2
+          progress: 0.1
+          action:
+            rid: 3745621770594418778
     - rid: 9007422851550543873
       type: {class: TweenProgressActionRotateTransform, ns: MisterGames.TweenLib,
         asm: MisterGames.TweenLib}
@@ -290,9 +363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cancelOnNextAction: 1
+  _cancelOnNextAction: 0
   _startAction:
-    rid: 3745621704057815098
+    rid: 3745621770594418779
   _stopAction:
     rid: -2
   references:
@@ -300,7 +373,14 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 3745621704057815098
+    - rid: 3745621770594418779
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 3745621770594418780
+        - rid: 3745621770594418781
+    - rid: 3745621770594418780
       type: {class: PlayTweenAction, ns: MisterGames.ActionLib.Tweens, asm: MisterGames.ActionLib}
       data:
         tweenRunner: {fileID: 1656438094539248619}
@@ -311,6 +391,37 @@ MonoBehaviour:
           _hasValue: 0
           _value: 0
         waitTween: 0
+    - rid: 3745621770594418781
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 4531430751414488565}
+        startTime: {x: 0, y: 0}
+        volume: 0.7
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 8689e1405da3992419b16bfb1dfba706, type: 3}
+        - {fileID: 8300000, guid: a3a416b736ddc8b41b0cd109d2c1e597, type: 3}
+        - {fileID: 8300000, guid: b20653fd2f9e834429c974c2dea92a93, type: 3}
+        - {fileID: 8300000, guid: f3e033bb7dff18545b37e0de4280302d, type: 3}
+        - {fileID: 8300000, guid: 14f338be9d687fa41b600091ab82de73, type: 3}
+        - {fileID: 8300000, guid: 5a4515926c0dc694d90b9a1d558a5e3e, type: 3}
+        - {fileID: 8300000, guid: 4a5e2e2fe3b0b5442a9791adb55754ec, type: 3}
+        - {fileID: 8300000, guid: bd44d74f79c1aa74584f01eba98cc4f0, type: 3}
+        - {fileID: 8300000, guid: 804e6313bc0152b43977d1b778694542, type: 3}
 --- !u!1 &6367948374756771386
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +434,7 @@ GameObject:
   - component: {fileID: 5366204070288515016}
   - component: {fileID: 3790015881618435202}
   m_Layer: 0
-  m_Name: Rama
+  m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,7 +520,7 @@ GameObject:
   - component: {fileID: 520804649199348724}
   - component: {fileID: 4195173522799636769}
   m_Layer: 0
-  m_Name: Ruchka
+  m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
