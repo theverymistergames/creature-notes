@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8011002662921231058}
   - component: {fileID: 2746997402755315129}
   - component: {fileID: 4602381189044325007}
-  - component: {fileID: 862102956376087201}
   m_Layer: 0
   m_Name: Ladder
   m_TagString: Untagged
@@ -121,99 +120,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _triggerListenerForRigidbody: {fileID: 8011002662921231058}
-  _triggerEvent: 0
   _layerMask:
     serializedVersion: 2
     m_Bits: 4
-  _action:
-    rid: 7921366959314436192
+  _onEnter:
+    rid: 3745621811509330018
+  _onExit:
+    rid: 3745621811509330024
   references:
     version: 2
     RefIds:
-    - rid: 7921366959314436192
+    - rid: 3745621811509330018
       type: {class: UseCharacterContextAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
         action:
-          rid: 7921366959314436193
-    - rid: 7921366959314436193
+          rid: 3745621811509330019
+    - rid: 3745621811509330019
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
-        - rid: 7921366959314436194
-        - rid: 7921366959314436195
-        - rid: 7921366959314436196
-        - rid: 7921366959314436197
-    - rid: 7921366959314436194
+        - rid: 3745621811509330020
+        - rid: 3745621811509330023
+        - rid: 3745621811509330021
+        - rid: 3745621811509330022
+    - rid: 3745621811509330020
       type: {class: CharacterActionEnableMotionGraph, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
+        source: {fileID: 951338904897215801}
         isEnabled: 0
-    - rid: 7921366959314436195
+    - rid: 3745621811509330021
       type: {class: CharacterActionSetSpeedMultiplier, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
-        speed: 3
+        speed: 4
         moveForce: 20
-    - rid: 7921366959314436196
+    - rid: 3745621811509330022
       type: {class: CharacterActionSetSpeedCorrection, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
         sideCorrection: 1
         backCorrection: 1
-    - rid: 7921366959314436197
+    - rid: 3745621811509330023
       type: {class: CharacterActionEnablePoseGraph, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
+        source: {fileID: 951338904897215801}
         isEnabled: 0
---- !u!114 &862102956376087201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6190552028011167256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df20d0f67b2347348495aa0ef3a99730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _triggerListenerForRigidbody: {fileID: 8011002662921231058}
-  _triggerEvent: 1
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 4
-  _action:
-    rid: 7921366959314436198
-  references:
-    version: 2
-    RefIds:
-    - rid: 7921366959314436198
+        forceStand: 1
+    - rid: 3745621811509330024
       type: {class: UseCharacterContextAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
         action:
-          rid: 7921366959314436199
-    - rid: 7921366959314436199
+          rid: 3745621811509330025
+    - rid: 3745621811509330025
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 0
         actions:
-        - rid: 7921366959314436200
-        - rid: 7921366959314436201
-        - rid: 7921366959314436202
-    - rid: 7921366959314436200
+        - rid: 3745621811509330026
+        - rid: 3745621811509330027
+    - rid: 3745621811509330026
       type: {class: CharacterActionEnableMotionGraph, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
+        source: {fileID: 951338904897215801}
         isEnabled: 1
-    - rid: 7921366959314436201
+    - rid: 3745621811509330027
       type: {class: CharacterActionEnablePoseGraph, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
       data:
+        source: {fileID: 951338904897215801}
         isEnabled: 1
-    - rid: 7921366959314436202
-      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
-      data:
-        actorAction: {fileID: 11400000, guid: edbc880937d298b498552fed2c27edf2, type: 2}
+        forceStand: 0

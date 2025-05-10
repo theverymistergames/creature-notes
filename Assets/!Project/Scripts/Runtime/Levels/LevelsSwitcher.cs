@@ -11,10 +11,10 @@ namespace _Project.Scripts.Runtime.Levels {
 
         private void Awake() {
 #if UNITY_EDITOR
-            TryFetchFirstActiveLevel();
+            if (SceneLoader.LaunchMode == ApplicationLaunchMode.FromCustomEditorScene) return;
 #endif
             
-            SetLevel(LevelService.Instance.CurrentLevel);
+            EnableLevel(LevelService.Instance.CurrentLevel);
         }
 
         private void OnEnable() {
@@ -26,10 +26,10 @@ namespace _Project.Scripts.Runtime.Levels {
         }
 
         private void OnLevelRequested(int level) {
-            SetLevel(level);
+            EnableLevel(level);
         }
 
-        private void SetLevel(int level) {
+        private void EnableLevel(int level) {
             if (level < 0 || level >= _levels.Length) {
                 Debug.LogError($"{nameof(LevelsSwitcher)}: requested level #{level} is not found, levels total {_levels.Length}");
                 return;
@@ -46,24 +46,8 @@ namespace _Project.Scripts.Runtime.Levels {
         }
 
 #if UNITY_EDITOR
-        [Header("Debug")]
-        [SerializeField] private bool _useFirstActiveLevelSetFromEditor = true;
-        
         private bool _isInvalidLevelsActivatedWarningShown;
 
-        private void TryFetchFirstActiveLevel() {
-            if (!_useFirstActiveLevelSetFromEditor || SceneLoader.LaunchMode != ApplicationLaunchMode.FromCustomEditorScene) {
-                return;
-            } 
-            
-            for (int i = 0; i < _levels.Length; i++) {
-                if (!_levels[i].IsLevelActive()) continue;
-
-                if (LevelService.Instance is {} levelService) levelService.CurrentLevel = i;
-                return;
-            }
-        }
-        
         private void Update() {
             int currentLevel = LevelService.Instance.CurrentLevel;
             int activeLevels = 0;
