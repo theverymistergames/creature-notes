@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8011002662921231058}
   - component: {fileID: 2746997402755315129}
   - component: {fileID: 4602381189044325007}
+  - component: {fileID: 7902892059264239809}
   m_Layer: 0
   m_Name: Ladder
   m_TagString: Untagged
@@ -196,3 +197,23 @@ MonoBehaviour:
         source: {fileID: 951338904897215801}
         isEnabled: 1
         forceStand: 0
+--- !u!114 &7902892059264239809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190552028011167256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4a43ac12654c19a62bd2f71f63562c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _compareAngleTransform: {fileID: 951338904897215801}
+  _rotationOffset: {x: 0, y: 0, z: 0}
+  _angleRange: {x: 0, y: 45}
+  _addRangeForInvertedDirection: 1
+  _enableOnAngleMatch: 0
+  _objects:
+  - {fileID: 8011002662921231058}
+  _showDebugInfo: 1
