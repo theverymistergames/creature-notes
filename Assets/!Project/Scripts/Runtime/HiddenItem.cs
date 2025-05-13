@@ -1,18 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
-using LitMotion;
-using MisterGames.Character.Core;
-using MisterGames.Character.Inventory;
-using MisterGames.Interact.Detectables;
+using MisterGames.Common.GameObjects;
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
-public class HiddenItem : MonoBehaviour, IEventListener {
+public sealed class HiddenItem : MonoBehaviour, IEventListener {
+    
     [SerializeField] private EventReference @event;
     [SerializeField] private GameObject hiddenItem;
     [SerializeField] private int activateHiddenItemDelay = 50;
@@ -20,38 +15,53 @@ public class HiddenItem : MonoBehaviour, IEventListener {
     [SerializeField] private bool activateGameObjectOnPlaced = false;
     [SerializeField] private GameObject goOnPlaced;
     
-    private Detectable _detectable;
     private Interactive _interactive;
     private Collider _collider;
+
+    private void Awake() {
+        _collider = GetComponent<BoxCollider>();
+        _interactive = GetComponent<Interactive>();
+    }
+
+    private void OnEnable() {
+        _interactive.OnStartInteract += OnStartInteract;
+        @event.Subscribe(this);
+    }
+
+    private void OnDisable() {
+        _interactive.OnStartInteract -= OnStartInteract;
+        @event.Unsubscribe(this);
+    }
 
     private void Start() {
         if (activateGameObjectOnPlaced) goOnPlaced.SetActive(false);
         
         hiddenItem.SetActive(false);
         contour.SetActive(false);
-
-        _collider = GetComponent<BoxCollider>();
-        _collider.enabled = false;
-
-        GetComponent<Interactive>().OnStartInteract += OnStartInteract;
         
-        @event.Subscribe(this);
+        _collider.enabled = false;
     }
 
     public void OnEventRaised(EventReference e) {
-        if (e.EventId != @event.EventId) return;
-        
         contour.SetActive(true);
         _collider.enabled = true;
     }
 
-    private async void OnStartInteract(IInteractiveUser obj) {
+    private void OnStartInteract(IInteractiveUser obj) {
         contour.SetActive(false);
         _collider.enabled = false;
         
         if (activateGameObjectOnPlaced) goOnPlaced.SetActive(true);
 
-        await UniTask.Delay(activateHiddenItemDelay);
+        ActivateHiddenItem(activateHiddenItemDelay * 0.001f, destroyCancellationToken).Forget();
+    }
+
+    private async UniTask ActivateHiddenItem(float delay, CancellationToken cancellationToken) {
+        await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: cancellationToken)
+            .SuppressCancellationThrow();
+        
+        if (cancellationToken.IsCancellationRequested) return;
+        
         hiddenItem.SetActive(true);
     }
 }
