@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6421990216855194992}
   - component: {fileID: 4768277841816181551}
   - component: {fileID: 2710272113326788718}
-  - component: {fileID: 4605528500821795764}
   - component: {fileID: 4603697601264571744}
   m_Layer: 0
   m_Name: Plane
@@ -60,6 +59,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -85,28 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4605528500821795764
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4236850134372413}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &4603697601264571744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,9 +109,12 @@ MonoBehaviour:
     _invertNextPlay: 1
     _tween:
       rid: 354342138046317181
+  _events: []
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 354342138046317181
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -161,8 +144,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 354342138046317182
+        events: []
     - rid: 354342138046317182
       type: {class: TweenProgressActionMoveTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
@@ -170,6 +156,8 @@ MonoBehaviour:
         useLocal: 1
         startPosition: {x: -0.0564, y: -0.1938, z: 0}
         endPosition: {x: -0.0564, y: -0.2, z: 0}
+        curvature: 0
+        curvatureAxis: {x: 0, y: 1, z: 0}
 --- !u!1 &3992775755523556678
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,8 +171,8 @@ GameObject:
   - component: {fileID: 8692343557482478267}
   - component: {fileID: 3239075634257991884}
   - component: {fileID: 4000254299170231934}
-  - component: {fileID: 8005373938492604325}
   - component: {fileID: 2231836267817425364}
+  - component: {fileID: 6605114190973036377}
   m_Layer: 0
   m_Name: Part0
   m_TagString: Untagged
@@ -255,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
+  _strategy: {fileID: 11400000, guid: 2f455542cffb7924c9ea82a9c841a494, type: 2}
   _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
   _syncEnableStateWithDetectable: 1
 --- !u!114 &4000254299170231934
@@ -289,7 +277,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 6072
+    _version: 6273
   _blackboard:
     _propertyList: e1b57c88829597439fa34d13c59efe1076d38faa
     _propertyMap:
@@ -423,111 +411,6 @@ MonoBehaviour:
           _version: 4
           _freeList: -1
           _freeCount: 0
---- !u!82 &8005373938492604325
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3992775755523556678}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e73323a237b3cc14c8779114eef11788, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.3
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 0.5
-  MaxDistance: 2
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.25
-      value: 1
-      inSlope: -4.0016
-      outSlope: -4.0016
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.48295593
-      value: 0.3691101
-      inSlope: -1.0004
-      outSlope: -1.0004
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -0.2501
-      outSlope: -0.2501
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &2231836267817425364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,22 +425,381 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cancelOnNextAction: 0
   _startAction:
-    rid: 335627397140054017
+    rid: 3745621905659921190
   _stopAction:
-    rid: 335627406780137511
+    rid: 3745621905659921203
   references:
     version: 2
     RefIds:
-    - rid: 335627397140054017
-      type: {class: CharacterTakePutItemAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: Assembly-CSharp}
+    - rid: 3745621905659921190
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
-        method: 0
-        duration: 0.3
-        ease: 7
-        disableCollider: 1
+        mode: 0
+        actions:
+        - rid: 3745621905659921191
+        - rid: 3745621905659921193
+        - rid: 3745621905659921194
+        - rid: 3745621905659921195
+        - rid: 3745621905659921196
+        - rid: 3745621905659921197
+        - rid: 3745621905659921198
+    - rid: 3745621905659921191
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 4603697601264571744}
+        - {fileID: 6605114190973036377}
+    - rid: 3745621905659921193
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0
+        mode: 2
+        action:
+          rid: 3745621905659921199
+    - rid: 3745621905659921194
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0
+        mode: 2
+        action:
+          rid: 3745621905659921200
+    - rid: 3745621905659921195
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 1
+        mode: 2
+        action:
+          rid: 3745621905659921201
+    - rid: 3745621905659921196
+      type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
         item: {fileID: 167677279050707112}
-    - rid: 335627406780137511
+        targetType: 0
+        useBodyRotation: 0
+        target: {fileID: 0}
+        offsetMode: 0
+        offset: {x: 0, y: 0, z: 0.2}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        itemRotation: {x: 0, y: -90, z: 0}
+        speed: 1
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        rotationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        detachOnStart: 0
+        attachOnFinish: 1
+        attachSmoothing: 15
+        disableColliderOnStart: 1
+        enableColliderOnFinish: 0
+    - rid: 3745621905659921197
+      type: {class: CharacterStartRotateItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 167677279050707112}
+        sensitivity: {x: -1, y: -1}
+        plane: 0
+        smoothing: 10
+    - rid: 3745621905659921198
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 0
+        isViewEnabled: 1
+    - rid: 3745621905659921199
+      type: {class: CharacterActionCameraFov, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        keepChanges: 1
+        weight: 1
+        duration: 0.6
+        durationRandom: 0
+        fovOffset:
+          multiplier: -30
+          addRandom: 5
+          curve:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: -0.0012029491
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0
+              outWeight: 0.36078
+            - serializedVersion: 3
+              time: 0.5
+              value: 0.5
+              inSlope: 1.5725082
+              outSlope: 1.5733721
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.326514
+              outWeight: 0.33093
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: -0.0009312395
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 3
+              inWeight: 0.358688
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+    - rid: 3745621905659921200
+      type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        target: {fileID: 167677279050707112}
+        mode: 0
+        orientation: {x: 0, y: 0, z: 0}
+        angularSpeed: 30
+        maxAngleDiff: 0
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1.5735515
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.330931
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009282457
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358689
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        keepLookingAtAfterFinish: 0
+        attachSmoothing: 0
+    - rid: 3745621905659921201
+      type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        horizontal:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: -1, y: 1}
+            springs: {x: 5, y: -5}
+            springFactors: {x: 2, y: 2}
+        vertical:
+          _hasValue: 1
+          _value:
+            mode: 3
+            absolute: 0
+            bounds: {x: -1, y: 1}
+            springs: {x: 5, y: -5}
+            springFactors: {x: 2, y: 2}
+    - rid: 3745621905659921203
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 3745621905659921204
+        - rid: 3745621905659921205
+        - rid: 3745621905659921206
+        - rid: 3745621905659921207
+        - rid: 3745621905659921208
+        - rid: 3745621905659921209
+        - rid: 3745621905659921211
+    - rid: 3745621905659921204
+      type: {class: CharacterActionEnableInput, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        isEnabled: 1
+        isViewEnabled: 1
+    - rid: 3745621905659921205
+      type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        actorAction: {fileID: 11400000, guid: ea3e287881d73ba4eb0ea92881243975, type: 2}
+    - rid: 3745621905659921206
+      type: {class: CharacterStopRotateItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 167677279050707112}
+    - rid: 3745621905659921207
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0
+        mode: 1
+        action:
+          rid: 3745621905659921210
+    - rid: 3745621905659921208
+      type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        item: {fileID: 167677279050707112}
+        targetType: 0
+        useBodyRotation: 0
+        target: {fileID: 0}
+        offsetMode: 0
+        offset: {x: 0, y: -0.3, z: 0}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        itemRotation: {x: 0, y: -90, z: 0}
+        speed: 1
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333334
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 5.594898
+            outSlope: 5.594899
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333403
+            outWeight: 0.33333397
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333397
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        rotationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.333334
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 5.594898
+            outSlope: 5.594899
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333403
+            outWeight: 0.33333397
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.33333397
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        detachOnStart: 1
+        attachOnFinish: 0
+        attachSmoothing: 0
+        disableColliderOnStart: 1
+        enableColliderOnFinish: 0
+    - rid: 3745621905659921209
+      type: {class: ReleaseToPoolAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        gameObjects:
+        - {fileID: 3992775755523556678}
+    - rid: 3745621905659921210
+      type: {class: CharacterActionCameraClearPersistentStates, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        duration: 1
+    - rid: 3745621905659921211
       type: {class: RaiseEventAction, ns: MisterGames.ActionLib.Events, asm: MisterGames.ActionLib}
       data:
         eventReference:
@@ -567,3 +809,55 @@ MonoBehaviour:
           _subId: 0
         mode: 0
         count: 1
+--- !u!114 &6605114190973036377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3992775755523556678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a14bdd0212f7e4099954334846960c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _useCharacterAsContext: 1
+  _cancelOnNextAction: 0
+  _enableAction:
+    rid: 3745621905659921186
+  _disableAction:
+    rid: 3745621905659921187
+  references:
+    version: 2
+    RefIds:
+    - rid: 3745621905659921186
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 1471659257
+          _name: paper_loop
+        position: 1
+        transform: {fileID: 167677279050707112}
+        startTime: {x: 0, y: 1}
+        volume: 0.4
+        fadeIn: 0.5
+        fadeOut: 0.4
+        pitch: 1
+        pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 1
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: e73323a237b3cc14c8779114eef11788, type: 3}
+    - rid: 3745621905659921187
+      type: {class: StopSoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attachId:
+          _hash: 1471659257
+          _name: paper_loop
+        position: 1
+        transform: {fileID: 167677279050707112}

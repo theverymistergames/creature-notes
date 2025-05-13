@@ -77,6 +77,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 1899963062963142699
       type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -150,6 +152,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 1899963062963142701
         events: []
@@ -200,6 +204,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 1899963062963142704
         events: []
@@ -314,7 +320,6 @@ GameObject:
   - component: {fileID: 8344822141902773018}
   - component: {fileID: 8229941445589677808}
   - component: {fileID: 4802249304634999158}
-  - component: {fileID: 1554900055311517217}
   m_Layer: 8
   m_Name: Root
   m_TagString: Untagged
@@ -498,7 +503,32 @@ MonoBehaviour:
         target: {fileID: 4633759923379028717}
         mode: 0
         orientation: {x: 0, y: 0, z: 0}
-        duration: 0.5
+        angularSpeed: 30
+        maxAngleDiff: 0
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1.5735515
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.330931
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009282457
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358689
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
         keepLookingAtAfterFinish: 0
         attachSmoothing: 0
     - rid: 1899963271008747597
@@ -511,15 +541,7 @@ MonoBehaviour:
         - rid: 1899963271008747603
         - rid: 1899963271008747606
         - rid: 1899963271008747616
-        - rid: 1899963271008747598
-    - rid: 1899963271008747598
-      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        enabled: 0
-        delay: 0
-        gameObjects:
-        - {fileID: 2346530258614304042}
+        - rid: 3745621905659921189
     - rid: 1899963271008747599
       type: {class: CharacterMoveItemAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -532,16 +554,7 @@ MonoBehaviour:
         offset: {x: 0, y: 0, z: 0.2}
         rotationOffset: {x: 0, y: 0, z: 0}
         itemRotation: {x: 0, y: -90, z: 0}
-        disableColliderOnStart: 0
-        detachOnStart: 0
-        enableColliderOnFinish: 0
-        attachOnFinish: 1
-        attachSmoothing: 15
         speed: 1
-        reduceSpeedBelowDistance: 0.2
-        speedCoeffMin: 0.3
-        exitAt: 0.95
-        pullToPositionAfterExit: 0
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -609,6 +622,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        detachOnStart: 0
+        attachOnFinish: 1
+        attachSmoothing: 15
+        disableColliderOnStart: 0
+        enableColliderOnFinish: 0
     - rid: 1899963271008747600
       type: {class: CharacterStartRotateItemAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -697,16 +715,7 @@ MonoBehaviour:
         offset: {x: 0, y: -0.3, z: 0}
         rotationOffset: {x: 0, y: 0, z: 0}
         itemRotation: {x: 0, y: -90, z: 0}
-        disableColliderOnStart: 1
-        detachOnStart: 1
-        enableColliderOnFinish: 0
-        attachOnFinish: 0
-        attachSmoothing: 0
         speed: 1
-        reduceSpeedBelowDistance: 0.5
-        speedCoeffMin: 0.01
-        exitAt: 0.9
-        pullToPositionAfterExit: 0
         curvature: 1
         progressCurve:
           serializedVersion: 2
@@ -774,6 +783,16 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        detachOnStart: 1
+        attachOnFinish: 0
+        attachSmoothing: 0
+        disableColliderOnStart: 1
+        enableColliderOnFinish: 0
+    - rid: 3745621905659921189
+      type: {class: ReleaseToPoolAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        gameObjects:
+        - {fileID: 2346530258614304042}
 --- !u!114 &4802249304634999158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,6 +819,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 1899963383820320807
       type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -844,10 +865,13 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 1899963383820320811
         events:
-        - progress: 0
+        - direction: 0
+          progress: 0
           action:
             rid: 1899963383820320822
     - rid: 1899963383820320810
@@ -879,6 +903,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 1899963383820320812
         events: []
@@ -934,110 +960,25 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 0.7
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.05
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
         audioClipVariants:
         - {fileID: 8300000, guid: 193cde262edc77f46aa6033128d9cf59, type: 3}
---- !u!82 &1554900055311517217
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563578331376904576}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &3691052449565929530
 GameObject:
   m_ObjectHideFlags: 0

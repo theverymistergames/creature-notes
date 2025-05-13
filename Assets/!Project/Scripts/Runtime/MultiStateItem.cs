@@ -1,36 +1,54 @@
-using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
+using MisterGames.Actors;
+using MisterGames.Actors.Actions;
+using MisterGames.Common.Attributes;
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class MultiStateItem : Placeable, IEventListener {
+[RequireComponent(typeof(Interactive))]
+public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener {
     
+    [Header("Positioning")]
     [SerializeField] private int startStateId = 0;
     [SerializeField] private int rightStateId = 1;
-    [SerializeField] private Vector3 moveOutVector = new Vector3();
+    [SerializeField] private Vector3 moveOutVector;
     [SerializeField] private Vector3[] positions;
     [SerializeField] private Vector3[] rotations;
     [SerializeField] private float animationTime = 1f;
 
+    [Header("Reset")]
     [FormerlySerializedAs("levelLoadedEvent")] [SerializeField] private EventReference resetEvent;
-    [SerializeField] private AudioClip startSound;
-    [SerializeField] private AudioClip endSound;
+
+    [Header("Actions")]
+    [SerializeReference] [SubclassSelector] private IActorAction _onStart;
+    [SerializeReference] [SubclassSelector] private IActorAction _onEnd;
     
+    [Header("DEPRECATED, use actions")]
+    [ReadOnly] [SerializeField] private AudioClip startSound;
+    [ReadOnly] [SerializeField] private AudioClip endSound;
+    
+    private CancellationToken _destroyToken;
+    private IActor _actor;
     private Interactive _interactive;
-    private int _currentStateId;
     private MotionHandle _currentTween;
-    private AudioSource _source;
+    private int _currentStateId;
 
     public override bool IsPlacedRight() {
         return _currentStateId == rightStateId;
     }
 
+    void IActorComponent.OnAwake(IActor actor) {
+        _actor = actor;
+    }
+
     private void Awake() {
+        _destroyToken = destroyCancellationToken;
         _interactive = GetComponent<Interactive>();
-        _source = GetComponent<AudioSource>();
     }
 
     private void OnEnable() {
@@ -65,11 +83,9 @@ public class MultiStateItem : Placeable, IEventListener {
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
         if (_currentTween.IsActive()) return;
 
-        if (!_source.Equals(null) && !startSound.Equals(null)) {
-            _source.PlayOneShot(startSound);
-        }
+        _onStart?.Apply(_actor, _destroyToken).Forget();
         
-        var nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
+        int nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
         
         if (positions.Length > 0) {
             var startPosition = positions[_currentStateId];
@@ -80,9 +96,7 @@ public class MultiStateItem : Placeable, IEventListener {
                 .Create(startPosition, midPosition, animationTime / 2)
                 .WithEase(Ease.InSine)
                 .WithOnComplete(() => { 
-                    if (!_source.Equals(null) && !endSound.Equals(null)) {
-                        _source.PlayOneShot(endSound);
-                    }
+                    _onEnd?.Apply(_actor, _destroyToken).Forget();
                     
                     _currentTween = LMotion
                         .Create(midPosition, finalPosition, animationTime / 2)
@@ -99,11 +113,7 @@ public class MultiStateItem : Placeable, IEventListener {
             _currentTween = LMotion
                 .Create(startRotation, finalRotation, animationTime)
                 .WithEase(Ease.InOutSine)
-                .WithOnComplete(() => {
-                    if (!_source.Equals(null) && !endSound.Equals(null) && positions.Length == 0) {
-                        _source.PlayOneShot(endSound);
-                    }
-                })
+                .WithOnComplete(() => _onEnd?.Apply(_actor, _destroyToken).Forget())
                 .BindToLocalEulerAngles(transform);
         }
 
