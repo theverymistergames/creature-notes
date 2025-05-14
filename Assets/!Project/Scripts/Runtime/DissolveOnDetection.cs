@@ -8,10 +8,11 @@ public sealed class DissolveOnDetection : MonoBehaviour {
     [SerializeField] private Vector2 cutoffHeightFromTo = new(1, -1);
     [SerializeField] [Min(0f)] private float duration = 2f;
     [SerializeField] private Detectable _detectable;
-
+    [SerializeField] private Collider _collider;
+    
     private readonly List<Material> _materials = new();
     private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
-
+    
     private void Awake() {
         var renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
 
@@ -29,16 +30,20 @@ public sealed class DissolveOnDetection : MonoBehaviour {
     }
 
     private void OnDetectedBy(IDetector obj) {
+        _detectable.OnDetectedBy -= OnDetectedBy;
+        
         StartDissolve();
     }
 
     private void StartDissolve() {
-        LMotion.Create(cutoffHeightFromTo[0], cutoffHeightFromTo[1], duration).WithOnComplete(() => {
-            gameObject.SetActive(false);
-        }).Bind(value => {
-            for (int i = 0; i < _materials.Count; i++) {
-                _materials[i].SetFloat(CutoffHeight, value);
-            }
-        });
+        _collider.enabled = false;
+        
+        LMotion.Create(cutoffHeightFromTo[0], cutoffHeightFromTo[1], duration)
+            .WithOnComplete(() => gameObject.SetActive(false))
+            .Bind(value => {
+                for (int i = 0; i < _materials.Count; i++) {
+                    _materials[i].SetFloat(CutoffHeight, value);
+                }
+            });
     }
 }

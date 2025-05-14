@@ -19,10 +19,13 @@ public sealed class SetInteractiveOnEvent : MonoBehaviour, IEventListener {
         enableEvent.Subscribe(this);
         disableEvent.Subscribe(this);
 
-        if (!disableOnStart) return;
-        
-        _collider.enabled = false;
-        if (useInteractive) _interactive.enabled = false;
+        if (disableOnStart) {
+            _collider.enabled = false;
+            if (useInteractive) _interactive.enabled = false;
+        }
+
+        if (enableEvent.IsRaised()) OnEventRaised(enableEvent);
+        if (disableEvent.IsRaised()) OnEventRaised(disableEvent);
     }
 
     private void OnDestroy() {

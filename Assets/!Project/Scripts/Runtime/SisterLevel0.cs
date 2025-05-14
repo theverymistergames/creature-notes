@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -6,26 +5,25 @@ using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using MisterGames.Tweens;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class SisterLevel0 : MonoBehaviour, IEventListener {
-    [SerializeField] GameObject reactionContainer;
-    [SerializeField] SpriteRenderer reactionImage;
+public sealed class SisterLevel0 : MonoBehaviour, IEventListener {
+    
+    [SerializeField] private GameObject reactionContainer;
+    [SerializeField] private SpriteRenderer reactionImage;
 
-    [SerializeField] List<Sprite> reactions = new();
-    [SerializeField] TweenRunner bookTween;
+    [SerializeField] private List<Sprite> reactions = new();
+    [SerializeField] private TweenRunner bookTween;
 
     [SerializeField] private int placesCountTarget = 0;
 
-    [SerializeField] EventReference itemsPlacedEvent;
-    [SerializeField] EventReference questGivenEvent;
+    [SerializeField] private EventReference itemsPlacedEvent;
+    [SerializeField] private EventReference questGivenEvent;
 
-    private int _placesCount = 0;
-    Interactive _interactive;
-    TweenRunner _runner;
-    Book _book;
+    private Interactive _interactive;
+    private TweenRunner _runner;
+    private Book _book;
 
-    bool _questFinished;
+    private bool _questFinished;
 
     private void Awake() {
         _interactive = GetComponent<Interactive>();
@@ -33,29 +31,35 @@ public class SisterLevel0 : MonoBehaviour, IEventListener {
         _book.SetInteractive(false);
         _runner = GetComponent<TweenRunner>();
         
-        itemsPlacedEvent.Subscribe(this);
-        
         reactionContainer.transform.localScale = Vector3.zero;
         reactionImage.sprite = reactions[0];
 
         if (placesCountTarget == 0) _questFinished = true;
     }
 
+    private void OnEnable() {
+        itemsPlacedEvent.Subscribe(this);
+        _interactive.OnStartInteract += OnStartInteract;
+    }
+
+    private void OnDisable() {
+        itemsPlacedEvent.Unsubscribe(this);
+        _interactive.OnStartInteract -= OnStartInteract;
+    }
+    
     private void OnStartInteract(IInteractiveUser obj) {
         PlayBubbleTween();
 
         if (_questFinished) {
-            _questFinished = false;
-            
             StartCoroutine(GiveBook());
             
             _interactive.enabled = false;
         }
         
-        if (questGivenEvent.GetCount() == 0) questGivenEvent.Raise();
+        if (!questGivenEvent.IsRaised()) questGivenEvent.Raise();
     }
 
-    void PlayBubbleTween() {
+    private void PlayBubbleTween() {
         _runner.TweenPlayer.Progress = 0f;
         _runner.TweenPlayer.Speed = 1f;
         _runner.TweenPlayer.Play().Forget();
@@ -72,16 +76,6 @@ public class SisterLevel0 : MonoBehaviour, IEventListener {
     }
 
     public void OnEventRaised(EventReference e) {
-        if (e.EventId != itemsPlacedEvent.EventId) return;
-        
-        if (++_placesCount == placesCountTarget) _questFinished = true;
-    }
-
-    private void OnEnable() {
-        _interactive.OnStartInteract += OnStartInteract;
-    }
-
-    private void OnDisable() {
-        _interactive.OnStartInteract -= OnStartInteract;
+        if (e.GetCount() >= placesCountTarget) _questFinished = true;
     }
 }

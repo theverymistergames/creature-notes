@@ -1,0 +1,336 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1296612634309363066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734903157287568159}
+  - component: {fileID: 4656341505019021393}
+  - component: {fileID: 3605912131658190879}
+  - component: {fileID: 2830088398854830430}
+  - component: {fileID: 7274186029898379214}
+  - component: {fileID: 8219720410745012220}
+  - component: {fileID: 2844173592553237208}
+  m_Layer: 0
+  m_Name: Level0GrabItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734903157287568159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296612634309363066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.7232671, y: 0.7245631, z: 0.72467446}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4656341505019021393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296612634309363066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: a8cdbd99144d8264889e124f81c04b36, type: 2}
+  _syncEnableStateWithDetectable: 1
+--- !u!114 &3605912131658190879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296612634309363066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
+  _debugDrawDetectable: 0
+--- !u!65 &2830088398854830430
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296612634309363066}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.128044, y: 0.20724593, z: 0.37781408}
+  m_Center: {x: -0.0025259983, y: 0.103008725, z: 0.007519181}
+--- !u!114 &7274186029898379214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296612634309363066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blueprintAsset: {fileID: 11400000, guid: dd3db0a4a2fca7146b40f5d0814b12ea, type: 2}
+  _subgraphTree:
+    _nodes: []
+    _rootIndexMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _nodeIndexMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _count: 0
+    _head: 0
+    _version: 21884
+  _blackboard:
+    _propertyList: 8c8c6cac87c72846c741ac5c03614885
+    _propertyMap:
+      _buckets: 00000000ffffffffffffffff03000000
+      _entries:
+      - hashCode: 745311372
+        next: -1
+        key: -1402172276
+        value:
+          name: HideGameObjectOnInteract
+          type:
+            _type: System.Boolean, mscorlib
+          table: 1
+      - hashCode: 1177077639
+        next: -1
+        key: 1177077639
+        value:
+          name: EventReference
+          type:
+            _type: MisterGames.Scenario.Events.EventReference, MisterGames.Scenario
+          table: 2
+      - hashCode: 1554792903
+        next: 1
+        key: 1554792903
+        value:
+          name: ShowGameObjectOnInteract
+          type:
+            _type: System.Boolean, mscorlib
+          table: 1
+      - hashCode: 88629507
+        next: 2
+        key: -2058854141
+        value:
+          name: GameObject
+          type:
+            _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          table: 0
+      _count: 4
+      _version: 26
+      _freeList: -1
+      _freeCount: 0
+    _tables:
+      _buckets: 000000000100000002000000
+      _entries:
+      - hashCode: 0
+        next: -1
+        key: 0
+        value:
+          rid: 354342052719493140
+      - hashCode: 1
+        next: -1
+        key: 1
+        value:
+          rid: 354342052719493141
+      - hashCode: 2
+        next: -1
+        key: 2
+        value:
+          rid: 354342052719493142
+      _count: 3
+      _version: 14
+      _freeList: -1
+      _freeCount: 0
+    _tablesHead: 3
+  _rootMetaOverride:
+    rid: -2
+  _isRootOverrideEnabled: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 354342052719493140
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 88629507
+            next: -1
+            key: -2058854141
+            value:
+              value: {fileID: 0}
+          _count: 1
+          _version: 7
+          _freeList: -1
+          _freeCount: 0
+    - rid: 354342052719493141
+      type: {class: BlackboardTableBool, ns: MisterGames.Blackboards.Tables, asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 0000000001000000
+          _entries:
+          - hashCode: 745311372
+            next: -1
+            key: -1402172276
+            value: 0
+          - hashCode: 1554792903
+            next: -1
+            key: 1554792903
+            value: 1
+          _count: 2
+          _version: 4
+          _freeList: -1
+          _freeCount: 0
+    - rid: 354342052719493142
+      type: {class: BlackboardTableEventReference, ns: , asm: Assembly-CSharp}
+      data:
+        _map:
+          _buckets: 00000000
+          _entries:
+          - hashCode: 1177077639
+            next: -1
+            key: 1177077639
+            value:
+              _eventDomain: {fileID: 11400000, guid: 26a8a569bce5db944a840f8459e9583b,
+                type: 2}
+              _eventId: 3
+              _subId: 0
+          _count: 1
+          _version: 1
+          _freeList: -1
+          _freeCount: 0
+--- !u!114 &8219720410745012220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296612634309363066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715117ef01857d4091baeb3800e687c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableEvent:
+    _eventDomain: {fileID: 11400000, guid: 26a8a569bce5db944a840f8459e9583b, type: 2}
+    _eventId: 13
+    _subId: 0
+  disableEvent:
+    _eventDomain: {fileID: 0}
+    _eventId: -1
+    _subId: 0
+  disableOnStart: 1
+  useInteractive: 0
+--- !u!114 &2844173592553237208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296612634309363066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f56d1372d64c918403c3094a120032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cancelOnNextAction: 0
+  _startAction:
+    rid: 8090405788601810945
+  _stopAction:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3745621928202731665
+      type: {class: ReleaseToPoolAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        gameObjects:
+        - {fileID: 1296612634309363066}
+    - rid: 8090405788601810945
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 8090405788601810947
+        - rid: 8090405788601810946
+        - rid: 3745621928202731665
+    - rid: 8090405788601810946
+      type: {class: CharacterTakePutItemAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: Assembly-CSharp}
+      data:
+        method: 0
+        duration: 0.3
+        ease: 7
+        disableCollider: 1
+        item: {fileID: 734903157287568159}
+    - rid: 8090405788601810947
+      type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
+      data:
+        attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 1
+        transform: {fileID: 734903157287568159}
+        startTime: {x: 0, y: 0}
+        volume: 1
+        fadeIn: 0
+        fadeOut: -1
+        pitch: 1
+        pitchRandomAdd: 0.3
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
+        audioClipVariants:
+        - {fileID: 8300000, guid: 92e787acdfa6222418d485b72e5d3f56, type: 3}
+        - {fileID: 8300000, guid: 6b657bdafd8629445b299b828a537efa, type: 3}
+        - {fileID: 8300000, guid: 0205ee6590293104aa3ceaa4cf0daaaf, type: 3}

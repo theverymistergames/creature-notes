@@ -1,37 +1,46 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using LitMotion;
 using LitMotion.Extensions;
+using MisterGames.Actors.Actions;
 using MisterGames.Common.Attributes;
 using MisterGames.Interact.Interactives;
 using UnityEngine;
 
-public class ShufflePlace : Placeable {
+public sealed class ShufflePlace : Placeable {
+    
     [SerializeField] private GameObject[] cars;
     [SerializeField] private int rightStep = 0;
     [SerializeField] private int startStep = 0;
+
+    [SerializeReference] [SubclassSelector] private IActorAction _onMove;
     
-    private List<Vector3> positions = new List<Vector3>();
+    private readonly List<Vector3> positions = new();
     private int _step = 0;
     private Interactive _interactive;
-    private AudioSource _source;
     
     public override bool IsPlacedRight() {
         return _step == rightStep;
     }
     
     private void Awake() {
-        foreach (var car in cars) {
-            positions.Add(car.transform.localPosition);
-        }
-
         _interactive = GetComponent<Interactive>();
-        _source = GetComponent<AudioSource>();
         
-        for (var i = 0; i < startStep; i++) {
-            Shuffle(true);
+        for (int i = 0; i < cars.Length; i++) {
+            positions.Add(cars[i].transform.localPosition);
         }
+        
+        for (int i = 0; i < startStep; i++) {
+            Shuffle(instant: true);
+        }
+    }
+    
+    private void OnEnable() {
+        _interactive.OnStartInteract += ShuffleOnInteract;
+    }
+
+    private void OnDisable() {
+        _interactive.OnStartInteract -= ShuffleOnInteract;
     }
 
     private void ShuffleOnInteract(IInteractiveUser user) {
@@ -39,24 +48,17 @@ public class ShufflePlace : Placeable {
     }
 
     private void Shuffle(bool instant) {
-        _step = (_step - 1 < 0 ? cars.Length - 1 : _step - 1);
-        if (!instant) _source.Play();
+        _step = _step - 1 < 0 ? cars.Length - 1 : _step - 1;
 
-        var index = 0;
-        
-        foreach (var car in cars) {
-            LMotion.Create(car.transform.localPosition, positions[(index + _step) % cars.Length], instant ? 0.01f : 0.3f).BindToLocalPosition(car.transform);
-            index++;
+        if (!instant) {
+            _onMove?.Apply(null, destroyCancellationToken).Forget();
         }
-        
+
+        for (int i = 0; i < cars.Length; i++) {
+            var car = cars[i];
+            LMotion.Create(car.transform.localPosition, positions[(i + _step) % cars.Length], instant ? 0.01f : 0.3f).BindToLocalPosition(car.transform);
+        }
+
         OnPlaced();
-    }
-
-    private void OnEnable() {
-        _interactive.OnStartInteract += ShuffleOnInteract;
-    }
-
-    private void OnDisable() {
-        _interactive.OnStartInteract -= ShuffleOnInteract;
     }
 }
