@@ -13,14 +13,15 @@ internal enum State {
     Reversed,
 }
 
-public class Book : MonoBehaviour {
+public sealed class Book : MonoBehaviour {
     public float pageSwitchTreshold = 0.02f;
     public float totalAnimTime = 2.042f;
     public float animSpeed = 2;
     public Interactive colliderLeft;
     public Interactive colliderRight;
     public EventReference pageFlipEvent;
-    [NonSerialized] private List<Animator> _pages = new List<Animator>();
+    
+    private List<Animator> _pages = new List<Animator>();
 
     private int _step = 0;
     private State _state = State.None;
