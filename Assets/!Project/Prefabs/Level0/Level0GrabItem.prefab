@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2830088398854830430}
   - component: {fileID: 7274186029898379214}
   - component: {fileID: 8219720410745012220}
-  - component: {fileID: 1751295625688926864}
   - component: {fileID: 2844173592553237208}
   m_Layer: 0
   m_Name: Level0GrabItem
@@ -119,7 +118,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 21137
+    _version: 21371
   _blackboard:
     _propertyList: 8c8c6cac87c72846c741ac5c03614885
     _propertyMap:
@@ -266,103 +265,6 @@ MonoBehaviour:
     _subId: 0
   disableOnStart: 1
   useInteractive: 0
---- !u!82 &1751295625688926864
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1296612634309363066}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8b8963f3428114245945ba8fe0984e51, type: 3}
-  m_Resource: {fileID: 8300000, guid: 8b8963f3428114245945ba8fe0984e51, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &2844173592553237208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +287,11 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 3745621928202731665
+      type: {class: ReleaseToPoolAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        gameObjects:
+        - {fileID: 1296612634309363066}
     - rid: 8090405788601810945
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -392,6 +299,7 @@ MonoBehaviour:
         actions:
         - rid: 8090405788601810947
         - rid: 8090405788601810946
+        - rid: 3745621928202731665
     - rid: 8090405788601810946
       type: {class: CharacterTakePutItemAction, ns: MisterGames.ActionLib.GameObjects,
         asm: Assembly-CSharp}
@@ -405,10 +313,24 @@ MonoBehaviour:
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
         attach: 1
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.3
         spatialBlend: 1
         loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
         audioClipVariants:
-        - {fileID: 8300000, guid: 8b8963f3428114245945ba8fe0984e51, type: 3}
+        - {fileID: 8300000, guid: 92e787acdfa6222418d485b72e5d3f56, type: 3}
+        - {fileID: 8300000, guid: 6b657bdafd8629445b299b828a537efa, type: 3}
+        - {fileID: 8300000, guid: 0205ee6590293104aa3ceaa4cf0daaaf, type: 3}

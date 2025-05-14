@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using LitMotion;
@@ -27,10 +28,17 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
     [Header("Actions")]
     [SerializeReference] [SubclassSelector] private IActorAction _onStart;
     [SerializeReference] [SubclassSelector] private IActorAction _onEnd;
+    [SerializeField] private StateOverride[] _stateOverrides;
     
     [Header("DEPRECATED, use actions")]
     [ReadOnly] [SerializeField] private AudioClip startSound;
     [ReadOnly] [SerializeField] private AudioClip endSound;
+
+    [Serializable]
+    private struct StateOverride {
+        public int startState;
+        [SerializeReference] [SubclassSelector] public IActorAction onStart;
+    }
     
     private CancellationToken _destroyToken;
     private IActor _actor;
@@ -83,7 +91,7 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
     private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
         if (_currentTween.IsActive()) return;
 
-        _onStart?.Apply(_actor, _destroyToken).Forget();
+        GetStartAction(_currentStateId)?.Apply(_actor, _destroyToken).Forget();
         
         int nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
         
@@ -113,12 +121,25 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
             _currentTween = LMotion
                 .Create(startRotation, finalRotation, animationTime)
                 .WithEase(Ease.InOutSine)
-                .WithOnComplete(() => _onEnd?.Apply(_actor, _destroyToken).Forget())
+                .WithOnComplete(() => {
+                    if (positions is not { Length: > 0 }) _onEnd?.Apply(_actor, _destroyToken).Forget();
+                })
                 .BindToLocalEulerAngles(transform);
         }
 
         _currentStateId = nextId;
 
         OnPlaced();
+    }
+
+    private IActorAction GetStartAction(int currentStateId) {
+        for (int i = 0; i < _stateOverrides.Length; i++) {
+            ref var stateOverride = ref _stateOverrides[i];
+            if (stateOverride.startState != currentStateId) continue;
+            
+            return stateOverride.onStart;
+        }
+
+        return _onStart;
     }
 }

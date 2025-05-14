@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8964813455530417176}
   - component: {fileID: 3630085659500398615}
   - component: {fileID: 2976371699252118503}
-  - component: {fileID: 7314158319161862773}
   m_Layer: 0
   m_Name: HiddenItem
   m_TagString: Untagged
@@ -54,6 +53,7 @@ MonoBehaviour:
   event:
     _eventDomain: {fileID: 11400000, guid: f318188466a84fe4899d31777fd56ef8, type: 2}
     _eventId: 3
+    _subId: 0
   hiddenItem: {fileID: 8347907087650851439}
   activateHiddenItemDelay: 50
   contour: {fileID: 7103517647349493603}
@@ -150,110 +150,28 @@ MonoBehaviour:
     - rid: 335627338441818129
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
-        source: {fileID: 7314158319161862773}
-        mode: 0
-        loop: 0
+        attach: 0
+        attachId:
+          _hash: 0
+          _name: 
+        position: 0
+        transform: {fileID: 0}
+        startTime: {x: 0, y: 0}
         volume: 1
+        fadeIn: 0
+        fadeOut: -1
         pitch: 1
         pitchRandomAdd: 0.1
+        spatialBlend: 1
+        loop: 0
+        affectedByTimeScale: 1
+        occlusion: 1
+        useActorDestroyToken: 0
+        mixerGroup: {fileID: 0}
         audioClipVariants:
-        - {fileID: 8300000, guid: 67c2647b73222ba4cad6eb2d92a9950d, type: 3}
---- !u!82 &7314158319161862773
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2821739471492084195}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+        - {fileID: 8300000, guid: 56f92f7816766f94fb27c85aac954d5a, type: 3}
+        - {fileID: 8300000, guid: 1efb59aea9c3fb44a9cd519927dfd5b8, type: 3}
+        - {fileID: 8300000, guid: ac4d2ebeb40f86f4b960898cdbf5c3e0, type: 3}
 --- !u!1001 &7102720915389800353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324,24 +242,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 23500337636562088, guid: 252c2cf43e140444e9766e582476d9e5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: bc571f4d55bfe8946a7f706439a53a1f, type: 2}
     - target: {fileID: 23587962202643040, guid: 252c2cf43e140444e9766e582476d9e5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -876546973899608171, guid: 345cb95861b71eb49a7e9ea26aae645a,
         type: 3}
     - target: {fileID: 23667865143273556, guid: 252c2cf43e140444e9766e582476d9e5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -876546973899608171, guid: 345cb95861b71eb49a7e9ea26aae645a,
         type: 3}
     - target: {fileID: 23910109474087868, guid: 252c2cf43e140444e9766e582476d9e5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -876546973899608171, guid: 345cb95861b71eb49a7e9ea26aae645a,
         type: 3}
@@ -428,17 +346,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 23587962202643040, guid: 252c2cf43e140444e9766e582476d9e5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 475b39efeec6bfa4c9e04427ecb7aae9, type: 2}
     - target: {fileID: 23667865143273556, guid: 252c2cf43e140444e9766e582476d9e5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 475b39efeec6bfa4c9e04427ecb7aae9, type: 2}
     - target: {fileID: 23910109474087868, guid: 252c2cf43e140444e9766e582476d9e5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 475b39efeec6bfa4c9e04427ecb7aae9, type: 2}
     m_RemovedComponents: []
