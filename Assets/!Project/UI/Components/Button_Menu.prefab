@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2764201597928086370}
-  - component: {fileID: 8951842312565775713}
   - component: {fileID: 5392688919201038958}
   - component: {fileID: 7595193892171774348}
+  - component: {fileID: 7691974823303130368}
   m_Layer: 5
   m_Name: Button_Menu
   m_TagString: Untagged
@@ -39,14 +39,6 @@ RectTransform:
   m_AnchoredPosition: {x: -738, y: 170}
   m_SizeDelta: {x: 256, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8951842312565775713
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3507768540230809295}
-  m_CullTransparentMesh: 1
 --- !u!114 &5392688919201038958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +97,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _button: {fileID: 5392688919201038958}
   _buttonText: {fileID: 3905633421373445334}
+  _cancelMode: 0
+  _clickAction:
+    rid: -2
   _selectOnHover: 1
   _defaultDuration: 0.15
   _hoverDuration: 0.15
@@ -220,6 +215,43 @@ MonoBehaviour:
   _hoverColorText: {r: 1, g: 0.9104412, b: 0.6367924, a: 1}
   _selectColorText: {r: 1, g: 0.9098039, b: 0.63529414, a: 1}
   _pressColorText: {r: 1, g: 0.9098039, b: 0.63529414, a: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &7691974823303130368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3507768540230809295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c8e1a171414c67a7a1983eb1a42fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiSfxSettings: {fileID: 11400000, guid: 9e950d194919f9148a7e53712aeb823d, type: 2}
+  _stateOptions:
+  - state: 1
+    sounds:
+    - {fileID: 8300000, guid: 65e9bf0d71e490747b52d01d66807d86, type: 3}
+    - {fileID: 8300000, guid: ef557a5e479e81040a641937c9afd4dd, type: 3}
+    - {fileID: 8300000, guid: 1d00231c36ff8e94f84cb49191893790, type: 3}
+    - {fileID: 8300000, guid: 695986b8b1317d84fbcca7095559652b, type: 3}
+    - {fileID: 8300000, guid: ae0dd0137314ab140a99076b43c167a3, type: 3}
+    - {fileID: 8300000, guid: e4e01fff999757e4ea31c2ce9f3c35d3, type: 3}
+    - {fileID: 8300000, guid: f323bfcd73cff624db8fbb3665f5f1e2, type: 3}
+    - {fileID: 8300000, guid: 6b3d4c5c8228c5d4b9bd36e9c90ba00d, type: 3}
+  - state: 3
+    sounds:
+    - {fileID: 8300000, guid: 1873cdc00ebb6b344aaea1e6bdad73c9, type: 3}
+    - {fileID: 8300000, guid: 9ec86450b7e4fc042ad7d8023e0a7f21, type: 3}
+    - {fileID: 8300000, guid: 64136b2d0ce911542b8fb13586767cae, type: 3}
+    - {fileID: 8300000, guid: 1ef89d93ce258c2489562ab66f2ec373, type: 3}
+    - {fileID: 8300000, guid: 0532cd74cf798b14196e31096645b592, type: 3}
+  _clickSounds: []
 --- !u!1 &7549268558973629957
 GameObject:
   m_ObjectHideFlags: 0
