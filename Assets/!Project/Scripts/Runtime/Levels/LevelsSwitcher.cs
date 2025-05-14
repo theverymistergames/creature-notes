@@ -11,7 +11,15 @@ namespace _Project.Scripts.Runtime.Levels {
 
         private void Awake() {
 #if UNITY_EDITOR
-            if (SceneLoader.LaunchMode == ApplicationLaunchMode.FromCustomEditorScene) return;
+            if (!_launchFirstActiveLevelInEditor &&
+                SceneLoader.LaunchMode == ApplicationLaunchMode.FromCustomEditorScene ||
+                !TryGetFirstActiveLevel(out int level)) 
+            {
+                return;
+            }
+
+            Debug.LogWarning($"{nameof(LevelsSwitcher)}: f {Time.frameCount}, launching first active level in editor: level {level}.");
+            LevelService.Instance.CurrentLevel = level;
 #endif
             
             EnableLevel(LevelService.Instance.CurrentLevel);
@@ -31,7 +39,7 @@ namespace _Project.Scripts.Runtime.Levels {
 
         private void EnableLevel(int level) {
             if (level < 0 || level >= _levels.Length) {
-                Debug.LogError($"{nameof(LevelsSwitcher)}: requested level #{level} is not found, levels total {_levels.Length}");
+                Debug.LogError($"{nameof(LevelsSwitcher)}: requested level #{level} is not found, levels total {_levels.Length}.");
                 return;
             }
 
@@ -42,12 +50,27 @@ namespace _Project.Scripts.Runtime.Levels {
             _levels[level].EnableLevel(true);
             _levels[level].SpawnOnLevel(_defaultSpawnPoint.transform);
             
-            Debug.Log($"{nameof(LevelsSwitcher)}: enabled level #{level}");
+            Debug.Log($"{nameof(LevelsSwitcher)}: enabled level #{level}.");
         }
 
 #if UNITY_EDITOR
+        [Header("Debug")]
+        [SerializeField] private bool _launchFirstActiveLevelInEditor;
+        
         private bool _isInvalidLevelsActivatedWarningShown;
 
+        private bool TryGetFirstActiveLevel(out int level) {
+            for (int i = 0; i < _levels.Length; i++) {
+                if (!_levels[i].IsLevelActive()) continue;
+                
+                level = i;
+                return true;
+            }
+
+            level = -1;
+            return false;
+        }
+        
         private void Update() {
             int currentLevel = LevelService.Instance.CurrentLevel;
             int activeLevels = 0;

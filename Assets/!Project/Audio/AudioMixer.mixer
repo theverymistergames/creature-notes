@@ -58,7 +58,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ambient
+  m_Name: Menu_ambient
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: f6e7cf6940e82384d9e04689b4129542
   m_Children: []
@@ -126,6 +126,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-1524875809464387909
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 621d72fa931e5924db07550a158cf5a1
+  m_EffectName: Attenuation
+  m_MixLevel: 3613326f13243ce4c823cc861938a921
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-726695251665929627
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -194,6 +208,7 @@ AudioMixerController:
     - e860a452c3657df478a8b0dcaa03330b
     - f6e7cf6940e82384d9e04689b4129542
     - c3c4acb470f6ce14b8b15c89e5d572e3
+    - 10b481f6aac561e41aa2410efc523258
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -248,6 +263,25 @@ AudioMixerSnapshotController:
     931547453bd5a4e478d3851ae79b8073: 22000
     fce06afba0339984ba4c6e93d0bd68b2: 22000
   m_TransitionOverrides: {}
+--- !u!243 &299348404111733640
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Gameplay_ambient
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 10b481f6aac561e41aa2410efc523258
+  m_Children: []
+  m_Volume: 76015e4c3cffc1d4d939e24c79e8d53e
+  m_Pitch: bf27e57556b828d47869e6487c6085db
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -1524875809464387909}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &1116282365831317645
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -367,6 +401,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -726695251665929627}
   - {fileID: -6301888716785178258}
+  - {fileID: 299348404111733640}
   m_Volume: 46701de2cf4f704419d884f8e914d2c1
   m_Pitch: fc93cdf49e305c646993c29a90603049
   m_Send: 00000000000000000000000000000000
