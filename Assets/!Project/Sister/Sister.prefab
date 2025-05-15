@@ -718,6 +718,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -981,6 +984,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -6418,6 +6424,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -6678,7 +6687,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: -116.151, z: 0}
 --- !u!95 &3977569362431742067
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6692,6 +6701,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -6762,16 +6772,18 @@ MonoBehaviour:
   reactionContainer: {fileID: 0}
   reactionImage: {fileID: 0}
   reactions: []
-  bookTween: {fileID: 0}
-  placesCountTarget: 0
-  itemsPlacedEvent:
-    _eventDomain: {fileID: 0}
-    _eventId: 0
-    _subId: 0
+  _spriteReactionNeedCleanup: {fileID: 0}
+  _spriteReactionCleanupCompleted: {fileID: 0}
   questGivenEvent:
     _eventDomain: {fileID: 0}
-    _eventId: 0
+    _eventId: -1
     _subId: 0
+  questCompletedEvent:
+    _eventDomain: {fileID: 0}
+    _eventId: -1
+    _subId: 0
+  _delayBeforeGivingBook: 1
+  bookTween: {fileID: 0}
 --- !u!114 &8704114433480927755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6794,9 +6806,12 @@ MonoBehaviour:
     _invertNextPlay: 0
     _tween:
       rid: 3557476089593331719
+  _events: []
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 3557476089593331719
       type: {class: TweenGroup, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -6805,6 +6820,7 @@ MonoBehaviour:
         - rid: 3557476089593331720
         - rid: 3557476089593331721
         - rid: 3557476089593331722
+        events: []
     - rid: 3557476089593331720
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -6843,13 +6859,17 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 3557476089593331724
+        events: []
     - rid: 3557476089593331721
       type: {class: DelayTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
         duration: 1
         durationRandomAdd: 0
+        events: []
     - rid: 3557476089593331722
       type: {class: ProgressTween, ns: MisterGames.Tweens, asm: MisterGames.Tweens}
       data:
@@ -6879,8 +6899,11 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        modulator:
+          rid: -2
         action:
           rid: 3557476089593331723
+        events: []
     - rid: 3557476089593331723
       type: {class: TweenProgressActionScaleTransform, ns: MisterGames.TweenLib, asm: MisterGames.TweenLib}
       data:
