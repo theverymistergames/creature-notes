@@ -44,7 +44,7 @@ namespace _Project.Scripts.Runtime.Levels {
             }
 
             for (int i = 0; i < _levels.Length; i++) {
-                _levels[i].EnableLevel(false);
+                if (i != level) _levels[i].EnableLevel(false);
             }
             
             _levels[level].EnableLevel(true);
