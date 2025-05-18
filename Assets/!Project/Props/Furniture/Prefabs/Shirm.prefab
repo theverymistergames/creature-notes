@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4695108167503528093
 Transform:
@@ -96,12 +96,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4062952114405889556}
   - component: {fileID: 8795326642544261417}
+  - component: {fileID: 6133720882855829990}
   m_Layer: 0
   m_Name: Shirm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4062952114405889556
 Transform:
@@ -142,6 +143,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.60118294, y: 0.021123877, z: 1.6355003}
   m_Center: {x: 0.004603386, y: -0.0010948703, z: 0.11440194}
+--- !u!114 &6133720882855829990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8079906501703812919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf90459613940cf95bacec2fcf38a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderers:
+  - {fileID: 2419527906978804109}
+  - {fileID: 3169543199256332021}
+  - {fileID: 6397161141209016666}
 --- !u!1 &8716295721342954667
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +175,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7280857594004476530
 Transform:
@@ -319,7 +336,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0bff92c4f1c948348b73b3a692923a24,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -329,6 +346,12 @@ PrefabInstance:
 --- !u!4 &5227664278360543797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0bff92c4f1c948348b73b3a692923a24,
+    type: 3}
+  m_PrefabInstance: {fileID: 5694482371182638558}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6397161141209016666 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 0bff92c4f1c948348b73b3a692923a24,
     type: 3}
   m_PrefabInstance: {fileID: 5694482371182638558}
   m_PrefabAsset: {fileID: 0}

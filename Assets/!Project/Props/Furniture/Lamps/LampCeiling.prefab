@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &641256974720605763
 Transform:
@@ -44,12 +44,13 @@ GameObject:
   - component: {fileID: 4218349102120899942}
   - component: {fileID: 8053477582592805057}
   - component: {fileID: 1795177165441660947}
+  - component: {fileID: 3650815144055686048}
   m_Layer: 0
   m_Name: Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4218349102120899942
 Transform:
@@ -60,8 +61,8 @@ Transform:
   m_GameObject: {fileID: 7141225615660984802}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071067, y: -0, z: -0, w: 0.70710695}
-  m_LocalPosition: {x: 0, y: 0.8196, z: -0.001}
-  m_LocalScale: {x: 0.09454947, y: 0.09454947, z: 70.963585}
+  m_LocalPosition: {x: 0, y: 0.3814, z: -0.001}
+  m_LocalScale: {x: 0.09454947, y: 0.09454947, z: 18.585188}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 641256974720605763}
@@ -119,6 +120,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3650815144055686048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7141225615660984802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3208383efc4b75963a48c938c1076d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 1795177165441660947}
 --- !u!1001 &8894845865673552519
 PrefabInstance:
   m_ObjectHideFlags: 0
