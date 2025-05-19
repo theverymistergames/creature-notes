@@ -50,12 +50,15 @@ namespace _Project.Scripts.Runtime.Levels {
             Instance = null;
         }
 
-        public UniTask LoadLastSavedLevel() {
-            return LoadLevel(0);
+        public UniTask LoadLastSavedLevel(float fadeIn = -1f, float fadeOut = -1f) {
+            return LoadLevel(0, fadeIn, fadeOut);
         }
 
-        public async UniTask LoadLevel(int level) {
-            await Fader.Main.FadeInAsync(_fadeInToLoading, _fadeInCurve.GetOrDefault());
+        public async UniTask LoadLevel(int level, float fadeIn = -1f, float fadeOut = -1f) {
+            if (fadeIn < 0f) fadeIn = _fadeInToLoading;
+            if (fadeOut < 0f) fadeOut = _fadeOutToScene;
+            
+            await Fader.Main.FadeInAsync(fadeIn, _fadeInCurve.GetOrDefault());
             if (_destroyToken.IsCancellationRequested) return;
 
             _levelCounterEvent.SetCount(level);
@@ -74,7 +77,7 @@ namespace _Project.Scripts.Runtime.Levels {
             }
 
             if (!SceneLoader.IsSceneLoaded(_levelsScene.scene)) {
-                fadeOutFinal = _fadeOutToScene;
+                fadeOutFinal = fadeOut;
                 
                 await Fader.Main.FadeOutAsync(_fadeOutToLoading, _fadeOutCurve.GetOrDefault());
                 if (_destroyToken.IsCancellationRequested) return;

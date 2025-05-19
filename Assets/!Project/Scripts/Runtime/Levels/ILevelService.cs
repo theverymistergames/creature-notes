@@ -8,9 +8,9 @@ namespace _Project.Scripts.Runtime.Levels {
         event Action<int> OnLevelRequested; 
         int CurrentLevel { get; set; }
         
-        UniTask LoadLastSavedLevel();
+        UniTask LoadLastSavedLevel(float fadeIn = -1f, float fadeOut = -1f);
 
-        UniTask LoadLevel(int level);
+        UniTask LoadLevel(int level, float fadeIn = -1f, float fadeOut = -1f);
         
         UniTask ExitToMainMenu();
     }
