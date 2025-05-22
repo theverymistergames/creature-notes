@@ -966,14 +966,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 986509787974598741
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
         mode: 1
         actions:
-        - rid: 986509787974598742
         - rid: 986509787974598743
         - rid: 986509787974598744
         - rid: 986509787974598745
@@ -982,51 +979,6 @@ MonoBehaviour:
         - rid: 986509787974598748
         - rid: 986509787974598749
         - rid: 6218635971392700417
-    - rid: 986509787974598742
-      type: {class: CharacterMoveToTargetAction, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        targetType: 1
-        target: {fileID: 0}
-        saveHeadPosition: 1
-        offset: {x: 0, y: 0, z: 0}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        offsetMode: 1
-        disableCollisionsWhileMoving: 1
-        speed: 0
-        curvature: 0
-        progressCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 1
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 1
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        detectGround: 1
-        allowTranslationY: 1
-        layer:
-          serializedVersion: 2
-          m_Bits: 1
-        rayElevation: 0.5
-        maxDistance: 2
-        groundOffset: 0.45
     - rid: 986509787974598743
       type: {class: ActionReference, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -1117,63 +1069,12 @@ MonoBehaviour:
       data:
         mode: 1
         actions:
-        - rid: 4105391196587950086
+        - rid: 6218635971392700513
         - rid: 4105391196587950098
         - rid: 4105391196587950099
         - rid: 4105391196587950110
         - rid: 2282734907006386264
-        - rid: -2
         - rid: 6218635971392700512
-        - rid: 6218635971392700511
-    - rid: 4105391196587950086
-      type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        targetType: 1
-        localPosition: {x: 0, y: 0, z: 0}
-        useTargetAsCurvePointOrigin: 0
-        target: {fileID: 3029080117750411629}
-        offsetMode: 0
-        offset: {x: 0, y: 0, z: 0.17}
-        rotationOffset: {x: 0, y: 0, z: 0}
-        speed: 1
-        curvature: 1
-        progressCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 0
-            outSlope: -0.0012029491
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0
-            outWeight: 0.36078
-          - serializedVersion: 3
-            time: 0.5
-            value: 0.5
-            inSlope: 1.5725082
-            outSlope: 1.5733721
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.326514
-            outWeight: 0.33093
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: -0.0009312395
-            outSlope: 0
-            tangentMode: 0
-            weightedMode: 3
-            inWeight: 0.358688
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        attach: 1
-        attachSmoothing: 0
-        attachMode: 1
     - rid: 4105391196587950098
       type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1291,15 +1192,6 @@ MonoBehaviour:
         gameObjects:
         - {fileID: 2206148018329339890}
         - {fileID: 5164477410386556869}
-    - rid: 6218635971392700511
-      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
-        asm: MisterGames.ActionLib}
-      data:
-        enabled: 1
-        delay: 0.1
-        gameObjects:
-        - {fileID: 2206148018329339890}
-        - {fileID: 5164477410386556869}
     - rid: 6218635971392700512
       type: {class: ChangeVolumeWeightAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1307,6 +1199,71 @@ MonoBehaviour:
         volume: {fileID: 1382178363167860539}
         weight: 1
         duration: 0.2
+    - rid: 6218635971392700513
+      type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
+      data:
+        mode: 0
+        actions:
+        - rid: 6218635971392700515
+        - rid: 6218635971392700514
+    - rid: 6218635971392700514
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 1
+        delay: 0
+        gameObjects:
+        - {fileID: 2206148018329339890}
+        - {fileID: 5164477410386556869}
+    - rid: 6218635971392700515
+      type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        targetType: 1
+        localPosition: {x: 0, y: 0, z: 0}
+        useTargetAsCurvePointOrigin: 0
+        target: {fileID: 3029080117750411629}
+        offsetMode: 0
+        offset: {x: 0, y: 0, z: 0.17}
+        rotationOffset: {x: 0, y: 0, z: 0}
+        speed: 1
+        curvature: 1
+        progressCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: -0.0012029491
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0
+            outWeight: 0.36078
+          - serializedVersion: 3
+            time: 0.5
+            value: 0.5
+            inSlope: 1.5725082
+            outSlope: 1.5733721
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.326514
+            outWeight: 0.33093
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0.0009312395
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 3
+            inWeight: 0.358688
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        attach: 1
+        attachSmoothing: 0
+        attachMode: 1
 --- !u!114 &8591546782952774112
 MonoBehaviour:
   m_ObjectHideFlags: 0
