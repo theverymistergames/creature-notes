@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b037da6e34724cbc9af875a3571dc2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeSourceStage: 1
   _directViewDetector: {fileID: 643996480201117138}
   _collisionDetector: {fileID: 643996480201117138}
   _collisionFilter:
@@ -69,10 +68,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cb8e6afd38428a89598acf1fff6686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeSourceStage: 1
   _interactivesDetector: {fileID: 3248882044609864277}
   _directViewDetector: {fileID: 643996480201117138}
   _root: {fileID: 0}
+  _viewOrigin: {fileID: 0}
 --- !u!114 &1842259765735774900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +169,7 @@ MonoBehaviour:
   _maxDistance: 10
   _layerMask:
     serializedVersion: 2
-    m_Bits: 3569
+    m_Bits: 60913
   _detectors:
   - {fileID: 209711430486026954}
   - {fileID: 2348077145790693796}
@@ -188,12 +187,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transform: {fileID: 8707077191589205302}
   _timeSourceStage: 1
-  _maxHits: 6
+  _maxHits: 20
   _radius: 0.01
   _maxDistance: 10
   _layerMask:
     serializedVersion: 2
-    m_Bits: 3537
+    m_Bits: 60881
   _triggerInteraction: 2
 --- !u!114 &2348077145790693796
 MonoBehaviour:

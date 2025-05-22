@@ -351,6 +351,7 @@ MonoBehaviour:
     _eventId: 1
     _subId: 0
   _compareMode: 0
+  _checkOnEnable: 1
   _unsubscribeAfterMatch: 0
   _values: 05000000
   _value: 1
@@ -626,13 +627,14 @@ GameObject:
   - component: {fileID: 8749025979476312431}
   - component: {fileID: 6146235486278242704}
   - component: {fileID: 2089466352849849293}
+  - component: {fileID: 8538160761034333003}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8749025979476312431
 Transform:
   m_ObjectHideFlags: 0
@@ -687,7 +689,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 905
+    m_Bits: 33673
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 08e4668ad4541d847851680e25604086, type: 2}
   m_TargetDisplay: 0
@@ -838,6 +840,22 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &8538160761034333003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206148018329339890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a9c14e5acf4527811875303da08c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cullingMask:
+    serializedVersion: 2
+    m_Bits: 32768
+  _maskMode: 1
 --- !u!1 &2709480750141699983
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +966,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 986509787974598741
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -961,6 +981,7 @@ MonoBehaviour:
         - rid: 986509787974598747
         - rid: 986509787974598748
         - rid: 986509787974598749
+        - rid: 6218635971392700417
     - rid: 986509787974598742
       type: {class: CharacterMoveToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1091,13 +1112,6 @@ MonoBehaviour:
       data:
         isEnabled: 0
         isViewEnabled: 1
-    - rid: 2282734923904712900
-      type: {class: ChangeVolumeWeightAction, ns: MisterGames.ActionLib.Character,
-        asm: MisterGames.ActionLib}
-      data:
-        volume: {fileID: 1382178363167860539}
-        weight: 1
-        duration: 0.5
     - rid: 4105391196587950080
       type: {class: ActionGroup, ns: MisterGames.Actors.Actions, asm: MisterGames.Actors}
       data:
@@ -1108,7 +1122,9 @@ MonoBehaviour:
         - rid: 4105391196587950099
         - rid: 4105391196587950110
         - rid: 2282734907006386264
-        - rid: 2282734923904712900
+        - rid: -2
+        - rid: 6218635971392700512
+        - rid: 6218635971392700511
     - rid: 4105391196587950086
       type: {class: CharacterMoveHeadToTargetAction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1156,7 +1172,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         attach: 1
-        attachSmoothing: 25
+        attachSmoothing: 0
         attachMode: 1
     - rid: 4105391196587950098
       type: {class: CharacterLookAtTargetAction, ns: MisterGames.ActionLib.Character,
@@ -1201,7 +1217,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         keepLookingAtAfterFinish: 1
-        attachSmoothing: 12
+        attachSmoothing: 30
     - rid: 4105391196587950099
       type: {class: CharacterActionSetViewClamp, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1266,6 +1282,31 @@ MonoBehaviour:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
+    - rid: 6218635971392700417
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        gameObjects:
+        - {fileID: 2206148018329339890}
+        - {fileID: 5164477410386556869}
+    - rid: 6218635971392700511
+      type: {class: EnableGameObjectAction, ns: MisterGames.ActionLib.GameObjects,
+        asm: MisterGames.ActionLib}
+      data:
+        enabled: 1
+        delay: 0.1
+        gameObjects:
+        - {fileID: 2206148018329339890}
+        - {fileID: 5164477410386556869}
+    - rid: 6218635971392700512
+      type: {class: ChangeVolumeWeightAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        volume: {fileID: 1382178363167860539}
+        weight: 1
+        duration: 0.2
 --- !u!114 &8591546782952774112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1355,7 @@ MonoBehaviour:
   _fovSmoothing: 3
   _fovRange: {x: 3, y: 8}
   _playerFovRange: {x: 0, y: 0}
-  _playerAttachDistanceRange: {x: 0.12, y: 0.17}
+  _playerAttachDistanceRange: {x: 0.12, y: 0.13}
   _playerAttachDistanceStart: 0.17
   _playerFovSmoothing: 5
   _playerAttachSmoothing: 5
@@ -2169,7 +2210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5549084859733023796
 Transform:
   m_ObjectHideFlags: 0
@@ -2721,7 +2762,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8112731213020411922}
-  - component: {fileID: 1149097703783997471}
   - component: {fileID: 2136388145580485001}
   m_Layer: 8
   m_Name: Teleskop
@@ -2749,26 +2789,6 @@ Transform:
   - {fileID: 7273155092333769049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1149097703783997471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8349424673933579167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae724c4c39b5408b8e78c4e535cf6608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _center: {fileID: 8112731213020411922}
-  _gameObjects:
-  - {fileID: 5164477410386556869}
-  - {fileID: 2206148018329339890}
-  _maxDistance: 4
-  _checkPeriodInRange: 0.1
-  _checkPeriodOutOfRange: 0.5
-  _showDebugInfo: 0
 --- !u!136 &2136388145580485001
 CapsuleCollider:
   m_ObjectHideFlags: 0
