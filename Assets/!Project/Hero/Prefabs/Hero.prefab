@@ -1469,12 +1469,50 @@ MonoBehaviour:
   - relativeSpeed: 0
     action:
       rid: 7921366758777159769
-  - relativeSpeed: -0.4
+  - relativeSpeed: -0.3
     action:
       rid: 7921366758777159772
   references:
     version: 2
     RefIds:
+    - rid: 6218635962615332958
+      type: {class: CharacterPlayStepSoundAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        volumeMul: 1
+        cooldown: 0
+    - rid: 6218635962615332959
+      type: {class: CharacterPlayStepSoundAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        volumeMul: 1.6
+        cooldown: 0
+    - rid: 6218635962615332960
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0.1
+        mode: 0
+        action:
+          rid: 6218635962615332961
+    - rid: 6218635962615332961
+      type: {class: CharacterPlayStepSoundAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        volumeMul: 1
+        cooldown: -1
+    - rid: 6218635962615332962
+      type: {class: DelayAction, ns: MisterGames.ActionLib.Time, asm: MisterGames.ActionLib}
+      data:
+        delay: 0.1
+        mode: 0
+        action:
+          rid: 6218635962615332963
+    - rid: 6218635962615332963
+      type: {class: CharacterPlayStepSoundAction, ns: MisterGames.ActionLib.Character,
+        asm: MisterGames.ActionLib}
+      data:
+        volumeMul: 1.6
+        cooldown: -1
     - rid: 7921366758777159765
       type: {class: CharacterActionJumpReaction, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1682,6 +1720,8 @@ MonoBehaviour:
         actions:
         - rid: 7921366758777159770
         - rid: 7921366758777159771
+        - rid: 6218635962615332958
+        - rid: 6218635962615332960
     - rid: 7921366758777159770
       type: {class: CharacterActionCameraPosition, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
@@ -1873,6 +1913,8 @@ MonoBehaviour:
         actions:
         - rid: 7921366758777159773
         - rid: 7921366758777159774
+        - rid: 6218635962615332959
+        - rid: 6218635962615332962
     - rid: 7921366758777159773
       type: {class: CharacterActionCameraPosition, ns: MisterGames.ActionLib.Character,
         asm: MisterGames.ActionLib}
