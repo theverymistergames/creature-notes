@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4305025917746968}
   - component: {fileID: 33150059347195458}
   - component: {fileID: 23386995376923278}
-  - component: {fileID: 65161656924194470}
   m_Layer: 0
   m_Name: notepad_bottom
   m_TagString: Untagged
@@ -59,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -84,27 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65161656924194470
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1182431919570870}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.24998605, y: 0.0140552735, z: 0.36456448}
-  m_Center: {x: -0.12714842, y: -0.006816587, z: 0}
 --- !u!1 &1832049472115158
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +97,6 @@ GameObject:
   - component: {fileID: 4975618768107374}
   - component: {fileID: 33228572326392114}
   - component: {fileID: 23117047845703346}
-  - component: {fileID: 65411172062421724}
   m_Layer: 0
   m_Name: notepad_top
   m_TagString: Untagged
@@ -164,6 +144,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -189,27 +172,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65411172062421724
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832049472115158}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.24998601, y: 0.008486626, z: 0.36456448}
-  m_Center: {x: -0.12756787, y: 0.0042433175, z: 0}
 --- !u!1 &1884156196641044
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +183,7 @@ GameObject:
   - component: {fileID: 4527064727974542}
   - component: {fileID: 33799047194329006}
   - component: {fileID: 23515938872195488}
+  - component: {fileID: 6835569264116655054}
   m_Layer: 0
   m_Name: Notepad
   m_TagString: Untagged
@@ -270,6 +233,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -295,3 +261,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6835569264116655054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1884156196641044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf90459613940cf95bacec2fcf38a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderers:
+  - {fileID: 23515938872195488}
+  - {fileID: 23386995376923278}
+  - {fileID: 23117047845703346}
