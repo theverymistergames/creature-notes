@@ -75,11 +75,11 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
     }
 
     private void Reset() {
-        if (positions.Length > 0) {
+        if (positions?.Length > 0) {
             transform.localPosition = positions[startStateId];   
         }
 
-        if (rotations.Length > 0) {
+        if (rotations?.Length > 0) {
             transform.localEulerAngles = rotations[startStateId];   
         }
     }

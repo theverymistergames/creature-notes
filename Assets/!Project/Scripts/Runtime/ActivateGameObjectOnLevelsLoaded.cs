@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using MisterGames.Common.Lists;
+using MisterGames.Common.GameObjects;
 using MisterGames.Scenario.Events;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
+public sealed class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
+    
     [SerializeField] private EventReference levelLoadedEvent;
     [SerializeField] private List<int> levels;
     [SerializeField] private GameObject go;
@@ -19,13 +17,22 @@ public class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
     private static readonly int EmissiveIntensity = Shader.PropertyToID("_EmissiveIntensity");
 
     private void Awake() {
-        if (!go) go = gameObject;
+        if (go == null) go = gameObject;
         
         if (_emissive) {
-            _material = go.GetComponent<MeshRenderer>().materials[0];
+            _material = go.GetComponent<MeshRenderer>().material;
             _startIntensity = _material.GetFloat(EmissiveIntensity);
             _startColor = _material.GetColor(EmissiveColor);
         }
+    }
+    
+    private void OnEnable() {
+        SetActiveIfNeeded();
+        levelLoadedEvent.Subscribe(this);
+    }
+
+    private void OnDisable() {
+        levelLoadedEvent.Unsubscribe(this);
     }
 
     public void OnEventRaised(EventReference e) {
@@ -35,29 +42,18 @@ public class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventListener {
     }
 
     private void SetActiveIfNeeded() {
-        var count = levelLoadedEvent.GetCount();
+#if UNITY_EDITOR
+        if (go == null) Debug.LogError($"ActivateGameObjectOnLevelsLoaded[{this.GetPathInScene()}].SetActiveIfNeeded: f {Time.frameCount}, go is null");  
+#endif
         
-        if (levels.Contains(count)) {
-            if (_emissive) {
-                _material.SetColor(EmissiveColor, _startColor * _startIntensity);
-            } else {
-                go.SetActive(true);
-            }
-        } else {
-            if (_emissive) { 
-                _material.SetColor(EmissiveColor, Color.black);
-            } else {
-                go.SetActive(false); 
-            }
+        int count = levelLoadedEvent.GetCount();
+        bool active = levels.Contains(count);
+        
+        if (_emissive) {
+            _material.SetColor(EmissiveColor, active ? _startColor * _startIntensity : Color.black);
+        } 
+        else {
+            go.SetActive(active);
         }
-    }
-
-    private void OnEnable() {
-        SetActiveIfNeeded();
-        levelLoadedEvent.Subscribe(this);
-    }
-
-    private void OnDisable() {
-        levelLoadedEvent.Unsubscribe(this);
     }
 }
