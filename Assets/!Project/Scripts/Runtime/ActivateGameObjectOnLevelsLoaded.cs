@@ -16,7 +16,15 @@ public sealed class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventList
     private static readonly int EmissiveColor = Shader.PropertyToID("_EmissiveColor");
     private static readonly int EmissiveIntensity = Shader.PropertyToID("_EmissiveIntensity");
 
+#if UNITY_EDITOR
+    private string _path;
+#endif
+    
     private void Awake() {
+#if UNITY_EDITOR
+        _path = this.GetPathInScene();
+#endif
+        
         if (go == null) go = gameObject;
         
         if (_emissive) {
@@ -36,14 +44,15 @@ public sealed class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventList
     }
 
     public void OnEventRaised(EventReference e) {
-        if (e.EventId == levelLoadedEvent.EventId) {
-            SetActiveIfNeeded();
-        }
+        SetActiveIfNeeded();
     }
 
     private void SetActiveIfNeeded() {
 #if UNITY_EDITOR
-        if (go == null) Debug.LogError($"ActivateGameObjectOnLevelsLoaded[{this.GetPathInScene()}].SetActiveIfNeeded: f {Time.frameCount}, go is null");  
+        if (go == null) {
+            Debug.LogError($"ActivateGameObjectOnLevelsLoaded[{_path}].SetActiveIfNeeded: f {Time.frameCount}, go is null");
+            return;
+        }  
 #endif
         
         int count = levelLoadedEvent.GetCount();
