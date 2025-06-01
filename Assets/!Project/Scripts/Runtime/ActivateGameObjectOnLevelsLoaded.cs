@@ -33,7 +33,7 @@ public sealed class ActivateGameObjectOnLevelsLoaded : MonoBehaviour, IEventList
             _startColor = _material.GetColor(EmissiveColor);
         }
     }
-    
+
     private void OnEnable() {
         SetActiveIfNeeded();
         levelLoadedEvent.Subscribe(this);

@@ -15,15 +15,18 @@ using UnityEngine.Serialization;
 public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener {
     
     [Header("Positioning")]
-    [SerializeField] private int startStateId = 0;
-    [SerializeField] private int rightStateId = 1;
-    [SerializeField] private Vector3 moveOutVector;
+    [SerializeField] [Min(0)] private int startStateId = 0;
+    [SerializeField] [Min(0)] private int rightStateId = 1;
+    [SerializeField] [Min(0f)] private float animationTime = 1f;
     [SerializeField] private Vector3[] positions;
     [SerializeField] private Vector3[] rotations;
-    [SerializeField] private float animationTime = 1f;
+    [SerializeField] private Vector3 moveOutVector;
+    [SerializeField] [Range(0f, 1f)] private float _moveOutPoint = 0.5f;
+    [SerializeField] private MoveOutOverride[] _moveOutOverrides;
 
     [Header("Reset")]
-    [FormerlySerializedAs("levelLoadedEvent")] [SerializeField] private EventReference resetEvent;
+    [FormerlySerializedAs("levelLoadedEvent")] 
+    [SerializeField] private EventReference resetEvent;
 
     [Header("Actions")]
     [SerializeReference] [SubclassSelector] private IActorAction _onStart;
@@ -36,8 +39,15 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
 
     [Serializable]
     private struct StateOverride {
-        public int startState;
+        [Min(0)] public int startState;
         [SerializeReference] [SubclassSelector] public IActorAction onStart;
+    }
+
+    [Serializable]
+    private struct MoveOutOverride {
+        [Min(0)] public int startState;
+        public Vector3 moveOutVector;
+        [Range(0f, 1f)] public float moveOutPoint;
     }
     
     private CancellationToken _destroyToken;
@@ -60,12 +70,12 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
     }
 
     private void OnEnable() {
-        _interactive.OnStartInteract += InteractiveOnOnStartInteract;
+        _interactive.OnStartInteract += OnStartInteract;
         resetEvent.Subscribe(this);
     }
 
     private void OnDisable() {
-        _interactive.OnStartInteract -= InteractiveOnOnStartInteract;
+        _interactive.OnStartInteract -= OnStartInteract;
         resetEvent.Unsubscribe(this);
     }
 
@@ -88,27 +98,27 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
         if (e.EventId == resetEvent.EventId) Reset();
     }
 
-    private void InteractiveOnOnStartInteract(IInteractiveUser obj) {
+    private void OnStartInteract(IInteractiveUser obj) {
         if (_currentTween.IsActive()) return;
 
         GetStartAction(_currentStateId)?.Apply(_actor, _destroyToken).Forget();
+        GetMoveOutVector(_currentStateId, out var moveOutVector, out float moveOutPoint);
         
         int nextId = (_currentStateId + 1) % (positions.Length > 0 ? positions.Length : rotations.Length);
         
         if (positions.Length > 0) {
             var startPosition = positions[_currentStateId];
-            var midPosition = positions[_currentStateId] + (positions[nextId] - positions[_currentStateId]) / 2 + moveOutVector;
+            var midPosition = Vector3.Lerp(positions[_currentStateId], positions[nextId], moveOutPoint) + moveOutVector;
             var finalPosition = positions[nextId];
 
             _currentTween = LMotion
-                .Create(startPosition, midPosition, animationTime / 2)
+                .Create(startPosition, midPosition, animationTime * 0.5f)
                 .WithEase(Ease.InSine)
                 .WithOnComplete(() => { 
-                    _onEnd?.Apply(_actor, _destroyToken).Forget();
-                    
                     _currentTween = LMotion
-                        .Create(midPosition, finalPosition, animationTime / 2)
+                        .Create(midPosition, finalPosition, animationTime * 0.5f)
                         .WithEase(Ease.OutSine)
+                        .WithOnComplete(() => _onEnd?.Apply(_actor, _destroyToken).Forget())
                         .BindToLocalPosition(transform); 
                 })
                 .BindToLocalPosition(transform);
@@ -141,5 +151,19 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
         }
 
         return _onStart;
+    }
+    
+    private void GetMoveOutVector(int currentStateId, out Vector3 moveOutVector, out float moveOutPoint) {
+        for (int i = 0; i < _moveOutOverrides.Length; i++) {
+            ref var stateOverride = ref _moveOutOverrides[i];
+            if (stateOverride.startState != currentStateId) continue;
+
+            moveOutVector = stateOverride.moveOutVector;
+            moveOutPoint = stateOverride.moveOutPoint;
+            return;
+        }
+
+        moveOutVector = this.moveOutVector;
+        moveOutPoint = _moveOutPoint;
     }
 }
