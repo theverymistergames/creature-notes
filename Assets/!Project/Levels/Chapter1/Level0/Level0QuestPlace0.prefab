@@ -51,13 +51,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 1
   rightStateId: 0
-  moveOutVector: {x: 0, y: 0, z: 0}
+  animationTime: 0.5
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions: []
   rotations:
   - {x: 0, y: 50.844658, z: 0}
   - {x: 0, y: -23.28, z: 0}
   - {x: 0, y: -77.998, z: 0}
-  animationTime: 0.5
+  moveOutVector: {x: 0, y: 0, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -67,8 +152,9 @@ MonoBehaviour:
   _onEnd:
     rid: -2
   _stateOverrides: []
-  startSound: {fileID: 8300000, guid: 2bcc4719d9553c649bf298264e9af7ce, type: 3}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 0
+  _testTransitionTo: 1
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -112,7 +198,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -200,7 +286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973937854538272851}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0.7069847, y: 0, z: 0, w: -0.70722884}
   m_LocalPosition: {x: 35.645996, y: 1.8951001, z: 11.3039}
   m_LocalScale: {x: 8.74848, y: 8.748473, z: 8.748472}
   m_ConstrainProportionsScale: 0
@@ -254,12 +340,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 1
-  moveOutVector: {x: 0, y: 0, z: 0.2}
+  animationTime: 0.5
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: 34.774, y: 1.894, z: 11.3079}
   - {x: 35.645996, y: 1.8951001, z: 11.3039}
   rotations: []
-  animationTime: 0.5
+  moveOutVector: {x: 0, y: 0, z: 0.2}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides:
+  - startState: 0
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 0
+    moveOutPointTime: 0.33
+  - startState: 1
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 1
+    moveOutPointTime: 0.66
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -269,8 +448,9 @@ MonoBehaviour:
   _onEnd:
     rid: 3745621928202731661
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 8300000, guid: 67c2647b73222ba4cad6eb2d92a9950d, type: 3}
+  _testTransitionFrom: 1
+  _testTransitionTo: 0
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -337,14 +517,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.023455143, y: 0.015392687, z: 0.026979998}
-  m_Center: {x: 0.00024600327, y: -0.0014805448, z: 0.013347944}
+  m_Size: {x: 0.025747675, y: 0.022650702, z: 0.030952847}
+  m_Center: {x: -0.0009002666, y: -0.005109555, z: 0.015334431}
 --- !u!114 &5170154355384076863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,8 +576,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1011052195345203821}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 34.3231, y: 2.2381003, z: 11.3039}
+  m_LocalRotation: {x: 0.7069847, y: 0, z: 0, w: -0.70722884}
+  m_LocalPosition: {x: 34.337, y: 2.237, z: 11.3079}
   m_LocalScale: {x: 8.74848, y: 8.748473, z: 8.748472}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -447,12 +627,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 1
-  moveOutVector: {x: 0, y: 0, z: 0.2}
+  animationTime: 0.5
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: 34.91, y: 2.237, z: 11.3079}
   - {x: 34.337, y: 2.237, z: 11.3079}
   rotations: []
-  animationTime: 0.5
+  moveOutVector: {x: 0, y: 0, z: 0.2}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides:
+  - startState: 0
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 0
+    moveOutPointTime: 0.33
+  - startState: 0
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 1
+    moveOutPointTime: 0.66
+  - startState: 1
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 0
+    moveOutPointTime: 0.33
+  - startState: 1
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 1
+    moveOutPointTime: 0.66
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -462,8 +743,9 @@ MonoBehaviour:
   _onEnd:
     rid: 3745621928202731662
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 8300000, guid: 67c2647b73222ba4cad6eb2d92a9950d, type: 3}
+  _testTransitionFrom: 1
+  _testTransitionTo: 0
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -530,14 +812,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.02345514, y: 0.015392687, z: 0.026979998}
-  m_Center: {x: 0.00024600327, y: -0.0014805448, z: 0.013347944}
+  m_Size: {x: 0.025205357, y: 0.028523419, z: 0.031233324}
+  m_Center: {x: 0.0007131444, y: 0.00032115096, z: 0.015474673}
 --- !u!114 &5732482293303782256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5743,8 +6025,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6622092444787391652}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.707101, y: -0.7071006, z: -0.0029213428, w: -0.0029214323}
-  m_LocalPosition: {x: 35.711998, y: 1.4991003, z: 11.497}
+  m_LocalRotation: {x: 0.707101, y: 0.7071005, z: 0.0029213645, w: 0.002921459}
+  m_LocalPosition: {x: 35.72, y: 1.498, z: 11.501}
   m_LocalScale: {x: 8.74848, y: 8.748481, z: 8.748477}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5798,7 +6080,89 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 2
-  moveOutVector: {x: 0, y: 0.2, z: 0}
+  animationTime: 0.5
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: 35.679, y: 1.495, z: 11.894}
   - {x: 35.1911, y: 1.4982, z: 11.3533}
@@ -5807,7 +6171,10 @@ MonoBehaviour:
   - {x: -0.000030735853, y: 246.81262, z: 90.00002}
   - {x: -0.00003927359, y: 269.52655, z: 90.000015}
   - {x: 0.000007817365, y: 179.52657, z: 90.00004}
-  animationTime: 0.5
+  moveOutVector: {x: 0, y: 0.2, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -5817,8 +6184,9 @@ MonoBehaviour:
   _onEnd:
     rid: 3745621928202731660
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 8300000, guid: 67c2647b73222ba4cad6eb2d92a9950d, type: 3}
+  _testTransitionFrom: 2
+  _testTransitionTo: 0
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -5885,14 +6253,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.023455143, y: 0.015392687, z: 0.026979998}
-  m_Center: {x: 0.00024600327, y: -0.0014805448, z: 0.013347944}
+  m_Size: {x: 0.027262192, y: 0.024991248, z: 0.030070163}
+  m_Center: {x: 0.0021495328, y: -0.004467502, z: 0.011802855}
 --- !u!114 &3136682621794739077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5944,8 +6312,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7300372848847425206}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 34.535995, y: 2.2391002, z: 11.3029995}
+  m_LocalRotation: {x: 0.7069847, y: 0, z: 0, w: -0.70722884}
+  m_LocalPosition: {x: 34.544, y: 2.238, z: 11.307}
   m_LocalScale: {x: 8.74848, y: 8.748473, z: 8.748472}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5965,14 +6333,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.03557603, y: 0.012719457, z: 0.023174684}
-  m_Center: {x: 0.0063254805, y: -0.00014392936, z: 0.011607362}
+  m_Size: {x: 0.02474577, y: 0.020255437, z: 0.030883353}
+  m_Center: {x: 0.00024876063, y: -0.003911919, z: 0.01546174}
 --- !u!114 &7890568222992176607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6016,12 +6384,113 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 1
-  moveOutVector: {x: 0, y: 0, z: 0.2}
+  animationTime: 1
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: 35.53, y: 2.238, z: 11.307}
   - {x: 34.544, y: 2.238, z: 11.307}
   rotations: []
-  animationTime: 1
+  moveOutVector: {x: 0, y: 0, z: 0.2}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides:
+  - startState: 0
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 0.1
+    moveOutPointTime: 0.33
+  - startState: 0
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 0.9
+    moveOutPointTime: 0.66
+  - startState: 1
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 0.1
+    moveOutPointTime: 0.33
+  - startState: 1
+    moveOutVector: {x: 0, y: 0, z: 0.3}
+    moveOutPoint: 0.9
+    moveOutPointTime: 0.66
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -6031,8 +6500,9 @@ MonoBehaviour:
   _onEnd:
     rid: 3745621928202731659
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 8300000, guid: 67c2647b73222ba4cad6eb2d92a9950d, type: 3}
+  _testTransitionFrom: 1
+  _testTransitionTo: 0
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -6172,6 +6642,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 65224834411649038, guid: a6aeaa0fd197b934ca18b89fb5be8085,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6219,17 +6694,17 @@ PrefabInstance:
     - target: {fileID: 1908939410237119182, guid: cdf72caef777486438f10b1dbf1aca73,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00015
+      value: 0.00053
       objectReference: {fileID: 0}
     - target: {fileID: 1908939410237119182, guid: cdf72caef777486438f10b1dbf1aca73,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0013428986
+      value: -0.00482
       objectReference: {fileID: 0}
     - target: {fileID: 1908939410237119182, guid: cdf72caef777486438f10b1dbf1aca73,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0005742942
+      value: -0.00057
       objectReference: {fileID: 0}
     - target: {fileID: 1908939410237119182, guid: cdf72caef777486438f10b1dbf1aca73,
         type: 3}
@@ -6265,6 +6740,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566230483908790742, guid: cdf72caef777486438f10b1dbf1aca73,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6585,6 +7065,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 65316523056188286, guid: 36eeb2dc4d0ed7f4ca3f98b6845f4578,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6898,6 +7383,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 65565499389508378, guid: 03e0c452d98f04f41bd0537a6910ba53,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7017,7 +7507,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -7068,14 +7558,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 1
-  moveOutVector: {x: 0, y: 0.2, z: 0}
+  animationTime: 0.3
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: 35.325188, y: 1.4039, z: 11.746232}
   - {x: 35.3663, y: 1.4632, z: 11.6095}
   rotations:
   - {x: 0, y: 45.831562, z: 0}
   - {x: 35.368, y: 163.1, z: 65.7}
-  animationTime: 0.3
+  moveOutVector: {x: 0, y: 0.2, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -7085,8 +7660,9 @@ MonoBehaviour:
   _onEnd:
     rid: 3745621928202731663
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 0
+  _testTransitionTo: 1
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -7209,6 +7785,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 65295063930801318, guid: 7db29a7f439eef8458aa0b4a1e2720c3,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7228,6 +7809,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4023382908015164628}
     m_Modifications:
+    - target: {fileID: 1790041744263761488, guid: 4aa12e75b8e26ee4f81b6cb44391f5e3,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6193576130652432462, guid: 4aa12e75b8e26ee4f81b6cb44391f5e3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7373,6 +7959,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 65359449048750642, guid: e0920e26560ad694c9c66d6042fec73b,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7448,6 +8039,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.99701
       objectReference: {fileID: 0}
+    - target: {fileID: 65805080700705484, guid: 990f8654fe2a2ee498ff045a06f8caf9,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7495,17 +8091,17 @@ PrefabInstance:
     - target: {fileID: 609658339434588634, guid: ec601f182057d3842b13fad94cfdd0f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000448
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 609658339434588634, guid: ec601f182057d3842b13fad94cfdd0f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0007
+      value: -0.00514
       objectReference: {fileID: 0}
     - target: {fileID: 609658339434588634, guid: ec601f182057d3842b13fad94cfdd0f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00042
+      value: -0.0004
       objectReference: {fileID: 0}
     - target: {fileID: 609658339434588634, guid: ec601f182057d3842b13fad94cfdd0f9,
         type: 3}
@@ -7541,6 +8137,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525166316065870132, guid: ec601f182057d3842b13fad94cfdd0f9,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7690,6 +8291,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.99701
       objectReference: {fileID: 0}
+    - target: {fileID: 65992434617990736, guid: 28d3a1d9c256b4d4b80c8509f7fde904,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7732,12 +8338,12 @@ PrefabInstance:
     - target: {fileID: 652418553762983187, guid: 293d883cd9b7a7c4da43b5762eb49516,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.08174481
+      value: 0.08174479
       objectReference: {fileID: 0}
     - target: {fileID: 652418553762983187, guid: 293d883cd9b7a7c4da43b5762eb49516,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.08174481
+      value: -0.08174479
       objectReference: {fileID: 0}
     - target: {fileID: 652418553762983187, guid: 293d883cd9b7a7c4da43b5762eb49516,
         type: 3}
@@ -7881,13 +8487,98 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 2
-  moveOutVector: {x: 0, y: 0, z: 0}
+  animationTime: 1
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions: []
   rotations:
   - {x: -90, y: 0, z: -166.723}
   - {x: -90, y: 0, z: -334.413}
   - {x: -90, y: 0, z: -94.613}
-  animationTime: 1
+  moveOutVector: {x: 0, y: 0, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -7897,8 +8588,9 @@ MonoBehaviour:
   _onEnd:
     rid: -2
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 0
+  _testTransitionTo: 1
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -7998,6 +8690,11 @@ PrefabInstance:
     - target: {fileID: 4896807631746764, guid: aca389ba0a294484e872321cbdc21d90, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 65681995626755724, guid: aca389ba0a294484e872321cbdc21d90,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8628,19 +9325,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4975618768107374, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999644
+      value: -0.9999645
       objectReference: {fileID: 0}
     - target: {fileID: 4975618768107374, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1.1641532e-10
+      value: -1.1642122e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4975618768107374, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000074505806
+      value: 0.00000007450581
       objectReference: {fileID: 0}
     - target: {fileID: 4975618768107374, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.008433166
+      value: -0.008433092
       objectReference: {fileID: 0}
     - target: {fileID: 4975618768107374, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -8666,6 +9363,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3658841345372857019}
+    - targetCorrespondingSourceObject: {fileID: 1832049472115158, guid: 00931e932c93cef48ae2d8cc87408c66,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4043827246280211947}
   m_SourcePrefab: {fileID: 100100000, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
 --- !u!1 &7512545065721597937 stripped
 GameObject:
@@ -8716,12 +9417,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 1
-  moveOutVector: {x: 0, y: 0, z: 0}
+  animationTime: 0.5
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions: []
   rotations:
-  - {x: -0.000000021057966, y: -0.000001707447, z: -179.2583}
-  - {x: 0.000000085339884, y: -0.00000853732, z: 0.9663811}
-  animationTime: 0.5
+  - {x: -0.000000021057971, y: -0.0000017074473, z: 180.7417}
+  - {x: 0.00000008533993, y: -0.00000853732, z: 360.96637}
+  moveOutVector: {x: 0, y: 0, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -8731,8 +9517,9 @@ MonoBehaviour:
   _onEnd:
     rid: -2
   _stateOverrides: []
-  startSound: {fileID: 8300000, guid: e16b8a0f0c40b754ab33154a7d12fbc4, type: 3}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 1
+  _testTransitionTo: 0
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -8786,6 +9573,27 @@ MonoBehaviour:
     _subId: 0
   disableOnStart: 1
   useInteractive: 0
+--- !u!65 &4043827246280211947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512545065721597937}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.24998605, y: 0.015792754, z: 0.36456445}
+  m_Center: {x: -0.12756784, y: 0.007896322, z: 0.0000009504114}
 --- !u!4 &7518412814679664969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4975618768107374, guid: 00931e932c93cef48ae2d8cc87408c66,
@@ -8975,37 +9783,37 @@ PrefabInstance:
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.9789
+      value: 34.99
       objectReference: {fileID: 0}
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8916
+      value: 1.8869
       objectReference: {fileID: 0}
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.3446
+      value: 11.329
       objectReference: {fileID: 0}
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.9141293
       objectReference: {fileID: 0}
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.40542278
       objectReference: {fileID: 0}
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4227428216299581774, guid: fa5fe02cc5cbf2c44b395d977b4e6116,
         type: 3}
@@ -9120,14 +9928,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 1
   rightStateId: 1
-  moveOutVector: {x: 0, y: 0, z: 0}
+  animationTime: 1
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: 35.244, y: 1.8869, z: 11.3385}
   - {x: 34.99, y: 1.8869, z: 11.329}
   rotations:
   - {x: 0, y: 194.99997, z: 0}
   - {x: 0, y: 312.16476, z: 0}
-  animationTime: 1
+  moveOutVector: {x: 0, y: 0, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 0}
     _eventId: -1
@@ -9137,8 +10030,9 @@ MonoBehaviour:
   _onEnd:
     rid: -2
   _stateOverrides: []
-  startSound: {fileID: 8300000, guid: 2bcc4719d9553c649bf298264e9af7ce, type: 3}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 1
+  _testTransitionTo: 0
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:

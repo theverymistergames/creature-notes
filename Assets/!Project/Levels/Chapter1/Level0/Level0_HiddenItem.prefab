@@ -59,6 +59,13 @@ MonoBehaviour:
   contour: {fileID: 7103517647349493603}
   activateGameObjectOnPlaced: 1
   goOnPlaced: {fileID: 0}
+  _activateCondition:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1253888902464464784
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138,6 +145,14 @@ MonoBehaviour:
         actions:
         - rid: 3745621928202731693
         - rid: 3745621928202731694
+        - rid: 3364466061488423001
+    - rid: 3364466061488423001
+      type: {class: EnableObjectAction, ns: MisterGames.ActionLib.GameObjects, asm: MisterGames.ActionLib}
+      data:
+        enabled: 0
+        delay: 0
+        objects:
+        - {fileID: 1253888902464464784}
     - rid: 3745621928202731693
       type: {class: PlaySoundAction, ns: MisterGames.ActionLib.Sounds, asm: MisterGames.ActionLib}
       data:
@@ -170,7 +185,7 @@ MonoBehaviour:
         method: 1
         duration: 0.3
         ease: 7
-        disableCollider: 0
+        disableCollider: 1
         item: {fileID: 1482210004680851138}
 --- !u!1001 &7102720915389800353
 PrefabInstance:

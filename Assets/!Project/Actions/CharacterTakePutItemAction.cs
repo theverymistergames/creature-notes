@@ -6,6 +6,7 @@ using LitMotion.Extensions;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
 using MisterGames.Character.Inventory;
+using MisterGames.Common.GameObjects;
 using MisterGames.Common.Tick;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -31,7 +32,12 @@ namespace MisterGames.ActionLib.GameObjects {
         public async UniTask Apply(IActor context, CancellationToken cancellationToken = default) {
             var transform = context.Transform;
             
-            if (disableCollider) item.GetComponent<Collider>().enabled = false;
+            Collider[] colliders = null;
+
+            if (disableCollider) {
+                colliders = item.GetComponentsInChildren<Collider>(includeInactive: true);
+                colliders.SetEnabled(false);
+            }
 
             var start = method == TakePut.Take ? item.position : transform.position;
             var end = method == TakePut.Put ? item.position : transform.position;
@@ -44,7 +50,7 @@ namespace MisterGames.ActionLib.GameObjects {
                     break;
                 
                 case TakePut.Put: {
-                    if (disableCollider) item.GetComponent<Collider>().enabled = true;
+                    if (disableCollider) colliders.SetEnabled(true);
                     break;
                 }
             }
