@@ -34,6 +34,7 @@ namespace _Project.Scripts.Runtime.Spider {
         }
         
         private static readonly int Dissolve = Shader.PropertyToID("_Dissolve");
+        private static MaterialPropertyBlock _materialPropertyBlockShared;
         
         public LineRenderer Line => _lineRenderer;
         public LineState State { get; private set; }
@@ -44,6 +45,11 @@ namespace _Project.Scripts.Runtime.Spider {
 
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
+        }
+
+        private void Awake() {
+            _materialPropertyBlockShared ??= new MaterialPropertyBlock();
+            _lineRenderer.SetPropertyBlock(_materialPropertyBlockShared);
         }
 
         private void OnDestroy() {
