@@ -110,9 +110,15 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
             _weight = Mathf.Clamp01(weight);
 
             if (!enabled) return;
+
+            if (_weight <= 0f) {
+                _blinkSound.Release();
+                PlayerLoopStage.Update.Unsubscribe(this);
+                return;
+            }
             
             if (_weight < 1f) {
-                StartFailureSoundLoop(_enableCts.Token);
+                StartBlinkSoundLoop(_enableCts.Token);
                 PlayerLoopStage.Update.Subscribe(this);
                 return;
             }
@@ -141,6 +147,7 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
             float oldLampWeight = _lamp.Weight;
             
             _lamp.Weight = lampWeight;
+            
             ProcessMonster(_weight, switchWeight);
             ProcessBlinkSound(lampWeight, dt);
             ProcessSwitchSounds(lampWeight, oldLampWeight);
@@ -239,7 +246,7 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
             );
         }
         
-        private void StartFailureSoundLoop(CancellationToken cancellationToken) {
+        private void StartBlinkSoundLoop(CancellationToken cancellationToken) {
             if (_lampBlinkSounds is not { Length: > 0 } || _blinkSound.IsValid()) return;
             
             _blinkSound = AudioPool.Main.Play(
