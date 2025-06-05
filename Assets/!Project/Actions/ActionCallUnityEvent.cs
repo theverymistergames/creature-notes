@@ -6,6 +6,7 @@ using MisterGames.Actors.Actions;
 using UnityEngine.Events;
 
 namespace MisterGames.ActionLib.GameObjects {
+    
     [Serializable]
     public sealed class ActionCallUnityEvent : IActorAction {
         public UnityEvent eventAction;

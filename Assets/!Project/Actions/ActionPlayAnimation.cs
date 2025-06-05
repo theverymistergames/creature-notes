@@ -3,13 +3,13 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using MisterGames.Actors;
 using MisterGames.Actors.Actions;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace MisterGames.ActionLib.GameObjects {
+    
     [Serializable]
     public sealed class ActionPlayAnimation : IActorAction {
+        
         public Animator animator;
         public string animationName;
         
