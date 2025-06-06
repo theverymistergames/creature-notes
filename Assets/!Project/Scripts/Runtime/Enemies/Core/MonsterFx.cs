@@ -68,10 +68,14 @@ namespace _Project.Scripts.Runtime.Enemies {
         }
 
         void IUpdate.OnUpdate(float dt) {
-            if (_lastEventType == MonsterEventType.Reset) return;
+            if (_lastEventType == MonsterEventType.Reset) {
+                PlayerLoopStage.Update.Unsubscribe(this);
+                return;
+            }
             
             float progress = _monster.Progress;
-
+            float maxProgress = 0f;
+            
             for (int i = 0; i < _progressActions.Length; i++) {
                 ref var action = ref _progressActions[i];
                 ref float p = ref _progressArray[i];
@@ -82,12 +86,16 @@ namespace _Project.Scripts.Runtime.Enemies {
                 float oldP = p;
                 p = p.SmoothExpNonZero(targetProgress, action.progressSmoothing, dt);
 
+                maxProgress = Mathf.Max(maxProgress, p);
+                
                 if (action.notifyProgressDirection.NeedNotifyProgress(oldP, p)) {
                     action.progressAction?.OnProgressUpdate(p);
                 }
                 
                 action.events.NotifyTweenEvents(_actor, p, oldP, _enableCts.Token);
             }
+            
+            if (maxProgress <= 0f) PlayerLoopStage.Update.Unsubscribe(this);
         }
 
         private void OnMonsterEvent(MonsterEventType evt) {
@@ -103,6 +111,8 @@ namespace _Project.Scripts.Runtime.Enemies {
 
                 eventAction.action?.Apply(_actor, _healthCts.Token).Forget();
             }
+            
+            if (evt != MonsterEventType.Reset) PlayerLoopStage.Update.Subscribe(this);
         }
     }
     

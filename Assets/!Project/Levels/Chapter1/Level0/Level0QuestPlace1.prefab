@@ -4980,6 +4980,7 @@ MonoBehaviour:
   - {fileID: 564173274838290496}
   rightStep: 0
   startStep: 1
+  _animationTime: 0.3
   _onMove:
     rid: 3745621928202731686
   references:
@@ -5236,6 +5237,7 @@ MonoBehaviour:
   - {fileID: 7518400296088641147}
   rightStep: 0
   startStep: 2
+  _animationTime: 0.3
   _onMove:
     rid: 3745621928202731688
   references:
@@ -10557,6 +10559,7 @@ MonoBehaviour:
   - {fileID: 8031540098847091183}
   rightStep: 0
   startStep: 0
+  _animationTime: 0.3
   _onMove:
     rid: 3745621928202731689
   references:
@@ -10713,6 +10716,7 @@ MonoBehaviour:
   - {fileID: 7217484073457389433}
   rightStep: 0
   startStep: 2
+  _animationTime: 0.3
   _onMove:
     rid: 3745621928202731687
   references:
@@ -10827,8 +10831,8 @@ GameObject:
   - component: {fileID: 2281443202843056482}
   - component: {fileID: 2531187916767257326}
   - component: {fileID: 852320396149256051}
-  - component: {fileID: 5252041628929335528}
   - component: {fileID: 6808617637497359713}
+  - component: {fileID: 1294235753629109174}
   m_Layer: 0
   m_Name: GhostCar
   m_TagString: Untagged
@@ -10902,183 +10906,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.128044, y: 0.15333758, z: 0.37781408}
   m_Center: {x: -0.002525999, y: 0.076054536, z: 0.0075191734}
---- !u!114 &5252041628929335528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7342775377686920378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _blueprintAsset: {fileID: 11400000, guid: 81a3ba62503c8cf418bfb4b9930a2b01, type: 2}
-  _subgraphTree:
-    _nodes: []
-    _rootIndexMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _nodeIndexMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _count: 0
-    _head: 0
-    _version: 10607
-  _blackboard:
-    _propertyList: 6954b1f56b1b941362b7d444e6c10e4b
-    _propertyMap:
-      _buckets: ffffffff000000000300000001000000
-      _entries:
-      - hashCode: 1974555753
-        next: -1
-        key: -172927895
-        value:
-          name: Detectable
-          type:
-            _type: MisterGames.Interact.Detectables.Detectable, MisterGames.Interact
-          table: 0
-      - hashCode: 328473451
-        next: -1
-        key: 328473451
-        value:
-          name: Alpha Curve
-          type:
-            _type: UnityEngine.AnimationCurve, UnityEngine.CoreModule
-          table: 1
-      - hashCode: 1154791266
-        next: -1
-        key: 1154791266
-        value:
-          name: Distance Bounds
-          type:
-            _type: UnityEngine.Vector2, UnityEngine.CoreModule
-          table: 2
-      - hashCode: 1259258342
-        next: 2
-        key: 1259258342
-        value:
-          name: Material Renderer
-          type:
-            _type: UnityEngine.Renderer, UnityEngine.CoreModule
-          table: 0
-      _count: 4
-      _version: 4
-      _freeList: -1
-      _freeCount: 0
-    _tables:
-      _buckets: 000000000100000002000000
-      _entries:
-      - hashCode: 0
-        next: -1
-        key: 0
-        value:
-          rid: 3557476091320598528
-      - hashCode: 1
-        next: -1
-        key: 1
-        value:
-          rid: 3557476091320598529
-      - hashCode: 2
-        next: -1
-        key: 2
-        value:
-          rid: 3557476091320598530
-      _count: 3
-      _version: 3
-      _freeList: -1
-      _freeCount: 0
-    _tablesHead: 3
-  _rootMetaOverride:
-    rid: -2
-  _isRootOverrideEnabled: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 3557476091320598528
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 0100000000000000
-          _entries:
-          - hashCode: 1974555753
-            next: -1
-            key: -172927895
-            value:
-              value: {fileID: 2531187916767257326}
-          - hashCode: 1259258342
-            next: -1
-            key: 1259258342
-            value:
-              value: {fileID: 4619185914723783221}
-          _count: 2
-          _version: 2
-          _freeList: -1
-          _freeCount: 0
-    - rid: 3557476091320598529
-      type: {class: BlackboardTableAnimationCurve, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 328473451
-            next: -1
-            key: 328473451
-            value:
-              serializedVersion: 2
-              m_Curve:
-              - serializedVersion: 3
-                time: 0
-                value: 1
-                inSlope: 0
-                outSlope: 0
-                tangentMode: 0
-                weightedMode: 0
-                inWeight: 0
-                outWeight: 0
-              - serializedVersion: 3
-                time: 1
-                value: 0
-                inSlope: 0
-                outSlope: 0
-                tangentMode: 0
-                weightedMode: 0
-                inWeight: 0
-                outWeight: 0
-              m_PreInfinity: 2
-              m_PostInfinity: 2
-              m_RotationOrder: 4
-          _count: 1
-          _version: 1
-          _freeList: -1
-          _freeCount: 0
-    - rid: 3557476091320598530
-      type: {class: BlackboardTableVector2, ns: MisterGames.Blackboards.Tables, asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 00000000
-          _entries:
-          - hashCode: 1154791266
-            next: -1
-            key: 1154791266
-            value: {x: 0, y: 3}
-          _count: 1
-          _version: 1
-          _freeList: -1
-          _freeCount: 0
 --- !u!114 &6808617637497359713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11110,7 +10937,7 @@ MonoBehaviour:
       _freeCount: 0
     _count: 0
     _head: 0
-    _version: 9850
+    _version: 10376
   _blackboard:
     _propertyList: 661f883ea71b45ea9adf1810
     _propertyMap:
@@ -11191,6 +11018,47 @@ MonoBehaviour:
           _version: 3
           _freeList: -1
           _freeCount: 0
+--- !u!114 &1294235753629109174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7342775377686920378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4ae13795509496089c10ea924d42a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transform: {fileID: 813202479828581111}
+  _renderers:
+  - {fileID: 4619185914723783221}
+  _minDistance: 0
+  _maxDistance: 3
+  _alphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7715602359259207974
 GameObject:
   m_ObjectHideFlags: 0
@@ -11245,6 +11113,7 @@ MonoBehaviour:
   - {fileID: 3244567489074694738}
   rightStep: 0
   startStep: 2
+  _animationTime: 0.3
   _onMove:
     rid: 3745621928202731691
   references:
@@ -16292,6 +16161,7 @@ MonoBehaviour:
   - {fileID: 3433198786529626815}
   rightStep: 0
   startStep: 1
+  _animationTime: 0.3
   _onMove:
     rid: 3745621928202731690
   references:
