@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 4442424503368272762}
   - component: {fileID: 4442424503368272761}
   - component: {fileID: 4442424503368272767}
-  - component: {fileID: 4442424503368272760}
   m_Layer: 0
   m_Name: pine_1_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4442424503368272762
 Transform:
@@ -53,8 +52,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
+  m_StaticShadowCaster: 1
+  m_MotionVectors: 2
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
@@ -88,29 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4442424503368272760
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4442424503368272766}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.9555533
-  m_Height: 29.8629
-  m_Direction: 1
-  m_Center: {x: 0.09149885, y: 14.318832, z: -0.15792894}
 --- !u!1 &4442424504938305073
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +103,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4442424504938305084
 Transform:
@@ -163,8 +139,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
+  m_StaticShadowCaster: 1
+  m_MotionVectors: 2
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
@@ -214,7 +190,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5886759038942603341
 Transform:
@@ -244,7 +220,7 @@ LODGroup:
   m_LocalReferencePoint: {x: -0.6908951, y: 35.172977, z: 0.45801544}
   m_Size: 70.87081
   m_FadeMode: 1
-  m_AnimateCrossFading: 1
+  m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
   - screenRelativeHeight: 0.701841
@@ -268,6 +244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf90459613940cf95bacec2fcf38a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderers:
+  _renderers:
   - {fileID: 4442424503368272767}
   - {fileID: 4442424504938305074}
+  _applyMode: 0
+  _colors: []
+  _floats: []
+  _vectors: []
+  _excludeRenderersFromOtherGroups: 1
