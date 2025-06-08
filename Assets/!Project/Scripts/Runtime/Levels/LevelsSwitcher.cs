@@ -7,6 +7,7 @@ namespace _Project.Scripts.Runtime.Levels {
     public sealed class LevelsSwitcher : MonoBehaviour {
         
         [SerializeField] private CharacterSpawnPoint _defaultSpawnPoint;
+        [SerializeField] private bool _enableLevelOnAwake = true;
         [SerializeField] private LevelRoot[] _levels;
 
         private void Awake() {
@@ -22,7 +23,7 @@ namespace _Project.Scripts.Runtime.Levels {
             LevelService.Instance.CurrentLevel = level;
 #endif
             
-            EnableLevel(LevelService.Instance.CurrentLevel);
+            if (_enableLevelOnAwake) EnableLevel(LevelService.Instance.CurrentLevel);
         }
 
         private void OnEnable() {
