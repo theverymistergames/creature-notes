@@ -766,6 +766,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5088169336989398642}
+  - component: {fileID: 2603356648920391474}
   m_Layer: 0
   m_Name: Spiderling Robot
   m_TagString: Untagged
@@ -799,6 +800,27 @@ Transform:
   - {fileID: 8909992084942522083}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2603356648920391474
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608986638789766344}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3890421, y: 0.55135113, z: 1}
+  m_Center: {x: 0.012053891, y: 0.3656756, z: 5.816285e-10}
 --- !u!1 &5633451389296460231
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +950,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3208383efc4b75963a48c938c1076d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 5893533586481236379}
+  _renderer: {fileID: 5893533586481236379}
+  _applyMode: 0
   _colors: []
   _floats: []
   _vectors: []
