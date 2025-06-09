@@ -122,7 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3208383efc4b75963a48c938c1076d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 3090027124092832289}
+  _renderer: {fileID: 3090027124092832289}
+  _applyMode: 0
+  _colors: []
+  _floats: []
+  _vectors: []
 --- !u!1001 &8929348972593572598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,7 +195,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8661543585646554468, guid: 5d3e491b5cacad340983f98d56cd18c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
