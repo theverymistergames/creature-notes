@@ -19,6 +19,7 @@ MonoBehaviour:
     supportSSAO: 1
     supportSSGI: 0
     supportSubsurfaceScattering: 1
+    subsurfaceScatteringAttenuation: 1
     sssSampleBudget:
       m_Values: 140000002800000050000000
       m_SchemaId:
@@ -34,6 +35,7 @@ MonoBehaviour:
     supportWater: 0
     waterSimulationResolution: 128
     supportWaterExclusion: 1
+    supportWaterHorizontalDeformation: 0
     supportWaterDecals: 1
     waterDecalAtlasSize: 1024
     maximumWaterDecalCount: 48
@@ -50,6 +52,7 @@ MonoBehaviour:
     supportTransparentDepthPostpass: 1
     colorBufferFormat: 74
     supportCustomPass: 1
+    supportVariableRateShading: 1
     customBufferFormat: 74
     supportedLitShaderMode: 2
     planarReflectionResolution:
@@ -150,7 +153,7 @@ MonoBehaviour:
       maxScreenSpaceShadowSlots: 4
       screenSpaceShadowBufferFormat: 48
     decalSettings:
-      drawDistance: 1000
+      drawDistance: 50
       atlasWidth: 2048
       atlasHeight: 2048
       transparentTextureResolution:
@@ -165,7 +168,7 @@ MonoBehaviour:
     dynamicResolutionSettings:
       enabled: 0
       useMipBias: 0
-      advancedUpscalersByPriority: 
+      advancedUpscalersByPriority: 02
       DLSSPerfQualitySetting: 0
       DLSSInjectionPoint: 0
       TAAUInjectionPoint: 0
@@ -312,9 +315,9 @@ MonoBehaviour:
       - 0.5
       - 0.5
     gpuResidentDrawerSettings:
-      mode: 0
+      mode: 1
       smallMeshScreenPercentage: 0
-      enableOcclusionCullingInCameras: 0
+      enableOcclusionCullingInCameras: 1
       useDepthPrepassForOccluders: 1
     m_ObsoleteLightLayerName0: Light LayerDefault
     m_ObsoleteLightLayerName1: InteriorOnly
@@ -548,3 +551,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: 2b7005ba3a4d8474b8cdc34141ad766e, type: 2}
   m_PrefilterUseLegacyLightmaps: 0
+  m_PrefilterUseLightmapBicubicSampling: 0
