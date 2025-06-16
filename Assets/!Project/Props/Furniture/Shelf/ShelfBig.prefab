@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6755306109357433507
 Transform:
@@ -48,11 +48,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf90459613940cf95bacec2fcf38a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderers:
+  _renderers:
   - {fileID: 6201568309090578777}
   - {fileID: 2947613557386391304}
   - {fileID: 2408766110610622547}
   - {fileID: 5583482651918735158}
+  _applyMode: 0
+  _colors: []
+  _floats: []
+  _vectors: []
+  _excludeRenderersFromOtherGroups: 1
 --- !u!1001 &1863145913010307093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,7 +74,12 @@ PrefabInstance:
     - target: {fileID: 4796377862199842688, guid: 904be06b73326fe47ae61998daf7f8a7,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100049509140616995, guid: 904be06b73326fe47ae61998daf7f8a7,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8334062491885374209, guid: 904be06b73326fe47ae61998daf7f8a7,
         type: 3}
@@ -227,6 +237,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 3767148789522407886, guid: 40826db1453f3e1499d725189a01859a,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7583274011183694526, guid: 40826db1453f3e1499d725189a01859a,
         type: 3}
       propertyPath: m_Name
@@ -235,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 7583274011183694526, guid: 40826db1453f3e1499d725189a01859a,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -343,6 +358,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 3767148789522407886, guid: 40826db1453f3e1499d725189a01859a,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7583274011183694526, guid: 40826db1453f3e1499d725189a01859a,
         type: 3}
       propertyPath: m_Name
@@ -351,7 +371,7 @@ PrefabInstance:
     - target: {fileID: 7583274011183694526, guid: 40826db1453f3e1499d725189a01859a,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -417,7 +437,12 @@ PrefabInstance:
     - target: {fileID: 4796377862199842688, guid: 904be06b73326fe47ae61998daf7f8a7,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100049509140616995, guid: 904be06b73326fe47ae61998daf7f8a7,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8334062491885374209, guid: 904be06b73326fe47ae61998daf7f8a7,
         type: 3}

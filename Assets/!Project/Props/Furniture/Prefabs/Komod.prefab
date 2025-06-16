@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf90459613940cf95bacec2fcf38a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderers:
+  _renderers:
   - {fileID: 8178318368707528215}
   - {fileID: 8392971043572741788}
   - {fileID: 6998641931588743450}
@@ -64,9 +64,11 @@ MonoBehaviour:
   - {fileID: 8640751550179224100}
   - {fileID: 3603342367538932366}
   - {fileID: 867440595421011310}
+  _applyMode: 0
   _colors: []
   _floats: []
   _vectors: []
+  _excludeRenderersFromOtherGroups: 1
 --- !u!1 &803018704570674607
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +86,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3716762531318568977
 Transform:
@@ -191,7 +193,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8649861258856230633
 Transform:
@@ -278,7 +280,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4325141855839182483
 Transform:
@@ -385,7 +387,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4978408717827690404
 Transform:
@@ -472,7 +474,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8073430760295112809
 Transform:
@@ -580,7 +582,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2357334779428075649
 Transform:
@@ -687,7 +689,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4578880345858381566
 Transform:
@@ -773,7 +775,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3690032351788903191
 Transform:
@@ -973,12 +975,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 0
-  moveOutVector: {x: 0, y: 0, z: 0}
+  animationTime: 0.2
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: -0.000468, y: 0.002352998, z: -0.002923}
   - {x: -0.000468, y: -0.000113, z: -0.002923}
   rotations: []
-  animationTime: 0.2
+  moveOutVector: {x: 0, y: 0, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 11400000, guid: 136a0348e456edf4484f4f29aac99e4e, type: 2}
     _eventId: 9
@@ -988,8 +1075,9 @@ MonoBehaviour:
   _onEnd:
     rid: -2
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 0
+  _testTransitionTo: 1
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -1877,12 +1965,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 0
-  moveOutVector: {x: 0, y: 0, z: 0}
+  animationTime: 0.2
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: -0.00047, y: 0.00027, z: -0.00292}
   - {x: -0.00047, y: -0.002215, z: -0.00292}
   rotations: []
-  animationTime: 0.2
+  moveOutVector: {x: 0, y: 0, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 11400000, guid: 136a0348e456edf4484f4f29aac99e4e, type: 2}
     _eventId: 9
@@ -1892,8 +2065,9 @@ MonoBehaviour:
   _onEnd:
     rid: -2
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 0
+  _testTransitionTo: 1
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
@@ -2122,12 +2296,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startStateId: 0
   rightStateId: 0
-  moveOutVector: {x: 0, y: 0, z: 0}
+  animationTime: 0.2
+  useEulerAngles: 1
+  _curveIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012084927
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.5725082
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveMid:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: -0.0012029491
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.36078
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 1.5725082
+      outSlope: 1.5733721
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.326514
+      outWeight: 0.33093
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009312395
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _curveOut:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1.5735515
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0
+      outWeight: 0.330931
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0009282457
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 3
+      inWeight: 0.358689
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positions:
   - {x: -0.00047, y: -0.00238, z: -0.00292}
   - {x: -0.00047, y: -0.000221, z: -0.00292}
   rotations: []
-  animationTime: 0.2
+  moveOutVector: {x: 0, y: 0, z: 0}
+  _moveOutPoint: 0.5
+  _moveOutPointTime: 0.5
+  _moveOutOverrides: []
   resetEvent:
     _eventDomain: {fileID: 11400000, guid: 136a0348e456edf4484f4f29aac99e4e, type: 2}
     _eventId: 9
@@ -2137,8 +2396,9 @@ MonoBehaviour:
   _onEnd:
     rid: -2
   _stateOverrides: []
-  startSound: {fileID: 0}
-  endSound: {fileID: 0}
+  _testTransitionFrom: 0
+  _testTransitionTo: 1
+  _testStatesDirection: 1
   references:
     version: 2
     RefIds:
