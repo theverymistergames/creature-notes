@@ -524,6 +524,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8199890293786863814}
+  - component: {fileID: 7566160624311319683}
+  - component: {fileID: 3459407416496474978}
+  - component: {fileID: 2003426969247434344}
+  - component: {fileID: 7028968117124528842}
   m_Layer: 0
   m_Name: CalibrationMonkey
   m_TagString: Untagged
@@ -548,6 +552,168 @@ Transform:
   - {fileID: 134867432669736394}
   m_Father: {fileID: 8947342867151275207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7566160624311319683
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665150522578173703}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3852523, y: 0.40277877, z: 0.30675846}
+  m_Center: {x: -0.017366465, y: 0.21103668, z: -0.027108153}
+--- !u!114 &3459407416496474978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665150522578173703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
+  _debugDrawDetectable: 0
+--- !u!114 &2003426969247434344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665150522578173703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
+  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
+  _syncEnableStateWithDetectable: 1
+--- !u!114 &7028968117124528842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665150522578173703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blueprintAsset: {fileID: 11400000, guid: ca5bd4a3432f611428fef0821144fe0a, type: 2}
+  _subgraphTree:
+    _nodes: []
+    _rootIndexMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _nodeIndexMap:
+      _buckets: 
+      _entries: []
+      _count: 0
+      _version: 0
+      _freeList: -1
+      _freeCount: 0
+    _count: 0
+    _head: 0
+    _version: 22163
+  _blackboard:
+    _propertyList: 661f883ea71b45ea9adf1810
+    _propertyMap:
+      _buckets: 0200000000000000ffffffff
+      _entries:
+      - hashCode: 1049108326
+        next: -1
+        key: 1049108326
+        value:
+          name: Interactive
+          type:
+            _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
+          table: 0
+      - hashCode: 1782913959
+        next: -1
+        key: -364569689
+        value:
+          name: Disable GameObject
+          type:
+            _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          table: 0
+      - hashCode: 270065562
+        next: 1
+        key: 270065562
+        value:
+          name: Enable GameObject
+          type:
+            _type: UnityEngine.GameObject, UnityEngine.CoreModule
+          table: 0
+      _count: 3
+      _version: 14
+      _freeList: -1
+      _freeCount: 0
+    _tables:
+      _buckets: 00000000
+      _entries:
+      - hashCode: 0
+        next: -1
+        key: 0
+        value:
+          rid: 7516145407415025664
+      _count: 1
+      _version: 6
+      _freeList: -1
+      _freeCount: 0
+    _tablesHead: 2
+  _rootMetaOverride:
+    rid: -2
+  _isRootOverrideEnabled: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7516145407415025664
+      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
+        asm: MisterGames.Blackboards}
+      data:
+        _map:
+          _buckets: 0200000000000000ffffffff
+          _entries:
+          - hashCode: 1049108326
+            next: -1
+            key: 1049108326
+            value:
+              value: {fileID: 2003426969247434344}
+          - hashCode: 1782913959
+            next: -1
+            key: -364569689
+            value:
+              value: {fileID: 129309880257130566}
+          - hashCode: 270065562
+            next: 1
+            key: 270065562
+            value:
+              value: {fileID: 2473151255150858172}
+          _count: 3
+          _version: 7
+          _freeList: -1
+          _freeCount: 0
 --- !u!1 &3139770387662872286
 GameObject:
   m_ObjectHideFlags: 0
@@ -6469,6 +6635,10 @@ PrefabInstance:
       value: GhostMonkey
       objectReference: {fileID: 0}
     - target: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -6526,6 +6696,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 23119816653784782, guid: d323fc18d7f7cbb4d971d8250d723165,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23119816653784782, guid: d323fc18d7f7cbb4d971d8250d723165,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23119816653784782, guid: d323fc18d7f7cbb4d971d8250d723165,
+        type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: bc571f4d55bfe8946a7f706439a53a1f, type: 2}
@@ -6533,22 +6713,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6094771036745282897}
-    - targetCorrespondingSourceObject: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7893288640115802192}
-    - targetCorrespondingSourceObject: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7787437413144435199}
-    - targetCorrespondingSourceObject: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7529403830300992955}
     - targetCorrespondingSourceObject: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165,
         type: 3}
       insertIndex: -1
@@ -6566,168 +6730,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 130094664818066510}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6094771036745282897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129309880257130566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5be675038ae43e5b1e2068e95788361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _strategy: {fileID: 11400000, guid: 866b0e22a3cebe944a1168130ef167e7, type: 2}
-  _debugDrawDetectable: 0
---- !u!114 &7893288640115802192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129309880257130566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15607a9816044bc7b2548f343182030f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _strategy: {fileID: 11400000, guid: 3e44b5b53bd4e5346bade11f43de6f95, type: 2}
-  _cursorStrategy: {fileID: 11400000, guid: 2ef8e637213508440a44520645625afe, type: 2}
-  _syncEnableStateWithDetectable: 1
---- !u!65 &7787437413144435199
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129309880257130566}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 4
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.7646636, y: 2.2077627, z: 1.4479139}
-  m_Center: {x: 0.000033296088, y: 0.44921106, z: 0.15588841}
---- !u!114 &7529403830300992955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129309880257130566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4bfbe1bf55841618270c7eb53cff8a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _blueprintAsset: {fileID: 11400000, guid: ca5bd4a3432f611428fef0821144fe0a, type: 2}
-  _subgraphTree:
-    _nodes: []
-    _rootIndexMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _nodeIndexMap:
-      _buckets: 
-      _entries: []
-      _count: 0
-      _version: 0
-      _freeList: -1
-      _freeCount: 0
-    _count: 0
-    _head: 0
-    _version: 21178
-  _blackboard:
-    _propertyList: 661f883ea71b45ea9adf1810
-    _propertyMap:
-      _buckets: 0200000000000000ffffffff
-      _entries:
-      - hashCode: 1049108326
-        next: -1
-        key: 1049108326
-        value:
-          name: Interactive
-          type:
-            _type: MisterGames.Interact.Interactives.Interactive, MisterGames.Interact
-          table: 0
-      - hashCode: 1782913959
-        next: -1
-        key: -364569689
-        value:
-          name: Disable GameObject
-          type:
-            _type: UnityEngine.GameObject, UnityEngine.CoreModule
-          table: 0
-      - hashCode: 270065562
-        next: 1
-        key: 270065562
-        value:
-          name: Enable GameObject
-          type:
-            _type: UnityEngine.GameObject, UnityEngine.CoreModule
-          table: 0
-      _count: 3
-      _version: 14
-      _freeList: -1
-      _freeCount: 0
-    _tables:
-      _buckets: 00000000
-      _entries:
-      - hashCode: 0
-        next: -1
-        key: 0
-        value:
-          rid: 7516145407415025664
-      _count: 1
-      _version: 6
-      _freeList: -1
-      _freeCount: 0
-    _tablesHead: 2
-  _rootMetaOverride:
-    rid: -2
-  _isRootOverrideEnabled: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 7516145407415025664
-      type: {class: BlackboardTableUnityObject, ns: MisterGames.Blackboards.Tables,
-        asm: MisterGames.Blackboards}
-      data:
-        _map:
-          _buckets: 0200000000000000ffffffff
-          _entries:
-          - hashCode: 1049108326
-            next: -1
-            key: 1049108326
-            value:
-              value: {fileID: 7893288640115802192}
-          - hashCode: 1782913959
-            next: -1
-            key: -364569689
-            value:
-              value: {fileID: 129309880257130566}
-          - hashCode: 270065562
-            next: 1
-            key: 270065562
-            value:
-              value: {fileID: 2473151255150858172}
-          _count: 3
-          _version: 7
-          _freeList: -1
-          _freeCount: 0
 --- !u!114 &7904035724715164800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7096,6 +7098,10 @@ PrefabInstance:
       value: MONKEYContour
       objectReference: {fileID: 0}
     - target: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502818402513928, guid: d323fc18d7f7cbb4d971d8250d723165, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -7150,6 +7156,16 @@ PrefabInstance:
     - target: {fileID: 4808575116110212, guid: d323fc18d7f7cbb4d971d8250d723165, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23119816653784782, guid: d323fc18d7f7cbb4d971d8250d723165,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23119816653784782, guid: d323fc18d7f7cbb4d971d8250d723165,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23119816653784782, guid: d323fc18d7f7cbb4d971d8250d723165,
         type: 3}
@@ -8021,7 +8037,7 @@ PrefabInstance:
     - target: {fileID: 7274186029898379214, guid: 1707b7657ef2dd24e8abb03b4a827912,
         type: 3}
       propertyPath: _subgraphTree._version
-      value: 29254
+      value: 29769
       objectReference: {fileID: 0}
     - target: {fileID: 7274186029898379214, guid: 1707b7657ef2dd24e8abb03b4a827912,
         type: 3}
