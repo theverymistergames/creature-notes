@@ -9,7 +9,7 @@ namespace _Project.Scripts.Runtime.Levels {
         [SerializeField] private CharacterSpawnPoint _defaultSpawnPoint;
         [SerializeField] private bool _enableLevelOnAwake = true;
         [SerializeField] private LevelRoot[] _levels;
-
+        
         private void Awake() {
 #if UNITY_EDITOR
             if (!_launchFirstActiveLevelInEditor &&
