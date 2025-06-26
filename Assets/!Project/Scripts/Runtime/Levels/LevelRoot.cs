@@ -32,17 +32,7 @@ namespace _Project.Scripts.Runtime.Levels {
         
         private void OnEnable() {
 #if UNITY_EDITOR
-            if (!Application.isPlaying) {
-                if (!_levelScene.IsValid() ||
-                    SceneLoaderSettings.GetSceneAsset(_levelScene.scene) is not { } sceneAsset || 
-                    SceneManager.GetSceneByName(sceneAsset.name) is { isLoaded: true }) 
-                {
-                    return;
-                }
-                
-                EditorSceneManager.OpenScene(AssetDatabase.GetAssetPath(sceneAsset), OpenSceneMode.Additive);
-                return;
-            }
+            if (OpenSceneInEditor()) return;
 #endif
             
             if (_levelScene.IsValid()) SceneLoader.LoadScene(_levelScene.scene, makeActive: true);
@@ -50,17 +40,7 @@ namespace _Project.Scripts.Runtime.Levels {
 
         private void OnDisable() {
 #if UNITY_EDITOR
-            if (!Application.isPlaying) {
-                if (!_levelScene.IsValid() ||
-                    SceneLoaderSettings.GetSceneAsset(_levelScene.scene) is not { } sceneAsset ||
-                    SceneManager.GetSceneByName(sceneAsset.name) is not { isLoaded: true } scene) 
-                {
-                    return;
-                }
-
-                SceneUtils.ShowSaveSceneDialogAndUnload_EditorOnly(scene);
-                return;
-            }
+            if (CloseSceneInEditor()) return;
 #endif
             
             if (_levelScene.IsValid()) SceneLoader.UnloadScene(_levelScene.scene);
@@ -73,6 +53,38 @@ namespace _Project.Scripts.Runtime.Levels {
                 .GetComponent<CharacterMotionPipeline>()
                 .Teleport(position, rotation, preserveVelocity: false);
         }
+
+#if UNITY_EDITOR
+        private bool OpenSceneInEditor() {
+            if (Application.isPlaying) return false;
+            
+            if (_levelScene.IsValid() && SceneLoaderSettings.GetSceneAsset(_levelScene.scene) is { } sceneAsset) {
+                var scene = SceneManager.GetSceneByName(sceneAsset.name);
+                
+                if (!scene.isLoaded) {
+                    scene = EditorSceneManager.OpenScene(AssetDatabase.GetAssetPath(sceneAsset), OpenSceneMode.Additive);
+                }
+
+                SceneManager.SetActiveScene(scene);
+            }
+            
+            return true;
+        }
+        
+        private bool CloseSceneInEditor() {
+            if (Application.isPlaying) return false;
+            
+            if (_levelScene.IsValid() && SceneLoaderSettings.GetSceneAsset(_levelScene.scene) is { } sceneAsset) {
+                var scene = SceneManager.GetSceneByName(sceneAsset.name);
+                
+                if (scene.isLoaded) {
+                    SceneUtils.ShowSaveSceneDialogAndUnload_EditorOnly(scene);
+                }
+            }
+            
+            return true;
+        }
+#endif
     }
     
 }
