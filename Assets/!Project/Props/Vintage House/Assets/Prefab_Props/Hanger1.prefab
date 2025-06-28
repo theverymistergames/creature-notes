@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 136801136440358944}
   - component: {fileID: 136016536463165616}
   - component: {fileID: 136379740406296946}
+  - component: {fileID: 645865650419943110}
   m_Layer: 0
   m_Name: Hanger1
   m_TagString: Untagged
@@ -75,9 +76,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.11
-  m_Height: 0.7418198
+  m_Height: 0.61828995
   m_Direction: 1
-  m_Center: {x: 0, y: 0.3295808, z: 0}
+  m_Center: {x: 0, y: 0.39134523, z: 0}
 --- !u!136 &136016536463165616
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -124,6 +125,27 @@ CapsuleCollider:
   m_Height: 0.6
   m_Direction: 1
   m_Center: {x: 0, y: 1.8065524, z: 0}
+--- !u!65 &645865650419943110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360716171740790}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.4946505, y: 0.0998461, z: 0.43002555}
+  m_Center: {x: 0.00082697056, y: 0.051756334, z: -0.0016567383}
 --- !u!1 &1591389040191880
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,4 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3208383efc4b75963a48c938c1076d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 23548225709269088}
+  _renderer: {fileID: 23548225709269088}
+  _applyMode: 0
+  _colors: []
+  _floats: []
+  _vectors: []
