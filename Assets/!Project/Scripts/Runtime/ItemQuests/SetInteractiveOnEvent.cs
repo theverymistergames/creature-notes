@@ -1,14 +1,20 @@
 using MisterGames.Interact.Interactives;
 using MisterGames.Scenario.Events;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public sealed class SetInteractiveOnEvent : MonoBehaviour, IEventListener {
 
     [SerializeField] private EventReference enableEvent;
     [SerializeField] private EventReference disableEvent;
     [SerializeField] private bool disableOnStart;
-    [SerializeField] public bool useInteractive;
+    [FormerlySerializedAs("useInteractive")] [SerializeField] private Mode _enableMode;
 
+    private enum Mode {
+        EnableCollider,
+        EnableColliderAndInteractive,
+    }
+    
     private Collider _collider;
     private Interactive _interactive;
 
@@ -21,7 +27,7 @@ public sealed class SetInteractiveOnEvent : MonoBehaviour, IEventListener {
 
         if (disableOnStart) {
             _collider.enabled = false;
-            if (useInteractive) _interactive.enabled = false;
+            if (_enableMode == Mode.EnableColliderAndInteractive) _interactive.enabled = false;
         }
 
         if (enableEvent.IsRaised()) OnEventRaised(enableEvent);
@@ -36,13 +42,13 @@ public sealed class SetInteractiveOnEvent : MonoBehaviour, IEventListener {
     public void OnEventRaised(EventReference e) {
         if (e.EventId == enableEvent.EventId) {
             _collider.enabled = true;
-            if (useInteractive) _interactive.enabled = true;
+            if (_enableMode == Mode.EnableColliderAndInteractive) _interactive.enabled = true;
             return;
         }
 
         if (e.EventId == disableEvent.EventId) {
             _collider.enabled = false;
-            if (useInteractive) _interactive.enabled = false;
+            if (_enableMode == Mode.EnableColliderAndInteractive) _interactive.enabled = false;
         }
     }
 }

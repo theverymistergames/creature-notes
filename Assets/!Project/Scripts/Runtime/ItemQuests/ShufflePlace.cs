@@ -10,8 +10,8 @@ using UnityEngine;
 public sealed class ShufflePlace : Placeable {
     
     [SerializeField] private GameObject[] cars;
-    [SerializeField] private int rightStep = 0;
-    [SerializeField] private int startStep = 0;
+    [SerializeField] [Min(0)] private int rightStep = 0;
+    [SerializeField] [Min(0)] private int startStep = 0;
     [SerializeField] [Min(0f)] private float _animationTime = 0.3f;
 
     [SerializeReference] [SubclassSelector] private IActorAction _onMove;
@@ -35,23 +35,19 @@ public sealed class ShufflePlace : Placeable {
     }
     
     private void OnEnable() {
-        _interactive.OnStartInteract += ShuffleOnInteract;
+        _interactive.OnStartInteract += OnInteract;
     }
 
     private void OnDisable() {
-        _interactive.OnStartInteract -= ShuffleOnInteract;
+        _interactive.OnStartInteract -= OnInteract;
     }
 
-    private void ShuffleOnInteract(IInteractiveUser user) {
-        Shuffle(false);
-    }
-
-    private void Shuffle(bool instant) {
-        SetStep(_step - 1, instant);
+    private void OnInteract(IInteractiveUser user) {
+        SetStep(_step - 1, false);
     }
 
     private void SetStep(int step, bool instant) {
-        _step = Mathf.Clamp(step, 0, cars.Length - 1);
+        _step = step < 0 ? cars.Length - 1 : step > cars.Length - 1 ? 0 : step;
 
         if (!instant) {
             _onMove?.Apply(null, destroyCancellationToken).Forget();

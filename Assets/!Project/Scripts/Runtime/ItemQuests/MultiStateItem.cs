@@ -48,6 +48,7 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
     private struct StateOverride {
         [Min(0)] public int startState;
         [SerializeReference] [SubclassSelector] public IActorAction onStart;
+        [SerializeReference] [SubclassSelector] public IActorAction onEnd;
     }
 
     [Serializable]
@@ -207,7 +208,7 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
         if (Application.isPlaying) {
 #endif
             
-            _onEnd?.Apply(_actor, cancellationToken).Forget();
+            GetEndAction(_currentStateId)?.Apply(_actor, cancellationToken).Forget();
         
 #if UNITY_EDITOR
         }
@@ -223,6 +224,17 @@ public sealed class MultiStateItem : Placeable, IActorComponent, IEventListener 
         }
 
         return _onStart;
+    }
+    
+    private IActorAction GetEndAction(int currentStateId) {
+        for (int i = 0; i < _stateOverrides.Length; i++) {
+            ref var stateOverride = ref _stateOverrides[i];
+            if (stateOverride.startState != currentStateId) continue;
+            
+            return stateOverride.onEnd;
+        }
+
+        return _onEnd;
     }
     
     private IReadOnlyList<(Vector3 point, float progress)> FillMidPoints(int fromState, Vector3 fromPosition, Vector3 toPosition) {
