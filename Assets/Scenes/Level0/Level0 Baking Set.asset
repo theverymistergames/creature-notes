@@ -18,8 +18,8 @@ MonoBehaviour:
     m_Version: 1
     dilationSettings:
       enableDilation: 1
-      dilationDistance: 0.42
-      dilationValidityThreshold: 0.752
+      dilationDistance: 0.1
+      dilationValidityThreshold: 0.25
       dilationIterations: 5
       squaredDistWeighting: 1
     virtualOffsetSettings:
@@ -71,37 +71,37 @@ MonoBehaviour:
     m_Asset: {fileID: 0}
   chunkSizeInBricks: 128
   maxCellPosition: {x: 3, y: 1, z: 2}
-  minCellPosition: {x: 1, y: 0, z: 0}
+  minCellPosition: {x: 1, y: -1, z: 0}
   globalBounds:
-    m_Center: {x: 30.779999, y: 7.6949997, z: 15.389999}
-    m_Extent: {x: 15.389999, y: 7.6949997, z: 15.389999}
+    m_Center: {x: 30.779999, y: 0, z: 15.389999}
+    m_Extent: {x: 15.389999, y: 15.389999, z: 15.389999}
   bakedSimplificationLevels: 3
   bakedMinDistanceBetweenProbes: 0.19
   bakedProbeOcclusion: 0
   bakedSkyOcclusionValue: 0
   bakedSkyShadingDirectionValue: 0
   bakedProbeOffset: {x: 0, y: 0, z: 0}
-  bakedMaskCount: 1
+  bakedMaskCount: 4
   bakedLayerMasks:
-    x: 4294967295
-    y: 0
+    x: 1
+    y: 2
     z: 0
     w: 0
-  maxSHChunkCount: 15
+  maxSHChunkCount: 18
   L0ChunkSize: 65536
   L1ChunkSize: 32768
   L2TextureChunkSize: 32768
   ProbeOcclusionChunkSize: 0
-  sharedValidityMaskChunkSize: 8192
+  sharedValidityMaskChunkSize: 32768
   sharedSkyOcclusionL0L1ChunkSize: 0
   sharedSkyShadingDirectionIndicesChunkSize: 0
-  sharedDataChunkSize: 8192
+  sharedDataChunkSize: 32768
   supportPositionChunkSize: 98304
   supportValidityChunkSize: 32768
   supportTouchupChunkSize: 32768
-  supportLayerMaskChunkSize: 0
+  supportLayerMaskChunkSize: 8192
   supportOffsetsChunkSize: 98304
-  supportDataChunkSize: 262144
+  supportDataChunkSize: 270336
   lightingScenario: Default
   version: 2
   freezePlacement: 0
@@ -118,8 +118,16 @@ MonoBehaviour:
   skyOcclusionAverageAlbedo: 0.5
   skyOcclusionBackFaceCulling: 0
   skyOcclusionShadingDirection: 0
-  useRenderingLayers: 0
-  renderingLayerMasks: []
+  useRenderingLayers: 1
+  renderingLayerMasks:
+  - mask:
+      serializedVersion: 0
+      m_Bits: 1
+    name: Mask Default
+  - mask:
+      serializedVersion: 0
+      m_Bits: 2
+    name: Mask Storage
   m_SceneBakeData:
     m_Keys:
     - d4633f44945d6974193e0341d0c9c463
@@ -127,5 +135,5 @@ MonoBehaviour:
     - hasProbeVolume: 1
       bakeScene: 1
       bounds:
-        m_Center: {x: 30.779999, y: 7.6949997, z: 15.389999}
-        m_Extent: {x: 15.389999, y: 7.6949997, z: 15.389999}
+        m_Center: {x: 30.779999, y: 0, z: 15.389999}
+        m_Extent: {x: 15.389999, y: 15.389999, z: 15.389999}
