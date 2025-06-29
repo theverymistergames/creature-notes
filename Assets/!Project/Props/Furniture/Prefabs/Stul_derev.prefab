@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &369699729311380873
 Transform:
@@ -68,7 +68,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7549008463930427922
 Transform:
@@ -121,7 +121,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1953478750487047786
 Transform:
@@ -174,7 +174,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2903005027835664760
 Transform:
@@ -227,7 +227,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4107801318439275239
 Transform:
@@ -280,7 +280,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7216086750527604990
 Transform:
@@ -403,6 +403,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 400099b032f86b7479b280c91325e3e8,
         type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 400099b032f86b7479b280c91325e3e8,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 400099b032f86b7479b280c91325e3e8,
+        type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 46252d6b2d74bcb42845abf80aeda2c7, type: 2}
@@ -410,6 +420,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stul_derev
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 400099b032f86b7479b280c91325e3e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -474,4 +489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b3208383efc4b75963a48c938c1076d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 2543017212335051726}
+  _renderer: {fileID: 2543017212335051726}
+  _applyMode: 0
+  _colors: []
+  _floats: []
+  _vectors: []

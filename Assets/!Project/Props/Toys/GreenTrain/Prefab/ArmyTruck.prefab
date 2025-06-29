@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058339616248052}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -135,7 +135,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110108021253186}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 33395769491741066}
   - component: {fileID: 23500337636562088}
   - component: {fileID: 2032919780019458613}
+  - component: {fileID: 8651825666655414078}
   m_Layer: 0
   m_Name: ArmyTruck
   m_TagString: Untagged
@@ -283,6 +284,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.062163558, y: 0.09583079, z: 0.14161393}
   m_Center: {x: 0.0000019073486, y: 0.051883657, z: 0.0005424061}
+--- !u!114 &8651825666655414078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456442292302018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf90459613940cf95bacec2fcf38a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 23500337636562088}
+  - {fileID: 23910109474087868}
+  - {fileID: 23667865143273556}
+  - {fileID: 23587962202643040}
+  _applyMode: 0
+  _colors: []
+  _floats: []
+  _vectors: []
+  _excludeRenderersFromOtherGroups: 1
 --- !u!1 &1700945775207778
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +355,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700945775207778}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

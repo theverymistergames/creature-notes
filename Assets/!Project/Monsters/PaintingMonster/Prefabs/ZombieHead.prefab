@@ -746,7 +746,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3849976184683608015}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1951,10 +1951,16 @@ MonoBehaviour:
   _positionMultiplier: {x: 0, y: 0, z: 0}
   _rotationMultiplier: {x: 30, y: 5, z: 25}
   _scaleMultiplier: {x: 0.8, y: 0.1, z: 0.1}
-  _noiseScale: 0.5
-  _amplitude: 1
   _useLocal: 1
+  _fromOriginalPosition: 0
+  _resetOnDisable: 0
   applyMode: 7
+  _noiseScale: 0.5
+  _noiseSpeedRandomize: 0
+  _amplitude: 1
+  _originalPosition: {x: 0, y: 0, z: 0}
+  _originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  _originalScale: {x: 0, y: 0, z: 0}
   _lastNoiseScale: 0.5
 --- !u!114 &1362541115671124528
 MonoBehaviour:
