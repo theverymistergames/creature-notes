@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8918704161397399572}
   - component: {fileID: 845629793345068566}
   m_Layer: 0
-  m_Name: APV roof virtual offset (1)
+  m_Name: APV adjust roof (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   skyOcclusionMaxBounces: 2
   renderingLayerMaskOperation: 0
   renderingLayerMask: 2
-  cachedHashCode: -446871700
+  cachedHashCode: -762417801
   version: 1
   invalidateProbes: 0
   overrideDilationThreshold: 0
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 5427056632792304563}
   - component: {fileID: 2996673836869069854}
   m_Layer: 0
-  m_Name: APV roof virtual offset
+  m_Name: APV adjust roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,75 @@ MonoBehaviour:
   skyOcclusionMaxBounces: 2
   renderingLayerMaskOperation: 0
   renderingLayerMask: 2
-  cachedHashCode: -446871700
+  cachedHashCode: 842198197
+  version: 1
+  invalidateProbes: 0
+  overrideDilationThreshold: 0
+--- !u!1 &2368703019883246116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4125655273674795392}
+  - component: {fileID: 507122703386719166}
+  m_Layer: 0
+  m_Name: APV adjust balcony (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4125655273674795392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368703019883246116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7933534, z: 0, w: 0.6087614}
+  m_LocalPosition: {x: 36.627605, y: 3.7469187, z: 16.103615}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5680032580221525613}
+  m_LocalEulerAnglesHint: {x: 0, y: -105, z: 0}
+--- !u!114 &507122703386719166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368703019883246116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f90731af2ebc94fb7fdaebe2a9a409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 0
+  size: {x: 0.20723248, y: 5.718261, z: 1.0768585}
+  radius: 1
+  mode: 2
+  intensityScale: 1
+  overriddenDilationThreshold: 0.472
+  virtualOffsetRotation: {x: 0, y: 90, z: 0}
+  virtualOffsetDistance: 0.13
+  geometryBias: 0.01
+  virtualOffsetThreshold: 0.448
+  rayOriginBias: -0.001
+  skyDirection: {x: 0, y: 0, z: 0}
+  directSampleCount: 32
+  indirectSampleCount: 512
+  sampleCountMultiplier: 4
+  maxBounces: 2
+  skyOcclusionSampleCount: 2048
+  skyOcclusionMaxBounces: 2
+  renderingLayerMaskOperation: 0
+  renderingLayerMask: 2
+  cachedHashCode: 59709303
   version: 1
   invalidateProbes: 0
   overrideDilationThreshold: 0
@@ -169,10 +237,219 @@ Transform:
   - {fileID: 3835073539570117235}
   - {fileID: 2430387548882425142}
   - {fileID: 5371443123657458425}
+  - {fileID: 8684087920457307090}
+  - {fileID: 5683478813807142107}
+  - {fileID: 4125655273674795392}
+  - {fileID: 569960651134783537}
+  - {fileID: 7794160496129226721}
   - {fileID: 5427056632792304563}
   - {fileID: 8918704161397399572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4182681351451040515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8684087920457307090}
+  - component: {fileID: 8432225663492140784}
+  m_Layer: 0
+  m_Name: APV adjust balcony
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8684087920457307090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182681351451040515}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.79335225, z: -0, w: 0.60876286}
+  m_LocalPosition: {x: 36.62051, y: 3.7469187, z: 19.179592}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5680032580221525613}
+  m_LocalEulerAnglesHint: {x: 0, y: 105, z: 0}
+--- !u!114 &8432225663492140784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182681351451040515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f90731af2ebc94fb7fdaebe2a9a409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 0
+  size: {x: 0.12001419, y: 5.718261, z: 1.0768547}
+  radius: 1
+  mode: 2
+  intensityScale: 1
+  overriddenDilationThreshold: 0.472
+  virtualOffsetRotation: {x: 0, y: 90, z: 0}
+  virtualOffsetDistance: 0.13
+  geometryBias: 0.01
+  virtualOffsetThreshold: 0.448
+  rayOriginBias: -0.001
+  skyDirection: {x: 0, y: 0, z: 0}
+  directSampleCount: 32
+  indirectSampleCount: 512
+  sampleCountMultiplier: 4
+  maxBounces: 2
+  skyOcclusionSampleCount: 2048
+  skyOcclusionMaxBounces: 2
+  renderingLayerMaskOperation: 0
+  renderingLayerMask: 2
+  cachedHashCode: 59709303
+  version: 1
+  invalidateProbes: 0
+  overrideDilationThreshold: 0
+--- !u!1 &4843750711262990869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 569960651134783537}
+  - component: {fileID: 4774626346888193018}
+  m_Layer: 0
+  m_Name: APV adjust balcony (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &569960651134783537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843750711262990869}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.38268343}
+  m_LocalPosition: {x: 37.536022, y: 3.7469187, z: 16.589}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5680032580221525613}
+  m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
+--- !u!114 &4774626346888193018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4843750711262990869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f90731af2ebc94fb7fdaebe2a9a409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 0
+  size: {x: 0.23542786, y: 5.718261, z: 1.0768547}
+  radius: 1
+  mode: 2
+  intensityScale: 1
+  overriddenDilationThreshold: 0.472
+  virtualOffsetRotation: {x: 0, y: 90, z: 0}
+  virtualOffsetDistance: 0.2
+  geometryBias: 0.01
+  virtualOffsetThreshold: 0.448
+  rayOriginBias: -0.001
+  skyDirection: {x: 0, y: 0, z: 0}
+  directSampleCount: 32
+  indirectSampleCount: 512
+  sampleCountMultiplier: 4
+  maxBounces: 2
+  skyOcclusionSampleCount: 2048
+  skyOcclusionMaxBounces: 2
+  renderingLayerMaskOperation: 0
+  renderingLayerMask: 2
+  cachedHashCode: 59709303
+  version: 1
+  invalidateProbes: 0
+  overrideDilationThreshold: 0
+--- !u!1 &5590157926799453663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7794160496129226721}
+  - component: {fileID: 7064565875320545648}
+  m_Layer: 0
+  m_Name: APV adjust balcony (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7794160496129226721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590157926799453663}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.958, y: 3.7469187, z: 17.684517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5680032580221525613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7064565875320545648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5590157926799453663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f90731af2ebc94fb7fdaebe2a9a409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 0
+  size: {x: 0.23542786, y: 5.718261, z: 1.2989216}
+  radius: 1
+  mode: 2
+  intensityScale: 1
+  overriddenDilationThreshold: 0.472
+  virtualOffsetRotation: {x: 0, y: -90, z: 0}
+  virtualOffsetDistance: 0.2
+  geometryBias: 0.01
+  virtualOffsetThreshold: 0.448
+  rayOriginBias: -0.001
+  skyDirection: {x: 0, y: 0, z: 0}
+  directSampleCount: 32
+  indirectSampleCount: 512
+  sampleCountMultiplier: 4
+  maxBounces: 2
+  skyOcclusionSampleCount: 2048
+  skyOcclusionMaxBounces: 2
+  renderingLayerMaskOperation: 0
+  renderingLayerMask: 2
+  cachedHashCode: 59709303
+  version: 1
+  invalidateProbes: 0
+  overrideDilationThreshold: 0
 --- !u!1 &5722031745237603248
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +461,7 @@ GameObject:
   - component: {fileID: 5371443123657458425}
   - component: {fileID: 6800172794522706312}
   m_Layer: 0
-  m_Name: APV outdoors invalidate (1)
+  m_Name: APV adjust outdoors (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +514,7 @@ MonoBehaviour:
   skyOcclusionMaxBounces: 2
   renderingLayerMaskOperation: 0
   renderingLayerMask: 2
-  cachedHashCode: 1324046292
+  cachedHashCode: 1444083529
   version: 1
   invalidateProbes: 0
   overrideDilationThreshold: 0
@@ -328,7 +605,7 @@ GameObject:
   - component: {fileID: 2430387548882425142}
   - component: {fileID: 2397450193762280475}
   m_Layer: 0
-  m_Name: APV outdoors invalidate
+  m_Name: 'APV adjust outdoors '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +658,7 @@ MonoBehaviour:
   skyOcclusionMaxBounces: 2
   renderingLayerMaskOperation: 0
   renderingLayerMask: 2
-  cachedHashCode: 1324046292
+  cachedHashCode: 1521272492
   version: 1
   invalidateProbes: 0
   overrideDilationThreshold: 0
@@ -396,7 +673,7 @@ GameObject:
   - component: {fileID: 3835073539570117235}
   - component: {fileID: 6032274082939695329}
   m_Layer: 0
-  m_Name: APV storage layer
+  m_Name: APV adjust storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,6 +727,74 @@ MonoBehaviour:
   renderingLayerMaskOperation: 0
   renderingLayerMask: 2
   cachedHashCode: 1324046292
+  version: 1
+  invalidateProbes: 0
+  overrideDilationThreshold: 0
+--- !u!1 &8224157838579158702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5683478813807142107}
+  - component: {fileID: 806601483446289456}
+  m_Layer: 0
+  m_Name: APV adjust balcony (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5683478813807142107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8224157838579158702}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.92387867, z: -0, w: 0.38268548}
+  m_LocalPosition: {x: 37.536022, y: 3.7469187, z: 18.736214}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5680032580221525613}
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
+--- !u!114 &806601483446289456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8224157838579158702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f90731af2ebc94fb7fdaebe2a9a409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 0
+  size: {x: 0.23542786, y: 5.718261, z: 1.0768547}
+  radius: 1
+  mode: 2
+  intensityScale: 1
+  overriddenDilationThreshold: 0.472
+  virtualOffsetRotation: {x: 0, y: 90, z: 0}
+  virtualOffsetDistance: 0.2
+  geometryBias: 0.01
+  virtualOffsetThreshold: 0.448
+  rayOriginBias: -0.001
+  skyDirection: {x: 0, y: 0, z: 0}
+  directSampleCount: 32
+  indirectSampleCount: 512
+  sampleCountMultiplier: 4
+  maxBounces: 2
+  skyOcclusionSampleCount: 2048
+  skyOcclusionMaxBounces: 2
+  renderingLayerMaskOperation: 0
+  renderingLayerMask: 2
+  cachedHashCode: 59709303
   version: 1
   invalidateProbes: 0
   overrideDilationThreshold: 0
