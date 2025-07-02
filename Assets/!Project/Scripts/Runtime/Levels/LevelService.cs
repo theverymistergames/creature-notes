@@ -100,7 +100,7 @@ namespace _Project.Scripts.Runtime.Levels {
             }
 
             LoadingService.Instance.ShowLoadingScreen(false);
-            SceneLoader.MakeSceneActive(_levelsScene.scene);
+            SceneLoader.SetActiveScene(_levelsScene.scene);
 
             await Fader.Main.FadeOutAsync(fadeOutFinal, _fadeOutCurve.GetOrDefault());
         }
@@ -143,7 +143,7 @@ namespace _Project.Scripts.Runtime.Levels {
             }
 
             LoadingService.Instance.ShowLoadingScreen(false);
-            SceneLoader.MakeSceneActive(_menuScene.scene);
+            SceneLoader.SetActiveScene(_menuScene.scene);
             
             await Fader.Main.FadeOutAsync(fadeOutFinal, _fadeOutCurve.GetOrDefault());
         }
