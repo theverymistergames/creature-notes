@@ -77,8 +77,8 @@ namespace _Project.Scripts.Runtime.Levels {
             if (_levelScene.IsValid() && SceneLoaderSettings.GetSceneAsset(_levelScene.scene) is { } sceneAsset) {
                 var scene = SceneManager.GetSceneByName(sceneAsset.name);
                 
-                if (scene.isLoaded) {
-                    SceneUtils.ShowSaveSceneDialogAndUnload_EditorOnly(scene);
+                if (scene.isLoaded && SceneUtils.ShowSaveSceneDialog_EditorOnly(scene)) {
+                    SceneManager.UnloadSceneAsync(scene);
                 }
             }
             
