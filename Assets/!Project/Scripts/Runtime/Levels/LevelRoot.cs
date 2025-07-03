@@ -32,7 +32,7 @@ namespace _Project.Scripts.Runtime.Levels {
         
         private void OnEnable() {
 #if UNITY_EDITOR
-            if (OpenSceneInEditor()) return;
+            if (!LevelLoadingOptions.AllowLevelLoadingInEditor || OpenSceneInEditor()) return;
 #endif
             
             if (_levelScene.IsValid()) SceneLoader.LoadScene(_levelScene.scene, makeActive: true);
@@ -40,7 +40,7 @@ namespace _Project.Scripts.Runtime.Levels {
 
         private void OnDisable() {
 #if UNITY_EDITOR
-            if (CloseSceneInEditor()) return;
+            if (!LevelLoadingOptions.AllowLevelLoadingInEditor || CloseSceneInEditor()) return;
 #endif
             
             if (_levelScene.IsValid()) SceneLoader.UnloadScene(_levelScene.scene);
