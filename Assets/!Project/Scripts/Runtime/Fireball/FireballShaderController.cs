@@ -12,6 +12,9 @@ namespace _Project.Scripts.Runtime.Fireball {
     
     public sealed class FireballShaderController : MonoBehaviour, IActorComponent, IUpdate {
 
+        [Header("Update")]
+        [SerializeField] [Min(0f)] private float _period = 0.08f;
+        
         [Header("Material")]
         [SerializeField] private CustomPassVolume _customPassVolume;
         [SerializeField] private Material _material;
@@ -118,6 +121,8 @@ namespace _Project.Scripts.Runtime.Fireball {
         private float _overrideProgress;
         private float _overrideSpeed;
 
+        private float _updateTimer;
+
         void IActorComponent.OnAwake(IActor actor) {
             _cameraContainer = actor.GetComponent<CameraContainer>();
             _fireballBehaviour = actor.GetComponent<FireballShootingBehaviour>();
@@ -128,7 +133,14 @@ namespace _Project.Scripts.Runtime.Fireball {
             InstantiateMaterial();
         }
 
+
+        private void OnDestroy() {
+            Destroy(_runtimeMaterial);
+        }
+
         private void OnEnable() {
+            _updateTimer = 0f;
+            
             ResetCenterOffset();
             ResetBlends();
             
@@ -258,8 +270,12 @@ namespace _Project.Scripts.Runtime.Fireball {
         }
         
         void IUpdate.OnUpdate(float dt) {
+            _updateTimer += dt;
+            
             ProcessCenterOffset(dt);
             ProcessCurrentSetting(dt);
+
+            if (_updateTimer > _period) _updateTimer -= _period;
         }
 
         private void ProcessCenterOffset(float dt) {
@@ -274,9 +290,11 @@ namespace _Project.Scripts.Runtime.Fireball {
 
             var deltaAvg = _deltaBuffer.WriteToCircularBufferAndGetAverage(delta, ref _deltaPointer);
             var centerOffset = deltaAvg.normalized * Mathf.Min(_speedCurve.Evaluate(relativeSpeed) * _speedMul, _maxOffset);
+            var oldCenterOffset = CenterOffset;
+            
             CenterOffset = CenterOffset.SmoothExp(centerOffset, dt * _offsetSmoothing);
             
-            _runtimeMaterial.SetVector(_centerOffsetId, CenterOffset);
+            if (_updateTimer > _period && CenterOffset != oldCenterOffset) _runtimeMaterial.SetVector(_centerOffsetId, CenterOffset);
         }
 
         private void ProcessCurrentSetting(float dt) {
@@ -333,6 +351,8 @@ namespace _Project.Scripts.Runtime.Fireball {
             _colorDistortionBlend = _colorDistortionBlend.SmoothExp(colorDistortionBlend, dt * smoothing);
             _colorVignette = _colorVignette.SmoothExp(colorVignette, dt * smoothing);
             _colorBorder = _colorBorder.SmoothExp(colorBorder, dt * smoothing);
+
+            if (_updateTimer < _period) return;
 
             ApplyMaterialProperties();
         }
