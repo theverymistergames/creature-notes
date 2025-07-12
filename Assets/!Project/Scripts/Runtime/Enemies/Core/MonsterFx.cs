@@ -36,7 +36,10 @@ namespace _Project.Scripts.Runtime.Enemies {
             [SerializeReference] [SubclassSelector] public IActorAction action;
         }
 
+        private const float Tolerance = 0.00001f;
+
         private float[] _progressArray;
+        private float[] _linearProgressArray;
         private CancellationTokenSource _enableCts;
         private CancellationTokenSource _healthCts;
         private IActor _actor;
@@ -46,7 +49,9 @@ namespace _Project.Scripts.Runtime.Enemies {
         void IActorComponent.OnAwake(IActor actor) {
             _actor = actor;
             _monster = actor.GetComponent<Monster>();
+            
             _progressArray = new float[_progressActions?.Length ?? 0];
+            _linearProgressArray = new float[_progressArray.Length];
         }
         
         private void OnEnable() {
@@ -74,28 +79,32 @@ namespace _Project.Scripts.Runtime.Enemies {
             }
             
             float progress = _monster.Progress;
-            float maxProgress = 0f;
+            float targetProgress = _monster.TargetProgress;
+            
+            bool reachedTargetProgress = true;
             
             for (int i = 0; i < _progressActions.Length; i++) {
                 ref var action = ref _progressActions[i];
-                ref float p = ref _progressArray[i];
+                ref float pSmooth = ref _progressArray[i];
+                ref float pLinearSmooth = ref _linearProgressArray[i];
 
-                float targetProgress = action.progressCurve?.Evaluate(progress) ?? progress;
-                targetProgress = action.progressModulator?.Modulate(targetProgress) ?? targetProgress;
+                float pNotSmoothed = action.progressCurve?.Evaluate(progress) ?? progress;
+                pNotSmoothed = action.progressModulator?.Modulate(pNotSmoothed) ?? pNotSmoothed;
                 
-                float oldP = p;
-                p = p.SmoothExpNonZero(targetProgress, action.progressSmoothing, dt);
-
-                maxProgress = Mathf.Max(maxProgress, p);
+                float pSmoothOld = pSmooth;
+                pSmooth = pSmooth.SmoothExpNonZero(pNotSmoothed, action.progressSmoothing, dt);
                 
-                if (action.notifyProgressDirection.NeedNotifyProgress(oldP, p)) {
-                    action.progressAction?.OnProgressUpdate(p);
+                if (action.notifyProgressDirection.NeedNotifyProgress(pSmoothOld, pSmooth)) {
+                    action.progressAction?.OnProgressUpdate(pSmooth);
                 }
                 
-                action.events.NotifyTweenEvents(_actor, p, oldP, _enableCts.Token);
+                action.events.NotifyTweenEvents(_actor, pSmooth, pSmoothOld, _enableCts.Token);
+                
+                pLinearSmooth = pLinearSmooth.SmoothExpNonZero(progress, action.progressSmoothing, dt);
+                reachedTargetProgress &= pLinearSmooth.IsNearlyEqual(targetProgress, Tolerance);
             }
             
-            if (maxProgress <= 0f) PlayerLoopStage.Update.Unsubscribe(this);
+            if (reachedTargetProgress) PlayerLoopStage.Update.Unsubscribe(this);
         }
 
         private void OnMonsterEvent(MonsterEventType evt) {

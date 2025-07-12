@@ -24,6 +24,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         public bool IsDead => _health.IsDead;
         public bool IsArmed => Progress >= 1f;
         public float Progress => _progress;
+        public float TargetProgress => _progressSpeed > 0f ? 1f : 0f;
         public float AttackDuration { get; private set; }
 
         private CancellationTokenSource _enableCts;
@@ -89,7 +90,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                 _health.Kill(notifyDamage: false);
             
                 OnMonsterEvent.Invoke(MonsterEventType.Reset);
-                
+
                 _progress = 0f;
                 _progressSpeed = 0f;
                 _attackId++;
