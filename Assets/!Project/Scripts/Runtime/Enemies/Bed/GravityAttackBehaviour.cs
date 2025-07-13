@@ -43,6 +43,16 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
         [SerializeField] private bool _shuffleDirections;
         [SerializeField] private Vector3[] _randomStopDirections;
 
+        [Header("Difficulty")]
+        [SerializeField] private DifficultyData[] _difficultyData;
+        
+        [Serializable]
+        private struct DifficultyData {
+            [Min(0)] public int difficultyLevel;
+            public StopMode stopMode;
+            public Vector3[] randomStopDirections;
+        }
+        
         private enum StopMode {
             ReturnToNormalGravity,
             UseLastRotation,
@@ -53,8 +63,13 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
         public bool IsAttackInProcess { get; private set; }
 
         private CancellationTokenSource _enableCts;
+        private Monster _monster;
         private byte _operationId;
         private int _lastStopDirectionIndex = -1;
+
+        void IActorComponent.OnAwake(IActor actor) {
+            _monster = actor.GetComponent<Monster>();
+        }
 
         private void OnEnable() {
             AsyncExt.RecreateCts(ref _enableCts);
@@ -79,7 +94,9 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
 
             float stopMagnitude = _stopMagnitude.GetRandomInRange();
             
-            switch (_stopMode) {
+            GetStopData(out var stopMode, out var stopDirections);
+            
+            switch (stopMode) {
                 case StopMode.ReturnToNormalGravity:
                     _gravitySource.forward = Vector3.down;
                     _gravitySource.localScale = Vector3.one;
@@ -96,11 +113,11 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
                 
                 case StopMode.RandomFromList:
                     int excludeIndex = _shuffleDirections ? _lastStopDirectionIndex : -1;
-                    int index = _randomStopDirections.GetRandomIndex(excludeIndex);
+                    int index = stopDirections.GetRandomIndex(excludeIndex);
                     _lastStopDirectionIndex = index;
 
                     if (index >= 0) {
-                        _gravitySource.forward = _randomStopDirections[index].normalized;
+                        _gravitySource.forward = stopDirections[index].normalized;
                         _gravitySource.localScale = Vector3.one.WithZ(stopMagnitude);
                     }
                     else {
@@ -189,6 +206,22 @@ namespace _Project.Scripts.Runtime.Enemies.Bed {
                     UnblockCharacterGravityAlign();
                 }
             }
+        }
+        
+        private void GetStopData(out StopMode stopMode, out Vector3[] stopDirections) {
+            int difficulty = _monster.Difficulty;
+
+            for (int i = 0; i < _difficultyData.Length; i++) {
+                ref var data = ref _difficultyData[i];
+                if (data.difficultyLevel != difficulty) continue;
+                
+                stopMode = data.stopMode;
+                stopDirections = data.randomStopDirections;
+                return;
+            }
+
+            stopMode = _stopMode;
+            stopDirections = _randomStopDirections;
         }
 
         private void BlockCharacterGravityAlign(CancellationToken cancellationToken) {

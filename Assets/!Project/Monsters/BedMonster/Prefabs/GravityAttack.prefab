@@ -55,6 +55,7 @@ MonoBehaviour:
   _innerRadius: 1
   _outerRadius: 2
   _showDebugInfo: 1
+  _testPoint: 1
 --- !u!114 &5208731538122618775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,17 +106,21 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _stopMode: 3
-  _stopMagnitude: {x: 0.3, y: 1}
+  _stopMagnitude: {x: 0.4, y: 0.6}
   _shuffleDirections: 1
   _randomStopDirections:
-  - {x: 0, y: 1, z: 0}
   - {x: 0, y: -1, z: 0}
-  _startAction:
-    rid: -2
-  _finishAction:
-    rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+  - {x: 0, y: 1, z: 0}
+  _difficultyData:
+  - difficultyLevel: 1
+    stopMode: 3
+    randomStopDirections:
+    - {x: 0, y: 0, z: 1}
+    - {x: 0, y: 0, z: -1}
+    - {x: 0, y: 1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: 0, z: 0}
+  - difficultyLevel: 2
+    stopMode: 2
+    randomStopDirections: []

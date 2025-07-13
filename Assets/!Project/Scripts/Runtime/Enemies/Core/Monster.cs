@@ -26,7 +26,8 @@ namespace _Project.Scripts.Runtime.Enemies {
         public float Progress => _progress;
         public float TargetProgress => _progressSpeed > 0f ? 1f : 0f;
         public float AttackDuration { get; private set; }
-
+        public int Difficulty { get; private set; }
+        
         private CancellationTokenSource _enableCts;
         
         private IActor _actor;
@@ -61,7 +62,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _health.OnDamage -= OnDamage;
         }
 
-        public void Respawn(float armDuration, Vector2 attackDurationRange, Vector2 attackCooldownRange) {
+        public void Respawn(float armDuration, Vector2 attackDurationRange, Vector2 attackCooldownRange, int difficulty) {
             if (_health.IsAlive) return;
             
             _health.RestoreFullHealth();
@@ -70,6 +71,7 @@ namespace _Project.Scripts.Runtime.Enemies {
             _attackCooldownRange = attackCooldownRange;
             _timer = 0f;
             _attackId++;
+            Difficulty = difficulty;
             
 #if UNITY_EDITOR
             if (_showDebugInfo) Debug.Log($"Monster[{name}].Respawn: f {Time.frameCount}, " +
@@ -196,10 +198,11 @@ namespace _Project.Scripts.Runtime.Enemies {
         [SerializeField] private float _armDurationTest = 1f;
         [SerializeField] private Vector2 _attackDurationRangeTest = Vector2.one;
         [SerializeField] private Vector2 _attackCooldownRangeTest = Vector2.one;
+        [SerializeField] [Min(0)] private int _difficultyTest = 0;
 
         [Button(mode: ButtonAttribute.Mode.Runtime)] 
         private void RespawnTest() {
-            Respawn(_armDurationTest, _attackDurationRangeTest, _attackCooldownRangeTest);
+            Respawn(_armDurationTest, _attackDurationRangeTest, _attackCooldownRangeTest, _difficultyTest);
         }
 #endif
     }

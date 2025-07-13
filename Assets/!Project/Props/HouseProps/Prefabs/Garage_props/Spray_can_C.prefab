@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6379785332950370335}
   - component: {fileID: 9182131265276607701}
   - component: {fileID: 4341325459723158843}
+  - component: {fileID: 3790816932708655193}
+  - component: {fileID: 4569644583017530577}
   m_Layer: 0
   m_Name: Spray_can_C
   m_TagString: Untagged
@@ -108,3 +110,47 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.069032066, y: 0.20407745, z: 0.06798333}
   m_Center: {x: 0, y: 0.1020814, z: -0.0000000037252903}
+--- !u!54 &3790816932708655193
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236589489408072960}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4569644583017530577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236589489408072960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3577af494343422ba459e88981ec386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 3790816932708655193}
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2
+  _options: 0

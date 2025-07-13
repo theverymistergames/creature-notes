@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4679953437818758}
   - component: {fileID: 205197057451580228}
   - component: {fileID: 2658760880513299186}
+  - component: {fileID: 5409566754983943098}
+  - component: {fileID: 226614460034681292}
   m_Layer: 0
   m_Name: Clay_Jug_02
   m_TagString: Untagged
@@ -74,6 +76,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.23170337, y: 0.42596564, z: 0.23170337}
   m_Center: {x: 0.0000038146973, y: 0.20855795, z: -0.0000019073486}
+--- !u!54 &5409566754983943098
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612955075010128}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &226614460034681292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612955075010128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3577af494343422ba459e88981ec386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 5409566754983943098}
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2
+  _options: 0
 --- !u!1 &1933149036997140
 GameObject:
   m_ObjectHideFlags: 0

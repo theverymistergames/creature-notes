@@ -408,7 +408,7 @@ namespace _Project.Scripts.Runtime.Enemies {
                     Mathf.Lerp(preset.attackCooldownStart.y, preset.attackCooldownEnd.y, t)
                 );
                 
-                newMonster.Respawn(armDuration, attackDurationRange, attackCooldownRange);
+                newMonster.Respawn(armDuration, attackDurationRange, attackCooldownRange, preset.difficulty);
                 
                 _aliveMonsters.Add(newMonster);
                 _aliveMonsterTypeMap[monsterType] = _aliveMonsterTypeMap.GetValueOrDefault(monsterType) + 1;

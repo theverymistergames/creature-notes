@@ -39,6 +39,7 @@ namespace _Project.Scripts.Runtime.Enemies {
         public struct MonsterPreset {
             [LabelFilter("MonstersLib")]
             public LabelValue monsterType;
+            [Min(0)] public int difficulty;
             [Min(0)] public int maxMonstersAtMoment;
             [Min(0)] public int allowSpawnMinKills;
             [Min(0f)] public float allowSpawnDelayAfterWaveStart;

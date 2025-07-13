@@ -77,6 +77,14 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 062d717dab492ec4b96497c91bd94bbe,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4083125470355477666}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 062d717dab492ec4b96497c91bd94bbe,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2901026841113285192}
     - targetCorrespondingSourceObject: {fileID: -83962208799155735, guid: 062d717dab492ec4b96497c91bd94bbe,
         type: 3}
       insertIndex: -1
@@ -109,3 +117,52 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09197374, y: 0.07541653, z: 0.13977899}
   m_Center: {x: 0.0039367643, y: 0.036160957, z: 0.003263797}
+--- !u!1 &5247111707871370320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 062d717dab492ec4b96497c91bd94bbe,
+    type: 3}
+  m_PrefabInstance: {fileID: 4904443760952893697}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &4083125470355477666
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5247111707871370320}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2901026841113285192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5247111707871370320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3577af494343422ba459e88981ec386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 4083125470355477666}
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2

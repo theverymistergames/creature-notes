@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1031001220}
   - component: {fileID: 1031001221}
   - component: {fileID: 4452233814040947611}
+  - component: {fileID: 125836423478672449}
+  - component: {fileID: 547393466088975282}
   m_Layer: 0
   m_Name: SM_Shoes_Right_17
   m_TagString: Untagged
@@ -75,6 +77,49 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.11942001, y: 0.20068298, z: 0.15588489}
   m_Center: {x: 0.0000009910455, y: 0.09639079, z: 0.03254156}
+--- !u!54 &125836423478672449
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031001219}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &547393466088975282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031001219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3577af494343422ba459e88981ec386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 125836423478672449}
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2
 --- !u!1 &1031001234
 GameObject:
   m_ObjectHideFlags: 0

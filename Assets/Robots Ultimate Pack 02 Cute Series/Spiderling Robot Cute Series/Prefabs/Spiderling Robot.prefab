@@ -767,6 +767,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5088169336989398642}
   - component: {fileID: 2603356648920391474}
+  - component: {fileID: 3991983744186265937}
+  - component: {fileID: 2856048663133445565}
   m_Layer: 0
   m_Name: Spiderling Robot
   m_TagString: Untagged
@@ -821,6 +823,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3890421, y: 0.55135113, z: 1}
   m_Center: {x: 0.012053891, y: 0.3656756, z: 5.816285e-10}
+--- !u!54 &3991983744186265937
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608986638789766344}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2856048663133445565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5608986638789766344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3577af494343422ba459e88981ec386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 3991983744186265937}
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2
+  _options: 0
 --- !u!1 &5633451389296460231
 GameObject:
   m_ObjectHideFlags: 0
