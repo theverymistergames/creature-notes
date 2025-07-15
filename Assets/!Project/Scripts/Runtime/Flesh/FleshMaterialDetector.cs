@@ -10,7 +10,6 @@ namespace _Project.Scripts.Runtime.Flesh {
     
     public sealed class FleshMaterialDetector : MaterialDetectorBase {
         
-        [SerializeField] private Transform _transform;
         [SerializeField] private FleshPositionSamplerBase _fleshPositionSampler;
         [SerializeField] private LabelValue _material;
         [SerializeField] [Min(0f)] private float _weightMin = 0.1f;
@@ -19,10 +18,8 @@ namespace _Project.Scripts.Runtime.Flesh {
         
         private readonly List<MaterialInfo> _materialList = new();
 
-        public override IReadOnlyList<MaterialInfo> GetMaterials(Vector3 point) {
+        public override IReadOnlyList<MaterialInfo> GetMaterials(Vector3 point, Vector3 normal) {
             _materialList.Clear();
-            
-            var up = _transform.up;
             
 #if UNITY_EDITOR
             if (_showDebugInfo) DebugExt.DrawSphere(point, 0.01f, Color.yellow);
@@ -36,12 +33,12 @@ namespace _Project.Scripts.Runtime.Flesh {
 
 #if UNITY_EDITOR
             if (_showDebugInfo) {
-                DebugExt.DrawCircle(point, _transform.rotation, 0.05f, Color.green);
-                DebugExt.DrawRay(point, _transform.up * 0.005f, Color.green);
+                DebugExt.DrawCircle(point, Quaternion.identity, 0.05f, Color.green);
+                DebugExt.DrawRay(point, normal * 0.005f, Color.green);
             }
 #endif
 
-            float mag = VectorUtils.SignedMagnitudeOfProject(topPoint - point, up);
+            float mag = VectorUtils.SignedMagnitudeOfProject(topPoint - point, normal);
             float weight = mag > 0f 
                 ? Mathf.Lerp(_weightMin, _weightMax, _maxDistance > 0f ? Mathf.Clamp01(mag / _maxDistance) : 1f) 
                 : 0f;
