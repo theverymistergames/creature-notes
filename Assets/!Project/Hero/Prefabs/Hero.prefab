@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca9677b93e84222aa3f5db680640084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _capsuleCollider: {fileID: 166874115278957637}
+  _transform: {fileID: 7205586870401899320}
   _groundDetector: {fileID: 702872700590475939}
   _defaultMaterial:
     library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
@@ -307,17 +307,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbe2afa86b04fc292c22bb4ceb225ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 7205586870401899320}
   _triggerEmitter: {fileID: 99584176637886361}
   _layerMask:
     serializedVersion: 2
     m_Bits: 16
-  _capsuleCollider: {fileID: 166874115278957637}
   _material:
     library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
     id: 16
   _weightMin: 0.1
   _weightMax: 3
-  _topPointOffset: 0
+  _maxDistance: 0.5
   _showDebugInfo: 0
 --- !u!114 &3821779519464850139
 MonoBehaviour:
@@ -2871,6 +2871,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8964084335765370271, guid: a3b6c152c6ed61746b9789112e3a754e,
+        type: 3}
+      propertyPath: _capsuleCollider
+      value: 
+      objectReference: {fileID: 166874115278957637}
     - target: {fileID: 8964084335765370271, guid: a3b6c152c6ed61746b9789112e3a754e,
         type: 3}
       propertyPath: _materialDetector
