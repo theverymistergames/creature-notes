@@ -241,7 +241,7 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
                 _spatialBlend,
                 normalizedTime: 0f,
                 mixerGroup: null,
-                AudioOptions.ApplyOcclusion | AudioOptions.AffectedByTimeScale,
+                AudioOptions.ApplyOcclusion | AudioOptions.AffectedByTimeScale | AudioOptions.AffectedByVolumes,
                 cancellationToken 
             );
         }
@@ -259,7 +259,7 @@ namespace _Project.Scripts.Runtime.Enemies.Lamp {
                 _spatialBlend,
                 normalizedTime: Random.value,
                 mixerGroup: null,
-                AudioOptions.ApplyOcclusion | AudioOptions.Loop | AudioOptions.AffectedByTimeScale,
+                AudioOptions.ApplyOcclusion | AudioOptions.Loop | AudioOptions.AffectedByTimeScale | AudioOptions.AffectedByVolumes,
                 cancellationToken 
             );
         }

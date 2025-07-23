@@ -100,7 +100,7 @@ namespace _Project.Scripts.Runtime.Enemies.Painting {
                 _spatialBlend,
                 normalizedTime: 0f,
                 _mixerGroup,
-                AudioOptions.ApplyOcclusion | AudioOptions.AffectedByTimeScale,
+                AudioOptions.ApplyOcclusion | AudioOptions.AffectedByTimeScale | AudioOptions.AffectedByVolumes,
                 attackToken
             );
 

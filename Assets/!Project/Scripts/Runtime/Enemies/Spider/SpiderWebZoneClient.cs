@@ -80,7 +80,7 @@ namespace _Project.Scripts.Runtime.Spider {
                 pitch: 1f,
                 _spatialBlend,
                 Random.value,
-                options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale
+                options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale | AudioOptions.AffectedByVolumes
             );
         }
 

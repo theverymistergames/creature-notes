@@ -148,7 +148,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                 pitch: 1f,
                 _movingFireSpatialBlend,
                 normalizedTime: Random.value,
-                options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale,
+                options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale | AudioOptions.AffectedByVolumes,
                 cancellationToken: _enableCts.Token
             );
         }
@@ -212,6 +212,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                 fadeOut: -1f,
                 sound.pitch.GetRandomInRange(),
                 _stageSpatialBlend,
+                options: AudioOptions.AffectedByTimeScale | AudioOptions.AffectedByVolumes,
                 cancellationToken: _enableCts.Token
             );
         }
@@ -245,7 +246,7 @@ namespace _Project.Scripts.Runtime.Fireball {
                     _stageSpatialBlend,
                     sound.startTime.GetRandomInRange(),
                     mixerGroup: default,
-                    options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale,
+                    options: AudioOptions.Loop | AudioOptions.AffectedByTimeScale | AudioOptions.AffectedByVolumes,
                     _enableCts.Token
                 );
                 
