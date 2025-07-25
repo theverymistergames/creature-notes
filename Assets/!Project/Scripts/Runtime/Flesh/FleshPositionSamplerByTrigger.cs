@@ -56,7 +56,8 @@ namespace _Project.Scripts.Runtime.Flesh {
         }
 
         private void TriggerExit(Collider collider) {
-            if (!_layerMask.Contains(collider.gameObject.layer) ||
+            if (collider == null || 
+                !_layerMask.Contains(collider.gameObject.layer) ||
                 !collider.TryGetComponent(out FleshVertexPosition fleshVertexPosition)) 
             {
                 return;
