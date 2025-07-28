@@ -1,0 +1,315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5810880059814857551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4616167512662362469}
+  - component: {fileID: 6630047829264261539}
+  - component: {fileID: 3768074594181459820}
+  - component: {fileID: 5790843287557729944}
+  - component: {fileID: 1397187396880868551}
+  - component: {fileID: 5976896297654302444}
+  - component: {fileID: 293489112810694674}
+  m_Layer: 0
+  m_Name: WaterZone_global
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4616167512662362469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810880059814857551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6630047829264261539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810880059814857551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b0e2bbe0f34dc296e2482065cc7d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _predefinedProxies: []
+  _surfaceOffset: 0
+  _forceLevelDecrease: 1
+  _maxSpeed: -1
+  _buoyancyDefault: 0
+  _deceleration: 3
+  _torqueDeceleration: 3
+  _force: 1
+  _forceSource: 1
+  _randomForce: 0.2
+  _randomTorque: 0.1
+  _randomForceSpeed: 0.1
+  _randomTorqueSpeed: 0.2
+  _showDebugInfo: 1
+--- !u!114 &3768074594181459820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810880059814857551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a637558259c74857b5d8332f07f937bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _priority: 0
+  _weight: 1
+  _mode: 1
+  _positionWeightProvider: {fileID: 5976896297654302444}
+  _occlusionWeightListener:
+    operation: 0
+    modifier: 3
+  _pitch:
+    operation: 0
+    modifier: 1
+  _occlusionWeightSound:
+    operation: 0
+    modifier: 1
+  _lowPassCutoffFrequency:
+    operation: 3
+    modifier: 5500
+  _highPassCutoffFrequency:
+    operation: 0
+    modifier: 1
+--- !u!114 &5790843287557729944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810880059814857551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6818e1172fc24b3ab1c230ac41f37bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waterZone: {fileID: 6630047829264261539}
+  _volume: {x: 0.8, y: 1}
+  _pitch: {x: 0.9, y: 1.1}
+  _fadeIn: 0
+  _fadeOut: -1
+  _spatialBlend: 1
+  _audioOptions: 14
+  _minSize: 0
+  _maxSize: 1
+  _minSizeVolumeMul: 1
+  _maxSizeVolumeMul: 1
+  _minSpeed: 0
+  _maxSpeed: 1
+  _minSpeedVolumeMul: 1
+  _maxSpeedVolumeMul: 1
+  _enterSounds:
+  - minColliderSize: 0
+    minSpeed: 0.1
+    volumeMul: 0.5
+    clips:
+    - {fileID: 8300000, guid: b4dcdfb59ea968e4eadab3f4bf633589, type: 3}
+    - {fileID: 8300000, guid: 92789cab410770942a7a37bea101105b, type: 3}
+    - {fileID: 8300000, guid: 37edb2675513c3c49b2978d5983bcaaf, type: 3}
+    - {fileID: 8300000, guid: 20d29d895cfc55345a1abdc43267b05b, type: 3}
+    - {fileID: 8300000, guid: 046d97f160d8c014ab529a0ac8157f16, type: 3}
+    - {fileID: 8300000, guid: 25060dbe87479c14885566fef194f00f, type: 3}
+  - minColliderSize: 0
+    minSpeed: 0.5
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: b4dcdfb59ea968e4eadab3f4bf633589, type: 3}
+    - {fileID: 8300000, guid: 92789cab410770942a7a37bea101105b, type: 3}
+    - {fileID: 8300000, guid: 37edb2675513c3c49b2978d5983bcaaf, type: 3}
+    - {fileID: 8300000, guid: 20d29d895cfc55345a1abdc43267b05b, type: 3}
+    - {fileID: 8300000, guid: 046d97f160d8c014ab529a0ac8157f16, type: 3}
+    - {fileID: 8300000, guid: 25060dbe87479c14885566fef194f00f, type: 3}
+  - minColliderSize: 0.25
+    minSpeed: 0.01
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: b4dcdfb59ea968e4eadab3f4bf633589, type: 3}
+    - {fileID: 8300000, guid: 92789cab410770942a7a37bea101105b, type: 3}
+    - {fileID: 8300000, guid: 37edb2675513c3c49b2978d5983bcaaf, type: 3}
+    - {fileID: 8300000, guid: 20d29d895cfc55345a1abdc43267b05b, type: 3}
+    - {fileID: 8300000, guid: 046d97f160d8c014ab529a0ac8157f16, type: 3}
+    - {fileID: 8300000, guid: 25060dbe87479c14885566fef194f00f, type: 3}
+  - minColliderSize: 0.25
+    minSpeed: 0.1
+    volumeMul: 0.6
+    clips:
+    - {fileID: 8300000, guid: 2519721006606d340a51b80c4677d8d1, type: 3}
+    - {fileID: 8300000, guid: c254ed5a3ef905b47bced1b01f70ed00, type: 3}
+    - {fileID: 8300000, guid: c68aea8c08da69d41b8bbc4ac7505ea7, type: 3}
+    - {fileID: 8300000, guid: fc9304b7d6b048e45a7d7a1ae0408673, type: 3}
+    - {fileID: 8300000, guid: 1dd3037516c1cf24286f854a9454084d, type: 3}
+    - {fileID: 8300000, guid: f90989ada20776b4f965214afad4aad1, type: 3}
+  - minColliderSize: 0.25
+    minSpeed: 0.5
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: 2519721006606d340a51b80c4677d8d1, type: 3}
+    - {fileID: 8300000, guid: c254ed5a3ef905b47bced1b01f70ed00, type: 3}
+    - {fileID: 8300000, guid: c68aea8c08da69d41b8bbc4ac7505ea7, type: 3}
+    - {fileID: 8300000, guid: fc9304b7d6b048e45a7d7a1ae0408673, type: 3}
+    - {fileID: 8300000, guid: 1dd3037516c1cf24286f854a9454084d, type: 3}
+    - {fileID: 8300000, guid: f90989ada20776b4f965214afad4aad1, type: 3}
+  - minColliderSize: 0.4
+    minSpeed: 0.01
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: 2519721006606d340a51b80c4677d8d1, type: 3}
+    - {fileID: 8300000, guid: c254ed5a3ef905b47bced1b01f70ed00, type: 3}
+    - {fileID: 8300000, guid: c68aea8c08da69d41b8bbc4ac7505ea7, type: 3}
+    - {fileID: 8300000, guid: fc9304b7d6b048e45a7d7a1ae0408673, type: 3}
+    - {fileID: 8300000, guid: 1dd3037516c1cf24286f854a9454084d, type: 3}
+    - {fileID: 8300000, guid: f90989ada20776b4f965214afad4aad1, type: 3}
+  - minColliderSize: 0.4
+    minSpeed: 0.5
+    volumeMul: 0.6
+    clips:
+    - {fileID: 8300000, guid: 1a04367c62138a44390e237b2a0219b6, type: 3}
+    - {fileID: 8300000, guid: 7f139e39b0ba3ca4d8542b4cb078aef3, type: 3}
+    - {fileID: 8300000, guid: fffc16a12c17f6a4ca7a019cd7b86606, type: 3}
+    - {fileID: 8300000, guid: c97242d21c1ef98459649964948ea252, type: 3}
+    - {fileID: 8300000, guid: e1c18ca939a529a42a180581418f87bd, type: 3}
+    - {fileID: 8300000, guid: 5eb5337fda1a70340a023b90d0e4cdf5, type: 3}
+  - minColliderSize: 0.4
+    minSpeed: 1
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: 1a04367c62138a44390e237b2a0219b6, type: 3}
+    - {fileID: 8300000, guid: 7f139e39b0ba3ca4d8542b4cb078aef3, type: 3}
+    - {fileID: 8300000, guid: fffc16a12c17f6a4ca7a019cd7b86606, type: 3}
+    - {fileID: 8300000, guid: c97242d21c1ef98459649964948ea252, type: 3}
+    - {fileID: 8300000, guid: e1c18ca939a529a42a180581418f87bd, type: 3}
+    - {fileID: 8300000, guid: 5eb5337fda1a70340a023b90d0e4cdf5, type: 3}
+  - minColliderSize: 1
+    minSpeed: 0.01
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: 2519721006606d340a51b80c4677d8d1, type: 3}
+    - {fileID: 8300000, guid: c254ed5a3ef905b47bced1b01f70ed00, type: 3}
+    - {fileID: 8300000, guid: c68aea8c08da69d41b8bbc4ac7505ea7, type: 3}
+    - {fileID: 8300000, guid: fc9304b7d6b048e45a7d7a1ae0408673, type: 3}
+    - {fileID: 8300000, guid: 1dd3037516c1cf24286f854a9454084d, type: 3}
+    - {fileID: 8300000, guid: f90989ada20776b4f965214afad4aad1, type: 3}
+  - minColliderSize: 1
+    minSpeed: 0.5
+    volumeMul: 0.7
+    clips:
+    - {fileID: 8300000, guid: 1a04367c62138a44390e237b2a0219b6, type: 3}
+    - {fileID: 8300000, guid: 7f139e39b0ba3ca4d8542b4cb078aef3, type: 3}
+    - {fileID: 8300000, guid: fffc16a12c17f6a4ca7a019cd7b86606, type: 3}
+    - {fileID: 8300000, guid: c97242d21c1ef98459649964948ea252, type: 3}
+    - {fileID: 8300000, guid: e1c18ca939a529a42a180581418f87bd, type: 3}
+    - {fileID: 8300000, guid: 5eb5337fda1a70340a023b90d0e4cdf5, type: 3}
+  - minColliderSize: 1
+    minSpeed: 1
+    volumeMul: 0.9
+    clips:
+    - {fileID: 8300000, guid: 1a04367c62138a44390e237b2a0219b6, type: 3}
+    - {fileID: 8300000, guid: 7f139e39b0ba3ca4d8542b4cb078aef3, type: 3}
+    - {fileID: 8300000, guid: fffc16a12c17f6a4ca7a019cd7b86606, type: 3}
+    - {fileID: 8300000, guid: c97242d21c1ef98459649964948ea252, type: 3}
+    - {fileID: 8300000, guid: e1c18ca939a529a42a180581418f87bd, type: 3}
+    - {fileID: 8300000, guid: 5eb5337fda1a70340a023b90d0e4cdf5, type: 3}
+  - minColliderSize: 1
+    minSpeed: 2
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: 1a04367c62138a44390e237b2a0219b6, type: 3}
+    - {fileID: 8300000, guid: 7f139e39b0ba3ca4d8542b4cb078aef3, type: 3}
+    - {fileID: 8300000, guid: fffc16a12c17f6a4ca7a019cd7b86606, type: 3}
+    - {fileID: 8300000, guid: c97242d21c1ef98459649964948ea252, type: 3}
+    - {fileID: 8300000, guid: e1c18ca939a529a42a180581418f87bd, type: 3}
+    - {fileID: 8300000, guid: 5eb5337fda1a70340a023b90d0e4cdf5, type: 3}
+  - minColliderSize: 1
+    minSpeed: 4
+    volumeMul: 0.8
+    clips:
+    - {fileID: 8300000, guid: 9cb544e70e549aa40a51e77ff7760aeb, type: 3}
+    - {fileID: 8300000, guid: d18bf4b65f6974e438d506aefffbe0f2, type: 3}
+    - {fileID: 8300000, guid: 07aabca947f7fe540868c27659d886a8, type: 3}
+  - minColliderSize: 1
+    minSpeed: 6
+    volumeMul: 1
+    clips:
+    - {fileID: 8300000, guid: 9cb544e70e549aa40a51e77ff7760aeb, type: 3}
+    - {fileID: 8300000, guid: d18bf4b65f6974e438d506aefffbe0f2, type: 3}
+    - {fileID: 8300000, guid: 07aabca947f7fe540868c27659d886a8, type: 3}
+  _exitSounds: []
+--- !u!114 &1397187396880868551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810880059814857551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85898e6554814ad48ad04296761de66f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waterZone: {fileID: 6630047829264261539}
+  _minSize: 0
+  _maxSize: 1
+  _minSizeScaleMul: 0.5
+  _maxSizeScaleMul: 1
+  _minSpeed: 0
+  _maxSpeed: 1
+  _minSpeedScaleMul: 0.5
+  _maxSpeedScaleMul: 1
+  _enterPrefabs: []
+  _exitPrefabs: []
+--- !u!114 &5976896297654302444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810880059814857551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602698236faf479496508116875de1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waterZone: {fileID: 6630047829264261539}
+--- !u!114 &293489112810694674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810880059814857551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6594e0b6d24ca59e9c0386bf0f7a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component: {fileID: 6630047829264261539}
+  _lifetime: 0
+  _serviceType: 1
+  _id:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 4
+  _addTypes:
+  - _type: MisterGames.Logic.Water.IWaterZone, MisterGames.Logic
