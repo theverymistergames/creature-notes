@@ -53,7 +53,6 @@ MonoBehaviour:
   _predefinedProxies: []
   _surfaceOffset: 0
   _forceLevelDecrease: 1
-  _maxSpeed: -1
   _buoyancyDefault: 0
   _deceleration: 3
   _torqueDeceleration: 3
@@ -63,7 +62,7 @@ MonoBehaviour:
   _randomTorque: 0.1
   _randomForceSpeed: 0.1
   _randomTorqueSpeed: 0.2
-  _showDebugInfo: 1
+  _showNoClientGizmo: 0
 --- !u!114 &3768074594181459820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waterZone: {fileID: 6630047829264261539}
-  _volume: {x: 0.8, y: 1}
+  _volume: {x: 0.6, y: 0.8}
   _pitch: {x: 0.9, y: 1.1}
   _fadeIn: 0
   _fadeOut: -1
@@ -342,7 +341,71 @@ MonoBehaviour:
   _maxSpeed: 1
   _minSpeedScaleMul: 0.5
   _maxSpeedScaleMul: 1
-  _enterPrefabs: []
+  _enterPrefabs:
+  - minColliderSize: 0
+    minSpeed: 0.1
+    scaleMul: 0.5
+    prefab: {fileID: 1760259979372616797, guid: 49e22660fc096ea47a76de50a19023f4,
+      type: 3}
+  - minColliderSize: 0
+    minSpeed: 0.5
+    scaleMul: 1
+    prefab: {fileID: 1760259979372616797, guid: 49e22660fc096ea47a76de50a19023f4,
+      type: 3}
+  - minColliderSize: 0.25
+    minSpeed: 0.01
+    scaleMul: 0.5
+    prefab: {fileID: 5324048441472528140, guid: 945b674dd48393c40b0b4198e4e80fc5,
+      type: 3}
+  - minColliderSize: 0.25
+    minSpeed: 0.1
+    scaleMul: 0.7
+    prefab: {fileID: 5324048441472528140, guid: 945b674dd48393c40b0b4198e4e80fc5,
+      type: 3}
+  - minColliderSize: 0.25
+    minSpeed: 0.5
+    scaleMul: 1
+    prefab: {fileID: 5324048441472528140, guid: 945b674dd48393c40b0b4198e4e80fc5,
+      type: 3}
+  - minColliderSize: 0.4
+    minSpeed: 0.01
+    scaleMul: 1
+    prefab: {fileID: 1760259979372616797, guid: 49e22660fc096ea47a76de50a19023f4,
+      type: 3}
+  - minColliderSize: 0.4
+    minSpeed: 0.5
+    scaleMul: 0.6
+    prefab: {fileID: 5324048441472528140, guid: 945b674dd48393c40b0b4198e4e80fc5,
+      type: 3}
+  - minColliderSize: 0.4
+    minSpeed: 1
+    scaleMul: 1
+    prefab: {fileID: 1722726733478836, guid: f325866b8c24be54ebdf446f9f44aa7d, type: 3}
+  - minColliderSize: 1
+    minSpeed: 0.01
+    scaleMul: 1
+    prefab: {fileID: 5324048441472528140, guid: 945b674dd48393c40b0b4198e4e80fc5,
+      type: 3}
+  - minColliderSize: 1
+    minSpeed: 0.5
+    scaleMul: 0.7
+    prefab: {fileID: 1722726733478836, guid: f325866b8c24be54ebdf446f9f44aa7d, type: 3}
+  - minColliderSize: 1
+    minSpeed: 1
+    scaleMul: 0.9
+    prefab: {fileID: 1722726733478836, guid: f325866b8c24be54ebdf446f9f44aa7d, type: 3}
+  - minColliderSize: 1
+    minSpeed: 2
+    scaleMul: 1
+    prefab: {fileID: 1722726733478836, guid: f325866b8c24be54ebdf446f9f44aa7d, type: 3}
+  - minColliderSize: 1
+    minSpeed: 4
+    scaleMul: 1.1
+    prefab: {fileID: 1722726733478836, guid: f325866b8c24be54ebdf446f9f44aa7d, type: 3}
+  - minColliderSize: 1
+    minSpeed: 6
+    scaleMul: 1.2
+    prefab: {fileID: 1722726733478836, guid: f325866b8c24be54ebdf446f9f44aa7d, type: 3}
   _exitPrefabs: []
 --- !u!114 &5976896297654302444
 MonoBehaviour:

@@ -109,7 +109,7 @@ namespace _Project.Scripts.Runtime.Enemies.Clocks {
             
             while (!cancellationToken.IsCancellationRequested && t < 1f) {
                 t = Mathf.Clamp01(t + speed * Time.deltaTime);
-                TimescaleSystem.SetTimeScale(priority, Mathf.Lerp(tsStart, ts, _timescaleCurve.Evaluate(t)));
+                TimescaleSystem.SetTimeScale(this, priority, Mathf.Lerp(tsStart, ts, _timescaleCurve.Evaluate(t)));
                 
                 await UniTask.Yield();
             }
@@ -125,7 +125,7 @@ namespace _Project.Scripts.Runtime.Enemies.Clocks {
             _audioHandle.Release();
             _tickCounter = 0;
             
-            TimescaleSystem.RemoveTimeScale(_timeScalePriority.GetValue());
+            TimescaleSystem.RemoveTimeScale(this);
         }
         
         private void OnTick(int second) {
