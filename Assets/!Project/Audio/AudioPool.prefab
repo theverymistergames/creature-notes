@@ -51,7 +51,9 @@ MonoBehaviour:
     type: 2}
   _fadeOut: 0.25
   _attenuationDistance: 50
+  _audioParametersSmoothing: 3
   _lastIndexStoreLifetime: 60
+  _enableVolumes: 1
   _includeDefaultMixerGroupsForVolumes: 1
   _includeMixerGroupsForVolumes: []
   _applyOcclusion: 1
@@ -64,113 +66,23 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 1
-  _occlusionSmoothing: 3
   _distanceWeightLow: 1
   _collisionWeightLow: 0.3
   _qLow: 1
   _cutoffLow: 1000
-  _distanceCurveLow:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 2.000003
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0
-      outWeight: 0.333333
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0.33333302
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _cutoffLowCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 3.000003
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0
-      outWeight: 0.333333
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0.33333302
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _distanceLowFreqEasing: 1
+  _cutoffLowFreqEasing: 4
   _distanceWeightHigh: 1
   _collisionWeightHigh: 0.1
   _qHigh: 1
   _cutoffHigh: 500
-  _distanceCurveHigh:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: -0.0012084927
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0
-      outWeight: 0.36078
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.5725082
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0.326514
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _cutoffHighCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 1.5735515
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0
-      outWeight: 0.330931
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: -0.0009282457
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 3
-      inWeight: 0.358689
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _showDebugInfo: 0
+  _distanceHighFreqEasing: 12
+  _cutoffHighFreqEasing: 13
+  _showSoundsDebugInfo: 0
+  _showSoundsNameFilters: []
+  _showVolumeInfo: 0
   _showOcclusionInfo: 0
+  _showOcclusionNameFilters: []
 --- !u!81 &6117508164123445066
 AudioListener:
   m_ObjectHideFlags: 0

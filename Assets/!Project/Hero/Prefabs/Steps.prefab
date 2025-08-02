@@ -307,9 +307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafc7708210b43b59a7d84c5891c81e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _capsuleCollider: {fileID: 0}
   _materialDetector: {fileID: 0}
   _volume: 0.2
   _pitch: {x: 1.1, y: 1.25}
+  _playSoundCooldown: 0.3
   _sounds:
   - {fileID: 8300000, guid: f6522d32a54bc194db762d425a11dba7, type: 3}
   - {fileID: 8300000, guid: b7614807a10fc5c4483c9fac2f1ee1e4, type: 3}
@@ -544,3 +546,5 @@ MonoBehaviour:
     - {fileID: 8300000, guid: abe8b071fb9a9204bbc0f423eea8a384, type: 3}
     - {fileID: 8300000, guid: 8b62588486a40fa4fa8df2c2a344d34f, type: 3}
     - {fileID: 8300000, guid: aa25749443ae6d84190bd7e0b3bc6670, type: 3}
+  _enableDebugSound: 0
+  _debugSound: {fileID: 8300000, guid: f6522d32a54bc194db762d425a11dba7, type: 3}
