@@ -1,4 +1,5 @@
 ﻿using MisterGames.Character.Core;
+using MisterGames.Common.Strings;
 using MisterGames.Scenes.Core;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace _Project.Scripts.Runtime.Levels {
                 return;
             }
 
-            Debug.LogWarning($"{nameof(LevelsSwitcher)}: f {Time.frameCount}, launching first active level in editor: level {level}.");
+            LogWarning($"launching first active level in editor: level {level}.");
             LevelService.Instance.CurrentLevel = level;
 #endif
             
@@ -40,7 +41,7 @@ namespace _Project.Scripts.Runtime.Levels {
 
         private void EnableLevel(int level) {
             if (level < 0 || level >= _levels.Length) {
-                Debug.LogError($"{nameof(LevelsSwitcher)}: requested level #{level} is not found, levels total {_levels.Length}.");
+                LogError($"requested level #{level} is not found, levels total {_levels.Length}.");
                 return;
             }
 
@@ -51,9 +52,21 @@ namespace _Project.Scripts.Runtime.Levels {
             _levels[level].EnableLevel(true);
             _levels[level].SpawnOnLevel(_defaultSpawnPoint.transform);
             
-            Debug.Log($"{nameof(LevelsSwitcher)}: enabled level #{level}.");
+            Log($"enabled level #{level}.");
         }
 
+        private static void Log(string message) {
+            Debug.Log($"{nameof(LevelsSwitcher).FormatColorOnlyForEditor(Color.white)}: f {Time.frameCount}, {message}");
+        }
+
+        private static void LogWarning(string message) {
+            Debug.LogWarning($"{nameof(LevelsSwitcher).FormatColorOnlyForEditor(Color.white)}: f {Time.frameCount}, {message}");
+        }
+        
+        private static void LogError(string message) {
+            Debug.LogError($"{nameof(LevelsSwitcher).FormatColorOnlyForEditor(Color.white)}: f {Time.frameCount}, {message}");
+        }
+        
 #if UNITY_EDITOR
         [Header("Debug")]
         [SerializeField] private bool _launchFirstActiveLevelInEditor;
@@ -87,8 +100,8 @@ namespace _Project.Scripts.Runtime.Levels {
             // Wait before user switches to one active level
             if (activeLevels is <= 0 or > 1) {
                 if (!_isInvalidLevelsActivatedWarningShown) {
-                    Debug.LogWarning($"{nameof(LevelsSwitcher)}: f {Time.frameCount}, current level {currentLevel}, active levels {activeLevels}, " +
-                                     $"waiting for switching to one level to setup current level correctly.");
+                    LogWarning($"current level {currentLevel}, active levels {activeLevels}, " +
+                               $"waiting for switching to one level to setup current level correctly.");
                 }
                 
                 _isInvalidLevelsActivatedWarningShown = true;
@@ -100,7 +113,7 @@ namespace _Project.Scripts.Runtime.Levels {
             // Valid
             if (currentLevel == firstActiveLevel) return;
 
-            Debug.LogWarning($"{nameof(LevelsSwitcher)}: f {Time.frameCount}, current level {currentLevel} was switched to level {firstActiveLevel} manually.");
+            LogWarning($"current level {currentLevel} was switched to level {firstActiveLevel} manually.");
             
             LevelService.Instance.CurrentLevel = firstActiveLevel;
         }
