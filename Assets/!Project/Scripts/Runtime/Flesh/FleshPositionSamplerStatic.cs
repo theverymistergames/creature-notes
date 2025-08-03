@@ -10,17 +10,16 @@ namespace _Project.Scripts.Runtime.Flesh {
         public override bool TrySamplePosition(ref Vector3 point) {
             float minSqrDistance = float.MaxValue;
             var resultPoint = point;
-            
-            foreach (var fleshVertexPosition in _fleshVertexPositions) {
+
+            for (int i = 0; i < _fleshVertexPositions.Length; i++) {
                 var p = point;
-                
-                if (!fleshVertexPosition.TrySamplePosition(ref p) ||
+
+                if (!_fleshVertexPositions[i].TrySamplePosition(ref p) ||
                     (point - p).sqrMagnitude is var sqrDistance &&
-                    (sqrDistance > minSqrDistance || sqrDistance > _maxDistance * _maxDistance))
-                {
+                    (sqrDistance > minSqrDistance || sqrDistance > _maxDistance * _maxDistance)) {
                     continue;
                 }
-                
+
                 minSqrDistance = sqrDistance;
                 resultPoint = p;
             }

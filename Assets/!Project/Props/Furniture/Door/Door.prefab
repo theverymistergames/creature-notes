@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 249947384757128190}
   - component: {fileID: 1656438094539248619}
   - component: {fileID: 6299945466590765134}
+  - component: {fileID: 6177365400132460511}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -254,6 +255,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        affectedByVolumes: 1
         useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
@@ -282,6 +284,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        affectedByVolumes: 1
         useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
@@ -410,6 +413,7 @@ MonoBehaviour:
         loop: 0
         affectedByTimeScale: 1
         occlusion: 1
+        affectedByVolumes: 1
         useActorDestroyToken: 0
         mixerGroup: {fileID: 0}
         audioClipVariants:
@@ -422,6 +426,33 @@ MonoBehaviour:
         - {fileID: 8300000, guid: 4a5e2e2fe3b0b5442a9791adb55754ec, type: 3}
         - {fileID: 8300000, guid: bd44d74f79c1aa74584f01eba98cc4f0, type: 3}
         - {fileID: 8300000, guid: 804e6313bc0152b43977d1b778694542, type: 3}
+--- !u!54 &6177365400132460511
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507452910399228313}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6367948374756771386
 GameObject:
   m_ObjectHideFlags: 0

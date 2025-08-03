@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7436487853220176006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 307784234505739486}
+  - component: {fileID: 1717365595102636676}
+  - component: {fileID: 5348590152483553042}
+  m_Layer: 0
+  m_Name: GravityGroup_monsters
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &307784234505739486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436487853220176006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 31.922, y: 5.4242, z: 17.6049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717365595102636676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436487853220176006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6594e0b6d24ca59e9c0386bf0f7a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component: {fileID: 5348590152483553042}
+  _lifetime: 0
+  _serviceType: 1
+  _id:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2
+  _addTypes: []
+--- !u!114 &5348590152483553042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436487853220176006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b9fdd3a7454fa8a79868652b999770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _options: 14
+  _startMode: 1
+  _center: {fileID: 307784234505739486}
+  _gravityMode: 1
+  _localGravitySource: {fileID: 0}
+  _useGravity: 1
+  _gravityScale: 1
+  _addRandomTorqueOnGravityChange: 1
+  _torqueMin: 0
+  _torqueMax: 60
+  _showDebugInfo: 1
