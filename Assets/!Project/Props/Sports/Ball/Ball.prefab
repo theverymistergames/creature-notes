@@ -16,7 +16,10 @@ GameObject:
   - component: {fileID: 6754873857141252851}
   - component: {fileID: 8269888475557482156}
   - component: {fileID: 1850434193199711332}
-  - component: {fileID: 7722497516012451700}
+  - component: {fileID: 3865059942473273879}
+  - component: {fileID: 2187651783997678931}
+  - component: {fileID: 6629130803114926229}
+  - component: {fileID: 4588271575680057067}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -149,10 +152,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2697353577669667085}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -186,8 +189,9 @@ MonoBehaviour:
   _forceMin: 3
   _forceMax: 6
   _directionMode: 0
-  _normal: {x: 0, y: 0, z: 0}
---- !u!114 &7722497516012451700
+  _rotationOffset: {x: 0, y: 0, z: 0}
+  _randomizeAngle: 0
+--- !u!114 &3865059942473273879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,15 +200,65 @@ MonoBehaviour:
   m_GameObject: {fileID: 2697353577669667085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 682620d4a1ab443b94c5f5b6eb08b837, type: 3}
+  m_Script: {fileID: 11500000, guid: 3577af494343422ba459e88981ec386f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 8269888475557482156}
-  _gravityMode: 1
-  _localGravitySource: {fileID: 0}
-  _useGravity: 1
-  _gravityScale: 1
-  _allowSleeping: 1
-  _velocityMin: 0.01
-  _sleepDelay: 1
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &2187651783997678931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697353577669667085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 39
+--- !u!114 &6629130803114926229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697353577669667085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1220a918dce340b28a00e1f0512a67ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ignoreWaterZone: 0
+  _rigidbody: {fileID: 8269888475557482156}
+  _mainFloatingPoints:
+  - {x: 0, y: 0, z: 0}
+  _buoyancy: 1
+  _decelerationMul: 1
   _showDebugInfo: 0
+--- !u!114 &4588271575680057067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697353577669667085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 8269888475557482156}
+  _surfaceMaterial: {fileID: 2187651783997678931}
+  _colliders:
+  - {fileID: 6754873857141252851}

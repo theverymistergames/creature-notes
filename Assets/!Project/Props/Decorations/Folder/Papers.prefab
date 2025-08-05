@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6054934159667602391}
   - component: {fileID: 5338322420110494538}
   - component: {fileID: 3798544554959787287}
+  - component: {fileID: 3113896949631263365}
+  - component: {fileID: 6464770358965511076}
   m_Layer: 0
   m_Name: Papers
   m_TagString: Untagged
@@ -154,3 +156,38 @@ MonoBehaviour:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
   _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &3113896949631263365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3636276319502344179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 37
+--- !u!114 &6464770358965511076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3636276319502344179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 5338322420110494538}
+  _surfaceMaterial: {fileID: 3113896949631263365}
+  _colliders:
+  - {fileID: 6054934159667602391}

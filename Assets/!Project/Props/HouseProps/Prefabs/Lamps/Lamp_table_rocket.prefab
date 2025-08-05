@@ -362,6 +362,8 @@ GameObject:
   - component: {fileID: 7734144629700906101}
   - component: {fileID: 6371108135089866863}
   - component: {fileID: 7115812940523111884}
+  - component: {fileID: 7134363400371341586}
+  - component: {fileID: 6388610658899211694}
   m_Layer: 0
   m_Name: Lamp_table_rocket
   m_TagString: Untagged
@@ -504,3 +506,39 @@ MonoBehaviour:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
   _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &7134363400371341586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399674523792531596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 26
+--- !u!114 &6388610658899211694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399674523792531596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 6371108135089866863}
+  _surfaceMaterial: {fileID: 7134363400371341586}
+  _colliders:
+  - {fileID: 7734144629700906101}
+  - {fileID: 1527013368639650}

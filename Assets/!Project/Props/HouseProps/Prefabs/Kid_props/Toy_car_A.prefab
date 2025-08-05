@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 1038297189396690491}
   - component: {fileID: 8075602614320684}
   - component: {fileID: 3108946686596332781}
+  - component: {fileID: 964500228856983329}
+  - component: {fileID: 8466665291483986862}
+  - component: {fileID: 5654144680511958750}
   m_Layer: 0
   m_Name: Toy_car_A
   m_TagString: Untagged
@@ -171,3 +174,58 @@ MonoBehaviour:
   _group:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &964500228856983329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342351948459876224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 29
+--- !u!114 &8466665291483986862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342351948459876224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 8075602614320684}
+  _surfaceMaterial: {fileID: 964500228856983329}
+  _colliders:
+  - {fileID: -6646072205098048522}
+--- !u!114 &5654144680511958750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342351948459876224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1220a918dce340b28a00e1f0512a67ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ignoreWaterZone: 0
+  _rigidbody: {fileID: 8075602614320684}
+  _mainFloatingPoints:
+  - {x: 0, y: 0, z: 0}
+  _buoyancy: 1
+  _decelerationMul: 1
+  _showDebugInfo: 0

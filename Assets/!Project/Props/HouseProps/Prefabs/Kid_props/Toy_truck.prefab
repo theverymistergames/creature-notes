@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8006261246735116338}
   - component: {fileID: 9011349308216330026}
   - component: {fileID: 110348585191474212}
+  - component: {fileID: 2107155177997873233}
+  - component: {fileID: 3346254485027439185}
   m_Layer: 0
   m_Name: Toy_truck
   m_TagString: Untagged
@@ -153,3 +155,39 @@ MonoBehaviour:
   _group:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &2107155177997873233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173439442886866425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 26
+--- !u!114 &3346254485027439185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173439442886866425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 9011349308216330026}
+  _surfaceMaterial: {fileID: 2107155177997873233}
+  _colliders:
+  - {fileID: 8006261246735116338}

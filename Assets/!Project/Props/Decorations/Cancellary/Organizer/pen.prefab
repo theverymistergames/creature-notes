@@ -96,6 +96,26 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2058402036001412105}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06d3a110cf6ae2e4985203bc9c2a7186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1191480354496083122}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06d3a110cf6ae2e4985203bc9c2a7186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6396522778659792833}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06d3a110cf6ae2e4985203bc9c2a7186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7242110168499609877}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06d3a110cf6ae2e4985203bc9c2a7186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 72265575741131494}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 06d3a110cf6ae2e4985203bc9c2a7186,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7980380707868370044}
   m_SourcePrefab: {fileID: 100100000, guid: 06d3a110cf6ae2e4985203bc9c2a7186, type: 3}
 --- !u!1 &1594499804104962691 stripped
 GameObject:
@@ -124,3 +144,101 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.11263406, y: 0.008000004, z: 0.008917056}
   m_Center: {x: 0.0047010835, y: -0.0000057222414, z: 0.000996327}
+--- !u!54 &1191480354496083122
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594499804104962691}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6396522778659792833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594499804104962691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3577af494343422ba459e88981ec386f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1191480354496083122}
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &7242110168499609877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594499804104962691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 31
+--- !u!114 &72265575741131494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594499804104962691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 1191480354496083122}
+  _surfaceMaterial: {fileID: 7242110168499609877}
+  _colliders:
+  - {fileID: 2058402036001412105}
+--- !u!114 &7980380707868370044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594499804104962691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1220a918dce340b28a00e1f0512a67ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ignoreWaterZone: 0
+  _rigidbody: {fileID: 1191480354496083122}
+  _mainFloatingPoints:
+  - {x: 0, y: 0, z: 0}
+  _buoyancy: 1
+  _decelerationMul: 1
+  _showDebugInfo: 0

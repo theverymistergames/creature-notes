@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6602118541511815030}
   - component: {fileID: 6989498665895782787}
   - component: {fileID: 2423946060132765407}
+  - component: {fileID: 5728600740767830620}
+  - component: {fileID: 5137520932686535688}
   m_Layer: 0
   m_Name: Candle_holder_B
   m_TagString: Untagged
@@ -154,6 +156,43 @@ MonoBehaviour:
   _group:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &5728600740767830620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557976101606975631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 30
+--- !u!114 &5137520932686535688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557976101606975631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 6989498665895782787}
+  _surfaceMaterial: {fileID: 5728600740767830620}
+  _colliders:
+  - {fileID: 6602118541511815030}
+  - {fileID: 2769765481882270341}
 --- !u!1001 &3777577920010856728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -227,6 +266,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e93c79b29c9d8046a25f8ad2ee84204, type: 3}
+--- !u!65 &2769765481882270341 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1305067652231730077, guid: 6e93c79b29c9d8046a25f8ad2ee84204,
+    type: 3}
+  m_PrefabInstance: {fileID: 3777577920010856728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5347499050833527088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9104735932127438888, guid: 6e93c79b29c9d8046a25f8ad2ee84204,

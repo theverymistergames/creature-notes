@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8928122795145614017}
   - component: {fileID: 1524246870383193551}
   - component: {fileID: 7943523289075525132}
+  - component: {fileID: 47709411087181040}
+  - component: {fileID: 8732304945067095841}
   m_Layer: 0
   m_Name: SM_Umbrella2_5
   m_TagString: Untagged
@@ -126,6 +128,42 @@ MonoBehaviour:
   _group:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &47709411087181040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031001165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 26
+--- !u!114 &8732304945067095841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031001165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 1524246870383193551}
+  _surfaceMaterial: {fileID: 47709411087181040}
+  _colliders:
+  - {fileID: 8928122795145614017}
 --- !u!1 &1031001172
 GameObject:
   m_ObjectHideFlags: 0

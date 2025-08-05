@@ -99,6 +99,8 @@ GameObject:
   - component: {fileID: 4503015718957309305}
   - component: {fileID: 6728839293282281899}
   - component: {fileID: 5059641201074021972}
+  - component: {fileID: 6519965040885347148}
+  - component: {fileID: 9148816739829972271}
   m_Layer: 0
   m_Name: Cosmetics_3
   m_TagString: Untagged
@@ -206,3 +208,38 @@ MonoBehaviour:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
   _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &6519965040885347148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913677693977884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 30
+--- !u!114 &9148816739829972271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913677693977884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 6728839293282281899}
+  _surfaceMaterial: {fileID: 6519965040885347148}
+  _colliders:
+  - {fileID: 4503015718957309305}

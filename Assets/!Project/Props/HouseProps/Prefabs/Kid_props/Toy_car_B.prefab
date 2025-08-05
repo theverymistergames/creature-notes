@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: -4585684396346546273}
   - component: {fileID: 3091788968252355760}
   - component: {fileID: 7777162092526786964}
+  - component: {fileID: 1255962942488649307}
+  - component: {fileID: 1726670119183300532}
+  - component: {fileID: 6566653311535171740}
   m_Layer: 0
   m_Name: Toy_car_B
   m_TagString: Untagged
@@ -153,3 +156,58 @@ MonoBehaviour:
   _group:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &1255962942488649307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948609149937918292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 29
+--- !u!114 &1726670119183300532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948609149937918292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 3091788968252355760}
+  _surfaceMaterial: {fileID: 1255962942488649307}
+  _colliders:
+  - {fileID: -4585684396346546273}
+--- !u!114 &6566653311535171740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948609149937918292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1220a918dce340b28a00e1f0512a67ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ignoreWaterZone: 0
+  _rigidbody: {fileID: 3091788968252355760}
+  _mainFloatingPoints:
+  - {x: 0, y: 0, z: 0}
+  _buoyancy: 1
+  _decelerationMul: 1
+  _showDebugInfo: 0

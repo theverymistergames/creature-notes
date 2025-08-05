@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 29988745696666896}
   - component: {fileID: 2612589365062492963}
   - component: {fileID: 5913937183461916745}
+  - component: {fileID: 8705968916180554305}
+  - component: {fileID: 912396813369537254}
+  - component: {fileID: 2717268296721987891}
   m_Layer: 0
   m_Name: SM_Soap_01_28
   m_TagString: Untagged
@@ -120,6 +123,60 @@ MonoBehaviour:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
   _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &8705968916180554305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030990244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 29
+--- !u!114 &912396813369537254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030990244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1220a918dce340b28a00e1f0512a67ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ignoreWaterZone: 0
+  _rigidbody: {fileID: 2612589365062492963}
+  _mainFloatingPoints:
+  - {x: 0, y: 0, z: 0}
+  _buoyancy: 1
+  _decelerationMul: 1
+  _showDebugInfo: 0
+--- !u!114 &2717268296721987891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030990244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 2612589365062492963}
+  _surfaceMaterial: {fileID: 8705968916180554305}
+  _colliders:
+  - {fileID: 29988745696666896}
 --- !u!1 &1030990251
 GameObject:
   m_ObjectHideFlags: 0

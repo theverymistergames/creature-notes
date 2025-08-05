@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3329363949379521889}
   - component: {fileID: 881751180956472126}
   - component: {fileID: 6498437152819084042}
+  - component: {fileID: 6904311548168264326}
+  - component: {fileID: 3943772990627692793}
   m_Layer: 0
   m_Name: SM_Shoes_Left_14
   m_TagString: Untagged
@@ -141,6 +143,43 @@ MonoBehaviour:
   _group:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
+  _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &6904311548168264326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031001192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 37
+--- !u!114 &3943772990627692793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031001192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 881751180956472126}
+  _surfaceMaterial: {fileID: 6904311548168264326}
+  _colliders:
+  - {fileID: 7337545897320347455}
+  - {fileID: 3329363949379521889}
 --- !u!1 &1031001211
 GameObject:
   m_ObjectHideFlags: 0

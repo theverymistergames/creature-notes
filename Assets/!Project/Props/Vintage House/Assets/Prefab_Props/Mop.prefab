@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 205258666916880002}
   - component: {fileID: 3404869301969267974}
   - component: {fileID: 9153039575902724938}
+  - component: {fileID: 3147552643291573828}
+  - component: {fileID: 5493718253822513487}
   m_Layer: 0
   m_Name: Mop
   m_TagString: Untagged
@@ -99,6 +101,42 @@ MonoBehaviour:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
   _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &3147552643291573828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467459489319562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 26
+--- !u!114 &5493718253822513487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467459489319562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 3404869301969267974}
+  _surfaceMaterial: {fileID: 3147552643291573828}
+  _colliders:
+  - {fileID: 3678905626305641275}
+  - {fileID: 2170623443352194825}
 --- !u!1 &1522816793304570
 GameObject:
   m_ObjectHideFlags: 0

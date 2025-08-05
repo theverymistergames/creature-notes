@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4653061046596997627}
   - component: {fileID: 6270415587580915299}
   - component: {fileID: 8847475602078719559}
+  - component: {fileID: 5581313269303381676}
+  - component: {fileID: 6867571292549288595}
   m_Layer: 0
   m_Name: SM_BreakfastProps_Butter_8
   m_TagString: Untagged
@@ -120,6 +122,41 @@ MonoBehaviour:
     library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
     id: 2
   _options: 0
+  _kinematicOnAwake: 1
+--- !u!114 &5581313269303381676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030994074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d63a7f1aca8d4f0090210e1126bec5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 30
+--- !u!114 &6867571292549288595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030994074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e5ae8f452c4889859854c42d3d9c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _group:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 5
+  _rigidbody: {fileID: 6270415587580915299}
+  _surfaceMaterial: {fileID: 5581313269303381676}
+  _colliders:
+  - {fileID: 4653061046596997627}
 --- !u!1 &1030994081
 GameObject:
   m_ObjectHideFlags: 0
