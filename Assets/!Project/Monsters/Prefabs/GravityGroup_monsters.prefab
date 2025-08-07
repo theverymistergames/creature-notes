@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 307784234505739486}
   - component: {fileID: 1717365595102636676}
   - component: {fileID: 5348590152483553042}
+  - component: {fileID: 7973690349617266400}
   m_Layer: 0
   m_Name: GravityGroup_monsters
   m_TagString: Untagged
@@ -75,3 +76,19 @@ MonoBehaviour:
   _torqueMin: 0
   _torqueMax: 60
   _showDebugInfo: 0
+--- !u!114 &7973690349617266400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7436487853220176006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b703f295534eae83345f96112eb426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customGravityGroup: {fileID: 5348590152483553042}
+  _waterZoneId:
+    library: {fileID: 11400000, guid: 616a333c6597e2d4e96f7b0075967b6b, type: 2}
+    id: 4
