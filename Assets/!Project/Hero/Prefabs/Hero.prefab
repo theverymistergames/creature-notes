@@ -144,8 +144,8 @@ GameObject:
   - component: {fileID: 702872700590475939}
   - component: {fileID: 8128953007654444892}
   - component: {fileID: 1944833388459739466}
-  - component: {fileID: 733566978487860287}
   - component: {fileID: 3821779519464850139}
+  - component: {fileID: 5804322931593733170}
   m_Layer: 2
   m_Name: Collisions
   m_TagString: Untagged
@@ -294,29 +294,6 @@ MonoBehaviour:
     material:
       library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
       id: 6
---- !u!114 &733566978487860287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662950266165396430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edbe2afa86b04fc292c22bb4ceb225ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _triggerEmitter: {fileID: 99584176637886361}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 16
-  _material:
-    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
-    id: 16
-  _weightMin: 0.1
-  _weightMax: 3
-  _maxDistance: 0.5
-  _showDebugInfo: 0
 --- !u!114 &3821779519464850139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,8 +310,24 @@ MonoBehaviour:
   - {fileID: 8128953007654444892}
   - {fileID: 1944833388459739466}
   _detectorsSecondary:
-  - {fileID: 733566978487860287}
+  - {fileID: 5804322931593733170}
   - {fileID: 1998377615816346271}
+--- !u!114 &5804322931593733170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662950266165396430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b29fe5e16554f83ae5b765e944451ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _material:
+    library: {fileID: 11400000, guid: d7668aa00b3272647854f7d561c2ef62, type: 2}
+    id: 16
+  _submergeWeightRemap: {x: 0, y: 0.7}
 --- !u!1 &1727031898436235196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,6 +1887,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Steps
       objectReference: {fileID: 0}
+    - target: {fileID: 6261727994871214457, guid: a3b6c152c6ed61746b9789112e3a754e,
+        type: 3}
+      propertyPath: _root
+      value: 
+      objectReference: {fileID: 7205586870401899320}
     - target: {fileID: 6921256186975412110, guid: a3b6c152c6ed61746b9789112e3a754e,
         type: 3}
       propertyPath: m_LocalPosition.x
